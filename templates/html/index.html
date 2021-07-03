@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
     <!-- Meta -->
     <meta name="description" content={{printf "Hi, I'm Hexiro, %v" $message}}>
-    {{template "snippets/meta" .}}
+    {{template "html/snippets/meta" .}}
 </head>
 <body>
 {{ $outer := . }}
@@ -53,13 +53,13 @@
                             </div>
                             {{if (gt $project.StargazersCount 0)}}
                                 <div class="project-detail">
-                                    {{template "assets/star"}}
+                                    {{template "svg/assets/star"}}
                                     <span class="margin-left-2px">{{$project.StargazersCount}}</span>
                                 </div>
                             {{end}}
                             {{if (gt $project.NetworkCount 0)}}
                                  <div class="project-detail">
-                                    {{template "assets/network"}}
+                                    {{template "svg/assets/network"}}
                                     <span class="margin-left-2px">{{$project.NetworkCount}}</span>
                                 </div>
                             {{end}}
@@ -75,13 +75,13 @@
         <ul class="social-media">
             <li class="social-item">
                 <a href={{.Config.Me.TwitterLink}} rel="noreferrer" target="_blank">
-                    {{template "socials/twitter"}}
+                    {{template "svg/socials/twitter"}}
                 </a>
             </li>
             <li class="social-item">
                 <a href={{.Config.Me.GithubLink}} rel="noreferrer" target="_blank">
                     <!-- GitHub logo -->
-                    {{template "socials/github"}}
+                    {{template "svg/socials/github"}}
                 </a>
             </li>
         </ul>

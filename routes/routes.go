@@ -8,6 +8,6 @@ import (
 var (
 	renderer = render.New(render.Options{
 		Directory:  directory.Main("templates"),
-		Extensions: []string{".html"},
+		Extensions: []string{".html", ".svg"},
 	})
 )
