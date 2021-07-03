@@ -5,8 +5,6 @@
     --background-color: #191c1d;
     --background-accent: #292d2f;
     --scrollbar-color: #606160;
-    --skeleton-color: rgba(130, 130, 130, 0.2);
-    --skeleton-accent: rgba(130, 130, 130, 0.3);
 }
 
 ::-webkit-scrollbar {
@@ -274,10 +272,10 @@ svg {
 
 @media (prefers-color-scheme: light) {
     :root {
-        /*--light: #333333;*/
+        --light: #333333;
         --text-color: #2f2f2f;
-        /*--main-accent: #3abd78;*/
-        /*--main-color: rgba(64, 64, 64, 0.66);*/
+        --main-accent: #3abd78;
+        --main-color: rgba(64, 64, 64, 0.66);
         --background-color: #ebebeb;
         --background-accent: #e4e4e4;
     }
