@@ -1,39 +1,43 @@
 package main
 
 import (
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/logger"
-	"github.com/gofiber/template/html"
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
 	"hexiro/config"
 	"hexiro/routes"
+	"net/http"
 	"os"
+	"time"
 )
 
 func main() {
-	engine := html.New("views", ".html")
-	if !config.Server.Production {
-		engine.Reload(true)
-	}
+	router := mux.NewRouter()
 
-	app := fiber.New(fiber.Config{
-		Views:     engine,
-		BodyLimit: -1,
-		GETOnly:   true,
+	// logger
+	router.Use(func(next http.Handler) http.Handler {
+		return handlers.LoggingHandler(os.Stdout, next)
 	})
-	// setup logger
-	app.Use(logger.New())
-	// mount routes
-	app.Mount("/", routes.Router)
-	// setup static
-	app.Static("/", "public", fiber.Static{
-		Index: "",
-	})
-	app.Get("*", routes.NotFound)
-	// Heroku sets a port for you
+	// index
+	router.HandleFunc("/", routes.Index)
+
+	// static assets
+	router.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", http.FileServer(http.Dir("./public/assets"))))
+
+	// 404s
+	router.NotFoundHandler = http.HandlerFunc(routes.NotFound)
+
+	var port string
 	if config.Server.Production {
-		app.Listen(":" + os.Getenv("PORT"))
+		port = os.Getenv("PORT")
 	} else {
-		app.Listen(":" + config.Server.Port)
+		port  = config.Server.Port
 	}
 
+	server := &http.Server{
+		Handler: router,
+		Addr:    ":" + port,
+		WriteTimeout: 15 * time.Second,
+		ReadTimeout:  15 * time.Second,
+	}
+	server.ListenAndServe()
 }

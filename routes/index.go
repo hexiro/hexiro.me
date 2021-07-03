@@ -1,14 +1,18 @@
 package routes
 
 import (
-	"github.com/gofiber/fiber/v2"
 	"hexiro/config"
 	"hexiro/crawler/github"
+	"net/http"
 )
 
-func Index(ctx *fiber.Ctx) error {
-	return ctx.Render("index", map[string]interface{}{
+func Index(writer http.ResponseWriter, req *http.Request) {
+	renderer.HTML(writer, 200, "views/index", map[string]interface{}{
 		"Projects": github.Repos,
 		"Config":   config.Config,
 	})
+	//return ctx.Render("index", map[string]interface{}{
+	//	"Projects": github.Repos,
+	//	"Config":   config.Config,
+	//})
 }

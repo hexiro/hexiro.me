@@ -1,12 +1,13 @@
 package routes
 
-import "github.com/gofiber/fiber/v2"
-
-var (
-	Router = fiber.New()
+import (
+	"gopkg.in/unrolled/render.v1"
+	"hexiro/directory"
 )
 
-func init() {
-	Router.Get("/", Index)
-	Router.Get("/404", NotFound)
-}
+var (
+	renderer = render.New(render.Options{
+		Directory:  directory.Main("templates"),
+		Extensions: []string{".html"},
+	})
+)
