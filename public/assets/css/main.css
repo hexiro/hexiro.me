@@ -1,0 +1,284 @@
+:root {
+    --text-color: #e0f5e2;
+    --main-accent: #5ce09a;
+    --main-color: #4bff9f;
+    --background-color: #191c1d;
+    --background-accent: #292d2f;
+    --scrollbar-color: #606160;
+    --skeleton-color: rgba(130, 130, 130, 0.2);
+    --skeleton-accent: rgba(130, 130, 130, 0.3);
+}
+
+::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    background-color: var(--scrollbar-color);
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.transition {
+    transition: ease all 0.5s;
+    -webkit-transition: ease all 0.5s;
+    -moz-transition: ease all 0.5s;
+    -ms-transition: ease all 0.5s;
+    -o-transition: ease all 0.5s;
+}
+
+/* FULL CENTER  */
+.full-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.opacity-100 {
+    opacity: 1;
+}
+
+/* COLORS */
+.text-color {
+    color: var(--text-color);
+}
+
+.main-color {
+    color: var(--main-color);
+}
+
+.main-accent {
+    color: var(--main-accent);
+}
+
+.dark-color {
+    color: var(--background-accent);
+}
+
+
+/* TEXT ALIGN */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-start {
+    text-align: start;
+}
+
+
+/* DISPLAY */
+.display-block {
+    display: block;
+}
+
+.display-flex {
+    display: flex;
+}
+
+.display-inline-block {
+    display: inline-block;
+}
+
+.display-inline-flex {
+    display: inline-flex;
+}
+
+.display-table {
+    display: table;
+}
+
+.display-table-cell {
+    display: table-cell;
+}
+
+/* JUSTIFY CONTENT */
+.justify-content-center {
+    justify-content: center;
+}
+
+/* ALIGN ITEMS */
+.align-items-center {
+    align-items: center;
+}
+
+/* TEXT SIZE */
+.text-smallest {
+    font-size: 0.5em;
+}
+
+.text-small {
+    font-size: 0.75em;
+}
+
+.text-default {
+    font-size: 1em;
+}
+
+.text-slightly-larger {
+    font-size: 1.25em;
+}
+
+.text-medium {
+    font-size: 1.5em;
+}
+
+.text-large {
+    font-size: 2em;
+}
+
+.text-largest {
+    font-size: 2.5em;
+}
+
+
+/* FONT WEIGHT */
+
+.font-weight-200 {
+    font-weight: 200;
+}
+
+.font-weight-300 {
+    font-weight: 300;
+}
+
+.font-weight-400 {
+    font-weight: 400;
+}
+
+.font-weight-500 {
+    font-weight: 500;
+}
+
+/* RANDOM */
+.rotate-270-degrees {
+    transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+}
+
+.no-user-select {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.to-upper {
+    text-transform: uppercase;
+}
+
+.to-lower {
+    text-transform: lowercase;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+/* TODO: MAKE CSS MORE RE-USABLE   */
+
+body {
+    background: var(--background-color);
+    color: var(--text-color);
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 2.75em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+h4 {
+    font-size: 1em;
+}
+
+h5 {
+    font-size: 0.9em
+}
+
+
+p {
+    color: var(--text-color);
+    font-weight: 200;
+    padding-bottom: 10px;
+}
+
+a {
+    color: var(--main-color);
+    text-decoration: none;
+    opacity: 0.7;
+    font-weight: 300;
+    transition: all ease 0.2s;
+    -webkit-transition: all ease 0.2s;
+    -moz-transition: all ease 0.2s;
+    -ms-transition: all ease 0.2s;
+    -o-transition: all ease 0.2s;
+}
+
+a:hover {
+    opacity: 0.9;
+}
+
+ul {
+    list-style: none;
+}
+
+svg {
+    width: auto;
+    height: 100%;
+    fill: var(--main-color);
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        /*--light: #333333;*/
+        --text-color: #2f2f2f;
+        /*--main-accent: #3abd78;*/
+        /*--main-color: rgba(64, 64, 64, 0.66);*/
+        --background-color: #ebebeb;
+        --background-accent: #e4e4e4;
+    }
+}

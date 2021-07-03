@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{.status}} | Hexiro</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/error.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <!-- Meta -->
+    <meta name="description" content={{.message}}>
+    {{template "snippets/meta" .}}
+</head>
+<body>
+<main class="full-center">
+    <div class="text-center">
+        <h1 class="main-accent font-weight-400">{{.status}}</h1>
+        <h2 class="font-weight-400">{{.message}}</h2>
+    </div>
+</main>
+</body>
+</html>
