@@ -19,10 +19,10 @@ func main() {
 		return middleware.LoggingHandler(log.Writer(), next)
 	})
 	// index
-	router.HandleFunc("/", routes.Index)
+	router.HandleFunc("/", routes.Index).Methods("GET")
 
 	// static assets
-	router.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", http.FileServer(http.Dir("./public/assets"))))
+	router.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", http.FileServer(http.Dir("./public/assets")))).Methods("GET")
 
 	// 404s
 	router.NotFoundHandler = http.HandlerFunc(routes.NotFound)
