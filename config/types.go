@@ -1,6 +1,9 @@
 package config
 
-import "time"
+import (
+	"strings"
+	"time"
+)
 
 // the name here is horrible
 // lmk if you have any ideas
@@ -12,8 +15,8 @@ type FullConfig struct {
 }
 
 type ServerConfig struct {
-	Port       string `yaml:"port"`
-	Production bool   `envconfig:"PRODUCTION"`
+	Port   string `yaml:"port"`
+	Status string `envconfig:"STATUS" default:"Development"`
 }
 
 type MeConfig struct {
@@ -23,3 +26,15 @@ type MeConfig struct {
 }
 
 type MessagesConfig map[int][]string
+
+func (s ServerConfig) Development() bool {
+	return strings.HasPrefix(strings.ToLower(s.Status), "dev")
+}
+
+func (s ServerConfig) Production() bool  {
+	return !s.Development()
+}
+
+func (s *ServerConfig) EnableProduction() {
+	s.Status = "Production"
+}

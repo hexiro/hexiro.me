@@ -12,7 +12,7 @@ var (
 )
 
 func init() {
-	if config.Server.Production {
+	if config.Server.Production() {
 		FetchPinnedRepos()
 		c := cron.New()
 		c.AddFunc("@hourly", FetchPinnedRepos)
