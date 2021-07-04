@@ -27,8 +27,8 @@ func main() {
 	router.NotFoundHandler = http.HandlerFunc(routes.NotFound)
 
 	var port string
-	if config.Server.Production {
-		port = os.Getenv("PORT")
+	if envPort := os.Getenv("PORT"); envPort != "" && config.Server.Production() {
+		port = envPort
 	} else {
 		port  = config.Server.Port
 	}
