@@ -5,9 +5,13 @@ import (
 	"hexiro/directory"
 )
 
+type Render struct {
+	*render.Render
+}
+
 var (
-	renderer = render.New(render.Options{
+	renderer = Render{render.New(render.Options{
 		Directory:  directory.Main("templates"),
 		Extensions: []string{".html", ".svg"},
-	})
+	})}
 )

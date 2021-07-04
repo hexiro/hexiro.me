@@ -10,8 +10,4 @@ func NotFound(writer http.ResponseWriter, request *http.Request) {
 		"status":  404,
 		"message": config.Messages.RandomMessage(404),
 	})
-	//return ctx.Status(404).Render("error", map[string]interface{}{
-	//	"status": 404,
-	//	"message": config.Messages.RandomMessage(404),
-	//})
 }

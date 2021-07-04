@@ -30,12 +30,12 @@ func main() {
 	if envPort := os.Getenv("PORT"); envPort != "" && config.Server.Production() {
 		port = envPort
 	} else {
-		port  = config.Server.Port
+		port = config.Server.Port
 	}
 
 	server := &http.Server{
-		Handler: router,
-		Addr:    ":" + port,
+		Handler:      router,
+		Addr:         ":" + port,
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}

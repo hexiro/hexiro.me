@@ -11,8 +11,4 @@ func Index(writer http.ResponseWriter, req *http.Request) {
 		"Projects": github.Repos,
 		"Config":   config.Config,
 	})
-	//return ctx.Render("index", map[string]interface{}{
-	//	"Projects": github.Repos,
-	//	"Config":   config.Config,
-	//})
 }
