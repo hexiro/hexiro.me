@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"hexiro/config"
+	"hexiro/middleware"
 	"hexiro/routes"
+	"log"
 	"net/http"
 	"os"
 	"time"
@@ -15,7 +16,7 @@ func main() {
 
 	// logger
 	router.Use(func(next http.Handler) http.Handler {
-		return handlers.LoggingHandler(os.Stdout, next)
+		return middleware.LoggingHandler(log.Writer(), next)
 	})
 	// index
 	router.HandleFunc("/", routes.Index)
