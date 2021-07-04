@@ -40,5 +40,6 @@ func main() {
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
-	server.ListenAndServe()
+	log.Println("Listening on", server.Addr)
+	log.Fatal(server.ListenAndServe())
 }
