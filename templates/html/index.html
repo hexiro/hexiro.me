@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-{{ $message := (printf "A %v y/o aspiring Software Engineer" .Config.Me.Age) }}
+{{ $message := (printf "A %v y/o aspiring Software Engineer" .config.Me.Age) }}
 <head>
     <title>Home | Hexiro</title>
     <!-- CSS -->
@@ -29,12 +29,12 @@
             <!-- Projects list -->
             <div class="projects">
                 <!-- Am I supposed to do $_ like this? -->
-                {{ range $_, $project := .Projects }}
+                {{ range $_, $project := .projects }}
                 <div class="projects-item transition">
                     <div class="projects-container">
                         <div class="project-title main-color">
                             <a href="{{$project.HtmlUrl}}" rel="noreferer" target="_blank">
-                                {{if (eq $project.Owner.Login $outer.Config.Me.Github)}}
+                                {{if (eq $project.Owner.Login $outer.config.Me.Github)}}
                                     <h3>{{$project.Name}}</h3>
                                 {{else}}
                                     <h3><span class="main-accent">{{$project.Owner.Login}}/</span>{{$project.Name}}</h3>
@@ -74,12 +74,12 @@
         <!-- Social Media section -->
         <ul class="social-media">
             <li class="social-item">
-                <a href={{.Config.Me.TwitterLink}} rel="noreferrer" target="_blank">
+                <a href={{.config.Me.TwitterLink}} rel="noreferrer" target="_blank">
                     {{template "svg/socials/twitter"}}
                 </a>
             </li>
             <li class="social-item">
-                <a href={{.Config.Me.GithubLink}} rel="noreferrer" target="_blank">
+                <a href={{.config.Me.GithubLink}} rel="noreferrer" target="_blank">
                     <!-- GitHub logo -->
                     {{template "svg/socials/github"}}
                 </a>
