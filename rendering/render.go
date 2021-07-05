@@ -2,6 +2,7 @@ package rendering
 
 import (
 	"gopkg.in/unrolled/render.v1"
+	"hexiro/config"
 	"hexiro/directory"
 )
 
@@ -15,12 +16,12 @@ var (
 		Directory:  directory.Main("/assets/css"),
 		Extensions: []string{".css"},
 		HTMLContentType: "text/css",
-		// IsDevelopment:   config.Server.Development(),
+		IsDevelopment:   config.Server.Development(),
 	})
 	Js = render.New(render.Options{
 		Directory:  directory.Main("/assets/js"),
 		Extensions: []string{".js"},
 		HTMLContentType: "text/javascript",
-		// IsDevelopment:   config.Server.Development(),
+		IsDevelopment:   config.Server.Development(),
 	})
 )
