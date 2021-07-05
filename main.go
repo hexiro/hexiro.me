@@ -31,9 +31,8 @@ func main() {
 	// index
 	router.HandleFunc("/", routes.Index).Methods("GET")
 
-	// static assets
-	staticHandler := http.StripPrefix("/assets/", http.FileServer(http.Dir("./public/assets")))
-	router.PathPrefix("/assets").Handler(staticHandler).Methods("GET")
+	// assets
+	router.PathPrefix("/assets").Handler(middleware.AssetsHandler()).Methods("GET")
 
 	// 404s
 	router.NotFoundHandler = http.HandlerFunc(routes.NotFound)
