@@ -23,6 +23,7 @@ func main() {
 		WriteTimeout: 15 * time.Second,
 		IdleTimeout:  60 * time.Second,
 		GETOnly:      true,
+		ErrorHandler: routes.ErrorHandler,
 	})
 
 	// logger
@@ -38,6 +39,8 @@ func main() {
 		CacheDuration: 12 * time.Hour,
 		MaxAge:        600,
 	})
+
+	app.Get("*", routes.NotFound)
 
 	var port string
 	if envPort := os.Getenv("PORT"); envPort != "" && config.Server.Production() {

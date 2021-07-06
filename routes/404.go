@@ -1,12 +1,12 @@
 package routes
 
 import (
+	"github.com/gofiber/fiber/v2"
 	"hexiro/config"
-	"net/http"
 )
 
-func NotFound(writer http.ResponseWriter, request *http.Request) {
-	renderer.HTML(writer, 404, "html/error", map[string]interface{}{
+func NotFound(ctx *fiber.Ctx) error {
+	return ctx.Status(404).Render("html/error", map[string]interface{}{
 		"status":  404,
 		"message": config.Messages.RandomMessage(404),
 	})
