@@ -147,7 +147,8 @@ footer {
     }
 
     .intro h2 {
-        min-width: 425px;
+        font-size: 1.5em;
+        padding: 0 5px;
     }
 
 
