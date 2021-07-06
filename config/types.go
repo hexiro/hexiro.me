@@ -28,11 +28,11 @@ type MeConfig struct {
 type MessagesConfig map[int][]string
 
 func (s ServerConfig) Development() bool {
-	return strings.HasPrefix(strings.ToLower(s.Status), "dev")
+	return !s.Production()
 }
 
 func (s ServerConfig) Production() bool  {
-	return !s.Development()
+	return strings.HasPrefix(strings.ToLower(s.Status), "prod")
 }
 
 func (s *ServerConfig) EnableProduction() {
