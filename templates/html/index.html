@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-{{ $message := (printf "A %v y/o aspiring Software Engineer" .Config.Me.Age) }}
+{{ $message := (printf "A %v y/o aspiring Software Engineer" .config.Me.Age) }}
 <head>
     <title>Home | Hexiro</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
     <!-- Meta -->
     <meta name="description" content={{printf "Hi, I'm Hexiro, %v" $message}}>
-    {{template "snippets/meta" .}}
+    {{template "html/snippets/meta" .}}
 </head>
 <body>
 {{ $outer := . }}
@@ -29,12 +29,12 @@
             <!-- Projects list -->
             <div class="projects">
                 <!-- Am I supposed to do $_ like this? -->
-                {{ range $_, $project := .Projects }}
+                {{ range $_, $project := .projects }}
                 <div class="projects-item transition">
                     <div class="projects-container">
                         <div class="project-title main-color">
                             <a href="{{$project.HtmlUrl}}" rel="noreferer" target="_blank">
-                                {{if (eq $project.Owner.Login $outer.Config.Me.Github)}}
+                                {{if (eq $project.Owner.Login $outer.config.Me.Github)}}
                                     <h3>{{$project.Name}}</h3>
                                 {{else}}
                                     <h3><span class="main-accent">{{$project.Owner.Login}}/</span>{{$project.Name}}</h3>
@@ -53,13 +53,13 @@
                             </div>
                             {{if (gt $project.StargazersCount 0)}}
                                 <div class="project-detail">
-                                    {{template "assets/star"}}
+                                    {{template "svg/assets/star"}}
                                     <span class="margin-left-2px">{{$project.StargazersCount}}</span>
                                 </div>
                             {{end}}
                             {{if (gt $project.NetworkCount 0)}}
                                  <div class="project-detail">
-                                    {{template "assets/network"}}
+                                    {{template "svg/assets/network"}}
                                     <span class="margin-left-2px">{{$project.NetworkCount}}</span>
                                 </div>
                             {{end}}
@@ -74,14 +74,14 @@
         <!-- Social Media section -->
         <ul class="social-media">
             <li class="social-item">
-                <a href={{.Config.Me.TwitterLink}} rel="noreferrer" target="_blank">
-                    {{template "socials/twitter"}}
+                <a href={{.config.Me.TwitterLink}} rel="noreferrer" target="_blank">
+                    {{template "svg/socials/twitter"}}
                 </a>
             </li>
             <li class="social-item">
-                <a href={{.Config.Me.GithubLink}} rel="noreferrer" target="_blank">
+                <a href={{.config.Me.GithubLink}} rel="noreferrer" target="_blank">
                     <!-- GitHub logo -->
-                    {{template "socials/github"}}
+                    {{template "svg/socials/github"}}
                 </a>
             </li>
         </ul>

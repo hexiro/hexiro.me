@@ -9,7 +9,7 @@ var (
 	mainLocation, _ = os.Getwd()
 )
 
-func Main(path string) string {
+func Resolve(path string) string {
 	if path == "" || path == "." {
 		return mainLocation
 	}

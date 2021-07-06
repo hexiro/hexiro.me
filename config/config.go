@@ -10,7 +10,7 @@ import (
 )
 
 var Config = func() FullConfig {
-	file, err := os.Open(directory.Main("config.yaml"))
+	file, err := os.Open(directory.Resolve("config.yaml"))
 	if err != nil {
 		panic(err)
 	}
@@ -53,7 +53,7 @@ func (m MessagesConfig) RandomMessage(key int) string {
 	messages := m[key]
 	switch lenMessages := len(messages); lenMessages {
 	case 0:
-		return ""
+		return "oops?"
 	default:
 		index := rand.Intn(lenMessages)
 		return messages[index]

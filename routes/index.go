@@ -7,8 +7,8 @@ import (
 )
 
 func Index(ctx *fiber.Ctx) error {
-	return ctx.Render("index", map[string]interface{}{
-		"Projects": github.Repos,
-		"Config":   config.Config,
+	return ctx.Render("html/index", map[string]interface{}{
+		"projects": github.Repos,
+		"config":   config.Config,
 	})
 }

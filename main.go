@@ -6,34 +6,47 @@ import (
 	"github.com/gofiber/template/html"
 	"hexiro/config"
 	"hexiro/routes"
+	"log"
 	"os"
+	"time"
 )
 
 func main() {
-	engine := html.New("views", ".html")
-	if !config.Server.Production {
-		engine.Reload(true)
-	}
+	// templating
+	templates := html.New("./templates", ".html")
+	templates.Reload(config.Server.Production())
 
 	app := fiber.New(fiber.Config{
-		Views:     engine,
-		BodyLimit: -1,
-		GETOnly:   true,
+		Views:        templates,
+		BodyLimit:    -1,
+		ReadTimeout:  15 * time.Second,
+		WriteTimeout: 15 * time.Second,
+		IdleTimeout:  60 * time.Second,
+		GETOnly:      true,
+		ErrorHandler: routes.ErrorHandler,
 	})
-	// setup logger
-	app.Use(logger.New())
-	// mount routes
-	app.Mount("/", routes.Router)
-	// setup static
-	app.Static("/", "public", fiber.Static{
-		Index: "",
-	})
-	app.Get("*", routes.NotFound)
-	// Heroku sets a port for you
-	if config.Server.Production {
-		app.Listen(":" + os.Getenv("PORT"))
-	} else {
-		app.Listen(":" + config.Server.Port)
-	}
 
+	// logger
+	app.Use(logger.New())
+
+	// index
+	app.Get("/", routes.Index)
+
+	// assets
+	app.Static("/", "public", fiber.Static{
+		ByteRange:     true,
+		Index:         "",
+		CacheDuration: 12 * time.Hour,
+		MaxAge:        600,
+	})
+
+	app.Get("*", routes.NotFound)
+
+	var port string
+	if envPort := os.Getenv("PORT"); envPort != "" && config.Server.Production() {
+		port = envPort
+	} else {
+		port = config.Server.Port
+	}
+	log.Fatal(app.Listen(":" + port))
 }
