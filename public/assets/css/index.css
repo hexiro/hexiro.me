@@ -202,11 +202,6 @@ footer {
         -o-transform: unset;
     }
 
-    /*.projects-footer {*/
-    /*    position: absolute;*/
-    /*    right: 15px;*/
-    /*    bottom: 10px;*/
-    /*}*/
     .projects-footer {
         display: none;
     }

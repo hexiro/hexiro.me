@@ -1,11 +1,6 @@
 package github
 
 import (
-	"bytes"
-	"crypto/sha1"
-	"encoding/base64"
-	"encoding/gob"
-	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"github.com/imroc/req"
 	"github.com/robfig/cron/v3"
@@ -14,7 +9,6 @@ import (
 
 var (
 	Repos []Repository
-	Etag  = "Default"
 )
 
 func init() {
@@ -25,18 +19,6 @@ func init() {
 		c.Start()
 	}
 }
-
-func sliceToHash(slice []Repository) string {
-	var buf bytes.Buffer
-	encoder := gob.NewEncoder(&buf) // Will write to network.
-	for _, item := range slice {
-		_ = encoder.Encode(item)
-	}
-	hasher := sha1.New()
-	hasher.Write(buf.Bytes())
-	return base64.URLEncoding.EncodeToString(hasher.Sum(nil))
-}
-
 
 func FetchPinnedRepos() {
 	var repos []Repository
@@ -84,8 +66,5 @@ func FetchPinnedRepos() {
 		repos = append(repos, repo)
 	}
 	Repos = repos
-	Etag = sliceToHash(Repos)
-	fmt.Println(Etag)
-	fmt.Println(Repos)
 	return
 }

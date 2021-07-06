@@ -1,41 +1,43 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
-	"github.com/tdewolff/minify"
-	"github.com/tdewolff/minify/css"
-	"github.com/tdewolff/minify/html"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/gofiber/template/html"
 	"hexiro/config"
-	"hexiro/middleware"
 	"hexiro/routes"
 	"log"
-	"net/http"
 	"os"
 	"time"
 )
 
 func main() {
-	router := mux.NewRouter()
+	// templating
+	templates := html.New("./templates", ".html")
+	templates.Reload(config.Server.Production())
 
-	// minifier
-	minifier := minify.New()
-	minifier.AddFunc("text/css", css.Minify)
-	minifier.AddFunc("text/html", html.Minify)
-	router.Use(minifier.Middleware)
-
-	// logger
-	router.Use(func(next http.Handler) http.Handler {
-		return middleware.LoggingHandler(log.Writer(), next)
+	app := fiber.New(fiber.Config{
+		Views:        templates,
+		BodyLimit:    -1,
+		ReadTimeout:  15 * time.Second,
+		WriteTimeout: 15 * time.Second,
+		IdleTimeout:  60 * time.Second,
+		GETOnly:      true,
 	})
 
+	// logger
+	app.Use(logger.New())
+
 	// index
-	router.HandleFunc("/", routes.Index).Methods("GET")
+	app.Get("/", routes.Index)
 
 	// assets
-	router.PathPrefix("/assets").Handler(middleware.AssetsHandler()).Methods("GET")
-
-	// 404s
-	router.NotFoundHandler = http.HandlerFunc(routes.NotFound)
+	app.Static("/", "public", fiber.Static{
+		ByteRange:     true,
+		Index:         "",
+		CacheDuration: 12 * time.Hour,
+		MaxAge:        600,
+	})
 
 	var port string
 	if envPort := os.Getenv("PORT"); envPort != "" && config.Server.Production() {
@@ -43,14 +45,5 @@ func main() {
 	} else {
 		port = config.Server.Port
 	}
-
-	server := &http.Server{
-		Handler:      router,
-		Addr:         ":" + port,
-		WriteTimeout: 15 * time.Second,
-		ReadTimeout:  15 * time.Second,
-	}
-
-	log.Println("Listening on", server.Addr)
-	log.Fatal(server.ListenAndServe())
+	log.Fatal(app.Listen(":" + port))
 }
