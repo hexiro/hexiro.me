@@ -10,7 +10,7 @@ import (
 )
 
 var Config = func() FullConfig {
-	file, err := os.Open(directory.Main("config.yaml"))
+	file, err := os.Open(directory.Resolve("config.yaml"))
 	if err != nil {
 		panic(err)
 	}
