@@ -99,7 +99,7 @@ main {
 
 .project-language {
     display: inline-flex;
-    margin-right: 20px
+    margin-right: 20px;
 }
 
 .fork {
@@ -150,7 +150,6 @@ footer {
         font-size: 1.5em;
         padding: 0 5px;
     }
-
 
     p {
         margin-bottom: 20px;

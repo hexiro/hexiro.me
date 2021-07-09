@@ -272,7 +272,6 @@ svg {
 
 @media (prefers-color-scheme: light) {
     :root {
-        --light: #333333;
         --text-color: #2f2f2f;
         --main-accent: #3abd78;
         --main-color: rgba(64, 64, 64, 0.66);
