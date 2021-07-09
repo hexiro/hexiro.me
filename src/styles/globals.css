@@ -1,12 +1,3 @@
-:root {
-    --text-color: #e0f5e2;
-    --main-accent: #5ce09a;
-    --main-color: #4bff9f;
-    --background-color: #191c1d;
-    --background-accent: #292d2f;
-    --scrollbar-color: #606160;
-}
-
 ::-webkit-scrollbar {
     width: 0.5em;
 }
@@ -151,7 +142,6 @@
 }
 
 /* FONT WEIGHT */
-
 .font-weight-200 {
     font-weight: 200;
 }
@@ -195,8 +185,6 @@
 .capitalize {
     text-transform: capitalize;
 }
-
-/* TODO: MAKE CSS MORE RE-USABLE   */
 
 body {
     background: var(--background-color);
@@ -264,14 +252,4 @@ svg {
     width: auto;
     height: 100%;
     fill: var(--main-color);
-}
-
-@media (prefers-color-scheme: light) {
-    :root {
-        --text-color: #2f2f2f;
-        --main-accent: #3abd78;
-        --main-color: rgba(64, 64, 64, 0.66);
-        --background-color: #ebebeb;
-        --background-accent: #e4e4e4;
-    }
 }

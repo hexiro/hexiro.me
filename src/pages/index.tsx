@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { Age, Github, GithubLink } from "../data/me";
+import { Age, Github, GithubLink } from "../data/config";
 import { Socials } from "../data/socials";
 import parse from "node-html-parser";
 

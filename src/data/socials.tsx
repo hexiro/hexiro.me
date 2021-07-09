@@ -1,4 +1,4 @@
-import { GithubLink, TwitterLink } from "./me";
+import { GithubLink, TwitterLink } from "./config";
 
 export interface Social {
     href: string;
