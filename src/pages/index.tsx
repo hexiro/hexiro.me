@@ -61,7 +61,7 @@ export default function Home({ projects }: any) {
                                 <div className="project-title main-color">
                                     <a
                                         href={`https://github.com/${project.owner}/${project.name}`}
-                                        rel="noreferer"
+                                        rel="noreferrer"
                                         target="_blank"
                                     >
                                         {project.owner == Github ? (
@@ -88,7 +88,7 @@ export default function Home({ projects }: any) {
                 {Socials.map((social) => (
                     <li className="social-item">
                         <Link href={social.href}>
-                            <a rel="norefferer" target="_blank">
+                            <a rel="noreferrer" target="_blank">
                                 {social.icon}
                             </a>
                         </Link>
