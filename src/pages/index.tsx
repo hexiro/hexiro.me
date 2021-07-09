@@ -1,8 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
-import { Age } from "../data/utilities";
+import { Age } from "../data/me";
 import { Socials } from "../data/socials";
 import { Projects } from "../data/projects";
+
 
 export default function Home() {
     const description = `A ${Age} y/o aspiring Software Engineer`;

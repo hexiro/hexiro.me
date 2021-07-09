@@ -1,3 +1,5 @@
+import { GithubLink, TwitterLink } from "./me";
+
 export interface Social {
     href: string;
     icon: JSX.Element;
@@ -5,7 +7,7 @@ export interface Social {
 
 export const Socials: Social[] = [
     {
-        href: `https://github.com/Hexiro`,
+        href: GithubLink,
         icon: (
             <svg
                 width="47"
@@ -23,7 +25,7 @@ export const Socials: Social[] = [
         ),
     },
     {
-        href: `https://twitter.com/Hexiiro`,
+        href: TwitterLink,
         icon: (
             <svg
                 width="60"
