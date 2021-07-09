@@ -43,7 +43,7 @@ export default function Home() {
                 {Socials.map((social) => (
                     <li className="social-item">
                         <Link href={social.href}>
-                            <a rel="norefferer">{social.icon}</a>
+                            <a rel="norefferer" target="_blank">{social.icon}</a>
                         </Link>
                     </li>
                 ))}
