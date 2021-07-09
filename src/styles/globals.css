@@ -69,7 +69,6 @@
     color: var(--background-accent);
 }
 
-
 /* TEXT ALIGN */
 .text-center {
     text-align: center;
@@ -86,7 +85,6 @@
 .text-start {
     text-align: start;
 }
-
 
 /* DISPLAY */
 .display-block {
@@ -151,7 +149,6 @@
 .text-largest {
     font-size: 2.5em;
 }
-
 
 /* FONT WEIGHT */
 
@@ -234,9 +231,8 @@ h4 {
 }
 
 h5 {
-    font-size: 0.9em
+    font-size: 0.9em;
 }
-
 
 p {
     color: var(--text-color);
@@ -272,7 +268,6 @@ svg {
 
 @media (prefers-color-scheme: light) {
     :root {
-        --light: #333333;
         --text-color: #2f2f2f;
         --main-accent: #3abd78;
         --main-color: rgba(64, 64, 64, 0.66);
