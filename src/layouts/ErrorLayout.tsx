@@ -3,7 +3,7 @@ export interface ErrorPage {
     message: string;
 }
 
-export function ErrorLayout({ status, message}: ErrorPage) {
+export function ErrorLayout({ status, message }: ErrorPage) {
     return (
         <main className="full-center">
             <div className="text-center">
@@ -13,5 +13,3 @@ export function ErrorLayout({ status, message}: ErrorPage) {
         </main>
     );
 }
-
-

@@ -7,8 +7,6 @@ export default function NotFound() {
             <title>404 | Hexiro</title>
             <meta name="description" content="Oops? This page couldn't be found!" />
         </Head>,
-        <ErrorLayout status="404" message="Oops? This page couldn't be found!" />
+        <ErrorLayout status="404" message="Oops? This page couldn't be found!" />,
     ];
-
-
 }

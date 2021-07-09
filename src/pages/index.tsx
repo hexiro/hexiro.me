@@ -4,7 +4,6 @@ import { Age } from "../data/me";
 import { Socials } from "../data/socials";
 import { Projects } from "../data/projects";
 
-
 export default function Home() {
     const description = `A ${Age} y/o aspiring Software Engineer`;
     return [
@@ -23,18 +22,18 @@ export default function Home() {
             </div>
             <div className="right">
                 <div className="projects">
-                {Projects.map((project) => (
-                    <div className="projects-item transition">
-                        <div className="projects-container">
-                            <div className="project-title main-color">
-                                <a href={project.href} rel="noreferer" target="_blank">
+                    {Projects.map((project) => (
+                        <div className="projects-item transition">
+                            <div className="projects-container">
+                                <div className="project-title main-color">
+                                    <a href={project.href} rel="noreferer" target="_blank">
                                         <h3>{project.name}</h3>
-                                </a>
+                                    </a>
+                                </div>
+                                <p>{project.description}</p>
                             </div>
-                        <p>{project.description}</p>
                         </div>
-                    </div>
-                ))}
+                    ))}
                 </div>
             </div>
         </main>,
@@ -43,7 +42,9 @@ export default function Home() {
                 {Socials.map((social) => (
                     <li className="social-item">
                         <Link href={social.href}>
-                            <a rel="norefferer" target="_blank">{social.icon}</a>
+                            <a rel="norefferer" target="_blank">
+                                {social.icon}
+                            </a>
                         </Link>
                     </li>
                 ))}
