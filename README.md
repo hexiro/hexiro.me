@@ -3,7 +3,6 @@ my website :)
 ## // TODO:
 
 -   lanyard
--   fontawesome
 -   "go home" on 404
 -   add more content to webpage (scrollable)
 
@@ -11,3 +10,7 @@ my website :)
 
 -   tailwindcss
 -   i.hexiro.me subdomain
+
+## // COMPLETED:
+
+-   react-icons
