@@ -2,11 +2,11 @@ import { NextPageContext } from "next";
 import Head from "next/head";
 import { ErrorLayout } from "../layouts/ErrorLayout";
 
-interface ErrorDetails {
+interface ErrorProps {
     statusCode?: number;
 }
 
-function ErrorHandler({ statusCode }: ErrorDetails) {
+function ErrorHandler({ statusCode }: ErrorProps) {
     let status: string | number;
     if (statusCode) {
         status = statusCode;
@@ -22,7 +22,7 @@ function ErrorHandler({ statusCode }: ErrorDetails) {
     ];
 }
 
-ErrorHandler.getInitialProps = ({ res, err }: NextPageContext): ErrorDetails => {
+ErrorHandler.getInitialProps = ({ res, err }: NextPageContext): ErrorProps => {
     let statusCode;
     if (res) {
         statusCode = res.statusCode;
