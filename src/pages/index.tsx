@@ -32,13 +32,15 @@ export const getStaticProps = async () => {
     return {
         props: {
             projects,
+            age: Age,
+            github: Github,
         },
         revalidate: 3600,
     };
 };
 
-export default function Home({ projects }: any) {
-    const description = `A ${Age} y/o aspiring Software Engineer`;
+export default function Home({ projects, age, github }: any) {
+    const description = `A ${age} y/o aspiring Software Engineer`;
     return [
         <Head>
             <title>Home | Hexiro</title>
@@ -64,7 +66,7 @@ export default function Home({ projects }: any) {
                                         rel="noreferrer"
                                         target="_blank"
                                     >
-                                        {project.owner == Github ? (
+                                        {project.owner == github ? (
                                             <h3>{project.name}</h3>
                                         ) : (
                                             <h3>

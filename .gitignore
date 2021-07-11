@@ -10,3 +10,4 @@ yarn-error.log*
 .vercel/
 .idea/
 .vscode/
+.env.local
