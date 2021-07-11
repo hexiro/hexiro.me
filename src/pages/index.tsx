@@ -151,6 +151,7 @@ export default function Home({ projects, age, github, githubLink, twitterLink }:
                                     </div>
                                     <p>
                                         {
+                                            // input is parser safe and will never include a script tag
                                             // remove redundant <div></div> with .slice(5, -6)
                                             parse(project.descriptionHTML.slice(5, -6))
                                         }
