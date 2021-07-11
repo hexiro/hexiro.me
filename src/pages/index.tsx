@@ -95,7 +95,7 @@ export default function Home({ projects, age, github }: HomeProps) {
                                     </div>
                                     <p
                                         dangerouslySetInnerHTML={{
-                                            __html: project.descriptionHTML.slice(5, -6),
+                                            __html: project.descriptionHTML,
                                         }}
                                     ></p>
                                 </div>

@@ -1,9 +1,9 @@
-export const Github = process.env.GITHUB || "";
-export const Twitter = process.env.TWITTER || "";
+// public
 
-export const GithubToken = process.env.GITHUBTOKEN || ""
+export const Github = "Hexiro"
+export const Twitter = "Hexiiro"
 
-const birthday = Date.parse(process.env.BIRTHDAY || "");
+const birthday = Date.parse("2005-07-02T00:00:00-0500");
 
 export const Age = ((): number => {
     // subtract birth time from now and do some math with the seconds to get years
@@ -13,3 +13,7 @@ export const Age = ((): number => {
 
 export const GithubLink = `https://github.com/${Github}`;
 export const TwitterLink = `https://twitter.com/${Twitter}`;
+
+// private
+
+export const GithubToken = process.env.GITHUBTOKEN || ""
