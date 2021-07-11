@@ -32,7 +32,7 @@ export const getStaticProps = async () => {
     return {
         props: {
             projects,
-            age: Age,
+            age: Age(),
             github: Github,
         },
         revalidate: 3600,
