@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { Age, Github, GithubLink, GithubToken, Twitter, TwitterLink } from "../data/config";
 import { FiTwitter, FiGithub } from "react-icons/fi";
+import parse from "html-react-parser";
 
 interface Project {
     name: string;
@@ -104,11 +105,12 @@ export default function Home({
                                             )}
                                         </a>
                                     </div>
-                                    <p
-                                        dangerouslySetInnerHTML={{
-                                            __html: project.descriptionHTML,
-                                        }}
-                                    ></p>
+                                    <p>
+                                        {
+                                            // remove redundant <div></div>
+                                            parse(project.descriptionHTML.slice(5, -6))
+                                        }
+                                    </p>
                                 </div>
                             </div>
                         ))}

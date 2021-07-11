@@ -270,5 +270,5 @@ ul {
 svg {
     width: auto;
     height: 100%;
-    fill: var(--main-color);
+    color: var(--main-color);
 }
