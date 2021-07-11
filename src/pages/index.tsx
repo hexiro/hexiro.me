@@ -122,14 +122,14 @@ export default function Home({
                     <li className="social-item">
                         <Link href={twitterLink}>
                             <a rel="noreferrer" target="_blank">
-                                {FiTwitter({})}
+                                <FiTwitter />
                             </a>
                         </Link>
                     </li>
                     <li className="social-item">
                         <Link href={githubLink}>
                             <a rel="noreferrer" target="_blank">
-                                {FiGithub({})}
+                                <FiGithub />
                             </a>
                         </Link>
                     </li>
