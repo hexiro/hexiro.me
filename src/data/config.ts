@@ -1,6 +1,8 @@
 export const Github = process.env.GITHUB || "";
 export const Twitter = process.env.TWITTER || "";
 
+export const GithubToken = process.env.GITHUBTOKEN || ""
+
 const birthday = Date.parse(process.env.BIRTHDAY || "");
 
 export const Age = ((): number => {
