@@ -16,4 +16,4 @@ export const TwitterLink = `https://twitter.com/${Twitter}`;
 
 // private
 
-export const GithubToken = process.env.GITHUBTOKEN || ""
+export const GithubToken = process.env.GITHUB_TOKEN || ""
