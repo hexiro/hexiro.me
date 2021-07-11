@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
-import { Age, Github, GithubLink, GithubToken } from "../data/config";
-import { Socials } from "../data/socials";
+import { Age, Github, GithubLink, GithubToken, Twitter, TwitterLink } from "../data/config";
+import { FiTwitter, FiGithub } from "react-icons/fi";
 
 interface Project {
     name: string;
@@ -28,6 +28,8 @@ interface HomeProps {
     projects: Project[];
     age: number;
     github: string;
+    githubLink: string;
+    twitterLink: string;
 }
 
 export const getStaticProps = async () => {
@@ -43,21 +45,30 @@ export const getStaticProps = async () => {
         body: JSON.stringify(data),
     });
     const json = await res.json();
-    console.log(`token ${GithubToken}`)
-    console.log(json)
     const projects: Project[] = json["data"]["user"]["pinnedItems"]["nodes"];
+
+    console.log(projects);
 
     return {
         props: {
             projects,
             age: Age(),
             github: Github,
+            githubLink: GithubLink,
+            twitter: Twitter,
+            twitterLink: TwitterLink,
         },
         revalidate: 3600,
     };
 };
 
-export default function Home({ projects, age, github }: HomeProps) {
+export default function Home({
+    projects,
+    age,
+    github,
+    githubLink,
+    twitterLink,
+}: HomeProps) {
     const description = `A ${age} y/o aspiring Software Engineer`;
     return (
         <>
@@ -105,16 +116,21 @@ export default function Home({ projects, age, github }: HomeProps) {
                 </div>
             </main>
             <footer>
-                <ul className="social-media">
-                    {Socials.map((social) => (
-                        <li className="social-item">
-                            <Link href={social.href}>
-                                <a rel="noreferrer" target="_blank">
-                                    {social.icon}
-                                </a>
-                            </Link>
-                        </li>
-                    ))}
+                <ul>
+                    <li className="social-item">
+                        <Link href={twitterLink}>
+                            <a rel="noreferrer" target="_blank">
+                                {FiTwitter({})}
+                            </a>
+                        </Link>
+                    </li>
+                    <li className="social-item">
+                        <Link href={githubLink}>
+                            <a rel="noreferrer" target="_blank">
+                                {FiGithub({})}
+                            </a>
+                        </Link>
+                    </li>
                 </ul>
             </footer>
         </>
