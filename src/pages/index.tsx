@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { Age, Github, GithubLink, GithubToken, Twitter, TwitterLink } from "../data/config";
 import { FiTwitter, FiGithub } from "react-icons/fi";
+import { BiStar, BiGitCommit, BiGitPullRequest, BiGitRepoForked } from "react-icons/bi";
 import parse from "html-react-parser";
 
 interface Project {
@@ -14,6 +15,9 @@ interface Project {
     stargazers: {
         totalCount: number;
     };
+    forks: {
+        totalCount: number;
+    };
     pullRequests: {
         totalCount: number;
     };
@@ -22,6 +26,13 @@ interface Project {
     };
     primaryLanguage: {
         name: string;
+    };
+    defaultBranchRef: {
+        target: {
+            history: {
+                totalCount: number;
+            };
+        };
     };
 }
 
@@ -35,7 +46,48 @@ interface HomeProps {
 
 export const getStaticProps = async () => {
     const data = {
-        query: `query {\nuser(login: "${Github}") {\npinnedItems(first: 3, types: REPOSITORY) {\nnodes {\n...on Repository {\nname\ndescriptionHTML\nurl\nowner {\nlogin\n}\nstargazers {\ntotalCount\n}\npullRequests {\ntotalCount\n}\nissues {\ntotalCount\n}\nprimaryLanguage {\nname\n}\n}\n}\n}\n}\n}`,
+        query: `
+{
+  user(login: "${Github}") {
+    pinnedItems(first: 3, types: REPOSITORY) {
+      nodes {
+        ... on Repository {
+          name
+          descriptionHTML
+          url
+          owner {
+            login
+          }
+          stargazers {
+            totalCount
+          }
+          forks {
+            totalCount
+          }
+          pullRequests {
+            totalCount
+          }
+          issues {
+            totalCount
+          }
+          primaryLanguage {
+            name
+          }
+          defaultBranchRef {
+              target {
+                  ... on Commit {
+                      history {
+                          totalCount
+                      }
+                  }
+              }
+          }
+        }
+      }
+    }
+  }
+}
+`,
     };
     const res = await fetch("https://api.github.com/graphql", {
         method: "POST",
@@ -61,13 +113,7 @@ export const getStaticProps = async () => {
     };
 };
 
-export default function Home({
-    projects,
-    age,
-    github,
-    githubLink,
-    twitterLink,
-}: HomeProps) {
+export default function Home({ projects, age, github, githubLink, twitterLink }: HomeProps) {
     const description = `A ${age} y/o aspiring Software Engineer`;
     return (
         <>
@@ -105,10 +151,39 @@ export default function Home({
                                     </div>
                                     <p>
                                         {
-                                            // remove redundant <div></div>
+                                            // remove redundant <div></div> with .slice(5, -6)
                                             parse(project.descriptionHTML.slice(5, -6))
                                         }
                                     </p>
+                                    <div className="projects-footer">
+                                        <span className="project-language">
+                                            {project.primaryLanguage.name}
+                                        </span>
+                                        {project.stargazers.totalCount > 0 && (
+                                            <div className="project-detail">
+                                                <BiStar />
+                                                <h4>{project.stargazers.totalCount}</h4>
+                                            </div>
+                                        )}
+                                        {project.forks.totalCount > 0 && (
+                                            <div className="project-detail">
+                                                <BiGitRepoForked />
+                                                <h4>{project.forks.totalCount}</h4>
+                                            </div>
+                                        )}
+                                        {project.pullRequests.totalCount > 0 && (
+                                            <div className="project-detail">
+                                                <BiGitPullRequest />
+                                                <h4>{project.pullRequests.totalCount}</h4>
+                                            </div>
+                                        )}
+                                        {
+                                            <div className="project-detail">
+                                                <BiGitCommit />
+                                                <h4>{project.defaultBranchRef.target.history.totalCount}</h4>
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         ))}

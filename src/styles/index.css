@@ -68,21 +68,31 @@ main {
     margin-bottom: 0;
 }
 
+.projects-container p {
+    padding-bottom: 10px;
+}
+
 .projects-footer {
-    position: absolute;
-    bottom: 10px;
     display: flex;
     align-items: center;
+    position: absolute;
+    bottom: 10px;
+}
+
+.projects-footer h4 {
+    display: inline-block;
+    margin-left: 2px;
 }
 
 .projects-footer svg {
-    width: 20px;
-    height: 20px;
+    height: 18px;
+    width: 18px;
 }
 
 .project-detail {
     display: flex;
-    margin: 0 5px;
+    align-items: center;
+    margin-right: 10px;
 }
 
 .margin-left-5px {
@@ -94,7 +104,6 @@ main {
 }
 
 .project-language {
-    display: inline-flex;
     margin-right: 20px;
 }
 
