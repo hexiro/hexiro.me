@@ -48,8 +48,6 @@ export const getStaticProps = async () => {
     const json = await res.json();
     const projects: Project[] = json["data"]["user"]["pinnedItems"]["nodes"];
 
-    console.log(projects);
-
     return {
         props: {
             projects,
