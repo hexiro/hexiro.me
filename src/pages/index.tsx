@@ -10,6 +10,12 @@ interface Project {
     owner: string;
 }
 
+interface HomeProps {
+    projects: Project[];
+    age: number;
+    github: string;
+}
+
 export const getStaticProps = async () => {
     const res = await fetch(GithubLink);
     const text = await res.text();
@@ -39,7 +45,7 @@ export const getStaticProps = async () => {
     };
 };
 
-export default function Home({ projects, age, github }: any) {
+export default function Home({ projects, age, github }: HomeProps) {
     const description = `A ${age} y/o aspiring Software Engineer`;
     return [
         <Head>
