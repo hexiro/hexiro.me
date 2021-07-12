@@ -3,7 +3,7 @@ import { FiGithub, FiTwitter } from "react-icons/fi";
 import Project, { ProjectProps } from "../components/Project";
 
 import Link from "next/link";
-import PageHeading from "../components/Heading";
+import Page from "../components/Page";
 
 interface HomeProps {
     projects: ProjectProps[];
@@ -85,8 +85,7 @@ export const getStaticProps = async () => {
 export default function Home({ projects, age, github, githubLink, twitterLink }: HomeProps) {
     const description = `A ${age} y/o aspiring Software Engineer`;
     return (
-        <>
-            <PageHeading name="Home" description={description} />
+        <Page name="Home" description={description}>
             <main>
                 <div className="left">
                     <div className="intro">
@@ -133,6 +132,6 @@ export default function Home({ projects, age, github, githubLink, twitterLink }:
                     </li>
                 </ul>
             </footer>
-        </>
+        </Page>
     );
 }
