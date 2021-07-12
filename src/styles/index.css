@@ -162,17 +162,6 @@ footer {
         user-select: initial;
     }
 
-    h4 {
-        position: relative;
-        color: var(--text-color);
-        font-size: 2em;
-        transform: unset;
-        -webkit-transform: unset;
-        -moz-transform: unset;
-        -ms-transform: unset;
-        -o-transform: unset;
-    }
-
     .projects {
         display: block;
     }
