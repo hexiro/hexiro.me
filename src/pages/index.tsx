@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import PageHeading from "../components/Heading";
 import { Age, Github, GithubLink, GithubToken, Twitter, TwitterLink } from "../data/config";
 import { FiTwitter, FiGithub } from "react-icons/fi";
 import { BiStar, BiGitCommit, BiGitPullRequest, BiGitRepoForked } from "react-icons/bi";
@@ -117,10 +118,7 @@ export default function Home({ projects, age, github, githubLink, twitterLink }:
     const description = `A ${age} y/o aspiring Software Engineer`;
     return (
         <>
-            <Head>
-                <title>Home | Hexiro</title>
-                <meta name="description" content={`Hi! I'm Hexiro, ${description}`} />
-            </Head>
+            <PageHeading pageName="Home" description={description}/>
             <main>
                 <div className="left">
                     <div className="intro">
@@ -181,7 +179,12 @@ export default function Home({ projects, age, github, githubLink, twitterLink }:
                                         {
                                             <div className="project-detail">
                                                 <BiGitCommit />
-                                                <h4>{project.defaultBranchRef.target.history.totalCount}</h4>
+                                                <h4>
+                                                    {
+                                                        project.defaultBranchRef.target.history
+                                                            .totalCount
+                                                    }
+                                                </h4>
                                             </div>
                                         }
                                     </div>
