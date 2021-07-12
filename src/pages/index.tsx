@@ -86,7 +86,7 @@ export default function Home({ projects, age, github, githubLink, twitterLink }:
     const description = `A ${age} y/o aspiring Software Engineer`;
     return (
         <>
-            <PageHeading pageName="Home" description={description} />
+            <PageHeading name="Home" description={description} />
             <main>
                 <div className="left">
                     <div className="intro">

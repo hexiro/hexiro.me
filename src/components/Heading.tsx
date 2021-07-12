@@ -1,17 +1,15 @@
 import Head from "next/head";
 
 interface HeadingProps {
-    pageName: string;
+    name: string;
     description: string;
 }
 
-const PageHeading = ({ pageName, description }: HeadingProps): JSX.Element => {
+export default function PageHeading({ name, description }: HeadingProps): JSX.Element {
     return (
         <Head>
-            <title>{`${pageName} | Hexiro`}</title>
+            <title>{`${name} | Hexiro`}</title>
             <meta name="description" content={description} />
         </Head>
     );
-};
-
-export default PageHeading
+}
