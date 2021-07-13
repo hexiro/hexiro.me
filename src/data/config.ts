@@ -2,6 +2,7 @@
 
 export const Github = "Hexiro"
 export const Twitter = "Hexiiro"
+export const Discord = "291632819006865408"
 
 const birthday = Date.parse("2005-07-02T00:00:00-0500");
 

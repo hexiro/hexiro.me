@@ -80,8 +80,8 @@ main {
 }
 
 .projects-footer h4 {
-    display: inline-block;
     margin-left: 2px;
+    line-height: 33px;
 }
 
 .projects-footer svg {
@@ -90,7 +90,7 @@ main {
 }
 
 .project-detail {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     margin-right: 10px;
 }
@@ -113,7 +113,7 @@ main {
 }
 
 footer {
-    margin: -5vh 0 10px 20px;
+    margin: -16vh 0 10px 20px;
 }
 
 .social-item {
@@ -126,6 +126,59 @@ footer {
     margin-right: unset;
 }
 
+.lanyard {
+    display: flex;
+    padding: 20px;
+    background: var(--background-accent);
+    height: 130px;
+    width: 350px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    -webkit-box-shadow: 0 4px 10px rgb(0 0 0 / 25%);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 25%);
+}
+
+.lanyard-text {
+    margin-left: 20px;
+    padding-right: 96px;
+    width: 100%;
+}
+
+.lanyard-text * {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.lanyard-images {
+    position: relative;
+}
+
+.large-image {
+    height: 90px;
+    width: 90px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    -webkit-box-shadow: 0 0px 10px rgb(0 0 0 / 25%);
+    box-shadow: 0 0px 10px rgb(0 0 0 / 25%);
+}
+
+.small-image {
+    height: 30px;
+    width: 30px;
+    border: var(--main-accent) 2px solid;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -6px;
+    left: 67px;
+}
+
 @media only screen and (max-width: 1250px) {
     main {
         padding-top: 125px;
@@ -134,7 +187,7 @@ footer {
     }
 
     footer {
-        margin: 5vh 0 10px 20px;
+        margin: -6vh 0 10px 20px;
     }
 
     .left,

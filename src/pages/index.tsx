@@ -2,6 +2,7 @@ import { Age, Github, GithubLink, GithubToken, Twitter, TwitterLink } from "../d
 import { FiGithub, FiTwitter } from "react-icons/fi";
 import Project, { ProjectProps } from "../components/Project";
 
+import Lanyard from "../components/Lanyard";
 import Link from "next/link";
 import Page from "../components/Page";
 
@@ -12,6 +13,7 @@ interface HomeProps {
     githubLink: string;
     twitterLink: string;
 }
+
 
 export const getStaticProps = async () => {
     const data = {
@@ -115,7 +117,8 @@ export default function Home({ projects, age, github, githubLink, twitterLink }:
                 </div>
             </main>
             <footer>
-                <ul>
+                <Lanyard />
+                {/* <ul>
                     <li className="social-item">
                         <Link href={twitterLink}>
                             <a rel="noreferrer" target="_blank">
@@ -130,7 +133,7 @@ export default function Home({ projects, age, github, githubLink, twitterLink }:
                             </a>
                         </Link>
                     </li>
-                </ul>
+                </ul> */}
             </footer>
         </Page>
     );

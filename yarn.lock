@@ -558,6 +558,11 @@ depd@~1.1.2:
   resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
   integrity sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=
 
+dequal@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/dequal/-/dequal-2.0.2.tgz#85ca22025e3a87e65ef75a7a437b35284a7e319d"
+  integrity sha512-q9K8BlJVxK7hQYqa6XISGmBZbtQQWVXSrRrWreHC94rMt1QL/Impruc+7p2CYSYuVIUr+YCt6hjrs1kkdJRTug==
+
 des.js@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/des.js/-/des.js-1.0.1.tgz#5382142e1bdc53f85d86d53e5f4aa7deb91e0843"
@@ -616,9 +621,9 @@ domutils@^2.5.2:
     domhandler "^4.2.0"
 
 electron-to-chromium@^1.3.723:
-  version "1.3.772"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.772.tgz#fd1ed39f9f3149f62f581734e4f026e600369479"
-  integrity sha512-X/6VRCXWALzdX+RjCtBU6cyg8WZgoxm9YA02COmDOiNJEZ59WkQggDbWZ4t/giHi/3GS+cvdrP6gbLISANAGYA==
+  version "1.3.773"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.773.tgz#0b50f1eaac741a1ca0c54344331214763577ad25"
+  integrity sha512-Y44FtvE3Lpr7ka/kPdQbIYzUBCWddW8Ky5QzKbasDeqFdJYK9izaiiAIRAoE3Kdu7+GPBVwwyWDaQ2yyeNqWRA==
 
 elliptic@^6.5.3:
   version "6.5.4"
@@ -1272,9 +1277,9 @@ object-assign@^4.1.1:
   integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
 
 object-inspect@^1.10.3:
-  version "1.10.3"
-  resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.10.3.tgz#c2aa7d2d09f50c99375704f7a0adf24c5782d369"
-  integrity sha512-e5mCJlSH7poANfC8z8S9s9S2IN5/4Zb3aZ33f5s8YqoazCFzNLloLU8r5VCG+G7WoqLvAAZoVMcy3tp/3X0Plw==
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.11.0.tgz#9dceb146cedd4148a0d9e51ab88d34cf509922b1"
+  integrity sha512-jp7ikS6Sd3GxQfZJPyH3cjcbJF6GZPClgdV+EFygjFLQ5FmW/dRUnTd9PQ9k0JhoNDabWFbpF1yCdSWCC6gexg==
 
 object-is@^1.0.1:
   version "1.1.5"
@@ -1519,6 +1524,14 @@ react-refresh@0.8.3:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
+
+react-use-lanyard@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/react-use-lanyard/-/react-use-lanyard-0.0.8.tgz#346d51c471b0184efb1298f29f0d84655585f191"
+  integrity sha512-+8RCGRwvNK3XB+M+P1Oz20XBxb403Bquolse5Xje1kdVzMAxZIEXn/Nq+MK7qWyv7i5fZgTgC2DgDgFBv2tqrg==
+  dependencies:
+    swr "^0.5.6"
+    tslib "^2.2.0"
 
 react@17.0.2:
   version "17.0.2"
@@ -1795,6 +1808,13 @@ supports-color@^8.0.0:
   dependencies:
     has-flag "^4.0.0"
 
+swr@^0.5.6:
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/swr/-/swr-0.5.6.tgz#70bfe9bc9d7ac49a064be4a0f4acf57982e55a31"
+  integrity sha512-Bmx3L4geMZjYT5S2Z6EE6/5Cx6v1Ka0LhqZKq8d6WL2eu9y6gHWz3dUzfIK/ymZVHVfwT/EweFXiYGgfifei3w==
+  dependencies:
+    dequal "2.0.2"
+
 timers-browserify@2.0.12, timers-browserify@^2.0.4:
   version "2.0.12"
   resolved "https://registry.yarnpkg.com/timers-browserify/-/timers-browserify-2.0.12.tgz#44a45c11fbf407f34f97bccd1577c652361b00ee"
@@ -1835,6 +1855,11 @@ ts-pnp@^1.1.6:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.2.0.tgz#a500ad084b0798f1c3071af391e65912c86bca92"
   integrity sha512-csd+vJOb/gkzvcCHgTGSChYpy5f1/XKNsmvBGO4JXS+z1v2HobugDz4s1IeFXM3wZB44uczs+eazB5Q/ccdhQw==
+
+tslib@^2.2.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
+  integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
 
 tty-browserify@0.0.0:
   version "0.0.0"

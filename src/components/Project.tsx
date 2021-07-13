@@ -59,30 +59,33 @@ export default function Project(project: ProjectProps): JSX.Element {
                 </p>
                 <div className="projects-footer">
                     <span className="project-language">{project.primaryLanguage.name}</span>
+                    <ul>
+                        
                     {project.stargazers.totalCount > 0 && (
-                        <div className="project-detail">
+                        <li className="project-detail">
                             <BiStar />
                             <h4>{project.stargazers.totalCount}</h4>
-                        </div>
+                        </li>
                     )}
                     {project.forks.totalCount > 0 && (
-                        <div className="project-detail">
+                        <li className="project-detail">
                             <BiGitRepoForked />
                             <h4>{project.forks.totalCount}</h4>
-                        </div>
+                        </li>
                     )}
                     {project.pullRequests.totalCount > 0 && (
-                        <div className="project-detail">
+                        <li className="project-detail">
                             <BiGitPullRequest />
                             <h4>{project.pullRequests.totalCount}</h4>
-                        </div>
+                        </li>
                     )}
                     {
-                        <div className="project-detail">
+                        <li className="project-detail">
                             <BiGitCommit />
                             <h4>{project.defaultBranchRef.target.history.totalCount}</h4>
-                        </div>
+                        </li>
                     }
+                    </ul>
                 </div>
             </div>
         </div>
