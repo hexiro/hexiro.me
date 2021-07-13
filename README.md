@@ -1,16 +1,16 @@
 my website :)
 
-## // TODO:
+## TODO:
 
 -   lanyard
 -   "go home" on 404
 -   add more content to webpage (scrollable)
 
-## // BACKLOG:
+## BACKLOG:
 
 -   tailwindcss
 -   i.hexiro.me subdomain
 
-## // COMPLETED:
+## COMPLETED:
 
 -   react-icons
