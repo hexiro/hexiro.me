@@ -11,25 +11,23 @@ const buildTrackLink = (trackId: string): string => {
 };
 
 export default function Lanyard(): JSX.Element | null {
-    const data = useLanyard({
+    const { loading, status } = useLanyard({
         userId: Discord,
         socket: true,
     }) as LanyardWebsocket;
 
-    console.log(data);
+    console.log(status);
 
-    // if no data / invalid data is returned
-    if (!data || data.loading || !data.status) return null;
-    // if i have no activities
-    if (data.status?.activities.length === 0) return null;
+    // if no data / invalid data is returned / i have no activities
+    if (loading || !status || status.activities.length === 0) return null;
 
     // sort activities by type and find the one with the lowest type integer
-    const activity = data.status.activities.sort((a, b) => (a.type > b.type ? 1 : -1))[0];
+    const activity = status.activities.sort((a, b) => (a.type > b.type ? 1 : -1))[0];
 
     // if activity type isn't custom app or spotify
     if (!(activity.type == 0 || activity.type == 2)) return null;
 
-    const spotify = data.status.spotify;
+    const spotify = status.spotify;
     const isSpotify = activity.type === 2;
     const assets = activity.assets;
 
@@ -62,9 +60,7 @@ export default function Lanyard(): JSX.Element | null {
                 {smallImage && <img className="small-image" draggable={false} src={smallImage} />}
             </div>
             <div className="lanyard-text">
-                <span className="main-accent">
-                    <h4>{name}</h4>
-                </span>
+                <h4 className="main-accent">{name}</h4>
                 {firstLine && <h5>{firstLine}</h5>}
                 {secondLine && <h5>{secondLine}</h5>}
             </div>
