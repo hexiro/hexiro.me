@@ -1,7 +1,7 @@
 import { LanyardWebsocket, useLanyard } from "react-use-lanyard";
 
 import { Discord } from "../data/config";
-import Timestamper from "../hooks/timestamp";
+import Timestamper from "./Timestamp";
 
 const buildAsset = (assetId: string): string => {
     return `https://cdn.discordapp.com/app-assets/383226320970055681/${assetId}.png`;
@@ -56,7 +56,7 @@ export default function Lanyard() {
                 <h4 className="main-accent">{name}</h4>
                 {firstLine && <h5>{firstLine}</h5>}
                 {secondLine && <h5>{secondLine}</h5>}
-                {stamp && <h5>{stamp}</h5>}
+                {stamp}
             </div>
         </div>
     );

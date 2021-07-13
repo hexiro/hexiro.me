@@ -142,9 +142,10 @@ footer {
 }
 
 .lanyard-text {
+    position: relative;
     margin-left: 20px;
     padding-right: 96px;
-    width: 100%;
+    min-width: 100%;
 }
 
 .lanyard-text * {
@@ -177,6 +178,33 @@ footer {
     position: absolute;
     bottom: -6px;
     left: 67px;
+}
+
+.song-details {
+    position: absolute;
+    bottom: 0;
+    width: 65%;
+}
+
+.song-outer-bar {
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--background-color);
+}
+
+.song-inner-bar {
+    background-color: var(--text-color);
+    height: 100%;
+}
+
+.song-text {
+    position: relative;
+}
+
+.song-end-text {
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 @media only screen and (max-width: 1250px) {
