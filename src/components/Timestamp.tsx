@@ -32,12 +32,12 @@ const formatSong = (start: number, end: number): JSX.Element => {
     console.log(songDuration(relStart), songDuration(relEnd));
     return (
         <div className="song-details">
-            <div className="song-outer-bar">
-                <div className="song-inner-bar" style={{ width: `${width * 100}%` }}></div>
-            </div>
             <div className="song-text">
                 <h6>{songDuration(relStart)}</h6>
                 <h6 className="song-end-text">{songDuration(relEnd)}</h6>
+            </div>
+            <div className="song-outer-bar">
+                <div className="song-inner-bar" style={{ width: `${width * 100}%` }}></div>
             </div>
         </div>
     );
