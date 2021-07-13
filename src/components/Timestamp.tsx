@@ -26,8 +26,11 @@ const formatElapsed = (start: number): JSX.Element => {
 };
 
 const formatSong = (start: number, end: number): JSX.Element => {
-    const relStart = relativeTime(start);
+    let relStart = relativeTime(start);
     const relEnd = relStart + relativeTime(end) * -1 - 1;
+    if (relStart > relEnd) {
+        relStart = relEnd;
+    }
     const width = relStart / relEnd;
     console.log(songDuration(relStart), songDuration(relEnd));
     return (
