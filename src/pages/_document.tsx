@@ -1,4 +1,4 @@
-import Document, { Head, Html, NextScript, Main } from "next/document";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 
 export default class extends Document {
     render(): JSX.Element {
@@ -7,7 +7,7 @@ export default class extends Document {
                 <Head>
                     <meta charSet="utf-8" />
                     <meta name="author" content="Hexiro" />
-                    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+                    <meta httpEquiv="x-ua-compatible" content="ie=edge" />
                     <meta name="robots" content="index, follow" />
                     <meta name="theme-color" content="#5ce09a" />
                     <meta name="msapplication-TileColor" content="#191c1d" />
