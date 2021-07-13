@@ -200,6 +200,10 @@ footer {
     position: relative;
 }
 
+.song-text h6 {
+    padding-bottom: 1px;
+}
+
 .song-end-text {
     position: absolute;
     right: 0;
