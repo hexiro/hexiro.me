@@ -7,38 +7,63 @@ const buildAsset = (assetId: string): string => {
     return `https://cdn.discordapp.com/app-assets/383226320970055681/${assetId}.png`;
 };
 
-const buildTrackLink = (trackId: string): string => {
-    return `https://open.spotify.com/track/${trackId}`;
+const formatTime = (secs: number): string => {
+    const rel = Math.floor((Date.now() - secs) / 1000);
+    let hours = Math.floor(rel / 3600);
+    let minutes = Math.floor(rel / 60) % 60;
+    let seconds = rel % 60;
+    const formatted = [hours, minutes, seconds]
+        .map((v) => ("" + v).padStart(2, "0"))
+        .filter((v, i) => v !== "00" || i > 0)
+        .join(":");
+    return formatted ? formatted + " elapsed" : "";
 };
 
-export default function Lanyard(): JSX.Element | null {
+export default function Lanyard() {
+    const [elapsed, setElapsed] = useState();
+    const [activity, setActivity] = useState<Activity>();
+
     const { loading, status } = useLanyard({
         userId: Discord,
         socket: true,
     }) as LanyardWebsocket;
 
-    console.log(status);
+    useEffect(() => {
+        if (loading || !status) return;
+        setActivity(status.activities.sort((a, b) => (a.type > b.type ? 1 : -1))[0]);
+    }, [loading, status]);
+
+    useEffect(() => {
+        function getTime() {
+            if (activity && activity.timestamps && activity.timestamps.start) {
+                // @ts-ignore
+                setElapsed(formatTime(activity.timestamps.start));
+            }
+        }
+        getTime();
+        const interval = setInterval(() => getTime(), 1000);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [activity]);
 
     // if no data / invalid data is returned / i have no activities
     if (loading || !status || status.activities.length === 0) return null;
-
-    // sort activities by type and find the one with the lowest type integer
-    const activity = status.activities.sort((a, b) => (a.type > b.type ? 1 : -1))[0];
-
-    // if activity type isn't custom app or spotify
-    if (!(activity.type == 0 || activity.type == 2)) return null;
+    // if activity isn't set right
+    if (!activity || (activity.type !== 2 && activity.type !== 0)) return null;
 
     const spotify = status.spotify;
     const assets = activity.assets;
 
     // assets
-    let largeImage: string;
-    let smallImage: string | undefined;
+    let largeImage;
+    let smallImage;
 
     // text
-    let name: string;
-    let firstLine: string | undefined;
-    let secondLine: string | undefined;
+    let name;
+    let firstLine;
+    let secondLine;
 
     if (activity.type === 2 && spotify) {
         largeImage = spotify.album_art_url;
@@ -63,6 +88,7 @@ export default function Lanyard(): JSX.Element | null {
                 <h4 className="main-accent">{name}</h4>
                 {firstLine && <h5>{firstLine}</h5>}
                 {secondLine && <h5>{secondLine}</h5>}
+                {elapsed}
             </div>
         </div>
     );
