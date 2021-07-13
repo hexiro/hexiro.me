@@ -12,16 +12,16 @@ const songDuration = (stamp: number): string => {
     return `${quotient}:${String(remainder).padStart(2, "0")}`;
 };
 
-const formatElapsed = (start: number): JSX.Element | null => {
+const formatElapsed = (start: number): JSX.Element => {
     const rel = relativeTime(start);
     let hours = Math.floor(rel / 3600);
     let minutes = Math.floor(rel / 60) % 60;
     let seconds = rel % 60;
-    const formatted = [hours, minutes, seconds]
+    let formatted = [hours, minutes, seconds]
         .map((v) => ("" + v).padStart(2, "0"))
         .filter((v, i) => v !== "00" || i > 0)
         .join(":");
-    if (!formatted) return null;
+    if (!formatted) formatted = "00:00";
     return <h5>{`${formatted} elapsed`}</h5>;
 };
 
@@ -43,8 +43,8 @@ const formatSong = (start: number, end: number): JSX.Element => {
     );
 };
 
-export default function Timestamper(stamps: Timestamps | undefined): string | null {
-    const [elapsed, setElapsed] = useState();
+export default function Timestamper(stamps: Timestamps | undefined): JSX.Element {
+    const [elapsed, setElapsed] = useState(<></>);
 
     useEffect(() => {
         function updateTimestamp() {
@@ -53,11 +53,9 @@ export default function Timestamper(stamps: Timestamps | undefined): string | nu
             const end = stamps.end;
             if (!start) return;
             if (end) {
-                // @ts-ignore doesn't matter
                 setElapsed(formatSong(start, end));
                 return;
             }
-            // @ts-ignore doesn't matter
             setElapsed(formatElapsed(start));
         }
         updateTimestamp();
