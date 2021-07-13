@@ -1,9 +1,9 @@
 export interface ErrorPage {
     status: number | string;
-    message: string;
+    message?: string;
 }
 
-export function ErrorLayout({ status, message }: ErrorPage) {
+export default function Error({ status, message }: ErrorPage) {
     return (
         <main className="full-center">
             <div className="text-center">
