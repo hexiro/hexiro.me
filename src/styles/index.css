@@ -143,9 +143,8 @@ footer {
 
 .lanyard-text {
     position: relative;
-    margin-left: 20px;
-    padding-right: 96px;
-    min-width: 100%;
+    padding-left: 20px;
+    width: 220px;
 }
 
 .lanyard-text * {
@@ -183,7 +182,7 @@ footer {
 .song-details {
     position: absolute;
     bottom: 0;
-    width: 65%;
+    width: 200px;
 }
 
 .song-outer-bar {
