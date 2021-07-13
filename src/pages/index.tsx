@@ -15,10 +15,8 @@ interface HomeProps {
     twitterLink: string;
 }
 
-
 export const getStaticProps = async () => {
-    const pinnedRepos = {
-        query: `
+    const pinnedRepos = `
 {
   user(login: "${Github}") {
     pinnedItems(first: 3, types: REPOSITORY) {
@@ -59,10 +57,9 @@ export const getStaticProps = async () => {
     }
   }
 }
-`,
-    };
+`;
     const res = await GraphQL(pinnedRepos);
-    const json = await res.json()
+    const json = await res.json();
     const projects: ProjectProps[] = json["data"]["user"]["pinnedItems"]["nodes"];
 
     return {
