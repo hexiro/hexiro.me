@@ -57,13 +57,13 @@ export default function Lanyard() {
     const assets = activity.assets;
 
     // assets
-    let largeImage;
-    let smallImage;
+    let largeImage: string;
+    let smallImage: string | undefined;
 
     // text
-    let name;
-    let firstLine;
-    let secondLine;
+    let name: string;
+    let firstLine: string | undefined;
+    let secondLine: string | undefined;
 
     if (activity.type === 2 && spotify) {
         largeImage = spotify.album_art_url;
