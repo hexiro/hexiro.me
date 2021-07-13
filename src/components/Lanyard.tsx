@@ -1,51 +1,20 @@
-import { Activity, LanyardWebsocket, useLanyard } from "react-use-lanyard";
-import { useEffect, useState } from "react";
+import { LanyardWebsocket, useLanyard } from "react-use-lanyard";
 
 import { Discord } from "../data/config";
+import Timestamper from "../hooks/timestamp";
 
 const buildAsset = (assetId: string): string => {
     return `https://cdn.discordapp.com/app-assets/383226320970055681/${assetId}.png`;
 };
 
-const formatTime = (secs: number): string => {
-    const rel = Math.floor((Date.now() - secs) / 1000);
-    let hours = Math.floor(rel / 3600);
-    let minutes = Math.floor(rel / 60) % 60;
-    let seconds = rel % 60;
-    const formatted = [hours, minutes, seconds]
-        .map((v) => ("" + v).padStart(2, "0"))
-        .filter((v, i) => v !== "00" || i > 0)
-        .join(":");
-    return formatted ? formatted + " elapsed" : "";
-};
-
 export default function Lanyard() {
-    const [elapsed, setElapsed] = useState("");
-    const [activity, setActivity] = useState<Activity>();
-
     const { loading, status } = useLanyard({
         userId: Discord,
         socket: true,
     }) as LanyardWebsocket;
 
-    useEffect(() => {
-        if (loading || !status) return;
-        setActivity(status.activities.sort((a, b) => (a.type > b.type ? 1 : -1))[0]);
-    }, [loading, status]);
-
-    useEffect(() => {
-        function getTime() {
-            if (activity && activity.timestamps && activity.timestamps.start) {
-                setElapsed(formatTime(activity.timestamps.start));
-            }
-        }
-        getTime();
-        const interval = setInterval(() => getTime(), 1000);
-
-        return () => {
-            clearInterval(interval);
-        };
-    }, [activity]);
+    const activity = status?.activities.sort((a, b) => (a.type > b.type ? 1 : -1))[0];
+    let stamp = Timestamper(activity?.timestamps);
 
     // if no data / invalid data is returned / i have no activities
     if (loading || !status || status.activities.length === 0) return null;
@@ -87,7 +56,7 @@ export default function Lanyard() {
                 <h4 className="main-accent">{name}</h4>
                 {firstLine && <h5>{firstLine}</h5>}
                 {secondLine && <h5>{secondLine}</h5>}
-                {elapsed}
+                {stamp && <h5>{stamp}</h5>}
             </div>
         </div>
     );
