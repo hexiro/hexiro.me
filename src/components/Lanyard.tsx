@@ -20,7 +20,7 @@ const formatTime = (secs: number): string => {
 };
 
 export default function Lanyard() {
-    const [elapsed, setElapsed] = useState();
+    const [elapsed, setElapsed] = useState("");
     const [activity, setActivity] = useState<Activity>();
 
     const { loading, status } = useLanyard({
@@ -36,7 +36,6 @@ export default function Lanyard() {
     useEffect(() => {
         function getTime() {
             if (activity && activity.timestamps && activity.timestamps.start) {
-                // @ts-ignore
                 setElapsed(formatTime(activity.timestamps.start));
             }
         }
