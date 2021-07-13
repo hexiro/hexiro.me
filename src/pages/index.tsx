@@ -2,6 +2,7 @@ import { Age, Github, GithubLink, GithubToken, Twitter, TwitterLink } from "../d
 import { FiGithub, FiTwitter } from "react-icons/fi";
 import Project, { ProjectProps } from "../components/Project";
 
+import GraphQL from "../data/graphql";
 import Lanyard from "../components/Lanyard";
 import Link from "next/link";
 import Page from "../components/Page";
@@ -16,7 +17,7 @@ interface HomeProps {
 
 
 export const getStaticProps = async () => {
-    const data = {
+    const pinnedRepos = {
         query: `
 {
   user(login: "${Github}") {
@@ -60,15 +61,8 @@ export const getStaticProps = async () => {
 }
 `,
     };
-    const res = await fetch("https://api.github.com/graphql", {
-        method: "POST",
-        headers: {
-            ContentType: "application/json",
-            Authorization: `token ${GithubToken}`,
-        },
-        body: JSON.stringify(data),
-    });
-    const json = await res.json();
+    const res = await GraphQL(pinnedRepos);
+    const json = await res.json()
     const projects: ProjectProps[] = json["data"]["user"]["pinnedItems"]["nodes"];
 
     return {
