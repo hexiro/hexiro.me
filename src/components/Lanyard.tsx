@@ -1,4 +1,5 @@
-import { LanyardWebsocket, useLanyard } from "react-use-lanyard";
+import { Activity, LanyardWebsocket, useLanyard } from "react-use-lanyard";
+import { useEffect, useState } from "react";
 
 import { Discord } from "../data/config";
 
@@ -28,7 +29,6 @@ export default function Lanyard(): JSX.Element | null {
     if (!(activity.type == 0 || activity.type == 2)) return null;
 
     const spotify = status.spotify;
-    const isSpotify = activity.type === 2;
     const assets = activity.assets;
 
     // assets
@@ -40,11 +40,11 @@ export default function Lanyard(): JSX.Element | null {
     let firstLine: string | undefined;
     let secondLine: string | undefined;
 
-    if (isSpotify) {
-        largeImage = spotify!.album_art_url;
-        name = spotify!.song;
-        firstLine = "By " + spotify!.artist.replaceAll(";", ",");
-        secondLine = "On " + spotify!.album.replaceAll(";", ",");
+    if (activity.type === 2 && spotify) {
+        largeImage = spotify.album_art_url;
+        name = spotify.song;
+        firstLine = "By " + spotify.artist.replaceAll(";", ",");
+        secondLine = "On " + spotify.album.replaceAll(";", ",");
     } else {
         largeImage = buildAsset(assets!.large_image);
         smallImage = buildAsset(assets!.small_image);
