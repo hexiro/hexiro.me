@@ -32,7 +32,6 @@ const formatSong = (start: number, end: number): JSX.Element => {
         relStart = relEnd;
     }
     const width = relStart / relEnd;
-    console.log(songDuration(relStart), songDuration(relEnd));
     return (
         <div className="song-details">
             <div className="song-text">
