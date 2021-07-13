@@ -49,8 +49,22 @@ export default function Lanyard() {
     return (
         <div className="lanyard transition">
             <div className="lanyard-images">
-                {<img className="large-image" draggable={false} src={largeImage} />}
-                {smallImage && <img className="small-image" draggable={false} src={smallImage} />}
+                {
+                    <img
+                        className="large-image"
+                        alt="large image of application or song"
+                        draggable={false}
+                        src={largeImage}
+                    />
+                }
+                {smallImage && (
+                    <img
+                        className="small-image"
+                        alt="small image of application"
+                        draggable={false}
+                        src={smallImage}
+                    />
+                )}
             </div>
             <div className="lanyard-text">
                 <h4 className="main-accent">{name}</h4>
