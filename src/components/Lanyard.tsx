@@ -49,7 +49,7 @@ export default function Lanyard() {
     return (
         <div className="lanyard transition">
             <div className="lanyard-images">
-                {largeImage && <img className="large-image" draggable={false} src={largeImage} />}
+                {<img className="large-image" draggable={false} src={largeImage} />}
                 {smallImage && <img className="small-image" draggable={false} src={smallImage} />}
             </div>
             <div className="lanyard-text">
