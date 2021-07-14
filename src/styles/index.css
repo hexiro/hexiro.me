@@ -153,6 +153,10 @@ footer {
     white-space: nowrap;
 }
 
+.lanyard-text h5 {
+    line-height: 1.2em;
+}
+
 .lanyard-images {
     position: relative;
 }
