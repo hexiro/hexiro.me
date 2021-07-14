@@ -36,8 +36,8 @@ export default function Lanyard() {
     if (activity.type === 2 && spotify) {
         largeImage = spotify.album_art_url;
         name = spotify.song;
-        firstLine = "By " + spotify.artist.replaceAll(";", ",");
-        secondLine = "On " + spotify.album.replaceAll(";", ",");
+        firstLine = "By: " + spotify.artist.replaceAll(";", ",");
+        secondLine = "On: " + spotify.album.replaceAll(";", ",");
     } else if (assets && activity.application_id) {
         largeImage = buildAsset(activity.application_id, assets.large_image);
         if (assets.small_image) {
@@ -45,10 +45,14 @@ export default function Lanyard() {
         }
         name = activity.name;
         firstLine = activity.details;
+        // fix for VSC
+        if (firstLine?.startsWith("Editing")) {
+            firstLine = firstLine.replace("Editing", "Editing:");
+        }
         secondLine = activity.state;
     } else {
         return null;
-    };
+    }
 
     return (
         <div className="lanyard transition">
