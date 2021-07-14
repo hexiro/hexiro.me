@@ -108,7 +108,9 @@ main {
 }
 
 footer {
-    margin: -16vh 0 10px 20px;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
 }
 
 .social-item {
@@ -213,17 +215,12 @@ footer {
     main {
         padding-top: 125px;
         display: block;
-        min-height: 90vh;
+        min-height: 84vh;
     }
 
     footer {
-        margin: -6vh 0 10px 20px;
-        transition: ease all 0.235s;
-        -webkit-transition: ease all 0.235s;
-        -moz-transition: ease all 0.235s;
-        -ms-transition: ease all 0.235s;
-        -o-transition: ease all 0.235s;
-        will-change: transform;
+        position: unset;
+        margin: 0 0 20px 20px;
     }
 
     .left,
@@ -265,6 +262,10 @@ footer {
         cursor: initial;
     }
 
+    .projects-item:last-child {
+        margin-bottom: 25px;
+    }
+
     .projects-item:hover {
         transition: ease all 0.235s;
         -webkit-transition: ease all 0.235s;
@@ -292,6 +293,9 @@ footer {
 
 @media only screen and (max-width: 500px) {
     footer {
-        opacity: 0;
+        display: flex;
+        justify-content: center;
+        transform: scale(calc(6 / 7));
+        margin: 0;
     }
 }
