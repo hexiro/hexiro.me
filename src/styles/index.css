@@ -30,10 +30,6 @@ main {
     -o-transform: translateY(-35%);
 }
 
-.projects {
-    display: table-row;
-}
-
 .project-title {
     padding-top: 10px;
 }
@@ -56,7 +52,6 @@ main {
     box-shadow: 0 6px 13px rgba(0, 0, 0, 0.25);
     height: 220px;
     margin-bottom: 25px;
-    cursor: pointer;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -223,6 +218,12 @@ footer {
 
     footer {
         margin: -6vh 0 10px 20px;
+        transition: ease all 0.235s;
+        -webkit-transition: ease all 0.235s;
+        -moz-transition: ease all 0.235s;
+        -ms-transition: ease all 0.235s;
+        -o-transition: ease all 0.235s;
+        will-change: transform;
     }
 
     .left,
@@ -258,7 +259,7 @@ footer {
         display: block;
         margin: 25px auto;
         width: 90%;
-        min-width: unset;
+        min-width: 300px;
         max-width: 540px;
         height: auto;
         cursor: initial;
@@ -286,5 +287,11 @@ footer {
 
     .projects-footer {
         display: none;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    footer {
+        opacity: 0;
     }
 }
