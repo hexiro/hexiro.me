@@ -73,7 +73,7 @@ export const getStaticProps = async () => {
     };
 };
 
-export default function Home({ projects, age, github, githubLink, twitterLink }: HomeProps) {
+export default function Home({ projects, age }: HomeProps) {
     const description = `A ${age} y/o aspiring Software Engineer`;
     return (
         <Page name="Home" description={description}>
