@@ -3,8 +3,8 @@ import { LanyardWebsocket, useLanyard } from "react-use-lanyard";
 import { Discord } from "../data/config";
 import Timestamper from "./Timestamp";
 
-const buildAsset = (assetId: string): string => {
-    return `https://cdn.discordapp.com/app-assets/383226320970055681/${assetId}.png`;
+const buildAsset = (applicationId: string, assetId: string): string => {
+    return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
 };
 
 export default function Lanyard() {
@@ -24,6 +24,9 @@ export default function Lanyard() {
     const spotify = status.spotify;
     const assets = activity.assets;
 
+    // if data expected to be set is undefined
+    if (!assets || !activity.application_id) return null;
+
     // assets
     let largeImage: string;
     let smallImage: string | undefined;
@@ -39,8 +42,10 @@ export default function Lanyard() {
         firstLine = "By " + spotify.artist.replaceAll(";", ",");
         secondLine = "On " + spotify.album.replaceAll(";", ",");
     } else {
-        largeImage = buildAsset(assets!.large_image);
-        smallImage = buildAsset(assets!.small_image);
+        largeImage = buildAsset(activity.application_id, assets.large_image);
+        smallImage = assets.small_image
+            ? buildAsset(activity.application_id, assets.small_image)
+            : undefined;
         name = activity.name;
         firstLine = activity.details;
         secondLine = activity.state;
