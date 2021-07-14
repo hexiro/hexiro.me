@@ -43,9 +43,9 @@ export default function Lanyard() {
         secondLine = "On " + spotify.album.replaceAll(";", ",");
     } else {
         largeImage = buildAsset(activity.application_id, assets.large_image);
-        smallImage = assets.small_image
-            ? buildAsset(activity.application_id, assets.small_image)
-            : undefined;
+        if (assets.small_image) {
+            smallImage = buildAsset(activity.application_id, assets.small_image);
+        }
         name = activity.name;
         firstLine = activity.details;
         secondLine = activity.state;

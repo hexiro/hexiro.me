@@ -1,10 +1,8 @@
 import { Age, Github, GithubLink, GithubToken, Twitter, TwitterLink } from "../data/config";
-import { FiGithub, FiTwitter } from "react-icons/fi";
 import Project, { ProjectProps } from "../components/Project";
 
 import GraphQL from "../data/graphql";
 import Lanyard from "../components/Lanyard";
-import Link from "next/link";
 import Page from "../components/Page";
 
 interface HomeProps {
