@@ -7,6 +7,18 @@ const buildAsset = (applicationId: string, assetId: string): string => {
     return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
 };
 
+const keyValueLine = (line: string | undefined): JSX.Element | null => {
+    if (!line) return null;
+    if (!line.includes(":")) return <h5>{line}</h5>;
+    const [key, value] = line.split(":", 2);
+    return (
+        <h5>
+            <span className="font-weight-400">{key + ":"}</span>
+            {value}
+        </h5>
+    );
+};
+
 export default function Lanyard() {
     const { loading, status } = useLanyard({
         userId: Discord,
@@ -76,8 +88,8 @@ export default function Lanyard() {
             </div>
             <div className="lanyard-text">
                 <h4 className="main-accent">{name}</h4>
-                {firstLine && <h5>{firstLine}</h5>}
-                {secondLine && <h5>{secondLine}</h5>}
+                {keyValueLine(firstLine)}
+                {keyValueLine(secondLine)}
                 {stamp}
             </div>
         </div>
