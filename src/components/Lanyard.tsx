@@ -24,9 +24,6 @@ export default function Lanyard() {
     const spotify = status.spotify;
     const assets = activity.assets;
 
-    // if data expected to be set is undefined
-    if (!assets || !activity.application_id) return null;
-
     // assets
     let largeImage: string;
     let smallImage: string | undefined;
@@ -41,7 +38,7 @@ export default function Lanyard() {
         name = spotify.song;
         firstLine = "By " + spotify.artist.replaceAll(";", ",");
         secondLine = "On " + spotify.album.replaceAll(";", ",");
-    } else {
+    } else if (assets && activity.application_id) {
         largeImage = buildAsset(activity.application_id, assets.large_image);
         if (assets.small_image) {
             smallImage = buildAsset(activity.application_id, assets.small_image);
@@ -49,7 +46,9 @@ export default function Lanyard() {
         name = activity.name;
         firstLine = activity.details;
         secondLine = activity.state;
-    }
+    } else {
+        return null;
+    };
 
     return (
         <div className="lanyard transition">
