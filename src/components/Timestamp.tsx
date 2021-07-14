@@ -21,7 +21,6 @@ const formatElapsed = (start: number): JSX.Element => {
         .map((v) => ("" + v).padStart(2, "0"))
         .filter((v, i) => v !== "00" || i > 0)
         .join(":");
-    if (!formatted) formatted = "00:00";
     return <h5>{`${formatted} elapsed`}</h5>;
 };
 
