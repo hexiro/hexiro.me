@@ -96,7 +96,7 @@ export default function Lanyard() {
                 <h4 className="main-accent">{name}</h4>
                 {keyValueLine(firstLine)}
                 {keyValueLine(secondLine)}
-                {stamp}
+                <div className="lanyard-text-bottom">{stamp}</div>
             </div>
         </motion.div>
     );

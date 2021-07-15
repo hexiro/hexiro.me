@@ -147,6 +147,11 @@ footer {
     position: relative;
 }
 
+.lanyard-text-bottom {
+    position: absolute;
+    bottom: 0;
+}
+
 .large-image {
     height: 90px;
     width: 90px;
@@ -170,8 +175,6 @@ footer {
 }
 
 .song-details {
-    position: absolute;
-    bottom: 0;
     width: 200px;
 }
 
@@ -280,7 +283,7 @@ footer {
     }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 400px) {
     footer {
         display: flex;
         justify-content: center;
