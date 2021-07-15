@@ -2,6 +2,7 @@ import { LanyardWebsocket, useLanyard } from "react-use-lanyard";
 
 import { Discord } from "../data/config";
 import Timestamper from "./Timestamp";
+import { motion } from "framer-motion";
 
 const buildAsset = (applicationId: string, assetId: string): string => {
     return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
@@ -67,7 +68,12 @@ export default function Lanyard() {
     }
 
     return (
-        <div className="lanyard transition">
+        <motion.div
+            className="lanyard transition"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+        >
             <div className="lanyard-images">
                 {
                     <img
@@ -92,6 +98,6 @@ export default function Lanyard() {
                 {keyValueLine(secondLine)}
                 {stamp}
             </div>
-        </div>
+        </motion.div>
     );
 }

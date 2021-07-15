@@ -1,6 +1,7 @@
 import { BiGitCommit, BiGitPullRequest, BiGitRepoForked, BiStar } from "react-icons/bi";
 
 import { Github } from "../data/config";
+import { motion } from "framer-motion";
 import parse from "html-react-parser";
 
 export interface ProjectProps {
@@ -36,7 +37,11 @@ export interface ProjectProps {
 
 export default function Project(project: ProjectProps): JSX.Element {
     return (
-        <div className="projects-item transition">
+        <motion.div
+            className="projects-item transition"
+            transition={{ duration: 0.06, type: "spring" }}
+            whileHover={{ translateX: "-2.5%", translateY: "-2.5%" }}
+        >
             <div className="projects-container">
                 <div className="project-title main-color">
                     <a href={project.url} rel="noreferrer" target="_blank">
@@ -60,34 +65,33 @@ export default function Project(project: ProjectProps): JSX.Element {
                 <div className="projects-footer">
                     <span className="project-language">{project.primaryLanguage.name}</span>
                     <ul>
-                        
-                    {project.stargazers.totalCount > 0 && (
-                        <li className="project-detail">
-                            <BiStar />
-                            <h4>{project.stargazers.totalCount}</h4>
-                        </li>
-                    )}
-                    {project.forks.totalCount > 0 && (
-                        <li className="project-detail">
-                            <BiGitRepoForked />
-                            <h4>{project.forks.totalCount}</h4>
-                        </li>
-                    )}
-                    {project.pullRequests.totalCount > 0 && (
-                        <li className="project-detail">
-                            <BiGitPullRequest />
-                            <h4>{project.pullRequests.totalCount}</h4>
-                        </li>
-                    )}
-                    {
-                        <li className="project-detail">
-                            <BiGitCommit />
-                            <h4>{project.defaultBranchRef.target.history.totalCount}</h4>
-                        </li>
-                    }
+                        {project.stargazers.totalCount > 0 && (
+                            <li className="project-detail">
+                                <BiStar />
+                                <h4>{project.stargazers.totalCount}</h4>
+                            </li>
+                        )}
+                        {project.forks.totalCount > 0 && (
+                            <li className="project-detail">
+                                <BiGitRepoForked />
+                                <h4>{project.forks.totalCount}</h4>
+                            </li>
+                        )}
+                        {project.pullRequests.totalCount > 0 && (
+                            <li className="project-detail">
+                                <BiGitPullRequest />
+                                <h4>{project.pullRequests.totalCount}</h4>
+                            </li>
+                        )}
+                        {
+                            <li className="project-detail">
+                                <BiGitCommit />
+                                <h4>{project.defaultBranchRef.target.history.totalCount}</h4>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }

@@ -10,6 +10,7 @@
     "test": "next build && next start"
   },
   "dependencies": {
+    "framer-motion": "^4.1.17",
     "html-react-parser": "^1.2.7",
     "next": "10.2.2",
     "react": "17.0.2",

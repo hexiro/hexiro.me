@@ -4,6 +4,7 @@ import Project, { ProjectProps } from "../components/Project";
 import GraphQL from "../data/graphql";
 import Lanyard from "../components/Lanyard";
 import Page from "../components/Page";
+import { motion } from "framer-motion";
 
 interface HomeProps {
     projects: ProjectProps[];
@@ -80,14 +81,29 @@ export default function Home({ projects, age }: HomeProps) {
             <main>
                 <div className="left">
                     <div className="intro">
-                        <h1>
+                        <motion.h1
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.5 }}
+                        >
                             Hi! I'm <span className="main-accent font-weight-400">Hexiro</span>,
-                        </h1>
-                        <h2>{description}</h2>
+                        </motion.h1>
+                        <motion.h2
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                        >
+                            {description}
+                        </motion.h2>
                     </div>
                 </div>
                 <div className="right">
-                    <div className="projects">
+                    <motion.div
+                        className="projects"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1, delay: 0.2 }}
+                    >
                         {projects.map((project) => (
                             <Project
                                 name={project.name}
@@ -102,7 +118,7 @@ export default function Home({ projects, age }: HomeProps) {
                                 defaultBranchRef={project.defaultBranchRef}
                             />
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </main>
             <footer>
