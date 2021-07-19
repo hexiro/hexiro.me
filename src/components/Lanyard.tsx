@@ -14,8 +14,8 @@ const keyValueLine = (line: string | undefined): JSX.Element | null => {
     const [key, value] = line.split(":", 2);
     return (
         <h5>
-            <span className="font-weight-400">{key + ":"}</span>
-            {value}
+            {key}
+            <span className="font-weight-400">{value}</span>
         </h5>
     );
 };
