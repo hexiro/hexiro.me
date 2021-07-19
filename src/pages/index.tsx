@@ -1,6 +1,6 @@
-import { Age, Github, GithubLink, Twitter, TwitterLink } from "../data/config";
+import { Age, Github, GithubLink, SteamLink, TwitterLink } from "../data/config";
 import Project, { ProjectProps } from "../components/Project";
-import { RiGithubLine, RiTwitterLine } from "react-icons/ri";
+import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
 
 import GraphQL from "../data/graphql";
 import Lanyard from "../components/Lanyard";
@@ -108,6 +108,13 @@ export default function Home({ projects, age }: HomeProps) {
                                 <Link href={GithubLink}>
                                     <a rel="noreferrer" target="_blank">
                                         <RiGithubLine />
+                                    </a>
+                                </Link>
+                            </li>
+                            <li className="social-item">
+                                <Link href={SteamLink}>
+                                    <a rel="noreferrer" target="_blank">
+                                        <RiSteamLine />
                                     </a>
                                 </Link>
                             </li>
