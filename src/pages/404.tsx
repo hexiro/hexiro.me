@@ -1,5 +1,4 @@
-import Error from "../components/Error";
-import Page from "../components/Page";
+import { Error, Page } from "../components";
 
 export default function NotFound() {
     const description = "Oops? This page couldn't be found!";

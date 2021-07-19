@@ -1,41 +1,11 @@
 import { BiGitCommit, BiGitPullRequest, BiGitRepoForked, BiStar } from "react-icons/bi";
 
 import { Github } from "../data/config";
+import { ProjectProps } from "../types";
 import { motion } from "framer-motion";
 import parse from "html-react-parser";
 
-export interface ProjectProps {
-    name: string;
-    descriptionHTML: string;
-    url: string;
-    owner: {
-        login: string;
-    };
-    stargazers: {
-        totalCount: number;
-    };
-    forks: {
-        totalCount: number;
-    };
-    pullRequests: {
-        totalCount: number;
-    };
-    issues: {
-        totalCount: number;
-    };
-    primaryLanguage: {
-        name: string;
-    };
-    defaultBranchRef: {
-        target: {
-            history: {
-                totalCount: number;
-            };
-        };
-    };
-}
-
-export default function Project(project: ProjectProps): JSX.Element {
+export const Project = (project: ProjectProps): JSX.Element => {
     return (
         <motion.div
             className="projects-item transition"
@@ -94,4 +64,4 @@ export default function Project(project: ProjectProps): JSX.Element {
             </div>
         </motion.div>
     );
-}
+};

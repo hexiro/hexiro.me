@@ -1,18 +1,12 @@
 import { Age, Github, GithubLink, SteamLink, TwitterLink } from "../data/config";
-import Project, { ProjectProps } from "../components/Project";
+import { HomeProps, ProjectProps } from "../types";
+import { Lanyard, Page, Project } from "../components";
 import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
 
 import GraphQL from "../data/graphql";
-import Lanyard from "../components/Lanyard";
 import Link from "next/link";
-import Page from "../components/Page";
 import React from "react";
 import { motion } from "framer-motion";
-
-interface HomeProps {
-    projects: ProjectProps[];
-    age: number;
-}
 
 export const getStaticProps = async () => {
     const pinnedRepos = `
@@ -77,6 +71,12 @@ export default function Home({ projects, age }: HomeProps) {
             <main>
                 <div className="left">
                     <div className="intro">
+                        {/* <FadeIn duration={0.5}>
+                            <h1>
+                                Hi! I'm <span className="main-accent font-weight-400">Hexiro</span>,
+                            </h1>
+                        </FadeIn> */}
+
                         <motion.h1
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}

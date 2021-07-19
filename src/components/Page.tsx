@@ -7,7 +7,7 @@ interface PageProps {
     children?: ReactNode;
 }
 
-export default function Page({ name, description, children }: PageProps): JSX.Element {
+export const Page = ({ name, description, children }: PageProps): JSX.Element => {
     return (
         <>
             <Head>
@@ -17,4 +17,4 @@ export default function Page({ name, description, children }: PageProps): JSX.El
             {children}
         </>
     );
-}
+};

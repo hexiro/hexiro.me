@@ -1,8 +1,9 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { LanyardWebsocket, useLanyard } from "react-use-lanyard";
 
 import { Discord } from "../data/config";
-import Timestamper from "./Timestamp";
-import { motion } from "framer-motion";
+import { Timestamper } from "./";
+import { Timestamps } from "../types";
 
 const buildAsset = (applicationId: string, assetId: string): string => {
     return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
@@ -20,14 +21,15 @@ const keyValueLine = (line: string | undefined): JSX.Element | null => {
     );
 };
 
-export default function Lanyard() {
+export const Lanyard = () => {
     const { loading, status } = useLanyard({
         userId: Discord,
         socket: true,
     }) as LanyardWebsocket;
 
     const activity = status?.activities.sort((a, b) => (a.type > b.type ? 1 : -1))[0];
-    let stamp = Timestamper(activity?.timestamps);
+    const stamps = activity?.timestamps;
+    let stamp = Timestamper({ start: stamps?.start, end: stamps?.end });
 
     // if no data / invalid data is returned / i have no activities
     if (loading || !status || status.activities.length === 0) return null;
@@ -68,36 +70,39 @@ export default function Lanyard() {
     }
 
     return (
-        <motion.div
-            className="lanyard transition"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-        >
-            <div className="lanyard-images">
-                {
-                    <img
-                        className="large-image"
-                        alt="large image of application or song"
-                        draggable={false}
-                        src={largeImage}
-                    />
-                }
-                {smallImage && (
-                    <img
-                        className="small-image"
-                        alt="small image of application"
-                        draggable={false}
-                        src={smallImage}
-                    />
-                )}
-            </div>
-            <div className="lanyard-text">
-                <h4 className="main-accent">{name}</h4>
-                {keyValueLine(firstLine)}
-                {keyValueLine(secondLine)}
-                <div className="lanyard-text-bottom">{stamp}</div>
-            </div>
-        </motion.div>
+        <AnimatePresence>
+            <motion.div
+                className="lanyard transition"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                <div className="lanyard-images">
+                    {
+                        <img
+                            className="large-image"
+                            alt="large image of application or song"
+                            draggable={false}
+                            src={largeImage}
+                        />
+                    }
+                    {smallImage && (
+                        <img
+                            className="small-image"
+                            alt="small image of application"
+                            draggable={false}
+                            src={smallImage}
+                        />
+                    )}
+                </div>
+                <div className="lanyard-text">
+                    <h4 className="main-accent">{name}</h4>
+                    {keyValueLine(firstLine)}
+                    {keyValueLine(secondLine)}
+                    <div className="lanyard-text-bottom">{stamp}</div>
+                </div>
+            </motion.div>
+        </AnimatePresence>
     );
-}
+};
