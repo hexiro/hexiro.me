@@ -1,6 +1,6 @@
 import { Age, Github, GithubLink, Twitter, TwitterLink } from "../data/config";
-import { FiGithub, FiTwitter } from "react-icons/fi";
 import Project, { ProjectProps } from "../components/Project";
+import { RiGithubLine, RiTwitterLine } from "react-icons/ri";
 
 import GraphQL from "../data/graphql";
 import Lanyard from "../components/Lanyard";
@@ -100,14 +100,14 @@ export default function Home({ projects, age }: HomeProps) {
                             <li className="social-item">
                                 <Link href={TwitterLink}>
                                     <a rel="noreferrer" target="_blank">
-                                        <FiTwitter />
+                                        <RiTwitterLine />
                                     </a>
                                 </Link>
                             </li>
                             <li className="social-item">
                                 <Link href={GithubLink}>
                                     <a rel="noreferrer" target="_blank">
-                                        <FiGithub />
+                                        <RiGithubLine />
                                     </a>
                                 </Link>
                             </li>
