@@ -1,17 +1,17 @@
-import { Age, Github, GithubLink, GithubToken, Twitter, TwitterLink } from "../data/config";
+import { Age, Github, GithubLink, Twitter, TwitterLink } from "../data/config";
+import { FiGithub, FiTwitter } from "react-icons/fi";
 import Project, { ProjectProps } from "../components/Project";
 
 import GraphQL from "../data/graphql";
 import Lanyard from "../components/Lanyard";
+import Link from "next/link";
 import Page from "../components/Page";
+import React from "react";
 import { motion } from "framer-motion";
 
 interface HomeProps {
     projects: ProjectProps[];
     age: number;
-    github: string;
-    githubLink: string;
-    twitterLink: string;
 }
 
 export const getStaticProps = async () => {
@@ -65,10 +65,6 @@ export const getStaticProps = async () => {
         props: {
             projects,
             age: Age(),
-            github: Github,
-            githubLink: GithubLink,
-            twitter: Twitter,
-            twitterLink: TwitterLink,
         },
         revalidate: 3600,
     };
@@ -95,6 +91,27 @@ export default function Home({ projects, age }: HomeProps) {
                         >
                             {description}
                         </motion.h2>
+                        <motion.ul
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.75, delay: 0.2 }}
+                            className="socials"
+                        >
+                            <li className="social-item">
+                                <Link href={TwitterLink}>
+                                    <a rel="noreferrer" target="_blank">
+                                        <FiTwitter />
+                                    </a>
+                                </Link>
+                            </li>
+                            <li className="social-item">
+                                <Link href={GithubLink}>
+                                    <a rel="noreferrer" target="_blank">
+                                        <FiGithub />
+                                    </a>
+                                </Link>
+                            </li>
+                        </motion.ul>
                     </div>
                 </div>
                 <div className="right">
@@ -123,22 +140,6 @@ export default function Home({ projects, age }: HomeProps) {
             </main>
             <footer>
                 <Lanyard />
-                {/* <ul>
-                    <li className="social-item">
-                        <Link href={twitterLink}>
-                            <a rel="noreferrer" target="_blank">
-                                <FiTwitter />
-                            </a>
-                        </Link>
-                    </li>
-                    <li className="social-item">
-                        <Link href={githubLink}>
-                            <a rel="noreferrer" target="_blank">
-                                <FiGithub />
-                            </a>
-                        </Link>
-                    </li>
-                </ul> */}
             </footer>
         </Page>
     );

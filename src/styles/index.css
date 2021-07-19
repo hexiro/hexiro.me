@@ -102,8 +102,14 @@ footer {
     margin: -16vh 0 10px 20px;
 }
 
+.socials {
+    margin-top: 5px;
+    /* so it doesn't offset other things */
+    position: absolute;
+}
+
 .social-item {
-    margin-right: 11px;
+    margin-right: 20px;
     height: 25px;
     display: inline-block;
 }
