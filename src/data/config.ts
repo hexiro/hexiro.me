@@ -2,6 +2,8 @@
 
 export const Github = "Hexiro"
 export const Twitter = "Hexiiro"
+export const Discord = "291632819006865408"
+export const Steam = "76561199033382814"
 
 const birthday = Date.parse("2005-07-02T00:00:00-0500");
 
@@ -13,6 +15,7 @@ export const Age = ((): number => {
 
 export const GithubLink = `https://github.com/${Github}`;
 export const TwitterLink = `https://twitter.com/${Twitter}`;
+export const SteamLink = `https://steamcommunity.com/profiles/${Steam}`
 
 // private
 

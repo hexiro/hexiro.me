@@ -1,6 +1,6 @@
+import { Error, Page } from "../components";
+
 import { NextPageContext } from "next";
-import Head from "next/head";
-import { ErrorLayout } from "../layouts/ErrorLayout";
 
 interface ErrorProps {
     statusCode?: number;
@@ -13,13 +13,11 @@ function ErrorHandler({ statusCode }: ErrorProps) {
     } else {
         status = "Client Error";
     }
-    return [
-        <Head>
-            <title>{`${status} | Hexiro`}</title>
-            <meta name="description" content="Oops?" />
-        </Head>,
-        <ErrorLayout status={status} message="Oops?" />,
-    ];
+    return (
+        <Page name={status as string} description="Oops?">
+            <Error status={status} message="Oops?" />,
+        </Page>
+    );
 }
 
 ErrorHandler.getInitialProps = ({ res, err }: NextPageContext): ErrorProps => {

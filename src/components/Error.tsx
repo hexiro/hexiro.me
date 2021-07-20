@@ -1,9 +1,6 @@
-export interface ErrorPage {
-    status: number | string;
-    message: string;
-}
+import { ErrorPage } from "../types";
 
-export function ErrorLayout({ status, message }: ErrorPage) {
+export const Error = ({ status, message }: ErrorPage) => {
     return (
         <main className="full-center">
             <div className="text-center">
@@ -12,4 +9,4 @@ export function ErrorLayout({ status, message }: ErrorPage) {
             </div>
         </main>
     );
-}
+};

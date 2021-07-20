@@ -34,6 +34,11 @@
     background-color: var(--scrollbar-color);
 }
 
+*:focus {
+    outline: 2px solid var(--main-accent);
+    outline-offset: 4px;
+}
+
 *,
 *::before,
 *::after {
