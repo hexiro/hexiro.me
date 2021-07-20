@@ -35,8 +35,8 @@ main {
     padding-top: 10px;
 }
 
-.project-title h3 {
-    opacity: 0.8;
+.project-title h3 a {
+    opacity: 1;
 }
 
 .projects-item {
