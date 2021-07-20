@@ -2,7 +2,6 @@ my website :)
 
 ## TODO:
 
--   lanyard
 -   "go home" on 404
 -   add more content to webpage (scrollable)
 
@@ -14,3 +13,4 @@ my website :)
 ## COMPLETED:
 
 -   react-icons
+-   lanyard
