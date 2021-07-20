@@ -9,6 +9,7 @@ export const FadeIn = ({ children, duration, delay }: FadeInProps): JSX.Element 
     // it's only purpose is because i believe i can't have a <></> (fragment) with framer
     return (
         <motion.div
+            className="fades-in"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration, delay }}
