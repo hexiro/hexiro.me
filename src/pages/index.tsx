@@ -1,5 +1,5 @@
 import { Age, Github, GithubLink, SteamLink, TwitterLink } from "../data/config";
-import { FadeIn, Lanyard, Page, Project } from "../components";
+import { FadeIn, Lanyard, Page, Project, SocialMedia } from "../components";
 import { HomeProps, ProjectProps } from "../types";
 import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
 
@@ -80,27 +80,15 @@ export default function Home({ projects, age }: HomeProps) {
                         </FadeIn>
                         <FadeIn duration={0.75} delay={0.2}>
                             <ul className="socials">
-                                <li className="social-item">
-                                    <Link href={TwitterLink}>
-                                        <a rel="noreferrer" target="_blank">
-                                            <RiTwitterLine />
-                                        </a>
-                                    </Link>
-                                </li>
-                                <li className="social-item">
-                                    <Link href={GithubLink}>
-                                        <a rel="noreferrer" target="_blank">
-                                            <RiGithubLine />
-                                        </a>
-                                    </Link>
-                                </li>
-                                <li className="social-item">
-                                    <Link href={SteamLink}>
-                                        <a rel="noreferrer" target="_blank">
-                                            <RiSteamLine />
-                                        </a>
-                                    </Link>
-                                </li>
+                                <SocialMedia href={TwitterLink}>
+                                    <RiTwitterLine />
+                                </SocialMedia>
+                                <SocialMedia href={GithubLink}>
+                                    <RiGithubLine />
+                                </SocialMedia>
+                                <SocialMedia href={SteamLink}>
+                                    <RiSteamLine />
+                                </SocialMedia>
                             </ul>
                         </FadeIn>
                     </div>

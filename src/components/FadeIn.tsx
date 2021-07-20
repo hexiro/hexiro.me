@@ -10,6 +10,8 @@ export interface FadeInProps {
 export const FadeIn = ({ children, duration, delay }: FadeInProps): JSX.Element => {
     if (!duration) duration = 0.5
     if (!delay) delay = 0
+    // the div is basically made useless
+    // it's only purpose is because i believe i can't have a <></> (fragment) with framer
     return (
         <motion.div
             initial={{ opacity: 0 }}
