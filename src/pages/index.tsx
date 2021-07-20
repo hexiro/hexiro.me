@@ -1,12 +1,11 @@
 import { Age, Github, GithubLink, SteamLink, TwitterLink } from "../data/config";
+import { FadeIn, Lanyard, Page, Project } from "../components";
 import { HomeProps, ProjectProps } from "../types";
-import { Lanyard, Page, Project } from "../components";
 import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
 
 import GraphQL from "../data/graphql";
 import Link from "next/link";
 import React from "react";
-import { motion } from "framer-motion";
 
 export const getStaticProps = async () => {
     const pinnedRepos = `
@@ -71,78 +70,60 @@ export default function Home({ projects, age }: HomeProps) {
             <main>
                 <div className="left">
                     <div className="intro">
-                        {/* <FadeIn duration={0.5}>
+                        <FadeIn>
                             <h1>
                                 Hi! I'm <span className="main-accent font-weight-400">Hexiro</span>,
                             </h1>
-                        </FadeIn> */}
-
-                        <motion.h1
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            Hi! I'm <span className="main-accent font-weight-400">Hexiro</span>,
-                        </motion.h1>
-                        <motion.h2
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.5, delay: 0.1 }}
-                        >
-                            {description}
-                        </motion.h2>
-                        <motion.ul
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.75, delay: 0.2 }}
-                            className="socials"
-                        >
-                            <li className="social-item">
-                                <Link href={TwitterLink}>
-                                    <a rel="noreferrer" target="_blank">
-                                        <RiTwitterLine />
-                                    </a>
-                                </Link>
-                            </li>
-                            <li className="social-item">
-                                <Link href={GithubLink}>
-                                    <a rel="noreferrer" target="_blank">
-                                        <RiGithubLine />
-                                    </a>
-                                </Link>
-                            </li>
-                            <li className="social-item">
-                                <Link href={SteamLink}>
-                                    <a rel="noreferrer" target="_blank">
-                                        <RiSteamLine />
-                                    </a>
-                                </Link>
-                            </li>
-                        </motion.ul>
+                        </FadeIn>
+                        <FadeIn delay={0.1}>
+                            <h2>{description}</h2>
+                        </FadeIn>
+                        <FadeIn duration={0.75} delay={0.2}>
+                            <ul className="socials">
+                                <li className="social-item">
+                                    <Link href={TwitterLink}>
+                                        <a rel="noreferrer" target="_blank">
+                                            <RiTwitterLine />
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li className="social-item">
+                                    <Link href={GithubLink}>
+                                        <a rel="noreferrer" target="_blank">
+                                            <RiGithubLine />
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li className="social-item">
+                                    <Link href={SteamLink}>
+                                        <a rel="noreferrer" target="_blank">
+                                            <RiSteamLine />
+                                        </a>
+                                    </Link>
+                                </li>
+                            </ul>
+                        </FadeIn>
                     </div>
                 </div>
                 <div className="right">
-                    <motion.div
-                        className="projects"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1, delay: 0.2 }}
-                    >
-                        {projects.map((project) => (
-                            <Project
-                                name={project.name}
-                                descriptionHTML={project.descriptionHTML}
-                                url={project.url}
-                                owner={project.owner}
-                                stargazers={project.stargazers}
-                                forks={project.forks}
-                                pullRequests={project.pullRequests}
-                                issues={project.issues}
-                                primaryLanguage={project.primaryLanguage}
-                                defaultBranchRef={project.defaultBranchRef}
-                            />
-                        ))}
-                    </motion.div>
+                    <FadeIn duration={1} delay={0.2}>
+                        <div className="projects">
+                            {projects.map((project) => (
+                                <Project
+                                    name={project.name}
+                                    descriptionHTML={project.descriptionHTML}
+                                    url={project.url}
+                                    owner={project.owner}
+                                    stargazers={project.stargazers}
+                                    forks={project.forks}
+                                    pullRequests={project.pullRequests}
+                                    issues={project.issues}
+                                    primaryLanguage={project.primaryLanguage}
+                                    defaultBranchRef={project.defaultBranchRef}
+                                />
+                            ))}
+                        </div>
+                    </FadeIn>
                 </div>
             </main>
             <footer>
