@@ -2,16 +2,11 @@ import { BiGitCommit, BiGitPullRequest, BiGitRepoForked, BiStar } from "react-ic
 
 import { Github } from "../data/config";
 import { ProjectProps } from "../types";
-import { motion } from "framer-motion";
 import parse from "html-react-parser";
 
 export const Project = (project: ProjectProps): JSX.Element => {
     return (
-        <motion.div
-            className="projects-item transition"
-            transition={{ duration: 0.06, type: "spring" }}
-            whileHover={{ translateX: "-2.5%", translateY: "-2.5%" }}
-        >
+        <div className="projects-item transition">
             <div className="projects-container">
                 <div className="project-title main-color">
                     <a href={project.url} rel="noreferrer" target="_blank">
@@ -62,6 +57,6 @@ export const Project = (project: ProjectProps): JSX.Element => {
                     </ul>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 };

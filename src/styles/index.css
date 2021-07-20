@@ -51,6 +51,15 @@ main {
     -o-border-radius: 10px;
 }
 
+.projects-item:hover {
+    transition: ease all 0.35s;
+    -webkit-transition: ease all 0.35s;
+    -moz-transition: ease all 0.35s;
+    -ms-transition: ease all 0.35s;
+    -o-transition: ease all 0.35s;
+    transform: translateX(-2.5%) translateY(-2.5%);
+}
+
 .projects-item:last-child {
     margin-bottom: 0;
 }
