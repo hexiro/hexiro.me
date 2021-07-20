@@ -9,16 +9,18 @@ export const Project = (project: ProjectProps): JSX.Element => {
         <div className="projects-item transition">
             <div className="projects-container">
                 <div className="project-title main-color">
-                    <a href={project.url} rel="noreferrer" target="_blank">
-                        {project.owner.login == Github ? (
-                            <h3>{project.name}</h3>
-                        ) : (
-                            <h3>
-                                <span className="main-accent">{project.owner.login}/</span>
-                                {project.name}
-                            </h3>
-                        )}
-                    </a>
+                    <h3>
+                        <a href={project.url} rel="noreferrer" target="_blank">
+                            {project.owner.login == Github ? (
+                                project.name
+                            ) : (
+                                <>
+                                    <span className="main-accent">{project.owner.login}/</span>
+                                    {project.name}
+                                </>
+                            )}
+                        </a>
+                    </h3>
                 </div>
                 <p>
                     {
