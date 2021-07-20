@@ -310,6 +310,6 @@ footer {
 
 @media only screen and (max-width: 400px) {
     footer {
-        opacity: 0;
+        display: none;
     }
 }
