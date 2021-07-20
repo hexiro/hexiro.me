@@ -117,6 +117,9 @@ export default function Home({ projects, age }: HomeProps) {
             <footer>
                 <Lanyard />
             </footer>
+            <noscript>
+                <style>{".fades-in{opacity:1!important}"}</style>
+            </noscript>
         </Page>
     );
 }
