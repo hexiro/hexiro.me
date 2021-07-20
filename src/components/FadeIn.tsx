@@ -1,11 +1,6 @@
+import { FadeInProps } from "../types";
 import React from "react";
 import { motion } from "framer-motion";
-
-export interface FadeInProps {
-    children: React.ReactNode;
-    duration?: number;
-    delay?: number;
-}
 
 export const FadeIn = ({ children, duration, delay }: FadeInProps): JSX.Element => {
     if (!duration) duration = 0.5

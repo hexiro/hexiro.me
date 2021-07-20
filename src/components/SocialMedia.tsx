@@ -1,10 +1,5 @@
 import Link from "next/link";
-import { ReactNode } from "react";
-
-export interface SocialMediaProps {
-    href: string;
-    children?: ReactNode;
-}
+import { SocialMediaProps } from "../types";
 
 export const SocialMedia = ({ href, children }: SocialMediaProps): JSX.Element => {
     return (

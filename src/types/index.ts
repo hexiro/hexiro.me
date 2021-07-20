@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface Timestamps {
     start?: number | null;
     end?: number | null;
@@ -43,4 +45,17 @@ export interface ProjectProps {
 export interface HomeProps {
     projects: ProjectProps[];
     age: number;
+}
+
+
+export interface FadeInProps {
+    children: React.ReactNode;
+    duration?: number;
+    delay?: number;
+}
+
+
+export interface SocialMediaProps {
+    href: string;
+    children?: ReactNode;
 }
