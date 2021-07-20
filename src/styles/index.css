@@ -35,6 +35,10 @@ main {
     padding-top: 10px;
 }
 
+.project-title h3 {
+    opacity: 0.8;
+}
+
 .projects-item {
     position: relative;
     min-width: 530px;
