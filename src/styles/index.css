@@ -116,9 +116,12 @@ footer {
     margin: -16vh 0 10px 20px;
 }
 
-.socials {
+.intro-lower {
     /* so it doesn't offset other things */
     position: absolute;
+}
+
+.socials {
     margin-top: 10px;
 }
 
@@ -139,6 +142,7 @@ footer {
     background: var(--background-accent);
     height: 130px;
     width: 350px;
+    margin-top: 240px;
     border-radius: 6px;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
@@ -152,6 +156,8 @@ footer {
     position: relative;
     padding-left: 20px;
     width: 220px;
+    line-height: 25px;
+    text-align: left;
 }
 
 .lanyard-text * {
@@ -161,7 +167,7 @@ footer {
 }
 
 .lanyard-text h5 {
-    line-height: 1.2em;
+    line-height: 17px;
 }
 
 .lanyard-images {
@@ -305,6 +311,14 @@ footer {
 
     .projects-footer {
         display: none;
+    }
+
+    .intro-lower {
+        position: unset;
+    }
+
+    .lanyard {
+        margin: 0 auto;
     }
 }
 
