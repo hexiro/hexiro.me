@@ -330,9 +330,3 @@ footer {
         padding-right: 20px;
     }
 }
-
-@media only screen and (max-width: 400px) {
-    footer {
-        display: none;
-    }
-}
