@@ -69,7 +69,7 @@ export const Lanyard = () => {
     }
 
     return (
-        <div className="lanyard transition">
+        <div className="lanyard">
             <div className="lanyard-images">
                 {
                     <img
