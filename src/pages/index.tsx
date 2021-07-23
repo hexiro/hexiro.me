@@ -78,19 +78,24 @@ export default function Home({ projects, age }: HomeProps) {
                         <FadeIn delay={0.1}>
                             <h2>{description}</h2>
                         </FadeIn>
-                        <FadeIn duration={0.75} delay={0.2}>
-                            <ul className="socials">
-                                <SocialMedia href={TwitterLink}>
-                                    <RiTwitterLine />
-                                </SocialMedia>
-                                <SocialMedia href={GithubLink}>
-                                    <RiGithubLine />
-                                </SocialMedia>
-                                <SocialMedia href={SteamLink}>
-                                    <RiSteamLine />
-                                </SocialMedia>
-                            </ul>
-                        </FadeIn>
+                        <div className="intro-lower">
+                            <FadeIn duration={0.75} delay={0.2}>
+                                <ul className="socials">
+                                    <SocialMedia href={TwitterLink}>
+                                        <RiTwitterLine />
+                                    </SocialMedia>
+                                    <SocialMedia href={GithubLink}>
+                                        <RiGithubLine />
+                                    </SocialMedia>
+                                    <SocialMedia href={SteamLink}>
+                                        <RiSteamLine />
+                                    </SocialMedia>
+                                </ul>
+                            </FadeIn>
+                            <FadeIn duration={1} delay={0.25}>
+                                <Lanyard />
+                            </FadeIn>
+                        </div>
                     </div>
                 </div>
                 <div className="right">
@@ -114,9 +119,6 @@ export default function Home({ projects, age }: HomeProps) {
                     </FadeIn>
                 </div>
             </main>
-            <footer>
-                <Lanyard />
-            </footer>
             <noscript>
                 <style>{".fades-in{opacity:1!important}"}</style>
             </noscript>
