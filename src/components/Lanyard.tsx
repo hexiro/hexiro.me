@@ -1,4 +1,3 @@
-import { AnimatePresence, motion } from "framer-motion";
 import { LanyardWebsocket, useLanyard } from "react-use-lanyard";
 
 import { Discord } from "../data/config";
@@ -70,39 +69,31 @@ export const Lanyard = () => {
     }
 
     return (
-        <AnimatePresence>
-            <motion.div
-                className="lanyard transition"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-            >
-                <div className="lanyard-images">
-                    {
-                        <img
-                            className="large-image"
-                            alt="large image of application or song"
-                            draggable={false}
-                            src={largeImage}
-                        />
-                    }
-                    {smallImage && (
-                        <img
-                            className="small-image"
-                            alt="small image of application"
-                            draggable={false}
-                            src={smallImage}
-                        />
-                    )}
-                </div>
-                <div className="lanyard-text">
-                    <h4 className="main-accent">{name}</h4>
-                    {keyValueLine(firstLine)}
-                    {keyValueLine(secondLine)}
-                    <div className="lanyard-text-bottom">{stamp}</div>
-                </div>
-            </motion.div>
-        </AnimatePresence>
+        <div className="lanyard transition">
+            <div className="lanyard-images">
+                {
+                    <img
+                        className="large-image"
+                        alt="large image of application or song"
+                        draggable={false}
+                        src={largeImage}
+                    />
+                }
+                {smallImage && (
+                    <img
+                        className="small-image"
+                        alt="small image of application"
+                        draggable={false}
+                        src={smallImage}
+                    />
+                )}
+            </div>
+            <div className="lanyard-text">
+                <h4 className="main-accent">{name}</h4>
+                {keyValueLine(firstLine)}
+                {keyValueLine(secondLine)}
+                <div className="lanyard-text-bottom">{stamp}</div>
+            </div>
+        </div>
     );
 };

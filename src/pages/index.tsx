@@ -115,7 +115,9 @@ export default function Home({ projects, age }: HomeProps) {
                 </div>
             </main>
             <footer>
-                <Lanyard />
+                <FadeIn duration={1} delay={0.25}>
+                    <Lanyard />
+                </FadeIn>
             </footer>
             <noscript>
                 <style>{".fades-in{opacity:1!important}"}</style>
