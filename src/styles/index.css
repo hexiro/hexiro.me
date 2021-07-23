@@ -326,7 +326,12 @@ footer {
 
     .lanyard-text,
     .lanyard-text-bottom {
-        max-width: 72%;
-        padding-right: 20px;
+        width: calc(80% - 28px)
+    }
+}
+
+@media only screen and (max-width: 250px) {
+    .lanyard {
+        display: none;
     }
 }
