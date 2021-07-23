@@ -33,6 +33,7 @@ main {
 
 .project-title {
     padding-top: 10px;
+    word-break: break-word;
 }
 
 .project-title h3 a {
@@ -279,7 +280,7 @@ footer {
         display: block;
         margin: 25px auto;
         width: 90%;
-        min-width: 300px;
+        min-width: unset;
         max-width: 540px;
         height: auto;
         cursor: initial;
@@ -318,7 +319,15 @@ footer {
     }
 
     .lanyard {
-        margin: 0 auto;
+        margin: 5px auto;
+        max-width: 350px;
+        width: 80%;
+    }
+
+    .lanyard-text,
+    .lanyard-text-bottom {
+        max-width: 72%;
+        padding-right: 20px;
     }
 }
 
