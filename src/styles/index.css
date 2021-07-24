@@ -178,7 +178,7 @@ footer {
 .lanyard-text-bottom {
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: calc(100% - 20px);
     max-width: 200px;
 }
 
@@ -327,7 +327,7 @@ footer {
     }
 }
 
-@media only screen and (max-width: 250px) {
+@media only screen and (max-width: 300px) {
     .lanyard {
         display: none;
     }
