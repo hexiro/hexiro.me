@@ -156,7 +156,7 @@ footer {
 .lanyard-text {
     position: relative;
     padding-left: 20px;
-    width: 220px;
+    width: 72%;
     line-height: 25px;
     text-align: left;
 }
@@ -178,6 +178,8 @@ footer {
 .lanyard-text-bottom {
     position: absolute;
     bottom: 0;
+    width: calc(100% - 20px);
+    max-width: 200px;
 }
 
 .large-image {
@@ -203,7 +205,7 @@ footer {
 }
 
 .song-details {
-    width: 200px;
+    width: 100%;
 }
 
 .song-outer-bar {
@@ -323,10 +325,10 @@ footer {
         max-width: 350px;
         width: 80%;
     }
+}
 
-    .lanyard-text,
-    .lanyard-text-bottom {
-        max-width: 72%;
-        padding-right: 20px;
+@media only screen and (max-width: 300px) {
+    .lanyard {
+        display: none;
     }
 }
