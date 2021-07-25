@@ -92,8 +92,8 @@ export const Lanyard = () => {
                 <h4 className="main-accent">{name}</h4>
                 {keyValueLine(firstLine)}
                 {keyValueLine(secondLine)}
-                <div className="lanyard-text-bottom">{stamp}</div>
             </div>
+            <div className="lanyard-text-bottom">{stamp}</div>
         </div>
     );
 };

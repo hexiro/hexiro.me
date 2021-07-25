@@ -32,15 +32,9 @@ const formatSong = (start: number, end: number): JSX.Element => {
     }
     const width = relStart / relEnd;
     return (
-        <>
-            <div className="song-text">
-                <h6>{songDuration(relStart)}</h6>
-                <h6 className="song-end-text">{songDuration(relEnd)}</h6>
-            </div>
-            <div className="song-outer-bar">
-                <div className="song-inner-bar" style={{ width: `${width * 100}%` }}></div>
-            </div>
-        </>
+        <div className="song-outer-bar">
+            <div className="song-inner-bar" style={{ width: `${width * 100}%` }}></div>
+        </div>
     );
 };
 
@@ -49,12 +43,10 @@ export const Timestamper = ({ start, end }: Timestamps): JSX.Element | null => {
 
     useEffect(() => {
         function updateTimestamp() {
-            if (!start) return;
-            if (end) {
+            if (start && end) {
                 setElapsed(formatSong(start, end));
                 return;
             }
-            setElapsed(formatElapsed(start));
         }
         updateTimestamp();
 
