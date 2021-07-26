@@ -66,7 +66,7 @@ export const getStaticProps = async () => {
 export default function Home({ projects, age }: HomeProps) {
     const description = `A ${age} y/o aspiring Software Engineer`;
     return (
-        <Page name="Home" description={description}>
+        <Page name="Home" description={description} fadesIn={true}>
             <main>
                 <div className="left">
                     <div className="intro">
@@ -119,9 +119,6 @@ export default function Home({ projects, age }: HomeProps) {
                     </FadeIn>
                 </div>
             </main>
-            <noscript>
-                <style>{".fades-in{opacity:1!important}"}</style>
-            </noscript>
         </Page>
     );
 }
