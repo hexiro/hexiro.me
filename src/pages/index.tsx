@@ -1,5 +1,5 @@
 import { Age, Github, GithubLink, SteamLink, TwitterLink } from "../data/config";
-import { FadeIn, Lanyard, Page, Project, SocialMedia } from "../components";
+import { FadeIn, Lanyard, Page, ParseHTML, Project, SocialMedia } from "../components";
 import { HomeProps, ProjectProps } from "../types";
 import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
 

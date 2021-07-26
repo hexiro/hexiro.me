@@ -2,7 +2,7 @@ import { BiGitCommit, BiGitPullRequest, BiGitRepoForked, BiStar } from "react-ic
 
 import { Github } from "../data/config";
 import { ProjectProps } from "../types";
-import parse from "html-react-parser";
+import { ParseHTML } from "./";
 
 export const Project = (project: ProjectProps): JSX.Element => {
     return (
@@ -24,9 +24,8 @@ export const Project = (project: ProjectProps): JSX.Element => {
                 </div>
                 <p>
                     {
-                        // input is parser safe and will never include a script tag
                         // remove redundant <div></div> with .slice(5, -6)
-                        parse(project.descriptionHTML.slice(5, -6))
+                        <ParseHTML html={project.descriptionHTML.slice(5, -6)} />
                     }
                 </p>
                 <div className="projects-footer">

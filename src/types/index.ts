@@ -1,6 +1,10 @@
 import React, { ReactNode } from "react";
 import { Position, Size } from "react-tippy";
 
+export interface ParseHTMLProps {
+    html: string;
+}
+
 export interface KeyValueProps {
     line?: string;
 }
