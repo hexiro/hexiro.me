@@ -141,7 +141,7 @@ footer {
     position: relative;
     overflow: hidden;
     display: flex;
-    padding: 20px;
+    padding: 20px 0 20px 20px;
     background: var(--background-accent);
     height: 130px;
     width: 350px;
@@ -153,12 +153,11 @@ footer {
 .lanyard-text {
     position: relative;
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
-    max-width: 226px;
-    width: 72%;
+    width: 40%;
     line-height: 25px;
     padding: 0 6.245%;
-    flex-grow: 1;
     text-align: left;
 }
 
