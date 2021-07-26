@@ -23,10 +23,7 @@ export const Project = (project: ProjectProps): JSX.Element => {
                     </h3>
                 </div>
                 <p>
-                    {
-                        // remove redundant <div></div> with .slice(5, -6)
-                        <ParseHTML html={project.descriptionHTML.slice(5, -6)} />
-                    }
+                    <ParseHTML html={project.descriptionHTML.slice(5, -6)} />
                 </p>
                 <div className="projects-footer">
                     <span className="project-language">{project.primaryLanguage.name}</span>
