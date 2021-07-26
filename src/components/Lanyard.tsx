@@ -62,7 +62,7 @@ export const Lanyard = () => {
         firstLine = "By: " + spotify.artist.replaceAll(";", ",");
         secondLine = "On: " + spotify.album.replaceAll(";", ",");
     } else if (isGame) {
-        const application_id = activity.application_id!
+        const application_id = activity.application_id!;
         largeImage = buildAsset(application_id, assets.large_image);
         if (assets.small_image) {
             smallImage = buildAsset(application_id, assets.small_image);
@@ -91,15 +91,15 @@ export const Lanyard = () => {
                     </Tooltip>
                 </div>
                 <div className="small-image">
-                    <Tooltip title={assets?.small_text} size="small">
-                        {smallImage && (
+                    {smallImage && (
+                        <Tooltip title={assets?.small_text} size="small">
                             <img
                                 alt="small image of application"
                                 draggable={false}
                                 src={smallImage}
                             />
-                        )}
-                    </Tooltip>
+                        </Tooltip>
+                    )}
                 </div>
             </div>
             <div className="lanyard-text">
