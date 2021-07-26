@@ -1,5 +1,6 @@
 export * from "./Error"
 export * from "./FadeIn"
+export * from "./KeyValue"
 export * from "./Lanyard"
 export * from "./Page"
 export * from "./Project"

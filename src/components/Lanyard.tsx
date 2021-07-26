@@ -1,22 +1,10 @@
 import { Activity, LanyardWebsocket, useLanyard } from "react-use-lanyard";
 
 import { Discord } from "../data/config";
-import { SongBar, Tooltip } from "./";
+import { SongBar, Tooltip, KeyValue } from "./";
 
 const buildAsset = (applicationId: string, assetId: string): string => {
     return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
-};
-
-const keyValueLine = (line: string | undefined): JSX.Element | null => {
-    if (!line) return null;
-    if (!line.includes(":")) return <h5>{line}</h5>;
-    const [key, value] = line.split(":", 2);
-    return (
-        <h5>
-            {key}
-            <span className="font-weight-400">{value}</span>
-        </h5>
-    );
 };
 
 export const Lanyard = () => {
@@ -103,8 +91,8 @@ export const Lanyard = () => {
             </div>
             <div className="lanyard-text">
                 <h4 className="main-accent">{name}</h4>
-                {keyValueLine(firstLine)}
-                {keyValueLine(secondLine)}
+                <KeyValue line={firstLine}/>
+                <KeyValue line={secondLine}/>
             </div>
             {isListening && <div className="lanyard-song-bar">{stamp}</div>}
         </div>
