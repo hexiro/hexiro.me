@@ -97,7 +97,7 @@ export const Lanyard = () => {
                 {keyValueLine(firstLine)}
                 {keyValueLine(secondLine)}
             </div>
-            <div className="lanyard-song-bar">{stamp}</div>
+            {activity.type === 2 && <div className="lanyard-song-bar">{stamp}</div>}
         </div>
     );
 };
