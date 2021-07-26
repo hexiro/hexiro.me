@@ -1,8 +1,7 @@
 import { Activity, LanyardWebsocket, useLanyard } from "react-use-lanyard";
 
 import { Discord } from "../data/config";
-import { SongBar } from "./";
-import { Tooltip } from "../components/Tooltip";
+import { SongBar, Tooltip } from "./";
 
 const buildAsset = (applicationId: string, assetId: string): string => {
     return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
