@@ -1,7 +1,15 @@
 import { Tooltip as TippyTooltip } from "react-tippy";
 import { TooltipProps } from "../types";
 
-export const Tooltip = ({ title, position, distance, offset, size, children, style }: TooltipProps) => {
+export const Tooltip = ({
+    title,
+    position,
+    distance,
+    offset,
+    size,
+    children,
+    style,
+}: TooltipProps) => {
     return (
         <TippyTooltip
             // settings
@@ -16,7 +24,7 @@ export const Tooltip = ({ title, position, distance, offset, size, children, sty
             inertia={true}
             duration={200}
             multiple={false}
-            style={{display: "block", ...style}}
+            style={{ display: "block", ...style }}
         >
             {children}
         </TippyTooltip>
