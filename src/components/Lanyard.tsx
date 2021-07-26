@@ -1,4 +1,4 @@
-import { LanyardWebsocket, useLanyard } from "react-use-lanyard";
+import { Activity, LanyardWebsocket, useLanyard } from "react-use-lanyard";
 
 import { Discord } from "../data/config";
 import { Timestamper } from "./";
@@ -26,17 +26,25 @@ export const Lanyard = () => {
         socket: true,
     }) as LanyardWebsocket;
 
-    const activity = status?.activities.sort((a, b) => (a.type > b.type ? 1 : -1))[0];
-    const stamps = activity?.timestamps;
-    let stamp = Timestamper({ start: stamps?.start, end: stamps?.end });
+    let activity: Activity | undefined;
+    for (const act of status?.activities || []) {
+        if (act && (act.type === 2 || act.type === 0) && act.assets && act.timestamps) {
+            activity = act;
+            break;
+        }
+    }
 
-    // if no data / invalid data is returned / i have no activities
-    if (loading || !status || status.activities.length === 0) return null;
-    // if activity isn't set right
-    if (!activity || (activity.type !== 2 && activity.type !== 0)) return null;
+    let timestamps = activity?.timestamps;
+    let stamp = Timestamper({ start: timestamps?.start, end: timestamps?.end });
 
-    const spotify = status.spotify;
-    const assets = activity.assets;
+    // if no data / invalid data is returned / i have no availble
+    if (loading || !status || !activity) return null;
+
+    const isListening = activity.type === 2 && typeof status.spotify !== "undefined";
+    const isGame = activity.type === 0 && typeof activity.application_id !== "undefined";
+
+    // is checked if for loop -- not recognized by ts
+    const assets = activity.assets!;
 
     // assets
     let largeImage: string;
@@ -47,15 +55,17 @@ export const Lanyard = () => {
     let firstLine: string | undefined;
     let secondLine: string | undefined;
 
-    if (activity.type === 2 && spotify) {
+    if (isListening) {
+        const spotify = status.spotify!;
         largeImage = spotify.album_art_url;
         name = spotify.song;
         firstLine = "By: " + spotify.artist.replaceAll(";", ",");
         secondLine = "On: " + spotify.album.replaceAll(";", ",");
-    } else if (assets && activity.application_id) {
-        largeImage = buildAsset(activity.application_id, assets.large_image);
+    } else if (isGame) {
+        const application_id = activity.application_id!
+        largeImage = buildAsset(application_id, assets.large_image);
         if (assets.small_image) {
-            smallImage = buildAsset(activity.application_id, assets.small_image);
+            smallImage = buildAsset(application_id, assets.small_image);
         }
         name = activity.name;
         firstLine = activity.details;
@@ -97,7 +107,7 @@ export const Lanyard = () => {
                 {keyValueLine(firstLine)}
                 {keyValueLine(secondLine)}
             </div>
-            {activity.type === 2 && <div className="lanyard-song-bar">{stamp}</div>}
+            {isListening && <div className="lanyard-song-bar">{stamp}</div>}
         </div>
     );
 };
