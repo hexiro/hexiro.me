@@ -141,7 +141,7 @@ footer {
     position: relative;
     overflow: hidden;
     display: flex;
-    padding: 20px;
+    padding: 20px 0 20px 20px;
     background: var(--background-accent);
     height: 130px;
     width: 350px;
@@ -153,12 +153,11 @@ footer {
 .lanyard-text {
     position: relative;
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
-    max-width: 226px;
-    width: 72%;
+    width: 40%;
     line-height: 25px;
     padding: 0 6.245%;
-    flex-grow: 1;
     text-align: left;
 }
 
@@ -176,7 +175,7 @@ footer {
     position: relative;
 }
 
-.lanyard-text-bottom {
+.lanyard-song-bar {
     position: absolute;
     bottom: 0;
     padding: 0;
@@ -185,6 +184,11 @@ footer {
 }
 
 .large-image {
+    position: relative;
+}
+
+.large-image img {
+    display: block;
     height: 90px;
     width: 90px;
     border-radius: 4px;
@@ -197,13 +201,17 @@ footer {
 }
 
 .small-image {
+    position: absolute;
+    right: -7px;
+    bottom: -7px;
+}
+
+.small-image img {
+    display: block;
     height: 30px;
     width: 30px;
     border: var(--main-accent) 2px solid;
     border-radius: 50%;
-    position: absolute;
-    bottom: -6px;
-    left: 67px;
 }
 
 .song-outer-bar {
