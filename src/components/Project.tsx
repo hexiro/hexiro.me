@@ -1,8 +1,8 @@
 import { BiGitCommit, BiGitPullRequest, BiGitRepoForked, BiStar } from "react-icons/bi";
 
 import { Github } from "../data/config";
+import { ParseHTML } from "./";
 import { ProjectProps } from "../types";
-import parse from "html-react-parser";
 
 export const Project = (project: ProjectProps): JSX.Element => {
     return (
@@ -23,11 +23,7 @@ export const Project = (project: ProjectProps): JSX.Element => {
                     </h3>
                 </div>
                 <p>
-                    {
-                        // input is parser safe and will never include a script tag
-                        // remove redundant <div></div> with .slice(5, -6)
-                        parse(project.descriptionHTML.slice(5, -6))
-                    }
+                    <ParseHTML html={project.descriptionHTML.slice(5, -6)} />
                 </p>
                 <div className="projects-footer">
                     <span className="project-language">{project.primaryLanguage.name}</span>

@@ -4,7 +4,6 @@ import { HomeProps, ProjectProps } from "../types";
 import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
 
 import GraphQL from "../data/graphql";
-import Link from "next/link";
 import React from "react";
 
 export const getStaticProps = async () => {
@@ -66,7 +65,7 @@ export const getStaticProps = async () => {
 export default function Home({ projects, age }: HomeProps) {
     const description = `A ${age} y/o aspiring Software Engineer`;
     return (
-        <Page name="Home" description={description}>
+        <Page name="Home" description={description} fadesIn={true}>
             <main>
                 <div className="left">
                     <div className="intro">
@@ -119,9 +118,6 @@ export default function Home({ projects, age }: HomeProps) {
                     </FadeIn>
                 </div>
             </main>
-            <noscript>
-                <style>{".fades-in{opacity:1!important}"}</style>
-            </noscript>
         </Page>
     );
 }
