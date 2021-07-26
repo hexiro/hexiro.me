@@ -1,4 +1,15 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
+import { Position, Size } from "react-tippy";
+
+export interface TooltipProps {
+    title?: string;
+    position?: Position;
+    distance?: number;
+    offset?: number;
+    size?: Size;
+    children?: React.ReactNode
+    style?: React.CSSProperties;
+}
 
 export interface Timestamps {
     start?: number | null;

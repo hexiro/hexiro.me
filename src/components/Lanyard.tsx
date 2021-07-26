@@ -2,7 +2,7 @@ import { LanyardWebsocket, useLanyard } from "react-use-lanyard";
 
 import { Discord } from "../data/config";
 import { Timestamper } from "./";
-import { Timestamps } from "../types";
+import { Tooltip } from "../components/Tooltip";
 
 const buildAsset = (applicationId: string, assetId: string): string => {
     return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
@@ -71,22 +71,26 @@ export const Lanyard = () => {
     return (
         <div className="lanyard">
             <div className="lanyard-images">
-                {
-                    <img
-                        className="large-image"
-                        alt="large image of application or song"
-                        draggable={false}
-                        src={largeImage}
-                    />
-                }
-                {smallImage && (
-                    <img
-                        className="small-image"
-                        alt="small image of application"
-                        draggable={false}
-                        src={smallImage}
-                    />
-                )}
+                <div className="large-image">
+                    <Tooltip title={assets?.large_text}>
+                        <img
+                            alt="large image of application or song"
+                            draggable={false}
+                            src={largeImage}
+                        />
+                    </Tooltip>
+                </div>
+                <div className="small-image">
+                    <Tooltip title={assets?.small_text} size="small">
+                        {smallImage && (
+                            <img
+                                alt="small image of application"
+                                draggable={false}
+                                src={smallImage}
+                            />
+                        )}
+                    </Tooltip>
+                </div>
             </div>
             <div className="lanyard-text">
                 <h4 className="main-accent">{name}</h4>
