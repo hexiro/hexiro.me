@@ -1,7 +1,7 @@
 import { Activity, LanyardWebsocket, useLanyard } from "react-use-lanyard";
 
 import { Discord } from "../data/config";
-import { Timestamper } from "./";
+import { SongBar } from "./";
 import { Tooltip } from "../components/Tooltip";
 
 const buildAsset = (applicationId: string, assetId: string): string => {
@@ -35,7 +35,7 @@ export const Lanyard = () => {
     }
 
     let timestamps = activity?.timestamps;
-    let stamp = Timestamper({ start: timestamps?.start, end: timestamps?.end });
+    let stamp = SongBar({ start: timestamps?.start, end: timestamps?.end });
 
     // if no data / invalid data is returned / i have no availble
     if (loading || !status || !activity) return null;
