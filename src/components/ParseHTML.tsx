@@ -13,8 +13,7 @@ const options: HTMLReactParserOptions = {
     trim: true,
 };
 
-export const ParseHTML = ({ html }: ParseHTMLProps): JSX.Element | null => {
-    const parsed = parse(html, options);
-    if (typeof parsed === "string") return null;
-    return <>{parsed}</>;
+export const ParseHTML = ({ html }: ParseHTMLProps): JSX.Element => {
+    // returns string, JSX.Element[], JSX.Element all as JSX.Element
+    return <>{parse(html, options)}</>;
 };
