@@ -145,7 +145,7 @@ footer {
     background: var(--background-accent);
     height: 130px;
     width: 350px;
-    margin: 240px 0 20px;
+    margin: 25.75vh 0 20px;
     border-radius: 6px;
     box-shadow: 0 4px 10px rgb(0 0 0 / 25%);
 }
