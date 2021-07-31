@@ -1584,10 +1584,10 @@ react-tippy@^1.4.0:
   dependencies:
     popper.js "^1.11.1"
 
-react-use-lanyard@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/react-use-lanyard/-/react-use-lanyard-0.0.8.tgz#346d51c471b0184efb1298f29f0d84655585f191"
-  integrity sha512-+8RCGRwvNK3XB+M+P1Oz20XBxb403Bquolse5Xje1kdVzMAxZIEXn/Nq+MK7qWyv7i5fZgTgC2DgDgFBv2tqrg==
+react-use-lanyard@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/react-use-lanyard/-/react-use-lanyard-0.0.9.tgz#c8206e3d1b5e66d6c45c1576250dafdf04f1ce51"
+  integrity sha512-6/kqCWs9db+Um6A6Qov/AL0gFBIhxAw26GnaNjYK7htodM0k4ufK4epQAc0M/jDoCIytX48ZLTubnfjLXAsT+Q==
   dependencies:
     swr "^0.5.6"
     tslib "^2.2.0"

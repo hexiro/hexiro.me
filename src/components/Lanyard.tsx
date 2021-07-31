@@ -91,8 +91,8 @@ export const Lanyard = () => {
             </div>
             <div className="lanyard-text">
                 <h4 className="main-accent">{name}</h4>
-                <KeyValue line={firstLine}/>
-                <KeyValue line={secondLine}/>
+                <KeyValue line={firstLine} />
+                <KeyValue line={secondLine} />
             </div>
             {isListening && <div className="lanyard-song-bar">{stamp}</div>}
         </div>
