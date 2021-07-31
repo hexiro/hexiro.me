@@ -1,6 +1,5 @@
-import { Activity, LanyardData, LanyardWebsocket, useLanyard } from "react-use-lanyard";
+import { Activity, LanyardWebsocket, useLanyard } from "react-use-lanyard";
 import { KeyValue, SongBar, Tooltip } from "./";
-import { useEffect, useState } from "react";
 
 import { Discord } from "../data/config";
 
