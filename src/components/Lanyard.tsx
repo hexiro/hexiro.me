@@ -21,8 +21,8 @@ export const Lanyard = () => {
         }
     }
 
-    let timestamps = activity?.timestamps;
-    let stamp = SongBar({ start: timestamps?.start, end: timestamps?.end });
+    const timestamps = activity?.timestamps;
+    const stamp = SongBar({ start: timestamps?.start, end: timestamps?.end });
 
     // if no data / invalid data is returned / i have no availble
     if (loading || !status || !activity) return null;
