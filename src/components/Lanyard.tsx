@@ -77,8 +77,8 @@ export const Lanyard = () => {
                         />
                     </Tooltip>
                 </div>
-                <div className="small-image">
-                    {smallImage && (
+                {smallImage && (
+                    <div className="small-image">
                         <Tooltip title={assets?.small_text} size="small">
                             <img
                                 alt="small image of application"
@@ -86,8 +86,8 @@ export const Lanyard = () => {
                                 src={smallImage}
                             />
                         </Tooltip>
-                    )}
-                </div>
+                    </div>
+                )}
             </div>
             <div className="lanyard-text">
                 <h4 className="main-accent">{name}</h4>
