@@ -35,13 +35,13 @@ export const getStaticProps = async () => {
             name
           }
           defaultBranchRef {
-              target {
-                  ... on Commit {
-                      history {
-                          totalCount
-                      }
-                  }
+            target {
+              ... on Commit {
+                history {
+                  totalCount
+                }
               }
+            }
           }
         }
       }

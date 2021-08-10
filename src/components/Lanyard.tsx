@@ -21,8 +21,8 @@ export const Lanyard = () => {
         }
     }
 
-    let timestamps = activity?.timestamps;
-    let stamp = SongBar({ start: timestamps?.start, end: timestamps?.end });
+    const timestamps = activity?.timestamps;
+    const stamp = SongBar({ start: timestamps?.start, end: timestamps?.end });
 
     // if no data / invalid data is returned / i have no availble
     if (loading || !status || !activity) return null;
@@ -30,7 +30,7 @@ export const Lanyard = () => {
     const isListening = activity.type === 2 && typeof status.spotify !== "undefined";
     const isGame = activity.type === 0 && typeof activity.application_id !== "undefined";
 
-    // is checked if for loop -- not recognized by ts
+    // is checked in for loop -- not recognized by ts
     const assets = activity.assets!;
 
     // assets
