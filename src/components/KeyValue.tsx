@@ -6,8 +6,7 @@ export const KeyValue = ({ line }: KeyValueProps): JSX.Element | null => {
     const [key, value] = line.split(":", 2);
     return (
         <h5>
-            {key}
-            <span className="font-weight-400">{value}</span>
+            {key} <span className="font-weight-400">{value}</span>
         </h5>
     );
 };
