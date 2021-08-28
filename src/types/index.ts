@@ -15,7 +15,7 @@ export interface TooltipProps {
     distance?: number;
     offset?: number;
     size?: Size;
-    children?: React.ReactNode
+    children?: React.ReactNode;
     style?: React.CSSProperties;
 }
 
@@ -58,7 +58,6 @@ export interface ProjectProps {
             };
         };
     };
-
 }
 
 export interface HomeProps {
@@ -66,13 +65,11 @@ export interface HomeProps {
     age: number;
 }
 
-
 export interface FadeInProps {
     children: React.ReactNode;
     duration?: number;
     delay?: number;
 }
-
 
 export interface SocialMediaProps {
     href: string;
