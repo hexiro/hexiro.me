@@ -1,4 +1,4 @@
-import { FadeInProps } from "../types";
+import { FadeInProps } from "types";
 import React from "react";
 import { motion } from "framer-motion";
 

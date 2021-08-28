@@ -6,7 +6,7 @@ import {
     Spotify,
     useLanyard,
 } from "react-use-lanyard";
-import { KeyValue, SongBar, Tooltip } from "./";
+import { KeyValue, SongBar, Tooltip } from "components";
 
 import { Discord } from "../data/config";
 

@@ -1,6 +1,6 @@
 import "react-tippy/dist/tippy.css";
-import "../styles/globals.css";
-import "../styles/index.css";
+import "styles/globals.css";
+import "styles/index.css";
 
 import { AppProps } from "next/app";
 

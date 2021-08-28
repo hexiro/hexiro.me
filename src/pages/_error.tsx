@@ -1,4 +1,4 @@
-import { Error, Page } from "../components";
+import { Error, Page } from "components";
 
 import { NextPageContext } from "next";
 

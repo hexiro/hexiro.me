@@ -1,9 +1,9 @@
-import { Age, Github, GithubLink, SteamLink, TwitterLink } from "../data/config";
-import { FadeIn, Lanyard, Page, Project, SocialMedia } from "../components";
-import { HomeProps, ProjectProps } from "../types";
+import { Age, Github, GithubLink, SteamLink, TwitterLink } from "data/config";
+import { FadeIn, Lanyard, Page, Project, SocialMedia } from "components";
+import { HomeProps, ProjectProps } from "types";
 import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
 
-import GraphQL from "../data/graphql";
+import GraphQL from "data/graphql";
 import React from "react";
 
 export const getStaticProps = async () => {

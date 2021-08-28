@@ -1,5 +1,5 @@
 import { Tooltip as TippyTooltip } from "react-tippy";
-import { TooltipProps } from "../types";
+import { TooltipProps } from "types";
 
 export const Tooltip = ({
     title,

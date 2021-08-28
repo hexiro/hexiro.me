@@ -1,4 +1,4 @@
-import { ErrorPage } from "../types";
+import { ErrorPage } from "types";
 
 export const Error = ({ status, message }: ErrorPage) => {
     return (

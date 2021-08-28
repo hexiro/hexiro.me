@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SocialMediaProps } from "../types";
+import { SocialMediaProps } from "types";
 
 export const SocialMedia = ({ href, children }: SocialMediaProps): JSX.Element => {
     return (
