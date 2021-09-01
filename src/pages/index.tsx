@@ -1,10 +1,10 @@
-import { Age, Github, GithubLink, SteamLink, TwitterLink } from "data/config";
-import { FadeIn, Lanyard, Page, Project, SocialMedia } from "components";
-import { HomeProps, ProjectProps } from "types";
-import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
-
-import GraphQL from "data/graphql";
 import React from "react";
+
+import { FadeIn, Lanyard, Page, Project, SocialMedia } from "components";
+import { Age, Github, GithubLink, SteamLink, TwitterLink } from "data/config";
+import GraphQL from "data/graphql";
+import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
+import { HomeProps, ProjectProps } from "types";
 
 export const getStaticProps = async () => {
     const pinnedRepos = `

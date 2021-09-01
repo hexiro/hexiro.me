@@ -1,3 +1,5 @@
+import { Discord } from "../data/config";
+import { KeyValue, SongBar, Tooltip } from "components";
 import {
     Activity,
     Assets,
@@ -6,9 +8,6 @@ import {
     Spotify,
     useLanyard,
 } from "react-use-lanyard";
-import { KeyValue, SongBar, Tooltip } from "components";
-
-import { Discord } from "../data/config";
 
 const buildAsset = (applicationId: string, assetId: string): string => {
     return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;

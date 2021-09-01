@@ -1,7 +1,6 @@
-import { BiGitCommit, BiGitPullRequest, BiGitRepoForked, BiStar } from "react-icons/bi";
-
-import { Github } from "data/config";
 import { ParseHTML } from "components";
+import { Github } from "data/config";
+import { BiGitCommit, BiGitPullRequest, BiGitRepoForked, BiStar } from "react-icons/bi";
 import { ProjectProps } from "types";
 
 export const Project = (project: ProjectProps): JSX.Element => {

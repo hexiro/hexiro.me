@@ -1,6 +1,7 @@
-import { FadeInProps } from "types";
 import React from "react";
+
 import { motion } from "framer-motion";
+import { FadeInProps } from "types";
 
 export const FadeIn = ({ children, duration, delay }: FadeInProps): JSX.Element => {
     if (!duration) duration = 0.5;

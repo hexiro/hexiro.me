@@ -1,7 +1,7 @@
-import parse, { HTMLReactParserOptions, domToReact } from "html-react-parser";
+import Link from "next/link";
 
 import { Element } from "domhandler/lib/node";
-import Link from "next/link";
+import parse, { HTMLReactParserOptions, domToReact } from "html-react-parser";
 import { ParseHTMLProps } from "types";
 
 const options: HTMLReactParserOptions = {
