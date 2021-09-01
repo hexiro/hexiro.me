@@ -62,7 +62,6 @@ export interface ProjectProps {
 
 export interface HomeProps {
     projects: ProjectProps[];
-    age: number;
 }
 
 export interface FadeInProps {
