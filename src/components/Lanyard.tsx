@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { Discord } from "../data/config";
 import { KeyValue, SongBar, Tooltip } from "components";
 import { Activity, LanyardWebsocket, Spotify, useLanyard } from "react-use-lanyard";
@@ -90,10 +92,12 @@ export const Lanyard = () => {
             <div className="lanyard-images">
                 <div className="large-image">
                     <Tooltip title={assets.large_text}>
-                        <img
+                        <Image
                             alt="large image of application or song"
                             draggable={false}
                             src={content.largeImage}
+                            height={90}
+                            width={90}
                         />
                     </Tooltip>
                 </div>
