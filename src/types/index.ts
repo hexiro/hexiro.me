@@ -1,5 +1,6 @@
-import { Position, Size } from "react-tippy";
 import React, { ReactNode } from "react";
+
+import { Position, Size } from "react-tippy";
 
 export interface ParseHTMLProps {
     html: string;
@@ -15,7 +16,7 @@ export interface TooltipProps {
     distance?: number;
     offset?: number;
     size?: Size;
-    children?: React.ReactNode
+    children?: React.ReactNode;
     style?: React.CSSProperties;
 }
 
@@ -58,21 +59,17 @@ export interface ProjectProps {
             };
         };
     };
-
 }
 
 export interface HomeProps {
     projects: ProjectProps[];
-    age: number;
 }
-
 
 export interface FadeInProps {
     children: React.ReactNode;
     duration?: number;
     delay?: number;
 }
-
 
 export interface SocialMediaProps {
     href: string;

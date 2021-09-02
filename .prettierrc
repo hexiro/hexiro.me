@@ -4,5 +4,8 @@
   "singleQuote": false,
   "printWidth": 100,
   "tabWidth": 4,
-  "useTabs": false
+  "useTabs": false,
+  "importOrder": ["^(react|next)(\/.*|)$", "^.*(?<!\\.css)$", "^.*?\\.css$"],
+  "importOrderSeparation": true,
+  "quoteProps": "preserve"
 }

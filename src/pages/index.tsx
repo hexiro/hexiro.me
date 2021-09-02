@@ -1,10 +1,10 @@
-import { Age, Github, GithubLink, SteamLink, TwitterLink } from "../data/config";
-import { FadeIn, Lanyard, Page, Project, SocialMedia } from "../components";
-import { HomeProps, ProjectProps } from "../types";
-import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
-
-import GraphQL from "../data/graphql";
 import React from "react";
+
+import { FadeIn, Lanyard, Page, Project, SocialMedia } from "components";
+import { Age, Github, GithubLink, SteamLink, TwitterLink } from "data/config";
+import GraphQL from "data/graphql";
+import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
+import { HomeProps, ProjectProps } from "types";
 
 export const getStaticProps = async () => {
     const pinnedRepos = `
@@ -56,14 +56,13 @@ export const getStaticProps = async () => {
     return {
         props: {
             projects,
-            age: Age(),
         },
         revalidate: 3600,
     };
 };
 
-export default function Home({ projects, age }: HomeProps) {
-    const description = `A ${age} y/o aspiring Software Engineer`;
+export default function Home({ projects }: HomeProps) {
+    const description = `A ${Age()} y/o aspiring Software Engineer`;
     return (
         <Page name="Home" description={description} fadesIn={true}>
             <main>
@@ -101,18 +100,7 @@ export default function Home({ projects, age }: HomeProps) {
                     <FadeIn duration={1} delay={0.2}>
                         <div className="projects">
                             {projects.map((project) => (
-                                <Project
-                                    name={project.name}
-                                    descriptionHTML={project.descriptionHTML}
-                                    url={project.url}
-                                    owner={project.owner}
-                                    stargazers={project.stargazers}
-                                    forks={project.forks}
-                                    pullRequests={project.pullRequests}
-                                    issues={project.issues}
-                                    primaryLanguage={project.primaryLanguage}
-                                    defaultBranchRef={project.defaultBranchRef}
-                                />
+                                <Project {...project} />
                             ))}
                         </div>
                     </FadeIn>
