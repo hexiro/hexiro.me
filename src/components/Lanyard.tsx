@@ -1,10 +1,55 @@
-import { Activity, LanyardWebsocket, useLanyard } from "react-use-lanyard";
-import { KeyValue, SongBar, Tooltip } from "./";
+import Image from "next/image";
 
 import { Discord } from "../data/config";
+import { KeyValue, SongBar, Tooltip } from "components";
+import { Activity, LanyardWebsocket, Spotify, useLanyard } from "react-use-lanyard";
 
 const buildAsset = (applicationId: string, assetId: string): string => {
     return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
+};
+
+interface LanyardContent {
+    largeImage: string;
+    smallImage?: string;
+    name: string;
+    firstLine?: string;
+    secondLine?: string;
+}
+
+const handleSpotify = (spotify: Spotify): LanyardContent => {
+    return {
+        largeImage: spotify.album_art_url,
+        name: spotify.song,
+        firstLine: "By: " + spotify.artist.replaceAll(";", ","),
+        secondLine: "On: " + spotify.album.replaceAll(";", ","),
+    };
+};
+
+const handleGame = (activity: Activity): LanyardContent => {
+    // is checked in for loop -- not recognized by ts
+    const assets = activity.assets!;
+    const application_id = activity.application_id!;
+    const largeImage = buildAsset(application_id, assets.large_image);
+    const name = activity.name;
+    const secondLine = activity.state;
+
+    let smallImage: string | undefined;
+    let firstLine: string | undefined = activity.details;
+
+    if (assets.small_image) {
+        smallImage = buildAsset(application_id, assets.small_image);
+    }
+    if (firstLine?.startsWith("Editing")) {
+        firstLine = firstLine.replace("Editing", "Editing:");
+    }
+
+    return {
+        largeImage,
+        smallImage,
+        name,
+        firstLine,
+        secondLine,
+    };
 };
 
 export const Lanyard = () => {
@@ -22,45 +67,22 @@ export const Lanyard = () => {
     }
 
     const timestamps = activity?.timestamps;
-    const stamp = SongBar({ start: timestamps?.start, end: timestamps?.end });
+    const songBar = SongBar({ start: timestamps?.start, end: timestamps?.end });
 
     // if no data / invalid data is returned / i have no availble
     if (loading || !status || !activity) return null;
 
-    const isListening = activity.type === 2 && typeof status.spotify !== "undefined";
-    const isGame = activity.type === 0 && typeof activity.application_id !== "undefined";
+    const isListening = activity.type === 2;
+    const isGame = activity.type === 0;
 
-    // is checked in for loop -- not recognized by ts
-    const assets = activity.assets!;
+    if (!activity.assets) return null;
+    const assets = activity.assets;
 
-    // assets
-    let largeImage: string;
-    let smallImage: string | undefined;
-
-    // text
-    let name: string;
-    let firstLine: string | undefined;
-    let secondLine: string | undefined;
-
-    if (isListening) {
-        const spotify = status.spotify!;
-        largeImage = spotify.album_art_url;
-        name = spotify.song;
-        firstLine = "By: " + spotify.artist.replaceAll(";", ",");
-        secondLine = "On: " + spotify.album.replaceAll(";", ",");
-    } else if (isGame) {
-        const application_id = activity.application_id!;
-        largeImage = buildAsset(application_id, assets.large_image);
-        if (assets.small_image) {
-            smallImage = buildAsset(application_id, assets.small_image);
-        }
-        name = activity.name;
-        firstLine = activity.details;
-        // fix for VSC
-        if (firstLine?.startsWith("Editing")) {
-            firstLine = firstLine.replace("Editing", "Editing:");
-        }
-        secondLine = activity.state;
+    let content: LanyardContent;
+    if (isListening && typeof status.spotify !== "undefined") {
+        content = handleSpotify(status.spotify);
+    } else if (isGame && typeof activity.application_id !== "undefined") {
+        content = handleGame(activity);
     } else {
         return null;
     }
@@ -69,32 +91,34 @@ export const Lanyard = () => {
         <div className="lanyard">
             <div className="lanyard-images">
                 <div className="large-image">
-                    <Tooltip title={assets?.large_text}>
-                        <img
+                    <Tooltip title={assets.large_text}>
+                        <Image
                             alt="large image of application or song"
                             draggable={false}
-                            src={largeImage}
+                            src={content.largeImage}
+                            height={90}
+                            width={90}
                         />
                     </Tooltip>
                 </div>
-                <div className="small-image">
-                    {smallImage && (
-                        <Tooltip title={assets?.small_text} size="small">
+                {content.smallImage && (
+                    <div className="small-image">
+                        <Tooltip title={assets.small_text} size="small">
                             <img
                                 alt="small image of application"
                                 draggable={false}
-                                src={smallImage}
+                                src={content.smallImage}
                             />
                         </Tooltip>
-                    )}
-                </div>
+                    </div>
+                )}
             </div>
             <div className="lanyard-text">
-                <h4 className="main-accent">{name}</h4>
-                <KeyValue line={firstLine} />
-                <KeyValue line={secondLine} />
+                <h4 className="main-accent">{content.name}</h4>
+                <KeyValue line={content.firstLine} />
+                <KeyValue line={content.secondLine} />
             </div>
-            {isListening && <div className="lanyard-song-bar">{stamp}</div>}
+            {isListening && <div className="lanyard-song-bar">{songBar}</div>}
         </div>
     );
 };

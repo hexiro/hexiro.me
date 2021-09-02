@@ -1,4 +1,4 @@
-import { GithubToken } from "./config";
+import { GithubToken } from "data/config";
 
 export default async function GraphQL(query: string): Promise<Response> {
     return await fetch("https://api.github.com/graphql", {

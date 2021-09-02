@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Timestamps } from "../types";
+import { Timestamps } from "types";
 
 const relativeTime = (stamp: number): number => {
     return Math.floor((Date.now() - stamp) / 1000);

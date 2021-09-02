@@ -1,6 +1,6 @@
-import { Error, Page } from "../components";
-
 import { NextPageContext } from "next";
+
+import { Error, Page } from "components";
 
 interface ErrorProps {
     statusCode?: number;
@@ -14,7 +14,7 @@ function ErrorHandler({ statusCode }: ErrorProps) {
         status = "Client Error";
     }
     return (
-        <Page name={status as string} description="Oops?">
+        <Page name={String(status)} description="Oops?">
             <Error status={status} message="Oops?" />,
         </Page>
     );

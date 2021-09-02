@@ -1,4 +1,4 @@
-import { KeyValueProps } from "../types";
+import { KeyValueProps } from "types";
 
 export const KeyValue = ({ line }: KeyValueProps): JSX.Element | null => {
     if (!line) return null;
