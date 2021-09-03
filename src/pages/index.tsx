@@ -7,61 +7,6 @@ import GraphQL from "data/graphql";
 import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
 import { HomeProps, ProjectProps } from "types";
 
-export const getStaticProps = async () => {
-    const pinnedRepos = `
-{
-  user(login: "${Github}") {
-    pinnedItems(first: 3, types: REPOSITORY) {
-      nodes {
-        ... on Repository {
-          name
-          descriptionHTML
-          url
-          owner {
-            login
-          }
-          stargazers {
-            totalCount
-          }
-          forks {
-            totalCount
-          }
-          pullRequests {
-            totalCount
-          }
-          issues {
-            totalCount
-          }
-          primaryLanguage {
-            name
-          }
-          defaultBranchRef {
-            target {
-              ... on Commit {
-                history {
-                  totalCount
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`;
-    const res = await GraphQL(pinnedRepos);
-    const json = await res.json();
-    const projects: ProjectProps[] = json["data"]["user"]["pinnedItems"]["nodes"];
-
-    return {
-        props: {
-            projects,
-        },
-        revalidate: 3600,
-    };
-};
-
 export default function Home({ projects }: HomeProps) {
     const description = `A ${Age()} y/o aspiring Software Engineer`;
     return (
@@ -102,7 +47,7 @@ export default function Home({ projects }: HomeProps) {
                         <div className="projects">
                             {projects.map((project) => (
                                 <Project {...project} />
-                            ))} 
+                            ))}
                         </div>
                     </FadeIn>
                 </div>
@@ -110,3 +55,58 @@ export default function Home({ projects }: HomeProps) {
         </Page>
     );
 }
+
+// regen top 3 pinned repos every hour
+export const getStaticProps = async () => {
+    const resposQuery = await GraphQL(`
+{
+  user(login: "${Github}") {
+    pinnedItems(first: 3, types: REPOSITORY) {
+      nodes {
+        ... on Repository {
+          name
+          descriptionHTML
+          url
+          owner {
+            login
+          }
+          stargazers {
+            totalCount
+          }
+          forks {
+            totalCount
+          }
+          pullRequests {
+            totalCount
+          }
+          issues {
+            totalCount
+          }
+          primaryLanguage {
+            name
+          }
+          defaultBranchRef {
+            target {
+              ... on Commit {
+                history {
+                  totalCount
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`);
+    const json = await resposQuery.json();
+    const projects: ProjectProps[] = json["data"]["user"]["pinnedItems"]["nodes"];
+
+    return {
+        props: {
+            projects,
+        },
+        revalidate: 3600,
+    };
+};
