@@ -55,7 +55,7 @@ main {
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
 }
-
+/* 
 .projects-item:hover {
     transition: ease all 0.35s;
     -webkit-transition: ease all 0.35s;
@@ -63,7 +63,7 @@ main {
     -ms-transition: ease all 0.35s;
     -o-transition: ease all 0.35s;
     transform: translateX(-2.5%) translateY(-2.5%);
-}
+} */
 
 .projects-item:last-child {
     margin-bottom: 0;
@@ -298,7 +298,7 @@ footer {
         margin-bottom: 25px;
     }
 
-    .projects-item:hover {
+    /* .projects-item:hover {
         transition: ease all 0.235s;
         -webkit-transition: ease all 0.235s;
         -moz-transition: ease all 0.235s;
@@ -306,7 +306,7 @@ footer {
         -o-transition: ease all 0.235s;
         transform: translateY(-4.5%);
         will-change: transform;
-    }
+    } */
 
     .projects-title {
         display: block;

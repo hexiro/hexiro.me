@@ -1,11 +1,18 @@
 import { ParseHTML } from "components";
 import { Github } from "data/config";
+import { motion } from "framer-motion";
 import { BiGitCommit, BiGitPullRequest, BiGitRepoForked, BiStar } from "react-icons/bi";
 import { ProjectProps } from "types";
 
 export const Project = (project: ProjectProps): JSX.Element => {
     return (
-        <div className="projects-item transition">
+        <motion.div
+            whileHover={{
+                scale: 1.05,
+                transition: { ease: [0, 0.35, 0.5, 1], duration: 0.35 },
+            }}
+            className="projects-item"
+        >
             <div className="projects-container">
                 <div className="project-title main-color">
                     <h3>
@@ -54,6 +61,6 @@ export const Project = (project: ProjectProps): JSX.Element => {
                     </ul>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
