@@ -1,6 +1,7 @@
 import React from "react";
 
-import { FadeIn, Lanyard, Page, Project, SocialMedia } from "components";
+import { FadeIn, Lanyard, Project, SocialMedia } from "components";
+import Page from "components/pages";
 import { Age, Github, GithubLink, SteamLink, TwitterLink } from "data/config";
 import GraphQL from "data/graphql";
 import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
@@ -101,7 +102,7 @@ export default function Home({ projects }: HomeProps) {
                         <div className="projects">
                             {projects.map((project) => (
                                 <Project {...project} />
-                            ))}
+                            ))} 
                         </div>
                     </FadeIn>
                 </div>
