@@ -20,6 +20,10 @@ const options: HTMLReactParserOptions = {
                 </Link>
             );
         }
+        // g(ithub)-emoji
+        if (element.name === "g-emoji") {
+            return <>{domToReact(element.children)}</>;
+        }
     },
     trim: true,
 };
