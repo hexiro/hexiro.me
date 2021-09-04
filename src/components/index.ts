@@ -5,3 +5,4 @@ export * from "components/Project";
 export * from "components/SocialMedia";
 export * from "components/SongBar";
 export * from "components/Tooltip";
+export * from "components/FadeIn";

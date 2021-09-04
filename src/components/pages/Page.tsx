@@ -15,6 +15,9 @@ export const Page = ({ name, description, children }: PageProps): JSX.Element =>
                 <meta name="description" content={description} />
             </Head>
             {children}
+            <noscript>
+                <style>{".fade-in{opacity:1!important;}"}</style>
+            </noscript>
         </>
     );
 };

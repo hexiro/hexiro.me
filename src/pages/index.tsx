@@ -1,10 +1,9 @@
 import React from "react";
 
-import { Lanyard, Project, SocialMedia } from "components";
+import { FadeIn, Lanyard, Project, SocialMedia } from "components";
 import Page from "components/pages";
 import { Age, Github, GithubLink, SteamLink, TwitterLink } from "data/config";
 import GraphQL from "data/graphql";
-import FadeIn from "react-fade-in";
 import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
 import { HomeProps, ProjectProps } from "types";
 
