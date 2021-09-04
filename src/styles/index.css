@@ -48,7 +48,7 @@ main {
     padding: 4px 20px;
     box-shadow: 0 6px 13px rgba(0, 0, 0, 0.25);
     height: 220px;
-    margin-bottom: 25px;
+    margin: 25px 0;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -64,10 +64,6 @@ main {
     -o-transition: ease all 0.35s;
     transform: translateX(-2.5%) translateY(-2.5%);
 } */
-
-.projects-item:last-child {
-    margin-bottom: 0;
-}
 
 .projects-container p {
     padding-bottom: 10px;
@@ -117,11 +113,6 @@ footer {
     margin: -16vh 0 10px 20px;
 }
 
-.intro-lower {
-    /* so it doesn't offset other things */
-    position: absolute;
-}
-
 .socials {
     margin-top: 10px;
 }
@@ -137,18 +128,24 @@ footer {
     margin-right: unset;
 }
 
+/* so it doesn't offset other things */
+.socials,
 .lanyard {
-    position: relative;
+    position: absolute;
+}
+
+.lanyard {
     overflow: hidden;
     display: flex;
     padding: 20px 0 20px 20px;
     background: var(--background-accent);
     height: 130px;
     width: 350px;
-    margin: 25.75vh 0 20px;
+    margin: 32vh 0 20px;
     border-radius: 6px;
     box-shadow: 0 4px 10px rgb(0 0 0 / 25%);
 }
+/* 135 */
 
 .lanyard-text {
     position: relative;
@@ -286,16 +283,12 @@ footer {
 
     .projects-item {
         display: block;
-        margin: 25px auto;
+        margin: 12.5px auto;
         width: 90%;
         min-width: unset;
         max-width: 540px;
         height: auto;
         cursor: initial;
-    }
-
-    .projects-item:last-child {
-        margin-bottom: 25px;
     }
 
     /* .projects-item:hover {
@@ -322,11 +315,8 @@ footer {
         display: none;
     }
 
-    .intro-lower {
-        position: unset;
-    }
-
     .lanyard {
+        position: unset;
         margin: 5px auto;
         max-width: 350px;
         width: 80%;

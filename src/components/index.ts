@@ -1,4 +1,3 @@
-export * from "components/FadeIn";
 export * from "components/KeyValue";
 export * from "components/Lanyard";
 export * from "components/ParseHTML";
