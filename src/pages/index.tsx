@@ -42,7 +42,7 @@ export default function Home({ projects }: HomeProps) {
                     </FadeIn>
                 </div>
                 <div className="right">
-                    <FadeIn>
+                    <FadeIn delay={80} transitionDuration={425}>
                         <div className="projects">
                             {projects.map((project) => (
                                 <Project {...project} />
