@@ -10,7 +10,7 @@ export const Tooltip = ({
     size,
     children,
     style,
-}: TooltipProps) => {
+}: TooltipProps): JSX.Element => {
     return (
         <TippyTooltip
             // settings

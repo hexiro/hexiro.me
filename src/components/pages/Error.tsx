@@ -1,6 +1,6 @@
 import Page from "components/pages";
 
-export const ErrorPage = ({ status, message }: { status: number | string; message?: string }) => {
+export const ErrorPage = ({ status, message }: { status: number | string; message?: string }): JSX.Element => {
     return (
         <Page name={String(status)} description={message || "Oops?"}>
             <main className="full-center">

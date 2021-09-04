@@ -9,7 +9,7 @@ import GraphQL from "data/graphql";
 
 import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
 
-export default function Home({ projects }: HomeProps) {
+export default function Home({ projects }: HomeProps): JSX.Element {
     const description = `A ${Age()} y/o aspiring Software Engineer`;
     return (
         <Page name="Home" description={description}>

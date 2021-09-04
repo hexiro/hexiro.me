@@ -6,7 +6,7 @@ interface ErrorProps {
     statusCode?: number;
 }
 
-function ErrorHandler({ statusCode }: ErrorProps) {
+function ErrorHandler({ statusCode }: ErrorProps): JSX.Element {
     return <ErrorPage status={statusCode || "Client Error"} message="Oops? Well that wasn't supposed to happen!" />;
 }
 
