@@ -7,7 +7,7 @@ interface ErrorProps {
 }
 
 function ErrorHandler({ statusCode }: ErrorProps) {
-    return <ErrorPage status={statusCode || "Client Error"} message="Oops?" />;
+    return <ErrorPage status={statusCode || "Client Error"} message="Oops? Well that wasn't supposed to happen!" />;
 }
 
 ErrorHandler.getInitialProps = ({ res, err }: NextPageContext): ErrorProps => {
