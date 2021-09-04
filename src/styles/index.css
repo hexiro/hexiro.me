@@ -50,20 +50,14 @@ main {
     height: 220px;
     margin: 25px 0;
     border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
+    transition: ease-out all 0.31s;
+    will-change: transform
 }
-/* 
-.projects-item:hover {
-    transition: ease all 0.35s;
-    -webkit-transition: ease all 0.35s;
-    -moz-transition: ease all 0.35s;
-    -ms-transition: ease all 0.35s;
-    -o-transition: ease all 0.35s;
-    transform: translateX(-2.5%) translateY(-2.5%);
-} */
+
+.projects-item:hover {  
+    transform: scale(1.04);
+    
+}
 
 .projects-container p {
     padding-bottom: 10px;
@@ -290,16 +284,6 @@ footer {
         height: auto;
         cursor: initial;
     }
-
-    /* .projects-item:hover {
-        transition: ease all 0.235s;
-        -webkit-transition: ease all 0.235s;
-        -moz-transition: ease all 0.235s;
-        -ms-transition: ease all 0.235s;
-        -o-transition: ease all 0.235s;
-        transform: translateY(-4.5%);
-        will-change: transform;
-    } */
 
     .projects-title {
         display: block;
