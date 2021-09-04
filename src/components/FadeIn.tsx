@@ -3,17 +3,20 @@ import React, { useEffect, useState } from "react";
 // based off
 // https://github.com/gkaemmer/react-fade-in
 
+interface FadeInProps
+    extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+    delay?: number;
+    transitionDuration?: number;
+}
+
 export const FadeIn = ({
     delay,
     transitionDuration,
-    className,
     children,
-}: {
-    delay?: number;
-    transitionDuration?: number;
-    className?: string;
-    children?: React.ReactNode;
-}) => {
+    className,
+    style,
+    ...all
+}: FadeInProps) => {
     const [maxIsVisible, setMaxIsVisible] = useState<number>(0);
     if (!transitionDuration) transitionDuration = 400;
     if (!delay) delay = 50;
@@ -40,12 +43,14 @@ export const FadeIn = ({
                 if (child)
                     return (
                         <div
-                            className={String(i)}
+                            className={className ? `fade-in ${className}` : "fade-in"}
                             style={{
                                 transition: `opacity ${transitionDuration}ms, transform ${transitionDuration}ms`,
                                 transform: maxIsVisible > i ? "none" : "translateY(20px)",
                                 opacity: maxIsVisible > i ? 1 : 0,
+                                ...style,
                             }}
+                            {...all}
                         >
                             {child}
                         </div>
