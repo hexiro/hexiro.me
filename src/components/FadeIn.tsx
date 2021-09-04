@@ -17,13 +17,12 @@ export const FadeIn = ({
     style,
     ...all
 }: FadeInProps): JSX.Element | null => {
-    if (!children) return null;
     const [maxIsVisible, setMaxIsVisible] = useState<number>(0);
     if (!transitionDuration) transitionDuration = 400;
     if (!delay) delay = 50;
 
     const parent = children as React.ReactPortal;
-    children = parent.props.children;
+    children = parent?.props?.children;
 
     const count = React.Children.count(children);
 
@@ -37,6 +36,8 @@ export const FadeIn = ({
         }, delay);
         return () => clearTimeout(timeout);
     }, [count, delay, maxIsVisible]);
+
+    if (!children) return null;
 
     return React.cloneElement(parent, {
         children: React.Children.map(children, (child, i) => {
