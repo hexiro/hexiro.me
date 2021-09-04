@@ -1,11 +1,13 @@
 import React from "react";
 
+import { HomeProps, ProjectProps } from "types";
+
 import { FadeIn, Lanyard, Project, SocialMedia } from "components";
 import Page from "components/pages";
 import { Age, Github, GithubLink, SteamLink, TwitterLink } from "data/config";
 import GraphQL from "data/graphql";
+
 import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
-import { HomeProps, ProjectProps } from "types";
 
 export default function Home({ projects }: HomeProps) {
     const description = `A ${Age()} y/o aspiring Software Engineer`;

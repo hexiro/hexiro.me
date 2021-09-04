@@ -1,8 +1,10 @@
+import { ProjectProps } from "types";
+
 import { ParseHTML } from "components";
 import { Github } from "data/config";
+
 import { motion } from "framer-motion";
 import { BiGitCommit, BiGitPullRequest, BiGitRepoForked, BiStar } from "react-icons/bi";
-import { ProjectProps } from "types";
 
 export const Project = (project: ProjectProps): JSX.Element => {
     return (
