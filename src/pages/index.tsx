@@ -19,17 +19,24 @@ export default function Home({ projects }: HomeProps) {
                                 Hi! I'm <span className="main-accent font-weight-400">Hexiro</span>,
                             </h1>
                             <h2>{description}</h2>
-                            <ul className="socials">
-                                <SocialMedia href={TwitterLink}>
-                                    <RiTwitterLine />
-                                </SocialMedia>
-                                <SocialMedia href={GithubLink}>
-                                    <RiGithubLine />
-                                </SocialMedia>
-                                <SocialMedia href={SteamLink}>
-                                    <RiSteamLine />
-                                </SocialMedia>
-                            </ul>
+                            <FadeIn
+                                className="socials-items"
+                                style={{ display: "unset" }}
+                                delay={120}
+                                transitionDuration={450}
+                            >
+                                <ul className="socials">
+                                    <SocialMedia href={TwitterLink}>
+                                        <RiTwitterLine />
+                                    </SocialMedia>
+                                    <SocialMedia href={GithubLink}>
+                                        <RiGithubLine />
+                                    </SocialMedia>
+                                    <SocialMedia href={SteamLink}>
+                                        <RiSteamLine />
+                                    </SocialMedia>
+                                </ul>
+                            </FadeIn>
                             <Lanyard />
                         </div>
                     </FadeIn>

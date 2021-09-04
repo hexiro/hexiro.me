@@ -124,7 +124,7 @@ footer {
     display: inline-block;
 }
 
-.social-item:last-child {
+.socials-items:last-child > .social-item {
     margin-right: unset;
 }
 
