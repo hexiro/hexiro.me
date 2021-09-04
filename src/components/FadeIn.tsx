@@ -16,7 +16,8 @@ export const FadeIn = ({
     className,
     style,
     ...all
-}: FadeInProps) => {
+}: FadeInProps): JSX.Element | null => {
+    if (!children) return null;
     const [maxIsVisible, setMaxIsVisible] = useState<number>(0);
     if (!transitionDuration) transitionDuration = 400;
     if (!delay) delay = 50;
@@ -37,25 +38,22 @@ export const FadeIn = ({
         return () => clearTimeout(timeout);
     }, [count, delay, maxIsVisible]);
 
-    return (
-        <div className={parent.props.className}>
-            {React.Children.map(children, (child, i) => {
-                if (child)
-                    return (
-                        <div
-                            className={className ? `fade-in ${className}` : "fade-in"}
-                            style={{
-                                transition: `opacity ${transitionDuration}ms, transform ${transitionDuration}ms`,
-                                transform: maxIsVisible > i ? "none" : "translateY(20px)",
-                                opacity: maxIsVisible > i ? 1 : 0,
-                                ...style,
-                            }}
-                            {...all}
-                        >
-                            {child}
-                        </div>
-                    );
-            })}
-        </div>
-    );
+    return React.cloneElement(parent, {
+        children: React.Children.map(children, (child, i) => {
+            return (
+                <div
+                    className={className ? `fade-in ${className}` : "fade-in"}
+                    style={{
+                        transition: `opacity ${transitionDuration}ms, transform ${transitionDuration}ms`,
+                        transform: maxIsVisible > i ? "none" : "translateY(20px)",
+                        opacity: maxIsVisible > i ? 1 : 0,
+                        ...style,
+                    }}
+                    {...all}
+                >
+                    {child}
+                </div>
+            );
+        }),
+    });
 };
