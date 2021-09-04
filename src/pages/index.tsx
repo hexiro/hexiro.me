@@ -13,30 +13,34 @@ export default function Home({ projects }: HomeProps) {
         <Page name="Home" description={description}>
             <main>
                 <div className="left">
-                    <FadeIn className="intro">
-                        <h1>
-                            Hi! I'm <span className="main-accent font-weight-400">Hexiro</span>,
-                        </h1>
-                        <h2>{description}</h2>
-                        <ul className="socials">
-                            <SocialMedia href={TwitterLink}>
-                                <RiTwitterLine />
-                            </SocialMedia>
-                            <SocialMedia href={GithubLink}>
-                                <RiGithubLine />
-                            </SocialMedia>
-                            <SocialMedia href={SteamLink}>
-                                <RiSteamLine />
-                            </SocialMedia>
-                        </ul>
-                        <Lanyard />
+                    <FadeIn>
+                        <div className="intro">
+                            <h1>
+                                Hi! I'm <span className="main-accent font-weight-400">Hexiro</span>,
+                            </h1>
+                            <h2>{description}</h2>
+                            <ul className="socials">
+                                <SocialMedia href={TwitterLink}>
+                                    <RiTwitterLine />
+                                </SocialMedia>
+                                <SocialMedia href={GithubLink}>
+                                    <RiGithubLine />
+                                </SocialMedia>
+                                <SocialMedia href={SteamLink}>
+                                    <RiSteamLine />
+                                </SocialMedia>
+                            </ul>
+                            <Lanyard />
+                        </div>
                     </FadeIn>
                 </div>
                 <div className="right">
-                    <FadeIn className="projects" delay={100}>
-                        {projects.map((project) => (
-                            <Project {...project} />
-                        ))}
+                    <FadeIn>
+                        <div className="projects">
+                            {projects.map((project) => (
+                                <Project {...project} />
+                            ))}
+                        </div>
                     </FadeIn>
                 </div>
             </main>

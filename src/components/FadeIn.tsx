@@ -18,6 +18,9 @@ export const FadeIn = ({
     if (!transitionDuration) transitionDuration = 400;
     if (!delay) delay = 50;
 
+    const parent = children as React.ReactPortal;
+    children = parent.props.children;
+
     const count = React.Children.count(children);
 
     useEffect(() => {
@@ -32,20 +35,21 @@ export const FadeIn = ({
     }, [count, delay, maxIsVisible]);
 
     return (
-        <div className={className}>
+        <div className={parent.props.className}>
             {React.Children.map(children, (child, i) => {
-                return (
-                    <div
-                        className="fade-in"
-                        style={{
-                            transition: `opacity ${transitionDuration}ms, transform ${transitionDuration}ms`,
-                            transform: maxIsVisible > i ? "none" : "translateY(20px)",
-                            opacity: maxIsVisible > i ? 1 : 0,
-                        }}
-                    >
-                        {child}
-                    </div>
-                );
+                if (child)
+                    return (
+                        <div
+                            className={String(i)}
+                            style={{
+                                transition: `opacity ${transitionDuration}ms, transform ${transitionDuration}ms`,
+                                transform: maxIsVisible > i ? "none" : "translateY(20px)",
+                                opacity: maxIsVisible > i ? 1 : 0,
+                            }}
+                        >
+                            {child}
+                        </div>
+                    );
             })}
         </div>
     );
