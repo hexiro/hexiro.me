@@ -1,10 +1,10 @@
 import Head from "next/head";
-import { ReactNode } from "react";
+import React from "react";
 
 interface PageProps {
     name: string;
     description: string;
-    children?: ReactNode;
+    children?: React.ReactNode;
 }
 
 export const Page = ({ name, description, children }: PageProps): JSX.Element => {

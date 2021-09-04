@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Element } from "domhandler/lib/node";
+import { Element } from "domhandler";
 import parse, { HTMLReactParserOptions, domToReact } from "html-react-parser";
 import { ParseHTMLProps } from "types";
 
