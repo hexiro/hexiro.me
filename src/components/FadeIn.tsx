@@ -41,18 +41,19 @@ export const FadeIn = ({
     return React.cloneElement(parent, {
         children: React.Children.map(children, (child, i) => {
             return (
-                <div
+                <span
                     className={className ? `fade-in ${className}` : "fade-in"}
                     style={{
                         transition: `opacity ${transitionDuration}ms, transform ${transitionDuration}ms`,
                         transform: maxIsVisible > i ? "none" : "translateY(20px)",
                         opacity: maxIsVisible > i ? 1 : 0,
+                        display: "inherit",
                         ...style,
                     }}
                     {...all}
                 >
                     {child}
-                </div>
+                </span>
             );
         }),
     });
