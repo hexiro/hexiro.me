@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import { Discord } from "../data/config";
 import { KeyValue, SongBar, Tooltip } from "components";
+import { Discord } from "data/config";
 import { Activity, LanyardWebsocket, Spotify, useLanyard } from "react-use-lanyard";
 
 const buildAsset = (applicationId: string, assetId: string): string => {
