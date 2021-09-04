@@ -18,7 +18,7 @@ export default function Home({ projects }: HomeProps): JSX.Element {
                     <FadeIn>
                         <div className="intro">
                             <h1>
-                                Hi! I&apos;m <span className="main-accent font-weight-400">Hexiro</span>,
+                                Hi! I'm <span className="main-accent font-weight-400">Hexiro</span>,
                             </h1>
                             <h2>{description}</h2>
                             <FadeIn
