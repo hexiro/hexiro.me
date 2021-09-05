@@ -6,20 +6,16 @@ import theme from "data/theme";
 
 import styled from "styled-components";
 
-const relativeTime = (stamp: number): number => {
-    return Math.floor((Date.now() - stamp) / 1000);
-};
-
 const formatSong = (start: number, end: number): JSX.Element => {
-    let relStart = relativeTime(start);
-    const relEnd = Math.floor((end - start) / 1000);
-    if (relStart > relEnd) {
-        relStart = relEnd;
+    end = Math.floor((end - start) / 1000);
+    start = Math.floor((Date.now() - start) / 1000);
+    if (start > end) {
+        start = end;
     }
     return (
         <Container>
             <OuterBar>
-                <InnerBar start={relStart} end={relEnd}></InnerBar>
+                <InnerBar start={start} end={end}></InnerBar>
             </OuterBar>
         </Container>
     );
