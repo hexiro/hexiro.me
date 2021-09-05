@@ -1,5 +1,7 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from "next/document";
 
+import theme from "data/theme";
+
 import { ServerStyleSheet } from "styled-components";
 
 export default class extends Document {
@@ -11,8 +13,8 @@ export default class extends Document {
                     <meta name="author" content="Hexiro" />
                     <meta httpEquiv="x-ua-compatible" content="ie=edge" />
                     <meta name="robots" content="index, follow" />
-                    <meta name="theme-color" content="#5ce09a" />
-                    <meta name="msapplication-TileColor" content="#191c1d" />
+                    <meta name="theme-color" content={theme.accent.main} />
+                    <meta name="msapplication-TileColor" content={theme.core.background} />
                     <meta name="apple-mobile-web-app-title" content="Hexiro" />
                     <meta name="application-name" content="Hexiro" />
                     <meta
@@ -29,7 +31,7 @@ export default class extends Document {
                     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
                     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
                     <link rel="manifest" href="/site.webmanifest" />
-                    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5ce09a" />
+                    <link rel="mask-icon" href="/safari-pinned-tab.svg" color={theme.accent.main} />
                 </Head>
                 <body>
                     <Main></Main>

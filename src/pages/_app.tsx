@@ -1,8 +1,8 @@
 import { AppProps } from "next/app";
 
-import * as theme from "data/theme";
+import theme from "data/theme";
 
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 
 import "react-tippy/dist/tippy.css";
 import "styles/index.css";
@@ -10,29 +10,15 @@ import "styles/index.css";
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <>
-            <GlobalStyle {...theme} />
-            <Component {...pageProps} />
+            <GlobalStyle />
+            <ThemeProvider theme={theme}>
+                <Component {...pageProps} />
+            </ThemeProvider>
         </>
     );
 }
 
-const GlobalStyle = createGlobalStyle<{
-    textColor: string;
-    mainAccent: string;
-    mainColor: string;
-    backgroundColor: string;
-    backgroundAccent: string;
-    scrollbarColor: string;
-}>`
-:root {
-    --text-color: ${({ textColor }) => textColor}
-    --main-accent: ${({ mainAccent }) => mainAccent}
-    --main-color: ${({ mainColor }) => mainColor}
-    --background-color: ${({ backgroundColor }) => backgroundColor}
-    --background-accent: ${({ backgroundAccent }) => backgroundAccent}
-    --scrollbar-color: ${({ scrollbarColor }) => scrollbarColor}
-}
-
+const GlobalStyle = createGlobalStyle`
 ::-webkit-scrollbar {
     width: 0.5em;
 }
