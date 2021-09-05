@@ -4,6 +4,7 @@
         "@next/next/no-document-import-in-page": "off",
         "import/no-anonymous-default-export": "off",
         "react/no-unescaped-entities": "off",
+        "react/display-name": "warn",
         "react/jsx-key": "warn"
     }
 }
