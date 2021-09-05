@@ -10,8 +10,8 @@ import "styles/index.css";
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <>
-            <GlobalStyle />
             <ThemeProvider theme={theme}>
+                <GlobalStyle />
                 <Component {...pageProps} />
             </ThemeProvider>
         </>
@@ -29,11 +29,11 @@ const GlobalStyle = createGlobalStyle`
 
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: var(--scrollbar-color);
+    background-color: ${({ theme }) => theme.core.scrollbar};
 }
 
 *:focus {
-    filter: drop-shadow(0 0 6px var(--main-accent));
+    filter: drop-shadow(0 0 6px ${({ theme }) => theme.accent.main});
     outline: none;
 }
 
@@ -46,12 +46,12 @@ const GlobalStyle = createGlobalStyle`
 }
 
 .tippy-tooltip [x-arrow] {
-    border-top-color: var(--background-accent) !important;
+    border-top-color: ${({ theme }) => theme.accent.background} !important;
 }
 
 .tippy-tooltip {
-    background-color: var(--background-accent) !important;
-    filter: drop-shadow(0px 6px 4px var(--background-color));
+    background-color: ${({ theme }) => theme.accent.background} !important;
+    filter: drop-shadow(0px 6px 4px ${({ theme }) => theme.core.background});
 }
 
 .transition {
@@ -70,19 +70,19 @@ const GlobalStyle = createGlobalStyle`
 }
 
 .text-color {
-    color: var(--text-color);
+    color: ${({ theme }) => theme.core.text};
 }
 
 .main-color {
-    color: var(--main-color);
+    color: ${({ theme }) => theme.core.main};
 }
 
 .main-accent {
-    color: var(--main-accent);
+    color: ${({ theme }) => theme.accent.main};
 }
 
 .dark-color {
-    color: var(--background-accent);
+    color: ${({ theme }) => theme.accent.background};
 }
 
 .text-center {
@@ -199,8 +199,8 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
-    background: var(--background-color);
-    color: var(--text-color);
+    background: ${({ theme }) => theme.core.background};
+    color: ${({ theme }) => theme.core.text};
     font-family: "Poppins", sans-serif;
     font-weight: 200;
 }
@@ -235,12 +235,12 @@ h5 {
 }
 
 p {
-    color: var(--text-color);
+    color: ${({ theme }) => theme.core.text};
     font-weight: 200;
 }
 
 a {
-    color: var(--main-color);
+    color: ${({ theme }) => theme.core.main};
     text-decoration: none;
     opacity: 0.7;
     font-weight: 300;
@@ -258,6 +258,6 @@ ul {
 svg {
     width: auto;
     height: 100%;
-    color: var(--main-color);
+    color: ${({ theme }) => theme.core.main};
 }
 `;
