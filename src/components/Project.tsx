@@ -1,11 +1,13 @@
+import { ProjectProps } from "types";
+
 import { ParseHTML } from "components";
 import { Github } from "data/config";
+
 import { BiGitCommit, BiGitPullRequest, BiGitRepoForked, BiStar } from "react-icons/bi";
-import { ProjectProps } from "types";
 
 export const Project = (project: ProjectProps): JSX.Element => {
     return (
-        <div className="projects-item transition">
+        <div className="projects-item">
             <div className="projects-container">
                 <div className="project-title main-color">
                     <h3>

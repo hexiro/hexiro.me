@@ -1,22 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import { motion } from "framer-motion";
-import { FadeInProps } from "types";
+// based off
+// https://github.com/gkaemmer/react-fade-in
 
-export const FadeIn = ({ children, duration, delay }: FadeInProps): JSX.Element => {
-    if (!duration) duration = 0.5;
-    if (!delay) delay = 0;
-    // the div is basically made useless
-    // it's only purpose is because i believe i can't have a <></> (fragment) with framer
-    return (
-        <motion.div
-            className="fades-in"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration, delay }}
-            style={{ display: "inherit" }}
-        >
-            {children}
-        </motion.div>
-    );
+interface FadeInProps
+    extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+    delay?: number;
+    transitionDuration?: number;
+}
+
+export const FadeIn = ({
+    delay,
+    transitionDuration,
+    children,
+    className,
+    style,
+    ...all
+}: FadeInProps): JSX.Element | null => {
+    const [maxIsVisible, setMaxIsVisible] = useState<number>(0);
+    if (!transitionDuration) transitionDuration = 400;
+    if (!delay) delay = 50;
+
+    const parent = children as React.ReactPortal;
+    children = parent?.props?.children;
+
+    const count = React.Children.count(children);
+
+    useEffect(() => {
+        if (count == maxIsVisible) return;
+
+        // Move maxIsVisible toward count
+        const increment = count > maxIsVisible ? 1 : -1;
+        const timeout = setTimeout(() => {
+            setMaxIsVisible(maxIsVisible + increment);
+        }, delay);
+        return () => clearTimeout(timeout);
+    }, [count, delay, maxIsVisible]);
+
+    if (!children) return null;
+
+    return React.cloneElement(parent, {
+        children: React.Children.map(children, (child, i) => {
+            return (
+                <span
+                    className={className ? `fade-in ${className}` : "fade-in"}
+                    style={{
+                        transition: `opacity ${transitionDuration}ms, transform ${transitionDuration}ms`,
+                        transform: maxIsVisible > i ? "none" : "translateY(20px)",
+                        opacity: maxIsVisible > i ? 1 : 0,
+                        display: "inherit",
+                        ...style,
+                    }}
+                    {...all}
+                >
+                    {child}
+                </span>
+            );
+        }),
+    });
 };

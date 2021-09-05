@@ -1,10 +1,5 @@
-import { Error, Page } from "components";
+import { ErrorPage } from "components/pages";
 
-export default function NotFound() {
-    const description = "Oops? This page couldn't be found!";
-    return (
-        <Page name="404" description={description}>
-            <Error status="404" message={description} />,
-        </Page>
-    );
+export default function NotFound(): JSX.Element {
+    return <ErrorPage status="404" message="Oops? This page couldn't be found!" />;
 }

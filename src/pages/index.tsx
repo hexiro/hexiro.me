@@ -1,13 +1,65 @@
 import React from "react";
 
-import { FadeIn, Lanyard, Page, Project, SocialMedia } from "components";
-import { Age, Github, GithubLink, SteamLink, TwitterLink } from "data/config";
-import GraphQL from "data/graphql";
-import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
 import { HomeProps, ProjectProps } from "types";
 
+import { FadeIn, Lanyard, Project, SocialMedia } from "components";
+import Page from "components/pages";
+import { Age, Github, GithubLink, SteamLink, TwitterLink } from "data/config";
+import GraphQL from "data/graphql";
+
+import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
+
+export default function Home({ projects }: HomeProps): JSX.Element {
+    const description = `A ${Age()} y/o aspiring Software Engineer`;
+    return (
+        <Page name="Home" description={description}>
+            <main>
+                <div className="left">
+                    <FadeIn>
+                        <div className="intro">
+                            <h1>
+                                Hi! I'm <span className="main-accent font-weight-400">Hexiro</span>,
+                            </h1>
+                            <h2>{description}</h2>
+                            <FadeIn
+                                className="socials-items"
+                                style={{ display: "unset" }}
+                                delay={120}
+                                transitionDuration={450}
+                            >
+                                <ul className="socials">
+                                    <SocialMedia href={TwitterLink}>
+                                        <RiTwitterLine />
+                                    </SocialMedia>
+                                    <SocialMedia href={GithubLink}>
+                                        <RiGithubLine />
+                                    </SocialMedia>
+                                    <SocialMedia href={SteamLink}>
+                                        <RiSteamLine />
+                                    </SocialMedia>
+                                </ul>
+                            </FadeIn>
+                            <Lanyard />
+                        </div>
+                    </FadeIn>
+                </div>
+                <div className="right">
+                    <FadeIn delay={80} transitionDuration={425}>
+                        <div className="projects">
+                            {projects.map((project) => (
+                                <Project {...project} />
+                            ))}
+                        </div>
+                    </FadeIn>
+                </div>
+            </main>
+        </Page>
+    );
+}
+
+// regen top 3 pinned repos every hour
 export const getStaticProps = async () => {
-    const pinnedRepos = `
+    const resposQuery = await GraphQL(`
 {
   user(login: "${Github}") {
     pinnedItems(first: 3, types: REPOSITORY) {
@@ -48,9 +100,8 @@ export const getStaticProps = async () => {
     }
   }
 }
-`;
-    const res = await GraphQL(pinnedRepos);
-    const json = await res.json();
+`);
+    const json = await resposQuery.json();
     const projects: ProjectProps[] = json["data"]["user"]["pinnedItems"]["nodes"];
 
     return {
@@ -60,52 +111,3 @@ export const getStaticProps = async () => {
         revalidate: 3600,
     };
 };
-
-export default function Home({ projects }: HomeProps) {
-    const description = `A ${Age()} y/o aspiring Software Engineer`;
-    return (
-        <Page name="Home" description={description} fadesIn={true}>
-            <main>
-                <div className="left">
-                    <div className="intro">
-                        <FadeIn>
-                            <h1>
-                                Hi! I'm <span className="main-accent font-weight-400">Hexiro</span>,
-                            </h1>
-                        </FadeIn>
-                        <FadeIn delay={0.1}>
-                            <h2>{description}</h2>
-                        </FadeIn>
-                        <div className="intro-lower">
-                            <FadeIn duration={0.75} delay={0.2}>
-                                <ul className="socials">
-                                    <SocialMedia href={TwitterLink}>
-                                        <RiTwitterLine />
-                                    </SocialMedia>
-                                    <SocialMedia href={GithubLink}>
-                                        <RiGithubLine />
-                                    </SocialMedia>
-                                    <SocialMedia href={SteamLink}>
-                                        <RiSteamLine />
-                                    </SocialMedia>
-                                </ul>
-                            </FadeIn>
-                            <FadeIn duration={1} delay={0.25}>
-                                <Lanyard />
-                            </FadeIn>
-                        </div>
-                    </div>
-                </div>
-                <div className="right">
-                    <FadeIn duration={1} delay={0.2}>
-                        <div className="projects">
-                            {projects.map((project) => (
-                                <Project {...project} />
-                            ))}
-                        </div>
-                    </FadeIn>
-                </div>
-            </main>
-        </Page>
-    );
-}

@@ -6,28 +6,26 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "next lint",
     "test": "next build && next start",
     "style": "prettier -w \"src/**/*.*\""
   },
   "dependencies": {
-    "framer-motion": "^4.1.17",
     "html-react-parser": "^1.2.8",
-    "next": "11.1.1",
+    "next": "11.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.2.0",
     "react-tippy": "^1.4.0",
-    "react-use-lanyard": "^0.0.9"
+    "react-use-lanyard": "^0.0.9",
+    "sharp": "^0.29.0"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^2.0.4",
     "@types/node": "^15.6.0",
     "@types/react": "^17.0.6",
-    "@typescript-eslint/eslint-plugin": "^4.28.5",
-    "@typescript-eslint/parser": "^4.28.5",
     "eslint": "^7.32.0",
-    "eslint-plugin-react": "^7.24.0",
+    "eslint-config-next": "11.1.2",
     "prettier": "^2.3.2",
     "typescript": "^4.2.4"
   }

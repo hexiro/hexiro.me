@@ -1,8 +1,9 @@
 import Link from "next/link";
 
-import { Element } from "domhandler/lib/node";
-import parse, { HTMLReactParserOptions, domToReact } from "html-react-parser";
 import { ParseHTMLProps } from "types";
+
+import { Element } from "domhandler";
+import parse, { HTMLReactParserOptions, domToReact } from "html-react-parser";
 
 const options: HTMLReactParserOptions = {
     replace: (element) => {
@@ -18,6 +19,10 @@ const options: HTMLReactParserOptions = {
                     </a>
                 </Link>
             );
+        }
+        // g(ithub)-emoji
+        if (element.name === "g-emoji") {
+            return <>{domToReact(element.children)}</>;
         }
     },
     trim: true,
