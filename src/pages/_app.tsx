@@ -2,7 +2,7 @@ import { AppProps } from "next/app";
 
 import theme from "data/theme";
 
-import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 import "react-tippy/dist/tippy.css";
 import "styles/index.css";
@@ -10,10 +10,8 @@ import "styles/index.css";
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <>
-            <ThemeProvider theme={theme}>
-                <GlobalStyle />
-                <Component {...pageProps} />
-            </ThemeProvider>
+            <GlobalStyle />
+            <Component {...pageProps} />
         </>
     );
 }
@@ -29,11 +27,11 @@ const GlobalStyle = createGlobalStyle`
 
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: ${({ theme }) => theme.core.scrollbar};
+    background-color: ${theme.core.scrollbar};
 }
 
 *:focus {
-    filter: drop-shadow(0 0 6px ${({ theme }) => theme.accent.main});
+    filter: drop-shadow(0 0 6px ${theme.accent.main});
     outline: none;
 }
 
@@ -46,12 +44,12 @@ const GlobalStyle = createGlobalStyle`
 }
 
 .tippy-tooltip [x-arrow] {
-    border-top-color: ${({ theme }) => theme.accent.background} !important;
+    border-top-color: ${theme.accent.background} !important;
 }
 
 .tippy-tooltip {
-    background-color: ${({ theme }) => theme.accent.background} !important;
-    filter: drop-shadow(0px 6px 4px ${({ theme }) => theme.core.background});
+    background-color: ${theme.accent.background} !important;
+    filter: drop-shadow(0px 6px 4px ${theme.core.background});
 }
 
 .transition {
@@ -70,19 +68,19 @@ const GlobalStyle = createGlobalStyle`
 }
 
 .text-color {
-    color: ${({ theme }) => theme.core.text};
+    color: ${theme.core.text};
 }
 
 .main-color {
-    color: ${({ theme }) => theme.core.main};
+    color: ${theme.core.main};
 }
 
 .main-accent {
-    color: ${({ theme }) => theme.accent.main};
+    color: ${theme.accent.main};
 }
 
 .dark-color {
-    color: ${({ theme }) => theme.accent.background};
+    color: ${theme.accent.background};
 }
 
 .text-center {
@@ -199,8 +197,8 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
-    background: ${({ theme }) => theme.core.background};
-    color: ${({ theme }) => theme.core.text};
+    background: ${theme.core.background};
+    color: ${theme.core.text};
     font-family: "Poppins", sans-serif;
     font-weight: 200;
 }
@@ -235,12 +233,12 @@ h5 {
 }
 
 p {
-    color: ${({ theme }) => theme.core.text};
+    color: ${theme.core.text};
     font-weight: 200;
 }
 
 a {
-    color: ${({ theme }) => theme.core.main};
+    color: ${theme.core.main};
     text-decoration: none;
     opacity: 0.7;
     font-weight: 300;
@@ -258,6 +256,6 @@ ul {
 svg {
     width: auto;
     height: 100%;
-    color: ${({ theme }) => theme.core.main};
+    color: ${theme.core.main};
 }
 `;
