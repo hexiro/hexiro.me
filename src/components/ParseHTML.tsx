@@ -1,6 +1,6 @@
-import Link from "next/link";
-
 import { ParseHTMLProps } from "types";
+
+import { To } from "components";
 
 import { Element } from "domhandler";
 import parse, { HTMLReactParserOptions, domToReact } from "html-react-parser";
@@ -12,13 +12,7 @@ const options: HTMLReactParserOptions = {
             return <></>;
         }
         if (element.name === "a") {
-            return (
-                <Link href={element.attribs.href}>
-                    <a rel="noreferrer" target="_blank">
-                        {domToReact(element.children)}
-                    </a>
-                </Link>
-            );
+            return <To href={element.attribs.href}>{domToReact(element.children)}</To>;
         }
         // g(ithub)-emoji
         if (element.name === "g-emoji") {

@@ -1,17 +1,13 @@
-import Link from "next/link";
-
 import { SocialMediaProps } from "types";
+
+import { To } from "components";
 
 import styled from "styled-components";
 
 export const SocialMedia = ({ href, children }: SocialMediaProps): JSX.Element => {
     return (
         <SocialItem>
-            <Link href={href}>
-                <a rel="noreferrer" target="_blank">
-                    {children}
-                </a>
-            </Link>
+            <To href={href}>{children}</To>
         </SocialItem>
     );
 };

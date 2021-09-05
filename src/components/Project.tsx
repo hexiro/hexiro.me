@@ -1,6 +1,6 @@
 import { ProjectProps } from "types";
 
-import { ParseHTML } from "components";
+import { ParseHTML, To } from "components";
 import { Github } from "data/config";
 import theme from "data/theme";
 
@@ -13,7 +13,7 @@ export const Project = (project: ProjectProps): JSX.Element => {
             <ProjectContent>
                 <Title>
                     <h3>
-                        <a href={project.url} rel="noreferrer" target="_blank">
+                        <To href={project.url}>
                             {project.owner.login == Github ? (
                                 project.name
                             ) : (
@@ -22,7 +22,7 @@ export const Project = (project: ProjectProps): JSX.Element => {
                                     {project.name}
                                 </>
                             )}
-                        </a>
+                        </To>
                     </h3>
                 </Title>
                 <p>

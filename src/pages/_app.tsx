@@ -237,18 +237,6 @@ p {
     font-weight: 200;
 }
 
-a {
-    color: ${theme.core.main};
-    text-decoration: none;
-    opacity: 0.7;
-    font-weight: 300;
-    transition: all ease 0.2s;
-}
-
-a:hover {
-    opacity: 0.9;
-}
-
 ul {
     list-style: none;
 }
