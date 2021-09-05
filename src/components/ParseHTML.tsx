@@ -12,7 +12,7 @@ const options: HTMLReactParserOptions = {
             return <></>;
         }
         if (element.name === "a") {
-            return (
+            return ( 
                 <Link href={element.attribs.href}>
                     <a rel="noreferrer" target="_blank">
                         {domToReact(element.children)}
