@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 
 import { Timestamps } from "types";
 
+import theme from "data/theme";
+
+import styled from "styled-components";
+
 const relativeTime = (stamp: number): number => {
     return Math.floor((Date.now() - stamp) / 1000);
 };
@@ -13,12 +17,11 @@ const formatSong = (start: number, end: number): JSX.Element => {
         relStart = relEnd;
     }
     return (
-        <div className="song-outer-bar">
-            <div
-                className="song-inner-bar"
-                style={{ width: `${(relStart / relEnd) * 100}%` }}
-            ></div>
-        </div>
+        <Container>
+            <OuterBar>
+                <InnerBar start={relStart} end={relEnd}></InnerBar>
+            </OuterBar>
+        </Container>
     );
 };
 
@@ -43,3 +46,23 @@ export const SongBar = ({ start, end }: Timestamps): JSX.Element | null => {
 
     return elapsed;
 };
+
+const Container = styled.div`
+    position: absolute;
+    bottom: 0;
+    padding: 0;
+    margin: 0 -20px;
+    width: 100%;
+`;
+
+const OuterBar = styled.div`
+    height: 4px;
+    border-radius: 2px;
+    background-color: ${theme.core.background};
+`;
+
+const InnerBar = styled.div<{ start: number; end: number }>`
+    background-color: ${theme.core.text};
+    height: 100%;
+    width: ${({ start, end }) => (start / end) * 100}%;
+`;

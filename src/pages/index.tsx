@@ -2,7 +2,7 @@ import React from "react";
 
 import { HomeProps, ProjectProps } from "types";
 
-import { FadeIn, Lanyard, Project, Socials } from "components";
+import { Lanyard, Project, Socials } from "components";
 import Page from "components/pages";
 import { Age, Github } from "data/config";
 import GraphQL from "data/graphql";

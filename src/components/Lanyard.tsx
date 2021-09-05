@@ -2,8 +2,10 @@ import Image from "next/image";
 
 import { KeyValue, SongBar, Tooltip } from "components";
 import { Discord } from "data/config";
+import theme from "data/theme";
 
 import { Activity, LanyardWebsocket, Spotify, useLanyard } from "react-use-lanyard";
+import styled from "styled-components";
 
 const buildAsset = (applicationId: string, assetId: string): string => {
     return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
@@ -89,21 +91,19 @@ export const Lanyard = () => {
     }
 
     return (
-        <div className="lanyard">
-            <div className="lanyard-images">
-                <div className="large-image">
-                    <Tooltip title={assets.large_text}>
-                        <Image
-                            alt="large image of application or song"
-                            draggable={false}
-                            src={content.largeImage}
-                            height={90}
-                            width={90}
-                        />
-                    </Tooltip>
-                </div>
+        <Container>
+            <Images>
+                <LargeImage>
+                    <Image
+                        alt="large image of application or song"
+                        draggable={false}
+                        src={content.largeImage}
+                        height={90}
+                        width={90}
+                    />
+                </LargeImage>
                 {content.smallImage && (
-                    <div className="small-image">
+                    <SmallImage>
                         <Tooltip title={assets.small_text} size="small">
                             <img
                                 alt="small image of application"
@@ -111,15 +111,79 @@ export const Lanyard = () => {
                                 src={content.smallImage}
                             />
                         </Tooltip>
-                    </div>
+                    </SmallImage>
                 )}
-            </div>
-            <div className="lanyard-text">
+            </Images>
+            <Text>
                 <h4 className="main-accent">{content.name}</h4>
                 <KeyValue line={content.firstLine} />
                 <KeyValue line={content.secondLine} />
-            </div>
-            {isListening && <div className="lanyard-song-bar">{songBar}</div>}
-        </div>
+            </Text>
+            {isListening && songBar}
+        </Container>
     );
 };
+
+const Container = styled.div`
+    position: relative;
+    display: flex;
+    height: 130px;
+    width: 350px;
+    margin: 32vh 0 20px;
+    padding: 20px 0 20px 20px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: ${theme.accent.background};
+    box-shadow: 0 4px 10px rgb(0 0 0 / 25%);
+`;
+
+const Images = styled.div``;
+
+const LargeImage = styled.div`
+    & img {
+        display: block;
+        height: 90px;
+        width: 90px;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+        -o-border-radius: 4px;
+        -webkit-box-shadow: 0 0px 10px rgb(0 0 0 / 25%);
+        box-shadow: 0 0px 10px rgb(0 0 0 / 25%);
+    }
+`;
+
+const SmallImage = styled.div`
+    position: absolute;
+    right: -7px;
+    bottom: -7px;
+    & img {
+        display: block;
+        height: 30px;
+        width: 30px;
+        border: var(--main-accent) 2px solid;
+        border-radius: 50%;
+    }
+`;
+
+const Text = styled.div`
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    width: 40%;
+    line-height: 25px;
+    padding: 0 6.245%;
+    text-align: left;
+
+    & * {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    & h5 {
+        line-height: 17px;
+    }
+`;
