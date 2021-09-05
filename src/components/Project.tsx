@@ -9,9 +9,9 @@ import styled from "styled-components";
 
 export const Project = (project: ProjectProps): JSX.Element => {
     return (
-        <ProjectsItem>
-            <ProjectsContainer>
-                <ProjectsTitle>
+        <ProjectItem>
+            <ProjectContent>
+                <Title>
                     <h3>
                         <a href={project.url} rel="noreferrer" target="_blank">
                             {project.owner.login == Github ? (
@@ -24,12 +24,12 @@ export const Project = (project: ProjectProps): JSX.Element => {
                             )}
                         </a>
                     </h3>
-                </ProjectsTitle>
+                </Title>
                 <p>
                     <ParseHTML html={project.descriptionHTML.slice(5, -6)} />
                 </p>
-                <ProjectsFooter>
-                    <ProjectLanguage>{project.primaryLanguage.name}</ProjectLanguage>
+                <Footer>
+                    <Language>{project.primaryLanguage.name}</Language>
                     <ul>
                         {project.stargazers.totalCount > 0 && (
                             <ProjectDetail>
@@ -56,23 +56,13 @@ export const Project = (project: ProjectProps): JSX.Element => {
                             </ProjectDetail>
                         }
                     </ul>
-                </ProjectsFooter>
-            </ProjectsContainer>
-        </ProjectsItem>
+                </Footer>
+            </ProjectContent>
+        </ProjectItem>
     );
 };
 
-const ProjectsTitle = styled.div`
-    padding-top: 10px;
-    word-break: break-word;
-    color: ${theme.core.main};
-
-    & h3 a {
-        opacity: 1;
-    }
-`;
-
-const ProjectsItem = styled.div`
+const ProjectItem = styled.div`
     position: relative;
     min-width: 530px;
     max-width: 630px;
@@ -90,13 +80,23 @@ const ProjectsItem = styled.div`
     }
 `;
 
-const ProjectsContainer = styled.div`
+const Title = styled.div`
+    padding-top: 10px;
+    word-break: break-word;
+    color: ${theme.core.main};
+
+    & h3 a {
+        opacity: 1;
+    }
+`;
+
+const ProjectContent = styled.div`
     & p {
         padding-bottom: 10px;
     }
 `;
 
-const ProjectsFooter = styled.div`
+const Footer = styled.div`
     display: flex;
     align-items: center;
     position: absolute;
@@ -113,7 +113,7 @@ const ProjectsFooter = styled.div`
     }
 `;
 
-const ProjectLanguage = styled.span`
+const Language = styled.span`
     margin-right: 20px;
 `;
 
