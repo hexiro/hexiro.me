@@ -64,6 +64,11 @@ const Intro = styled.div`
     position: relative;
     transform: translateY(-20%);
 
+    & ul,
+    & div {
+        position: absolute;
+    }
+
     & ul {
         margin-top: 10px;
     }
