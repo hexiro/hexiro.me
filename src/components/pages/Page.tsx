@@ -1,13 +1,20 @@
 import Head from "next/head";
 import React from "react";
 
+import styled from "styled-components";
+
 interface PageProps {
     name: string;
     description: string;
+    locked?: boolean;
     children?: React.ReactNode;
 }
 
-export const Page = ({ name, description, children }: PageProps): JSX.Element => {
+const Locked = styled.body`
+    overflow: hidden;
+`;
+
+export const Page = ({ name, description, children, locked }: PageProps): JSX.Element => {
     return (
         <>
             <Head>
@@ -18,6 +25,7 @@ export const Page = ({ name, description, children }: PageProps): JSX.Element =>
             <noscript>
                 <style>{".fade-in{opacity:1!important;}"}</style>
             </noscript>
+            {locked && <Locked />}
         </>
     );
 };

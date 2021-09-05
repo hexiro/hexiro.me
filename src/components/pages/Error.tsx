@@ -8,7 +8,7 @@ export const ErrorPage = ({
     message?: string;
 }): JSX.Element => {
     return (
-        <Page name={String(status)} description={message || "Oops?"}>
+        <Page name={String(status)} description={message || "Oops?"} locked={true}>
             <main className="full-center">
                 <div className="text-center">
                     <h1 className="main-accent font-weight-400">{status}</h1>
