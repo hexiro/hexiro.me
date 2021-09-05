@@ -46,7 +46,7 @@ export default function Home({ projects }: HomeProps): JSX.Element {
                 <div className="right">
                     <FadeIn delay={80} transitionDuration={425}>
                         <div className="projects">
-                            {projects.map((project) => (
+                            {projects.map(project => (
                                 <Project {...project} />
                             ))}
                         </div>

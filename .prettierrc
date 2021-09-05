@@ -7,5 +7,6 @@
   "useTabs": false,
   "importOrder": ["^(react|next)(\/.*|)$", "^types$", "^(components|data)(\/.*|)$", "^.*(?<!\\.css)$", "^.*?\\.css$"],
   "importOrderSeparation": true,
-  "quoteProps": "preserve"
+  "quoteProps": "preserve",
+  "arrowParens": "avoid"
 }

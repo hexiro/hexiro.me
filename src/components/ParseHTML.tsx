@@ -6,13 +6,13 @@ import { Element } from "domhandler";
 import parse, { HTMLReactParserOptions, domToReact } from "html-react-parser";
 
 const options: HTMLReactParserOptions = {
-    replace: (element) => {
+    replace: element => {
         if (!(element instanceof Element)) return;
         if (element.name === "script") {
             return <></>;
         }
         if (element.name === "a") {
-            return ( 
+            return (
                 <Link href={element.attribs.href}>
                     <a rel="noreferrer" target="_blank">
                         {domToReact(element.children)}

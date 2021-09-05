@@ -51,12 +51,11 @@ main {
     margin: 25px 0;
     border-radius: 10px;
     transition: ease-out all 0.31s;
-    will-change: transform
+    will-change: transform;
 }
 
-.projects-item:hover {  
+.projects-item:hover {
     transform: scale(1.04);
-    
 }
 
 .projects-container p {

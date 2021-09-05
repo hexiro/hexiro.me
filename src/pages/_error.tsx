@@ -7,7 +7,12 @@ interface ErrorProps {
 }
 
 function ErrorHandler({ statusCode }: ErrorProps): JSX.Element {
-    return <ErrorPage status={statusCode || "Client Error"} message="Oops? Well that wasn't supposed to happen!" />;
+    return (
+        <ErrorPage
+            status={statusCode || "Client Error"}
+            message="Oops? Well that wasn't supposed to happen!"
+        />
+    );
 }
 
 ErrorHandler.getInitialProps = ({ res, err }: NextPageContext): ErrorProps => {
