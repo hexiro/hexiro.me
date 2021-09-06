@@ -5,7 +5,6 @@ import { Commits, Forks, PullRequests, Stars } from "components/projects/details
 import { Github } from "data/config";
 import theme from "data/theme";
 
-// import { BiGitCommit, BiGitPullRequest, BiGitRepoForked } from "react-icons/bi";
 import styled from "styled-components";
 
 const Project = (project: ProjectProps): JSX.Element => {
@@ -15,14 +14,10 @@ const Project = (project: ProjectProps): JSX.Element => {
                 <Title>
                     <h3>
                         <To href={project.url}>
-                            {project.owner.login == Github ? (
-                                project.name
-                            ) : (
-                                <>
-                                    <Header>{project.owner.login}/</Header>
-                                    {project.name}
-                                </>
+                            {project.owner.login != Github && (
+                                <Header>{project.owner.login}/</Header>
                             )}
+                            {project.name}
                         </To>
                     </h3>
                 </Title>
@@ -30,7 +25,7 @@ const Project = (project: ProjectProps): JSX.Element => {
                     <ParseHTML html={project.descriptionHTML.slice(5, -6)} />
                 </p>
                 <Footer>
-                    <Language>{project.primaryLanguage.name}</Language>
+                    <p>{project.primaryLanguage.name}</p>
                     <ul>
                         <Stars stargazers={project.stargazers.totalCount} />
                         <Forks forks={project.forks.totalCount} />
@@ -52,7 +47,7 @@ const ProjectItem = styled.div`
     height: 220px;
     border-radius: 10px;
     background: ${theme.accent.background};
-    padding: 4px 20px;
+    padding: 14px 20px 4px 20px;
     margin: 25px 0;
     box-shadow: 0 6px 13px rgba(0, 0, 0, 0.25);
     transition: ease-out all 0.31s;
@@ -74,7 +69,6 @@ const ProjectItem = styled.div`
 `;
 
 const Title = styled.div`
-    padding-top: 10px;
     word-break: break-word;
     color: ${theme.core.main};
 
@@ -89,7 +83,7 @@ const Title = styled.div`
 `;
 
 const ProjectContent = styled.div`
-    & p {
+    & > p {
         padding-bottom: 10px;
     }
 
@@ -118,11 +112,11 @@ const Footer = styled.div`
         width: 18px;
     }
 
+    & p {
+        margin-right: 20px;
+    }
+
     @media only screen and (max-width: 1250px) {
         display: none;
     }
-`;
-
-const Language = styled.span`
-    margin-right: 20px;
 `;
