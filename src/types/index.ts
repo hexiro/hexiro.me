@@ -20,11 +20,6 @@ export interface TooltipProps {
     style?: React.CSSProperties;
 }
 
-export interface Timestamps {
-    start?: number | null;
-    end?: number | null;
-}
-
 export interface ErrorPage {
     status: number | string;
     message?: string;

@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 
-import { Timestamps } from "types";
-
 import theme from "data/theme";
 
+import { Timestamps } from "react-use-lanyard";
 import styled from "styled-components";
 
-export default function SongBar({ start, end }: Timestamps): JSX.Element | null {
+export default function SongBar(timestamps: Timestamps | undefined): JSX.Element | null {
     const [elapsed, setElapsed] = useState<JSX.Element | null>(null);
+
+    const start = timestamps?.start;
+    const end = timestamps?.end;
 
     useEffect(() => {
         function updateTimestamp() {

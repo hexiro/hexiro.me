@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 import { Header, Tooltip } from "components/common";
-import KeyValue from "components/lanyard/KeyValue";
 import SongBar from "components/lanyard/SongBar";
 
 import { Discord } from "data/config";
@@ -16,16 +15,12 @@ export default function Lanyard(): JSX.Element | null {
         socket: true,
     }) as LanyardWebsocket;
 
-    let activity: Activity | undefined;
-    for (const act of status?.activities || []) {
-        if (act && (act.type === 2 || act.type === 0) && act.assets && act.timestamps) {
-            activity = act;
-            break;
-        }
-    }
+    const types = [0, 2];
+    const activity = status?.activities.find(
+        act => types.includes(act.type) && act.assets && act.timestamps
+    );
 
-    const timestamps = activity?.timestamps;
-    const songBar = SongBar({ start: timestamps?.start, end: timestamps?.end });
+    const songBar = SongBar(activity?.timestamps);
 
     // if no data / invalid data is returned / i have no availble
     if (loading || !status || !activity) return null;
@@ -75,8 +70,8 @@ export default function Lanyard(): JSX.Element | null {
                 <h4>
                     <Header>{content.name}</Header>
                 </h4>
-                <KeyValue line={content.firstLine} />
-                <KeyValue line={content.secondLine} />
+                <h5>{content.firstLine}</h5>
+                <h5>{content.secondLine}</h5>
             </Text>
             {isListening && songBar}
         </Container>
@@ -99,8 +94,8 @@ const handleSpotify = (spotify: Spotify): LanyardContent => {
     return {
         largeImage: spotify.album_art_url,
         name: spotify.song,
-        firstLine: "By: " + spotify.artist.replaceAll(";", ","),
-        secondLine: "On: " + spotify.album.replaceAll(";", ","),
+        firstLine: "By " + spotify.artist.replaceAll(";", ","),
+        secondLine: "On " + spotify.album.replaceAll(";", ","),
     };
 };
 
@@ -117,9 +112,6 @@ const handleGame = (activity: Activity): LanyardContent => {
 
     if (assets.small_image) {
         smallImage = buildAsset(application_id, assets.small_image);
-    }
-    if (firstLine?.startsWith("Editing")) {
-        firstLine = firstLine.replace("Editing", "Editing:");
     }
 
     return {
