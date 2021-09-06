@@ -7,7 +7,7 @@ import theme from "data/theme";
 
 import styled from "styled-components";
 
-const Project = (project: ProjectProps): JSX.Element => {
+export default function Project(project: ProjectProps): JSX.Element {
     return (
         <ProjectItem>
             <ProjectContent>
@@ -36,9 +36,7 @@ const Project = (project: ProjectProps): JSX.Element => {
             </ProjectContent>
         </ProjectItem>
     );
-};
-
-export default Project;
+}
 
 const ProjectItem = styled.div`
     position: relative;

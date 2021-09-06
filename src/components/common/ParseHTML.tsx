@@ -5,10 +5,8 @@ import { To } from "components/common";
 import { Element } from "domhandler";
 import parse, { HTMLReactParserOptions, domToReact } from "html-react-parser";
 
-export const ParseHTML = ({ html }: ParseHTMLProps): JSX.Element => {
-    // returns string, JSX.Element[], JSX.Element all as JSX.Element
-    return <>{parse(html, options)}</>;
-};
+// returns string, JSX.Element[], JSX.Element all as JSX.Element
+export const ParseHTML = ({ html }: ParseHTMLProps): JSX.Element => <>{parse(html, options)}</>;
 
 const options: HTMLReactParserOptions = {
     replace: element => {

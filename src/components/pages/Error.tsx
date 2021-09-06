@@ -3,15 +3,11 @@ import Page from "components/pages";
 
 import styled from "styled-components";
 
-const ErrorPage = ({
-    status,
-    message,
-}: {
-    status: number | string;
-    message?: string;
-}): JSX.Element => {
+export default function ErrorPage({ status, message }: ErrorPageProps): JSX.Element {
+    status = String(status);
+    if (!message) message = "Oops?";
     return (
-        <Page name={String(status)} description={message || "Oops?"} locked={true}>
+        <Page name={status} description={message} locked={true}>
             <Main>
                 <Text>
                     <h1>
@@ -22,9 +18,12 @@ const ErrorPage = ({
             </Main>
         </Page>
     );
-};
+}
 
-export default ErrorPage;
+interface ErrorPageProps {
+    status: number | string;
+    message?: string;
+}
 
 const Main = styled.main`
     display: flex;

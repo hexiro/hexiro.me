@@ -9,7 +9,7 @@ import theme from "data/theme";
 import { Activity, LanyardWebsocket, Spotify, useLanyard } from "react-use-lanyard";
 import styled from "styled-components";
 
-const Lanyard = () => {
+export default function Lanyard(): JSX.Element | null {
     const { loading, status } = useLanyard({
         userId: Discord,
         socket: true,
@@ -80,9 +80,7 @@ const Lanyard = () => {
             {isListening && songBar}
         </Container>
     );
-};
-
-export default Lanyard;
+}
 
 const buildAsset = (applicationId: string, assetId: string): string => {
     return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;

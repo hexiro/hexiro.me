@@ -3,7 +3,7 @@ import React from "react";
 
 import styled from "styled-components";
 
-const Page = ({ name, description, children, locked }: PageProps): JSX.Element => {
+export default function Page({ name, description, children, locked }: PageProps): JSX.Element {
     return (
         <>
             <Head>
@@ -17,8 +17,7 @@ const Page = ({ name, description, children, locked }: PageProps): JSX.Element =
             {locked && <Locked />}
         </>
     );
-};
-export default Page;
+}
 
 interface PageProps {
     name: string;

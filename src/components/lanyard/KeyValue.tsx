@@ -1,6 +1,6 @@
 import { KeyValueProps } from "types";
 
-const KeyValue = ({ line }: KeyValueProps): JSX.Element | null => {
+export default function KeyValue({ line }: KeyValueProps): JSX.Element | null {
     if (!line) return null;
     if (!line.includes(":")) return <h5>{line}</h5>;
     const [key, value] = line.split(":", 2);
@@ -9,5 +9,4 @@ const KeyValue = ({ line }: KeyValueProps): JSX.Element | null => {
             {key} <span className="font-weight-400">{value}</span>
         </h5>
     );
-};
-export default KeyValue;
+}

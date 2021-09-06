@@ -6,7 +6,7 @@ import theme from "data/theme";
 
 import styled from "styled-components";
 
-const SongBar = ({ start, end }: Timestamps): JSX.Element | null => {
+export default function SongBar({ start, end }: Timestamps): JSX.Element | null {
     const [elapsed, setElapsed] = useState<JSX.Element | null>(null);
 
     useEffect(() => {
@@ -26,9 +26,7 @@ const SongBar = ({ start, end }: Timestamps): JSX.Element | null => {
     }, [start, end]);
 
     return elapsed;
-};
-
-export default SongBar;
+}
 
 const formatSong = (start: number, end: number): JSX.Element => {
     end = Math.floor((end - start) / 1000);
