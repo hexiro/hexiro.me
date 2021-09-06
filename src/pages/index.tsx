@@ -3,10 +3,9 @@ import React from "react";
 import { HomeProps, ProjectProps } from "types";
 
 import { Header, Lanyard, Project, Socials } from "components";
-import Page from "components/pages";
+import Page from "components/Pages";
 import { Age, Github } from "data/config";
 import GraphQL from "data/graphql";
-import theme from "data/theme";
 
 import styled, { css } from "styled-components";
 

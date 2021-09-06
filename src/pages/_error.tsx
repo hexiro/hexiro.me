@@ -1,6 +1,6 @@
 import { NextPageContext } from "next";
 
-import { ErrorPage } from "components/pages";
+import { ErrorPage } from "components/Pages";
 
 interface ErrorProps {
     statusCode?: number;

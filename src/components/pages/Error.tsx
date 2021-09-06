@@ -1,4 +1,4 @@
-import Page from "components/pages";
+import Page from "components/Pages";
 
 export const ErrorPage = ({
     status,
