@@ -65,7 +65,7 @@ const Intro = styled.div`
     transform: translateY(-20%);
 
     & ul,
-    & div {
+    & > :last-child {
         position: absolute;
     }
 
