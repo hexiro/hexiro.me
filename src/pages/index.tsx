@@ -7,6 +7,7 @@ import Lanyard from "components/lanyard";
 import Page from "components/pages";
 import Project from "components/projects";
 import Socials from "components/socials";
+
 import { Age, Github } from "data/config";
 import GraphQL from "data/graphql";
 

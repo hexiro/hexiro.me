@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Header, Tooltip } from "components/common";
 import KeyValue from "components/lanyard/KeyValue";
 import SongBar from "components/lanyard/SongBar";
+
 import { Discord } from "data/config";
 import theme from "data/theme";
 

@@ -2,6 +2,7 @@ import { ProjectProps } from "types";
 
 import { Header, ParseHTML, To } from "components/common";
 import { Commits, Forks, PullRequests, Stars } from "components/projects/details";
+
 import { Github } from "data/config";
 import theme from "data/theme";
 
