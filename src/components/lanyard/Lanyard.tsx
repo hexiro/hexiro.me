@@ -142,6 +142,10 @@ const Container = styled.div`
     overflow: hidden;
     background: ${theme.accent.background};
     box-shadow: 0 4px 10px rgb(0 0 0 / 25%);
+
+    @media only screen and (max-width: 1250px) {
+        margin: 0;
+    }
 `;
 
 const Images = styled.div``;
