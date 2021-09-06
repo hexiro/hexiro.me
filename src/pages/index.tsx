@@ -11,6 +11,7 @@ import Socials from "components/socials";
 import { Age, Github } from "data/config";
 import GraphQL from "data/graphql";
 
+import FadeIn from "react-fade-in";
 import styled, { css } from "styled-components";
 
 export default function Home({ projects }: HomeProps): JSX.Element {
@@ -19,17 +20,17 @@ export default function Home({ projects }: HomeProps): JSX.Element {
         <Page name="Home" description={description}>
             <Main>
                 <Side side="left">
-                    <Intro>
+                    <Intro delay={50} transitionDuration={400}>
                         <h1>
                             Hi! I'm <Header>Hexiro</Header>,
                         </h1>
                         <h2>{description}</h2>
-                        <Socials />
+                        <Socials delay={120} transitionDuration={450} />
                         <Lanyard />
                     </Intro>
                 </Side>
                 <Side side="right">
-                    <Projects>
+                    <Projects delay={80} transitionDuration={425}>
                         {projects.map(project => (
                             <Project {...project} />
                         ))}
@@ -72,7 +73,7 @@ const Side = styled.div<{ side: "left" | "right" }>`
 
 // transform makes it so the vertical centering is centered around the description line
 // instead of around the whole div
-const Intro = styled.div`
+const Intro = styled(FadeIn)`
     line-height: 3em;
     margin-left: 30px;
     min-height: 115px;
@@ -109,7 +110,7 @@ const Intro = styled.div`
     }
 `;
 
-const Projects = styled.div`
+const Projects = styled(FadeIn)`
     @media only screen and (max-width: 1250px) {
         display: block;
     }

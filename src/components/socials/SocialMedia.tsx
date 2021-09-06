@@ -4,7 +4,7 @@ import { To } from "components/common";
 
 import styled from "styled-components";
 
-export const SocialMedia = ({ href, children }: SocialMediaProps): JSX.Element => {
+export const SocialMedia = ({ href, children }: SocialMediaProps) => {
     return (
         <SocialItem>
             <To href={href}>{children}</To>
