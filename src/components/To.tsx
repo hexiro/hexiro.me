@@ -5,7 +5,7 @@ import theme from "data/theme";
 import styled from "styled-components";
 
 export const To = ({ href, children }: ToProps) => (
-    <Link href={href}>
+    <Link href={href} passHref>
         <Anchor rel="noreferrer" target="_blank">
             {children}
         </Anchor>
