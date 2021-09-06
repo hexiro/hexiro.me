@@ -1,10 +1,11 @@
 import { ProjectProps } from "types";
 
 import { Header, ParseHTML, To } from "components/common";
+import { Commits, Forks, PullRequests, Stars } from "components/projects/details";
 import { Github } from "data/config";
 import theme from "data/theme";
 
-import { BiGitCommit, BiGitPullRequest, BiGitRepoForked, BiStar } from "react-icons/bi";
+// import { BiGitCommit, BiGitPullRequest, BiGitRepoForked } from "react-icons/bi";
 import styled from "styled-components";
 
 const Project = (project: ProjectProps): JSX.Element => {
@@ -31,30 +32,10 @@ const Project = (project: ProjectProps): JSX.Element => {
                 <Footer>
                     <Language>{project.primaryLanguage.name}</Language>
                     <ul>
-                        {project.stargazers.totalCount > 0 && (
-                            <ProjectDetail>
-                                <BiStar />
-                                <h4>{project.stargazers.totalCount}</h4>
-                            </ProjectDetail>
-                        )}
-                        {project.forks.totalCount > 0 && (
-                            <ProjectDetail>
-                                <BiGitRepoForked />
-                                <h4>{project.forks.totalCount}</h4>
-                            </ProjectDetail>
-                        )}
-                        {project.pullRequests.totalCount > 0 && (
-                            <ProjectDetail>
-                                <BiGitPullRequest />
-                                <h4>{project.pullRequests.totalCount}</h4>
-                            </ProjectDetail>
-                        )}
-                        {
-                            <ProjectDetail>
-                                <BiGitCommit />
-                                <h4>{project.defaultBranchRef.target.history.totalCount}</h4>
-                            </ProjectDetail>
-                        }
+                        <Stars stargazers={project.stargazers.totalCount} />
+                        <Forks forks={project.forks.totalCount} />
+                        <PullRequests pullRequests={project.pullRequests.totalCount} />
+                        <Commits commits={project.defaultBranchRef.target.history.totalCount} />
                     </ul>
                 </Footer>
             </ProjectContent>
@@ -144,10 +125,4 @@ const Footer = styled.div`
 
 const Language = styled.span`
     margin-right: 20px;
-`;
-
-const ProjectDetail = styled.li`
-    display: inline-flex;
-    align-items: center;
-    margin-right: 10px;
 `;
