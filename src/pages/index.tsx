@@ -2,7 +2,7 @@ import React from "react";
 
 import { HomeProps, ProjectProps } from "types";
 
-import { Lanyard, Project, Socials } from "components";
+import { Header, Lanyard, Project, Socials } from "components";
 import Page from "components/pages";
 import { Age, Github } from "data/config";
 import GraphQL from "data/graphql";
@@ -18,7 +18,7 @@ export default function Home({ projects }: HomeProps): JSX.Element {
                 <Side side="left">
                     <Intro>
                         <h1>
-                            Hi! I'm <Name>Hexiro</Name>,
+                            Hi! I'm <Header>Hexiro</Header>,
                         </h1>
                         <h2>{description}</h2>
                         <Socials />
@@ -110,11 +110,6 @@ const Projects = styled.div`
     @media only screen and (max-width: 1250px) {
         display: block;
     }
-`;
-
-const Name = styled.span`
-    color: ${theme.accent.main};
-    font-weight: 400;
 `;
 
 // regen top 3 pinned repos every hour

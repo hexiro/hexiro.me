@@ -8,3 +8,4 @@ export * from "components/SongBar";
 export * from "components/Tooltip";
 export * from "components/FadeIn";
 export * from "components/To";
+export * from "components/Header";

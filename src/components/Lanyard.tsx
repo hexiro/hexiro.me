@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { KeyValue, SongBar, Tooltip } from "components";
+import { Header, KeyValue, SongBar, Tooltip } from "components";
 import { Discord } from "data/config";
 import theme from "data/theme";
 
@@ -115,7 +115,9 @@ export const Lanyard = () => {
                 )}
             </Images>
             <Text>
-                <h4 className="main-accent">{content.name}</h4>
+                <h4>
+                    <Header>{content.name}</Header>
+                </h4>
                 <KeyValue line={content.firstLine} />
                 <KeyValue line={content.secondLine} />
             </Text>
@@ -145,11 +147,6 @@ const LargeImage = styled.div`
         height: 90px;
         width: 90px;
         border-radius: 4px;
-        -webkit-border-radius: 4px;
-        -moz-border-radius: 4px;
-        -ms-border-radius: 4px;
-        -o-border-radius: 4px;
-        -webkit-box-shadow: 0 0px 10px rgb(0 0 0 / 25%);
         box-shadow: 0 0px 10px rgb(0 0 0 / 25%);
     }
 `;

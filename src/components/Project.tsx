@@ -1,6 +1,6 @@
 import { ProjectProps } from "types";
 
-import { ParseHTML, To } from "components";
+import { Header, ParseHTML, To } from "components";
 import { Github } from "data/config";
 import theme from "data/theme";
 
@@ -18,7 +18,7 @@ export const Project = (project: ProjectProps): JSX.Element => {
                                 project.name
                             ) : (
                                 <>
-                                    <span className="main-accent">{project.owner.login}/</span>
+                                    <Header>{project.owner.login}/</Header>
                                     {project.name}
                                 </>
                             )}
