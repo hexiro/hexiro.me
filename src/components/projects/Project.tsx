@@ -1,13 +1,13 @@
 import { ProjectProps } from "types";
 
-import { Header, ParseHTML, To } from "components";
+import { Header, ParseHTML, To } from "components/common";
 import { Github } from "data/config";
 import theme from "data/theme";
 
 import { BiGitCommit, BiGitPullRequest, BiGitRepoForked, BiStar } from "react-icons/bi";
 import styled from "styled-components";
 
-export const Project = (project: ProjectProps): JSX.Element => {
+const Project = (project: ProjectProps): JSX.Element => {
     return (
         <ProjectItem>
             <ProjectContent>
@@ -61,6 +61,8 @@ export const Project = (project: ProjectProps): JSX.Element => {
         </ProjectItem>
     );
 };
+
+export default Project;
 
 const ProjectItem = styled.div`
     position: relative;

@@ -1,5 +1,3 @@
-import { Page } from "components/Pages/Page";
+import Page from "components/pages/Page";
 
-export * from "components/Pages/Error";
-export * from "components/Pages/Page";
 export default Page;

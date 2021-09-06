@@ -1,6 +1,8 @@
 import Image from "next/image";
 
-import { Header, KeyValue, SongBar, Tooltip } from "components";
+import { Header, Tooltip } from "components/common";
+import KeyValue from "components/lanyard/KeyValue";
+import SongBar from "components/lanyard/SongBar";
 import { Discord } from "data/config";
 import theme from "data/theme";
 
@@ -55,7 +57,7 @@ const handleGame = (activity: Activity): LanyardContent => {
     };
 };
 
-export const Lanyard = () => {
+const Lanyard = () => {
     const { loading, status } = useLanyard({
         userId: Discord,
         socket: true,
@@ -127,6 +129,8 @@ export const Lanyard = () => {
         </Container>
     );
 };
+
+export default Lanyard;
 
 const Container = styled.div`
     position: relative;

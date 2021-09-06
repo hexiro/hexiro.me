@@ -21,7 +21,7 @@ const formatSong = (start: number, end: number): JSX.Element => {
     );
 };
 
-export const SongBar = ({ start, end }: Timestamps): JSX.Element | null => {
+const SongBar = ({ start, end }: Timestamps): JSX.Element | null => {
     const [elapsed, setElapsed] = useState<JSX.Element | null>(null);
 
     useEffect(() => {
@@ -42,6 +42,8 @@ export const SongBar = ({ start, end }: Timestamps): JSX.Element | null => {
 
     return elapsed;
 };
+
+export default SongBar;
 
 const Container = styled.div`
     position: absolute;

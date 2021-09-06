@@ -2,8 +2,11 @@ import React from "react";
 
 import { HomeProps, ProjectProps } from "types";
 
-import { Header, Lanyard, Project, Socials } from "components";
-import Page from "components/Pages";
+import { Header } from "components/common";
+import Lanyard from "components/lanyard";
+import Page from "components/pages";
+import Project from "components/projects";
+import Socials from "components/socials";
 import { Age, Github } from "data/config";
 import GraphQL from "data/graphql";
 

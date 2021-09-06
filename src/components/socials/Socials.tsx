@@ -1,9 +1,9 @@
-import { SocialMedia } from "components";
+import { SocialMedia } from "components/socials/SocialMedia";
 import { GithubLink, SteamLink, TwitterLink } from "data/config";
 
 import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
 
-export const Socials = (): JSX.Element => (
+const Socials = (): JSX.Element => (
     <ul>
         <SocialMedia href={TwitterLink}>
             <RiTwitterLine />
@@ -16,3 +16,4 @@ export const Socials = (): JSX.Element => (
         </SocialMedia>
     </ul>
 );
+export default Socials;

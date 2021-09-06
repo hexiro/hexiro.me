@@ -1,6 +1,6 @@
 import { ParseHTMLProps } from "types";
 
-import { To } from "components";
+import { To } from "components/common";
 
 import { Element } from "domhandler";
 import parse, { HTMLReactParserOptions, domToReact } from "html-react-parser";

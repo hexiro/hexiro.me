@@ -1,9 +1,9 @@
-import { Header } from "components";
-import Page from "components/Pages";
+import { Header } from "components/common";
+import Page from "components/pages";
 
 import styled from "styled-components";
 
-export const ErrorPage = ({
+const ErrorPage = ({
     status,
     message,
 }: {
@@ -23,6 +23,7 @@ export const ErrorPage = ({
         </Page>
     );
 };
+export default ErrorPage;
 
 const Main = styled.main`
     display: flex;

@@ -14,7 +14,7 @@ const Locked = styled.body`
     overflow: hidden;
 `;
 
-export const Page = ({ name, description, children, locked }: PageProps): JSX.Element => {
+const Page = ({ name, description, children, locked }: PageProps): JSX.Element => {
     return (
         <>
             <Head>
@@ -29,3 +29,4 @@ export const Page = ({ name, description, children, locked }: PageProps): JSX.El
         </>
     );
 };
+export default Page;
