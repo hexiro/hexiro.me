@@ -1,24 +1,21 @@
-import Link from "next/link";
-
 import { ParseHTMLProps } from "types";
+
+import { To } from "components/common";
 
 import { Element } from "domhandler";
 import parse, { HTMLReactParserOptions, domToReact } from "html-react-parser";
 
+// returns string, JSX.Element[], JSX.Element all as JSX.Element
+export const ParseHTML = ({ html }: ParseHTMLProps): JSX.Element => <>{parse(html, options)}</>;
+
 const options: HTMLReactParserOptions = {
-    replace: (element) => {
+    replace: element => {
         if (!(element instanceof Element)) return;
         if (element.name === "script") {
             return <></>;
         }
         if (element.name === "a") {
-            return (
-                <Link href={element.attribs.href}>
-                    <a rel="noreferrer" target="_blank">
-                        {domToReact(element.children)}
-                    </a>
-                </Link>
-            );
+            return <To href={element.attribs.href}>{domToReact(element.children)}</To>;
         }
         // g(ithub)-emoji
         if (element.name === "g-emoji") {
@@ -26,9 +23,4 @@ const options: HTMLReactParserOptions = {
         }
     },
     trim: true,
-};
-
-export const ParseHTML = ({ html }: ParseHTMLProps): JSX.Element => {
-    // returns string, JSX.Element[], JSX.Element all as JSX.Element
-    return <>{parse(html, options)}</>;
 };

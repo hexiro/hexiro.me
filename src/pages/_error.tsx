@@ -1,16 +1,21 @@
-import { NextPageContext } from "next";
+import { NextPage, NextPageContext } from "next";
 
-import { ErrorPage } from "components/pages";
+import ErrorPage from "components/pages/Error";
 
 interface ErrorProps {
     statusCode?: number;
 }
 
-function ErrorHandler({ statusCode }: ErrorProps): JSX.Element {
-    return <ErrorPage status={statusCode || "Client Error"} message="Oops? Well that wasn't supposed to happen!" />;
-}
+const ErrorHandler: NextPage<ErrorProps> = ({ statusCode }): JSX.Element => {
+    return (
+        <ErrorPage
+            status={statusCode || "Client Error"}
+            message="Oops? That wasn't supposed to happen!"
+        />
+    );
+};
 
-ErrorHandler.getInitialProps = ({ res, err }: NextPageContext): ErrorProps => {
+ErrorHandler.getInitialProps = ({ res, err }: NextPageContext) => {
     let statusCode: number | undefined;
     if (res) {
         statusCode = res.statusCode;

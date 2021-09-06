@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
 import { Position, Size } from "react-tippy";
 
@@ -18,11 +18,6 @@ export interface TooltipProps {
     size?: Size;
     children?: React.ReactNode;
     style?: React.CSSProperties;
-}
-
-export interface Timestamps {
-    start?: number | null;
-    end?: number | null;
 }
 
 export interface ErrorPage {
@@ -73,5 +68,5 @@ export interface FadeInProps {
 
 export interface SocialMediaProps {
     href: string;
-    children?: ReactNode;
+    children?: React.ReactNode;
 }
