@@ -78,6 +78,16 @@ const ProjectItem = styled.div`
     &:hover {
         transform: scale(1.04);
     }
+
+    @media only screen and (max-width: 1250px) {
+        display: block;
+        margin: 12.5px auto;
+        width: 90%;
+        min-width: unset;
+        max-width: 540px;
+        height: auto;
+        cursor: initial;
+    }
 `;
 
 const Title = styled.div`
@@ -88,11 +98,29 @@ const Title = styled.div`
     & h3 a {
         opacity: 1;
     }
+
+    @media only screen and (max-width: 1250px) {
+        display: block;
+        margin-bottom: 25px;
+        transform: unset;
+        -webkit-transform: unset;
+        -moz-transform: unset;
+        -ms-transform: unset;
+        -o-transform: unset;
+    }
 `;
 
 const ProjectContent = styled.div`
     & p {
         padding-bottom: 10px;
+    }
+
+    @media only screen and (max-width: 1250px) {
+        & p {
+            margin-bottom: 20px;
+            cursor: text;
+            user-select: initial;
+        }
     }
 `;
 
@@ -110,6 +138,10 @@ const Footer = styled.div`
     & svg {
         height: 18px;
         width: 18px;
+    }
+
+    @media only screen and (max-width: 1250px) {
+        display: none;
     }
 `;
 

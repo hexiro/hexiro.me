@@ -26,11 +26,11 @@ export default function Home({ projects }: HomeProps): JSX.Element {
                     </Intro>
                 </Side>
                 <Side side="right">
-                    <div className="projects">
+                    <Projects>
                         {projects.map(project => (
                             <Project {...project} />
                         ))}
-                    </div>
+                    </Projects>
                 </Side>
             </Main>
         </Page>
@@ -42,6 +42,12 @@ const Main = styled.main`
     align-content: center;
     min-height: 100vh;
     height: 100%;
+
+    @media only screen and (max-width: 1250px) {
+        padding-top: 125px;
+        display: block;
+        min-height: 84vh;
+    }
 `;
 
 // prettier-ignore
@@ -53,6 +59,12 @@ const Side = styled.div<{ side: "left" | "right" }>`
             justify-content: center;
             margin: 20px 0;
       `}
+
+    @media only screen and (max-width: 1250px) {
+        display: block;
+        text-align: center;
+        margin: 0;
+    }
 `;
 
 // transform makes it so the vertical centering is centered around the description line
@@ -64,13 +76,39 @@ const Intro = styled.div`
     position: relative;
     transform: translateY(-20%);
 
+    & ul {
+        margin-top: 10px;
+    }
+
     & ul,
     & > :last-child {
         position: absolute;
     }
 
-    & ul {
-        margin-top: 10px;
+    @media only screen and (max-width: 1250px) {
+        margin-left: unset;
+
+        & ul {
+            position: unset;
+        }
+        & > :last-child {
+            position: relative;
+            margin: 5px auto;
+            max-width: 350px;
+            width: 80%;
+        }
+    }
+
+    @media only screen and (max-width: 300px) {
+        & > :last-child {
+            display: none;
+        }
+    }
+`;
+
+const Projects = styled.div`
+    @media only screen and (max-width: 1250px) {
+        display: block;
     }
 `;
 

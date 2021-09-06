@@ -5,7 +5,6 @@ import theme from "data/theme";
 import { createGlobalStyle } from "styled-components";
 
 import "react-tippy/dist/tippy.css";
-import "styles/index.css";
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
     return (
