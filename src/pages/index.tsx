@@ -13,6 +13,7 @@ import GraphQL from "data/graphql";
 
 import FadeIn from "react-fade-in";
 import styled, { css } from "styled-components";
+import { GetStaticProps } from "next";
 
 export default function Home({ projects }: HomeProps): JSX.Element {
     const description = `A ${Age()} y/o aspiring Software Engineer`;
@@ -92,7 +93,7 @@ const Projects = styled(FadeIn)`
 `;
 
 // regen top 3 pinned repos every hour
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
     const resposQuery = await GraphQL(`
 {
   user(login: "${Github}") {
