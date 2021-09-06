@@ -101,12 +101,7 @@ const Title = styled.div`
 
     @media only screen and (max-width: 1250px) {
         display: block;
-        margin-bottom: 25px;
         transform: unset;
-        -webkit-transform: unset;
-        -moz-transform: unset;
-        -ms-transform: unset;
-        -o-transform: unset;
     }
 `;
 
