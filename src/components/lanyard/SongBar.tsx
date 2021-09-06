@@ -6,21 +6,6 @@ import theme from "data/theme";
 
 import styled from "styled-components";
 
-const formatSong = (start: number, end: number): JSX.Element => {
-    end = Math.floor((end - start) / 1000);
-    start = Math.floor((Date.now() - start) / 1000);
-    if (start > end) {
-        start = end;
-    }
-    return (
-        <Container>
-            <OuterBar>
-                <InnerBar start={start} end={end}></InnerBar>
-            </OuterBar>
-        </Container>
-    );
-};
-
 const SongBar = ({ start, end }: Timestamps): JSX.Element | null => {
     const [elapsed, setElapsed] = useState<JSX.Element | null>(null);
 
@@ -44,6 +29,21 @@ const SongBar = ({ start, end }: Timestamps): JSX.Element | null => {
 };
 
 export default SongBar;
+
+const formatSong = (start: number, end: number): JSX.Element => {
+    end = Math.floor((end - start) / 1000);
+    start = Math.floor((Date.now() - start) / 1000);
+    if (start > end) {
+        start = end;
+    }
+    return (
+        <Container>
+            <OuterBar>
+                <InnerBar start={start} end={end}></InnerBar>
+            </OuterBar>
+        </Container>
+    );
+};
 
 const Container = styled.div`
     position: absolute;

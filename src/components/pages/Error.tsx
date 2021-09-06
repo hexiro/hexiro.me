@@ -23,6 +23,7 @@ const ErrorPage = ({
         </Page>
     );
 };
+
 export default ErrorPage;
 
 const Main = styled.main`

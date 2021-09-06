@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
 import { Position, Size } from "react-tippy";
 
@@ -73,5 +73,5 @@ export interface FadeInProps {
 
 export interface SocialMediaProps {
     href: string;
-    children?: ReactNode;
+    children?: React.ReactNode;
 }

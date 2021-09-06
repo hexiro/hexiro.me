@@ -3,17 +3,6 @@ import React from "react";
 
 import styled from "styled-components";
 
-interface PageProps {
-    name: string;
-    description: string;
-    locked?: boolean;
-    children?: React.ReactNode;
-}
-
-const Locked = styled.body`
-    overflow: hidden;
-`;
-
 const Page = ({ name, description, children, locked }: PageProps): JSX.Element => {
     return (
         <>
@@ -30,3 +19,14 @@ const Page = ({ name, description, children, locked }: PageProps): JSX.Element =
     );
 };
 export default Page;
+
+interface PageProps {
+    name: string;
+    description: string;
+    locked?: boolean;
+    children?: React.ReactNode;
+}
+
+const Locked = styled.body`
+    overflow: hidden;
+`;

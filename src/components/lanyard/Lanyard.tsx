@@ -9,54 +9,6 @@ import theme from "data/theme";
 import { Activity, LanyardWebsocket, Spotify, useLanyard } from "react-use-lanyard";
 import styled from "styled-components";
 
-const buildAsset = (applicationId: string, assetId: string): string => {
-    return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
-};
-
-interface LanyardContent {
-    largeImage: string;
-    smallImage?: string;
-    name: string;
-    firstLine?: string;
-    secondLine?: string;
-}
-
-const handleSpotify = (spotify: Spotify): LanyardContent => {
-    return {
-        largeImage: spotify.album_art_url,
-        name: spotify.song,
-        firstLine: "By: " + spotify.artist.replaceAll(";", ","),
-        secondLine: "On: " + spotify.album.replaceAll(";", ","),
-    };
-};
-
-const handleGame = (activity: Activity): LanyardContent => {
-    // is checked in for loop -- not recognized by ts
-    const assets = activity.assets!;
-    const application_id = activity.application_id!;
-    const largeImage = buildAsset(application_id, assets.large_image);
-    const name = activity.name;
-    const secondLine = activity.state;
-
-    let smallImage: string | undefined;
-    let firstLine: string | undefined = activity.details;
-
-    if (assets.small_image) {
-        smallImage = buildAsset(application_id, assets.small_image);
-    }
-    if (firstLine?.startsWith("Editing")) {
-        firstLine = firstLine.replace("Editing", "Editing:");
-    }
-
-    return {
-        largeImage,
-        smallImage,
-        name,
-        firstLine,
-        secondLine,
-    };
-};
-
 const Lanyard = () => {
     const { loading, status } = useLanyard({
         userId: Discord,
@@ -131,6 +83,54 @@ const Lanyard = () => {
 };
 
 export default Lanyard;
+
+const buildAsset = (applicationId: string, assetId: string): string => {
+    return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
+};
+
+interface LanyardContent {
+    largeImage: string;
+    smallImage?: string;
+    name: string;
+    firstLine?: string;
+    secondLine?: string;
+}
+
+const handleSpotify = (spotify: Spotify): LanyardContent => {
+    return {
+        largeImage: spotify.album_art_url,
+        name: spotify.song,
+        firstLine: "By: " + spotify.artist.replaceAll(";", ","),
+        secondLine: "On: " + spotify.album.replaceAll(";", ","),
+    };
+};
+
+const handleGame = (activity: Activity): LanyardContent => {
+    // is checked in for loop -- not recognized by ts
+    const assets = activity.assets!;
+    const application_id = activity.application_id!;
+    const largeImage = buildAsset(application_id, assets.large_image);
+    const name = activity.name;
+    const secondLine = activity.state;
+
+    let smallImage: string | undefined;
+    let firstLine: string | undefined = activity.details;
+
+    if (assets.small_image) {
+        smallImage = buildAsset(application_id, assets.small_image);
+    }
+    if (firstLine?.startsWith("Editing")) {
+        firstLine = firstLine.replace("Editing", "Editing:");
+    }
+
+    return {
+        largeImage,
+        smallImage,
+        name,
+        firstLine,
+        secondLine,
+    };
+};
 
 const Container = styled.div`
     position: relative;
