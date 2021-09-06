@@ -89,7 +89,11 @@ export default function Page({ name, description, children }: PageProps): JSX.El
             />
             {children}
             <noscript>
-                <style>{".fade-in{opacity:1!important;}"}</style>
+                <style
+                    dangerouslySetInnerHTML={{
+                        __html: "*[style*='opacity:0']{opacity:1!important;}",
+                    }}
+                />
             </noscript>
         </>
     );
