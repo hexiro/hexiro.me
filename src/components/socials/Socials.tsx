@@ -33,7 +33,14 @@ const UnorderedList = styled(FadeIn).attrs(() => ({
     wrapperTag: "ul",
     childTag: "span",
 }))`
+    margin-top: 10px;
+    position: absolute;
+
     & > :last-child {
         margin-right: unset;
+    }
+
+    @media only screen and (max-width: 1250px) {
+        position: unset;
     }
 `;

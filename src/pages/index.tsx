@@ -80,33 +80,8 @@ const Intro = styled(FadeIn)`
     position: relative;
     transform: translateY(-20%);
 
-    & ul {
-        margin-top: 10px;
-    }
-
-    & ul,
-    & > :last-child {
-        position: absolute;
-    }
-
     @media only screen and (max-width: 1250px) {
         margin-left: unset;
-
-        & ul {
-            position: unset;
-        }
-        & > :last-child {
-            position: relative;
-            margin: 5px auto;
-            max-width: 350px;
-            width: 80%;
-        }
-    }
-
-    @media only screen and (max-width: 300px) {
-        & > :last-child {
-            display: none;
-        }
     }
 `;
 
