@@ -98,6 +98,5 @@ export default function Page({ name, description, children }: PageProps): JSX.El
 interface PageProps {
     name: string;
     description: string;
-    locked?: boolean;
     children?: React.ReactNode;
 }

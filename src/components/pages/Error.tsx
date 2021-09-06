@@ -7,7 +7,7 @@ export default function ErrorPage({ status, message }: ErrorPageProps): JSX.Elem
     status = String(status);
     if (!message) message = "Oops?";
     return (
-        <Page name={status} description={message} locked={true}>
+        <Page name={status} description={message}>
             <Main>
                 <Text>
                     <h1>

@@ -16,7 +16,7 @@ import styled, { css } from "styled-components";
 export default function Home({ projects }: HomeProps): JSX.Element {
     const description = `A ${Age()} y/o aspiring Software Engineer`;
     return (
-        <Page name="Home" description={description} locked={true}>
+        <Page name="Home" description={description}>
             <Main>
                 <Side side="left">
                     <Intro>
