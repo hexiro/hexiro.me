@@ -94,13 +94,15 @@ export const Lanyard = () => {
         <Container>
             <Images>
                 <LargeImage>
-                    <Image
-                        alt="large image of application or song"
-                        draggable={false}
-                        src={content.largeImage}
-                        height={90}
-                        width={90}
-                    />
+                    <Tooltip title={assets.large_text}>
+                        <Image
+                            alt="large image of application or song"
+                            draggable={false}
+                            src={content.largeImage}
+                            height={90}
+                            width={90}
+                        />
+                    </Tooltip>
                 </LargeImage>
                 {content.smallImage && (
                     <SmallImage>
