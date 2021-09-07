@@ -1,6 +1,4 @@
-import { TooltipProps } from "types";
-
-import { Tooltip as TippyTooltip } from "react-tippy";
+import { Position, Size, Tooltip as TippyTooltip } from "react-tippy";
 
 export const Tooltip = ({
     title,
@@ -31,3 +29,13 @@ export const Tooltip = ({
         </TippyTooltip>
     );
 };
+
+interface TooltipProps {
+    title?: string;
+    position?: Position;
+    distance?: number;
+    offset?: number;
+    size?: Size;
+    children?: React.ReactNode;
+    style?: React.CSSProperties;
+}

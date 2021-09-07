@@ -1,6 +1,5 @@
+import { GetStaticProps } from "next";
 import React from "react";
-
-import { HomeProps, ProjectProps } from "types";
 
 import { Header } from "components/common";
 import Lanyard from "components/lanyard";
@@ -13,7 +12,6 @@ import GraphQL from "data/graphql";
 
 import FadeIn from "react-fade-in";
 import styled, { css } from "styled-components";
-import { GetStaticProps } from "next";
 
 export default function Home({ projects }: HomeProps): JSX.Element {
     const description = `A ${Age()} y/o aspiring Software Engineer`;
@@ -40,6 +38,10 @@ export default function Home({ projects }: HomeProps): JSX.Element {
             </Main>
         </Page>
     );
+}
+
+interface HomeProps {
+    projects: ProjectProps[];
 }
 
 const Main = styled.main`
@@ -91,6 +93,37 @@ const Projects = styled(FadeIn)`
         display: block;
     }
 `;
+
+interface ProjectProps {
+    name: string;
+    descriptionHTML: string;
+    url: string;
+    owner: {
+        login: string;
+    };
+    stargazers: {
+        totalCount: number;
+    };
+    forks: {
+        totalCount: number;
+    };
+    pullRequests: {
+        totalCount: number;
+    };
+    issues: {
+        totalCount: number;
+    };
+    primaryLanguage: {
+        name: string;
+    };
+    defaultBranchRef: {
+        target: {
+            history: {
+                totalCount: number;
+            };
+        };
+    };
+}
 
 // regen top 3 pinned repos every hour
 export const getStaticProps: GetStaticProps = async () => {

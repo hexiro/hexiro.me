@@ -1,5 +1,3 @@
-import { SocialMediaProps } from "types";
-
 import { To } from "components/common";
 
 import styled from "styled-components";
@@ -11,6 +9,11 @@ export const SocialMedia = ({ href, children }: SocialMediaProps) => {
         </SocialItem>
     );
 };
+
+interface SocialMediaProps {
+    href: string;
+    children?: React.ReactNode;
+}
 
 const SocialItem = styled.li`
     height: 25px;
