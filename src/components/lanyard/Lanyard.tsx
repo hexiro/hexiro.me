@@ -105,10 +105,10 @@ const handleGame = (activity: Activity): LanyardContent => {
     const application_id = activity.application_id!;
     const largeImage = buildAsset(application_id, assets.large_image);
     const name = activity.name;
+    const firstLine = activity.details;
     const secondLine = activity.state;
 
     let smallImage: string | undefined;
-    let firstLine: string | undefined = activity.details;
 
     if (assets.small_image) {
         smallImage = buildAsset(application_id, assets.small_image);
