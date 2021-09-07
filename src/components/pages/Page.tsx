@@ -5,6 +5,12 @@ import theme from "data/theme";
 
 import { DefaultSeo } from "next-seo";
 
+interface PageProps {
+    name: string;
+    description: string;
+    children?: React.ReactNode;
+}
+
 export default function Page({ name, description, children }: PageProps): JSX.Element {
     return (
         <>
@@ -97,10 +103,4 @@ export default function Page({ name, description, children }: PageProps): JSX.El
             </noscript>
         </>
     );
-}
-
-interface PageProps {
-    name: string;
-    description: string;
-    children?: React.ReactNode;
 }
