@@ -43,9 +43,9 @@ export default function Lanyard(): JSX.Element | null {
     return (
         <Container>
             <Images>
-                <LargeImage>
+                <LargeImageContainer>
                     <Tooltip title={assets.large_text}>
-                        <Image
+                        <LargeImage
                             alt="large image of application or song"
                             draggable={false}
                             src={content.largeImage}
@@ -53,17 +53,19 @@ export default function Lanyard(): JSX.Element | null {
                             width={90}
                         />
                     </Tooltip>
-                </LargeImage>
+                </LargeImageContainer>
                 {content.smallImage && (
-                    <SmallImage>
+                    <SmallImageContainer>
                         <Tooltip title={assets.small_text} size="small">
-                            <img
+                            <SmallImage
                                 alt="small image of application"
                                 draggable={false}
                                 src={content.smallImage}
+                                height={30}
+                                width={30}
                             />
                         </Tooltip>
-                    </SmallImage>
+                    </SmallImageContainer>
                 )}
             </Images>
             <Text>
@@ -151,27 +153,24 @@ const Images = styled.div`
     position: relative;
 `;
 
-const LargeImage = styled.div`
-    & img {
-        display: block;
-        height: 90px;
-        width: 90px;
-        border-radius: 4px;
-        box-shadow: 0 0px 10px rgb(0 0 0 / 25%);
-    }
+const LargeImageContainer = styled.div``;
+
+// !important bcuz next/image lol
+// maybe these can be removed with some args that i don't know about
+const LargeImage = styled(Image)`
+    border-radius: 4px;
+    box-shadow: 0 0px 10px rgb(0 0 0 / 25%) !important;
 `;
 
-const SmallImage = styled.div`
+const SmallImageContainer = styled.div`
     position: absolute;
     right: -7px;
-    bottom: -7px;
-    & img {
-        display: block;
-        height: 30px;
-        width: 30px;
-        border: var(--main-accent) 2px solid;
-        border-radius: 50%;
-    }
+    bottom: -23px;
+`;
+
+const SmallImage = styled(Image)`
+    border-radius: 50%;
+    border: ${theme.core.main} 2px solid !important;
 `;
 
 const Text = styled.div`
