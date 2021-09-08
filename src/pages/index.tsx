@@ -7,8 +7,8 @@ import Page from "components/pages";
 import Project from "components/projects";
 import Socials from "components/socials";
 
-import { Age, Github } from "data/config";
-import GraphQL from "data/graphql";
+import { Age } from "data/config";
+import GraphQL, { ProjectProps, REPOS_QUERY } from "data/graphql";
 
 import FadeIn from "react-fade-in";
 import styled, { css } from "styled-components";
@@ -94,82 +94,10 @@ const Projects = styled(FadeIn)`
     }
 `;
 
-interface ProjectProps {
-    name: string;
-    descriptionHTML: string;
-    url: string;
-    owner: {
-        login: string;
-    };
-    stargazers: {
-        totalCount: number;
-    };
-    forks: {
-        totalCount: number;
-    };
-    pullRequests: {
-        totalCount: number;
-    };
-    issues: {
-        totalCount: number;
-    };
-    primaryLanguage: {
-        name: string;
-    };
-    defaultBranchRef: {
-        target: {
-            history: {
-                totalCount: number;
-            };
-        };
-    };
-}
-
 // regen top 3 pinned repos every hour
 export const getStaticProps: GetStaticProps = async () => {
-    const resposQuery = await GraphQL(`
-{
-  user(login: "${Github}") {
-    pinnedItems(first: 3, types: REPOSITORY) {
-      nodes {
-        ... on Repository {
-          name
-          descriptionHTML
-          url
-          owner {
-            login
-          }
-          stargazers {
-            totalCount
-          }
-          forks {
-            totalCount
-          }
-          pullRequests {
-            totalCount
-          }
-          issues {
-            totalCount
-          }
-          primaryLanguage {
-            name
-          }
-          defaultBranchRef {
-            target {
-              ... on Commit {
-                history {
-                  totalCount
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`);
-    const json = await resposQuery.json();
+    const resp = await GraphQL(REPOS_QUERY)
+    const json = await resp.json();
     const projects: ProjectProps[] = json["data"]["user"]["pinnedItems"]["nodes"];
 
     return {
