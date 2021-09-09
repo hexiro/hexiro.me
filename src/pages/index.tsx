@@ -9,8 +9,9 @@ import Socials from "components/socials";
 
 import { Age } from "data/config";
 import GraphQL, { ProjectProps, REPOS_QUERY } from "data/graphql";
+import { fadeChild, fadeParent } from "data/variants";
 
-import FadeIn from "react-fade-in";
+import { motion } from "framer-motion";
 import styled, { css } from "styled-components";
 
 export default function Home({ projects }: HomeProps): JSX.Element {
@@ -19,17 +20,17 @@ export default function Home({ projects }: HomeProps): JSX.Element {
         <Page name="Home" description={description}>
             <Main>
                 <Side side="left">
-                    <Intro delay={50} transitionDuration={400}>
-                        <h1>
+                    <Intro initial="start" animate="fade" variants={fadeParent}>
+                        <motion.h1 variants={fadeChild}>
                             Hi! I'm <Header>Hexiro</Header>,
-                        </h1>
-                        <h2>{description}</h2>
-                        <Socials delay={120} transitionDuration={450} />
+                        </motion.h1>
+                        <motion.h2 variants={fadeChild}>{description}</motion.h2>
+                        <Socials />
                         <Lanyard />
                     </Intro>
                 </Side>
                 <Side side="right">
-                    <Projects delay={80} transitionDuration={425}>
+                    <Projects>
                         {projects.map(project => (
                             <Project {...project} />
                         ))}
@@ -76,7 +77,7 @@ const Side = styled.div<{ side: "left" | "right" }>`
 
 // transform makes it so the vertical centering is centered around the description line
 // instead of around the whole div
-const Intro = styled(FadeIn)`
+const Intro = styled(motion.div)`
     line-height: 3em;
     margin-left: 30px;
     min-height: 115px;
@@ -88,7 +89,7 @@ const Intro = styled(FadeIn)`
     }
 `;
 
-const Projects = styled(FadeIn)`
+const Projects = styled.div`
     @media only screen and (max-width: 1250px) {
         display: block;
     }
@@ -96,7 +97,7 @@ const Projects = styled(FadeIn)`
 
 // regen top 3 pinned repos every hour
 export const getStaticProps: GetStaticProps = async () => {
-    const resp = await GraphQL(REPOS_QUERY)
+    const resp = await GraphQL(REPOS_QUERY);
     const json = await resp.json();
     const projects: ProjectProps[] = json["data"]["user"]["pinnedItems"]["nodes"];
 

@@ -5,84 +5,11 @@ import SongBar from "components/lanyard/SongBar";
 
 import { Discord } from "data/config";
 import theme from "data/theme";
+import { fadeChild } from "data/variants";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { Activity, LanyardWebsocket, Spotify, useLanyard } from "react-use-lanyard";
 import styled from "styled-components";
-
-export default function Lanyard(): JSX.Element | null {
-    const { loading, status } = useLanyard({
-        userId: Discord,
-        socket: true,
-    }) as LanyardWebsocket;
-
-    const types = [0, 2];
-    const activity = status?.activities.find(
-        act => types.includes(act.type) && act.assets && act.timestamps
-    );
-
-    const songBar = SongBar(activity?.timestamps);
-
-    // if no data / invalid data is returned / i have no availble
-    if (loading || !status || !activity) return null;
-
-    const isListening = activity.type === 2;
-    const isGame = activity.type === 0;
-
-    if (!activity.assets) return null;
-    const assets = activity.assets;
-
-    let content: LanyardContent;
-    if (isListening && typeof status.spotify !== "undefined") {
-        content = handleSpotify(status.spotify);
-    } else if (isGame && typeof activity.application_id !== "undefined") {
-        content = handleGame(activity);
-    } else {
-        return null;
-    }
-
-    return (
-        <Container>
-            <Images>
-                <LargeImageContainer>
-                    <Tooltip title={assets.large_text}>
-                        <LargeImage
-                            alt="large image of application or song"
-                            draggable={false}
-                            src={content.largeImage}
-                            height={90}
-                            width={90}
-                        />
-                    </Tooltip>
-                </LargeImageContainer>
-                {content.smallImage && (
-                    <SmallImageContainer>
-                        <Tooltip title={assets.small_text} size="small">
-                            <SmallImage
-                                alt="small image of application"
-                                draggable={false}
-                                src={content.smallImage}
-                                height={30}
-                                width={30}
-                            />
-                        </Tooltip>
-                    </SmallImageContainer>
-                )}
-            </Images>
-            <Text>
-                <h4>
-                    <Header>{content.name}</Header>
-                </h4>
-                <h5>{content.firstLine}</h5>
-                <h5>{content.secondLine}</h5>
-            </Text>
-            {isListening && songBar}
-        </Container>
-    );
-}
-
-const buildAsset = (applicationId: string, assetId: string): string => {
-    return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
-};
 
 interface LanyardContent {
     largeImage: string;
@@ -91,6 +18,10 @@ interface LanyardContent {
     firstLine?: string;
     secondLine?: string;
 }
+
+const buildAsset = (applicationId: string, assetId: string): string => {
+    return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
+};
 
 const handleSpotify = (spotify: Spotify): LanyardContent => {
     return {
@@ -125,7 +56,78 @@ const handleGame = (activity: Activity): LanyardContent => {
     };
 };
 
-const Container = styled.div`
+export default function Lanyard(): JSX.Element | null {
+    const { loading, status } = useLanyard({
+        userId: Discord,
+        socket: true,
+    }) as LanyardWebsocket;
+
+    const types = [0, 2];
+    const activity = status?.activities.find(
+        act => types.includes(act.type) && act.assets && act.timestamps
+    );
+
+    const songBar = SongBar(activity?.timestamps);
+    const assets = activity?.assets;
+
+    const isListening = activity?.type === 2;
+    const isGame = activity?.type === 0;
+
+    let content: LanyardContent | undefined;
+
+    if (!(loading || !status || !activity || !assets)) {
+        if (isListening && typeof status.spotify !== "undefined") {
+            content = handleSpotify(status.spotify);
+        } else if (isGame && typeof activity.application_id !== "undefined") {
+            content = handleGame(activity);
+        }
+    }
+
+    return (
+        <AnimatePresence>
+            {content && (
+                <Container initial="start" animate="fade" exit="start" variants={fadeChild}>
+                    <Images>
+                        <LargeImageContainer>
+                            <Tooltip title={assets!.large_text}>
+                                <LargeImage
+                                    alt="large image of application or song"
+                                    draggable={false}
+                                    src={content.largeImage}
+                                    height={90}
+                                    width={90}
+                                />
+                            </Tooltip>
+                        </LargeImageContainer>
+                        {content.smallImage && (
+                            <SmallImageContainer>
+                                <Tooltip title={assets!.small_text} size="small">
+                                    <SmallImage
+                                        alt="small image of application"
+                                        draggable={false}
+                                        src={content.smallImage}
+                                        height={30}
+                                        width={30}
+                                    />
+                                </Tooltip>
+                            </SmallImageContainer>
+                        )}
+                    </Images>
+                    <Text>
+                        <h4>
+                            <Header>{content.name}</Header>
+                        </h4>
+                        <h5>{content.firstLine}</h5>
+                        <h5>{content.secondLine}</h5>
+                    </Text>
+                    {isListening && songBar}
+                </Container>
+            )}
+        </AnimatePresence>
+    );
+}
+
+const Container = styled(motion.div)`
     position: absolute;
     display: flex;
     height: 130px;
