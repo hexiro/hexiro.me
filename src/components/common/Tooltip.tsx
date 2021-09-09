@@ -1,25 +1,11 @@
-import { TooltipProps } from "types";
+import { PropsWithChildren } from "react";
 
-import { Tooltip as TippyTooltip } from "react-tippy";
+import { Tooltip as TippyTooltip, TooltipProps as TippyTooltipProps } from "react-tippy";
 
-export const Tooltip = ({
-    title,
-    position,
-    distance,
-    offset,
-    size,
-    children,
-    style,
-}: TooltipProps): JSX.Element => {
+export const Tooltip = ({ children, style, ...all }: TooltipProps): JSX.Element => {
     return (
         <TippyTooltip
-            // settings
-            title={title}
-            distance={distance}
-            offset={offset}
-            size={size}
-            arrowSize={size}
-            position={position}
+            {...all}
             // set styling
             arrow={true}
             inertia={true}
@@ -31,3 +17,7 @@ export const Tooltip = ({
         </TippyTooltip>
     );
 };
+
+type TooltipProps = PropsWithChildren<
+    Omit<TippyTooltipProps, "arrow" | "inertia" | "duration" | "multiple">
+>;

@@ -1,6 +1,5 @@
+import { GetStaticProps } from "next";
 import React from "react";
-
-import { HomeProps, ProjectProps } from "types";
 
 import { Header } from "components/common";
 import Lanyard from "components/lanyard";
@@ -8,12 +7,12 @@ import Page from "components/pages";
 import Project from "components/projects";
 import Socials from "components/socials";
 
-import { Age, Github } from "data/config";
-import GraphQL from "data/graphql";
+import { Age } from "static/config";
+import GraphQL, { ProjectProps, REPOS_QUERY } from "static/graphql";
+import { fadeChild, fadeParent } from "static/variants";
 
-import FadeIn from "react-fade-in";
+import { motion } from "framer-motion";
 import styled, { css } from "styled-components";
-import { GetStaticProps } from "next";
 
 export default function Home({ projects }: HomeProps): JSX.Element {
     const description = `A ${Age()} y/o aspiring Software Engineer`;
@@ -21,17 +20,17 @@ export default function Home({ projects }: HomeProps): JSX.Element {
         <Page name="Home" description={description}>
             <Main>
                 <Side side="left">
-                    <Intro delay={50} transitionDuration={400}>
-                        <h1>
+                    <Intro initial="start" animate="fade" variants={fadeParent}>
+                        <motion.h1 variants={fadeChild}>
                             Hi! I'm <Header>Hexiro</Header>,
-                        </h1>
-                        <h2>{description}</h2>
-                        <Socials delay={120} transitionDuration={450} />
+                        </motion.h1>
+                        <motion.h2 variants={fadeChild}>{description}</motion.h2>
+                        <Socials />
                         <Lanyard />
                     </Intro>
                 </Side>
                 <Side side="right">
-                    <Projects delay={80} transitionDuration={425}>
+                    <Projects initial="start" animate="fade" variants={fadeParent}>
                         {projects.map(project => (
                             <Project {...project} />
                         ))}
@@ -40,6 +39,10 @@ export default function Home({ projects }: HomeProps): JSX.Element {
             </Main>
         </Page>
     );
+}
+
+interface HomeProps {
+    projects: ProjectProps[];
 }
 
 const Main = styled.main`
@@ -74,7 +77,7 @@ const Side = styled.div<{ side: "left" | "right" }>`
 
 // transform makes it so the vertical centering is centered around the description line
 // instead of around the whole div
-const Intro = styled(FadeIn)`
+const Intro = styled(motion.div)`
     line-height: 3em;
     margin-left: 30px;
     min-height: 115px;
@@ -86,7 +89,7 @@ const Intro = styled(FadeIn)`
     }
 `;
 
-const Projects = styled(FadeIn)`
+const Projects = styled(motion.div)`
     @media only screen and (max-width: 1250px) {
         display: block;
     }
@@ -94,49 +97,8 @@ const Projects = styled(FadeIn)`
 
 // regen top 3 pinned repos every hour
 export const getStaticProps: GetStaticProps = async () => {
-    const resposQuery = await GraphQL(`
-{
-  user(login: "${Github}") {
-    pinnedItems(first: 3, types: REPOSITORY) {
-      nodes {
-        ... on Repository {
-          name
-          descriptionHTML
-          url
-          owner {
-            login
-          }
-          stargazers {
-            totalCount
-          }
-          forks {
-            totalCount
-          }
-          pullRequests {
-            totalCount
-          }
-          issues {
-            totalCount
-          }
-          primaryLanguage {
-            name
-          }
-          defaultBranchRef {
-            target {
-              ... on Commit {
-                history {
-                  totalCount
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`);
-    const json = await resposQuery.json();
+    const resp = await GraphQL(REPOS_QUERY);
+    const json = await resp.json();
     const projects: ProjectProps[] = json["data"]["user"]["pinnedItems"]["nodes"];
 
     return {

@@ -1,3 +1,4 @@
+import { PropsWithChildren } from "hoist-non-react-statics/node_modules/@types/react";
 import styled from "styled-components";
 
 export default function Detail({ detail, children }: DetailProps): JSX.Element | null {
@@ -12,10 +13,7 @@ export default function Detail({ detail, children }: DetailProps): JSX.Element |
     return null;
 }
 
-interface DetailProps {
-    detail: number;
-    children: React.ReactNode;
-}
+type DetailProps = PropsWithChildren<{ detail: number }>;
 
 const ProjectDetail = styled.li`
     display: inline-flex;

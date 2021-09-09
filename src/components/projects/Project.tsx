@@ -1,16 +1,26 @@
-import { ProjectProps } from "types";
-
 import { Header, ParseHTML, To } from "components/common";
 import { Commits, Forks, PullRequests, Stars } from "components/projects/details";
 
-import { Github } from "data/config";
-import theme from "data/theme";
+import { Github } from "static/config";
+import { ProjectProps } from "static/graphql";
+import theme from "static/theme";
+import { fadeChild } from "static/variants";
 
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export default function Project(project: ProjectProps): JSX.Element {
     return (
-        <ProjectItem>
+        <ProjectContainer
+            variants={fadeChild}
+            whileHover={{
+                scale: 1.04,
+            }}
+            transition={{
+                duration: 0.35,
+                ease: "easeInOut",
+            }}
+        >
             <ProjectContent>
                 <Title>
                     <h3>
@@ -35,11 +45,11 @@ export default function Project(project: ProjectProps): JSX.Element {
                     </ul>
                 </Footer>
             </ProjectContent>
-        </ProjectItem>
+        </ProjectContainer>
     );
 }
 
-const ProjectItem = styled.div`
+const ProjectContainer = styled(motion.div)`
     position: relative;
     min-width: 530px;
     max-width: 630px;
@@ -49,12 +59,6 @@ const ProjectItem = styled.div`
     padding: 14px 20px 4px 20px;
     margin: 25px 0;
     box-shadow: 0 6px 13px rgba(0, 0, 0, 0.25);
-    transition: ease-out all 0.31s;
-    will-change: transform;
-
-    &:hover {
-        transform: scale(1.04);
-    }
 
     @media only screen and (max-width: 1250px) {
         display: block;

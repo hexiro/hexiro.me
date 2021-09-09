@@ -1,16 +1,15 @@
-import { SocialMedia as RawSocialMedia } from "components/socials/SocialMedia";
+import { SocialMedia } from "components/socials/SocialMedia";
 
-import { GithubLink, SteamLink, TwitterLink } from "data/config";
+import { GithubLink, SteamLink, TwitterLink } from "static/config";
+import { fadeParent } from "static/variants";
 
-import FadeIn from "react-fade-in";
+import { motion } from "framer-motion";
 import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
 import styled from "styled-components";
 
-const SocialMedia = styled(RawSocialMedia)``;
-
-export default function Socials(props: SocialsProps): JSX.Element {
+export default function Socials(): JSX.Element {
     return (
-        <UnorderedList {...props}>
+        <UnorderedList variants={fadeParent}>
             <SocialMedia href={TwitterLink}>
                 <RiTwitterLine />
             </SocialMedia>
@@ -24,15 +23,7 @@ export default function Socials(props: SocialsProps): JSX.Element {
     );
 }
 
-interface SocialsProps {
-    delay?: number;
-    transitionDuration?: number;
-}
-
-const UnorderedList = styled(FadeIn).attrs(() => ({
-    wrapperTag: "ul",
-    childTag: "span",
-}))`
+const UnorderedList = styled(motion.ul)`
     margin-top: 10px;
     position: absolute;
 

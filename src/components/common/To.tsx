@@ -1,10 +1,11 @@
 import Link from "next/link";
 
-import theme from "data/theme";
+import theme from "static/theme";
 
 import styled from "styled-components";
+import { PropsWithChildren } from "react";
 
-export const To = ({ href, children }: ToProps) => (
+export const To = ({ href, children }: PropsWithChildren<{ href: string }>) => (
     <Link href={href} passHref>
         <Anchor rel="noreferrer" target="_blank">
             {children}
@@ -12,17 +13,12 @@ export const To = ({ href, children }: ToProps) => (
     </Link>
 );
 
-interface ToProps {
-    href: string;
-    children?: React.ReactNode;
-}
-
 const Anchor = styled.a`
     color: ${theme.core.main};
     text-decoration: none;
     opacity: 0.7;
     font-weight: 300;
-    transition: all ease 0.2s;
+    transition: ease all 0.2s;
     &:hover {
         opacity: 0.9;
     }

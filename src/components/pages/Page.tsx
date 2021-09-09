@@ -1,9 +1,15 @@
 import React from "react";
 
-import { Twitter } from "data/config";
-import theme from "data/theme";
+import { Twitter } from "static/config";
+import theme from "static/theme";
 
 import { DefaultSeo } from "next-seo";
+
+interface PageProps {
+    name: string;
+    description: string;
+    children?: React.ReactNode;
+}
 
 export default function Page({ name, description, children }: PageProps): JSX.Element {
     return (
@@ -97,10 +103,4 @@ export default function Page({ name, description, children }: PageProps): JSX.El
             </noscript>
         </>
     );
-}
-
-interface PageProps {
-    name: string;
-    description: string;
-    children?: React.ReactNode;
 }

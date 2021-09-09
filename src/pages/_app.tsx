@@ -1,6 +1,6 @@
 import { AppProps } from "next/app";
 
-import theme from "data/theme";
+import theme from "static/theme";
 
 import { createGlobalStyle } from "styled-components";
 
@@ -56,7 +56,7 @@ body {
     color: ${theme.core.text};
     font-family: "Poppins", sans-serif;
     font-weight: 200;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 h1,
