@@ -5,7 +5,7 @@ export const fadeParent = {
     fade: {
         opacity: 1,
         transition: {
-            delayChildren: 0.2,
+            delayChildren: 0.165,
             staggerChildren: 0.1,
         },
     },

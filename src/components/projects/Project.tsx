@@ -4,12 +4,14 @@ import { Commits, Forks, PullRequests, Stars } from "components/projects/details
 import { Github } from "static/config";
 import { ProjectProps } from "static/graphql";
 import theme from "static/theme";
+import { fadeChild } from "static/variants";
 
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export default function Project(project: ProjectProps): JSX.Element {
     return (
-        <ProjectContainer>
+        <ProjectContainer variants={fadeChild}>
             <ProjectContent>
                 <Title>
                     <h3>
@@ -38,7 +40,7 @@ export default function Project(project: ProjectProps): JSX.Element {
     );
 }
 
-const ProjectContainer = styled.div`
+const ProjectContainer = styled(motion.div)`
     position: relative;
     min-width: 530px;
     max-width: 630px;

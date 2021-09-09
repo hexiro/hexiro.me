@@ -30,7 +30,7 @@ export default function Home({ projects }: HomeProps): JSX.Element {
                     </Intro>
                 </Side>
                 <Side side="right">
-                    <Projects>
+                    <Projects initial="start" animate="fade" variants={fadeParent}>
                         {projects.map(project => (
                             <Project {...project} />
                         ))}
@@ -89,7 +89,7 @@ const Intro = styled(motion.div)`
     }
 `;
 
-const Projects = styled.div`
+const Projects = styled(motion.div)`
     @media only screen and (max-width: 1250px) {
         display: block;
     }
