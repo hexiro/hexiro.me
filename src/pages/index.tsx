@@ -19,7 +19,7 @@ export default function Home({ projects }: HomeProps): JSX.Element {
     return (
         <Page name="Home" description={description}>
             <Main>
-                <Side side="left">
+                <Side left>
                     <Intro initial="start" animate="fade" variants={fadeParent}>
                         <motion.h1 variants={fadeChild}>
                             Hi! I'm <Header>Hexiro</Header>,
@@ -29,7 +29,7 @@ export default function Home({ projects }: HomeProps): JSX.Element {
                         <Lanyard />
                     </Intro>
                 </Side>
-                <Side side="right">
+                <Side right>
                     <Projects initial="start" animate="fade" variants={fadeParent}>
                         {projects.map(project => (
                             <Project {...project} />
@@ -59,11 +59,11 @@ const Main = styled.main`
 `;
 
 // prettier-ignore
-const Side = styled.div<{ side: "left" | "right" }>`
+const Side = styled.div<{ left: true } | { right: true }>`
     display: flex;
     flex: 1;
     align-items: center;
-    ${({ side }) => side === "right" && css`
+    ${(props) => "right" in props && css`
             justify-content: center;
             margin: 20px 0;
       `}
