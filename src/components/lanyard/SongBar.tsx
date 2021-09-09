@@ -37,15 +37,15 @@ const formatSong = (start: number, end: number): JSX.Element => {
         start = end;
     }
     return (
-        <Container>
+        <SongBarContainer>
             <OuterBar>
                 <InnerBar start={start} end={end}></InnerBar>
             </OuterBar>
-        </Container>
+        </SongBarContainer>
     );
 };
 
-const Container = styled.div`
+const SongBarContainer = styled.div`
     position: absolute;
     bottom: 0;
     padding: 0;

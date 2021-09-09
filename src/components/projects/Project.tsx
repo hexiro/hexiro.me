@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 export default function Project(project: ProjectProps): JSX.Element {
     return (
-        <ProjectItem>
+        <ProjectContainer>
             <ProjectContent>
                 <Title>
                     <h3>
@@ -34,11 +34,11 @@ export default function Project(project: ProjectProps): JSX.Element {
                     </ul>
                 </Footer>
             </ProjectContent>
-        </ProjectItem>
+        </ProjectContainer>
     );
 }
 
-const ProjectItem = styled.div`
+const ProjectContainer = styled.div`
     position: relative;
     min-width: 530px;
     max-width: 630px;

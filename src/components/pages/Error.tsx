@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 export default function ErrorPage({ status, message }: ErrorPageProps): JSX.Element {
     status = String(status);
-    if (!message) message = "Oops?";
+    message = message || "Oops?";
     return (
         <Page name={status} description={message}>
             <Main>

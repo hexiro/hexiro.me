@@ -41,7 +41,7 @@ export default function Lanyard(): JSX.Element | null {
     return (
         <AnimatePresence>
             {content && (
-                <Container initial="start" animate="fade" exit="start" variants={fadeChild}>
+                <LanyardContainer initial="start" animate="fade" exit="start" variants={fadeChild}>
                     <Images>
                         <LargeImageContainer>
                             <Tooltip title={assets!.large_text}>
@@ -76,7 +76,7 @@ export default function Lanyard(): JSX.Element | null {
                         <h5>{content.secondLine}</h5>
                     </Text>
                     {isListening && songBar}
-                </Container>
+                </LanyardContainer>
             )}
         </AnimatePresence>
     );
@@ -127,7 +127,7 @@ const handleGame = (activity: Activity): LanyardContent => {
     };
 };
 
-const Container = styled(motion.div)`
+const LanyardContainer = styled(motion.div)`
     position: absolute;
     display: flex;
     height: 130px;
