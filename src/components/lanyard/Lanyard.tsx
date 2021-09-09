@@ -11,51 +11,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Activity, LanyardWebsocket, Spotify, useLanyard } from "react-use-lanyard";
 import styled from "styled-components";
 
-interface LanyardContent {
-    largeImage: string;
-    smallImage?: string;
-    name: string;
-    firstLine?: string;
-    secondLine?: string;
-}
-
-const buildAsset = (applicationId: string, assetId: string): string => {
-    return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
-};
-
-const handleSpotify = (spotify: Spotify): LanyardContent => {
-    return {
-        largeImage: spotify.album_art_url,
-        name: spotify.song,
-        firstLine: "By " + spotify.artist.replaceAll(";", ","),
-        secondLine: "On " + spotify.album.replaceAll(";", ","),
-    };
-};
-
-const handleGame = (activity: Activity): LanyardContent => {
-    // is checked in for loop -- not recognized by ts
-    const assets = activity.assets!;
-    const application_id = activity.application_id!;
-    const largeImage = buildAsset(application_id, assets.large_image);
-    const name = activity.name;
-    const firstLine = activity.details;
-    const secondLine = activity.state;
-
-    let smallImage: string | undefined;
-
-    if (assets.small_image) {
-        smallImage = buildAsset(application_id, assets.small_image);
-    }
-
-    return {
-        largeImage,
-        smallImage,
-        name,
-        firstLine,
-        secondLine,
-    };
-};
-
 export default function Lanyard(): JSX.Element | null {
     const { loading, status } = useLanyard({
         userId: Discord,
@@ -75,10 +30,10 @@ export default function Lanyard(): JSX.Element | null {
 
     let content: LanyardContent | undefined;
 
-    if (!(loading || !status || !activity || !assets)) {
-        if (isListening && typeof status.spotify !== "undefined") {
+    if (!loading && status && activity && assets) {
+        if (isListening && status.spotify) {
             content = handleSpotify(status.spotify);
-        } else if (isGame && typeof activity.application_id !== "undefined") {
+        } else if (isGame && activity.application_id) {
             content = handleGame(activity);
         }
     }
@@ -126,6 +81,51 @@ export default function Lanyard(): JSX.Element | null {
         </AnimatePresence>
     );
 }
+
+interface LanyardContent {
+    largeImage: string;
+    smallImage?: string;
+    name: string;
+    firstLine?: string;
+    secondLine?: string;
+}
+
+const buildAsset = (applicationId: string, assetId: string): string => {
+    return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
+};
+
+const handleSpotify = (spotify: Spotify): LanyardContent => {
+    return {
+        largeImage: spotify.album_art_url,
+        name: spotify.song,
+        firstLine: "By " + spotify.artist.replaceAll(";", ","),
+        secondLine: "On " + spotify.album.replaceAll(";", ","),
+    };
+};
+
+const handleGame = (activity: Activity): LanyardContent => {
+    // is checked in for loop -- not recognized by ts
+    const assets = activity.assets!;
+    const application_id = activity.application_id!;
+    const largeImage = buildAsset(application_id, assets.large_image);
+    const name = activity.name;
+    const firstLine = activity.details;
+    const secondLine = activity.state;
+
+    let smallImage: string | undefined;
+
+    if (assets.small_image) {
+        smallImage = buildAsset(application_id, assets.small_image);
+    }
+
+    return {
+        largeImage,
+        smallImage,
+        name,
+        firstLine,
+        secondLine,
+    };
+};
 
 const Container = styled(motion.div)`
     position: absolute;
