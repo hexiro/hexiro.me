@@ -56,7 +56,7 @@ body {
     color: ${theme.core.text};
     font-family: "Poppins", sans-serif;
     font-weight: 200;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 h1,
