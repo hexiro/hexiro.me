@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import theme from "data/theme";
+import theme from "static/theme";
 
 import { Timestamps } from "react-use-lanyard";
 import styled from "styled-components";

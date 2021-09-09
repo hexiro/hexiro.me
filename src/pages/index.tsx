@@ -7,9 +7,9 @@ import Page from "components/pages";
 import Project from "components/projects";
 import Socials from "components/socials";
 
-import { Age } from "data/config";
-import GraphQL, { ProjectProps, REPOS_QUERY } from "data/graphql";
-import { fadeChild, fadeParent } from "data/variants";
+import { Age } from "static/config";
+import GraphQL, { ProjectProps, REPOS_QUERY } from "static/graphql";
+import { fadeChild, fadeParent } from "static/variants";
 
 import { motion } from "framer-motion";
 import styled, { css } from "styled-components";

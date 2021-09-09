@@ -1,9 +1,9 @@
 import { Header, ParseHTML, To } from "components/common";
 import { Commits, Forks, PullRequests, Stars } from "components/projects/details";
 
-import { Github } from "data/config";
-import { ProjectProps } from "data/graphql";
-import theme from "data/theme";
+import { Github } from "static/config";
+import { ProjectProps } from "static/graphql";
+import theme from "static/theme";
 
 import styled from "styled-components";
 

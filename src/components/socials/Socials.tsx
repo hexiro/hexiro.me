@@ -1,7 +1,7 @@
 import { SocialMedia } from "components/socials/SocialMedia";
 
-import { GithubLink, SteamLink, TwitterLink } from "data/config";
-import { fadeParent } from "data/variants";
+import { GithubLink, SteamLink, TwitterLink } from "static/config";
+import { fadeParent } from "static/variants";
 
 import { motion } from "framer-motion";
 import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";

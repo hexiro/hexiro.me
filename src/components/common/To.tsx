@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import theme from "data/theme";
+import theme from "static/theme";
 
 import styled from "styled-components";
 import { PropsWithChildren } from "react";

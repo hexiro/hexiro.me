@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Twitter } from "data/config";
-import theme from "data/theme";
+import { Twitter } from "static/config";
+import theme from "static/theme";
 
 import { DefaultSeo } from "next-seo";
 
