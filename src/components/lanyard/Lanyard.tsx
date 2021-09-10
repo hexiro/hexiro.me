@@ -8,14 +8,14 @@ import theme from "static/theme";
 import { fadeChild } from "static/variants";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Activity, LanyardWebsocket, Spotify, useLanyard } from "react-use-lanyard";
+import { Activity, Spotify, useLanyard } from "react-use-lanyard";
 import styled from "styled-components";
 
 export default function Lanyard(): JSX.Element | null {
     const { loading, status } = useLanyard({
         userId: Discord,
         socket: true,
-    }) as LanyardWebsocket;
+    });
 
     const types = [0, 2];
     const activity = status?.activities.find(
