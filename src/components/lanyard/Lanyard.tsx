@@ -51,6 +51,7 @@ export default function Lanyard(): JSX.Element | null {
                                     src={content.largeImage}
                                     height={90}
                                     width={90}
+                                    priority={true}
                                 />
                             </Tooltip>
                         </LargeImageContainer>
