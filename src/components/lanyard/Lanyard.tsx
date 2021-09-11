@@ -8,19 +8,19 @@ import theme from "static/theme";
 import { fadeChild } from "static/variants";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Activity, LanyardWebsocket, Spotify, useLanyard } from "react-use-lanyard";
+import { Activity, Spotify, useLanyard } from "react-use-lanyard";
 import styled from "styled-components";
 
 export default function Lanyard(): JSX.Element | null {
     const { loading, status } = useLanyard({
         userId: Discord,
         socket: true,
-    }) as LanyardWebsocket;
+    });
 
     const types = [0, 2];
-    const activity = status?.activities.find(
-        act => types.includes(act.type) && act.assets && act.timestamps
-    );
+    const activity = status?.activities
+        .sort((a, b) => (a.type > b.type ? 1 : -1))
+        .find(act => types.includes(act.type) && act.assets && act.timestamps);
 
     const songBar = SongBar(activity?.timestamps);
     const assets = activity?.assets;
@@ -51,6 +51,7 @@ export default function Lanyard(): JSX.Element | null {
                                     src={content.largeImage}
                                     height={90}
                                     width={90}
+                                    priority={true}
                                 />
                             </Tooltip>
                         </LargeImageContainer>

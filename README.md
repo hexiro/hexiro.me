@@ -1,19 +1,14 @@
-my website :)
+# hexiro.me  :3
 
-## TODO:
+[![forthebadge](https://forthebadge.com/images/badges/made-with-typescript.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/makes-people-smile.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/compatibility-club-penguin.svg)](https://forthebadge.com)
 
--   "go home" on 404
--   add more content to webpage (scrollable)
+pretty experimental,<br>
+which is why i have more commits than i probably should.<br>
+feel free to point out issues / improvements ♥
 
-## BACKLOG:
 
--   tailwindcss
--   i.hexiro.me subdomain
-
-## COMPLETED:
-
--   react-icons
--   lanyard
 
 <!-- pxseu was here -->
 <!-- hexiro was also here :) -->
