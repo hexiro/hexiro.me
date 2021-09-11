@@ -19,6 +19,7 @@ export default function Page({ name, description, children }: PageProps): JSX.El
                 title={name}
                 titleTemplate="%s | Hexiro"
                 defaultTitle="Page | Hexiro"
+                canonical="https://hexiro.me/"
                 openGraph={{
                     type: "website",
                     locale: "en_US",
