@@ -1,9 +1,9 @@
-import { Github } from "static/config";
+import { GITHUB } from "static/config";
 
 const gql = String.raw;
 export const PROJECTS = gql`
     {
-        user(login: "${Github}") {
+        user(login: "${GITHUB}") {
             pinnedItems(first: 3, types: REPOSITORY) {
                 nodes {
                     ... on Repository {

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Twitter } from "static/config";
+import { TWITTER } from "static/config";
 import theme from "static/theme";
 
 import { DefaultSeo } from "next-seo";
@@ -27,8 +27,8 @@ export default function Page({ name, description, children }: PageProps): JSX.El
                     site_name: "hexiro.me",
                 }}
                 twitter={{
-                    handle: `@${Twitter}`,
-                    site: `@${Twitter}`,
+                    handle: `@${TWITTER}`,
+                    site: `@${TWITTER}`,
                     cardType: "summary_large_image",
                 }}
                 additionalMetaTags={[

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Header, Tooltip } from "components/common";
 import SongBar from "components/lanyard/SongBar";
 
-import { Discord } from "static/config";
+import { DISCORD } from "static/config";
 import theme from "static/theme";
 import { fadeChild } from "static/variants";
 
@@ -13,7 +13,7 @@ import styled from "styled-components";
 
 export default function Lanyard(): JSX.Element | null {
     const { loading, status } = useLanyard({
-        userId: Discord,
+        userId: DISCORD,
         socket: true,
     });
 

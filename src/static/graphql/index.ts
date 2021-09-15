@@ -1,4 +1,4 @@
-import { GithubToken } from "static/config";
+import { GITHUB_TOKEN } from "static/config";
 
 export * from "static/graphql/project";
 
@@ -7,7 +7,7 @@ export default async function GraphQL(query: string): Promise<Response> {
         method: "POST",
         headers: {
             ContentType: "application/json",
-            Authorization: `token ${GithubToken}`,
+            Authorization: `token ${GITHUB_TOKEN}`,
         },
         body: JSON.stringify({ query }),
     });
