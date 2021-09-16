@@ -1,5 +1,5 @@
 import { Header, ParseHTML, To } from "components/common";
-import { Commits, Forks, PullRequests, Stars } from "components/projects/details";
+import { Forks, Stars } from "components/projects/details";
 
 import { GITHUB } from "static/config";
 import { ProjectProps } from "static/graphql";
@@ -40,8 +40,6 @@ export default function Project(project: ProjectProps): JSX.Element {
                     <ul>
                         <Stars stargazers={project.stargazers.totalCount} />
                         <Forks forks={project.forks.totalCount} />
-                        <PullRequests pullRequests={project.pullRequests.totalCount} />
-                        <Commits commits={project.defaultBranchRef.target.history.totalCount} />
                     </ul>
                 </Footer>
             </ProjectContent>
