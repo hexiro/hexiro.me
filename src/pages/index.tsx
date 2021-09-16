@@ -8,7 +8,7 @@ import Project from "components/projects";
 import Socials from "components/socials";
 
 import { Age } from "static/config";
-import GraphQL, { ProjectProps, REPOS_QUERY } from "static/graphql";
+import GraphQL, { ProjectProps, PROJECTS } from "static/graphql";
 import { fadeChild, fadeParent } from "static/variants";
 
 import { motion } from "framer-motion";
@@ -97,7 +97,7 @@ const Projects = styled(motion.div)`
 
 // regen top 3 pinned repos every hour
 export const getStaticProps: GetStaticProps = async () => {
-    const resp = await GraphQL(REPOS_QUERY);
+    const resp = await GraphQL(PROJECTS);
     const json = await resp.json();
     const projects: ProjectProps[] = json["data"]["user"]["pinnedItems"]["nodes"];
 

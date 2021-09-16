@@ -1,7 +1,7 @@
 import { Header, ParseHTML, To } from "components/common";
 import { Commits, Forks, PullRequests, Stars } from "components/projects/details";
 
-import { Github } from "static/config";
+import { GITHUB } from "static/config";
 import { ProjectProps } from "static/graphql";
 import theme from "static/theme";
 import { fadeChild } from "static/variants";
@@ -25,7 +25,7 @@ export default function Project(project: ProjectProps): JSX.Element {
                 <Title>
                     <h3>
                         <To href={project.url}>
-                            {project.owner.login != Github && (
+                            {project.owner.login != GITHUB && (
                                 <Header>{project.owner.login}/</Header>
                             )}
                             {project.name}

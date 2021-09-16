@@ -1,6 +1,6 @@
 import { SocialMedia } from "components/socials/SocialMedia";
 
-import { GithubLink, SteamLink, TwitterLink } from "static/config";
+import { GITHUB_LINK, STEAM_LINK, TWITTER_LINK } from "static/config";
 import { fadeParent } from "static/variants";
 
 import { motion } from "framer-motion";
@@ -10,13 +10,13 @@ import styled from "styled-components";
 export default function Socials(): JSX.Element {
     return (
         <UnorderedList variants={fadeParent}>
-            <SocialMedia href={TwitterLink}>
+            <SocialMedia href={TWITTER_LINK}>
                 <RiTwitterLine />
             </SocialMedia>
-            <SocialMedia href={GithubLink}>
+            <SocialMedia href={GITHUB_LINK}>
                 <RiGithubLine />
             </SocialMedia>
-            <SocialMedia href={SteamLink}>
+            <SocialMedia href={STEAM_LINK}>
                 <RiSteamLine />
             </SocialMedia>
         </UnorderedList>

@@ -1,9 +1,9 @@
 import Link from "next/link";
+import { PropsWithChildren } from "react";
 
 import theme from "static/theme";
 
 import styled from "styled-components";
-import { PropsWithChildren } from "react";
 
 export const To = ({ href, children }: PropsWithChildren<{ href: string }>) => (
     <Link href={href} passHref>
