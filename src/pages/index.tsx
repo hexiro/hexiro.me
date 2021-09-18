@@ -99,7 +99,7 @@ const Projects = styled(motion.div)`
 export const getStaticProps: GetStaticProps = async () => {
     const resp = await GraphQL(PROJECTS);
     const json = await resp.json();
-    const projects: ProjectProps[] = json["data"]["user"]["pinnedItems"]["nodes"];
+    const projects: ProjectProps[] = json["data"]["viewer"]["pinnedItems"]["nodes"];
 
     return {
         props: {
