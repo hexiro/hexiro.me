@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "framer-motion": "^4.1.17",
-    "graphql-query-compress": "^1.2.4",
     "html-react-parser": "^1.2.8",
     "next": "11.1.0",
     "next-seo": "^4.26.0",

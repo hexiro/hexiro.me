@@ -1,7 +1,6 @@
-import minify from "graphql-query-compress";
+import gql from "static/graphql/gql";
 
-const gql = String.raw;
-export const PROJECTS = minify(gql`
+export const PROJECTS = gql`
     {
         viewer {
             pinnedItems(first: 3, types: REPOSITORY) {
@@ -42,7 +41,7 @@ export const PROJECTS = minify(gql`
             }
         }
     }
-`);
+`;
 
 export interface ProjectProps {
     name: string;
