@@ -1,11 +1,8 @@
-import { GITHUB } from "static/config";
+import gql from "static/graphql/gql";
 
-import minify from "graphql-query-compress";
-
-const gql = String.raw;
-export const PROJECTS = minify(gql`
+export const PROJECTS = gql`
     {
-        user(login: "${GITHUB}") {
+        viewer {
             pinnedItems(first: 3, types: REPOSITORY) {
                 nodes {
                     ... on Repository {
@@ -44,7 +41,7 @@ export const PROJECTS = minify(gql`
             }
         }
     }
-`);
+`;
 
 export interface ProjectProps {
     name: string;

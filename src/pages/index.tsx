@@ -8,11 +8,15 @@ import Project from "components/projects";
 import Socials from "components/socials";
 
 import { Age } from "static/config";
-import GraphQL, { ProjectProps, PROJECTS } from "static/graphql";
+import graphQL, { ProjectProps, PROJECTS } from "static/graphql";
 import { fadeChild, fadeParent } from "static/variants";
 
 import { motion } from "framer-motion";
 import styled, { css } from "styled-components";
+
+interface HomeProps {
+    projects: ProjectProps[];
+}
 
 export default function Home({ projects }: HomeProps): JSX.Element {
     const description = `A ${Age()} y/o aspiring Software Engineer`;
@@ -20,7 +24,7 @@ export default function Home({ projects }: HomeProps): JSX.Element {
         <Page name="Home" description={description}>
             <Main>
                 <Side left>
-                    <Intro initial="start" animate="fade" variants={fadeParent}>
+                    <Intro>
                         <motion.h1 variants={fadeChild}>
                             Hi! I'm <Header>Hexiro</Header>,
                         </motion.h1>
@@ -30,7 +34,7 @@ export default function Home({ projects }: HomeProps): JSX.Element {
                     </Intro>
                 </Side>
                 <Side right>
-                    <Projects initial="start" animate="fade" variants={fadeParent}>
+                    <Projects>
                         {projects.map(project => (
                             <Project {...project} />
                         ))}
@@ -41,9 +45,11 @@ export default function Home({ projects }: HomeProps): JSX.Element {
     );
 }
 
-interface HomeProps {
-    projects: ProjectProps[];
-}
+const FadingParent = styled(motion.div).attrs(() => ({
+    initial: "start",
+    animate: "fade",
+    variants: fadeParent,
+}));
 
 const Main = styled.main`
     display: flex;
@@ -77,7 +83,7 @@ const Side = styled.div<{ left: true } | { right: true }>`
 
 // transform makes it so the vertical centering is centered around the description line
 // instead of around the whole div
-const Intro = styled(motion.div)`
+const Intro = FadingParent`
     line-height: 3em;
     margin-left: 30px;
     min-height: 115px;
@@ -89,7 +95,7 @@ const Intro = styled(motion.div)`
     }
 `;
 
-const Projects = styled(motion.div)`
+const Projects = FadingParent`
     @media only screen and (max-width: 1250px) {
         display: block;
     }
@@ -97,9 +103,9 @@ const Projects = styled(motion.div)`
 
 // regen top 3 pinned repos every hour
 export const getStaticProps: GetStaticProps = async () => {
-    const resp = await GraphQL(PROJECTS);
+    const resp = await graphQL(PROJECTS);
     const json = await resp.json();
-    const projects: ProjectProps[] = json["data"]["user"]["pinnedItems"]["nodes"];
+    const projects: ProjectProps[] = json["data"]["viewer"]["pinnedItems"]["nodes"];
 
     return {
         props: {

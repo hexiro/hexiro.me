@@ -1,5 +1,5 @@
 import { Header, ParseHTML, To } from "components/common";
-import { Commits, Forks, PullRequests, Stars } from "components/projects/details";
+import { Forks, Stars } from "components/projects/details";
 
 import { GITHUB } from "static/config";
 import { ProjectProps } from "static/graphql";
@@ -11,16 +11,7 @@ import styled from "styled-components";
 
 export default function Project(project: ProjectProps): JSX.Element {
     return (
-        <ProjectContainer
-            variants={fadeChild}
-            whileHover={{
-                scale: 1.04,
-            }}
-            transition={{
-                duration: 0.35,
-                ease: "easeInOut",
-            }}
-        >
+        <ProjectContainer variants={fadeChild}>
             <ProjectContent>
                 <Title>
                     <h3>
@@ -40,8 +31,6 @@ export default function Project(project: ProjectProps): JSX.Element {
                     <ul>
                         <Stars stargazers={project.stargazers.totalCount} />
                         <Forks forks={project.forks.totalCount} />
-                        <PullRequests pullRequests={project.pullRequests.totalCount} />
-                        <Commits commits={project.defaultBranchRef.target.history.totalCount} />
                     </ul>
                 </Footer>
             </ProjectContent>
@@ -59,6 +48,12 @@ const ProjectContainer = styled(motion.div)`
     padding: 14px 20px 4px 20px;
     margin: 25px 0;
     box-shadow: 0 6px 13px rgba(0, 0, 0, 0.25);
+    transition: ease-out all 0.31s;
+    will-change: transform;
+
+    &:hover {
+        transform: scale(1.04) !important;
+    }
 
     @media only screen and (max-width: 1250px) {
         display: block;
