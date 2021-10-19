@@ -36,7 +36,7 @@ export default function Home({ projects }: HomeProps): JSX.Element {
                 <Side right>
                     <Projects>
                         {projects.map(project => (
-                            <Project {...project} />
+                            <Project key={project.name} {...project} />
                         ))}
                     </Projects>
                 </Side>
