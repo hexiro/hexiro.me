@@ -1,4 +1,5 @@
 module.exports = {
+    swcMinify: true,
     reactStrictMode: true,
     webpack5: true,
     poweredByHeader: false,
