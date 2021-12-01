@@ -1,116 +1,99 @@
-import { GetStaticProps } from "next";
 import React from "react";
 
-import { Header } from "components/common";
-import Lanyard from "components/lanyard";
 import Page from "components/pages";
-import Project from "components/projects";
-import Socials from "components/socials";
 
 import { Age } from "static/config";
-import graphQL, { ProjectProps, PROJECTS } from "static/graphql";
-import { fadeChild, fadeParent } from "static/variants";
 
-import { motion } from "framer-motion";
-import styled, { css } from "styled-components";
+import Nav from "components/nav"
 
-interface HomeProps {
-    projects: ProjectProps[];
-}
+import styled from "styled-components";
 
-export default function Home({ projects }: HomeProps): JSX.Element {
-    const description = `A ${Age()} y/o aspiring Software Engineer`;
+// interface HomeProps {
+//     projects: ProjectProps[];
+// }
+
+export default function Home(): JSX.Element {
     return (
-        <Page name="Home" description={description}>
-            <Main>
-                <Side left>
-                    <Intro>
-                        <motion.h1 variants={fadeChild}>
-                            Hi! I'm <Header>Hexiro</Header>,
-                        </motion.h1>
-                        <motion.h2 variants={fadeChild}>{description}</motion.h2>
-                        <Socials />
-                        <Lanyard />
-                    </Intro>
-                </Side>
-                <Side right>
-                    <Projects>
-                        {projects.map(project => (
-                            <Project key={project.name} {...project} />
-                        ))}
-                    </Projects>
-                </Side>
-            </Main>
+        <Page name="Home" description="desc">
+            <Nav/>
+            <TempProjects id="projects" />
         </Page>
     );
 }
-
-const FadingParent = styled(motion.div).attrs(() => ({
-    initial: "start",
-    animate: "fade",
-    variants: fadeParent,
-}));
-
-const Main = styled.main`
-    display: flex;
-    align-content: center;
-    min-height: 100vh;
-    height: 100%;
-
-    @media only screen and (max-width: 1250px) {
-        padding-top: 125px;
-        display: block;
-        min-height: 84vh;
-    }
+const TempProjects = styled.div`
+    height: 20px;
+    width: 100px;
+    background: wheat;
+    margin-top: 2000px;
 `;
 
-// prettier-ignore
-const Side = styled.div<{ left: true } | { right: true }>`
-    display: flex;
-    flex: 1;
-    align-items: center;
-    ${(props) => "right" in props && css`
-            justify-content: center;
-            margin: 20px 0;
-      `}
 
-    @media only screen and (max-width: 1250px) {
-        display: block;
-        text-align: center;
-        margin: 0;
-    }
-`;
+// const FadingParent = styled(motion.div).attrs(() => ({
+//     initial: "start",
+//     animate: "fade",
+//     variants: fadeParent,
+// }));
 
-// transform makes it so the vertical centering is centered around the description line
-// instead of around the whole div
-const Intro = FadingParent`
-    line-height: 3em;
-    margin-left: 30px;
-    min-height: 115px;
-    position: relative;
-    transform: translateY(-20%);
+// const Main = styled.main`
+//     display: flex;
+//     align-content: center;
+//     min-height: 100vh;
+//     height: 100%;
 
-    @media only screen and (max-width: 1250px) {
-        margin-left: unset;
-    }
-`;
+//     @media only screen and (max-width: 1250px) {
+//         padding-top: 125px;
+//         display: block;
+//         min-height: 84vh;
+//     }
+// `;
 
-const Projects = FadingParent`
-    @media only screen and (max-width: 1250px) {
-        display: block;
-    }
-`;
+// // prettier-ignore
+// const Side = styled.div<{ left: true } | { right: true }>`
+//     display: flex;
+//     flex: 1;
+//     align-items: center;
+//     ${(props) => "right" in props && css`
+//             justify-content: center;
+//             margin: 20px 0;
+//       `}
 
-// regen top 3 pinned repos every hour
-export const getStaticProps: GetStaticProps = async () => {
-    const resp = await graphQL(PROJECTS);
-    const json = await resp.json();
-    const projects: ProjectProps[] = json["data"]["viewer"]["pinnedItems"]["nodes"];
+//     @media only screen and (max-width: 1250px) {
+//         display: block;
+//         text-align: center;
+//         margin: 0;
+//     }
+// `;
 
-    return {
-        props: {
-            projects,
-        },
-        revalidate: 3600,
-    };
-};
+// // transform makes it so the vertical centering is centered around the description line
+// // instead of around the whole div
+// const Intro = FadingParent`
+//     line-height: 3em;
+//     margin-left: 30px;
+//     min-height: 115px;
+//     position: relative;
+//     transform: translateY(-20%);
+
+//     @media only screen and (max-width: 1250px) {
+//         margin-left: unset;
+//     }
+// `;
+
+// const Projects = FadingParent`
+//     @media only screen and (max-width: 1250px) {
+//         display: block;
+//     }
+// `;
+
+// // regen top 3 pinned repos every hour
+// export const getStaticProps: GetStaticProps = async () => {
+//     const resp = await graphQL(PROJECTS);
+//     const json = await resp.json();
+//     const projects: ProjectProps[] = json["data"]["viewer"]["pinnedItems"]["nodes"];
+
+//     return {
+//         props: {
+//             projects,
+//         },
+//         revalidate: 3600,
+//     };
+// };

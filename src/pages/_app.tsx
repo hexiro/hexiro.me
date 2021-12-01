@@ -51,6 +51,10 @@ const GlobalStyle = createGlobalStyle`
     filter: drop-shadow(0px 6px 4px ${theme.core.background});
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
     background: ${theme.core.background};
     color: ${theme.core.text};
@@ -100,6 +104,11 @@ ul {
 svg {
     width: auto;
     height: 100%;
+    color: ${theme.core.main};
+}
+
+a {
+    text-decoration: unset;
     color: ${theme.core.main};
 }
 `;
