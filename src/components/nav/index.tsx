@@ -1,10 +1,14 @@
 import theme from "static/theme";
 
+import { useWindowScroll, useWindowSize } from "react-use";
 import styled from "styled-components";
 
 export default function (): JSX.Element {
+    const { height } = useWindowSize();
+    const { y } = useWindowScroll();
+
     return (
-        <SectionList>
+        <SectionList height={height} y={y}>
             <li>
                 <Section href="#me">
                     <SectionBar />
@@ -21,9 +25,28 @@ export default function (): JSX.Element {
     );
 }
 
-const SectionList = styled.ul`
-    margin-top: 25px;
-    margin-left: 25px;
+interface SectionListProps {
+    height: number;
+    y: number;
+}
+
+const SectionList = styled.ul<SectionListProps>`
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    opacity: ${props => {
+        const { height, y } = props;
+
+        const min = height * 0.2;
+        const max = height * 0.45;
+
+        if (y < min) return "1";
+        if (y > max) return "0";
+
+        const range = max - min;
+        const relativeY = y - min;
+        return 1 - relativeY / range;
+    }};
 `;
 
 const Section = styled.a`
