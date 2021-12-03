@@ -6,7 +6,7 @@ interface NavProps {
     active: number;
 }
 
-export default function ({ active }: NavProps): JSX.Element {
+export const Nav = ({ active }: NavProps): JSX.Element => {
     return (
         <SectionList>
             <li>
@@ -23,7 +23,7 @@ export default function ({ active }: NavProps): JSX.Element {
             </li>
         </SectionList>
     );
-}
+};
 
 const SectionList = styled.ul`
     position: fixed;
