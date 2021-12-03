@@ -1,32 +1,56 @@
 import React from "react";
+import { useRef } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
+import Nav from "components/nav";
 import Page from "components/pages";
 
-import { Age } from "static/config";
-
-import Nav from "components/nav"
-
+import { useWindowScroll } from "react-use";
 import styled from "styled-components";
 
-// interface HomeProps {
-//     projects: ProjectProps[];
-// }
-
 export default function Home(): JSX.Element {
+    const meRef = useRef<HTMLDivElement>(null);
+    const projectsRef = useRef<HTMLDivElement>(null);
+
+    const [active, setActive] = useState(0);
+
+    const { y } = useWindowScroll();
+
+    useEffect(() => {
+        const me = meRef.current;
+        const projects = projectsRef.current;
+
+        if (!me || !projects) return;
+
+        const value = y + 500;
+
+        if (value >= projects.offsetTop) setActive(1);
+        else if (value >= me.offsetTop) setActive(0);
+    }, [y]);
+
     return (
         <Page name="Home" description="desc">
-            <Nav/>
-            <TempProjects id="projects" />
+            <Nav active={active} />
+            <TempMe id="me" ref={meRef} />
+            <TempProjects id="projects" ref={projectsRef} />
         </Page>
     );
 }
 const TempProjects = styled.div`
     height: 20px;
-    width: 100px;
+    width: 100vw;
     background: wheat;
-    margin-top: 2000px;
+    margin: 700px 200px 2000px 0;
 `;
 
+const TempMe = styled.div`
+    height: 20px;
+    width: 100vw;
+    background: red;
+    margin-top: 200px;
+    margin: 200px 200px 200px 0;
+`;
 
 // const FadingParent = styled(motion.div).attrs(() => ({
 //     initial: "start",

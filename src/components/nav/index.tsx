@@ -1,23 +1,23 @@
 import theme from "static/theme";
 
-import { useWindowScroll, useWindowSize } from "react-use";
 import styled from "styled-components";
 
-export default function (): JSX.Element {
-    const { height } = useWindowSize();
-    const { y } = useWindowScroll();
+interface NavProps {
+    active: number;
+}
 
+export default function ({ active }: NavProps): JSX.Element {
     return (
-        <SectionList height={height} y={y}>
+        <SectionList>
             <li>
                 <Section href="#me">
-                    <SectionBar />
+                    <SectionBar index={0} active={active} />
                     <SectionText>ME</SectionText>
                 </Section>
             </li>
             <li>
                 <Section href="#projects">
-                    <SectionBar />
+                    <SectionBar index={1} active={active} />
                     <SectionText>PROJECTS</SectionText>
                 </Section>
             </li>
@@ -25,28 +25,10 @@ export default function (): JSX.Element {
     );
 }
 
-interface SectionListProps {
-    height: number;
-    y: number;
-}
-
-const SectionList = styled.ul<SectionListProps>`
+const SectionList = styled.ul`
     position: fixed;
     top: 25px;
     left: 25px;
-    opacity: ${props => {
-        const { height, y } = props;
-
-        const min = height * 0.2;
-        const max = height * 0.45;
-
-        if (y < min) return "1";
-        if (y > max) return "0";
-
-        const range = max - min;
-        const relativeY = y - min;
-        return 1 - relativeY / range;
-    }};
 `;
 
 const Section = styled.a`
@@ -62,12 +44,22 @@ const Section = styled.a`
     }
 `;
 
-const SectionBar = styled.span`
+interface SectionBarProps {
+    index: number;
+    active: number;
+}
+
+const SectionBar = styled.span<SectionBarProps>`
+    background-color: ${props => {
+        if (props.index === props.active) return theme.accent.main;
+        return theme.accent.background;
+    }};
+
     display: inline-block;
     height: 10px;
     width: 60px;
     z-index: -1;
-    background-color: ${theme.accent.background};
+    transition: ease all 0.225s;
     border-radius: 4px;
     margin-bottom: 5px;
     margin-left: -60px;
