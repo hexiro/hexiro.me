@@ -1,6 +1,6 @@
-import { GITHUB_TOKEN } from "static/config";
+import { GITHUB_TOKEN } from "commons/config";
 
-export * from "static/graphql/project";
+export * from "commons/graphql/project";
 
 export default async function graphQL(query: string): Promise<Response> {
     return await fetch("https://api.github.com/graphql", {

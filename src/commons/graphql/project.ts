@@ -1,4 +1,4 @@
-import gql from "static/graphql/gql";
+import gql from "commons/graphql/gql";
 
 export const PROJECTS = gql`
     {

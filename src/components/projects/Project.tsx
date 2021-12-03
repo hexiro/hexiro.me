@@ -1,10 +1,10 @@
 import { Header, ParseHTML, To } from "components/common";
 import { Forks, Stars } from "components/projects/details";
 
-import { GITHUB } from "static/config";
-import { ProjectProps } from "static/graphql";
-import theme from "static/theme";
-import { fadeChild } from "static/variants";
+import { GITHUB } from "commons/config";
+import { ProjectProps } from "commons/graphql";
+import theme from "commons/theme";
+import { fadeChild } from "commons/variants";
 
 import { motion } from "framer-motion";
 import styled from "styled-components";

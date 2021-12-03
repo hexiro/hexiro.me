@@ -1,4 +1,4 @@
-import theme from "static/theme";
+import theme from "commons/theme";
 
 import styled from "styled-components";
 
