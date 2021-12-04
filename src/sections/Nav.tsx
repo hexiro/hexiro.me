@@ -1,5 +1,6 @@
-import theme from "commons/theme";
+import { To } from "components/common";
 
+import theme from "commons/theme";
 import styled from "styled-components";
 
 interface NavProps {
@@ -9,18 +10,18 @@ interface NavProps {
 export const Nav = ({ active }: NavProps): JSX.Element => {
     return (
         <SectionList>
-            <li>
-                <Section href="#me">
+            <Section>
+                <To href="#me">
                     <SectionBar index={0} active={active} />
                     <SectionText>ME</SectionText>
-                </Section>
-            </li>
-            <li>
-                <Section href="#projects">
+                </To>
+            </Section>
+            <Section>
+                <To href="#projects">
                     <SectionBar index={1} active={active} />
                     <SectionText>PROJECTS</SectionText>
-                </Section>
-            </li>
+                </To>
+            </Section>
         </SectionList>
     );
 };
@@ -31,7 +32,7 @@ const SectionList = styled.ul`
     left: 25px;
 `;
 
-const Section = styled.a`
+const Section = styled.li`
     display: block;
     transition: ease all 0.15s;
 
