@@ -11,14 +11,14 @@ export const Nav = ({ active }: NavProps): JSX.Element => {
     return (
         <SectionList>
             <Section>
+                <SectionBar index={0} active={active} />
                 <To href="#me">
-                    <SectionBar index={0} active={active} />
                     <SectionText>ME</SectionText>
                 </To>
             </Section>
             <Section>
+                <SectionBar index={1} active={active} />
                 <To href="#projects">
-                    <SectionBar index={1} active={active} />
                     <SectionText>PROJECTS</SectionText>
                 </To>
             </Section>

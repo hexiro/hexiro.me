@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useRef, useEffect, useState } from "react";
 
 import Page from "components/pages";
@@ -16,7 +17,7 @@ export default function Home(): JSX.Element {
     useEffect(() => {
         const me = meRef.current;
         const projects = projectsRef.current;
-        
+
         if (!me || !projects) return;
 
         const value = y + 500;
@@ -28,7 +29,7 @@ export default function Home(): JSX.Element {
     return (
         <Page name="Home" description="desc">
             <Nav active={active} />
-            <Me ref={meRef} />
+            <Me ref={meRef}/>
             <Projects ref={projectsRef} />
         </Page>
     );

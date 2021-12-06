@@ -1,8 +1,15 @@
+import React from "react";
+import { PropsWithChildren } from "react";
 
 import styled from "styled-components";
-import React from "react";
 
-export const Me = React.forwardRef<HTMLDivElement>((_, ref) => <TempMe id="me" ref={ref} />)
+type MeProps = PropsWithChildren<{}>;
+
+export const Me = React.forwardRef<HTMLDivElement, MeProps>(({ children }, ref) => (
+    <TempMe id="me" ref={ref}>
+        {children}
+    </TempMe>
+));
 
 const TempMe = styled.div`
     height: 20px;

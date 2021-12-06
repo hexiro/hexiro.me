@@ -1,10 +1,13 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
 import styled from "styled-components";
 
+type ProjectProps = PropsWithChildren<{}>;
 
-export const Projects = React.forwardRef<HTMLDivElement>((_, ref) => (
-    <TempProjects id="projects" ref={ref} />
+export const Projects = React.forwardRef<HTMLDivElement, ProjectProps>(({ children }, ref) => (
+    <TempProjects id="projects" ref={ref}>
+        {children}
+    </TempProjects>
 ));
 
 const TempProjects = styled.div`
