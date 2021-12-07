@@ -1,11 +1,10 @@
-import Image from "next/image";
 import React, { useRef, useEffect, useState } from "react";
 
+import Nav from "components/nav";
 import Page from "components/pages";
 
 import { useWindowScroll } from "react-use";
-import { Me, Nav, Projects } from "sections";
-import styled from "styled-components";
+import Sections from "sections";
 
 export default function Home(): JSX.Element {
     const meRef = useRef<HTMLElement | null>(null);
@@ -30,18 +29,7 @@ export default function Home(): JSX.Element {
     return (
         <Page name="Home" description="desc">
             <Nav active={active} />
-            <Sections>
-                <Me ref={meRef} />
-                <Projects ref={projectsRef} />
-            </Sections>
+            <Sections meRef={meRef} projectsRef={projectsRef}></Sections>
         </Page>
     );
 }
-
-const Sections = styled.div`
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin: 0 50px;
-    margin-top: 100px;
-`;
