@@ -5,10 +5,11 @@ import Page from "components/pages";
 
 import { useWindowScroll } from "react-use";
 import { Me, Nav, Projects } from "sections";
+import styled from "styled-components";
 
 export default function Home(): JSX.Element {
-    const meRef = useRef<HTMLDivElement | null>(null);
-    const projectsRef = useRef<HTMLDivElement | null>(null);
+    const meRef = useRef<HTMLElement | null>(null);
+    const projectsRef = useRef<HTMLElement | null>(null);
 
     const [active, setActive] = useState(0);
 
@@ -29,8 +30,18 @@ export default function Home(): JSX.Element {
     return (
         <Page name="Home" description="desc">
             <Nav active={active} />
-            <Me ref={meRef}/>
-            <Projects ref={projectsRef} />
+            <Sections>
+                <Me ref={meRef} />
+                <Projects ref={projectsRef} />
+            </Sections>
         </Page>
     );
 }
+
+const Sections = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 50px;
+    margin-top: 200px;
+`;

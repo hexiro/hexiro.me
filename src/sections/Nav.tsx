@@ -30,6 +30,7 @@ const SectionList = styled.ul`
     position: fixed;
     top: 25px;
     left: 25px;
+    z-index: 2;
 `;
 
 const Section = styled.li`
