@@ -35,6 +35,7 @@ const SectionList = styled.ul`
     top: 25px;
     left: 25px;
     z-index: 2;
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
 `;
 
 const Section = styled.li`

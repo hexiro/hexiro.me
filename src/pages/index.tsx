@@ -43,5 +43,5 @@ const Sections = styled.div`
     align-items: center;
     flex-direction: column;
     margin: 0 50px;
-    margin-top: 200px;
+    margin-top: 100px;
 `;
