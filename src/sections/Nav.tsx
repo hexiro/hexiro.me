@@ -11,13 +11,17 @@ export const Nav = ({ active }: NavProps): JSX.Element => {
     return (
         <SectionList>
             <Section>
-                <SectionBar index={0} active={active} />
+                <SectionBar>
+                    <HighlightedSectionBar index={0} active={active} />
+                </SectionBar>
                 <To href="#me">
                     <SectionText>ME</SectionText>
                 </To>
             </Section>
             <Section>
-                <SectionBar index={1} active={active} />
+                <SectionBar>
+                    <HighlightedSectionBar index={1} active={active} />
+                </SectionBar>
                 <To href="#projects">
                     <SectionText>PROJECTS</SectionText>
                 </To>
@@ -51,12 +55,21 @@ interface SectionBarProps {
     active: number;
 }
 
-const SectionBar = styled.span<SectionBarProps>`
-    background-color: ${props => {
-        if (props.index === props.active) return theme.accent.main;
-        return theme.accent.background;
+const HighlightedSectionBar = styled.span<SectionBarProps>`
+    display: block;
+    border-radius: 4px;
+    transition: ease all 0.225s;
+    background-color: ${theme.accent.main};
+    height: 100%;
+    z-index: 2;
+    width: ${props => {
+        if (props.index === props.active) return "100%";
+        return "0%";
     }};
+`;
 
+const SectionBar = styled.span`
+    background-color: ${theme.accent.background};
     display: inline-block;
     height: 10px;
     width: 60px;
