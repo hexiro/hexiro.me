@@ -49,7 +49,7 @@ const SongBarContainer = styled.div`
     position: absolute;
     bottom: 0;
     padding: 0;
-    margin: 0 -20px;
+    left: 0;
     width: 100%;
 `;
 

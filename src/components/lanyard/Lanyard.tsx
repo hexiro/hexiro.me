@@ -129,27 +129,14 @@ const handleGame = (activity: Activity): LanyardContent => {
 };
 
 const LanyardContainer = styled(motion.div)`
-    position: absolute;
     display: flex;
+    position: relative;
+    padding: 20px;
     height: 130px;
     width: 350px;
-    margin: 32vh 0 20px;
-    padding: 20px 0 20px 20px;
     border-radius: 6px;
-    overflow: hidden;
     background: ${theme.accent.background};
     box-shadow: 0 4px 10px rgb(0 0 0 / 25%);
-
-    @media only screen and (max-width: 1250px) {
-        position: relative;
-        margin: 5px auto;
-        max-width: 350px;
-        width: 80%;
-    }
-
-    @media only screen and (max-width: 300px) {
-        display: none;
-    }
 `;
 
 const Images = styled.div`
