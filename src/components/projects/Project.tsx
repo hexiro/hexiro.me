@@ -5,7 +5,6 @@ import { GITHUB } from "commons/config";
 import { ProjectProps } from "commons/graphql";
 import theme from "commons/theme";
 import { fadeChild } from "commons/variants";
-
 import { motion } from "framer-motion";
 import styled from "styled-components";
 

@@ -1,12 +1,12 @@
-import Document, { DocumentContext } from "next/document";
+import NextDocument, { DocumentContext, DocumentInitialProps } from "next/document";
 
 import { ServerStyleSheet } from "styled-components";
 
 // copied from
 // https://github.com/vercel/next.js/blob/master/examples/with-styled-components/pages/_document.js#L4
 
-export default class extends Document {
-    static async getInitialProps(ctx: DocumentContext) {
+export default class Document extends NextDocument {
+    static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
         const sheet = new ServerStyleSheet();
         const originalRenderPage = ctx.renderPage;
 

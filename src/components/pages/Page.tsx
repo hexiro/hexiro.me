@@ -2,7 +2,6 @@ import React from "react";
 
 import { TWITTER } from "commons/config";
 import theme from "commons/theme";
-
 import { DefaultSeo } from "next-seo";
 
 interface PageProps {

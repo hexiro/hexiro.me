@@ -1,7 +1,6 @@
 import { AppProps } from "next/app";
 
 import theme from "commons/theme";
-
 import { createGlobalStyle } from "styled-components";
 
 import "react-tippy/dist/tippy.css";
@@ -52,7 +51,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
