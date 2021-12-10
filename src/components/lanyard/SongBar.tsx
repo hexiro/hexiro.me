@@ -46,6 +46,7 @@ const formatSong = (start: number, end: number): JSX.Element => {
 
 const SongBarContainer = styled.div`
     position: absolute;
+    overflow: hidden;
     bottom: 0;
     padding: 0;
     left: 0;
@@ -53,13 +54,17 @@ const SongBarContainer = styled.div`
 `;
 
 const OuterBar = styled.div`
+    position: relative;
+    overflow: hidden;
     height: 4px;
-    border-radius: 2px;
+    border-radius: 0 0 2px 2px;
     background-color: ${theme.core.background};
 `;
 
 const InnerBar = styled.div<{ start: number; end: number }>`
-    background-color: ${theme.core.text};
-    height: 100%;
     width: ${({ start, end }) => (start / end) * 100}%;
+    height: 100%;
+    border-radius: 0 2px 2px 2px;
+    overflow: hidden;
+    background-color: ${theme.core.text};
 `;

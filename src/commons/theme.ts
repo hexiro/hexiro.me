@@ -3,6 +3,7 @@ const theme = {
         main: "#4bff9f",
         background: "#191c1d",
         text: "#e0f5e2",
+        subtext: "#a3aaa5",
         scrollbar: "#606160",
     },
     accent: {

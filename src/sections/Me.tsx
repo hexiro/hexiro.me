@@ -11,13 +11,13 @@ export const Me = React.forwardRef<HTMLElement>((_, ref) => (
         <MeSection id="me" ref={ref}>
             <Left>
                 <Text>
-                    <Intro>
+                    <h1>
                         Hi! I'm <Header>Hexiro</Header>,
-                    </Intro>
-                    <TextFooter>
+                    </h1>
+                    <p>
                         A self-taught software engineer who enjoys problem solving, technology,
                         building software, and contributing to open source projects.
-                    </TextFooter>
+                    </p>
                 </Text>
                 <Lanyard />
             </Left>
@@ -25,8 +25,8 @@ export const Me = React.forwardRef<HTMLElement>((_, ref) => (
                 <Avatar>
                     <Image
                         src="https://avatars.githubusercontent.com/hexiro"
-                        height={500}
-                        width={500}
+                        height={450}
+                        width={450}
                         quality={100}
                         draggable={false}
                     ></Image>
@@ -39,7 +39,7 @@ export const Me = React.forwardRef<HTMLElement>((_, ref) => (
 const MeSection = styled.section`
     position: relative;
     display: flex;
-    width: 70vw;
+    width: 65%;
     padding: 20px;
 `;
 
@@ -57,24 +57,16 @@ const Right = styled.div`
     align-items: flex-end;
 `;
 
-const Intro = styled.h1`
-    font-size: 3em;
-    font-weight: 400;
-`;
-
 const Text = styled.div`
     display: inline-block;
     margin-bottom: 20px;
 `;
 
-const TextFooter = styled.p`
-    font-size: 1.2em;
-    opacity: 0.8;
-    /* color: #537768; */
-`;
 
 const Avatar = styled.div`
     display: inline-block;
+    min-width: 300px;
+    min-height: 300px;
 
     & > span {
         filter: drop-shadow(0px 0px 12px rgba(0, 0, 0, 0.25));

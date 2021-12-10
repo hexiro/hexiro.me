@@ -62,7 +62,6 @@ body {
     overflow-x: hidden;
 }
 
-h1,
 h2,
 h3,
 h4,
@@ -72,7 +71,8 @@ h6 {
 }
 
 h1 {
-    font-size: 2.75em;
+    font-size: 3em;
+    font-weight: 400;
 }
 
 h2 {
@@ -88,12 +88,13 @@ h4 {
 }
 
 h5 {
-    font-size: 0.9em;
+    font-size: 0.8em;
 }
 
 p {
-    color: ${theme.core.text};
+    color: ${theme.core.subtext};
     font-weight: 200;
+    font-size: 1.25em;
 }
 
 ul {

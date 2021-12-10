@@ -20,6 +20,6 @@ const Sections = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 0 50px;
+    margin: 0 2%;
     margin-top: 100px;
 `;
