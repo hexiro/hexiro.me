@@ -16,7 +16,7 @@ export default class Document extends NextDocument {
                     enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
                 });
 
-            const initialProps = await Document.getInitialProps(ctx);
+            const initialProps = await NextDocument.getInitialProps(ctx);
             return {
                 ...initialProps,
                 styles: (
