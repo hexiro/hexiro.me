@@ -3,7 +3,7 @@ import gql from "commons/graphql/gql";
 export const PROJECTS = gql`
     {
         viewer {
-            pinnedItems(first: 3, types: REPOSITORY) {
+            pinnedItems(first: 6, types: REPOSITORY) {
                 nodes {
                     ... on Repository {
                         name

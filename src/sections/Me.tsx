@@ -6,8 +6,12 @@ import Lanyard from "components/lanyard";
 
 import styled from "styled-components";
 
-export const Me = React.forwardRef<HTMLElement>((_, ref) => (
-    <MeSection id="me" ref={ref}>
+interface MeProps {
+    meRef: React.MutableRefObject<HTMLElement | null>;
+}
+
+export const Me = ({ meRef }: MeProps): JSX.Element => (
+    <MeSection id="me" ref={meRef}>
         <Left>
             <Text>
                 <h1>
@@ -32,7 +36,7 @@ export const Me = React.forwardRef<HTMLElement>((_, ref) => (
             </Avatar>
         </Right>
     </MeSection>
-));
+);
 
 const MeSection = styled.section`
     position: relative;
@@ -42,11 +46,10 @@ const MeSection = styled.section`
     align-items: center;
     justify-content: center;
 
-    @media only screen and (max-width: 1100px) {
-        height: 800px;
+    @media only screen and (max-width: 1164px) {
+        height: 650px;
         flex-direction: column-reverse;
-        margin-top: 50px;
-        justify-content: flex-end;
+        justify-content: flex-start;
     }
 `;
 
@@ -56,7 +59,7 @@ const Left = styled.div`
     max-width: 500px;
     padding: 0 10px;
 
-    @media only screen and (max-width: 1100px) {
+    @media only screen and (max-width: 1164px) {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -81,7 +84,7 @@ const Avatar = styled.div`
     min-width: 400px;
     min-height: 400px;
 
-    @media only screen and (max-width: 1100px) {
+    @media only screen and (max-width: 1164px) {
         min-width: 200px;
         min-height: 200px;
         max-width: 400px;

@@ -1,20 +1,7 @@
-import { Me } from "./Me";
-import { Projects } from "./Projects";
 import styled from "styled-components";
 
-interface SectionProps {
-    meRef: React.MutableRefObject<HTMLElement | null>;
-    projectsRef: React.MutableRefObject<HTMLElement | null>;
-}
-
-export default function ({ meRef, projectsRef }: SectionProps): JSX.Element {
-    return (
-        <Sections>
-            <Me ref={meRef} />
-            <Projects ref={projectsRef} />
-        </Sections>
-    );
-}
+export { Me } from "./Me";
+export { Projects } from "./Projects";
 
 const Sections = styled.div`
     display: flex;
@@ -23,3 +10,4 @@ const Sections = styled.div`
     margin: 0 2%;
     margin-top: 100px;
 `;
+export default Sections;
