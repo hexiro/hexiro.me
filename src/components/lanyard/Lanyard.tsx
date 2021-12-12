@@ -18,8 +18,8 @@ export default function Lanyard(): JSX.Element | null {
 
     const types = [0, 2];
     const activity = status?.activities
-        .sort((a, b) => (a.type > b.type ? 1 : -1))
-        .find(act => types.includes(act.type));
+        ?.sort((a, b) => (a.type > b.type ? 1 : -1))
+        ?.find(act => types.includes(act.type));
 
     const songBar = SongBar(activity?.timestamps);
     const assets = activity?.assets;
