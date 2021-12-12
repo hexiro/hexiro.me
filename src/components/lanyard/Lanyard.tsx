@@ -137,7 +137,7 @@ const LanyardContainer = styled(motion.div)`
     background: ${theme.accent.background};
     box-shadow: 0 4px 10px rgb(0 0 0 / 25%);
 
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 600px) {
         display: none;
     }
 `;

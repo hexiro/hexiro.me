@@ -66,7 +66,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p {
     font-weight: 300;
 }
 
@@ -93,7 +94,6 @@ h5 {
 
 p {
     color: ${theme.core.subtext};
-    font-weight: 200;
     font-size: 1.25em;
 }
 

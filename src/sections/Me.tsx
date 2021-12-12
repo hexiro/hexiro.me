@@ -40,41 +40,36 @@ const MeSection = styled.section`
     width: 100%;
     height: 500px;
     align-items: center;
-    padding: 0 10%;
+    justify-content: center;
 
     @media only screen and (max-width: 1100px) {
         height: 800px;
         flex-direction: column-reverse;
-        /* align-items: unset; */
-        justify-content: center;
+        margin-top: 50px;
+        justify-content: flex-end;
     }
 `;
 
 const Left = styled.div`
     align-items: center;
-    margin-right: 20px;
-    max-width: 500px;
     width: 75%;
+    max-width: 500px;
+    padding: 0 10px;
 
     @media only screen and (max-width: 1100px) {
-        margin-top: 40px;
-        margin-right: unset;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        margin-top: 20px;
     }
 `;
 
 const Right = styled.div`
-    margin-left: auto;
-    margin-right: 20px;
-    align-items: flex-end;
-
-    @media only screen and (max-width: 1100px) {
-        margin-left: unset;
-        margin-right: unset;
-    }
+    padding: 0 10px;
 `;
 
 const Text = styled.div`
-    margin-top: -20px;
     margin-bottom: 20px;
 `;
 
