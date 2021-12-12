@@ -19,7 +19,7 @@ export default function Lanyard(): JSX.Element | null {
     const types = [0, 2];
     const activity = status?.activities
         .sort((a, b) => (a.type > b.type ? 1 : -1))
-        .find(act => types.includes(act.type) && act.assets && act.timestamps);
+        .find(act => types.includes(act.type));
 
     const songBar = SongBar(activity?.timestamps);
     const assets = activity?.assets;
@@ -27,23 +27,20 @@ export default function Lanyard(): JSX.Element | null {
     const isListening = activity?.type === 2;
     const isGame = activity?.type === 0;
 
-    let content: LanyardContent | undefined;
+    let content: LanyardContent | null = null;
 
-    if (!loading && status && activity && assets) {
-        if (isListening && status.spotify) {
-            content = handleSpotify(status.spotify);
-        } else if (isGame && activity.application_id) {
-            content = handleGame(activity);
-        }
+    if (!loading && status && activity) {
+        if (isListening) content = handleSpotify(status.spotify);
+        else if (isGame) content = handleGame(activity);
     }
 
     return (
         <AnimatePresence>
-            {content && (
+            {content && assets && (
                 <LanyardContainer initial="start" animate="fade" exit="start" variants={fadeChild}>
                     <Images>
                         <LargeImageContainer>
-                            <Tooltip title={assets!.large_text}>
+                            <Tooltip title={assets.large_text}>
                                 <LargeImage
                                     alt="large image of application or song"
                                     draggable={false}
@@ -53,20 +50,20 @@ export default function Lanyard(): JSX.Element | null {
                                     priority={true}
                                 />
                             </Tooltip>
+                            {content.smallImage && (
+                                <SmallImageContainer>
+                                    <Tooltip title={assets.small_text} size="small">
+                                        <SmallImage
+                                            alt="small image of application"
+                                            draggable={false}
+                                            src={content.smallImage}
+                                            height={30}
+                                            width={30}
+                                        />
+                                    </Tooltip>
+                                </SmallImageContainer>
+                            )}
                         </LargeImageContainer>
-                        {content.smallImage && (
-                            <SmallImageContainer>
-                                <Tooltip title={assets!.small_text} size="small">
-                                    <SmallImage
-                                        alt="small image of application"
-                                        draggable={false}
-                                        src={content.smallImage}
-                                        height={30}
-                                        width={30}
-                                    />
-                                </Tooltip>
-                            </SmallImageContainer>
-                        )}
                     </Images>
                     <Text>
                         <h4>
@@ -94,7 +91,8 @@ const buildAsset = (applicationId: string, assetId: string): string => {
     return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
 };
 
-const handleSpotify = (spotify: Spotify): LanyardContent => {
+const handleSpotify = (spotify?: Spotify): LanyardContent | null => {
+    if (!spotify) return null;
     return {
         largeImage: spotify.album_art_url,
         name: spotify.song,
@@ -103,11 +101,12 @@ const handleSpotify = (spotify: Spotify): LanyardContent => {
     };
 };
 
-const handleGame = (activity: Activity): LanyardContent => {
-    // is checked in for loop -- not recognized by ts
-    const assets = activity.assets!;
-    const application_id = activity.application_id!;
-    const largeImage = buildAsset(application_id, assets.large_image);
+const handleGame = (activity: Activity): LanyardContent | null => {
+    const assets = activity.assets;
+    const applicationId = activity.application_id;
+    if (!assets || !applicationId) return null;
+
+    const largeImage = buildAsset(applicationId, assets.large_image);
     const name = activity.name;
     const firstLine = activity.details;
     const secondLine = activity.state;
@@ -115,7 +114,7 @@ const handleGame = (activity: Activity): LanyardContent => {
     let smallImage: string | undefined;
 
     if (assets.small_image) {
-        smallImage = buildAsset(application_id, assets.small_image);
+        smallImage = buildAsset(applicationId, assets.small_image);
     }
 
     return {
@@ -146,10 +145,11 @@ const Images = styled.div`
     position: relative;
 `;
 
-const LargeImageContainer = styled.div``;
+const LargeImageContainer = styled.div`
+    position: relative;
+`;
 
 // !important bcuz next/image lol
-// maybe these can be removed with some args that i don't know about
 const LargeImage = styled(Image)`
     border-radius: 4px;
     box-shadow: 0 0px 10px rgb(0 0 0 / 25%) !important;
@@ -157,8 +157,8 @@ const LargeImage = styled(Image)`
 
 const SmallImageContainer = styled.div`
     position: absolute;
-    right: -7px;
-    bottom: -23px;
+    right: -8px;
+    bottom: -8px;
 `;
 
 const SmallImage = styled(Image)`
