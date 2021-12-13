@@ -3,6 +3,7 @@ import React from "react";
 import Project from "components/projects";
 
 import { ProjectProps } from "commons/graphql";
+
 import styled from "styled-components";
 
 interface ProjectsProps {

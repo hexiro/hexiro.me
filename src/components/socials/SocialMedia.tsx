@@ -3,7 +3,8 @@ import React from "react";
 
 import { To } from "components/common";
 
-import { fadeChild } from "commons/variants";
+import { fadeChild } from "commons/animations";
+
 import { motion } from "framer-motion";
 import styled from "styled-components";
 

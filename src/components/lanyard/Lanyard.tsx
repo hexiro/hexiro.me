@@ -5,7 +5,8 @@ import SongBar from "components/lanyard/SongBar";
 
 import { DISCORD } from "commons/config";
 import theme from "commons/theme";
-import { fadeChild } from "commons/variants";
+import { fadeChild } from "commons/animations";
+
 import { AnimatePresence, motion } from "framer-motion";
 import { Activity, Spotify, useLanyard } from "react-use-lanyard";
 import styled from "styled-components";

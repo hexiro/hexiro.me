@@ -5,6 +5,7 @@ import Nav from "components/nav";
 import Page from "components/pages";
 
 import graphQL, { ProjectProps, PROJECTS } from "commons/graphql";
+
 import { useWindowScroll } from "react-use";
 import Sections, { Me, Projects } from "sections";
 import styled from "styled-components";
