@@ -1,31 +1,51 @@
+import { useEffect, useState } from "react";
+
 import { To } from "components/common";
 
 import theme from "commons/theme";
+import { useWindowScroll } from "react-use";
 import styled from "styled-components";
 
 interface NavProps {
-    active: number;
+    refs: React.MutableRefObject<HTMLElement | null>[];
 }
 
-export default function Nav({ active }: NavProps): JSX.Element {
+export default function Nav({ refs }: NavProps): JSX.Element {
+    const [active, setActive] = useState(0);
+    const { y } = useWindowScroll();
+
+    useEffect(() => {
+        const value = y + 500;
+
+        const reversed = refs.slice().reverse();
+        const reversedIndex = reversed.findIndex(x => {
+            const current = x.current;
+            if (!current) return false;
+            return value >= current.offsetTop;
+        });
+
+        if (reversedIndex === -1) return;
+
+        const index = refs.length - 1 - reversedIndex;
+        setActive(index);
+    }, [y, refs]);
+
     return (
         <SectionList>
-            <Section>
-                <SectionBar>
-                    <HighlightedSectionBar index={0} active={active} />
-                </SectionBar>
-                <To href="#me">
-                    <SectionText>ME</SectionText>
-                </To>
-            </Section>
-            <Section>
-                <SectionBar>
-                    <HighlightedSectionBar index={1} active={active} />
-                </SectionBar>
-                <To href="#projects">
-                    <SectionText>PROJECTS</SectionText>
-                </To>
-            </Section>
+            {refs.map((ref, index) => {
+                const id = ref.current?.id;
+                if (!id) return null;
+                return (
+                    <Section key={id}>
+                        <SectionBar>
+                            <HighlightedSectionBar index={index} active={active} />
+                        </SectionBar>
+                        <To href={`#${id}`}>
+                            <SectionText>{id.toUpperCase()}</SectionText>
+                        </To>
+                    </Section>
+                );
+            })}
         </SectionList>
     );
 }
