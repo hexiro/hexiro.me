@@ -7,17 +7,16 @@ import { ProjectProps } from "commons/graphql";
 import styled from "styled-components";
 
 interface ProjectsProps {
-    projectsRef: React.MutableRefObject<HTMLElement | null>;
     projects: ProjectProps[];
 }
 
-export const Projects = ({ projectsRef, projects }: ProjectsProps): JSX.Element => (
-    <ProjectsSection id="projects" ref={projectsRef}>
+export const Projects = React.forwardRef<HTMLElement, ProjectsProps>(({ projects }, ref) => (
+    <ProjectsSection id="projects" ref={ref}>
         {projects.map(project => (
             <Project key={project.name} {...project} />
         ))}
     </ProjectsSection>
-);
+));
 
 const ProjectsSection = styled.section`
     position: relative;

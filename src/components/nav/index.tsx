@@ -8,45 +8,44 @@ import { useWindowScroll } from "react-use";
 import styled from "styled-components";
 
 interface NavProps {
-    refs: React.MutableRefObject<HTMLElement | null>[];
+    meRef: React.MutableRefObject<HTMLElement | null>;
+    projectsRef: React.MutableRefObject<HTMLElement | null>;
 }
 
-export default function Nav({ refs }: NavProps): JSX.Element {
+export default function Nav({ meRef, projectsRef }: NavProps): JSX.Element {
     const [active, setActive] = useState(0);
     const { y } = useWindowScroll();
 
     useEffect(() => {
+        const currentMe = meRef.current;
+        const currentProjects = projectsRef.current;
+
+        if (!currentMe || !currentProjects) return;
+
         const value = y + 500;
 
-        const reversed = refs.slice().reverse();
-        const reversedIndex = reversed.findIndex(x => {
-            const current = x.current;
-            if (!current) return false;
-            return value >= current.offsetTop;
-        });
-
-        if (reversedIndex === -1) return;
-
-        const index = refs.length - 1 - reversedIndex;
-        setActive(index);
-    }, [y, refs]);
+        if (value >= currentProjects.offsetTop) setActive(1);
+        else if (value >= currentMe.offsetTop) setActive(0);
+    }, [y]);
 
     return (
         <SectionList>
-            {refs.map((ref, index) => {
-                const id = ref.current?.id;
-                if (!id) return null;
-                return (
-                    <Section key={id}>
-                        <SectionBar>
-                            <HighlightedSectionBar index={index} active={active} />
-                        </SectionBar>
-                        <To href={`#${id}`}>
-                            <SectionText>{id.toUpperCase()}</SectionText>
-                        </To>
-                    </Section>
-                );
-            })}
+            <Section>
+                <SectionBar>
+                    <HighlightedSectionBar index={0} active={active} />
+                </SectionBar>
+                <To href="#me">
+                    <SectionText>ME</SectionText>
+                </To>
+            </Section>
+            <Section>
+                <SectionBar>
+                    <HighlightedSectionBar index={1} active={active} />
+                </SectionBar>
+                <To href="#projects">
+                    <SectionText>PROJECTS</SectionText>
+                </To>
+            </Section>
         </SectionList>
     );
 }
@@ -61,6 +60,7 @@ const SectionList = styled.ul`
 
 const Section = styled.li`
     display: block;
+    white-space: nowrap;
     transition: ease all 0.15s;
 
     &:focus {

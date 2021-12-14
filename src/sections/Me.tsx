@@ -6,12 +6,8 @@ import Lanyard from "components/lanyard";
 
 import styled from "styled-components";
 
-interface MeProps {
-    meRef: React.MutableRefObject<HTMLElement | null>;
-}
-
-export const Me = ({ meRef }: MeProps): JSX.Element => (
-    <MeSection id="me" ref={meRef}>
+export const Me = React.forwardRef<HTMLElement>((_, ref) => (
+    <MeSection id="me" ref={ref}>
         <Left>
             <Text>
                 <h1>
@@ -36,7 +32,7 @@ export const Me = ({ meRef }: MeProps): JSX.Element => (
             </Avatar>
         </Right>
     </MeSection>
-);
+));
 
 const MeSection = styled.section`
     position: relative;
