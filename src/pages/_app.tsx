@@ -59,7 +59,8 @@ body {
     background: ${theme.core.background};
     color: ${theme.core.text};
     font-family: "Poppins", sans-serif;
-    font-weight: 200;
+    font-weight: 300;
+    font-size: 16px;
     overflow-x: hidden;
 }
 
@@ -67,7 +68,6 @@ h2,
 h3,
 h4,
 h5,
-h6,
 p {
     font-weight: 300;
 }
@@ -86,11 +86,12 @@ h3 {
 }
 
 h4 {
-    font-size: 1em;
+
+    font-size: 1.1em;
 }
 
 h5 {
-    font-size: 0.8em;
+    font-size: 1em;
 }
 
 p {

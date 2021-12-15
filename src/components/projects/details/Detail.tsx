@@ -9,23 +9,16 @@ export default function Detail({ detail, children }: DetailProps): JSX.Element |
     return (
         <ProjectDetail>
             {children}
-            <DetailNumber>{detail}</DetailNumber>
+            <h4>{detail}</h4>
         </ProjectDetail>
     );
 }
-
-const DetailNumber = styled.h4`
-    margin-left: 2px;
-    line-height: 33px;
-`;
 
 const ProjectDetail = styled.li`
     display: inline-flex;
     align-items: center;
     margin-right: 10px;
-
-    & svg {
-        height: 18px;
-        width: 18px;
+    & h4 {
+        margin-left: 2px;
     }
 `;

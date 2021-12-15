@@ -3,9 +3,9 @@ import Image from "next/image";
 import { Header, Tooltip } from "components/common";
 import SongBar from "components/lanyard/SongBar";
 
+import { fadeChild } from "commons/animations";
 import { DISCORD } from "commons/config";
 import theme from "commons/theme";
-import { fadeChild } from "commons/animations";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Activity, Spotify, useLanyard } from "react-use-lanyard";
@@ -39,15 +39,16 @@ export default function Lanyard(): JSX.Element | null {
         <AnimatePresence>
             {content && assets && (
                 <LanyardContainer initial="start" animate="fade" exit="start" variants={fadeChild}>
-                    <Images>
-                        <LargeImageContainer>
+                    <div>
+                        <div>
                             <Tooltip title={assets.large_text}>
                                 <LargeImage
                                     alt="large image of application or song"
                                     draggable={false}
                                     src={content.largeImage}
-                                    height={90}
-                                    width={90}
+                                    layout="fixed"
+                                    height={95}
+                                    width={95}
                                     priority={true}
                                 />
                             </Tooltip>
@@ -64,8 +65,8 @@ export default function Lanyard(): JSX.Element | null {
                                     </Tooltip>
                                 </SmallImageContainer>
                             )}
-                        </LargeImageContainer>
-                    </Images>
+                        </div>
+                    </div>
                     <Text>
                         <h4>
                             <Header>{content.name}</Header>
@@ -131,8 +132,8 @@ const LanyardContainer = styled(motion.div)`
     display: flex;
     position: relative;
     padding: 20px;
-    height: 130px;
-    width: 350px;
+    height: 135px;
+    width: 380px;
     border-radius: 6px;
     background: ${theme.accent.background};
     box-shadow: 0 4px 10px rgb(0 0 0 / 25%);
@@ -140,14 +141,6 @@ const LanyardContainer = styled(motion.div)`
     @media only screen and (max-width: 600px) {
         display: none;
     }
-`;
-
-const Images = styled.div`
-    position: relative;
-`;
-
-const LargeImageContainer = styled.div`
-    position: relative;
 `;
 
 // !important bcuz next/image lol
@@ -168,13 +161,11 @@ const SmallImage = styled(Image)`
 `;
 
 const Text = styled.div`
-    position: relative;
     display: flex;
-    flex-grow: 1;
+    width: 250px;
     flex-direction: column;
-    width: 40%;
-    line-height: 25px;
-    padding: 0 6.245%;
+    position: relative;
+    padding-left: 20px;
     text-align: left;
 
     & * {
@@ -182,8 +173,12 @@ const Text = styled.div`
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-
+    & h4 {
+        margin-bottom: 2px;
+    }
     & h5 {
-        line-height: 17px;
+        color: ${theme.core.subtext};
+        align-items: flex-end;
+        line-height: 1.3;
     }
 `;
