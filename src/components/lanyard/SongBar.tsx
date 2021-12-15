@@ -6,44 +6,34 @@ import { Timestamps } from "react-use-lanyard";
 import styled from "styled-components";
 
 export default function SongBar(timestamps: Timestamps | undefined): JSX.Element | null {
-    const [elapsed, setElapsed] = useState<JSX.Element | null>(null);
+    const [time, setTime] = useState(Date.now());
 
     const start = timestamps?.start;
     const end = timestamps?.end;
 
     useEffect(() => {
-        function updateTimestamp() {
-            if (start && end) {
-                setElapsed(formatSong(start, end));
-                return;
-            }
-        }
-        updateTimestamp();
-
-        const timestampInterval = setInterval(() => updateTimestamp(), 1000);
+        if (!(start && end)) return;
+        const interval = setInterval(() => setTime(Date.now()), 1000);
 
         return () => {
-            clearInterval(timestampInterval);
+            clearInterval(interval);
         };
     }, [start, end]);
 
-    return elapsed;
-}
+    if (!start) return null;
+    if (!end) return null;
 
-const formatSong = (start: number, end: number): JSX.Element => {
-    end = Math.floor((end - start) / 1000);
-    start = Math.floor((Date.now() - start) / 1000);
-    if (start > end) {
-        start = end;
-    }
+    const relativeEnd = Math.floor((end - start) / 1000);
+    const relativeStart = time > end ? relativeEnd : Math.floor((time - start) / 1000);
+
     return (
         <SongBarContainer>
             <OuterBar>
-                <InnerBar start={start} end={end}></InnerBar>
+                <InnerBar start={relativeStart} end={relativeEnd}></InnerBar>
             </OuterBar>
         </SongBarContainer>
     );
-};
+}
 
 const SongBarContainer = styled.div`
     position: absolute;
