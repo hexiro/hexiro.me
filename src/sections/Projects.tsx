@@ -11,7 +11,7 @@ interface ProjectsProps {
 }
 
 export const Projects = React.forwardRef<HTMLElement, ProjectsProps>(({ projects }, ref) => (
-    <ProjectsSection id="projects" ref={ref}>
+    <ProjectsSection ref={ref} id="projects">
         {projects.map(project => (
             <Project key={project.name} {...project} />
         ))}

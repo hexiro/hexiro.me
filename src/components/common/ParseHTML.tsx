@@ -12,6 +12,7 @@ const options: HTMLReactParserOptions = {
         if (element.name === "script") {
             return <></>;
         }
+
         if (element.name === "a") {
             return (
                 <To newTab href={element.attribs.href}>
@@ -19,6 +20,7 @@ const options: HTMLReactParserOptions = {
                 </To>
             );
         }
+
         // g(ithub)-emoji
         if (element.name === "g-emoji") {
             return <>{domToReact(element.children)}</>;

@@ -1,38 +1,46 @@
 {
-  "name": "hexiro-portfolio",
-  "version": "1.0.0b1",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "test": "next build && next start",
-    "style": "prettier -w \"src/**/*.*\""
-  },
-  "dependencies": {
-    "framer-motion": "^4.1.17",
-    "html-react-parser": "1.2.8",
-    "next": "^12.0.7",
-    "next-seo": "^4.28.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-icons": "^4.3.1",
-    "react-tippy": "^1.4.0",
-    "react-use": "^17.3.1",
-    "react-use-lanyard": "^0.1.0",
-    "sharp": "^0.29.2",
-    "styled-components": "^5.3.3"
-  },
-  "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^2.0.4",
-    "@types/node": "^15.6.0",
-    "@types/react": "^17.0.6",
-    "@types/styled-components": "^5.1.14",
-    "eslint": "^7.32.0",
-    "eslint-config-next": "^12.0.7",
-    "eslint-config-prettier": "^8.3.0",
-    "prettier": "^2.3.2",
-    "typescript": "^4.2.4"
-  }
+    "name": "hexiro-portfolio",
+    "version": "1.0.0b1",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "lint:fix": "eslint --fix --ext .ts,.tsx .",
+        "test": "next build && next start",
+        "style": "prettier -w \"src/**/*.*\""
+    },
+    "dependencies": {
+        "framer-motion": "^4.1.17",
+        "html-react-parser": "1.2.8",
+        "next": "^12.0.7",
+        "next-seo": "^4.28.0",
+        "react": "17.0.2",
+        "react-dom": "17.0.2",
+        "react-icons": "^4.3.1",
+        "react-tippy": "^1.4.0",
+        "react-use": "^17.3.1",
+        "react-use-lanyard": "^0.1.0",
+        "sharp": "^0.29.2",
+        "styled-components": "^5.3.3"
+    },
+    "devDependencies": {
+        "@trivago/prettier-plugin-sort-imports": "^2.0.4",
+        "@types/node": "^15.6.0",
+        "@types/react": "^17.0.6",
+        "@types/styled-components": "^5.1.14",
+        "@typescript-eslint/eslint-plugin": "^5.7.0",
+        "@typescript-eslint/parser": "^5.7.0",
+        "eslint": "^7.32.0",
+        "eslint-config-next": "^12.0.7",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-config-xo": "^0.39.0",
+        "eslint-config-xo-react": "^0.25.0",
+        "eslint-config-xo-typescript": "^0.47.1",
+        "eslint-plugin-react": "^7.27.1",
+        "eslint-plugin-react-hooks": "^4.3.0",
+        "prettier": "^2.3.2",
+        "typescript": "^4.2.4"
+    }
 }

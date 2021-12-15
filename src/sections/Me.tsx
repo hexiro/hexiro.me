@@ -7,7 +7,7 @@ import Lanyard from "components/lanyard";
 import styled from "styled-components";
 
 export const Me = React.forwardRef<HTMLElement>((_, ref) => (
-    <MeSection id="me" ref={ref}>
+    <MeSection ref={ref} id="me">
         <Left>
             <Text>
                 <h1>
@@ -28,7 +28,7 @@ export const Me = React.forwardRef<HTMLElement>((_, ref) => (
                     width={500}
                     quality={100}
                     draggable={false}
-                ></Image>
+                />
             </Avatar>
         </Right>
     </MeSection>

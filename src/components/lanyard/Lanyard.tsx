@@ -43,13 +43,13 @@ export default function Lanyard(): JSX.Element | null {
                         <div>
                             <Tooltip title={assets.large_text}>
                                 <LargeImage
+                                    priority
                                     alt="large image of application or song"
                                     draggable={false}
                                     src={content.largeImage}
                                     layout="fixed"
                                     height={95}
                                     width={95}
-                                    priority={true}
                                 />
                             </Tooltip>
                             {content.smallImage && (
@@ -89,9 +89,7 @@ interface LanyardContent {
     secondLine?: string;
 }
 
-const buildAsset = (applicationId: string, assetId: string): string => {
-    return `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
-};
+const buildAsset = (applicationId: string, assetId: string): string => `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
 
 const handleSpotify = (spotify?: Spotify): LanyardContent | null => {
     if (!spotify) return null;
@@ -104,12 +102,12 @@ const handleSpotify = (spotify?: Spotify): LanyardContent | null => {
 };
 
 const handleGame = (activity: Activity): LanyardContent | null => {
-    const assets = activity.assets;
+    const {assets} = activity;
     const applicationId = activity.application_id;
     if (!assets || !applicationId) return null;
 
     const largeImage = buildAsset(applicationId, assets.large_image);
-    const name = activity.name;
+    const {name} = activity;
     const firstLine = activity.details;
     const secondLine = activity.state;
 

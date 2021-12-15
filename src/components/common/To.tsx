@@ -8,7 +8,7 @@ import styled from "styled-components";
 type ToProps = PropsWithChildren<{ href: string; newTab?: boolean }>;
 
 export const To = ({ href, newTab, children }: ToProps) => (
-    <Link href={href} passHref>
+    <Link passHref href={href}>
         <Anchor rel="norefferer" target={newTab ? "_blank" : "_self"}>
             {children}
         </Anchor>

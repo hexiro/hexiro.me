@@ -20,8 +20,8 @@ export default function Home({ projects }: HomeProps) {
         <Page name="Home" description="desc">
             <Nav meRef={meRef} projectsRef={projectsRef} />
             <Sections>
-                <Me ref={meRef}></Me>
-                <Projects ref={projectsRef} projects={projects}></Projects>
+                <Me ref={meRef} />
+                <Projects ref={projectsRef} projects={projects} />
             </Sections>
         </Page>
     );
@@ -30,7 +30,7 @@ export default function Home({ projects }: HomeProps) {
 export const getStaticProps: GetStaticProps = async () => {
     const resp = await graphQL(PROJECTS);
     const json = await resp.json();
-    const projects: ProjectProps[] = json["data"]["viewer"]["pinnedItems"]["nodes"];
+    const projects: ProjectProps[] = json.data.viewer.pinnedItems.nodes;
 
     return {
         props: {

@@ -13,7 +13,7 @@ export default function SongBar(timestamps: Timestamps | undefined): JSX.Element
 
     useEffect(() => {
         if (!(start && end)) return;
-        const interval = setInterval(() => setTime(Date.now()), 1000);
+        const interval = setInterval(() => { setTime(Date.now()); }, 1000);
 
         return () => {
             clearInterval(interval);
@@ -29,7 +29,7 @@ export default function SongBar(timestamps: Timestamps | undefined): JSX.Element
     return (
         <SongBarContainer>
             <OuterBar>
-                <InnerBar start={relativeStart} end={relativeEnd}></InnerBar>
+                <InnerBar start={relativeStart} end={relativeEnd} />
             </OuterBar>
         </SongBarContainer>
     );
