@@ -8,20 +8,13 @@ interface ErrorProps {
 
 const ErrorHandler: NextPage<ErrorProps> = ({ statusCode }): JSX.Element => (
     <ErrorPage
-        status={statusCode || "Client Error"}
+        status={statusCode ?? "Client Error"}
         message="Oops? That wasn't supposed to happen!"
     />
 );
 
-ErrorHandler.getInitialProps = ({ res, err }: NextPageContext) => {
-    let statusCode: number | undefined;
-    if (res) {
-        statusCode = res.statusCode;
-    } else if (err && err.statusCode) {
-        statusCode = err.statusCode;
-    }
-
-    return { statusCode };
-};
+ErrorHandler.getInitialProps = ({ res, err }: NextPageContext) => ({
+    statusCode: res?.statusCode ?? err?.statusCode,
+});
 
 export default ErrorHandler;

@@ -13,7 +13,10 @@ export default function SongBar(timestamps: Timestamps | undefined): JSX.Element
 
     useEffect(() => {
         if (!(start && end)) return;
-        const interval = setInterval(() => { setTime(Date.now()); }, 1000);
+
+        const interval = setInterval(() => {
+            setTime(Date.now());
+        }, 1000);
 
         return () => {
             clearInterval(interval);

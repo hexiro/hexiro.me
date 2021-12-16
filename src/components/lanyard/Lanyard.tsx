@@ -89,7 +89,8 @@ interface LanyardContent {
     secondLine?: string;
 }
 
-const buildAsset = (applicationId: string, assetId: string): string => `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
+const buildAsset = (applicationId: string, assetId: string): string =>
+    `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
 
 const handleSpotify = (spotify?: Spotify): LanyardContent | null => {
     if (!spotify) return null;
@@ -102,12 +103,12 @@ const handleSpotify = (spotify?: Spotify): LanyardContent | null => {
 };
 
 const handleGame = (activity: Activity): LanyardContent | null => {
-    const {assets} = activity;
+    const { assets } = activity;
     const applicationId = activity.application_id;
     if (!assets || !applicationId) return null;
 
     const largeImage = buildAsset(applicationId, assets.large_image);
-    const {name} = activity;
+    const { name } = activity;
     const firstLine = activity.details;
     const secondLine = activity.state;
 

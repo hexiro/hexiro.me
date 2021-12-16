@@ -4,6 +4,8 @@ import React from "react";
 import { Header } from "components/common";
 import Lanyard from "components/lanyard";
 
+import { GITHUB } from "commons/config";
+
 import styled from "styled-components";
 
 export const Me = React.forwardRef<HTMLElement>((_, ref) => (
@@ -23,7 +25,8 @@ export const Me = React.forwardRef<HTMLElement>((_, ref) => (
         <Right>
             <Avatar>
                 <Image
-                    src="https://avatars.githubusercontent.com/hexiro"
+                    src={`https://avatars.githubusercontent.com/${GITHUB}`}
+                    alt="Hexiro Github Avatar"
                     height={500}
                     width={500}
                     quality={100}

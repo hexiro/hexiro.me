@@ -10,7 +10,7 @@ const options: HTMLReactParserOptions = {
     replace: element => {
         if (!(element instanceof Element)) return;
         if (element.name === "script") {
-            return <></>;
+            return null;
         }
 
         if (element.name === "a") {

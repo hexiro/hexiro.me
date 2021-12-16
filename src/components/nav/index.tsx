@@ -26,7 +26,7 @@ export default function Nav({ meRef, projectsRef }: NavProps): JSX.Element {
 
         if (value >= currentProjects.offsetTop) setActive(1);
         else if (value >= currentMe.offsetTop) setActive(0);
-    }, [y]);
+    }, [y, meRef, projectsRef]);
 
     return (
         <SectionList>

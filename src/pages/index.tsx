@@ -29,8 +29,8 @@ export default function Home({ projects }: HomeProps) {
 
 export const getStaticProps: GetStaticProps = async () => {
     const resp = await graphQL(PROJECTS);
-    const json = await resp.json();
-    const projects: ProjectProps[] = json.data.viewer.pinnedItems.nodes;
+    const json = await resp.json(); // eslint-disable-line @typescript-eslint/no-unsafe-assignment
+    const projects: ProjectProps[] = json.data.viewer.pinnedItems.nodes; // eslint-disable-line @typescript-eslint/no-unsafe-assignment
 
     return {
         props: {

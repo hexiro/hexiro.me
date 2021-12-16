@@ -1,5 +1,4 @@
-import { PropsWithChildren } from "react";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
 import { To } from "components/common";
 
