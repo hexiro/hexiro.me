@@ -93,7 +93,8 @@ const Avatar = styled.div`
     & > span {
         filter: drop-shadow(0px 0px 12px rgba(0, 0, 0, 0.25));
     }
-    & > span > img {
+    & > span > img,
+    & > span > noscript > img {
         border-radius: 12%;
     }
 `;
