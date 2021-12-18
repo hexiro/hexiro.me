@@ -9,5 +9,12 @@ const Sections = styled.div`
     flex-direction: column;
     margin: 0 2%;
     margin-top: 100px;
+
+    & > :first-child {
+        margin-top: unset;
+    }
+    & > section {
+        margin-top: 150px;
+    }
 `;
 export default Sections;

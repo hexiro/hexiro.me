@@ -39,34 +39,32 @@ export default function Lanyard(): JSX.Element | null {
         <AnimatePresence>
             {content && assets && (
                 <LanyardContainer initial="start" animate="fade" exit="start" variants={fadeChild}>
-                    <div>
-                        <div>
-                            <Tooltip title={assets.large_text}>
-                                <LargeImage
-                                    priority
-                                    alt="large image of application or song"
-                                    draggable={false}
-                                    src={content.largeImage}
-                                    layout="fixed"
-                                    height={95}
-                                    width={95}
-                                />
-                            </Tooltip>
-                            {content.smallImage && (
-                                <SmallImageContainer>
-                                    <Tooltip title={assets.small_text} size="small">
-                                        <SmallImage
-                                            alt="small image of application"
-                                            draggable={false}
-                                            src={content.smallImage}
-                                            height={30}
-                                            width={30}
-                                        />
-                                    </Tooltip>
-                                </SmallImageContainer>
-                            )}
-                        </div>
-                    </div>
+                    <Images>
+                        <Tooltip title={assets.large_text}>
+                            <LargeImage
+                                priority
+                                alt="large image of application or song"
+                                draggable={false}
+                                src={content.largeImage}
+                                layout="fixed"
+                                height={95}
+                                width={95}
+                            />
+                        </Tooltip>
+                        {content.smallImage && (
+                            <SmallImageContainer>
+                                <Tooltip title={assets.small_text} size="small">
+                                    <SmallImage
+                                        alt="small image of application"
+                                        draggable={false}
+                                        src={content.smallImage}
+                                        height={30}
+                                        width={30}
+                                    />
+                                </Tooltip>
+                            </SmallImageContainer>
+                        )}
+                    </Images>
                     <Text>
                         <h4>
                             <Header>{content.name}</Header>
@@ -140,6 +138,10 @@ const LanyardContainer = styled(motion.div)`
     @media only screen and (max-width: 600px) {
         display: none;
     }
+`;
+
+const Images = styled.div`
+    position: relative;
 `;
 
 // !important bcuz next/image lol
