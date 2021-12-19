@@ -97,6 +97,10 @@ h5 {
 p {
     color: ${theme.core.subtext};
     font-size: 1.25em;
+
+    @media only screen and (max-width: 516px) {
+        font-size: 1.1em;
+    }
 }
 
 ul {

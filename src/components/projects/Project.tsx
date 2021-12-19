@@ -42,7 +42,7 @@ const ProjectContainer = styled(motion.div)`
     position: relative;
     padding: 15px 20px 4px 20px;
     margin: 12.5px;
-    min-width: 400px;
+    min-width: 310px;
     max-width: 630px;
     height: 200px;
     border-radius: 10px;
@@ -71,12 +71,6 @@ const ProjectContent = styled.div``;
 
 const Description = styled.p`
     padding-bottom: 10px;
-
-    /* @media only screen and (max-width: 1250px) {
-        margin-bottom: 20px;
-        cursor: text;
-        user-select: initial;
-    } */
 `;
 
 const Language = styled.p`

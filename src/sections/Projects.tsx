@@ -1,11 +1,11 @@
 import React from "react";
 
+import { Header } from "components/common";
 import Project from "components/projects";
 
 import { ProjectProps } from "commons/graphql";
 
 import styled from "styled-components";
-import { Header } from "components/common";
 
 interface ProjectsProps {
     projects: ProjectProps[];
@@ -14,8 +14,13 @@ interface ProjectsProps {
 export const Projects = React.forwardRef<HTMLElement, ProjectsProps>(({ projects }, ref) => (
     <ProjectsSection ref={ref} id="projects">
         <Text>
-            <h1><Header>Projects</Header></h1>
-            <TextFooter>Each project is hand-picked to best showcase my skills and creativity and is can be found on Github under my top six pinned repositories.</TextFooter>
+            <h1>
+                <Header>Projects</Header>
+            </h1>
+            <TextFooter>
+                Each project is hand-picked to best showcase my skills and creativity and can be
+                found on Github under my top six pinned repositories.
+            </TextFooter>
         </Text>
         <ProjectsContainer>
             {projects.map(project => (
@@ -26,13 +31,22 @@ export const Projects = React.forwardRef<HTMLElement, ProjectsProps>(({ projects
 ));
 
 const Text = styled.div`
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75%;
+    margin: 0 auto;
+
+    @media only screen and (max-width: 1164px) {
+        width: 100%;
+    }
 `;
 
 const TextFooter = styled.p`
     text-align: center;
-    padding: 0 20%;
-`
+    padding: 0 10px;
+    max-width: 960px;
+`;
 
 const ProjectsContainer = styled.div`
     display: flex;

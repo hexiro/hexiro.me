@@ -64,6 +64,7 @@ const Left = styled.div`
         justify-content: center;
         text-align: center;
         margin-top: 20px;
+        width: 100%;
     }
 `;
 
