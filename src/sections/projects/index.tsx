@@ -5,6 +5,7 @@ import { Header } from "components/common";
 import { ProjectProps } from "commons/graphql";
 
 import Project from "sections/projects/project";
+
 import styled from "styled-components";
 
 interface ProjectsProps {

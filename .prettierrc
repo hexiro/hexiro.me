@@ -1,12 +1,19 @@
 {
-  "semi": true,
-  "trailingComma": "es5",
-  "singleQuote": false,
-  "printWidth": 100,
-  "tabWidth": 4,
-  "useTabs": false,
-  "importOrder": ["^(react|next)(\/.*|)$", "^types$", "^components(\/.*|)$", "^commons(\/.*|)$", "^.*(?<!\\.css)$", "^.*?\\.css$"],
-  "importOrderSeparation": true,
-  "quoteProps": "preserve",
-  "arrowParens": "avoid"
+    "semi": true,
+    "trailingComma": "es5",
+    "singleQuote": false,
+    "printWidth": 100,
+    "tabWidth": 4,
+    "useTabs": false,
+    "importOrder": [
+        "^(react|next)(/.*|)$",
+        "^components(/.*|)$",
+        "^commons(/.*|)$",
+        "^sections(/.*|)$",
+        "^.*(?<!\\.css)$",
+        "^.*?\\.css$"
+    ],
+    "importOrderSeparation": true,
+    "quoteProps": "preserve",
+    "arrowParens": "avoid"
 }

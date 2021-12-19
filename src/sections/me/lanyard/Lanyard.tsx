@@ -1,11 +1,12 @@
 import Image from "next/image";
 
 import { Header, Tooltip } from "components/common";
-import SongBar from "sections/me/lanyard/SongBar";
 
 import { fadeChild } from "commons/animations";
 import { DISCORD } from "commons/config";
 import theme from "commons/theme";
+
+import SongBar from "sections/me/lanyard/SongBar";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Activity, Spotify, useLanyard } from "react-use-lanyard";
