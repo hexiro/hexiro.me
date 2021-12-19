@@ -1,9 +1,7 @@
 import React from "react";
 
-import { Header } from "components/common";
-
 import { ProjectProps } from "commons/graphql";
-
+import { Header } from "components/common";
 import Project from "sections/projects/project";
 
 import styled from "styled-components";

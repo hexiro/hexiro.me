@@ -5,14 +5,7 @@
     "printWidth": 100,
     "tabWidth": 4,
     "useTabs": false,
-    "importOrder": [
-        "^(react|next)(/.*|)$",
-        "^components(/.*|)$",
-        "^commons(/.*|)$",
-        "^sections(/.*|)$",
-        "^.*(?<!\\.css)$",
-        "^.*?\\.css$"
-    ],
+    "importOrder": ["^(react|next)(/.*|)$", "^(components|commons|sections)(/.*|)$", ".*"],
     "importOrderSeparation": true,
     "quoteProps": "preserve",
     "arrowParens": "avoid"

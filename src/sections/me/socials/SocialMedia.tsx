@@ -1,8 +1,7 @@
 import React, { PropsWithChildren } from "react";
 
-import { To } from "components/common";
-
 import { fadeChild } from "commons/animations";
+import { To } from "components/common";
 
 import { motion } from "framer-motion";
 import styled from "styled-components";

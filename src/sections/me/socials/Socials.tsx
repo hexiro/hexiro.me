@@ -1,6 +1,5 @@
 import { fadeParent } from "commons/animations";
 import { GITHUB_LINK, STEAM_LINK, TWITTER_LINK } from "commons/config";
-
 import { SocialMedia } from "sections/me/socials/SocialMedia";
 
 import { motion } from "framer-motion";

@@ -1,10 +1,8 @@
 import Image from "next/image";
 import React from "react";
 
-import { Header } from "components/common";
-
 import { GITHUB } from "commons/config";
-
+import { Header } from "components/common";
 import Lanyard from "sections/me/lanyard";
 import Socials from "sections/me/socials";
 

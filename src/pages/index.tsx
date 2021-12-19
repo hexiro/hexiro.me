@@ -1,11 +1,9 @@
 import { GetStaticProps } from "next";
 import React, { useRef } from "react";
 
+import graphQL, { ProjectProps, PROJECTS } from "commons/graphql";
 import Nav from "components/nav";
 import Page from "components/pages";
-
-import graphQL, { ProjectProps, PROJECTS } from "commons/graphql";
-
 import Sections, { Me, Projects } from "sections";
 
 interface HomeProps {
