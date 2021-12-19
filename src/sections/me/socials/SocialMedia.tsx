@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 
 import { fadeChild } from "commons/animations";
 import { To } from "components/common";

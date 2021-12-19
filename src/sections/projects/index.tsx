@@ -1,4 +1,4 @@
-import React from "react";
+import { forwardRef } from "react";
 
 import { ProjectProps } from "commons/graphql";
 import { Header } from "components/common";
@@ -10,7 +10,7 @@ interface ProjectsProps {
     projects: ProjectProps[];
 }
 
-export const Projects = React.forwardRef<HTMLElement, ProjectsProps>(({ projects }, ref) => (
+export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ projects }, ref) => (
     <ProjectsSection ref={ref} id="projects">
         <Text>
             <h1>

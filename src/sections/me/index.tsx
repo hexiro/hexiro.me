@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import { forwardRef } from "react";
 
 import { GITHUB } from "commons/config";
 import { Header } from "components/common";
@@ -8,7 +8,7 @@ import Socials from "sections/me/socials";
 
 import styled from "styled-components";
 
-export const Me = React.forwardRef<HTMLElement>((_, ref) => (
+export const Me = forwardRef<HTMLElement>((_, ref) => (
     <MeSection ref={ref} id="me">
         <Left>
             <div>

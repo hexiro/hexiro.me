@@ -1,15 +1,14 @@
-import React from "react";
+import { PropsWithChildren } from "react";
 
 import { TWITTER } from "commons/config";
 import theme from "commons/theme";
 
 import { DefaultSeo } from "next-seo";
 
-interface PageProps {
+type PageProps = PropsWithChildren<{
     name: string;
     description: string;
-    children?: React.ReactNode;
-}
+}>;
 
 export default function Page({ name, description, children }: PageProps): JSX.Element {
     return (

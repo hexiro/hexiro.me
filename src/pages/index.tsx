@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next";
-import React, { useRef } from "react";
+import { useRef } from "react";
 
 import graphQL, { ProjectProps, PROJECTS } from "commons/graphql";
 import Nav from "components/nav";
