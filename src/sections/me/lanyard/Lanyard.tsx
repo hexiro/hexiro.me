@@ -130,6 +130,7 @@ const LanyardContainer = styled(motion.div)`
     display: flex;
     position: relative;
     padding: 20px;
+    margin-top: 20px;
     height: 135px;
     width: 380px;
     border-radius: 6px;

@@ -1,7 +1,7 @@
-import { SocialMedia } from "components/socials/SocialMedia";
-
 import { fadeParent } from "commons/animations";
 import { GITHUB_LINK, STEAM_LINK, TWITTER_LINK } from "commons/config";
+
+import { SocialMedia } from "sections/me/socials/SocialMedia";
 
 import { motion } from "framer-motion";
 import { RiGithubLine, RiSteamLine, RiTwitterLine } from "react-icons/ri";
@@ -24,14 +24,9 @@ export default function Socials(): JSX.Element {
 }
 
 const UnorderedList = styled(motion.ul)`
-    margin-top: 10px;
-    position: absolute;
+    margin-top: 5px;
 
     & > :last-child {
         margin-right: unset;
-    }
-
-    @media only screen and (max-width: 1250px) {
-        position: unset;
     }
 `;

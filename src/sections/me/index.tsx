@@ -6,13 +6,14 @@ import { Header } from "components/common";
 import { GITHUB } from "commons/config";
 
 import Lanyard from "sections/me/lanyard";
+import Socials from "sections/me/socials";
 
 import styled from "styled-components";
 
 export const Me = React.forwardRef<HTMLElement>((_, ref) => (
     <MeSection ref={ref} id="me">
         <Left>
-            <Text>
+            <div>
                 <h1>
                     Hi! I'm <Header>Hexiro</Header>,
                 </h1>
@@ -20,7 +21,8 @@ export const Me = React.forwardRef<HTMLElement>((_, ref) => (
                     A self-taught software engineer who enjoys problem solving, technology, building
                     software, and contributing to open source projects.
                 </TextFooter>
-            </Text>
+            </div>
+            <Socials />
             <Lanyard />
         </Left>
         <Right>
@@ -71,10 +73,6 @@ const Left = styled.div`
 
 const Right = styled.div`
     padding: 0 10px;
-`;
-
-const Text = styled.div`
-    margin-bottom: 20px;
 `;
 
 const TextFooter = styled.p`

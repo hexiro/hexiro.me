@@ -13,9 +13,6 @@ export const SocialMedia = ({ href, children }: PropsWithChildren<{ href: string
     </SocialItem>
 );
 
-// type SocialMediaProps = React.ComponentProps<typeof SocialItem> &
-//     PropsWithChildren<{ href: string }>;
-
 const SocialItem = styled(motion.li)`
     height: 25px;
     width: 25px;
