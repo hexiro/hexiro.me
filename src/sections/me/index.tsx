@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 import { Header } from "components/common";
-import Lanyard from "components/lanyard";
+import Lanyard from "sections/me/lanyard";
 
 import { GITHUB } from "commons/config";
 

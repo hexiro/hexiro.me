@@ -1,10 +1,10 @@
 import React from "react";
 
 import { Header } from "components/common";
-import Project from "components/projects";
 
 import { ProjectProps } from "commons/graphql";
 
+import Project from "sections/projects/project";
 import styled from "styled-components";
 
 interface ProjectsProps {

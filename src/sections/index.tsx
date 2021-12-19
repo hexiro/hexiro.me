@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export { Me } from "./Me";
-export { Projects } from "./Projects";
+export { Me } from "./me";
+export { Projects } from "./projects";
 
 const Sections = styled.div`
     display: flex;

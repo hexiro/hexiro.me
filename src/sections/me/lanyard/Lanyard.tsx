@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import { Header, Tooltip } from "components/common";
-import SongBar from "components/lanyard/SongBar";
+import SongBar from "sections/me/lanyard/SongBar";
 
 import { fadeChild } from "commons/animations";
 import { DISCORD } from "commons/config";

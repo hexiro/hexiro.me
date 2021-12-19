@@ -1,5 +1,4 @@
 import { Header, ParseHTML, To } from "components/common";
-import { Forks, Stars } from "components/projects/details";
 
 import { fadeChild } from "commons/animations";
 import { GITHUB } from "commons/config";
@@ -7,6 +6,7 @@ import { ProjectProps } from "commons/graphql";
 import theme from "commons/theme";
 
 import { motion } from "framer-motion";
+import { Forks, Stars } from "sections/projects/project/details";
 import styled from "styled-components";
 
 export default function Project(project: ProjectProps): JSX.Element {
