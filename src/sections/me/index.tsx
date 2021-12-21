@@ -26,6 +26,7 @@ export const Me = forwardRef<HTMLElement>((_, ref) => (
         <Right>
             <Avatar>
                 <Image
+                    priority
                     src={`https://avatars.githubusercontent.com/${GITHUB}`}
                     alt="Hexiro GitHub Avatar"
                     height={500}
