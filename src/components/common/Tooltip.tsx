@@ -1,6 +1,7 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
-import { Tooltip as TippyTooltip, TooltipProps as TippyTooltipProps } from "react-tippy";
+import type { TooltipProps as TippyTooltipProps } from "react-tippy";
+import { Tooltip as TippyTooltip } from "react-tippy";
 
 export const Tooltip = ({ children, style, ...all }: TooltipProps): JSX.Element => (
     <TippyTooltip

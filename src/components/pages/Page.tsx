@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 import { TWITTER } from "commons/config";
 import theme from "commons/theme";

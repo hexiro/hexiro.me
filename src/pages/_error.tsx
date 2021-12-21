@@ -1,4 +1,4 @@
-import { NextPage, NextPageContext } from "next";
+import type { NextPage, NextPageContext } from "next";
 
 import ErrorPage from "components/pages/Error";
 

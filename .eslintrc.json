@@ -1,5 +1,5 @@
 {
-    "extends": ["xo", "xo-react", "xo-typescript", "next/core-web-vitals", "prettier"],
+    "extends": ["xo", "xo-react", "xo-typescript", "prettier", "next/core-web-vitals"],
     "rules": {
         "no-console": "error",
         "capitalized-comments": "off",
@@ -8,8 +8,9 @@
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
         "react/function-component-definition": "off",
-        "react/display-name": "warn",
-        "@typescript-eslint/triple-slash-reference": "warn",
+        "react/display-name": "off",
+        "@typescript-eslint/triple-slash-reference": "off",
+        "@typescript-eslint/consistent-type-imports": ["warn", { "prefer": "type-imports" }],
         "@typescript-eslint/naming-convention": [
             "warn",
             {

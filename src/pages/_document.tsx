@@ -1,4 +1,5 @@
-import NextDocument, { DocumentContext, DocumentInitialProps } from "next/document";
+import type { DocumentContext, DocumentInitialProps } from "next/document";
+import NextDocument from "next/document";
 
 import { ServerStyleSheet } from "styled-components";
 
