@@ -1,4 +1,4 @@
-export * from "components/common/Header";
-export * from "components/common/ParseHTML";
-export * from "components/common/To";
-export * from "components/common/Tooltip";
+export { Header } from "components/common/Header";
+export { ParseHTML } from "components/common/ParseHTML";
+export { To } from "components/common/To";
+export { Tooltip } from "components/common/Tooltip";

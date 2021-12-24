@@ -1,9 +1,9 @@
 import { Header } from "components/common";
-import Page from "components/pages";
+import { Page } from "components/pages";
 
 import styled from "styled-components";
 
-export default function ErrorPage({ status, message }: ErrorPageProps): JSX.Element {
+export const ErrorPage = ({ status, message }: ErrorPageProps): JSX.Element => {
     status = String(status);
     message = message ?? "Oops?";
     return (
@@ -18,7 +18,7 @@ export default function ErrorPage({ status, message }: ErrorPageProps): JSX.Elem
             </Main>
         </Page>
     );
-}
+};
 
 interface ErrorPageProps {
     status: number | string;

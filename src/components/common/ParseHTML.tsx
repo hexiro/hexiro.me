@@ -1,7 +1,7 @@
 import { To } from "components/common";
 
 import { Element } from "domhandler";
-import type { HTMLReactParserOptions} from "html-react-parser";
+import type { HTMLReactParserOptions } from "html-react-parser";
 import parse, { domToReact } from "html-react-parser";
 
 // returns string, JSX.Element[], JSX.Element all as JSX.Element
