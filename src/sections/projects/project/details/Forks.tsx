@@ -1,9 +1,9 @@
 import Detail from "sections/projects/project/details/Detail";
 
-import { BiGitRepoForked } from "react-icons/bi";
+import { ForksIcon } from "commons/icons";
 
 export const Forks = ({ forks }: { forks: number }): JSX.Element | null => (
     <Detail detail={forks}>
-        <BiGitRepoForked />
+        <ForksIcon />
     </Detail>
 );

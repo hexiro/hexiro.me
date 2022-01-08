@@ -1,9 +1,9 @@
 import Detail from "sections/projects/project/details/Detail";
 
-import { BiStar } from "react-icons/bi";
+import { StargazersIcon } from "commons/icons";
 
 export const Stars = ({ stargazers }: { stargazers: number }): JSX.Element | null => (
     <Detail detail={stargazers}>
-        <BiStar />
+        <StargazersIcon />
     </Detail>
 );
