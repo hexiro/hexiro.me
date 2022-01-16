@@ -1,2 +1,2 @@
-export * from "sections/projects/project/details/Forks";
-export * from "sections/projects/project/details/Stars";
+export { Forks } from "sections/projects/project/details/Forks";
+export { Stars } from "sections/projects/project/details/Stars";
