@@ -75,7 +75,6 @@ const HighlightedSectionBar = styled(SectionBar)<SectionBarProps>`
 const SectionText = styled.span`
     display: inline-block;
     position: relative;
-    font-style: italic;
     font-weight: 300;
     font-size: 2em;
 `;

@@ -46,11 +46,13 @@ export default function Nav({ meRef, projectsRef, contributionsRef }: NavProps):
     return (
         <NavContainer>
             {hex}
-            <Sections>
-                <Section name="me" index={0} active={active} previous={previous} />
-                <Section name="projects" index={1} active={active} previous={previous} />
-                <Section name="contributions" index={2} active={active} previous={previous} />
-            </Sections>
+            <Right>
+                <Sections>
+                    <Section name="me" index={0} active={active} previous={previous} />
+                    <Section name="projects" index={1} active={active} previous={previous} />
+                    <Section name="contributions" index={2} active={active} previous={previous} />
+                </Sections>
+            </Right>
         </NavContainer>
     );
 }
@@ -62,7 +64,7 @@ const NavContainer = styled.nav`
     align-items: center;
     width: 100%;
     height: 100px;
-    padding: 30px 25px;
+    padding: 0px 25px;
     z-index: 2;
     transition: ease all 0.2s;
 
@@ -71,11 +73,15 @@ const NavContainer = styled.nav`
     }
 `;
 
+const Right = styled.div`
+    position: absolute;
+    right: 25px;
+`;
+
 const Sections = styled.ul`
     display: flex;
     width: 100%;
     justify-content: flex-end;
-    right: 20px;
     list-style: none;
 
     @media only screen and (max-width: 800px) {
