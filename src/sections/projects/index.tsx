@@ -16,10 +16,10 @@ export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ projects }, re
             <h1>
                 <Header>Projects</Header>
             </h1>
-            <TextFooter>
+            <p>
                 Each project is hand-picked to best showcase my skills and creativity and can be
                 found on Github under my top six pinned repositories.
-            </TextFooter>
+            </p>
         </Text>
         <ProjectsContainer>
             {projects.map(project => (
@@ -30,28 +30,18 @@ export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ projects }, re
 ));
 
 const Text = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 75%;
-    margin: 0 auto;
+    text-align: left;
+    margin: 12.5px;
 
-    @media only screen and (max-width: 1164px) {
-        width: 100%;
+    & p {
+        max-width: 700px;
     }
 `;
-
-const TextFooter = styled.p`
-    text-align: center;
-    padding: 0 10px;
-    max-width: 960px;
-`;
-
 const ProjectsContainer = styled.div`
     display: flex;
     align-items: center;
     align-content: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
 `;
 
@@ -60,4 +50,19 @@ const ProjectsSection = styled.section`
     width: 100%;
     margin-top: 50px;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+
+    @media only screen and (max-width: 600px) {
+        justify-content: center;
+        margin-left: unset;
+
+        ${Text} {
+            text-align: center;
+        }
+        ${ProjectsContainer} {
+            justify-content: center;
+        }
+    }
 `;
