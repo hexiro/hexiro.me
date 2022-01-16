@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import theme from "commons/theme";
-import { To } from "components/common";
+import hex from "commons/assets/hex";
+import Section from "components/nav/section";
 
 import { useWindowScroll } from "react-use";
 import styled from "styled-components";
@@ -28,84 +28,36 @@ export default function Nav({ meRef, projectsRef }: NavProps): JSX.Element {
     }, [y, meRef, projectsRef]);
 
     return (
-        <SectionList>
-            <Section>
-                <SectionBar>
-                    <HighlightedSectionBar index={0} active={active} />
-                </SectionBar>
-                <To href="#me">
-                    <SectionText>ME</SectionText>
-                </To>
-            </Section>
-            <Section>
-                <SectionBar>
-                    <HighlightedSectionBar index={1} active={active} />
-                </SectionBar>
-                <To href="#projects">
-                    <SectionText>PROJECTS</SectionText>
-                </To>
-            </Section>
-        </SectionList>
+        <NavContainer>
+            {hex}
+            <Sections>
+                <Section name="me" highlighted={active === 0} />
+                <Section name="projects" highlighted={active === 1} />
+            </Sections>
+        </NavContainer>
     );
 }
 
-const SectionList = styled.ul`
+const NavContainer = styled.nav`
     position: fixed;
-    top: 25px;
-    left: 25px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    padding: 0 20px;
     z-index: 2;
-    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
-`;
-
-const Section = styled.li`
-    display: block;
-    white-space: nowrap;
-    transition: ease all 0.15s;
-
-    &:focus {
-        filter: unset;
-    }
+    transition: ease all 0.2s;
 
     &:hover {
-        padding-left: 25px;
+        background-color: rgba(0, 0, 0, 0.2);
     }
 `;
 
-interface SectionBarProps {
-    index: number;
-    active: number;
-}
-
-const HighlightedSectionBar = styled.span<SectionBarProps>`
-    display: block;
-    border-radius: 4px;
-    transition: ease all 0.225s;
-    background-color: ${theme.accent.main};
-    height: 100%;
-    z-index: 2;
-    width: ${props => {
-        if (props.index === props.active) return "100%";
-        return "0%";
-    }};
-`;
-
-const SectionBar = styled.span`
-    background-color: ${theme.accent.background};
-    display: inline-block;
-    height: 10px;
-    width: 60px;
-    z-index: -1;
-    transition: ease all 0.225s;
-    border-radius: 4px;
-    margin-bottom: 5px;
-    margin-left: -60px;
-    margin-right: 5px;
-`;
-
-const SectionText = styled.span`
-    display: inline-block;
-    position: relative;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 2em;
+const Sections = styled.ul`
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    right: 20px;
+    list-style: none;
 `;

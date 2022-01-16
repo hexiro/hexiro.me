@@ -18,5 +18,4 @@ export const TWITTER_LINK = `https://twitter.com/${TWITTER}`;
 export const STEAM_LINK = `https://steamcommunity.com/profiles/${STEAM}`;
 
 // private
-
 export const GITHUB_TOKEN = process.env.GITHUB_TOKEN || "";
