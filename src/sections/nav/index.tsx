@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import hex from "commons/assets/hex";
-import Section from "components/nav/section";
+import Section from "sections/nav/section";
 
 import { useWindowScroll } from "react-use";
 import styled from "styled-components";

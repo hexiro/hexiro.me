@@ -1,4 +1,4 @@
-import { Header } from "components/common";
+import { Header } from "components";
 import { Page } from "components/pages";
 
 import styled from "styled-components";

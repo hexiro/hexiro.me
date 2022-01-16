@@ -1,4 +1,4 @@
-import { To } from "components/common";
+import { To } from "components";
 
 import { Element } from "domhandler";
 import type { HTMLReactParserOptions } from "html-react-parser";
@@ -8,6 +8,7 @@ import parse, { domToReact } from "html-react-parser";
 export const ParseHTML = ({ html }: { html: string }): JSX.Element => <>{parse(html, options)}</>;
 
 const options: HTMLReactParserOptions = {
+    trim: true,
     replace: element => {
         if (!(element instanceof Element)) return;
         if (element.name === "script") {
@@ -27,5 +28,4 @@ const options: HTMLReactParserOptions = {
             return <>{domToReact(element.children)}</>;
         }
     },
-    trim: true,
 };

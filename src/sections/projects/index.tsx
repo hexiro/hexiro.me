@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 import { ProjectProps } from "commons/graphql";
-import { Header } from "components/common";
+import { Header } from "components";
 import Project from "sections/projects/project";
 
 import styled from "styled-components";

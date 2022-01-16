@@ -3,7 +3,7 @@ import Image from "next/image";
 import { fadeChild } from "commons/animations";
 import { DISCORD } from "commons/config";
 import theme from "commons/theme";
-import { Header, Tooltip } from "components/common";
+import { Header, Tooltip } from "components";
 import SongBar from "sections/me/lanyard/SongBar";
 
 import { AnimatePresence, motion } from "framer-motion";

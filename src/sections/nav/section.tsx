@@ -1,5 +1,5 @@
 import theme from "commons/theme";
-import { To } from "components/common";
+import { To } from "components";
 
 import styled from "styled-components";
 

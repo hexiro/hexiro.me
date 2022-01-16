@@ -3,9 +3,9 @@ import { useRef } from "react";
 
 import type { ProjectProps } from "commons/graphql";
 import graphQL, { PROJECTS } from "commons/graphql";
-import Nav from "components/nav";
 import { Page } from "components/pages";
 import Sections, { Me, Projects } from "sections";
+import Nav from "sections/nav";
 
 interface HomeProps {
     projects: ProjectProps[];
