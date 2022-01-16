@@ -62,7 +62,7 @@ const NavContainer = styled.nav`
     align-items: center;
     width: 100%;
     height: 100px;
-    padding: 0 20px;
+    padding: 30px 25px;
     z-index: 2;
     transition: ease all 0.2s;
 
@@ -77,4 +77,8 @@ const Sections = styled.ul`
     justify-content: flex-end;
     right: 20px;
     list-style: none;
+
+    @media only screen and (max-width: 800px) {
+        display: none;
+    }
 `;
