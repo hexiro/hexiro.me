@@ -5,17 +5,19 @@ import styled from "styled-components";
 
 interface SectionProps {
     name: string;
-    highlighted: boolean;
+    index: number;
+    active: number;
+    previous: number;
 }
 
-export default function Section({ name, highlighted }: SectionProps): JSX.Element {
+export default function Section({ name, index, active, previous }: SectionProps): JSX.Element {
     return (
         <SectionContainer>
             <To href={`#${name.toLowerCase()}`}>
                 <SectionText>{name.toUpperCase()}</SectionText>
             </To>
             <SectionBar>
-                <HighlightedSectionBar highlighted={highlighted} />
+                <HighlightedSectionBar index={index} active={active} previous={previous} />
             </SectionBar>
         </SectionContainer>
     );
@@ -31,12 +33,15 @@ const SectionContainer = styled.li`
 `;
 
 interface SectionBarProps {
-    highlighted: boolean;
+    index: number;
+    active: number;
+    previous: number;
 }
 
 const SectionBar = styled.div`
+    position: relative;
     display: block;
-    height: 8px;
+    height: 5px;
     width: 100%;
     border-radius: 4px;
     z-index: -1;
@@ -47,11 +52,24 @@ const SectionBar = styled.div`
 const HighlightedSectionBar = styled(SectionBar)<SectionBarProps>`
     background: ${theme.accent.main};
     z-index: 2;
-
-    width: ${({ highlighted }) => {
-        if (highlighted) return "100%";
+    width: ${({ index, active }) => {
+        if (index === active) return "100%";
         return "0%";
     }};
+    ${({ active, previous, index }) => {
+        // RETURN EARLY -- COME FROM LEFT
+        if (index === active) {
+            if (previous <= active) return;
+        }
+        if (index === previous) {
+            if (previous >= active) return;
+        }
+        // COME FROM RIGHT
+        return `
+            position: absolute;
+            right: 0;
+        `;
+    }}
 `;
 
 const SectionText = styled.span`

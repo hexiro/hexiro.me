@@ -12,27 +12,46 @@ interface NavProps {
 }
 
 export default function Nav({ meRef, projectsRef }: NavProps): JSX.Element {
+    // active section
     const [active, setActive] = useState(0);
-    const { y } = useWindowScroll();
+    // previously active section
+    const [previous, setPrevious] = useState(0);
+    const windowScroll = useWindowScroll();
+
+    // add 1/4 of page's height to y as a buffer so it doesn't need to be perfectly at the top.
+    const offset = typeof window !== "undefined" ? window.innerHeight / 4 : 300;
+    const y = windowScroll.y + offset;
 
     useEffect(() => {
         const currentMe = meRef.current;
         const currentProjects = projectsRef.current;
 
-        if (!currentMe || !currentProjects) return;
+        if (!currentMe) return;
+        if (!currentProjects) return;
 
-        const value = y + 500;
+        const currentRefs = [currentMe, currentProjects];
 
-        if (value >= currentProjects.offsetTop) setActive(1);
-        else if (value >= currentMe.offsetTop) setActive(0);
+        let newActive: number = 0;
+
+        for (const [index, value] of currentRefs.reverse().entries()) {
+            if (y > value.offsetTop) {
+                newActive = currentRefs.length - 1 - index;
+                break;
+            }
+        }
+
+        if (active !== newActive) {
+            setPrevious(active);
+            setActive(newActive);
+        }
     }, [y, meRef, projectsRef]);
 
     return (
         <NavContainer>
             {hex}
             <Sections>
-                <Section name="me" highlighted={active === 0} />
-                <Section name="projects" highlighted={active === 1} />
+                <Section name="me" index={0} active={active} previous={previous} />
+                <Section name="projects" index={1} active={active} previous={previous} />
             </Sections>
         </NavContainer>
     );
