@@ -6,4 +6,7 @@ module.exports = {
     images: {
         domains: ["i.scdn.co", "cdn.discordapp.com", "avatars.githubusercontent.com"],
     },
+    experimental: {
+        styledComponents: true,
+    },
 };
