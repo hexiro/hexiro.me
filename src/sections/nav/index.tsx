@@ -1,3 +1,4 @@
+import type { MutableRefObject } from "react";
 import { useEffect, useState } from "react";
 
 import hex from "commons/assets/hex";
@@ -7,11 +8,12 @@ import { useWindowScroll } from "react-use";
 import styled from "styled-components";
 
 interface NavProps {
-    meRef: React.MutableRefObject<HTMLElement | null>;
-    projectsRef: React.MutableRefObject<HTMLElement | null>;
+    meRef: MutableRefObject<HTMLElement | null>;
+    projectsRef: MutableRefObject<HTMLElement | null>;
+    contributionsRef: MutableRefObject<HTMLElement | null>;
 }
 
-export default function Nav({ meRef, projectsRef }: NavProps): JSX.Element {
+export default function Nav({ meRef, projectsRef, contributionsRef }: NavProps): JSX.Element {
     // active section
     const [active, setActive] = useState(0);
     // previously active section
@@ -23,19 +25,14 @@ export default function Nav({ meRef, projectsRef }: NavProps): JSX.Element {
     const y = windowScroll.y + offset;
 
     useEffect(() => {
-        const currentMe = meRef.current;
-        const currentProjects = projectsRef.current;
-
-        if (!currentMe) return;
-        if (!currentProjects) return;
-
-        const currentRefs = [currentMe, currentProjects];
+        const refs = [meRef, projectsRef, contributionsRef];
 
         let newActive: number = 0;
 
-        for (const [index, value] of currentRefs.reverse().entries()) {
-            if (y > value.offsetTop) {
-                newActive = currentRefs.length - 1 - index;
+        for (const [index, ref] of refs.reverse().entries()) {
+            if (!ref?.current) continue;
+            if (y > ref.current.offsetTop) {
+                newActive = refs.length - 1 - index;
                 break;
             }
         }
@@ -44,7 +41,7 @@ export default function Nav({ meRef, projectsRef }: NavProps): JSX.Element {
             setPrevious(active);
             setActive(newActive);
         }
-    }, [y, meRef, projectsRef]);
+    }, [y, meRef, projectsRef, contributionsRef]);
 
     return (
         <NavContainer>
@@ -52,6 +49,7 @@ export default function Nav({ meRef, projectsRef }: NavProps): JSX.Element {
             <Sections>
                 <Section name="me" index={0} active={active} previous={previous} />
                 <Section name="projects" index={1} active={active} previous={previous} />
+                <Section name="contributions" index={2} active={active} previous={previous} />
             </Sections>
         </NavContainer>
     );

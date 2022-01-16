@@ -4,7 +4,7 @@ import { useRef } from "react";
 import type { ProjectProps } from "commons/graphql";
 import graphQL, { PROJECTS } from "commons/graphql";
 import { Page } from "components/pages";
-import Sections, { Me, Projects } from "sections";
+import Sections, { Contributions, Me, Projects } from "sections";
 import Nav from "sections/nav";
 
 interface HomeProps {
@@ -14,13 +14,15 @@ interface HomeProps {
 export default function Home({ projects }: HomeProps) {
     const meRef = useRef<HTMLElement | null>(null);
     const projectsRef = useRef<HTMLElement | null>(null);
+    const contributionsRef = useRef<HTMLElement | null>(null);
 
     return (
         <Page name="Home" description="desc">
-            <Nav meRef={meRef} projectsRef={projectsRef} />
+            <Nav meRef={meRef} projectsRef={projectsRef} contributionsRef={contributionsRef} />
             <Sections>
                 <Me ref={meRef} />
                 <Projects ref={projectsRef} projects={projects} />
+                <Contributions ref={contributionsRef} />
             </Sections>
         </Page>
     );
