@@ -6,7 +6,8 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint --fix",
+        "lint": "next lint",
+        "lint:fix": "next lint --fix",
         "test": "next build && next start",
         "style": "prettier -w \"src/**/*.*\""
     },

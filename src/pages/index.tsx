@@ -1,8 +1,8 @@
 import type { GetStaticProps } from "next";
 import { useRef } from "react";
 
-import { CONTRIBUTIONS, Repository } from "commons/graphql";
-import githubGraphQL, { PROJECTS } from "commons/graphql";
+import type { Repository } from "commons/graphql";
+import githubGraphQL, { PROJECTS, CONTRIBUTIONS } from "commons/graphql";
 import { Page } from "components/pages";
 import Sections, { Contributions, Me, Projects } from "sections";
 import Nav from "sections/nav";
@@ -11,8 +11,6 @@ interface HomeProps {
     projects: Repository[];
     contributions: Repository[];
 }
-
-// TODO: use more general `Repository` name that works in both projects and contributions
 
 export default function Home({ projects, contributions }: HomeProps) {
     const meRef = useRef<HTMLElement | null>(null);
@@ -40,8 +38,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     const contributionsJson = await contributionsResp.json();
     const contributions: Repository[] =
         contributionsJson.data.viewer.repositoriesContributedTo.nodes;
-
-    console.log({ projects });
 
     return {
         props: {

@@ -6,7 +6,7 @@ import { Tooltip as TippyTooltip } from "react-tippy";
 export const Tooltip = ({ children, style, ...all }: TooltipProps): JSX.Element => (
     <TippyTooltip
         {...all}
-        // set styling
+        // Set styling
         arrow
         inertia
         duration={200}

@@ -3,7 +3,7 @@ import NextDocument from "next/document";
 
 import { ServerStyleSheet } from "styled-components";
 
-// copied from
+// Copied from
 // https://github.com/vercel/next.js/blob/master/examples/with-styled-components/pages/_document.js#L4
 
 export default class Document extends NextDocument {

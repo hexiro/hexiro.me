@@ -17,7 +17,6 @@ export const To = ({ href, newTab, children }: ToProps) => (
 
 const Anchor = styled.a`
     color: ${theme.core.main};
-    text-decoration: none;
     opacity: 0.85;
     font-weight: 300;
     transition: ease all 0.2s;

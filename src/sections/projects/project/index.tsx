@@ -18,7 +18,7 @@ export default function Project({ children, ...project }: ProjectProps): JSX.Ele
             <ProjectContent>
                 <Title>
                     <h3>
-                        <To href={project.url}>
+                        <To newTab href={project.url}>
                             {project.owner.login !== GITHUB && (
                                 <Header>{project.owner.login}/</Header>
                             )}
@@ -27,7 +27,7 @@ export default function Project({ children, ...project }: ProjectProps): JSX.Ele
                     </h3>
                 </Title>
                 <Description>
-                    <ParseHTML html={project.descriptionHTML.slice(5, -6)} />
+                    <ParseHTML html={project.descriptionHTML} />
                 </Description>
                 {children}
                 <Footer>
