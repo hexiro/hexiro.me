@@ -1,13 +1,13 @@
 import { forwardRef } from "react";
 
-import { ProjectProps } from "commons/graphql";
+import type { Repository } from "commons/graphql";
 import { Header } from "components";
 import Project from "sections/projects/project";
 
 import styled from "styled-components";
 
 interface ProjectsProps {
-    projects: ProjectProps[];
+    projects: Repository[];
 }
 
 export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ projects }, ref) => (

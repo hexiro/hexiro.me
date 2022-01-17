@@ -1,6 +1,8 @@
+import { PropsWithChildren } from "react";
+
 import { fadeChild } from "commons/animations";
 import { GITHUB } from "commons/config";
-import { ProjectProps } from "commons/graphql";
+import type { Repository } from "commons/graphql";
 import theme from "commons/theme";
 import { Header, ParseHTML, To } from "components";
 import { Forks, Stars } from "sections/projects/project/details";
@@ -8,7 +10,9 @@ import { Forks, Stars } from "sections/projects/project/details";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export default function Project(project: ProjectProps): JSX.Element {
+type ProjectProps = PropsWithChildren<Repository>;
+
+export default function Project({ children, ...project }: ProjectProps): JSX.Element {
     return (
         <ProjectContainer variants={fadeChild}>
             <ProjectContent>
@@ -25,6 +29,7 @@ export default function Project(project: ProjectProps): JSX.Element {
                 <Description>
                     <ParseHTML html={project.descriptionHTML.slice(5, -6)} />
                 </Description>
+                {children}
                 <Footer>
                     <Language>{project.primaryLanguage.name}</Language>
                     <ul>

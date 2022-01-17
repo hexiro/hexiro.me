@@ -1,9 +1,16 @@
 import gql from "commons/graphql/gql";
 
-export const PROJECTS = gql`
+export const CONTRIBUTIONS = gql`
     {
         viewer {
-            pinnedItems(first: 6, types: REPOSITORY) {
+            repositoriesContributedTo(
+                first: 6
+                contributionTypes: [COMMIT]
+                includeUserRepositories: false
+                orderBy: { field: STARGAZERS, direction: DESC }
+                privacy: PUBLIC
+                after: "Y3Vyc29yOnYyOpLNKyPOAZci-Q=="
+            ) {
                 nodes {
                     ... on Repository {
                         name
