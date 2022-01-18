@@ -14,7 +14,7 @@ export default async function githubGraphQL(query: string): Promise<Response> {
     });
 }
 
-export interface Repository {
+export interface RepositoryProps {
     name: string;
     descriptionHTML: string;
     url: string;

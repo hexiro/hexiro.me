@@ -1,4 +1,4 @@
-import { To } from "components";
+import { To } from "components/common";
 
 import { Element } from "domhandler";
 import type { HTMLReactParserOptions } from "html-react-parser";

@@ -1,13 +1,13 @@
 import { forwardRef } from "react";
 
-import type { Repository } from "commons/graphql";
-import { Header } from "components";
-import Project from "sections/projects/project";
+import type { RepositoryProps } from "commons/graphql";
+import { Header } from "components/common";
+import Repository from "components/repository";
 
 import styled from "styled-components";
 
 interface ProjectsProps {
-    projects: Repository[];
+    projects: RepositoryProps[];
 }
 
 export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ projects }, ref) => (
@@ -23,7 +23,7 @@ export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ projects }, re
         </Text>
         <ProjectsContainer>
             {projects.map(project => (
-                <Project key={project.name} {...project} />
+                <Repository key={project.name} {...project} />
             ))}
         </ProjectsContainer>
     </ProjectsSection>

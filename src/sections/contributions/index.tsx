@@ -1,19 +1,19 @@
 import { forwardRef } from "react";
 
-import { Repository } from "commons/graphql";
-import Project from "sections/projects/project";
+import { RepositoryProps } from "commons/graphql";
+import Repository from "components/repository";
 
 import styled from "styled-components";
 
 interface ContributionsProps {
-    contributions: Repository[];
+    contributions: RepositoryProps[];
 }
 
 export const Contributions = forwardRef<HTMLElement, ContributionsProps>(
     ({ contributions }, ref) => (
         <ContribtionsSection ref={ref} id="contributions">
             {contributions.map(contribution => (
-                <Project key={contribution.name} {...contribution} />
+                <Repository key={contribution.name} {...contribution} />
             ))}
         </ContribtionsSection>
     )

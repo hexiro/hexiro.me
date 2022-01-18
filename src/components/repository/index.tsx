@@ -1,21 +1,21 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 import { fadeChild } from "commons/animations";
 import { GITHUB } from "commons/config";
-import type { Repository } from "commons/graphql";
+import type { RepositoryProps } from "commons/graphql";
 import theme from "commons/theme";
-import { Header, ParseHTML, To } from "components";
-import { Forks, Stars } from "sections/projects/project/details";
+import { Header, ParseHTML, To } from "components/common";
+import { Forks, Stars } from "components/repository/details";
 
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-type ProjectProps = PropsWithChildren<Repository>;
+type ProjectProps = PropsWithChildren<RepositoryProps>;
 
-export default function Project({ children, ...project }: ProjectProps): JSX.Element {
+export default function Repository({ children, ...project }: ProjectProps): JSX.Element {
     return (
         <ProjectContainer variants={fadeChild}>
-            <ProjectContent>
+            <div>
                 <Title>
                     <h3>
                         <To newTab href={project.url}>
@@ -37,7 +37,7 @@ export default function Project({ children, ...project }: ProjectProps): JSX.Ele
                         <Forks forks={project.forks.totalCount} />
                     </ul>
                 </Footer>
-            </ProjectContent>
+            </div>
         </ProjectContainer>
     );
 }
@@ -55,10 +55,6 @@ const ProjectContainer = styled(motion.div)`
     /* transition: ease-out all 0.31s; */
     will-change: transform;
 
-    &:hover {
-        transform: scale(1.04) !important;
-    }
-
     width: 45%;
 
     @media only screen and (max-width: 894px) {
@@ -70,8 +66,6 @@ const Title = styled.div`
     word-break: break-word;
     color: ${theme.core.main};
 `;
-
-const ProjectContent = styled.div``;
 
 const Description = styled.p`
     padding-bottom: 10px;

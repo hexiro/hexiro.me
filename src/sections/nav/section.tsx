@@ -1,7 +1,7 @@
 import type { MutableRefObject } from "react";
 
 import theme from "commons/theme";
-import { Header } from "components";
+import { Header } from "components/common";
 
 import { motion } from "framer-motion";
 import styled from "styled-components";
