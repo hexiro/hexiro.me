@@ -46,13 +46,29 @@ export default function Nav({ meRef, projectsRef, contributionsRef }: NavProps):
     return (
         <NavContainer>
             {hex}
-            <Right>
-                <Sections>
-                    <Section name="me" index={0} active={active} previous={previous} />
-                    <Section name="projects" index={1} active={active} previous={previous} />
-                    <Section name="contributions" index={2} active={active} previous={previous} />
-                </Sections>
-            </Right>
+            <Sections>
+                <Section
+                    name="me"
+                    index={0}
+                    active={active}
+                    previous={previous}
+                    sectionRef={meRef}
+                />
+                <Section
+                    name="projects"
+                    index={1}
+                    active={active}
+                    previous={previous}
+                    sectionRef={projectsRef}
+                />
+                <Section
+                    name="contributions"
+                    index={2}
+                    active={active}
+                    previous={previous}
+                    sectionRef={contributionsRef}
+                />
+            </Sections>
         </NavContainer>
     );
 }
@@ -63,19 +79,12 @@ const NavContainer = styled.nav`
     display: flex;
     align-items: center;
     width: 100%;
-    height: 100px;
-    padding: 0px 25px;
+    height: 80px;
+    padding: 0px 50px;
     z-index: 2;
     transition: ease all 0.2s;
 
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.2);
-    }
-`;
-
-const Right = styled.div`
-    position: absolute;
-    right: 25px;
+    background-color: rgba(0, 0, 0, 0.2);
 `;
 
 const Sections = styled.ul`

@@ -1,6 +1,9 @@
-import theme from "commons/theme";
-import { To } from "components";
+import type { MutableRefObject } from "react";
 
+import theme from "commons/theme";
+import { Header } from "components";
+
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 interface SectionProps {
@@ -8,14 +11,28 @@ interface SectionProps {
     index: number;
     active: number;
     previous: number;
+    sectionRef: MutableRefObject<HTMLElement | null>;
 }
 
-export default function Section({ name, index, active, previous }: SectionProps): JSX.Element {
+// TODO: MAKE SCALE CONSISTENT ACROSS THE THINGS
+
+export default function Section({
+    name,
+    index,
+    active,
+    previous,
+    sectionRef,
+}: SectionProps): JSX.Element {
+    const onTap = () => {
+        if (!sectionRef?.current) return;
+        sectionRef.current.scrollIntoView({ block: "center" });
+    };
+
     return (
         <SectionContainer>
-            <To href={`#${name.toLowerCase()}`}>
-                <SectionText>{name.toUpperCase()}</SectionText>
-            </To>
+            <motion.h3 onTap={onTap} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.92 }}>
+                <Header>{name.toUpperCase()}</Header>
+            </motion.h3>
             <SectionBar>
                 <HighlightedSectionBar index={index} active={active} previous={previous} />
             </SectionBar>
@@ -28,8 +45,8 @@ const SectionContainer = styled.li`
     position: relative;
     white-space: nowrap;
     transition: ease all 0.15s;
-    padding: 0 10px;
-    margin: 0 10px;
+    margin: 0 20px;
+    user-select: none;
 `;
 
 interface SectionBarProps {
@@ -70,11 +87,4 @@ const HighlightedSectionBar = styled(SectionBar)<SectionBarProps>`
             right: 0;
         `;
     }}
-`;
-
-const SectionText = styled.span`
-    display: inline-block;
-    position: relative;
-    font-weight: 300;
-    font-size: 2em;
 `;
