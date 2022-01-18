@@ -48,9 +48,9 @@ const MeSection = styled.section`
     justify-content: center;
 
     @media only screen and (max-width: 1164px) {
-        height: 650px;
+        height: 775px;
         flex-direction: column-reverse;
-        justify-content: flex-start;
+        justify-content: flex-end;
     }
 `;
 

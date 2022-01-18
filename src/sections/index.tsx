@@ -9,13 +9,8 @@ const Sections = styled.div`
     align-items: center;
     flex-direction: column;
     margin: 0 2%;
-    margin-top: 100px;
-
-    & > :first-child {
-        margin-top: unset;
-    }
     & > section {
-        margin-top: 150px;
+        margin-top: 140px;
     }
 `;
 export default Sections;

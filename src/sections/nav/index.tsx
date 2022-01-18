@@ -1,7 +1,8 @@
 import type { MutableRefObject } from "react";
 import { useEffect, useState } from "react";
 
-import hex from "commons/assets/hex";
+import theme from "commons/theme";
+import Hex from "sections/nav/hex";
 import Section from "sections/nav/section";
 
 import { useWindowScroll } from "react-use";
@@ -45,7 +46,7 @@ export default function Nav({ meRef, projectsRef, contributionsRef }: NavProps):
 
     return (
         <NavContainer>
-            {hex}
+            <Hex />
             <Sections>
                 <Section
                     name="me"
@@ -79,18 +80,19 @@ const NavContainer = styled.nav`
     display: flex;
     width: 100%;
     height: 80px;
-    padding: 20px 50px;
+    padding: 0 2%;
     z-index: 2;
     transition: ease all 0.2s;
-
+    backdrop-filter: blur(2px);
     background-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid ${theme.accent.background};
 `;
 
 const Sections = styled.ul`
     display: flex;
-    width: 100%;
     justify-content: flex-end;
-    list-style: none;
+    width: 100%;
+    padding: 20px 0;
 
     @media only screen and (max-width: 800px) {
         display: none;
