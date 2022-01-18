@@ -43,12 +43,10 @@ const MeSection = styled.section`
     position: relative;
     display: flex;
     width: 100%;
-    height: 640px;
     align-items: center;
     justify-content: center;
 
     @media only screen and (max-width: 1164px) {
-        height: 775px;
         flex-direction: column-reverse;
         justify-content: flex-end;
     }

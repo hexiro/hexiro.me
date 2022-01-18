@@ -52,13 +52,12 @@ const ProjectContainer = styled(motion.div)`
     border-radius: 10px;
     background: ${theme.accent.background};
     box-shadow: 0 6px 13px rgba(0, 0, 0, 0.25);
-    /* transition: ease-out all 0.31s; */
     will-change: transform;
 
     width: 45%;
 
-    @media only screen and (max-width: 894px) {
-        width: 75%;
+    @media only screen and (max-width: 900px) {
+        width: 85%;
     }
 `;
 
