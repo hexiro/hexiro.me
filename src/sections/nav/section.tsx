@@ -23,7 +23,7 @@ export default function Section({
 }: SectionProps): JSX.Element {
     const onTap = () => {
         if (!sectionRef?.current) return;
-        sectionRef.current.scrollIntoView({ block: "center" });
+        sectionRef.current.scrollIntoView();
     };
 
     return (

@@ -48,7 +48,6 @@ const ProjectsContainer = styled.div`
 const ProjectsSection = styled.section`
     position: relative;
     width: 100%;
-    margin-top: 50px;
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
