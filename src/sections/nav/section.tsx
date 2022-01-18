@@ -1,6 +1,5 @@
 import type { MutableRefObject } from "react";
 
-import { pop } from "commons/animations";
 import theme from "commons/theme";
 import { Header } from "components/common";
 
