@@ -5,7 +5,11 @@ import theme from "commons/theme";
 import { Timestamps } from "react-use-lanyard";
 import styled from "styled-components";
 
-export default function SongBar(timestamps: Timestamps | undefined): JSX.Element | null {
+interface TimestampBarProps {
+    timestamps?: Timestamps;
+}
+
+export default function TimestampBar({ timestamps }: TimestampBarProps): JSX.Element | null {
     const [time, setTime] = useState(Date.now());
 
     const start = timestamps?.start;

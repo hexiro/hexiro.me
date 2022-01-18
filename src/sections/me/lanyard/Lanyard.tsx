@@ -4,11 +4,12 @@ import { fadeChild } from "commons/animations";
 import { DISCORD } from "commons/config";
 import theme from "commons/theme";
 import { Header, Tooltip } from "components/common";
-import SongBar from "sections/me/lanyard/SongBar";
+import SongBar from "sections/me/lanyard/TimestampBar";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Activity, Spotify, useLanyard } from "react-use-lanyard";
 import styled from "styled-components";
+import TimestampBar from "sections/me/lanyard/TimestampBar";
 
 export default function Lanyard(): JSX.Element | null {
     const { loading, status } = useLanyard({
@@ -21,7 +22,6 @@ export default function Lanyard(): JSX.Element | null {
         ?.sort((a, b) => (a.type > b.type ? 1 : -1))
         ?.find(act => types.includes(act.type));
 
-    const songBar = SongBar(activity?.timestamps);
     const assets = activity?.assets;
 
     const isListening = activity?.type === 2;
@@ -71,7 +71,7 @@ export default function Lanyard(): JSX.Element | null {
                         <h5>{content.firstLine}</h5>
                         <h5>{content.secondLine}</h5>
                     </Text>
-                    {isListening && songBar}
+                    {isListening && <TimestampBar timestamps={activity?.timestamps}/>}
                 </LanyardContainer>
             )}
         </AnimatePresence>
@@ -104,16 +104,19 @@ const handleGame = (activity: Activity): LanyardContent | null => {
     const applicationId = activity.application_id;
     if (!assets || !applicationId) return null;
 
-    const largeImage = buildAsset(applicationId, assets.large_image);
+    let largeImage: string = buildAsset(applicationId, assets.large_image);
+    let smallImage: string | undefined;
+
+    if (assets.small_image)
+        if (largeImage) {
+            smallImage = buildAsset(applicationId, assets.small_image);
+        } else {
+            largeImage = buildAsset(applicationId, assets.small_image);
+        }
+
     const { name } = activity;
     const firstLine = activity.details;
     const secondLine = activity.state;
-
-    let smallImage: string | undefined;
-
-    if (assets.small_image) {
-        smallImage = buildAsset(applicationId, assets.small_image);
-    }
 
     return {
         largeImage,
