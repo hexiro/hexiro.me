@@ -5,7 +5,7 @@ import theme from "commons/theme";
 
 import styled from "styled-components";
 
-type ToProps = PropsWithChildren<{ href: string;}>;
+type ToProps = PropsWithChildren<{ href: string }>;
 
 export const To = ({ href, children }: ToProps) => (
     <Link passHref href={href}>

@@ -5,11 +5,11 @@ import { DISCORD } from "commons/config";
 import theme from "commons/theme";
 import { Header, Tooltip } from "components/common";
 import SongBar from "sections/me/lanyard/TimestampBar";
+import TimestampBar from "sections/me/lanyard/TimestampBar";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Activity, Spotify, useLanyard } from "react-use-lanyard";
 import styled from "styled-components";
-import TimestampBar from "sections/me/lanyard/TimestampBar";
 
 export default function Lanyard(): JSX.Element | null {
     const { loading, status } = useLanyard({
@@ -71,7 +71,7 @@ export default function Lanyard(): JSX.Element | null {
                         <h5>{content.firstLine}</h5>
                         <h5>{content.secondLine}</h5>
                     </Text>
-                    {isListening && <TimestampBar timestamps={activity?.timestamps}/>}
+                    {isListening && <TimestampBar timestamps={activity?.timestamps} />}
                 </LanyardContainer>
             )}
         </AnimatePresence>

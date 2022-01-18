@@ -2,7 +2,8 @@ import type { PropsWithChildren } from "react";
 
 import theme from "commons/theme";
 
-import { motion, MotionProps } from "framer-motion";
+import type { MotionProps } from "framer-motion";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 type HeaderMotionProps =
@@ -11,13 +12,7 @@ type HeaderMotionProps =
 
 type HeaderProps = PropsWithChildren<HeaderMotionProps>;
 
-export const Header = ({
-    pop,
-    popShift,
-    tap,
-    children,
-    ...all
-}: HeaderProps): JSX.Element => {
+export const Header = ({ pop, popShift, tap, children, ...all }: HeaderProps): JSX.Element => {
     if (pop) {
         return (
             <PoppedHeader

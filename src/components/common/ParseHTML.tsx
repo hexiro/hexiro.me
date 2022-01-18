@@ -27,6 +27,7 @@ const options: HTMLReactParserOptions = {
                         child.children.map(x => children.push(x));
                         continue;
                     }
+
                     children.push(child);
                 }
 

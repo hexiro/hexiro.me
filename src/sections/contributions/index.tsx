@@ -31,7 +31,7 @@ export const Contributions = forwardRef<HTMLElement, ContributionsProps>(
     )
 );
 
-// temporaily borrowing styles from projects page 
+// temporaily borrowing styles from projects page
 
 const Text = styled.div`
     text-align: right;
