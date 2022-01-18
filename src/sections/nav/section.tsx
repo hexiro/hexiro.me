@@ -14,8 +14,6 @@ interface SectionProps {
     sectionRef: MutableRefObject<HTMLElement | null>;
 }
 
-// TODO: MAKE SCALE CONSISTENT ACROSS THE THINGS
-
 export default function Section({
     name,
     index,
@@ -30,7 +28,11 @@ export default function Section({
 
     return (
         <SectionContainer>
-            <motion.h3 onTap={onTap} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.92 }}>
+            <motion.h3
+                onTap={onTap}
+                whileHover={{ marginTop: "-3px", marginBottom: "3px" }}
+                whileTap={{ scale: 0.92 }}
+            >
                 <Header>{name.toUpperCase()}</Header>
             </motion.h3>
             <SectionBar>

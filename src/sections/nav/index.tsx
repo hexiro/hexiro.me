@@ -77,10 +77,9 @@ const NavContainer = styled.nav`
     position: fixed;
     top: 0;
     display: flex;
-    align-items: center;
     width: 100%;
     height: 80px;
-    padding: 0px 50px;
+    padding: 20px 50px;
     z-index: 2;
     transition: ease all 0.2s;
 
