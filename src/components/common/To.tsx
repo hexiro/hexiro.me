@@ -5,11 +5,11 @@ import theme from "commons/theme";
 
 import styled from "styled-components";
 
-type ToProps = PropsWithChildren<{ href: string; newTab?: boolean }>;
+type ToProps = PropsWithChildren<{ href: string;}>;
 
-export const To = ({ href, newTab, children }: ToProps) => (
+export const To = ({ href, children }: ToProps) => (
     <Link passHref href={href}>
-        <Anchor rel="norefferer" target={newTab ? "_blank" : "_self"}>
+        <Anchor rel="norefferer" target="_blank">
             {children}
         </Anchor>
     </Link>

@@ -18,7 +18,7 @@ export default function Repository({ children, ...project }: ProjectProps): JSX.
             <div>
                 <Title>
                     <h3>
-                        <To newTab href={project.url}>
+                        <To href={project.url}>
                             {project.owner.login !== GITHUB && (
                                 <Header>{project.owner.login}/</Header>
                             )}

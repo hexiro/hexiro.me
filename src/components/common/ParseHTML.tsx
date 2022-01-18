@@ -1,7 +1,7 @@
 import { To } from "components/common";
 
 import { Element } from "domhandler";
-import type { HTMLReactParserOptions } from "html-react-parser";
+import type { DOMNode, HTMLReactParserOptions } from "html-react-parser";
 import parse, { domToReact } from "html-react-parser";
 
 // Returns string, JSX.Element[], JSX.Element all as JSX.Element
@@ -9,24 +9,28 @@ export const ParseHTML = ({ html }: { html: string }): JSX.Element => <>{parse(h
 
 const options: HTMLReactParserOptions = {
     trim: true,
-    replace: element => {
+    replace: (element: DOMNode) => {
         if (!(element instanceof Element)) return;
         switch (element.name) {
-            // Remove script
             case "script":
+            case "style":
                 return null;
             // Replace a with custom next/link
             case "a":
-                return (
-                    <To newTab href={element.attribs.href}>
-                        {domToReact(element.children)}
-                    </To>
-                );
+                return <To href={element.attribs.href}>{domToReact(element.children)}</To>;
             // For github:
-            // return child elements of div/emoji
             case "div":
-            case "g-emoji":
-                return <>{domToReact(element.children)}</>;
+                const children: DOMNode[] = [];
+
+                for (const child of element.children) {
+                    if (child instanceof Element && child.name === "g-emoji") {
+                        child.children.map(x => children.push(x));
+                        continue;
+                    }
+                    children.push(child);
+                }
+
+                return <>{domToReact(children)}</>;
             default:
                 break;
         }
