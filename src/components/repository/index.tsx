@@ -6,6 +6,7 @@ import type { RepositoryProps } from "commons/graphql";
 import theme from "commons/theme";
 import { Header, ParseHTML, To } from "components/common";
 import { Forks, Stars } from "components/repository/details";
+import Language from "components/repository/language";
 
 import { motion } from "framer-motion";
 import styled from "styled-components";
@@ -16,27 +17,30 @@ export default function Repository({ children, ...project }: ProjectProps): JSX.
     return (
         <ProjectContainer variants={fadeChild}>
             <div>
-                <Title>
-                    <h3>
-                        <To href={project.url}>
-                            {project.owner.login !== GITHUB && (
+                <h3>
+                    <To href={project.url}>
+                        {project.owner.login !== GITHUB && (
+                            <Owner>
                                 <Header>{project.owner.login}/</Header>
-                            )}
-                            {project.name}
-                        </To>
-                    </h3>
-                </Title>
-                <Description>
-                    <ParseHTML html={project.descriptionHTML} />
-                </Description>
-                {children}
-                <Footer>
-                    <Language>{project.primaryLanguage.name}</Language>
+                            </Owner>
+                        )}
+                        {project.name}
+                    </To>
+                </h3>
+                <Details>
                     <ul>
                         <Stars stargazers={project.stargazers.totalCount} />
                         <Forks forks={project.forks.totalCount} />
                     </ul>
+                </Details>
+                <Footer>
+                    <Language name={project.primaryLanguage.name} />
+                    <span>{project.primaryLanguage.name}</span>
                 </Footer>
+                <Description>
+                    <ParseHTML html={project.descriptionHTML} />
+                </Description>
+                {children}
             </div>
         </ProjectContainer>
     );
@@ -53,6 +57,7 @@ const ProjectContainer = styled(motion.div)`
     background: ${theme.accent.background};
     box-shadow: 0 6px 13px rgba(0, 0, 0, 0.25);
     will-change: transform;
+    word-break: break-word;
 
     width: 45%;
 
@@ -61,22 +66,40 @@ const ProjectContainer = styled(motion.div)`
     }
 `;
 
-const Title = styled.div`
-    word-break: break-word;
-    color: ${theme.core.main};
+const Owner = styled.span`
+    @media only screen and (max-width: 500px) {
+        display: none;
+    }
 `;
 
 const Description = styled.p`
     padding-bottom: 10px;
+
+    @media only screen and (max-width: 450px) {
+        font-size: 1em;
+        line-height: 1.4;
+    }
 `;
 
-const Language = styled.p`
-    margin-right: 20px;
+const Details = styled.div`
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+
+    & > ul > :last-child {
+        margin: 0;
+    }
 `;
 
 const Footer = styled.div`
     display: flex;
     align-items: center;
     position: absolute;
-    bottom: 6px;
+    bottom: 10px;
+
+    & > svg {
+        margin-right: 6px;
+    }
 `;

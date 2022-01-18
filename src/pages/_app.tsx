@@ -60,6 +60,7 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: 300;
     font-size: 16px;
+    line-height: 1.5;
     overflow-x: hidden;
 }
 
