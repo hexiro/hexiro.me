@@ -1,5 +1,6 @@
 import type { MutableRefObject } from "react";
 
+import { pop } from "commons/animations";
 import theme from "commons/theme";
 import { Header } from "components/common";
 
@@ -28,19 +29,21 @@ export default function Section({
 
     return (
         <SectionContainer>
-            <motion.h3
-                onTap={onTap}
-                whileHover={{ marginTop: "-3px", marginBottom: "3px" }}
-                whileTap={{ scale: 0.92 }}
-            >
-                <Header>{name.toUpperCase()}</Header>
-            </motion.h3>
+            <SectionName>
+                <Header pop onTap={onTap}>
+                    {name.toUpperCase()}
+                </Header>
+            </SectionName>
             <SectionBar>
                 <HighlightedSectionBar index={index} active={active} previous={previous} />
             </SectionBar>
         </SectionContainer>
     );
 }
+
+const SectionName = styled(motion.h3)`
+    will-change: transform;
+`;
 
 const SectionContainer = styled.li`
     display: inline-block;

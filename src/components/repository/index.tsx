@@ -19,12 +19,12 @@ export default function Repository({ children, ...project }: ProjectProps): JSX.
             <div>
                 <h3>
                     <To href={project.url}>
-                        {project.owner.login !== GITHUB && (
-                            <Owner>
-                                <Header>{project.owner.login}/</Header>
-                            </Owner>
-                        )}
-                        {project.name}
+                        <Header pop popShift={2}>
+                            {project.owner.login !== GITHUB && (
+                                <Owner>{project.owner.login}/</Owner>
+                            )}
+                            {project.name}
+                        </Header>
                     </To>
                 </h3>
                 <Details>

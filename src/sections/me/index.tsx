@@ -13,7 +13,7 @@ export const Me = forwardRef<HTMLElement>((_, ref) => (
         <Left>
             <div>
                 <h1>
-                    Hi! I'm <Header>Hexiro</Header>,
+                    Hi! I'm <Header pop>Hexiro</Header>,
                 </h1>
                 <TextFooter>
                     A self-taught software engineer who enjoys problem solving, technology, building
