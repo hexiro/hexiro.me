@@ -11,15 +11,13 @@ import styled from "styled-components";
 export const Me = forwardRef<HTMLElement>((_, ref) => (
     <MeSection ref={ref} id="me">
         <Left>
-            <div>
-                <h1>
-                    Hi! I'm <Header pop>Hexiro</Header>,
-                </h1>
-                <TextFooter>
-                    A self-taught software engineer who enjoys problem solving, technology, building
-                    software, and contributing to open source projects.
-                </TextFooter>
-            </div>
+            <Intro>
+                Hi! I'm <Header pop>Hexiro</Header>,
+            </Intro>
+            <TextFooter>
+                A self-taught software engineer who enjoys problem solving, technology, building
+                software, and contributing to open source projects.
+            </TextFooter>
             <Socials />
             <Lanyard />
         </Left>
@@ -72,8 +70,13 @@ const Right = styled.div`
     padding: 0 10px;
 `;
 
+const Intro = styled.h1`
+    line-height: 1;
+`;
+
 const TextFooter = styled.p`
     min-width: 200px;
+    margin-bottom: 20px;
 `;
 
 const Avatar = styled.div`
