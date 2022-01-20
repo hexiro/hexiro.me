@@ -6,18 +6,37 @@ import type { MotionProps } from "framer-motion";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-type HeaderMotionProps =
-    | { pop?: false; popShift?: never; tap?: never }
-    | ({ pop: true; popShift?: number; tap?: boolean } & MotionProps);
+type PopProps =
+    | { pop?: false; popShift?: never }
+    | ({ pop: true; popShift?: number } & MotionProps);
 
-type HeaderProps = PropsWithChildren<HeaderMotionProps>;
+type TapProps = { tap?: false } | ({ tap: true } & MotionProps);
 
-export const Header = ({ pop, popShift, tap, children, ...all }: HeaderProps): JSX.Element => {
-    if (pop) {
+type GeneralMotionProps =
+    | { pop: true; pointer?: boolean }
+    | { tap: true; pointer?: boolean }
+    | { tap?: boolean; pop?: boolean; pointer?: never };
+
+type HeaderProps = PropsWithChildren<PopProps & TapProps & GeneralMotionProps>;
+
+interface PoppedHeaderProps {
+    pointer?: boolean;
+}
+
+export const Header = ({
+    pop,
+    popShift,
+    tap,
+    pointer,
+    children,
+    ...all
+}: HeaderProps): JSX.Element => {
+    if (pop || tap) {
         return (
             <PoppedHeader
-                whileHover={{ translateY: (popShift ?? 3) * -1 }}
+                whileHover={pop ? { translateY: (popShift ?? 3) * -1 } : undefined}
                 whileTap={tap ? { scale: 0.92 } : undefined}
+                pointer={pointer}
                 {...all}
             >
                 {children}
@@ -33,10 +52,12 @@ const NormalHeader = styled.span`
     font-weight: 400;
 `;
 
-const PoppedHeader = styled(motion.span)`
+const PoppedHeader = styled(motion.span)<PoppedHeaderProps>`
     display: inline-block;
     color: ${theme.accent.main};
     font-weight: 400;
     will-change: transform;
-    cursor: pointer;
+    ${({ pointer }) => {
+        if (pointer) return "cursor: pointer;";
+    }}
 `;

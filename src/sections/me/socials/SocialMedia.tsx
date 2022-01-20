@@ -5,7 +5,7 @@ import { Header, To } from "components/common";
 import styled from "styled-components";
 
 export const SocialMedia = ({ href, children }: PropsWithChildren<{ href: string }>) => (
-    <Header pop>
+    <Header pop pointer>
         <SocialItem>
             <To href={href}>{children}</To>
         </SocialItem>

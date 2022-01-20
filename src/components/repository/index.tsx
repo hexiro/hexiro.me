@@ -19,7 +19,7 @@ export default function Repository({ children, ...project }: ProjectProps): JSX.
             <div>
                 <h3>
                     <To href={project.url}>
-                        <Header pop popShift={2}>
+                        <Header pop pointer popShift={2}>
                             {project.owner.login !== GITHUB && (
                                 <Owner>{project.owner.login}/</Owner>
                             )}

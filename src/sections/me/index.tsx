@@ -22,17 +22,19 @@ export const Me = forwardRef<HTMLElement>((_, ref) => (
             <Lanyard />
         </Left>
         <Right>
-            <Avatar>
-                <Image
-                    priority
-                    src={`https://avatars.githubusercontent.com/${GITHUB}`}
-                    alt="Hexiro GitHub Avatar"
-                    height={500}
-                    width={500}
-                    quality={100}
-                    draggable={false}
-                />
-            </Avatar>
+            <Header tap>
+                <Avatar>
+                    <Image
+                        priority
+                        src={`https://avatars.githubusercontent.com/${GITHUB}`}
+                        alt="Hexiro GitHub Avatar"
+                        height={500}
+                        width={500}
+                        quality={100}
+                        draggable={false}
+                    />
+                </Avatar>
+            </Header>
         </Right>
     </MeSection>
 ));

@@ -29,7 +29,7 @@ export default function Section({
     return (
         <SectionContainer>
             <SectionName>
-                <Header pop onTap={onTap}>
+                <Header pop pointer onTap={onTap}>
                     {name.toUpperCase()}
                 </Header>
             </SectionName>
