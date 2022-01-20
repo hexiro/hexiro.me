@@ -30,12 +30,10 @@ export default function Home({ projects, contributions }: HomeProps) {
     );
 }
 
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-    return {
+export const getStaticProps: GetStaticProps<HomeProps> = async () => ({
         props: {
             projects: await projects(),
             contributions: await contributions(),
         },
         revalidate: 3600,
-    };
-};
+    });

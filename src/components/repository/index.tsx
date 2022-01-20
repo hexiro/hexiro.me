@@ -48,7 +48,7 @@ export default function Repository({ children, ...project }: ProjectProps): JSX.
 
 const ProjectContainer = styled(motion.div)`
     position: relative;
-    padding: 15px 20px 4px 20px;
+    padding: 12px 20px 4px 20px;
     margin: 12.5px;
     min-width: 310px;
     max-width: 630px;
