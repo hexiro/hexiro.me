@@ -35,12 +35,12 @@ export default function Repository({ children, ...project }: ProjectProps): JSX.
                 </Details>
                 <Footer>
                     <Language name={project.primaryLanguage.name} />
-                    <span>{project.primaryLanguage.name}</span>
+                    <LanguageName>{project.primaryLanguage.name}</LanguageName>
+                    {children}
                 </Footer>
                 <Description>
                     <ParseHTML html={project.descriptionHTML} />
                 </Description>
-                {children}
             </div>
         </ProjectContainer>
     );
@@ -102,4 +102,8 @@ const Footer = styled.div`
     & > svg {
         margin-right: 6px;
     }
+`;
+
+const LanguageName = styled.span`
+    margin-right: 10px;
 `;

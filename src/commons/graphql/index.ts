@@ -1,8 +1,5 @@
 import { GITHUB_TOKEN } from "commons/config";
 
-export { PROJECTS } from "commons/graphql/project";
-export { CONTRIBUTIONS } from "commons/graphql/contributions";
-
 export default async function githubGraphQL(query: string): Promise<Response> {
     return fetch("https://api.github.com/graphql", {
         method: "POST",
@@ -28,7 +25,7 @@ export interface RepositoryProps {
         totalCount: number;
     };
     primaryLanguage: {
-        name: string;
+        name: string | null;
     };
     defaultBranchRef: {
         target: {
@@ -37,4 +34,10 @@ export interface RepositoryProps {
             };
         };
     };
+}
+
+export interface PullRequestProps {
+    additions: number;
+    deletions: number;
+    baseRepository: RepositoryProps;
 }

@@ -51,11 +51,12 @@ const ProjectsSection = styled.section`
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    margin-left: 50px;
+
+    padding-left: 4%;
 
     @media only screen and (max-width: 600px) {
         justify-content: center;
-        margin-left: unset;
+        padding-left: unset;
 
         ${Text} {
             text-align: center;

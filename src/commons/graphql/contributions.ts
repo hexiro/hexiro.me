@@ -1,18 +1,50 @@
+import { GITHUB } from "commons/config";
+import type { PullRequestProps } from "commons/graphql";
+import githubGraphQL from "commons/graphql";
 import gql from "commons/graphql/gql";
 
-export const CONTRIBUTIONS = gql`
+import { truncate } from "fs";
+
+export default async function contributions(): Promise<PullRequestProps[]> {
+    /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+    const resp = await githubGraphQL(CONTRIBUTIONS);
+    const json = await resp.json();
+    let contributions: PullRequestProps[];
+
+    const total = ({ additions, deletions }: PullRequestProps) => {
+        return additions + deletions;
+    };
+
+    const nameWithOwner = ({ baseRepository }: PullRequestProps) => {
+        return `${baseRepository.owner.login}/${baseRepository.name}`;
+    };
+
+    contributions = json.data.viewer.pullRequests.nodes;
+    // remove user repos
+    contributions = contributions.filter(x => x.baseRepository.owner.login != GITHUB);
+    // sort
+    contributions = contributions.sort((a, b) => (total(a) > total(b) ? -1 : 1));
+    // remove duplicates
+    contributions = contributions.filter(
+        (x, index) => index === contributions.findIndex(y => nameWithOwner(x) === nameWithOwner(y))
+    );
+    // slice
+    contributions = contributions.slice(0, 6);
+    return contributions;
+}
+
+const CONTRIBUTIONS = gql`
     {
         viewer {
-            repositoriesContributedTo(
-                first: 6
-                contributionTypes: [COMMIT]
-                includeUserRepositories: false
-                orderBy: { field: STARGAZERS, direction: DESC }
-                privacy: PUBLIC
-                after: "Y3Vyc29yOnYyOpLNKyPOAZci-Q=="
+            pullRequests(
+                states: MERGED
+                first: 50
+                orderBy: { field: CREATED_AT, direction: DESC }
             ) {
                 nodes {
-                    ... on Repository {
+                    additions
+                    deletions
+                    baseRepository {
                         name
                         descriptionHTML
                         url
