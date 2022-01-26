@@ -21,8 +21,8 @@ export default function Hex(): JSX.Element {
             fill="currentColor"
             stroke="currentColor"
             xmlns="http://www.w3.org/2000/svg"
-            whileTap={{ scale: 0.9 }}
-            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.92 }}
+            whileHover={{ scale: 1.08 }}
             onTap={onTap}
         >
             <path

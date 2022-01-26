@@ -29,3 +29,13 @@ export const fadeChild = {
         },
     },
 };
+
+export const pop = {
+    pop: { translateY: -3 },
+    lightPop: { translateY: -2 },
+};
+
+export const tap = {
+    tap: { scale: 0.92 },
+    lightTap: { scale: 0.94 },
+};
