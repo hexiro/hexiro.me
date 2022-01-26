@@ -1,11 +1,13 @@
 import type { MutableRefObject } from "react";
 import { useEffect, useState } from "react";
 
+import { fade, fadeDown } from "commons/animations";
 import theme from "commons/theme";
 import Hex from "sections/nav/hex";
 import Section from "sections/nav/section";
 
-import { useWindowScroll } from "react-use";
+import { AnimatePresence, motion } from "framer-motion";
+import { useMedia, useWindowScroll } from "react-use";
 import styled from "styled-components";
 
 interface NavProps {
@@ -19,7 +21,11 @@ export default function Nav({ meRef, projectsRef, contributionsRef }: NavProps):
     const [active, setActive] = useState(0);
     // previously active section
     const [previous, setPrevious] = useState(0);
+    // window y position
     const windowScroll = useWindowScroll();
+    const isWiderThan600px = useMedia("(max-width: 600px)");
+
+    console.log(isWiderThan600px);
 
     // add 1/4 of page's height to y as a buffer so it doesn't need to be perfectly at the top.
     const offset = typeof window !== "undefined" ? window.innerHeight / 4 : 300;
@@ -47,29 +53,33 @@ export default function Nav({ meRef, projectsRef, contributionsRef }: NavProps):
     return (
         <NavContainer>
             <Hex />
-            <Sections>
-                <Section
-                    name="me"
-                    index={0}
-                    active={active}
-                    previous={previous}
-                    sectionRef={meRef}
-                />
-                <Section
-                    name="projects"
-                    index={1}
-                    active={active}
-                    previous={previous}
-                    sectionRef={projectsRef}
-                />
-                <Section
-                    name="contributions"
-                    index={2}
-                    active={active}
-                    previous={previous}
-                    sectionRef={contributionsRef}
-                />
-            </Sections>
+            <AnimatePresence>
+                {!isWiderThan600px && (
+                    <Sections initial="fading" animate="faded" exit="fading" variants={fadeDown}>
+                        <Section
+                            name="me"
+                            index={0}
+                            active={active}
+                            previous={previous}
+                            sectionRef={meRef}
+                        />
+                        <Section
+                            name="projects"
+                            index={1}
+                            active={active}
+                            previous={previous}
+                            sectionRef={projectsRef}
+                        />
+                        <Section
+                            name="contributions"
+                            index={2}
+                            active={active}
+                            previous={previous}
+                            sectionRef={contributionsRef}
+                        />
+                    </Sections>
+                )}
+            </AnimatePresence>
         </NavContainer>
     );
 }
@@ -88,13 +98,9 @@ const NavContainer = styled.nav`
     border-bottom: 1px solid ${theme.accent.background};
 `;
 
-const Sections = styled.ul`
+const Sections = styled(motion.ul)`
     display: flex;
     justify-content: flex-end;
     width: 100%;
     padding: 20px 0;
-
-    @media only screen and (max-width: 800px) {
-        display: none;
-    }
 `;

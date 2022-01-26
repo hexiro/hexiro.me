@@ -1,8 +1,8 @@
-export const fadeParent = {
-    start: {
+export const fadeChildren = {
+    fading: {
         opacity: 1,
     },
-    fade: {
+    faded: {
         opacity: 1,
         transition: {
             delayChildren: 0.165,
@@ -11,8 +11,8 @@ export const fadeParent = {
     },
 };
 
-export const fadeChild = {
-    start: {
+export const fade = {
+    fading: {
         opacity: 0,
         y: 15,
         transition: {
@@ -20,13 +20,21 @@ export const fadeChild = {
             ease: "easeInOut",
         },
     },
-    fade: {
+    faded: {
         opacity: 1,
         y: 0,
         transition: {
             duration: 0.35,
             ease: "easeInOut",
         },
+    },
+};
+
+export const fadeDown = {
+    ...fade,
+    fading: {
+        ...fade.fading,
+        y: -15,
     },
 };
 
