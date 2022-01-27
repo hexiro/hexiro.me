@@ -1,4 +1,4 @@
-import { fadeParent } from "commons/animations";
+import { fadeChildren } from "commons/animations";
 import { GITHUB_LINK, STEAM_LINK, TWITTER_LINK } from "commons/config";
 import { GithubIcon, SteamIcon, TwitterIcon } from "commons/icons";
 import { SocialMedia } from "sections/me/socials/SocialMedia";
@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 export default function Socials(): JSX.Element {
     return (
-        <UnorderedList variants={fadeParent}>
+        <UnorderedList variants={fadeChildren}>
             <SocialMedia href={TWITTER_LINK}>
                 <TwitterIcon />
             </SocialMedia>

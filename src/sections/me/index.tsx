@@ -1,20 +1,22 @@
 import Image from "next/image";
 import { forwardRef } from "react";
 
+import { fade, fadeChildren } from "commons/animations";
 import { GITHUB } from "commons/config";
 import { Header } from "components/common";
 import Lanyard from "sections/me/lanyard";
 import Socials from "sections/me/socials";
 
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const Me = forwardRef<HTMLElement>((_, ref) => (
     <MeSection ref={ref} id="me">
-        <Left>
-            <Intro>
+        <Left initial="fading" animate="faded" variants={fadeChildren}>
+            <Intro variants={fade}>
                 Hi! I'm <Header pop>Hexiro</Header>,
             </Intro>
-            <TextFooter>
+            <TextFooter variants={fade}>
                 A self-taught software engineer who enjoys problem solving, technology, building
                 software, and contributing to open source projects.
             </TextFooter>
@@ -39,7 +41,7 @@ export const Me = forwardRef<HTMLElement>((_, ref) => (
     </MeSection>
 ));
 
-const MeSection = styled.section`
+const MeSection = styled(motion.section)`
     position: relative;
     display: flex;
     width: 100%;
@@ -52,7 +54,7 @@ const MeSection = styled.section`
     }
 `;
 
-const Left = styled.div`
+const Left = styled(motion.div)`
     align-items: center;
     width: 75%;
     max-width: 500px;
@@ -72,11 +74,11 @@ const Right = styled.div`
     padding: 0 10px;
 `;
 
-const Intro = styled.h1`
+const Intro = styled(motion.h1)`
     line-height: 1;
 `;
 
-const TextFooter = styled.p`
+const TextFooter = styled(motion.p)`
     min-width: 200px;
     margin-bottom: 20px;
 `;
