@@ -1,35 +1,56 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect } from "react";
 
+import { fade, fadeChildren, fadeChildrenAndFade } from "commons/animations";
 import type { RepositoryProps } from "commons/graphql";
 import { Header } from "components/common";
 import Repository from "components/repository";
+import type { SectionProps } from "sections";
 
+import { motion, useAnimation } from "framer-motion";
 import styled from "styled-components";
 
-interface ProjectsProps {
-    projects: RepositoryProps[];
+interface ProjectsProps extends SectionProps {
+    repositories: RepositoryProps[];
 }
 
-export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ projects }, ref) => (
-    <ProjectsSection ref={ref} id="projects">
-        <Text>
-            <h1>
-                <Header>Projects</Header>
-            </h1>
-            <p>
-                Each project is hand-picked to best showcase my skills and creativity and can be
-                found on Github under my top six pinned repositories.
-            </p>
-        </Text>
-        <ProjectsContainer>
-            {projects.map(project => (
-                <Repository key={project.name} {...project} />
-            ))}
-        </ProjectsContainer>
-    </ProjectsSection>
-));
+export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ repositories, inView }, ref) => {
+    const animate = useAnimation();
 
-const Text = styled.div`
+    useEffect(() => {
+        if (inView) {
+            animate.start("complete");
+        }
+    }, [animate, inView]);
+
+    console.log({ inView });
+
+    return (
+        <ProjectsSection
+            ref={ref}
+            id="projects"
+            animate={animate}
+            initial="start"
+            variants={fadeChildren}
+        >
+            <Text variants={fade}>
+                <h1>
+                    <Header>Projects</Header>
+                </h1>
+                <p>
+                    Each project is hand-picked to best showcase my skills and creativity and can be
+                    found on Github under my top six pinned repositories.
+                </p>
+            </Text>
+            <ProjectsContainer variants={fadeChildren}>
+                {repositories.map(repo => (
+                    <Repository key={repo.name} {...repo} />
+                ))}
+            </ProjectsContainer>
+        </ProjectsSection>
+    );
+});
+
+const Text = styled(motion.div)`
     text-align: left;
     margin: 12.5px;
 
@@ -37,7 +58,7 @@ const Text = styled.div`
         max-width: 700px;
     }
 `;
-const ProjectsContainer = styled.div`
+const ProjectsContainer = styled(motion.div)`
     display: flex;
     align-items: center;
     align-content: flex-start;
@@ -45,7 +66,7 @@ const ProjectsContainer = styled.div`
     flex-wrap: wrap;
 `;
 
-const ProjectsSection = styled.section`
+const ProjectsSection = styled(motion.section)`
     position: relative;
     width: 100%;
     margin-bottom: 20px;

@@ -1,7 +1,6 @@
-import type { MutableRefObject } from "react";
 import { useEffect, useState } from "react";
 
-import { fade, fadeDown } from "commons/animations";
+import { fadeDown } from "commons/animations";
 import theme from "commons/theme";
 import Hex from "sections/nav/hex";
 import Section from "sections/nav/section";
@@ -11,12 +10,12 @@ import { useMedia, useWindowScroll } from "react-use";
 import styled from "styled-components";
 
 interface NavProps {
-    meRef: MutableRefObject<HTMLElement | null>;
-    projectsRef: MutableRefObject<HTMLElement | null>;
-    contributionsRef: MutableRefObject<HTMLElement | null>;
+    me?: IntersectionObserverEntry;
+    projects?: IntersectionObserverEntry;
+    contributions?: IntersectionObserverEntry;
 }
 
-export default function Nav({ meRef, projectsRef, contributionsRef }: NavProps): JSX.Element {
+export default function Nav({ me, projects, contributions }: NavProps): JSX.Element {
     // active section
     const [active, setActive] = useState(0);
     // previously active section
@@ -25,20 +24,18 @@ export default function Nav({ meRef, projectsRef, contributionsRef }: NavProps):
     const windowScroll = useWindowScroll();
     const isWiderThan600px = useMedia("(max-width: 600px)");
 
-    console.log(isWiderThan600px);
-
     // add 1/4 of page's height to y as a buffer so it doesn't need to be perfectly at the top.
     const offset = typeof window !== "undefined" ? window.innerHeight / 4 : 300;
     const y = windowScroll.y + offset;
 
     useEffect(() => {
-        const refs = [meRef, projectsRef, contributionsRef];
+        const refs = [me, projects, contributions];
 
         let newActive: number = 0;
 
         for (const [index, ref] of refs.reverse().entries()) {
-            if (!ref?.current) continue;
-            if (y > ref.current.offsetTop) {
+            if (!ref) continue;
+            if (y > ref.boundingClientRect.y) {
                 newActive = refs.length - 1 - index;
                 break;
             }
@@ -48,34 +45,34 @@ export default function Nav({ meRef, projectsRef, contributionsRef }: NavProps):
             setPrevious(active);
             setActive(newActive);
         }
-    }, [y, meRef, projectsRef, contributionsRef]);
+    }, [y, me, projects, contributions]);
 
     return (
         <NavContainer>
             <Hex />
             <AnimatePresence>
                 {!isWiderThan600px && (
-                    <Sections initial="fading" animate="faded" exit="fading" variants={fadeDown}>
+                    <Sections initial="start" animate="complete" exit="start" variants={fadeDown}>
                         <Section
                             name="me"
                             index={0}
                             active={active}
                             previous={previous}
-                            sectionRef={meRef}
+                            current={me}
                         />
                         <Section
                             name="projects"
                             index={1}
                             active={active}
                             previous={previous}
-                            sectionRef={projectsRef}
+                            current={projects}
                         />
                         <Section
                             name="contributions"
                             index={2}
                             active={active}
                             previous={previous}
-                            sectionRef={contributionsRef}
+                            current={contributions}
                         />
                     </Sections>
                 )}

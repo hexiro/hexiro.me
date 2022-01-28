@@ -11,7 +11,7 @@ interface SectionProps {
     index: number;
     active: number;
     previous: number;
-    sectionRef: MutableRefObject<HTMLElement | null>;
+    current?: IntersectionObserverEntry;
 }
 
 export default function Section({
@@ -19,11 +19,11 @@ export default function Section({
     index,
     active,
     previous,
-    sectionRef,
+    current,
 }: SectionProps): JSX.Element {
     const onTap = () => {
-        if (!sectionRef?.current) return;
-        sectionRef.current.scrollIntoView();
+        if (!current) return;
+        // current.scrollIntoView();
     };
 
     return (

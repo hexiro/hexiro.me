@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
 
-import { pop } from "commons/animations";
+import { fade, pop } from "commons/animations";
 import { GITHUB } from "commons/config";
 import type { RepositoryProps } from "commons/graphql";
 import theme from "commons/theme";
@@ -15,7 +15,7 @@ type ProjectProps = PropsWithChildren<RepositoryProps>;
 
 export default function Repository({ children, ...project }: ProjectProps): JSX.Element {
     return (
-        <ProjectContainer whileHover="pop" variants={pop}>
+        <ProjectContainer variants={fade}>
             <div>
                 <h3>
                     <To href={project.url}>

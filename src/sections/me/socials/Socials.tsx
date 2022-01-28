@@ -4,11 +4,12 @@ import { GithubIcon, SteamIcon, TwitterIcon } from "commons/icons";
 import { SocialMedia } from "sections/me/socials/SocialMedia";
 
 import { motion } from "framer-motion";
+import type { HTMLMotionProps } from "framer-motion";
 import styled from "styled-components";
 
-export default function Socials(): JSX.Element {
+export default function Socials(props?: HTMLMotionProps<"ul">): JSX.Element {
     return (
-        <UnorderedList variants={fadeChildren}>
+        <UnorderedList {...props}>
             <SocialMedia href={TWITTER_LINK}>
                 <TwitterIcon />
             </SocialMedia>

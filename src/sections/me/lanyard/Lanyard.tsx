@@ -1,17 +1,17 @@
 import Image from "next/image";
 
-import { fadeChild } from "commons/animations";
+import { fade } from "commons/animations";
 import { DISCORD } from "commons/config";
 import theme from "commons/theme";
 import { Header, Tooltip } from "components/common";
-import SongBar from "sections/me/lanyard/TimestampBar";
 import TimestampBar from "sections/me/lanyard/TimestampBar";
 
 import { AnimatePresence, motion } from "framer-motion";
+import type { HTMLMotionProps } from "framer-motion";
 import { Activity, Spotify, useLanyard } from "react-use-lanyard";
 import styled from "styled-components";
 
-export default function Lanyard(): JSX.Element | null {
+export default function Lanyard(props?: HTMLMotionProps<"div">): JSX.Element | null {
     const { loading, status } = useLanyard({
         userId: DISCORD,
         socket: true,
@@ -37,7 +37,7 @@ export default function Lanyard(): JSX.Element | null {
     return (
         <AnimatePresence>
             {content && assets && (
-                <LanyardContainer initial="start" animate="fade" exit="start" variants={fadeChild}>
+                <LanyardContainer {...props}>
                     <Images>
                         <Tooltip title={assets.large_text}>
                             <LargeImage
@@ -138,7 +138,7 @@ const LanyardContainer = styled(motion.div)`
     background: ${theme.accent.background};
     box-shadow: 0 4px 10px rgb(0 0 0 / 25%);
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 420px) {
         display: none;
     }
 `;

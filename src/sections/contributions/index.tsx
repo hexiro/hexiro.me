@@ -4,36 +4,40 @@ import type { PullRequestProps } from "commons/graphql";
 import theme from "commons/theme";
 import { Header } from "components/common";
 import Repository from "components/repository";
+import { SectionProps } from "sections";
 
+import { AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 
-interface ContributionsProps {
-    contributions: PullRequestProps[];
+interface ContributionsProps extends SectionProps {
+    pullRequests: PullRequestProps[];
 }
 
 export const Contributions = forwardRef<HTMLElement, ContributionsProps>(
-    ({ contributions }, ref) => (
-        <ContributionsSection ref={ref} id="contributions">
-            <Text>
-                <h1>
-                    <Header>Contributions</Header>
-                </h1>
-                <p>
-                    My top contribution pull requests sorted by additions and deletions. 
-                </p>
-            </Text>
-            <ContributionsContainer>
-                {contributions.map(contribution => (
-                    <Repository
-                        key={contribution.baseRepository.name}
-                        {...contribution.baseRepository}
-                    >
-                        <Additions>{`+${contribution.additions}`}</Additions>
-                        <Deletions>{`-${contribution.deletions}`}</Deletions>
-                    </Repository>
-                ))}
-            </ContributionsContainer>
-        </ContributionsSection>
+    ({ pullRequests, inView }, ref) => (
+        <AnimatePresence>
+            {inView && (
+                <ContributionsSection ref={ref} id="contributions">
+                    <Text>
+                        <h1>
+                            <Header>Contributions</Header>
+                        </h1>
+                        <p>My top contribution pull requests sorted by additions and deletions.</p>
+                    </Text>
+                    <ContributionsContainer>
+                        {pullRequests.map(pullRequest => (
+                            <Repository
+                                key={pullRequest.baseRepository.name}
+                                {...pullRequest.baseRepository}
+                            >
+                                <Additions>{`+${pullRequest.additions}`}</Additions>
+                                <Deletions>{`-${pullRequest.deletions}`}</Deletions>
+                            </Repository>
+                        ))}
+                    </ContributionsContainer>
+                </ContributionsSection>
+            )}
+        </AnimatePresence>
     )
 );
 

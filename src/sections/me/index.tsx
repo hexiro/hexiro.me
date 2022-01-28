@@ -4,24 +4,25 @@ import { forwardRef } from "react";
 import { fade, fadeChildren } from "commons/animations";
 import { GITHUB } from "commons/config";
 import { Header } from "components/common";
+import type { SectionProps } from "sections";
 import Lanyard from "sections/me/lanyard";
 import Socials from "sections/me/socials";
 
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const Me = forwardRef<HTMLElement>((_, ref) => (
+export const Me = forwardRef<HTMLElement, SectionProps>(({ inView }, ref) => (
     <MeSection ref={ref} id="me">
-        <Left initial="fading" animate="faded" variants={fadeChildren}>
-            <Intro variants={fade}>
+        <Left initial="start" animate="complete" variants={fadeChildren}>
+            <Introduction variants={fade}>
                 Hi! I'm <Header pop>Hexiro</Header>,
-            </Intro>
-            <TextFooter variants={fade}>
+            </Introduction>
+            <Description variants={fade}>
                 A self-taught software engineer who enjoys problem solving, technology, building
                 software, and contributing to open source projects.
-            </TextFooter>
-            <Socials />
-            <Lanyard />
+            </Description>
+            <Socials variants={fade} />
+            <Lanyard variants={fade} />
         </Left>
         <Right>
             <Header tap>
@@ -74,11 +75,11 @@ const Right = styled.div`
     padding: 0 10px;
 `;
 
-const Intro = styled(motion.h1)`
+const Introduction = styled(motion.h1)`
     line-height: 1;
 `;
 
-const TextFooter = styled(motion.p)`
+const Description = styled(motion.p)`
     min-width: 200px;
     margin-bottom: 20px;
 `;

@@ -10,7 +10,12 @@ const Sections = styled.div`
     flex-direction: column;
     margin: 0 2%;
     & > section {
-        padding-top: 140px;
+        margin-top: 140px;
     }
 `;
+
+export interface SectionProps {
+    inView: boolean;
+}
+
 export default Sections;

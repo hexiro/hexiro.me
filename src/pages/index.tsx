@@ -8,32 +8,51 @@ import { Page } from "components/pages";
 import Sections, { Contributions, Me, Projects } from "sections";
 import Nav from "sections/nav";
 
+import { useInView } from "react-intersection-observer";
+
 interface HomeProps {
-    projects: RepositoryProps[];
-    contributions: PullRequestProps[];
+    projectsRepositories: RepositoryProps[];
+    contributionsPullRequests: PullRequestProps[];
 }
 
-export default function Home({ projects, contributions }: HomeProps) {
-    const meRef = useRef<HTMLElement | null>(null);
-    const projectsRef = useRef<HTMLElement | null>(null);
-    const contributionsRef = useRef<HTMLElement | null>(null);
+export default function Home({ projectsRepositories, contributionsPullRequests }: HomeProps) {
+    const useInViewOptions = {
+        threshold: 0.3,
+        triggerOnce: true,
+        fallbackInView: true,
+    };
+
+    const [meRef, meInView, meCurrent] = useInView(useInViewOptions);
+    const [projectsRef, projectsInView, projectsCurrent] = useInView(useInViewOptions);
+    const [contributionsRef, contributionsInView, contributionsCurrent] =
+        useInView(useInViewOptions);
+
+    // TODO: use inView for nav bar
 
     return (
         <Page name="Home" description="desc">
-            <Nav meRef={meRef} projectsRef={projectsRef} contributionsRef={contributionsRef} />
+            <Nav me={meCurrent} projects={projectsCurrent} contributions={contributionsCurrent} />
             <Sections>
-                <Me ref={meRef} />
-                <Projects ref={projectsRef} projects={projects} />
-                <Contributions ref={contributionsRef} contributions={contributions} />
+                <Me ref={meRef} inView={meInView} />
+                <Projects
+                    ref={projectsRef}
+                    inView={projectsInView}
+                    repositories={projectsRepositories}
+                />
+                <Contributions
+                    ref={contributionsRef}
+                    inView={projectsInView}
+                    pullRequests={contributionsPullRequests}
+                />
             </Sections>
         </Page>
     );
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => ({
-        props: {
-            projects: await projects(),
-            contributions: await contributions(),
-        },
-        revalidate: 3600,
-    });
+    props: {
+        projectsRepositories: await projects(),
+        contributionsPullRequests: await contributions(),
+    },
+    revalidate: 3600,
+});
