@@ -12,7 +12,7 @@ import { useMedia } from "react-use";
 import { Activity, Spotify, useLanyard } from "react-use-lanyard";
 import styled from "styled-components";
 
-export default function Lanyard(props?: HTMLMotionProps<"div">): JSX.Element | null {
+export default function Lanyard(): JSX.Element | null {
     const { loading, status } = useLanyard({
         userId: DISCORD,
         socket: true,
@@ -40,7 +40,7 @@ export default function Lanyard(props?: HTMLMotionProps<"div">): JSX.Element | n
     return (
         <AnimatePresence>
             {content && assets && isLargeEnough && (
-                <LanyardContainer {...props}>
+                <LanyardContainer>
                     <Images>
                         <Tooltip title={assets.large_text}>
                             <LargeImage

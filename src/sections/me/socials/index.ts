@@ -1,3 +1,3 @@
-import Socials from "sections/me/socials/Socials";
+import SocialMedia from "sections/me/socials/SocialMedia";
 
-export default Socials;
+export default SocialMedia;

@@ -4,43 +4,53 @@ import { forwardRef } from "react";
 import { fade, fadeChildren } from "commons/animations";
 import { GITHUB } from "commons/config";
 import { Header } from "components/common";
+import { useScrollAnimation } from "hooks/useScrollAnimation";
 import type { SectionProps } from "sections";
 import Lanyard from "sections/me/lanyard";
-import Socials from "sections/me/socials";
+import SocialMedia from "sections/me/socials";
 
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const Me = forwardRef<HTMLElement, SectionProps>(({ inView }, ref) => (
-    <MeSection ref={ref} id="me">
-        <Left initial="start" animate="complete" exit="start" variants={fadeChildren}>
-            <Introduction variants={fade}>
-                Hi! I'm <Header pop>Hexiro</Header>,
-            </Introduction>
-            <Description variants={fade}>
-                A self-taught software engineer who enjoys problem solving, technology, building
-                software, and contributing to open source projects.
-            </Description>
-            <Socials variants={fade} />
-            <Lanyard initial="start" animate="complete" exit="start" variants={fade} />
-        </Left>
-        <Right>
-            <Header tap>
-                <Avatar>
-                    <Image
-                        priority
-                        src={`https://avatars.githubusercontent.com/${GITHUB}`}
-                        alt="Hexiro GitHub Avatar"
-                        height={500}
-                        width={500}
-                        quality={100}
-                        draggable={false}
-                    />
-                </Avatar>
-            </Header>
-        </Right>
-    </MeSection>
-));
+export const Me = forwardRef<HTMLElement, SectionProps>(({ inView }, ref) => {
+    const animate = useScrollAnimation(inView);
+    return (
+        <MeSection ref={ref} id="me" initial="start" animate={animate} variants={fadeChildren}>
+            <Left variants={fadeChildren}>
+                <Introduction variants={fade}>
+                    Hi! I'm <Header pop>Hexiro</Header>,
+                </Introduction>
+                <Description variants={fade}>
+                    A self-taught software engineer who enjoys problem solving, technology, building
+                    software, and contributing to open source projects.
+                </Description>
+                <motion.ul variants={fadeChildren}>
+                    <SocialMedia type="twitter" />
+                    <SocialMedia type="github" />
+                    <SocialMedia type="steam" />
+                </motion.ul>
+                <motion.div variants={fade}>
+                    <Lanyard />
+                </motion.div>
+            </Left>
+            <Right variants={fadeChildren}>
+                <Header tap>
+                    <Avatar variants={fade}>
+                        <Image
+                            priority
+                            src={`https://avatars.githubusercontent.com/${GITHUB}`}
+                            alt="Hexiro GitHub Avatar"
+                            height={500}
+                            width={500}
+                            quality={100}
+                            draggable={false}
+                        />
+                    </Avatar>
+                </Header>
+            </Right>
+        </MeSection>
+    );
+});
 
 const MeSection = styled(motion.section)`
     position: relative;
@@ -71,7 +81,7 @@ const Left = styled(motion.div)`
     }
 `;
 
-const Right = styled.div`
+const Right = styled(motion.div)`
     padding: 0 10px;
 `;
 
@@ -84,7 +94,7 @@ const Description = styled(motion.p)`
     margin-bottom: 20px;
 `;
 
-const Avatar = styled.div`
+const Avatar = styled(motion.div)`
     min-width: 400px;
     min-height: 400px;
 
