@@ -17,7 +17,6 @@ interface HomeProps {
 export default function Home({ projectsRepositories, contributionsPullRequests }: HomeProps) {
     const useInViewOptions = {
         threshold: 0.3,
-        triggerOnce: true,
         fallbackInView: true,
     };
 
@@ -26,11 +25,16 @@ export default function Home({ projectsRepositories, contributionsPullRequests }
     const [contributionsRef, contributionsInView, contributionsCurrent] =
         useInView(useInViewOptions);
 
-    // TODO: use inView for nav bar
-
     return (
         <Page name="Home" description="desc">
-            <Nav me={meCurrent} projects={projectsCurrent} contributions={contributionsCurrent} />
+            <Nav
+                me={meCurrent}
+                meInView={meInView}
+                projects={projectsCurrent}
+                projectsInView={projectsInView}
+                contributions={contributionsCurrent}
+                contributionsInView={contributionsInView}
+            />
             <Sections>
                 <Me ref={meRef} inView={meInView} />
                 <Projects

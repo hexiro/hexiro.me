@@ -1,4 +1,4 @@
-import { forwardRef, useEffect } from "react";
+import { forwardRef, useEffect, useState } from "react";
 
 import { fade, fadeChildren } from "commons/animations";
 import type { RepositoryProps } from "commons/graphql";
@@ -7,6 +7,7 @@ import Repository from "components/repository";
 import type { SectionProps } from "sections";
 
 import { motion, useAnimation } from "framer-motion";
+import { useScrollAnimation } from "hooks/useScrollAnimation";
 import styled from "styled-components";
 
 interface ProjectsProps extends SectionProps {
@@ -14,14 +15,7 @@ interface ProjectsProps extends SectionProps {
 }
 
 export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ repositories, inView }, ref) => {
-    const animate = useAnimation();
-
-    useEffect(() => {
-        if (inView) {
-            animate.start("complete");
-        }
-    }, [animate, inView]);
-
+    const animate = useScrollAnimation(inView);
     return (
         <ProjectsSection
             ref={ref}

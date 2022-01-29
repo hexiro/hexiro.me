@@ -8,6 +8,7 @@ import Repository from "components/repository";
 import { SectionProps } from "sections";
 
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import { useScrollAnimation } from "hooks/useScrollAnimation";
 import styled from "styled-components";
 
 interface ContributionsProps extends SectionProps {
@@ -16,14 +17,7 @@ interface ContributionsProps extends SectionProps {
 
 export const Contributions = forwardRef<HTMLElement, ContributionsProps>(
     ({ pullRequests, inView }, ref) => {
-        const animate = useAnimation();
-
-        useEffect(() => {
-            if (inView) {
-                animate.start("complete");
-            }
-        }, [animate, inView]);
-
+        const animate = useScrollAnimation(inView);
         return (
             <ContributionsSection
                 ref={ref}

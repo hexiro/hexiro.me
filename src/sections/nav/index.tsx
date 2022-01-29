@@ -13,30 +13,34 @@ interface NavProps {
     me?: IntersectionObserverEntry;
     projects?: IntersectionObserverEntry;
     contributions?: IntersectionObserverEntry;
+    meInView: boolean;
+    projectsInView: boolean;
+    contributionsInView: boolean;
 }
 
-export default function Nav({ me, projects, contributions }: NavProps): JSX.Element {
+export default function Nav({
+    me,
+    projects,
+    contributions,
+    meInView,
+    projectsInView,
+    contributionsInView,
+}: NavProps): JSX.Element {
     // active section
     const [active, setActive] = useState(0);
     // previously active section
     const [previous, setPrevious] = useState(0);
     // window y position
-    const windowScroll = useWindowScroll();
     const isWiderThan600px = useMedia("(max-width: 600px)");
 
-    // add 1/4 of page's height to y as a buffer so it doesn't need to be perfectly at the top.
-    const offset = typeof window !== "undefined" ? window.innerHeight / 4 : 300;
-    const y = windowScroll.y + offset;
-
     useEffect(() => {
-        const refs = [me, projects, contributions];
+        const sectionsInView = [meInView, projectsInView, contributionsInView];
 
         let newActive: number = 0;
 
-        for (const [index, ref] of refs.reverse().entries()) {
-            if (!ref) continue;
-            if (y > ref.boundingClientRect.y) {
-                newActive = refs.length - 1 - index;
+        for (const [index, inView] of sectionsInView.reverse().entries()) {
+            if (inView) {
+                newActive = sectionsInView.length - 1 - index;
                 break;
             }
         }
@@ -45,7 +49,7 @@ export default function Nav({ me, projects, contributions }: NavProps): JSX.Elem
             setPrevious(active);
             setActive(newActive);
         }
-    }, [y, me, projects, contributions]);
+    }, [meInView, projectsInView, contributionsInView]);
 
     return (
         <NavContainer>
