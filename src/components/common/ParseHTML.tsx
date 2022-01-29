@@ -12,19 +12,26 @@ const options: HTMLReactParserOptions = {
     replace: (element: DOMNode) => {
         if (!(element instanceof Element)) return;
         switch (element.name) {
-            case "script":
-            case "style":
+            case "script": {
                 return null;
+            }
+
+            case "style": {
+                return null;
+            }
+
             // Replace a with custom next/link
-            case "a":
+            case "a": {
                 return <To href={element.attribs.href}>{domToReact(element.children)}</To>;
+            }
+
             // For github:
-            case "div":
+            case "div": {
                 const children: DOMNode[] = [];
 
                 for (const child of element.children) {
                     if (child instanceof Element && child.name === "g-emoji") {
-                        child.children.map(x => children.push(x));
+                        child.children.forEach(x => children.push(x));
                         continue;
                     }
 
@@ -32,6 +39,8 @@ const options: HTMLReactParserOptions = {
                 }
 
                 return <>{domToReact(children)}</>;
+            }
+
             default:
                 break;
         }
