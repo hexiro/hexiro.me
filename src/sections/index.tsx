@@ -10,7 +10,10 @@ const Sections = styled.div`
     flex-direction: column;
     margin: 0 2%;
     & > section {
-        margin-top: 140px;
+        padding-top: 150px;
+    }
+    & > section:last-child {
+        padding-bottom: 50px;
     }
 `;
 

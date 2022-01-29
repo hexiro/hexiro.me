@@ -67,7 +67,6 @@ const ProjectsContainer = styled(motion.div)`
 const ProjectsSection = styled(motion.section)`
     position: relative;
     width: 100%;
-    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
 

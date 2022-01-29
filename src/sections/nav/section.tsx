@@ -4,7 +4,7 @@ import theme from "commons/theme";
 import { Header } from "components/common";
 
 import { motion } from "framer-motion";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface SectionProps {
     name: string;
@@ -23,7 +23,7 @@ export default function Section({
 }: SectionProps): JSX.Element {
     const onTap = () => {
         if (!current) return;
-        // current.scrollIntoView();
+        current.target.scrollIntoView();
     };
 
     return (
@@ -86,7 +86,7 @@ const HighlightedSectionBar = styled(SectionBar)<SectionBarProps>`
             if (previous >= active) return;
         }
         // COME FROM RIGHT
-        return `
+        return css`
             position: absolute;
             right: 0;
         `;

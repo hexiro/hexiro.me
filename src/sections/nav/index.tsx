@@ -30,7 +30,6 @@ export default function Nav({
     const [active, setActive] = useState(0);
     // previously active section
     const [previous, setPrevious] = useState(0);
-    // window y position
     const isWiderThan600px = useMedia("(max-width: 600px)");
 
     useEffect(() => {

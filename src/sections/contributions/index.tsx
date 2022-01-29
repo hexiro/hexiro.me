@@ -5,10 +5,10 @@ import type { PullRequestProps } from "commons/graphql";
 import theme from "commons/theme";
 import { Header } from "components/common";
 import Repository from "components/repository";
+import { useScrollAnimation } from "hooks/useScrollAnimation";
 import { SectionProps } from "sections";
 
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
-import { useScrollAnimation } from "hooks/useScrollAnimation";
 import styled from "styled-components";
 
 interface ContributionsProps extends SectionProps {
@@ -82,7 +82,6 @@ const ContributionsContainer = styled(motion.div)`
 const ContributionsSection = styled(motion.section)`
     position: relative;
     width: 100%;
-    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
 
