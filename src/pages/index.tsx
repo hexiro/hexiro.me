@@ -1,5 +1,4 @@
 import type { GetStaticProps } from "next";
-import { useRef } from "react";
 
 import type { RepositoryProps, PullRequestProps } from "commons/graphql";
 import contributions from "commons/graphql/contributions";
@@ -41,7 +40,7 @@ export default function Home({ projectsRepositories, contributionsPullRequests }
                 />
                 <Contributions
                     ref={contributionsRef}
-                    inView={projectsInView}
+                    inView={contributionsInView}
                     pullRequests={contributionsPullRequests}
                 />
             </Sections>

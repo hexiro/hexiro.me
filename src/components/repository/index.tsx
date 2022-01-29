@@ -1,6 +1,5 @@
 import type { PropsWithChildren } from "react";
 
-import { fade, pop } from "commons/animations";
 import { GITHUB } from "commons/config";
 import type { RepositoryProps } from "commons/graphql";
 import theme from "commons/theme";
@@ -8,38 +7,42 @@ import { Header, ParseHTML, To } from "components/common";
 import { Forks, Stars } from "components/repository/details";
 import Language from "components/repository/language";
 
+import type { HTMLMotionProps} from "framer-motion";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-type ProjectProps = PropsWithChildren<RepositoryProps>;
+type ProjectProps = HTMLMotionProps<"div"> &
+    PropsWithChildren<{
+        details: RepositoryProps;
+    }>;
 
-export default function Repository({ children, ...project }: ProjectProps): JSX.Element {
+export default function Repository({ children, details, ...all }: ProjectProps): JSX.Element {
     return (
-        <ProjectContainer variants={fade}>
+        <ProjectContainer {...all}>
             <div>
                 <h3>
-                    <To href={project.url}>
+                    <To href={details.url}>
                         <Header pop pointer popShift={2}>
-                            {project.owner.login !== GITHUB && (
-                                <Owner>{project.owner.login}/</Owner>
+                            {details.owner.login !== GITHUB && (
+                                <Owner>{details.owner.login}/</Owner>
                             )}
-                            {project.name}
+                            {details.name}
                         </Header>
                     </To>
                 </h3>
                 <Details>
                     <ul>
-                        <Stars stargazers={project.stargazers.totalCount} />
-                        <Forks forks={project.forks.totalCount} />
+                        <Stars stargazers={details.stargazers.totalCount} />
+                        <Forks forks={details.forks.totalCount} />
                     </ul>
                 </Details>
                 <Footer>
-                    <Language name={project.primaryLanguage.name} />
-                    <LanguageName>{project.primaryLanguage.name}</LanguageName>
+                    <Language name={details.primaryLanguage.name} />
+                    <LanguageName>{details.primaryLanguage.name}</LanguageName>
                     {children}
                 </Footer>
                 <Description>
-                    <ParseHTML html={project.descriptionHTML} />
+                    <ParseHTML html={details.descriptionHTML} />
                 </Description>
             </div>
         </ProjectContainer>

@@ -1,12 +1,13 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect } from "react";
 
+import { fade, fadeChildren } from "commons/animations";
 import type { PullRequestProps } from "commons/graphql";
 import theme from "commons/theme";
 import { Header } from "components/common";
 import Repository from "components/repository";
 import { SectionProps } from "sections";
 
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import styled from "styled-components";
 
 interface ContributionsProps extends SectionProps {
@@ -14,31 +15,45 @@ interface ContributionsProps extends SectionProps {
 }
 
 export const Contributions = forwardRef<HTMLElement, ContributionsProps>(
-    ({ pullRequests, inView }, ref) => (
-        <AnimatePresence>
-            {inView && (
-                <ContributionsSection ref={ref} id="contributions">
-                    <Text>
-                        <h1>
-                            <Header>Contributions</Header>
-                        </h1>
-                        <p>My top contribution pull requests sorted by additions and deletions.</p>
-                    </Text>
-                    <ContributionsContainer>
-                        {pullRequests.map(pullRequest => (
-                            <Repository
-                                key={pullRequest.baseRepository.name}
-                                {...pullRequest.baseRepository}
-                            >
-                                <Additions>{`+${pullRequest.additions}`}</Additions>
-                                <Deletions>{`-${pullRequest.deletions}`}</Deletions>
-                            </Repository>
-                        ))}
-                    </ContributionsContainer>
-                </ContributionsSection>
-            )}
-        </AnimatePresence>
-    )
+    ({ pullRequests, inView }, ref) => {
+        const animate = useAnimation();
+
+        useEffect(() => {
+            if (inView) {
+                animate.start("complete");
+            }
+        }, [animate, inView]);
+
+        return (
+            <ContributionsSection
+                ref={ref}
+                id="contributions"
+                animate={animate}
+                initial="start"
+                variants={fadeChildren}
+            >
+                <Text variants={fade}>
+                    <h1>
+                        <Header>Contributions</Header>
+                    </h1>
+                    <p>My top contribution pull requests sorted by additions and deletions.</p>
+                </Text>
+                <ContributionsContainer variants={fadeChildren}>
+                    {pullRequests.map(pullRequest => (
+                        <Repository
+                            key={pullRequest.baseRepository.name}
+                            details={pullRequest.baseRepository}
+                            whileHover={{ translateY: -3 }}
+                            variants={fade}
+                        >
+                            <Additions>{`+${pullRequest.additions}`}</Additions>
+                            <Deletions>{`-${pullRequest.deletions}`}</Deletions>
+                        </Repository>
+                    ))}
+                </ContributionsContainer>
+            </ContributionsSection>
+        );
+    }
 );
 
 // temporaily borrowing styles from projects page
@@ -54,7 +69,7 @@ const Deletions = styled(Additions)`
     margin-right: 10px;
 `;
 
-const Text = styled.div`
+const Text = styled(motion.div)`
     text-align: right;
     margin: 12.5px;
 
@@ -63,14 +78,14 @@ const Text = styled.div`
         max-width: 700px;
     }
 `;
-const ContributionsContainer = styled.div`
+const ContributionsContainer = styled(motion.div)`
     display: flex;
     align-items: center;
     justify-content: flex-end;
     flex-wrap: wrap;
 `;
 
-const ContributionsSection = styled.section`
+const ContributionsSection = styled(motion.section)`
     position: relative;
     width: 100%;
     margin-bottom: 20px;

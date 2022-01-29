@@ -1,6 +1,6 @@
 import { forwardRef, useEffect } from "react";
 
-import { fade, fadeChildren, fadeChildrenAndFade } from "commons/animations";
+import { fade, fadeChildren } from "commons/animations";
 import type { RepositoryProps } from "commons/graphql";
 import { Header } from "components/common";
 import Repository from "components/repository";
@@ -22,8 +22,6 @@ export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ repositories, 
         }
     }, [animate, inView]);
 
-    console.log({ inView });
-
     return (
         <ProjectsSection
             ref={ref}
@@ -43,7 +41,13 @@ export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ repositories, 
             </Text>
             <ProjectsContainer variants={fadeChildren}>
                 {repositories.map(repo => (
-                    <Repository key={repo.name} {...repo} />
+                    <Repository
+                        key={repo.name}
+                        details={repo}
+                        // i'm not sure exactly why but i can't get this to work with variants
+                        whileHover={{ translateY: -3 }}
+                        variants={fade}
+                    />
                 ))}
             </ProjectsContainer>
         </ProjectsSection>
