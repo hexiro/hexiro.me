@@ -4,10 +4,10 @@ import { fade, fadeChildren } from "commons/animations";
 import type { RepositoryProps } from "commons/graphql";
 import { Header } from "components/common";
 import Repository from "components/repository";
+import { useScrollAnimation } from "hooks/useScrollAnimation";
 import type { SectionProps } from "sections";
 
 import { motion, useAnimation } from "framer-motion";
-import { useScrollAnimation } from "hooks/useScrollAnimation";
 import styled from "styled-components";
 
 interface ProjectsProps extends SectionProps {
@@ -28,10 +28,10 @@ export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ repositories, 
                 <h1>
                     <Header>Projects</Header>
                 </h1>
-                <p>
+                <Description>
                     Each project is hand-picked to best showcase my skills and creativity and can be
                     found on Github under my top six pinned repositories.
-                </p>
+                </Description>
             </Text>
             <ProjectsContainer variants={fadeChildren}>
                 {repositories.map(repo => (
@@ -51,11 +51,12 @@ export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ repositories, 
 const Text = styled(motion.div)`
     text-align: left;
     margin: 12.5px;
-
-    & p {
-        max-width: 700px;
-    }
 `;
+
+const Description = styled.p`
+    max-width: 700px;
+`;
+
 const ProjectsContainer = styled(motion.div)`
     display: flex;
     align-items: center;
@@ -72,12 +73,16 @@ const ProjectsSection = styled(motion.section)`
 
     padding-left: 4%;
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 900px) {
         justify-content: center;
         padding-left: unset;
 
         ${Text} {
             text-align: center;
+        }
+        ${Description} {
+            max-width: unset;
+            margin: 0 5%;
         }
         ${ProjectsContainer} {
             justify-content: center;

@@ -13,7 +13,7 @@ import styled from "styled-components";
 
 export const Me = forwardRef<HTMLElement, SectionProps>(({ inView }, ref) => (
     <MeSection ref={ref} id="me">
-        <Left initial="start" animate="complete" variants={fadeChildren}>
+        <Left initial="start" animate="complete" exit="start" variants={fadeChildren}>
             <Introduction variants={fade}>
                 Hi! I'm <Header pop>Hexiro</Header>,
             </Introduction>
@@ -22,7 +22,7 @@ export const Me = forwardRef<HTMLElement, SectionProps>(({ inView }, ref) => (
                 software, and contributing to open source projects.
             </Description>
             <Socials variants={fade} />
-            <Lanyard variants={fade} />
+            <Lanyard initial="start" animate="complete" exit="start" variants={fade} />
         </Left>
         <Right>
             <Header tap>

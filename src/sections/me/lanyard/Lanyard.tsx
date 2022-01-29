@@ -8,6 +8,7 @@ import TimestampBar from "sections/me/lanyard/TimestampBar";
 
 import { AnimatePresence, motion } from "framer-motion";
 import type { HTMLMotionProps } from "framer-motion";
+import { useMedia } from "react-use";
 import { Activity, Spotify, useLanyard } from "react-use-lanyard";
 import styled from "styled-components";
 
@@ -16,6 +17,8 @@ export default function Lanyard(props?: HTMLMotionProps<"div">): JSX.Element | n
         userId: DISCORD,
         socket: true,
     });
+
+    const isLargeEnough = useMedia("(min-width: 420px)");
 
     const types = [0, 2];
     const activity = status?.activities
@@ -36,7 +39,7 @@ export default function Lanyard(props?: HTMLMotionProps<"div">): JSX.Element | n
 
     return (
         <AnimatePresence>
-            {content && assets && (
+            {content && assets && isLargeEnough && (
                 <LanyardContainer {...props}>
                     <Images>
                         <Tooltip title={assets.large_text}>
@@ -137,10 +140,6 @@ const LanyardContainer = styled(motion.div)`
     border-radius: 6px;
     background: ${theme.accent.background};
     box-shadow: 0 4px 10px rgb(0 0 0 / 25%);
-
-    @media only screen and (max-width: 420px) {
-        display: none;
-    }
 `;
 
 const Images = styled.div`

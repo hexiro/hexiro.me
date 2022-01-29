@@ -30,7 +30,9 @@ export const Contributions = forwardRef<HTMLElement, ContributionsProps>(
                     <h1>
                         <Header>Contributions</Header>
                     </h1>
-                    <p>My top contribution pull requests sorted by additions and deletions.</p>
+                    <Description>
+                        My top contribution pull requests sorted by additions and deletions.
+                    </Description>
                 </Text>
                 <ContributionsContainer variants={fadeChildren}>
                     {pullRequests.map(pullRequest => (
@@ -66,12 +68,13 @@ const Deletions = styled(Additions)`
 const Text = styled(motion.div)`
     text-align: right;
     margin: 12.5px;
-
-    & p {
-        float: right;
-        max-width: 700px;
-    }
 `;
+
+const Description = styled.p`
+    float: right;
+    max-width: 700px;
+`;
+
 const ContributionsContainer = styled(motion.div)`
     display: flex;
     align-items: center;
@@ -93,7 +96,11 @@ const ContributionsSection = styled(motion.section)`
 
         ${Text} {
             text-align: center;
+        }
+        ${Description} {
+            max-width: unset;
             float: unset;
+            margin: 0 5%;
         }
         ${ContributionsContainer} {
             justify-content: center;
