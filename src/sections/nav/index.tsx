@@ -7,7 +7,7 @@ import Section from "sections/nav/section";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useMedia, useWindowScroll } from "react-use";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface NavProps {
     me?: IntersectionObserverEntry;
@@ -51,7 +51,7 @@ export default function Nav({
     }, [meInView, projectsInView, contributionsInView]);
 
     return (
-        <NavContainer>
+        <NavContainer background={projectsInView || !meInView}>
             <Hex />
             <AnimatePresence>
                 {!isWiderThan600px && (
@@ -84,7 +84,11 @@ export default function Nav({
     );
 }
 
-const NavContainer = styled.nav`
+interface NavContainerProps {
+    background: boolean;
+}
+
+const NavContainer = styled.nav<NavContainerProps>`
     position: fixed;
     top: 0;
     display: flex;
@@ -92,10 +96,17 @@ const NavContainer = styled.nav`
     height: 80px;
     padding: 0 2%;
     z-index: 2;
-    transition: ease all 0.2s;
-    backdrop-filter: blur(2px);
-    background-color: rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid ${theme.accent.background};
+    background-color: transparent;
+    border-bottom: 1px solid transparent;
+    transition: ease all 0.225s;
+    ${({ background }) => {
+        if (!background) return;
+        return css`
+            backdrop-filter: blur(2px);
+            background-color: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid ${theme.accent.background};
+        `;
+    }}
 `;
 
 const Sections = styled(motion.ul)`
