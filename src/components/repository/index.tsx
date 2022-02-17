@@ -73,9 +73,9 @@ const Owner = styled.span`
 
 const Description = styled.p`
     padding-bottom: 10px;
+    font-size: 1em;
 
     @media only screen and (max-width: 450px) {
-        font-size: 1em;
         line-height: 1.4;
     }
 `;
