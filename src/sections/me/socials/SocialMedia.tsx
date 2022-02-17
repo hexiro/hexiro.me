@@ -32,7 +32,7 @@ export default function SocialMedia({ type }: SocialMediaProps) {
     }
 
     return (
-        <SocialItem whileHover={{ translateY: -3 }} variants={fade}>
+        <SocialItem variants={fade}>
             <To href={href}>{icon}</To>
         </SocialItem>
     );

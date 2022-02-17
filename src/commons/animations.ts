@@ -16,7 +16,7 @@ export const fade = {
         opacity: 0,
         y: 15,
         transition: {
-            duration: 0.35,
+            duration: 0.3,
             ease: "easeInOut",
         },
     },
@@ -24,7 +24,7 @@ export const fade = {
         opacity: 1,
         y: 0,
         transition: {
-            duration: 0.35,
+            duration: 0.3,
             ease: "easeInOut",
         },
     },

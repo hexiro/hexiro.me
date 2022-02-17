@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { PropsWithChildren } from "react";
 
 import theme from "commons/theme";
+import { Header } from "components/common";
 
 import styled from "styled-components";
 
@@ -10,7 +11,9 @@ type ToProps = PropsWithChildren<{ href: string }>;
 export const To = ({ href, children }: ToProps) => (
     <Link passHref href={href}>
         <Anchor rel="norefferer" target="_blank">
-            {children}
+            <Header pop pointer popShift={2}>
+                {children}
+            </Header>
         </Anchor>
     </Link>
 );

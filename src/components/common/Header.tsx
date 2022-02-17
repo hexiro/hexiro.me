@@ -57,6 +57,8 @@ const PoppedHeader = styled(motion.span)<PoppedHeaderProps>`
     color: ${theme.accent.main};
     font-weight: 400;
     will-change: transform;
+    width: auto;
+    height: 100%;
     ${({ pointer }) => {
         if (pointer) return "cursor: pointer;";
     }}

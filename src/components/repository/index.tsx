@@ -3,11 +3,11 @@ import type { PropsWithChildren } from "react";
 import { GITHUB } from "commons/config";
 import type { RepositoryProps } from "commons/graphql";
 import theme from "commons/theme";
-import { Header, ParseHTML, To } from "components/common";
+import { ParseHTML, To } from "components/common";
 import { Forks, Stars } from "components/repository/details";
 import Language from "components/repository/language";
 
-import type { HTMLMotionProps} from "framer-motion";
+import type { HTMLMotionProps } from "framer-motion";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
@@ -22,12 +22,8 @@ export default function Repository({ children, details, ...all }: ProjectProps):
             <div>
                 <h3>
                     <To href={details.url}>
-                        <Header pop pointer popShift={2}>
-                            {details.owner.login !== GITHUB && (
-                                <Owner>{details.owner.login}/</Owner>
-                            )}
-                            {details.name}
-                        </Header>
+                        {details.owner.login !== GITHUB && <Owner>{details.owner.login}/</Owner>}
+                        {details.name}
                     </To>
                 </h3>
                 <Details>

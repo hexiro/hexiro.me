@@ -7,10 +7,8 @@ import parse, { domToReact } from "html-react-parser";
 // Returns string, JSX.Element[], JSX.Element all as JSX.Element
 export const ParseHTML = ({ html }: { html: string }): JSX.Element => <>{parse(html, options)}</>;
 
-const options: HTMLReactParserOptions = {
-    trim: true,
-    replace: (element: DOMNode) => {
-        if (!(element instanceof Element)) return;
+const replace = (element: DOMNode): JSX.Element | null => {
+    if (element instanceof Element)
         switch (element.name) {
             case "script": {
                 return null;
@@ -20,29 +18,27 @@ const options: HTMLReactParserOptions = {
                 return null;
             }
 
-            // Replace a with custom next/link
+            // Replace a with custom link
             case "a": {
                 return <To href={element.attribs.href}>{domToReact(element.children)}</To>;
             }
 
-            // For github:
+            case "g-emoji":
+                return <>{domToReact(element.children)}</>;
+
             case "div": {
-                const children: DOMNode[] = [];
-
-                for (const child of element.children) {
-                    if (child instanceof Element && child.name === "g-emoji") {
-                        child.children.forEach(x => children.push(x));
-                        continue;
-                    }
-
-                    children.push(child);
-                }
-
-                return <>{domToReact(children)}</>;
+                const children = element.children.map(child => replace(child));
+                return <div>{children}</div>;
             }
 
             default:
                 break;
         }
-    },
+
+    return <>{domToReact([element])}</>;
+};
+
+const options: HTMLReactParserOptions = {
+    trim: true,
+    replace,
 };
