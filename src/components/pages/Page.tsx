@@ -57,14 +57,6 @@ export const Page = ({ name, description, children }: PageProps): JSX.Element =>
             ]}
             additionalLinkTags={[
                 {
-                    rel: "preconnect",
-                    href: "https://fonts.gstatic.com",
-                },
-                {
-                    rel: "stylesheet",
-                    href: "https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&amp;display=swap",
-                },
-                {
                     rel: "icon",
                     type: "image/png",
                     sizes: "32x32",
