@@ -6,7 +6,9 @@ import styled from "styled-components";
 
 type HeaderProps = PropsWithChildren<Record<string, unknown>>;
 
-export const Header = ({ children }: HeaderProps): JSX.Element => <HeaderContainer>{children}</HeaderContainer>;
+export const Header = ({ children }: HeaderProps): JSX.Element => (
+    <HeaderContainer>{children}</HeaderContainer>
+);
 
 const HeaderContainer = styled.span`
     color: ${theme.accent.main};

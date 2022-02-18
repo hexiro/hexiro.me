@@ -7,6 +7,8 @@ extends:
     - xo-typescript
     - prettier
     - next/core-web-vitals
+plugins:
+    - unused-imports
 rules:
     no-console: "error"
     no-else-return: "off"
@@ -16,6 +18,9 @@ rules:
         - capIsNew: false
     react/function-component-definition: "off"
     react/display-name: "off"
+    "@typescript-eslint/no-unused-vars": "off"
+    unused-imports/no-unused-imports: "error"
+    unused-imports/no-unused-vars: "warn"
     "@typescript-eslint/triple-slash-reference": "off"
     "@typescript-eslint/consistent-type-imports":
         - warn
@@ -27,7 +32,6 @@ rules:
               - PascalCase
               - camelCase
               - UPPER_CASE
-
 parserOptions:
     ecmaFeatures:
         jsx: true
