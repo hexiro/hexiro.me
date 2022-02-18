@@ -7,7 +7,7 @@ module.exports = {
         domains: ["i.scdn.co", "cdn.discordapp.com", "avatars.githubusercontent.com"],
     },
     compiler: {
-        styledComponents: true,
+        styledComponents: process.env.NODE_ENV === "production" ? false : true,
     },
     eslint: {
         ignoreDuringBuilds: true,
