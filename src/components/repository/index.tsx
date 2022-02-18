@@ -20,18 +20,22 @@ export default function Repository({ children, details, ...all }: ProjectProps):
     return (
         <ProjectContainer {...all}>
             <div>
-                <h3>
-                    <To href={details.url}>
-                        {details.owner.login !== GITHUB && <Owner>{details.owner.login}/</Owner>}
-                        {details.name}
-                    </To>
-                </h3>
-                <Details>
-                    <ul>
-                        <Stars stargazers={details.stargazers.totalCount} />
-                        <Forks forks={details.forks.totalCount} />
-                    </ul>
-                </Details>
+                <ProjectNav>
+                    <ProjectName>
+                        <To href={details.url}>
+                            {details.owner.login !== GITHUB && (
+                                <Owner>{details.owner.login}/</Owner>
+                            )}
+                            <span>{details.name}</span>
+                        </To>
+                    </ProjectName>
+                    <Details>
+                        <ul>
+                            <Stars stargazers={details.stargazers.totalCount} />
+                            <Forks forks={details.forks.totalCount} />
+                        </ul>
+                    </Details>
+                </ProjectNav>
                 <Footer>
                     <Language name={details.primaryLanguage.name} />
                     <LanguageName>{details.primaryLanguage.name}</LanguageName>
@@ -80,13 +84,29 @@ const Description = styled.p`
     }
 `;
 
+const ProjectNav = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const ProjectName = styled.h3`
+    display: inline-block;
+    /* flex-grow: 1; */
+    /* width: 100%; */
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float: left;
+`;
+
 const Details = styled.div`
     display: flex;
     align-items: center;
-    position: absolute;
-    top: 12px;
-    right: 16px;
-
+    flex-shrink: 0;
+    
+    margin-left: auto;
+    padding-left: 4%;
     & > ul > :last-child {
         margin: 0;
     }

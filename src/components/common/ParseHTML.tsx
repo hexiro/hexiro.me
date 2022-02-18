@@ -28,7 +28,8 @@ const replace = (element: DOMNode): JSX.Element | null => {
 
             case "div": {
                 const children = element.children.map(child => replace(child));
-                return <div>{children}</div>;
+                // eslint-disable-next-line react/jsx-no-useless-fragment
+                return <>{children}</>;
             }
 
             default:

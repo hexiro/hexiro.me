@@ -11,4 +11,5 @@ export {
     SiTypescript as TypeScriptIcon,
     SiGo as GoIcon,
     SiRust as RustIcon,
+    SiJavascript as JavaScriptIcon,
 } from "react-icons/si";

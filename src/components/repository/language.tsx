@@ -1,4 +1,4 @@
-import { PythonIcon, TypeScriptIcon, GoIcon, RustIcon } from "commons/icons";
+import { PythonIcon, TypeScriptIcon, GoIcon, RustIcon, JavaScriptIcon } from "commons/icons";
 
 interface LanguageProps {
     name: string | null;
@@ -15,6 +15,8 @@ export default function Language({ name }: LanguageProps): JSX.Element | null {
             return <GoIcon />;
         case "Rust":
             return <RustIcon />;
+        case "JavaScript":
+            return <JavaScriptIcon />;
         default:
             return null;
     }

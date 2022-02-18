@@ -1,7 +1,7 @@
 import { fadeAndMovements } from "commons/animations";
 import { TWITTER_LINK, GITHUB_LINK, STEAM_LINK } from "commons/config";
 import { TwitterIcon, GithubIcon, SteamIcon } from "commons/icons";
-import { Header, To } from "components/common";
+import { To } from "components/common";
 
 import { motion } from "framer-motion";
 import styled from "styled-components";

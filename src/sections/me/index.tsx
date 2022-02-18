@@ -18,7 +18,7 @@ export const Me = forwardRef<HTMLElement, SectionProps>(({ inView }, ref) => {
         <MeSection ref={ref} id="me" initial="start" animate={animate} variants={fadeChildren}>
             <Left variants={fadeChildren}>
                 <Introduction variants={fade}>
-                    Hi! I'm{" "}
+                    Hi! I&apos;m{" "}
                     <Hexiro whileHover="pop" variants={fadeAndMovements}>
                         Hexiro
                     </Hexiro>
