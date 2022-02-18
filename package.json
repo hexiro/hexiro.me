@@ -14,7 +14,7 @@
     "dependencies": {
         "framer-motion": "^4.1.17",
         "html-react-parser": "1.2.8",
-        "next": "^12.0.8",
+        "next": "^12.1.0",
         "next-seo": "^4.28.0",
         "react": "17.0.2",
         "react-dom": "17.0.2",
@@ -34,7 +34,7 @@
         "@typescript-eslint/eslint-plugin": "^5.7.0",
         "@typescript-eslint/parser": "^5.7.0",
         "eslint": "^7.32.0",
-        "eslint-config-next": "^12.0.7",
+        "eslint-config-next": "^12.1.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-config-xo": "^0.39.0",
         "eslint-config-xo-react": "^0.25.0",
