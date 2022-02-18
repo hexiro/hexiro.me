@@ -1,4 +1,4 @@
-import { fade, pop } from "commons/animations";
+import { fadeAndMovements } from "commons/animations";
 import { TWITTER_LINK, GITHUB_LINK, STEAM_LINK } from "commons/config";
 import { TwitterIcon, GithubIcon, SteamIcon } from "commons/icons";
 import { Header, To } from "components/common";
@@ -13,34 +13,32 @@ interface SocialMediaProps {
 export default function SocialMedia({ type }: SocialMediaProps) {
     let href: string;
     let icon;
-
+    const size = 25;
     switch (type.toLowerCase()) {
         case "twitter":
             href = TWITTER_LINK;
-            icon = <TwitterIcon />;
+            icon = <TwitterIcon size={size} />;
             break;
         case "github":
             href = GITHUB_LINK;
-            icon = <GithubIcon />;
+            icon = <GithubIcon size={size} />;
             break;
         case "steam":
             href = STEAM_LINK;
-            icon = <SteamIcon />;
+            icon = <SteamIcon size={size} />;
             break;
         default:
             return null;
     }
 
     return (
-        <SocialItem variants={fade}>
+        <SocialItem whileHover="lightPop" variants={fadeAndMovements}>
             <To href={href}>{icon}</To>
         </SocialItem>
     );
 }
 
 const SocialItem = styled(motion.li)`
-    height: 25px;
-    width: 25px;
     margin-right: 30px;
     display: inline-block;
     cursor: pointer;

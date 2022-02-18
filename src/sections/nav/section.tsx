@@ -1,5 +1,6 @@
 import type { MutableRefObject } from "react";
 
+import { fadeAndMovements } from "commons/animations";
 import theme from "commons/theme";
 import { Header } from "components/common";
 
@@ -28,10 +29,8 @@ export default function Section({
 
     return (
         <SectionContainer>
-            <SectionName>
-                <Header pop pointer onTap={onTap}>
-                    {name.toUpperCase()}
-                </Header>
+            <SectionName onTap={onTap} whileHover="pop" variants={fadeAndMovements}>
+                {name.toUpperCase()}
             </SectionName>
             <SectionBar>
                 <HighlightedSectionBar index={index} active={active} previous={previous} />
@@ -42,6 +41,9 @@ export default function Section({
 
 const SectionName = styled(motion.h3)`
     will-change: transform;
+    cursor: pointer;
+    font-weight: 400;
+    color: ${theme.accent.main};
 `;
 
 const SectionContainer = styled.li`

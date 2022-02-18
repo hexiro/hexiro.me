@@ -1,3 +1,5 @@
+import { css, keyframes } from "styled-components";
+
 export const fadeChildren = {
     start: {
         opacity: 1,
@@ -38,12 +40,11 @@ export const fadeDown = {
     },
 };
 
-export const pop = {
+export const movements = {
     pop: { translateY: -3 },
     lightPop: { translateY: -2 },
-};
-
-export const tap = {
     tap: { scale: 0.92 },
     lightTap: { scale: 0.94 },
 };
+
+export const fadeAndMovements = { ...fade, ...movements };
