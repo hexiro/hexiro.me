@@ -1,4 +1,4 @@
-import { fadeAndMovements } from "commons/animations";
+import { fadeAndMovements, fade } from "commons/animations";
 import { TWITTER_LINK, GITHUB_LINK, STEAM_LINK } from "commons/config";
 import { TwitterIcon, GithubIcon, SteamIcon } from "commons/icons";
 import { To } from "components/common";
@@ -32,7 +32,7 @@ export default function SocialMedia({ type }: SocialMediaProps) {
     }
 
     return (
-        <SocialItem whileHover="lightPop" variants={fadeAndMovements}>
+        <SocialItem variants={fade}>
             <To href={href}>{icon}</To>
         </SocialItem>
     );

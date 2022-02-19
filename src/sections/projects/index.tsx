@@ -1,13 +1,13 @@
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef } from "react";
 
-import { fade, fadeChildren } from "commons/animations";
+import { fadeAndMovements, fade, fadeChildren } from "commons/animations";
 import type { RepositoryProps } from "commons/graphql";
 import { Header } from "components/common";
 import Repository from "components/repository";
 import { useScrollAnimation } from "hooks/useScrollAnimation";
 import type { SectionProps } from "sections";
 
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 interface ProjectsProps extends SectionProps {
@@ -38,9 +38,8 @@ export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ repositories, 
                     <Repository
                         key={repo.name}
                         details={repo}
-                        // i'm not sure exactly why but i can't get this to work with variants
-                        whileHover={{ translateY: -3 }}
-                        variants={fade}
+                        whileHover="pop"
+                        variants={fadeAndMovements}
                     />
                 ))}
             </ProjectsContainer>

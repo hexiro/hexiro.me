@@ -36,14 +36,14 @@ export default function Repository({ children, details, ...all }: ProjectProps):
                         </ul>
                     </Details>
                 </ProjectNav>
+                <Description>
+                    <ParseHTML html={details.descriptionHTML} />
+                </Description>
                 <Footer>
                     <Language name={details.primaryLanguage.name} />
                     <LanguageName>{details.primaryLanguage.name}</LanguageName>
                     {children}
                 </Footer>
-                <Description>
-                    <ParseHTML html={details.descriptionHTML} />
-                </Description>
             </div>
         </ProjectContainer>
     );
@@ -51,7 +51,7 @@ export default function Repository({ children, details, ...all }: ProjectProps):
 
 const ProjectContainer = styled(motion.div)`
     position: relative;
-    padding: 12px 20px 4px 20px;
+    padding: 10px 20px 4px 20px;
     margin: 12.5px;
     min-width: 310px;
     max-width: 630px;
@@ -89,10 +89,9 @@ const ProjectNav = styled.div`
     align-items: center;
 `;
 
-const ProjectName = styled.h3`
+const ProjectName = styled(motion.h3)`
     display: inline-block;
-    /* flex-grow: 1; */
-    /* width: 100%; */
+    will-change: transform;
     max-width: 100%;
     white-space: nowrap;
     overflow: hidden;
@@ -104,7 +103,7 @@ const Details = styled.div`
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    
+
     margin-left: auto;
     padding-left: 4%;
     & > ul > :last-child {
