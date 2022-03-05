@@ -31,7 +31,9 @@ export const Contributions = forwardRef<HTMLElement, ContributionsProps>(
                         <Header>Contributions</Header>
                     </h1>
                     <Description>
-                        My top contribution pull requests sorted by additions and deletions.
+                        These pull requests are my top 6 GitHub pull requests. They&apos;re sorted
+                        by additions and deletions to showcase where my changes had a meaningful
+                        impact on the project.
                     </Description>
                 </Text>
                 <ContributionsContainer variants={fadeChildren}>

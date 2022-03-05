@@ -29,8 +29,8 @@ export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ repositories, 
                     <Header>Projects</Header>
                 </h1>
                 <Description>
-                    Each project is hand-picked to best showcase my skills and creativity and can be
-                    found on Github under my top six pinned repositories.
+                    These projects are my top 6 pinned repositories on GitHub. I specifically
+                    hand-picked each repository as they nicely display my skill set and creativity.
                 </Description>
             </Text>
             <ProjectsContainer variants={fadeChildren}>
