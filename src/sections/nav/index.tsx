@@ -6,7 +6,7 @@ import Hex from "sections/nav/hex";
 import Section from "sections/nav/section";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useMedia, useWindowScroll } from "react-use";
+import { useMedia } from "react-use";
 import styled, { css } from "styled-components";
 
 interface NavProps {
@@ -35,7 +35,7 @@ export default function Nav({
     useEffect(() => {
         const sectionsInView = [meInView, projectsInView, contributionsInView];
 
-        let newActive: number = 0;
+        let newActive = 0;
 
         for (const [index, inView] of sectionsInView.reverse().entries()) {
             if (inView) {

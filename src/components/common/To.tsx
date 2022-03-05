@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
 
-import { movements } from "commons/animations";
+import { lightPop } from "commons/animations";
 import theme from "commons/theme";
 
 import { motion } from "framer-motion";
@@ -9,7 +9,7 @@ import styled from "styled-components";
 type ToProps = PropsWithChildren<{ href: string }>;
 
 export const To = ({ href, children }: ToProps) => (
-    <Anchor href={href} rel="norefferer" target="_blank" whileHover="lightPop" variants={movements}>
+    <Anchor href={href} rel="norefferer" target="_blank" whileHover={lightPop}>
         {children}
     </Anchor>
 );

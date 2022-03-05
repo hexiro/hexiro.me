@@ -1,4 +1,4 @@
-import { fadeAndMovements, fade } from "commons/animations";
+import { fade } from "commons/animations";
 import { TWITTER_LINK, GITHUB_LINK, STEAM_LINK } from "commons/config";
 import { TwitterIcon, GithubIcon, SteamIcon } from "commons/icons";
 import { To } from "components/common";

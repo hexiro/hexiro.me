@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { forwardRef } from "react";
 
-import { fade, fadeAndMovements, fadeChildren } from "commons/animations";
+import { fade, fadeChildren, pop } from "commons/animations";
 import { GITHUB } from "commons/config";
 import theme from "commons/theme";
 import { useScrollAnimation } from "hooks/useScrollAnimation";
@@ -19,7 +19,7 @@ export const Me = forwardRef<HTMLElement, SectionProps>(({ inView }, ref) => {
             <Left variants={fadeChildren}>
                 <Introduction variants={fade}>
                     Hi! I&apos;m{" "}
-                    <Hexiro whileHover="pop" variants={fadeAndMovements}>
+                    <Hexiro whileHover={pop} variants={fade}>
                         Hexiro
                     </Hexiro>
                     ,

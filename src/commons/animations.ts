@@ -38,11 +38,7 @@ export const fadeDown = {
     },
 };
 
-export const movements = {
-    pop: { translateY: -3 },
-    lightPop: { translateY: -2 },
-    tap: { scale: 0.92 },
-    lightTap: { scale: 0.94 },
-};
-
-export const fadeAndMovements = { ...fade, ...movements };
+export const pop = { translateY: -3 };
+export const lightPop = { translateY: -2 };
+export const tap = { scale: 0.92 };
+export const lightTap = { scale: 0.94 };

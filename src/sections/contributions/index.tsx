@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 
-import { fade, fadeChildren } from "commons/animations";
+import { pop, fade, fadeChildren } from "commons/animations";
 import type { PullRequestProps } from "commons/graphql";
 import theme from "commons/theme";
 import { Header } from "components/common";
@@ -39,7 +39,7 @@ export const Contributions = forwardRef<HTMLElement, ContributionsProps>(
                         <Repository
                             key={pullRequest.baseRepository.name}
                             details={pullRequest.baseRepository}
-                            whileHover={{ translateY: -3 }}
+                            whileHover={pop}
                             variants={fade}
                         >
                             <Additions>{`+${pullRequest.additions}`}</Additions>

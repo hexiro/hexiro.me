@@ -1,8 +1,5 @@
-import type { MutableRefObject } from "react";
-
-import { fadeAndMovements } from "commons/animations";
+import { pop, fade } from "commons/animations";
 import theme from "commons/theme";
-import { Header } from "components/common";
 
 import { motion } from "framer-motion";
 import styled, { css } from "styled-components";
@@ -29,7 +26,7 @@ export default function Section({
 
     return (
         <SectionContainer>
-            <SectionName onTap={onTap} whileHover="pop" variants={fadeAndMovements}>
+            <SectionName whileHover={pop} variants={fade} onTap={onTap}>
                 {name.toUpperCase()}
             </SectionName>
             <SectionBar>
