@@ -25,8 +25,11 @@ export default function Home({ projectsRepositories, contributionsPullRequests }
     const [contributionsRef, contributionsInView, contributionsCurrent] =
         useInView(useInViewOptions);
 
+    const description =
+        "A self-taught software engineer who enjoys problem solving, technology, building software, and contributing to open source projects.";
+
     return (
-        <Page name="Home" description="desc">
+        <Page name="Home" description={description}>
             <Nav
                 me={meCurrent}
                 meInView={meInView}
@@ -36,7 +39,7 @@ export default function Home({ projectsRepositories, contributionsPullRequests }
                 contributionsInView={contributionsInView}
             />
             <Sections>
-                <Me ref={meRef} inView={meInView} />
+                <Me ref={meRef} inView={meInView} description={description} />
                 <Projects
                     ref={projectsRef}
                     inView={projectsInView}

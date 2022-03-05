@@ -12,7 +12,11 @@ import SocialMedia from "sections/me/socials";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const Me = forwardRef<HTMLElement, SectionProps>(({ inView }, ref) => {
+interface MeProps extends SectionProps {
+    description: string;
+}
+
+export const Me = forwardRef<HTMLElement, MeProps>(({ inView, description }, ref) => {
     const animate = useScrollAnimation(inView);
     return (
         <MeSection ref={ref} id="me" initial="start" animate={animate} variants={fadeChildren}>
@@ -20,10 +24,7 @@ export const Me = forwardRef<HTMLElement, SectionProps>(({ inView }, ref) => {
                 <Introduction variants={fade}>
                     Hi! I&apos;m <Hexiro whileHover={pop}>Hexiro</Hexiro>,
                 </Introduction>
-                <Description variants={fade}>
-                    A self-taught software engineer who enjoys problem solving, technology, building
-                    software, and contributing to open source projects.
-                </Description>
+                <Description variants={fade}>{description}</Description>
                 <motion.ul variants={fadeChildren}>
                     <SocialMedia type="twitter" />
                     <SocialMedia type="github" />
