@@ -42,4 +42,8 @@ const SocialItem = styled(motion.li)`
     margin-right: 30px;
     display: inline-block;
     cursor: pointer;
+
+    &:last-child {
+        margin-right: 0;
+    }
 `;

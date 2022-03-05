@@ -18,11 +18,7 @@ export const Me = forwardRef<HTMLElement, SectionProps>(({ inView }, ref) => {
         <MeSection ref={ref} id="me" initial="start" animate={animate} variants={fadeChildren}>
             <Left variants={fadeChildren}>
                 <Introduction variants={fade}>
-                    Hi! I&apos;m{" "}
-                    <Hexiro whileHover={pop} variants={fade}>
-                        Hexiro
-                    </Hexiro>
-                    ,
+                    Hi! I&apos;m <Hexiro whileHover={pop}>Hexiro</Hexiro>,
                 </Introduction>
                 <Description variants={fade}>
                     A self-taught software engineer who enjoys problem solving, technology, building
@@ -58,10 +54,11 @@ const MeSection = styled(motion.section)`
     position: relative;
     display: flex;
     width: 100%;
+    min-height: 750px;
     align-items: center;
     justify-content: center;
 
-    @media only screen and (max-width: 1164px) {
+    @media only screen and (max-width: 1275px) {
         flex-direction: column-reverse;
         justify-content: flex-end;
     }
@@ -73,7 +70,7 @@ const Left = styled(motion.div)`
     max-width: 500px;
     padding: 0 10px;
 
-    @media only screen and (max-width: 1164px) {
+    @media only screen and (max-width: 1275px) {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -107,11 +104,11 @@ const Avatar = styled(motion.div)`
     min-width: 400px;
     min-height: 400px;
 
-    @media only screen and (max-width: 1164px) {
-        min-width: 200px;
-        min-height: 200px;
-        max-width: 400px;
-        max-height: 400px;
+    @media only screen and (max-width: 1275px) {
+        min-width: 150px;
+        min-height: 150px;
+        max-width: 300px;
+        max-height: 300px;
     }
 
     & > span {

@@ -10,6 +10,9 @@ const Sections = styled.div`
     justify-content: center;
     flex-direction: column;
     margin: 0 10%;
+    & > section:first-child {
+        padding-top: 200px;
+    }
     & > section {
         padding-top: 150px;
     }

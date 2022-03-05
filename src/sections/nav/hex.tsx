@@ -1,3 +1,5 @@
+import { hover, tap } from "commons/animations";
+
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
@@ -21,8 +23,8 @@ export default function Hex(): JSX.Element {
             fill="currentColor"
             stroke="currentColor"
             xmlns="http://www.w3.org/2000/svg"
-            whileTap={{ scale: 0.92 }}
-            whileHover={{ scale: 1.08 }}
+            whileTap={tap}
+            whileHover={hover}
             onTap={onTap}
         >
             <path
