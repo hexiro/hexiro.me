@@ -1,5 +1,6 @@
 import type { PropsWithChildren } from "react";
 
+import { pop, fade } from "commons/animations";
 import { GITHUB } from "commons/config";
 import type { RepositoryProps } from "commons/graphql";
 import theme from "commons/theme";
@@ -7,18 +8,16 @@ import { ParseHTML, To } from "components/common";
 import { Forks, Stars } from "components/repository/details";
 import Language from "components/repository/language";
 
-import type { HTMLMotionProps } from "framer-motion";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-type ProjectProps = HTMLMotionProps<"div"> &
-    PropsWithChildren<{
-        details: RepositoryProps;
-    }>;
+type ProjectProps = PropsWithChildren<{
+    details: RepositoryProps;
+}>;
 
-export default function Repository({ children, details, ...all }: ProjectProps): JSX.Element {
+export default function Repository({ children, details }: ProjectProps): JSX.Element {
     return (
-        <ProjectContainer {...all}>
+        <ProjectContainer whileHover={pop} variants={fade}>
             <div>
                 <ProjectNav>
                     <ProjectName>

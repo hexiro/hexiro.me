@@ -3,25 +3,20 @@ import type { PullRequestProps } from "commons/graphql";
 import githubGraphQL from "commons/graphql";
 import gql from "commons/graphql/gql";
 
-import { truncate } from "fs";
-
 export default async function contributions(): Promise<PullRequestProps[]> {
     /* eslint-disable @typescript-eslint/no-unsafe-assignment */
     const resp = await githubGraphQL(CONTRIBUTIONS);
     const json = await resp.json();
     let contributions: PullRequestProps[];
 
-    const total = ({ additions, deletions }: PullRequestProps) => {
-        return additions + deletions;
-    };
+    const total = ({ additions, deletions }: PullRequestProps) => additions + deletions;
 
-    const nameWithOwner = ({ baseRepository }: PullRequestProps) => {
-        return `${baseRepository.owner.login}/${baseRepository.name}`;
-    };
+    const nameWithOwner = ({ baseRepository }: PullRequestProps) =>
+        `${baseRepository.owner.login}/${baseRepository.name}`;
 
     contributions = json.data.viewer.pullRequests.nodes;
     // remove user repos
-    contributions = contributions.filter(x => x.baseRepository.owner.login != GITHUB);
+    contributions = contributions.filter(x => x.baseRepository.owner.login !== GITHUB);
     // sort
     contributions = contributions.sort((a, b) => (total(a) > total(b) ? -1 : 1));
     // remove duplicates

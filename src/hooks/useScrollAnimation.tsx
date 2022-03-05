@@ -10,9 +10,11 @@ export const useScrollAnimation = (inView: boolean): AnimationControls => {
     useEffect(() => {
         if (completed) return;
         if (inView) {
-            animate.start("complete");
+            void animate.start("complete");
             setCompleted(true);
         }
+        // if completed was in dependency array, it would rerender forever
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [animate, inView]);
 
     return animate;

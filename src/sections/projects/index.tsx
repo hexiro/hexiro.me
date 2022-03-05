@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 
-import { fade, fadeChildren, pop } from "commons/animations";
+import { fade, fadeChildren } from "commons/animations";
 import type { RepositoryProps } from "commons/graphql";
 import { Header } from "components/common";
 import Repository from "components/repository";
@@ -35,7 +35,7 @@ export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ repositories, 
             </Text>
             <ProjectsContainer variants={fadeChildren}>
                 {repositories.map(repo => (
-                    <Repository key={repo.name} details={repo} whileHover={pop} variants={fade} />
+                    <Repository key={repo.name} details={repo} />
                 ))}
             </ProjectsContainer>
         </ProjectsSection>

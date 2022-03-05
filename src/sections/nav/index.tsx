@@ -44,6 +44,9 @@ export default function Nav({
         if (active !== newActive) {
             setActive(newActive);
         }
+
+        // if active was in the deps list it would rerender forever
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [meInView, projectsInView, contributionsInView]);
 
     return (
