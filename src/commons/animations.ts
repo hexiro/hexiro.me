@@ -42,3 +42,9 @@ export const pop = { translateY: -3 };
 export const lightPop = { translateY: -2 };
 export const tap = { scale: 0.92 };
 export const lightTap = { scale: 0.94 };
+
+export const spring = {
+    type: "spring",
+    stiffness: 500,
+    damping: 30,
+};

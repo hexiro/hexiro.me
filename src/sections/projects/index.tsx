@@ -35,12 +35,7 @@ export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ repositories, 
             </Text>
             <ProjectsContainer variants={fadeChildren}>
                 {repositories.map(repo => (
-                    <Repository
-                        key={repo.name}
-                        details={repo}
-                        whileHover={pop}
-                        variants={fade}
-                    />
+                    <Repository key={repo.name} details={repo} whileHover={pop} variants={fade} />
                 ))}
             </ProjectsContainer>
         </ProjectsSection>

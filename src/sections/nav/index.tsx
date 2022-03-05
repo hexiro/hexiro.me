@@ -5,7 +5,7 @@ import theme from "commons/theme";
 import Hex from "sections/nav/hex";
 import Section from "sections/nav/section";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
 import { useMedia } from "react-use";
 import styled, { css } from "styled-components";
 
@@ -26,10 +26,7 @@ export default function Nav({
     projectsInView,
     contributionsInView,
 }: NavProps): JSX.Element {
-    // active section
     const [active, setActive] = useState(0);
-    // previously active section
-    const [previous, setPrevious] = useState(0);
     const isWiderThan600px = useMedia("(max-width: 600px)");
 
     useEffect(() => {
@@ -45,7 +42,6 @@ export default function Nav({
         }
 
         if (active !== newActive) {
-            setPrevious(active);
             setActive(newActive);
         }
     }, [meInView, projectsInView, contributionsInView]);
@@ -55,29 +51,23 @@ export default function Nav({
             <Hex />
             <AnimatePresence>
                 {!isWiderThan600px && (
-                    <Sections initial="start" animate="complete" exit="start" variants={fadeDown}>
-                        <Section
-                            name="me"
-                            index={0}
-                            active={active}
-                            previous={previous}
-                            current={me}
-                        />
-                        <Section
-                            name="projects"
-                            index={1}
-                            active={active}
-                            previous={previous}
-                            current={projects}
-                        />
-                        <Section
-                            name="contributions"
-                            index={2}
-                            active={active}
-                            previous={previous}
-                            current={contributions}
-                        />
-                    </Sections>
+                    <AnimateSharedLayout>
+                        <Sections
+                            initial="start"
+                            animate="complete"
+                            exit="start"
+                            variants={fadeDown}
+                        >
+                            <Section name="me" index={0} active={active} current={me} />
+                            <Section name="projects" index={1} active={active} current={projects} />
+                            <Section
+                                name="contributions"
+                                index={2}
+                                active={active}
+                                current={contributions}
+                            />
+                        </Sections>
+                    </AnimateSharedLayout>
                 )}
             </AnimatePresence>
         </NavContainer>
