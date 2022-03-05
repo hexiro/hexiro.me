@@ -38,7 +38,7 @@ export const Me = forwardRef<HTMLElement, SectionProps>(({ inView }, ref) => {
                 </motion.div>
             </Left>
             <Right variants={fadeChildren}>
-                <Avatar whileTap="tap" variants={fadeAndMovements}>
+                <Avatar variants={fade}>
                     <Image
                         priority
                         src={`https://avatars.githubusercontent.com/${GITHUB}`}

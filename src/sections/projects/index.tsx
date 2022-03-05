@@ -49,7 +49,7 @@ export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ repositories, 
 
 const Text = styled(motion.div)`
     text-align: left;
-    margin: 12.5px;
+    margin-left: 1%;
 `;
 
 const Description = styled.p`
@@ -58,9 +58,6 @@ const Description = styled.p`
 
 const ProjectsContainer = styled(motion.div)`
     display: flex;
-    align-items: center;
-    align-content: flex-start;
-    justify-content: flex-start;
     flex-wrap: wrap;
 `;
 
@@ -70,11 +67,8 @@ const ProjectsSection = styled(motion.section)`
     display: flex;
     flex-direction: column;
 
-    padding-left: 4%;
-
     @media only screen and (max-width: 900px) {
         justify-content: center;
-        padding-left: unset;
 
         ${Text} {
             text-align: center;

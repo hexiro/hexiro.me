@@ -1,4 +1,4 @@
-import { forwardRef, useEffect } from "react";
+import { forwardRef } from "react";
 
 import { fade, fadeChildren } from "commons/animations";
 import type { PullRequestProps } from "commons/graphql";
@@ -6,9 +6,9 @@ import theme from "commons/theme";
 import { Header } from "components/common";
 import Repository from "components/repository";
 import { useScrollAnimation } from "hooks/useScrollAnimation";
-import { SectionProps } from "sections";
+import type { SectionProps } from "sections";
 
-import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 interface ContributionsProps extends SectionProps {
@@ -88,7 +88,7 @@ const ContributionsSection = styled(motion.section)`
     display: flex;
     flex-direction: column;
 
-    padding-right: 4%;
+    /* padding-right: 4%; */
 
     @media only screen and (max-width: 900px) {
         justify-content: center;

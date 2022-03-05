@@ -52,17 +52,15 @@ export default function Repository({ children, details, ...all }: ProjectProps):
 const ProjectContainer = styled(motion.div)`
     position: relative;
     padding: 10px 20px 4px 20px;
-    margin: 12.5px;
+    margin: 10px 1%;
     min-width: 310px;
-    max-width: 630px;
     height: 200px;
     border-radius: 10px;
     background: ${theme.accent.background};
     box-shadow: 0 6px 13px rgba(0, 0, 0, 0.25);
     will-change: transform;
     word-break: break-word;
-
-    width: 45%;
+    width: 48%;
 
     @media only screen and (max-width: 900px) {
         width: 85%;
