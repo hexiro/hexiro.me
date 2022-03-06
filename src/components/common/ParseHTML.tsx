@@ -1,24 +1,45 @@
 import { To } from "components/common";
 
 import { Element } from "domhandler";
-import parse, { HTMLReactParserOptions, domToReact } from "html-react-parser";
+import type { DOMNode, HTMLReactParserOptions } from "html-react-parser";
+import parse, { domToReact } from "html-react-parser";
 
-// returns string, JSX.Element[], JSX.Element all as JSX.Element
+// Returns string, JSX.Element[], JSX.Element all as JSX.Element
 export const ParseHTML = ({ html }: { html: string }): JSX.Element => <>{parse(html, options)}</>;
 
+const replace = (element: DOMNode): JSX.Element | null => {
+    if (element instanceof Element)
+        switch (element.name) {
+            case "script": {
+                return null;
+            }
+
+            case "style": {
+                return null;
+            }
+
+            // Replace a with custom link
+            case "a": {
+                return <To href={element.attribs.href}>{domToReact(element.children)}</To>;
+            }
+
+            case "g-emoji":
+                return <>{domToReact(element.children)}</>;
+
+            case "div": {
+                const children = element.children.map(child => replace(child));
+                // eslint-disable-next-line react/jsx-no-useless-fragment
+                return <>{children}</>;
+            }
+
+            default:
+                break;
+        }
+
+    return <>{domToReact([element])}</>;
+};
+
 const options: HTMLReactParserOptions = {
-    replace: element => {
-        if (!(element instanceof Element)) return;
-        if (element.name === "script") {
-            return <></>;
-        }
-        if (element.name === "a") {
-            return <To href={element.attribs.href}>{domToReact(element.children)}</To>;
-        }
-        // g(ithub)-emoji
-        if (element.name === "g-emoji") {
-            return <>{domToReact(element.children)}</>;
-        }
-    },
     trim: true,
+    replace,
 };

@@ -1,116 +1,64 @@
-import { GetStaticProps } from "next";
-import React from "react";
+import type { GetStaticProps } from "next";
 
-import { Header } from "components/common";
-import Lanyard from "components/lanyard";
-import Page from "components/pages";
-import Project from "components/projects";
-import Socials from "components/socials";
+import type { RepositoryProps, PullRequestProps } from "commons/graphql";
+import contributions from "commons/graphql/contributions";
+import projects from "commons/graphql/projects";
+import { Page } from "components/pages";
+import Sections, { Contributions, Me, Projects } from "sections";
+import Nav from "sections/nav";
 
-import { Age } from "static/config";
-import graphQL, { ProjectProps, PROJECTS } from "static/graphql";
-import { fadeChild, fadeParent } from "static/variants";
-
-import { motion } from "framer-motion";
-import styled, { css } from "styled-components";
+import { useInView } from "react-intersection-observer";
 
 interface HomeProps {
-    projects: ProjectProps[];
+    projectsRepositories: RepositoryProps[];
+    contributionsPullRequests: PullRequestProps[];
 }
 
-export default function Home({ projects }: HomeProps): JSX.Element {
-    const description = `A ${Age()} y/o aspiring Software Engineer`;
+export default function Home({ projectsRepositories, contributionsPullRequests }: HomeProps) {
+    const useInViewOptions = {
+        threshold: 0.3,
+        fallbackInView: true,
+    };
+
+    const [meRef, meInView, meCurrent] = useInView(useInViewOptions);
+    const [projectsRef, projectsInView, projectsCurrent] = useInView(useInViewOptions);
+    const [contributionsRef, contributionsInView, contributionsCurrent] =
+        useInView(useInViewOptions);
+
+    const description =
+        "A self-taught software engineer who enjoys problem solving, technology, building software, and contributing to open source projects.";
+
     return (
-        <Page name="Home" description={description}>
-            <Main>
-                <Side left>
-                    <Intro>
-                        <motion.h1 variants={fadeChild}>
-                            Hi! I'm <Header>Hexiro</Header>,
-                        </motion.h1>
-                        <motion.h2 variants={fadeChild}>{description}</motion.h2>
-                        <Socials />
-                        <Lanyard />
-                    </Intro>
-                </Side>
-                <Side right>
-                    <Projects>
-                        {projects.map(project => (
-                            <Project key={project.name} {...project} />
-                        ))}
-                    </Projects>
-                </Side>
-            </Main>
+        <Page name="Home" description={`Hi! I'm Hexiro, ${description}`}>
+            <Nav
+                me={meCurrent}
+                meInView={meInView}
+                projects={projectsCurrent}
+                projectsInView={projectsInView}
+                contributions={contributionsCurrent}
+                contributionsInView={contributionsInView}
+            />
+            <Sections>
+                <Me ref={meRef} inView={meInView} description={description} />
+                <Projects
+                    ref={projectsRef}
+                    inView={projectsInView}
+                    repositories={projectsRepositories}
+                />
+                <Contributions
+                    ref={contributionsRef}
+                    inView={contributionsInView}
+                    pullRequests={contributionsPullRequests}
+                />
+            </Sections>
         </Page>
     );
 }
 
-const FadingParent = styled(motion.div).attrs(() => ({
-    initial: "start",
-    animate: "fade",
-    variants: fadeParent,
-}));
-
-const Main = styled.main`
-    display: flex;
-    align-content: center;
-    min-height: 100vh;
-    height: 100%;
-
-    @media only screen and (max-width: 1250px) {
-        padding-top: 125px;
-        display: block;
-        min-height: 84vh;
-    }
-`;
-
-// prettier-ignore
-const Side = styled.div<{ left: true } | { right: true }>`
-    display: flex;
-    flex: 1;
-    align-items: center;
-    ${(props) => "right" in props && css`
-            justify-content: center;
-            margin: 20px 0;
-      `}
-
-    @media only screen and (max-width: 1250px) {
-        display: block;
-        text-align: center;
-        margin: 0;
-    }
-`;
-
-// transform makes it so the vertical centering is centered around the description line
-// instead of around the whole div
-const Intro = FadingParent`
-    line-height: 3em;
-    margin-left: 30px;
-    min-height: 115px;
-    position: relative;
-    transform: translateY(-20%);
-
-    @media only screen and (max-width: 1250px) {
-        margin-left: unset;
-    }
-`;
-
-const Projects = FadingParent`
-    @media only screen and (max-width: 1250px) {
-        display: block;
-    }
-`;
-
-// regen top 3 pinned repos every hour
-export const getStaticProps: GetStaticProps = async () => {
-    const resp = await graphQL(PROJECTS);
-    const json = await resp.json();
-    const projects: ProjectProps[] = json["data"]["viewer"]["pinnedItems"]["nodes"];
-
-    return {
-        props: {
-            projects,
-        },
-        revalidate: 3600,
-    };
-};
+export const getStaticProps: GetStaticProps<HomeProps> = async () => ({
+    props: {
+        projectsRepositories: await projects(),
+        contributionsPullRequests: await contributions(),
+    },
+    revalidate: 3600,
+});

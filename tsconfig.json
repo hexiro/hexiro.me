@@ -1,34 +1,23 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "jsx": "preserve",
-    "baseUrl": "src",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "skipLibCheck": true,
-    "allowUnreachableCode": false,
-    "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "allowJs": true
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "compilerOptions": {
+        "target": "es5",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "jsx": "preserve",
+        "baseUrl": "src",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "strict": true,
+        "noFallthroughCasesInSwitch": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "allowJs": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "incremental": true,
+        "downlevelIteration": true
+    },
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+    "exclude": ["node_modules"]
 }

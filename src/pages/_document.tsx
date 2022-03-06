@@ -1,12 +1,13 @@
-import Document, { DocumentContext } from "next/document";
+import type { DocumentContext, DocumentInitialProps } from "next/document";
+import NextDocument, { Head, Html, Main, NextScript } from "next/document";
 
 import { ServerStyleSheet } from "styled-components";
 
-// copied from
+// Copied from
 // https://github.com/vercel/next.js/blob/master/examples/with-styled-components/pages/_document.js#L4
 
-export default class extends Document {
-    static async getInitialProps(ctx: DocumentContext) {
+export default class Document extends NextDocument {
+    static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
         const sheet = new ServerStyleSheet();
         const originalRenderPage = ctx.renderPage;
 
@@ -16,7 +17,7 @@ export default class extends Document {
                     enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
                 });
 
-            const initialProps = await Document.getInitialProps(ctx);
+            const initialProps = await NextDocument.getInitialProps(ctx);
             return {
                 ...initialProps,
                 styles: (
@@ -29,5 +30,23 @@ export default class extends Document {
         } finally {
             sheet.seal();
         }
+    }
+
+    render() {
+        return (
+            <Html>
+                <Head>
+                    <link rel="preconnect" href="https://fonts.gstatic.com" />
+                    <link
+                        rel="stylesheet"
+                        href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&amp;display=swap"
+                    />
+                </Head>
+                <body>
+                    <Main />
+                    <NextScript />
+                </body>
+            </Html>
+        );
     }
 }

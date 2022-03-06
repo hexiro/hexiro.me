@@ -1,25 +1,31 @@
-import Link from "next/link";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
-import theme from "static/theme";
+import { lightPop } from "commons/animations";
+import theme from "commons/theme";
 
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const To = ({ href, children }: PropsWithChildren<{ href: string }>) => (
-    <Link href={href} passHref>
-        <Anchor rel="noreferrer" target="_blank">
-            {children}
-        </Anchor>
-    </Link>
+type ToProps = PropsWithChildren<{ href: string }>;
+
+export const To = ({ href, children }: ToProps) => (
+    <Anchor href={href} rel="norefferer" target="_blank" whileHover={lightPop}>
+        {children}
+    </Anchor>
 );
 
-const Anchor = styled.a`
+const Anchor = styled(motion.a)`
+    display: inline-block;
+    will-change: transform;
+
     color: ${theme.core.main};
-    text-decoration: none;
-    opacity: 0.7;
+    opacity: 0.85;
     font-weight: 300;
-    transition: ease all 0.2s;
+
     &:hover {
-        opacity: 0.9;
+        opacity: 1;
+    }
+    &:focus {
+        filter: none;
     }
 `;

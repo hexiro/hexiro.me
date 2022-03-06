@@ -1,9 +1,19 @@
-import gql from "static/graphql/gql";
+import type { RepositoryProps } from "commons/graphql";
+import githubGraphQL from "commons/graphql";
+import gql from "commons/graphql/gql";
 
-export const PROJECTS = gql`
+export default async function projects(): Promise<RepositoryProps[]> {
+    /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+    const resp = await githubGraphQL(PROJECTS);
+    const json = await resp.json();
+    const projects: RepositoryProps[] = json.data.viewer.pinnedItems.nodes;
+    return projects;
+}
+
+const PROJECTS = gql`
     {
         viewer {
-            pinnedItems(first: 3, types: REPOSITORY) {
+            pinnedItems(first: 6, types: REPOSITORY) {
                 nodes {
                     ... on Repository {
                         name
@@ -16,12 +26,6 @@ export const PROJECTS = gql`
                             totalCount
                         }
                         forks {
-                            totalCount
-                        }
-                        pullRequests {
-                            totalCount
-                        }
-                        issues {
                             totalCount
                         }
                         primaryLanguage {
@@ -42,34 +46,3 @@ export const PROJECTS = gql`
         }
     }
 `;
-
-export interface ProjectProps {
-    name: string;
-    descriptionHTML: string;
-    url: string;
-    owner: {
-        login: string;
-    };
-    stargazers: {
-        totalCount: number;
-    };
-    forks: {
-        totalCount: number;
-    };
-    pullRequests: {
-        totalCount: number;
-    };
-    issues: {
-        totalCount: number;
-    };
-    primaryLanguage: {
-        name: string;
-    };
-    defaultBranchRef: {
-        target: {
-            history: {
-                totalCount: number;
-            };
-        };
-    };
-}

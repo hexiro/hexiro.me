@@ -1,10 +1,9 @@
-import { AppProps } from "next/app";
+import type { AppProps } from "next/app";
 
-import theme from "static/theme";
-
-import { createGlobalStyle } from "styled-components";
+import theme from "commons/theme";
 
 import "react-tippy/dist/tippy.css";
+import { createGlobalStyle } from "styled-components";
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
     return (
@@ -51,25 +50,31 @@ const GlobalStyle = createGlobalStyle`
     filter: drop-shadow(0px 6px 4px ${theme.core.background});
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: ${theme.core.background};
     color: ${theme.core.text};
     font-family: "Poppins", sans-serif;
-    font-weight: 200;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.5;
     overflow-x: hidden;
 }
 
-h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
+p {
     font-weight: 300;
 }
 
 h1 {
-    font-size: 2.75em;
+    font-size: 3em;
+    font-weight: 400;
 }
 
 h2 {
@@ -81,16 +86,21 @@ h3 {
 }
 
 h4 {
-    font-size: 1em;
+
+    font-size: 1.1em;
 }
 
 h5 {
-    font-size: 0.9em;
+    font-size: 1em;
 }
 
 p {
-    color: ${theme.core.text};
-    font-weight: 200;
+    color: ${theme.core.subtext};
+    font-size: 1.25em;
+
+    @media only screen and (max-width: 549px) {
+        font-size: 1.1em;
+    }
 }
 
 ul {
@@ -100,6 +110,11 @@ ul {
 svg {
     width: auto;
     height: 100%;
+    color: ${theme.core.main};
+}
+
+a {
+    text-decoration: unset;
     color: ${theme.core.main};
 }
 `;
