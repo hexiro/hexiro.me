@@ -23,10 +23,11 @@ export default function Section({ name, index, active, current }: SectionProps):
                 {name.toUpperCase()}
             </SectionName>
             <motion.div variants={fade}>
-                <SectionBar />
-                {active === index && (
-                    <HighlightedSectionBar layoutId="underline" transition={spring} />
-                )}
+                <SectionBar>
+                    {active === index && (
+                        <HighlightedSectionBar layoutId="underline" transition={spring} />
+                    )}
+                </SectionBar>
             </motion.div>
         </SectionContainer>
     );
@@ -58,7 +59,6 @@ const SectionBar = styled.div`
 
 const HighlightedSectionBar = styled(motion.div)`
     position: absolute;
-    bottom: -1px;
     height: 5px;
     width: 100%;
     border-radius: 4px;

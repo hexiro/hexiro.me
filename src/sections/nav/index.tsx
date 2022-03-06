@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { fadeDown } from "commons/animations";
 import theme from "commons/theme";
+import usePassedScrollPosition from "hooks/useScrollPosition";
 import Hex from "sections/nav/hex";
 import Section from "sections/nav/section";
 
@@ -27,6 +28,7 @@ export default function Nav({
     contributionsInView,
 }: NavProps): JSX.Element {
     const [active, setActive] = useState(0);
+    const background = usePassedScrollPosition({ pixels: 100, defaultValue: false });
     const shouldFadeOut = useMedia("(max-width: 600px)");
 
     useEffect(() => {
@@ -50,7 +52,7 @@ export default function Nav({
     }, [meInView, projectsInView, contributionsInView]);
 
     return (
-        <NavContainer background={projectsInView || !meInView}>
+        <NavContainer background={background}>
             <Hex />
             <AnimatePresence>
                 {!shouldFadeOut && (
@@ -81,6 +83,13 @@ interface NavContainerProps {
     background: boolean;
 }
 
+const Sections = styled(motion.ul)`
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 20px 0;
+`;
+
 const NavContainer = styled.nav<NavContainerProps>`
     position: fixed;
     top: 0;
@@ -100,11 +109,4 @@ const NavContainer = styled.nav<NavContainerProps>`
             border-bottom: 1px solid ${theme.accent.background};
         `;
     }}
-`;
-
-const Sections = styled(motion.ul)`
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    padding: 20px 0;
 `;
