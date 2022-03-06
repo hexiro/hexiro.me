@@ -71,16 +71,31 @@ const Text = styled(motion.div)`
     margin-left: 15%;
     max-width: 900px;
     align-self: flex-end;
+
+    @media only screen and (max-width: 900px) {
+        text-align: center;
+        margin: unset;
+    }
 `;
 
 const Description = styled.p`
     float: right;
+
+    @media only screen and (max-width: 900px) {
+        max-width: unset;
+        margin: 0 5%;
+        float: unset;
+    }
 `;
 
 const ContributionsContainer = styled(motion.div)`
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
+
+    @media only screen and (max-width: 900px) {
+        justify-content: center;
+    }
 `;
 
 const ContributionsSection = styled(motion.section)`
@@ -91,17 +106,5 @@ const ContributionsSection = styled(motion.section)`
 
     @media only screen and (max-width: 900px) {
         justify-content: center;
-
-        ${Text} {
-            text-align: center;
-        }
-        ${Description} {
-            max-width: unset;
-            float: unset;
-            margin: 0 5%;
-        }
-        ${ContributionsContainer} {
-            justify-content: center;
-        }
     }
 `;

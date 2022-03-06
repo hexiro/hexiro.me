@@ -47,13 +47,27 @@ const Text = styled(motion.div)`
     margin-left: 1%;
     margin-right: 15%;
     max-width: 900px;
+
+    @media only screen and (max-width: 900px) {
+        text-align: center;
+        margin: unset;
+    }
 `;
 
-const Description = styled.p``;
+const Description = styled.p`
+    @media only screen and (max-width: 900px) {
+        max-width: unset;
+        margin: 0 5%;
+    }
+`;
 
 const ProjectsContainer = styled(motion.div)`
     display: flex;
     flex-wrap: wrap;
+
+    @media only screen and (max-width: 900px) {
+        justify-content: center;
+    }
 `;
 
 const ProjectsSection = styled(motion.section)`
@@ -64,16 +78,5 @@ const ProjectsSection = styled(motion.section)`
 
     @media only screen and (max-width: 900px) {
         justify-content: center;
-
-        ${Text} {
-            text-align: center;
-        }
-        ${Description} {
-            max-width: unset;
-            margin: 0 5%;
-        }
-        ${ProjectsContainer} {
-            justify-content: center;
-        }
     }
 `;

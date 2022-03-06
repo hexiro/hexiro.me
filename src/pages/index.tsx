@@ -29,7 +29,7 @@ export default function Home({ projectsRepositories, contributionsPullRequests }
         "A self-taught software engineer who enjoys problem solving, technology, building software, and contributing to open source projects.";
 
     return (
-        <Page name="Home" description={description}>
+        <Page name="Home" description={`Hi! I'm Hexiro, ${description}`}>
             <Nav
                 me={meCurrent}
                 meInView={meInView}
