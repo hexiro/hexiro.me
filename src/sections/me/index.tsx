@@ -9,7 +9,8 @@ import type { SectionProps } from "sections";
 import Lanyard from "sections/me/lanyard";
 import SocialMedia from "sections/me/socials";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useMedia } from "react-use";
 import styled from "styled-components";
 
 interface MeProps extends SectionProps {
@@ -18,8 +19,17 @@ interface MeProps extends SectionProps {
 
 export const Me = forwardRef<HTMLElement, MeProps>(({ inView, description }, ref) => {
     const animate = useScrollAnimation(inView);
+    const shouldAvatarFadeOut = useMedia("(max-width: 600px)");
+
     return (
-        <MeSection ref={ref} id="me" initial="start" animate={animate} variants={fadeChildren}>
+        <MeSection
+            ref={ref}
+            id="me"
+            initial="start"
+            animate={animate}
+            exit="start"
+            variants={fadeChildren}
+        >
             <Left variants={fadeChildren}>
                 <Introduction variants={fade}>
                     Hi! I&apos;m <Hexiro whileHover={pop}>Hexiro</Hexiro>,
@@ -30,22 +40,24 @@ export const Me = forwardRef<HTMLElement, MeProps>(({ inView, description }, ref
                     <SocialMedia type="github" />
                     <SocialMedia type="steam" />
                 </motion.ul>
-                <motion.div variants={fade}>
-                    <Lanyard />
-                </motion.div>
+                <Lanyard />
             </Left>
             <Right variants={fadeChildren}>
-                <Avatar variants={fade}>
-                    <Image
-                        priority
-                        src={`https://avatars.githubusercontent.com/${GITHUB}`}
-                        alt="Hexiro GitHub Avatar"
-                        height={500}
-                        width={500}
-                        quality={100}
-                        draggable={false}
-                    />
-                </Avatar>
+                <AnimatePresence>
+                    {!shouldAvatarFadeOut && (
+                        <Avatar initial="start" animate="complete" exit="start" variants={fade}>
+                            <Image
+                                priority
+                                src={`https://avatars.githubusercontent.com/${GITHUB}`}
+                                alt="Hexiro Avatar"
+                                height={500}
+                                width={500}
+                                quality={100}
+                                draggable={false}
+                            />
+                        </Avatar>
+                    )}
+                </AnimatePresence>
             </Right>
         </MeSection>
     );
@@ -62,6 +74,10 @@ const MeSection = styled(motion.section)`
     @media only screen and (max-width: 1275px) {
         flex-direction: column-reverse;
         justify-content: flex-end;
+    }
+
+    @media only screen and (max-width: 600px) {
+        min-height: unset;
     }
 `;
 
@@ -102,14 +118,12 @@ const Description = styled(motion.p)`
 `;
 
 const Avatar = styled(motion.div)`
-    min-width: 400px;
-    min-height: 400px;
+    width: 400px;
+    height: 400px;
 
     @media only screen and (max-width: 1275px) {
-        min-width: 150px;
-        min-height: 150px;
-        max-width: 300px;
-        max-height: 300px;
+        width: 350px;
+        height: 350px;
     }
 
     & > span {

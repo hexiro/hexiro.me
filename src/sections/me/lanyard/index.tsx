@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { fade } from "commons/animations";
 import { DISCORD } from "commons/config";
 import theme from "commons/theme";
 import { Header, Tooltip } from "components/common";
@@ -39,7 +40,7 @@ export default function Lanyard(): JSX.Element | null {
     return (
         <AnimatePresence>
             {content && assets && isLargeEnough && (
-                <LanyardContainer>
+                <LanyardContainer initial="start" animate="complete" exit="start" variants={fade}>
                     <Images>
                         <Tooltip title={assets.large_text}>
                             <LargeImage

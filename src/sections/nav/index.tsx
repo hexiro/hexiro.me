@@ -27,7 +27,7 @@ export default function Nav({
     contributionsInView,
 }: NavProps): JSX.Element {
     const [active, setActive] = useState(0);
-    const isWiderThan600px = useMedia("(max-width: 600px)");
+    const shouldFadeOut = useMedia("(max-width: 600px)");
 
     useEffect(() => {
         const sectionsInView = [meInView, projectsInView, contributionsInView];
@@ -53,7 +53,7 @@ export default function Nav({
         <NavContainer background={projectsInView || !meInView}>
             <Hex />
             <AnimatePresence>
-                {!isWiderThan600px && (
+                {!shouldFadeOut && (
                     <AnimateSharedLayout>
                         <Sections
                             initial="start"
