@@ -45,11 +45,10 @@ export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ repositories, 
 const Text = styled(motion.div)`
     text-align: left;
     margin-left: 1%;
+    margin-right: 15%;
 `;
 
-const Description = styled.p`
-    max-width: 700px;
-`;
+const Description = styled.p``;
 
 const ProjectsContainer = styled(motion.div)`
     display: flex;

@@ -67,19 +67,18 @@ const Deletions = styled(Additions)`
 
 const Text = styled(motion.div)`
     text-align: right;
-    margin: 12.5px;
+    margin-right: 1%;
+    margin-left: 15%;
 `;
 
 const Description = styled.p`
     float: right;
-    max-width: 700px;
 `;
 
 const ContributionsContainer = styled(motion.div)`
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
     flex-wrap: wrap;
+    justify-content: flex-end;
 `;
 
 const ContributionsSection = styled(motion.section)`
@@ -88,11 +87,8 @@ const ContributionsSection = styled(motion.section)`
     display: flex;
     flex-direction: column;
 
-    /* padding-right: 4%; */
-
     @media only screen and (max-width: 900px) {
         justify-content: center;
-        padding-right: unset;
 
         ${Text} {
             text-align: center;
