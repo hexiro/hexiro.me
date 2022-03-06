@@ -46,6 +46,7 @@ const Text = styled(motion.div)`
     text-align: left;
     margin-left: 1%;
     margin-right: 15%;
+    max-width: 900px;
 `;
 
 const Description = styled.p``;

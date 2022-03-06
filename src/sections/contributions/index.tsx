@@ -69,6 +69,8 @@ const Text = styled(motion.div)`
     text-align: right;
     margin-right: 1%;
     margin-left: 15%;
+    max-width: 900px;
+    align-self: flex-end;
 `;
 
 const Description = styled.p`
