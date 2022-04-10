@@ -13,7 +13,7 @@
     },
     "dependencies": {
         "framer-motion": "^4.1.17",
-        "html-react-parser": "^1.4.8",
+        "html-react-parser": "^1.4.9",
         "next": "^12.1.0",
         "next-seo": "^5.1.0",
         "react": "17.0.2",
