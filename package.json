@@ -23,7 +23,7 @@
         "react-tippy": "^1.4.0",
         "react-use": "^17.3.2",
         "react-use-lanyard": "^0.1.1",
-        "sharp": "^0.30.4",
+        "sharp": "^0.30.5",
         "styled-components": "^5.3.5"
     },
     "devDependencies": {
