@@ -7,6 +7,7 @@ import { Header, Tooltip } from "components/common";
 import TimestampBar from "sections/me/lanyard/TimestampBar";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { BsQuestion } from "react-icons/bs";
 import { useMedia } from "react-use";
 import type { Activity, Spotify } from "react-use-lanyard";
 import { useLanyard } from "react-use-lanyard";
@@ -18,7 +19,7 @@ export default function Lanyard(): JSX.Element | null {
         socket: true,
     });
 
-    const isLargeEnough = useMedia("(min-width: 420px)");
+    const isLargeEnough = useMedia("(min-width: 420px)", false);
 
     const types = [0, 2];
     const activity = status?.activities
@@ -43,15 +44,21 @@ export default function Lanyard(): JSX.Element | null {
                 <LanyardContainer initial="start" animate="complete" exit="start" variants={fade}>
                     <Images>
                         <Tooltip title={assets.large_text}>
-                            <LargeImage
-                                priority
-                                alt="large image of application or song"
-                                draggable={false}
-                                src={content.largeImage}
-                                layout="fixed"
-                                height={95}
-                                width={95}
-                            />
+                            {content.largeImage ? (
+                                <LargeImage
+                                    priority
+                                    alt="large image of application or song"
+                                    draggable={false}
+                                    src={content.largeImage}
+                                    layout="fixed"
+                                    height={95}
+                                    width={95}
+                                />
+                            ) : (
+                                <NoImage>
+                                    <BsQuestion color="rgba(0, 0, 0, 0.85)" size={50} />
+                                </NoImage>
+                            )}
                         </Tooltip>
                         {content.smallImage && (
                             <SmallImageContainer>
@@ -82,7 +89,7 @@ export default function Lanyard(): JSX.Element | null {
 }
 
 interface LanyardContent {
-    largeImage: string;
+    largeImage?: string;
     smallImage?: string;
     name: string;
     firstLine?: string;
@@ -144,6 +151,23 @@ const LanyardContainer = styled(motion.div)`
 
 const Images = styled.div`
     position: relative;
+`;
+
+const NoImage = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95px;
+    height: 95px;
+    background: ${theme.core.main};
+    opacity: 0.8;
+    border-radius: 4px;
+    box-shadow: 0 0px 10px rgb(0 0 0 / 25%);
+
+    & svg {
+        width: unset;
+        height: unset;
+    }
 `;
 
 // !important bcuz next/image lol

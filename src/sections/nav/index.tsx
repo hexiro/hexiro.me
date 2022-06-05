@@ -29,7 +29,7 @@ export default function Nav({
 }: NavProps): JSX.Element {
     const [active, setActive] = useState(0);
     const background = usePassedScrollPosition({ pixels: 100, defaultValue: false });
-    const shouldFadeOut = useMedia("(max-width: 600px)");
+    const shouldFadeOut = useMedia("(max-width: 600px)", false);
 
     useEffect(() => {
         const sectionsInView = [meInView, projectsInView, contributionsInView];

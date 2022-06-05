@@ -19,7 +19,7 @@ interface MeProps extends SectionProps {
 
 export const Me = forwardRef<HTMLElement, MeProps>(({ inView, description }, ref) => {
     const animate = useScrollAnimation(inView);
-    const shouldAvatarFadeOut = useMedia("(max-width: 600px)");
+    const shouldAvatarFadeOut = useMedia("(max-width: 600px)", false);
 
     return (
         <MeSection
