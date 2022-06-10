@@ -21,7 +21,7 @@
         "react-icons": "^4.3.1",
         "react-intersection-observer": "^8.34.0",
         "react-tippy": "^1.4.0",
-        "react-use": "^17.3.2",
+        "react-use": "^17.4.0",
         "react-use-lanyard": "^0.1.1",
         "sharp": "^0.30.5",
         "styled-components": "^5.3.5"
