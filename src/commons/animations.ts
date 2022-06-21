@@ -41,7 +41,7 @@ export const fadeDown = {
 export const pop = { translateY: -3 };
 export const lightPop = { translateY: -2 };
 export const extraLightPop = { translateY: -1 };
-export const tap = { scale: 0.92 };
+export const tap = { scale: "0.92!important" };
 export const lightTap = { scale: 0.94 };
 
 export const hover = { scale: 1.08 };

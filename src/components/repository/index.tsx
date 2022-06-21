@@ -8,8 +8,6 @@ import { Forks, Stars } from "components/repository/details";
 import Language from "components/repository/language";
 
 import { Box, Flex, Heading, HStack, Text } from "@chakra-ui/react";
-import { motion } from "framer-motion";
-import styled from "styled-components";
 
 type ProjectProps = PropsWithChildren<{
     details: RepositoryProps;
@@ -18,36 +16,26 @@ type ProjectProps = PropsWithChildren<{
 export default function Repository({ children, details }: ProjectProps): JSX.Element {
     return (
         <Box
-            as={motion.div}
-            variants={fade}
             className="repository"
             position="relative"
-            paddingX="20px"
-            paddingTop="10px"
-            paddingBottom="4px"
-            marginY="10px"
-            marginX="1%"
-            minWidth="310px"
+            paddingX={5}
+            paddingY={3}
             height="200px"
             borderRadius="lg"
             background="background.secondary"
             boxShadow="md"
-            transform="translateY(var(--chakra-translate-y, 0))!important"
+            transform="auto"
+            transitionProperty="transform"
+            transitionDuration="fast"
             willChange="transform"
             wordBreak="break-word"
-            width={{ base: "85%", xl: "48%" }}
-            _hover={{ translateY: -3 }}
+            cursor="pointer"
+            width="100%"
+            _hover={lightPop}
         >
             <Box>
-                <Flex as="header" className="repository-header" align="center">
-                    <Heading
-                        className="repository-name"
-                        as="h3"
-                        size="md"
-                        fontWeight={300}
-                        transform="auto"
-                        _hover={lightPop}
-                    >
+                <Flex as="header" className="repository-header" align="center" paddingBottom={1}>
+                    <Heading className="repository-name" as="h3" size="md" fontWeight={300}>
                         <To href={details.url}>
                             {details.owner.login !== GITHUB && (
                                 <Box as="span" display={{ base: "none", sm: "none", md: "revert" }}>
@@ -69,7 +57,7 @@ export default function Repository({ children, details }: ProjectProps): JSX.Ele
                         </HStack>
                     </Flex>
                 </Flex>
-                <Text paddingBottom={2.5}>
+                <Text paddingBottom={4}>
                     <ParseHTML html={details.descriptionHTML} />
                 </Text>
                 <Flex
@@ -77,10 +65,10 @@ export default function Repository({ children, details }: ProjectProps): JSX.Ele
                     className="repository-footer"
                     align="center"
                     position="absolute"
-                    bottom={2.5}
+                    bottom={3}
                 >
                     <Language name={details.primaryLanguage.name} />
-                    <Box as="span" marginRight={2.5}>
+                    <Box as="span" marginLeft={2}>
                         {details.primaryLanguage.name}
                     </Box>
                     {children}

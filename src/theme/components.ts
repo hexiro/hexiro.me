@@ -3,7 +3,7 @@ import type { ComponentStyleConfig } from "@chakra-ui/react";
 const components: Record<string, ComponentStyleConfig> = {
     Heading: {
         baseStyle: {
-            fontWeight: 600,
+            fontWeight: 400,
         },
     },
     Button: {

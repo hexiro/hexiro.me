@@ -47,26 +47,27 @@ export const styles = {
             textDecoration: "unset",
             color: "brand.primary",
         },
-        "h1, h2, h3, h4, h5, h6": {
+        "h1, h2, h3": {
             color: "brand.primary",
         },
-
-        h1: {
-            fontSize: { base: "lg", sm: "lg", md: "xl" },
-            fontWeight: 400,
+        "h4, h5, h6": {
+            color: "brand.text",
         },
+        // h1: {
+        //     fontSize: { base: "lg", sm: "lg", md: "xl" },
+        //     fontWeight: 400,
+        // },
+        // h2: {
+        //     fontSize: { base: "md", sm: "md", md: "lg" },
+        // },
 
-        h2: {
-            fontSize: { base: "md", sm: "md", md: "lg" },
-        },
+        // h3: {
+        //     fontSize: { base: "sm", sm: "sm", md: "md" },
+        // },
 
-        h3: {
-            fontSize: { base: "sm", sm: "sm", md: "md" },
-        },
-
-        h4: {
-            fontSize: { base: "xs", sm: "xs", md: "sm" },
-        },
+        // h4: {
+        //     fontSize: { base: "xs", sm: "xs", md: "sm" },
+        // },
     },
 };
 

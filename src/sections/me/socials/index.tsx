@@ -1,4 +1,4 @@
-import { fade } from "commons/animations";
+import { extraLightPop, fade, lightPop } from "commons/animations";
 import { TWITTER_LINK, GITHUB_LINK, STEAM_LINK } from "commons/config";
 import { TwitterIcon, GithubIcon, SteamIcon } from "commons/icons";
 import { To } from "components/common";
@@ -34,11 +34,15 @@ export default function SocialMedia({ type }: SocialMediaProps) {
 
     return (
         <Box
-            as={motion.li}
-            variants={fade}
+            as="li"
             display="inline-block"
             marginX={3}
+            transform="auto"
+            transitionProperty="transform"
+            transitionDuration="fast"
+            willChange="transform"
             _first={{ xl: { marginLeft: "unset" } }}
+            _hover={extraLightPop}
         >
             <To href={href}>{icon}</To>
         </Box>

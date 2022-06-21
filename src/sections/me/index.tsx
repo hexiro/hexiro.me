@@ -4,41 +4,30 @@ import { PropsWithChildren } from "react";
 import { fade, fadeChildren, pop } from "commons/animations";
 import { GITHUB } from "commons/config";
 import { useScrollAnimation } from "hooks/useScrollAnimation";
-import type { SectionProps } from "sections";
 import SocialMedia from "sections/me/socials";
 
 import { Box, Flex, FlexProps, forwardRef, Heading, Hide, HStack, Text } from "@chakra-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useMedia } from "react-use";
 
-interface MeProps extends SectionProps {
+interface MeProps {
     description: string;
 }
 
 export const Me = forwardRef<MeProps, typeof Flex>(({ inView, description }, ref) => {
-    const animate = useScrollAnimation(inView);
-    const shouldAvatarFadeOut = useMedia("(max-width: 600px)", false);
-
     return (
         <Flex
             ref={ref}
             id="me"
-            as={motion.section}
-            initial="start"
-            animate={animate}
-            exit="start"
-            variants={fadeChildren}
+            as="section"
             position="relative"
             width="100%"
             align="center"
-            minHeight={{ base: "unset", md: "750px" }}
             direction={{ base: "column-reverse", xl: "row" }}
-            justify={{ base: "flex-end", xl: "center" }}
+            justify={{ base: "center", xl: "space-between" }}
         >
             <Flex
                 className="me-left"
-                as={motion.div}
-                variants={fadeChildren}
                 align="center"
                 maxWidth="500px"
                 paddingRight={{ base: 0, xl: 5 }}
@@ -50,50 +39,33 @@ export const Me = forwardRef<MeProps, typeof Flex>(({ inView, description }, ref
                 width={{ base: "100%", xl: "75%" }}
                 flexBasis="50%"
             >
-                <Heading
-                    as={motion.h1}
-                    variants={fade}
-                    color="brand.text"
-                    fontWeight={300}
-                    whiteSpace="nowrap"
-                >
+                <Heading color="brand.text" fontWeight={300} whiteSpace="nowrap">
                     Hi! I&apos;m{" "}
                     <Box
                         as="span"
                         transform="auto"
                         willChange="transform"
-                        _hover={pop}
                         color="brand.primary"
                         fontWeight={400}
+                        _hover={pop}
                     >
                         Hexiro
                     </Box>
                     ,
                 </Heading>
-                <Text as={motion.p} variants={fade} minWidth="200px" marginBottom="20px">
+                <Text minWidth="200px" marginBottom="20px">
                     {description}
                 </Text>
-                <Box as={motion.ul} variants={fadeChildren} whiteSpace="nowrap">
+                <Box as="ul" whiteSpace="nowrap">
                     <SocialMedia type="Twitter" />
                     <SocialMedia type="GitHub" />
                     <SocialMedia type="Steam" />
                 </Box>
                 {/* <Lanyard /> */}
             </Flex>
-            <Box
-                className="me-right"
-                as={motion.div}
-                variants={fadeChildren}
-                paddingLeft={{ base: 0, xl: 5 }}
-                flexBasis="50%"
-            >
+            <Box className="me-right" paddingLeft={{ base: 0, xl: 5 }} flexBasis="50%">
                 <AnimatePresence>
                     <Box
-                        as={motion.div}
-                        initial="start"
-                        animate="complete"
-                        exit="start"
-                        variants={fade}
                         sx={{
                             "& > span": {
                                 filter: "auto",

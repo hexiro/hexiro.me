@@ -86,7 +86,7 @@ export const Page = ({ name, description, children }: PageProps): JSX.Element =>
             ]}
         />
 
-        <Container height="100vh" maxWidth="80%" margin="0 10%" padding="unset">
+        <Container height="100vh" maxWidth="65%" padding="unset">
             {children}
         </Container>
         {/* <Footer oneScreen={oneScreen} /> */}

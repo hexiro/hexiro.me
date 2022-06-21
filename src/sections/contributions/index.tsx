@@ -1,42 +1,30 @@
 import { fade, fadeChildren } from "commons/animations";
 import type { PullRequestProps } from "commons/graphql";
 import RepositoryContainer from "components/RepositoryContainer";
+import RepositorySection from "components/RepositorySection";
+import RepositorySectionText from "components/RepositorySectionText";
 import Repository from "components/repository";
 import { useScrollAnimation } from "hooks/useScrollAnimation";
-import type { SectionProps } from "sections";
 
 import { Box, forwardRef, Flex, Heading, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-interface ContributionsProps extends SectionProps {
+interface ContributionsProps {
     pullRequests: PullRequestProps[];
 }
 
 export const Contributions = forwardRef<ContributionsProps, typeof Flex>(
     ({ pullRequests, inView }, ref) => {
-        const animate = useScrollAnimation(inView);
         return (
-            <Flex
-                ref={ref}
-                id="contributions"
-                as={motion.div}
-                animate={animate}
-                initial="start"
-                variants={fadeChildren}
-                position="relative"
-                width="100%"
-                direction="column"
-                justify={{ base: "center", xl: "revert" }}
-            >
-                <Box as={motion.div} variants={fade} textAlign="right" marginRight={4}>
-                    <Heading>Contributions</Heading>
-                    <Text float="right">
-                        These pull requests are my top 6 GitHub pull requests. They&apos;re sorted
-                        by additions and deletions to showcase where my changes had a meaningful
-                        impact on the project.
-                    </Text>
-                </Box>
+            <RepositorySection ref={ref} id="contributions">
+                <RepositorySectionText
+                    onRight
+                    title="Contributions"
+                    description="These pull requests are my top 6 GitHub pull requests. They're sorted by
+                additions and deletions to showcase where my changes had a meaningful impact on the
+                project."
+                ></RepositorySectionText>
                 <RepositoryContainer>
                     {pullRequests.map(pullRequest => (
                         <Repository
@@ -59,7 +47,7 @@ export const Contributions = forwardRef<ContributionsProps, typeof Flex>(
                         </Repository>
                     ))}
                 </RepositoryContainer>
-            </Flex>
+            </RepositorySection>
         );
     }
 );

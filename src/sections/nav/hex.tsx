@@ -10,7 +10,7 @@ const onTap = () => {
 export default function Hex(): JSX.Element {
     return (
         <Box
-            as={motion.svg}
+            as="svg"
             viewBox="0 0 71 48"
             fill="currentColor"
             stroke="currentColor"
@@ -23,9 +23,12 @@ export default function Hex(): JSX.Element {
             transform="auto"
             filter="auto"
             dropShadow="5px 5px 5px rgba(0, 0, 0, 0.5)"
-            onTap={onTap}
-            whileTap={tap}
-            whileHover={hover}
+            transitionProperty="transform"
+            transitionDuration="fast"
+            willChange="transform"
+            _active={tap}
+            _hover={hover}
+            onClick={onTap}
         >
             <path
                 fillRule="evenodd"

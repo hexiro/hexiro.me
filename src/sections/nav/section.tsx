@@ -6,12 +6,11 @@ import styled from "styled-components";
 
 interface SectionProps {
     name: string;
-    index: number;
-    active: number;
+    highlight: boolean;
     current?: IntersectionObserverEntry;
 }
 
-export default function Section({ name, index, active, current }: SectionProps): JSX.Element {
+export default function Section({ name, highlight, current }: SectionProps): JSX.Element {
     const onTap = () => {
         if (!current) return;
         current.target.scrollIntoView();
@@ -30,33 +29,28 @@ export default function Section({ name, index, active, current }: SectionProps):
         >
             <Heading
                 className="nav-section-name"
-                as={motion.h3}
                 fontSize="2xl"
                 fontWeight={300}
                 marginY={1}
-                variants={fade}
                 cursor="pointer"
-                onTap={onTap}
                 textTransform="uppercase"
-                transform="translateY(var(--chakra-translate-y, 0))!important"
+                transform="auto"
                 willChange="transform"
                 transitionProperty="transform"
-                transitionDuration="slow"
+                transitionDuration="fast"
                 _hover={extraLightPop}
+                onClick={onTap}
             >
                 {name}
             </Heading>
-            <Box as={motion.div} variants={fade}>
-                <Box
-                    as={motion.div}
-                    height={1}
-                    width="100%"
-                    borderRadius="4px"
-                    zIndex={-1}
-                    background="background.secondary"
-                >
-                    {active === index && <HighlightedSectionBar />}
-                </Box>
+            <Box
+                height={1}
+                width="100%"
+                borderRadius="4px"
+                zIndex={-1}
+                background="background.secondary"
+            >
+                {highlight && <HighlightedSectionBar />}
             </Box>
         </Box>
     );

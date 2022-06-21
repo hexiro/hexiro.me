@@ -11,44 +11,28 @@ import { useMedia } from "react-use";
 import styled, { css } from "styled-components";
 
 interface NavProps {
-    me?: IntersectionObserverEntry;
-    projects?: IntersectionObserverEntry;
-    contributions?: IntersectionObserverEntry;
-    meInView: boolean;
-    projectsInView: boolean;
-    contributionsInView: boolean;
+    sections: Record<
+        string,
+        {
+            inView: boolean;
+            current: IntersectionObserverEntry | undefined;
+        }
+    >;
 }
 
-export default function Nav({
-    me,
-    projects,
-    contributions,
-    meInView,
-    projectsInView,
-    contributionsInView,
-}: NavProps): JSX.Element {
+export default function Nav({ sections }: NavProps): JSX.Element {
     const [active, setActive] = useState(0);
-    const scrolled = usePassedScrollPosition({ pixels: 100, defaultValue: false });
+    const scrolled = usePassedScrollPosition({ pixels: 50, defaultValue: false });
 
     useEffect(() => {
-        const sectionsInView = [meInView, projectsInView, contributionsInView];
+        const sectionsInView = Object.values(sections).map(({ inView }) => inView);
 
-        let newActive = 0;
-
-        for (const [index, inView] of sectionsInView.reverse().entries()) {
-            if (inView) {
-                newActive = sectionsInView.length - 1 - index;
-                break;
-            }
-        }
-
-        if (active !== newActive) {
-            setActive(newActive);
-        }
-
-        // if active was in the deps list it would rerender forever
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [meInView, projectsInView, contributionsInView]);
+        setActive(() => {
+            const active = sectionsInView.findIndex(inView => inView);
+            if (active === -1) return 0;
+            return active;
+        });
+    }, [sections]);
 
     return (
         <Flex
@@ -79,26 +63,10 @@ export default function Nav({
             <Hex />
             <AnimatePresence>
                 <Hide below="md">
-                    <HStack
-                        as={motion.div}
-                        className="nav-sections"
-                        initial="start"
-                        animate="complete"
-                        exit="start"
-                        variants={fadeDown}
-                        justify="flex-end"
-                        width="100%"
-                        // paddingY="20px"
-                        spacing={10}
-                    >
-                        <Section name="me" index={0} active={active} current={me} />
-                        <Section name="projects" index={1} active={active} current={projects} />
-                        <Section
-                            name="contributions"
-                            index={2}
-                            active={active}
-                            current={contributions}
-                        />
+                    <HStack className="nav-sections" justify="flex-end" width="100%" spacing={10}>
+                        {Object.entries(sections).map(([name, { inView, current }], index) => (
+                            <Section name={name} current={current} highlight={index === active} />
+                        ))}
                     </HStack>
                 </Hide>
             </AnimatePresence>

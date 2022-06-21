@@ -1,21 +1,18 @@
 import { PropsWithChildren } from "react";
 
-import { fadeChildren } from "commons/animations";
-
-import { Flex, FlexProps } from "@chakra-ui/react";
-import { motion } from "framer-motion";
+import { Flex, FlexProps, SimpleGrid } from "@chakra-ui/react";
 
 export default function RepositoryContainer({ children, ...rest }: PropsWithChildren<FlexProps>) {
     return (
-        <Flex
+        <SimpleGrid
             className="repositories-container"
-            as={motion.div}
-            variants={fadeChildren}
             wrap="wrap"
-            justify={{ base: "center", xl: "flex-end" }}
+            // justify={{ base: "center", xl: "revert" }}
+            minChildWidth={{ base: "200px", sm: "300px", md: "400px" }}
+            spacing={5}
             {...rest}
         >
             {children}
-        </Flex>
+        </SimpleGrid>
     );
 }

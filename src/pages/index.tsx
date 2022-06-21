@@ -3,11 +3,14 @@ import type { GetStaticProps } from "next";
 import type { RepositoryProps, PullRequestProps } from "commons/graphql";
 import contributions from "commons/graphql/contributions";
 import projects from "commons/graphql/projects";
-import Sections, { Contributions, Me, Projects } from "sections";
+import { Contributions } from "sections/contributions";
+import { Me } from "sections/me";
 import Nav from "sections/nav";
+import { Projects } from "sections/projects";
 
+import { VStack } from "@chakra-ui/react";
 import { Page } from "layout/Page";
-import { useInView } from "react-intersection-observer";
+import { IntersectionOptions, useInView } from "react-intersection-observer";
 
 interface HomeProps {
     projectsRepositories: RepositoryProps[];
@@ -15,7 +18,7 @@ interface HomeProps {
 }
 
 export default function Home({ projectsRepositories, contributionsPullRequests }: HomeProps) {
-    const useInViewOptions = {
+    const useInViewOptions: IntersectionOptions = {
         threshold: 0.3,
         fallbackInView: true,
     };
@@ -31,14 +34,13 @@ export default function Home({ projectsRepositories, contributionsPullRequests }
     return (
         <Page name="Home" description={`Hi! I'm Hexiro, ${description}`}>
             <Nav
-                me={meCurrent}
-                meInView={meInView}
-                projects={projectsCurrent}
-                projectsInView={projectsInView}
-                contributions={contributionsCurrent}
-                contributionsInView={contributionsInView}
+                sections={{
+                    me: { inView: meInView, current: meCurrent },
+                    projects: { inView: projectsInView, current: projectsCurrent },
+                    contributions: { inView: contributionsInView, current: contributionsCurrent },
+                }}
             />
-            <Sections>
+            <VStack spacing={20} _first={{ paddingTop: 40 }} _last={{ paddingBottom: 40 }}>
                 <Me ref={meRef} inView={meInView} description={description} />
                 <Projects
                     ref={projectsRef}
@@ -50,7 +52,7 @@ export default function Home({ projectsRepositories, contributionsPullRequests }
                     inView={contributionsInView}
                     pullRequests={contributionsPullRequests}
                 />
-            </Sections>
+            </VStack>
         </Page>
     );
 }
