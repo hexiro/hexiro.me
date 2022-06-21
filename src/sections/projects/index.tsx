@@ -1,82 +1,54 @@
-import { forwardRef } from "react";
-
 import { fade, fadeChildren } from "commons/animations";
 import type { RepositoryProps } from "commons/graphql";
-import { Header } from "components/common";
+import RepositoryContainer from "components/RepositoryContainer";
 import Repository from "components/repository";
 import { useScrollAnimation } from "hooks/useScrollAnimation";
 import type { SectionProps } from "sections";
 
+import { Box, Flex, FlexProps, forwardRef, Heading, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import styled from "styled-components";
 
 interface ProjectsProps extends SectionProps {
     repositories: RepositoryProps[];
 }
 
-export const Projects = forwardRef<HTMLElement, ProjectsProps>(({ repositories, inView }, ref) => {
+export const Projects = forwardRef<ProjectsProps, typeof Flex>(({ repositories, inView }, ref) => {
     const animate = useScrollAnimation(inView);
     return (
-        <ProjectsSection
+        <Flex
             ref={ref}
+            as={motion.section}
             id="projects"
             animate={animate}
             initial="start"
             variants={fadeChildren}
+            position="relative"
+            width="100%"
+            direction="column"
+            justify={{ base: "center", xl: "revert" }}
         >
-            <Text variants={fade}>
-                <h1>
-                    <Header>Projects</Header>
-                </h1>
-                <Description>
+            <Box
+                as={motion.div}
+                id="projects-text"
+                variants={fade}
+                maxWidth="900px"
+                textAlign={{ base: "center", lg: "left" }}
+                margin={{ base: "unset", lg: "0 15% 0 1%" }}
+            >
+                <Heading as="h1">Projects</Heading>
+                <Text
+                    maxWidth={{ base: "unset", lg: "revert" }}
+                    margin={{ base: "0 5%", lg: "revert" }}
+                >
                     These projects are my top 6 pinned repositories on GitHub. I specifically
                     hand-picked each repository as they nicely display my skill set and creativity.
-                </Description>
-            </Text>
-            <ProjectsContainer variants={fadeChildren}>
+                </Text>
+            </Box>
+            <RepositoryContainer>
                 {repositories.map(repo => (
                     <Repository key={repo.name} details={repo} />
                 ))}
-            </ProjectsContainer>
-        </ProjectsSection>
+            </RepositoryContainer>
+        </Flex>
     );
 });
-
-const Text = styled(motion.div)`
-    text-align: left;
-    margin-left: 1%;
-    margin-right: 15%;
-    max-width: 900px;
-
-    @media only screen and (max-width: 900px) {
-        text-align: center;
-        margin: unset;
-    }
-`;
-
-const Description = styled.p`
-    @media only screen and (max-width: 900px) {
-        max-width: unset;
-        margin: 0 5%;
-    }
-`;
-
-const ProjectsContainer = styled(motion.div)`
-    display: flex;
-    flex-wrap: wrap;
-
-    @media only screen and (max-width: 900px) {
-        justify-content: center;
-    }
-`;
-
-const ProjectsSection = styled(motion.section)`
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-
-    @media only screen and (max-width: 900px) {
-        justify-content: center;
-    }
-`;

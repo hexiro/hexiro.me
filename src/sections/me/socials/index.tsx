@@ -3,6 +3,7 @@ import { TWITTER_LINK, GITHUB_LINK, STEAM_LINK } from "commons/config";
 import { TwitterIcon, GithubIcon, SteamIcon } from "commons/icons";
 import { To } from "components/common";
 
+import { Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
@@ -32,18 +33,14 @@ export default function SocialMedia({ type }: SocialMediaProps) {
     }
 
     return (
-        <SocialItem variants={fade}>
+        <Box
+            as={motion.li}
+            variants={fade}
+            display="inline-block"
+            marginX={3}
+            _first={{ xl: { marginLeft: "unset" } }}
+        >
             <To href={href}>{icon}</To>
-        </SocialItem>
+        </Box>
     );
 }
-
-const SocialItem = styled(motion.li)`
-    margin-right: 30px;
-    display: inline-block;
-    cursor: pointer;
-
-    &:last-child {
-        margin-right: 0;
-    }
-`;

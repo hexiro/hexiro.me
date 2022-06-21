@@ -1,13 +1,11 @@
-import { forwardRef } from "react";
-
 import { fade, fadeChildren } from "commons/animations";
 import type { PullRequestProps } from "commons/graphql";
-import theme from "commons/theme";
-import { Header } from "components/common";
+import RepositoryContainer from "components/RepositoryContainer";
 import Repository from "components/repository";
 import { useScrollAnimation } from "hooks/useScrollAnimation";
 import type { SectionProps } from "sections";
 
+import { Box, forwardRef, Flex, Heading, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
@@ -15,96 +13,110 @@ interface ContributionsProps extends SectionProps {
     pullRequests: PullRequestProps[];
 }
 
-export const Contributions = forwardRef<HTMLElement, ContributionsProps>(
+export const Contributions = forwardRef<ContributionsProps, typeof Flex>(
     ({ pullRequests, inView }, ref) => {
         const animate = useScrollAnimation(inView);
         return (
-            <ContributionsSection
+            <Flex
                 ref={ref}
                 id="contributions"
+                as={motion.div}
                 animate={animate}
                 initial="start"
                 variants={fadeChildren}
+                position="relative"
+                width="100%"
+                direction="column"
+                justify={{ base: "center", xl: "revert" }}
             >
-                <Text variants={fade}>
-                    <h1>
-                        <Header>Contributions</Header>
-                    </h1>
-                    <Description>
+                <Box as={motion.div} variants={fade} textAlign="right" marginRight={4}>
+                    <Heading>Contributions</Heading>
+                    <Text float="right">
                         These pull requests are my top 6 GitHub pull requests. They&apos;re sorted
                         by additions and deletions to showcase where my changes had a meaningful
                         impact on the project.
-                    </Description>
-                </Text>
-                <ContributionsContainer variants={fadeChildren}>
+                    </Text>
+                </Box>
+                <RepositoryContainer>
                     {pullRequests.map(pullRequest => (
                         <Repository
                             key={pullRequest.baseRepository.name}
                             details={pullRequest.baseRepository}
                         >
-                            <Additions>{`+${pullRequest.additions}`}</Additions>
-                            <Deletions>{`-${pullRequest.deletions}`}</Deletions>
+                            <Box
+                                as="span"
+                                display="inline"
+                                color="brand.primary"
+                                marginX={1}
+                            >{`+${pullRequest.additions}`}</Box>
+                            <Box
+                                as="span"
+                                display="inline"
+                                color="red.400"
+                                marginLeft={1}
+                                marginRight="10px"
+                            >{`-${pullRequest.deletions}`}</Box>
                         </Repository>
                     ))}
-                </ContributionsContainer>
-            </ContributionsSection>
+                </RepositoryContainer>
+            </Flex>
         );
     }
 );
 
-// temporaily borrowing styles from projects page
+// temporarily borrowing styles from projects page
 
-const Additions = styled.span`
-    display: inline;
-    color: ${theme.core.main};
-    margin: 0 3px;
-`;
+// const Additions = styled.span`
+//     display: inline;
+//     color: ${theme.core.main};
+//     margin: 0 3px;
+// `;
 
-const Deletions = styled(Additions)`
-    color: #ff5858;
-    margin-right: 10px;
-`;
+// const Deletions = styled(Additions)`
+//     color: #ff5858;
+//     margin-right: 10px;
+// `;
 
-const Text = styled(motion.div)`
-    text-align: right;
-    margin-right: 1%;
-    margin-left: 15%;
-    max-width: 900px;
-    align-self: flex-end;
+// const Text = styled(motion.div)`
+//     text-align: right;
+//     margin-right: 1%;
+//     margin-left: 15%;
+//     max-width: 900px;
+//     align-self: flex-end;
 
-    @media only screen and (max-width: 900px) {
-        text-align: center;
-        margin: unset;
-    }
-`;
+//     @media only screen and (max-width: 900px) {
+//         text-align: center;
+//         margin: unset;
+//     }
+// `;
 
-const Description = styled.p`
-    float: right;
+// const Description = styled.p`
+//     float: right;
 
-    @media only screen and (max-width: 900px) {
-        max-width: unset;
-        margin: 0 5%;
-        float: unset;
-    }
-`;
+//     @media only screen and (max-width: 900px) {
+//         max-width: unset;
+//         margin: 0 5%;
+//         float: unset;
+//     }
+// `;
 
-const ContributionsContainer = styled(motion.div)`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+// const ContributionsContainer = styled(motion.div)`
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: flex-end;
 
-    @media only screen and (max-width: 900px) {
-        justify-content: center;
-    }
-`;
+//     @media only screen and (max-width: 900px) {
+//         justify-content: center;
+//     }
+// `;
 
-const ContributionsSection = styled(motion.section)`
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+// const ContributionsSection = styled(motion.section)`
+//     position: relative;
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
 
-    @media only screen and (max-width: 900px) {
-        justify-content: center;
-    }
-`;
+//     @media only screen and (max-width: 900px) {
+//         justify-content: center;
+//     }
+// `;

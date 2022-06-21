@@ -2,8 +2,7 @@ import Image from "next/image";
 
 import { fade } from "commons/animations";
 import { DISCORD } from "commons/config";
-import theme from "commons/theme";
-import { Header, Tooltip } from "components/common";
+import { Tooltip } from "components/common";
 import TimestampBar from "sections/me/lanyard/TimestampBar";
 
 import { AnimatePresence, motion } from "framer-motion";

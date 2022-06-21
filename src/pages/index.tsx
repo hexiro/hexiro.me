@@ -3,10 +3,10 @@ import type { GetStaticProps } from "next";
 import type { RepositoryProps, PullRequestProps } from "commons/graphql";
 import contributions from "commons/graphql/contributions";
 import projects from "commons/graphql/projects";
-import { Page } from "components/pages";
 import Sections, { Contributions, Me, Projects } from "sections";
 import Nav from "sections/nav";
 
+import { Page } from "layout/Page";
 import { useInView } from "react-intersection-observer";
 
 interface HomeProps {

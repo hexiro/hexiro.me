@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
 
-import styled from "styled-components";
+import { Heading, HStack, Text } from "@chakra-ui/react";
 
 type DetailProps = PropsWithChildren<{ count: number }>;
 
@@ -15,18 +15,9 @@ export default function Detail({ count, children }: DetailProps): JSX.Element | 
     }
 
     return (
-        <ProjectDetail>
+        <HStack display="inline-flex" align="center" spacing={0.5}>
             {children}
-            <h4>{detail}</h4>
-        </ProjectDetail>
+            <Text as="h4">{detail}</Text>
+        </HStack>
     );
 }
-
-const ProjectDetail = styled.li`
-    display: inline-flex;
-    align-items: center;
-    margin-right: 10px;
-    & h4 {
-        margin-left: 2px;
-    }
-`;
