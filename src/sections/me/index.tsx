@@ -1,95 +1,92 @@
 import Image from "next/image";
-import { PropsWithChildren } from "react";
 
-import { fade, fadeChildren, pop } from "commons/animations";
+import { pop } from "commons/animations";
 import { GITHUB } from "commons/config";
-import { useScrollAnimation } from "hooks/useScrollAnimation";
+import Lanyard from "sections/me/lanyard";
 import SocialMedia from "sections/me/socials";
 
-import { Box, Flex, FlexProps, forwardRef, Heading, Hide, HStack, Text } from "@chakra-ui/react";
-import { AnimatePresence, motion } from "framer-motion";
-import { useMedia } from "react-use";
+import { Box, Flex, forwardRef, Heading, Text } from "@chakra-ui/react";
+import { AnimatePresence } from "framer-motion";
 
 interface MeProps {
     description: string;
 }
 
-export const Me = forwardRef<MeProps, typeof Flex>(({ inView, description }, ref) => {
-    return (
+export const Me = forwardRef<MeProps, typeof Flex>(({ inView, description }, ref) => (
+    <Flex
+        ref={ref}
+        id="me"
+        as="section"
+        position="relative"
+        width="100%"
+        align="center"
+        direction={{ base: "column-reverse", xl: "row" }}
+        justify={{ base: "center", xl: "space-between" }}
+    >
         <Flex
-            ref={ref}
-            id="me"
-            as="section"
-            position="relative"
-            width="100%"
+            className="me-left"
             align="center"
-            direction={{ base: "column-reverse", xl: "row" }}
-            justify={{ base: "center", xl: "space-between" }}
+            maxWidth="500px"
+            paddingRight={{ base: 0, xl: 5 }}
+            display={{ base: "flex", xl: "revert" }}
+            direction={{ base: "column", xl: "row" }}
+            justify={{ base: "center", xl: "revert" }}
+            textAlign={{ base: "center", xl: "revert" }}
+            marginTop={{ base: "20px", xl: "revert" }}
+            width={{ base: "100%", xl: "75%" }}
+            flexBasis="50%"
         >
-            <Flex
-                className="me-left"
-                align="center"
-                maxWidth="500px"
-                paddingRight={{ base: 0, xl: 5 }}
-                display={{ base: "flex", xl: "revert" }}
-                direction={{ base: "column", xl: "row" }}
-                justify={{ base: "center", xl: "revert" }}
-                textAlign={{ base: "center", xl: "revert" }}
-                marginTop={{ base: "20px", xl: "revert" }}
-                width={{ base: "100%", xl: "75%" }}
-                flexBasis="50%"
-            >
-                <Heading color="brand.text" fontWeight={300} whiteSpace="nowrap">
-                    Hi! I&apos;m{" "}
-                    <Box
-                        as="span"
-                        transform="auto"
-                        willChange="transform"
-                        color="brand.primary"
-                        fontWeight={400}
-                        _hover={pop}
-                    >
-                        Hexiro
-                    </Box>
-                    ,
-                </Heading>
-                <Text minWidth="200px" marginBottom="20px">
-                    {description}
-                </Text>
-                <Box as="ul" whiteSpace="nowrap">
-                    <SocialMedia type="Twitter" />
-                    <SocialMedia type="GitHub" />
-                    <SocialMedia type="Steam" />
+            <Heading color="brand.text" fontWeight={300} whiteSpace="nowrap">
+                Hi! I&apos;m{" "}
+                <Box
+                    as="span"
+                    transform="auto"
+                    willChange="transform"
+                    color="brand.primary"
+                    fontWeight={400}
+                    _hover={pop}
+                >
+                    Hexiro
                 </Box>
-                {/* <Lanyard /> */}
-            </Flex>
-            <Box className="me-right" paddingLeft={{ base: 0, xl: 5 }} flexBasis="50%">
-                <AnimatePresence>
-                    <Box
-                        sx={{
-                            "& > span": {
-                                filter: "auto",
-                                dropShadow: "0px 0px 12px rgba(0, 0, 0, 0.25)",
-                            },
-                            "& > span img": {
-                                borderRadius: "12%",
-                                maxWidth: { base: "350px", xl: "400px" },
-                                maxHeight: { base: "350px", xl: "400px" },
-                            },
-                        }}
-                    >
-                        <Image
-                            priority
-                            src={`https://avatars.githubusercontent.com/${GITHUB}`}
-                            alt="Hexiro Avatar"
-                            height={500}
-                            width={500}
-                            quality={100}
-                            draggable={false}
-                        />
-                    </Box>
-                </AnimatePresence>
+                ,
+            </Heading>
+            <Text minWidth="200px" marginBottom="20px">
+                {description}
+            </Text>
+            <Box as="ul" whiteSpace="nowrap">
+                <SocialMedia type="Twitter" />
+                <SocialMedia type="GitHub" />
+                <SocialMedia type="Steam" />
             </Box>
+            <Lanyard />
         </Flex>
-    );
-});
+        <Box className="me-right" paddingLeft={{ base: 0, xl: 5 }} flexBasis="50%">
+            <AnimatePresence>
+                <Flex
+                    justify="center"
+                    sx={{
+                        "& > span": {
+                            filter: "auto",
+                            dropShadow: "0px 0px 12px rgba(0, 0, 0, 0.25)",
+                        },
+                        "& > span img": {
+                            borderRadius: "12%",
+                            maxWidth: { base: "350px", xl: "400px" },
+                            maxHeight: { base: "350px", xl: "400px" },
+                        },
+                    }}
+                >
+                    <Image
+                        priority
+                        src={`https://avatars.githubusercontent.com/${GITHUB}`}
+                        alt="Hexiro Avatar"
+                        height={500}
+                        width={500}
+                        quality={100}
+                        draggable={false}
+                    />
+                </Flex>
+            </AnimatePresence>
+        </Box>
+    </Flex>
+));

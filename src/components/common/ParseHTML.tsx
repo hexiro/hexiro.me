@@ -1,4 +1,4 @@
-import { To } from "components/common";
+import { Link } from "components/common";
 
 import { Element } from "domhandler";
 import type { DOMNode, HTMLReactParserOptions } from "html-react-parser";
@@ -20,7 +20,7 @@ const replace = (element: DOMNode): JSX.Element | null => {
 
             // Replace a with custom link
             case "a": {
-                return <To href={element.attribs.href}>{domToReact(element.children)}</To>;
+                return <Link href={element.attribs.href}>{domToReact(element.children)}</Link>;
             }
 
             case "g-emoji":

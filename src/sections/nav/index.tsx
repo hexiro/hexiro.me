@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { fadeDown } from "commons/animations";
 import usePassedScrollPosition from "hooks/useScrollPosition";
 import Hex from "sections/nav/hex";
 import Section from "sections/nav/section";
 
 import { Flex, Hide, HStack } from "@chakra-ui/react";
-import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
-import { useMedia } from "react-use";
-import styled, { css } from "styled-components";
+import { AnimatePresence } from "framer-motion";
 
 interface NavProps {
     sections: Record<
@@ -65,7 +62,7 @@ export default function Nav({ sections }: NavProps): JSX.Element {
                 <Hide below="md">
                     <HStack className="nav-sections" justify="flex-end" width="100%" spacing={10}>
                         {Object.entries(sections).map(([name, { inView, current }], index) => (
-                            <Section name={name} current={current} highlight={index === active} />
+                            <Section key={name} name={name} current={current} highlight={index === active} />
                         ))}
                     </HStack>
                 </Hide>

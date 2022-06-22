@@ -1,20 +1,17 @@
-import { fade, fadeChildren } from "commons/animations";
 import type { RepositoryProps } from "commons/graphql";
 import RepositoryContainer from "components/RepositoryContainer";
 import RepositorySection from "components/RepositorySection";
 import RepositorySectionText from "components/RepositorySectionText";
 import Repository from "components/repository";
-import { useScrollAnimation } from "hooks/useScrollAnimation";
 
-import { Box, Flex, FlexProps, forwardRef, Heading, Text } from "@chakra-ui/react";
-import { motion } from "framer-motion";
+import type { Flex} from "@chakra-ui/react";
+import { forwardRef } from "@chakra-ui/react";
 
 interface ProjectsProps {
     repositories: RepositoryProps[];
 }
 
-export const Projects = forwardRef<ProjectsProps, typeof Flex>(({ repositories, inView }, ref) => {
-    return (
+export const Projects = forwardRef<ProjectsProps, typeof Flex>(({ repositories, inView }, ref) => (
         <RepositorySection ref={ref} id="projects">
             <RepositorySectionText
                 title="Projects"
@@ -27,5 +24,4 @@ export const Projects = forwardRef<ProjectsProps, typeof Flex>(({ repositories, 
                 ))}
             </RepositoryContainer>
         </RepositorySection>
-    );
-});
+    ));

@@ -1,8 +1,7 @@
-import { pop, fade, spring, fadeChildren, lightPop, extraLightPop } from "commons/animations";
+import { spring, fadeChildren, extraLightPop } from "commons/animations";
 
 import { Box, chakra, Heading } from "@chakra-ui/react";
 import { isValidMotionProp, motion } from "framer-motion";
-import styled from "styled-components";
 
 interface SectionProps {
     name: string;
@@ -74,7 +73,7 @@ const HighlightedSectionBar = () => (
         zIndex={2}
         background="brand.primary"
         layoutId="underline"
-        // @ts-ignore no problem in operation, although type error appears.
+        // @ts-expect-error no problem in operation, although type error appears.
         transition={spring}
-    ></MotionBox>
+     />
 );

@@ -25,7 +25,7 @@ export default function RepositorySectionText({
             paddingBottom={4}
         >
             <Heading textTransform="capitalize">{title}</Heading>
-            <Text float={onRight ? "right" : undefined}>{description}</Text>
+            <Text>{description}</Text>
         </Box>
     );
 }

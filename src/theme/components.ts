@@ -13,11 +13,15 @@ const components: Record<string, ComponentStyleConfig> = {
     },
     Tooltip: {
         baseStyle: {
-            backgroundColor: "blackAlpha.400",
-            textColor: "whiteAlpha.900",
+            borderRadius: "md",
+            backgroundColor: "brand.scrollbar",
+            textColor: "brand.text",
             paddingY: 1,
             paddingX: 2,
             fontWeight: 400,
+        },
+        defaultProps: {
+            placement: "top",
         },
     },
 };

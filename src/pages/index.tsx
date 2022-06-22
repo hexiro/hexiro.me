@@ -10,6 +10,7 @@ import { Projects } from "sections/projects";
 
 import { VStack } from "@chakra-ui/react";
 import { Page } from "layout/Page";
+import mainPy from "py/main.py";
 import type { IntersectionOptions } from "react-intersection-observer";
 import { useInView } from "react-intersection-observer";
 
@@ -31,6 +32,8 @@ export default function Home({ projectsRepositories, contributionsPullRequests }
 
     const description =
         "A self-taught software engineer who enjoys problem solving, technology, building software, and contributing to open source projects.";
+
+    console.log({ mainPy });
 
     return (
         <Page name="Home" description={`Hi! I'm Hexiro, ${description}`}>

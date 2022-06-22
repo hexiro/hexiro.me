@@ -3,11 +3,12 @@ import type { PropsWithChildren } from "react";
 import { lightPop } from "commons/animations";
 import { GITHUB } from "commons/config";
 import type { RepositoryProps } from "commons/graphql";
-import { ParseHTML, To } from "components/common";
+import { ParseHTML } from "components/common";
+import LinkOverlay from "components/common/LinkOverlay";
 import { Forks, Stars } from "components/repository/details";
 import Language from "components/repository/language";
 
-import { Box, Flex, Heading, HStack, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, HStack, LinkBox, Text } from "@chakra-ui/react";
 
 type ProjectProps = PropsWithChildren<{
     details: RepositoryProps;
@@ -15,7 +16,7 @@ type ProjectProps = PropsWithChildren<{
 
 export default function Repository({ children, details }: ProjectProps): JSX.Element {
     return (
-        <Box
+        <LinkBox
             className="repository"
             position="relative"
             paddingX={5}
@@ -35,15 +36,23 @@ export default function Repository({ children, details }: ProjectProps): JSX.Ele
         >
             <Box>
                 <Flex as="header" className="repository-header" align="center" paddingBottom={1}>
-                    <Heading className="repository-name" as="h3" size="md" fontWeight={300}>
-                        <To href={details.url}>
+                    <Heading
+                        className="repository-name"
+                        as="h3"
+                        size="md"
+                        fontWeight={300}
+                        overflow="hidden"
+                        textOverflow="ellipsis"
+                        whiteSpace="nowrap"
+                    >
+                        <LinkOverlay href={details.url}>
                             {details.owner.login !== GITHUB && (
                                 <Box as="span" display={{ base: "none", sm: "none", md: "revert" }}>
                                     {details.owner.login}/
                                 </Box>
                             )}
                             <Box as="span">{details.name}</Box>
-                        </To>
+                        </LinkOverlay>
                     </Heading>
                     <Flex
                         className="repository-details"
@@ -74,55 +83,8 @@ export default function Repository({ children, details }: ProjectProps): JSX.Ele
                     {children}
                 </Flex>
             </Box>
-        </Box>
+        </LinkBox>
     );
 }
 
 // box-shadow: 0 6px 13px rgba(0, 0, 0, 0.25);
-
-// const Description = styled.p`
-//     padding-bottom: 10px;
-//     font-size: 1em;
-
-//     @media only screen and (max-width: 450px) {
-//         line-height: 1.4;
-//     }
-// `;
-
-// const ProjectNav = styled.div`
-//     display: flex;
-//     align-items: center;
-// `;
-
-// const ProjectName = styled(motion.h3)`
-//     display: inline-block;
-//     will-change: transform;
-//     max-width: 100%;
-//     white-space: nowrap;
-//     overflow: hidden;
-//     text-overflow: ellipsis;
-// `;
-
-// const Details = styled.div`
-//     display: flex;
-//     align-items: center;
-//     flex-shrink: 0;
-
-//     margin-left: auto;
-//     padding-left: 4%;
-// `;
-
-// const Footer = styled.div`
-//     display: flex;
-//     align-items: center;
-//     position: absolute;
-//     bottom: 10px;
-
-//     & > svg {
-//         margin-right: 6px;
-//     }
-// `;
-
-// const LanguageName = styled.span`
-//     margin-right: 10px;
-// `;

@@ -1,96 +1,149 @@
 import Image from "next/image";
 
-import { fade } from "commons/animations";
 import { DISCORD } from "commons/config";
-import { Tooltip } from "components/common";
-import TimestampBar from "sections/me/lanyard/TimestampBar";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { BsQuestion } from "react-icons/bs";
-import { useMedia } from "react-use";
-import type { Activity, Spotify } from "react-use-lanyard";
-import { useLanyard } from "react-use-lanyard";
-import styled from "styled-components";
+import { Box, Flex, Hide, Text, Tooltip } from "@chakra-ui/react";
+import { AnimatePresence } from "framer-motion";
+import type { Activity } from "use-lanyard";
+import { useLanyardWs } from "use-lanyard";
 
 export default function Lanyard(): JSX.Element | null {
-    const { loading, status } = useLanyard({
-        userId: DISCORD,
-        socket: true,
-    });
+    const data = useLanyardWs(DISCORD);
 
-    const isLargeEnough = useMedia("(min-width: 420px)", false);
-
-    const types = [0, 2];
-    const activity = status?.activities
-        ?.sort((a, b) => (a.type > b.type ? 1 : -1))
-        ?.find(act => types.includes(act.type));
-
-    const assets = activity?.assets;
-
-    const isListening = activity?.type === 2;
-    const isGame = activity?.type === 0;
+    const activity = data?.activities?.find(act => act.type === 0);
 
     let content: LanyardContent | null = null;
 
-    if (!loading && status && activity) {
-        if (isListening) content = handleSpotify(status.spotify);
-        else if (isGame) content = handleGame(activity);
+    if (activity) {
+        content = handleGame(activity);
     }
+
+    const { name, largeImage, largeText, smallImage, smallText, firstLine, secondLine } =
+        content ?? {};
 
     return (
         <AnimatePresence>
-            {content && assets && isLargeEnough && (
-                <LanyardContainer initial="start" animate="complete" exit="start" variants={fade}>
-                    <Images>
-                        <Tooltip title={assets.large_text}>
-                            {content.largeImage ? (
-                                <LargeImage
-                                    priority
-                                    alt="large image of application or song"
-                                    draggable={false}
-                                    src={content.largeImage}
-                                    layout="fixed"
-                                    height={95}
-                                    width={95}
-                                />
-                            ) : (
-                                <NoImage>
-                                    <BsQuestion color="rgba(0, 0, 0, 0.85)" size={50} />
-                                </NoImage>
-                            )}
-                        </Tooltip>
-                        {content.smallImage && (
-                            <SmallImageContainer>
-                                <Tooltip title={assets.small_text} size="small">
-                                    <SmallImage
-                                        alt="small image of application"
+            {content && largeImage && largeText && (
+                <Hide below="sm">
+                    <Flex
+                        // as={motion.div}
+                        // id="discord-presence"
+                        // initial="start"
+                        // animate="complete"
+                        // exit="start"
+                        // variants={fade}
+                        position="relative"
+                        padding={5}
+                        marginTop={5}
+                        width={96}
+                        boxShadow="md"
+                        borderRadius="lg"
+                        background="background.secondary"
+                    >
+                        <Box
+                            height="95px"
+                            position="relative"
+                            sx={{
+                                "& img": {
+                                    borderRadius: "base",
+                                    boxShadow: "sm",
+                                },
+                            }}
+                        >
+                            <Tooltip label={largeText} placement="top">
+                                <Box>
+                                    <Image
+                                        priority
+                                        alt="large image of application"
                                         draggable={false}
-                                        src={content.smallImage}
-                                        height={30}
-                                        width={30}
+                                        src={largeImage}
+                                        layout="fixed"
+                                        height={95}
+                                        width={95}
                                     />
+                                </Box>
+                            </Tooltip>
+                            {smallImage && (
+                                <Tooltip label={smallText} placement="top">
+                                    <Box
+                                        position="absolute"
+                                        right="-8px"
+                                        bottom="-8px"
+                                        height="34px"
+                                        width="34px"
+                                        sx={{
+                                            "& > :first-child": {
+                                                borderRadius: "50%!important",
+                                                border: "2px solid!important",
+                                                borderColor:
+                                                    "var(--chakra-colors-brand-primary)!important",
+                                            },
+                                        }}
+                                    >
+                                        <Image
+                                            alt="small image of application"
+                                            draggable={false}
+                                            src={smallImage}
+                                            height={30}
+                                            width={30}
+                                        />
+                                    </Box>
                                 </Tooltip>
-                            </SmallImageContainer>
-                        )}
-                    </Images>
-                    <Text>
-                        <h4>
-                            <Header>{content.name}</Header>
-                        </h4>
-                        <h5>{content.firstLine}</h5>
-                        <h5>{content.secondLine}</h5>
-                    </Text>
-                    {isListening && <TimestampBar timestamps={activity?.timestamps} />}
-                </LanyardContainer>
+                            )}
+                        </Box>
+                        <Flex
+                            position="relative"
+                            direction="column"
+                            width={60}
+                            textAlign="left"
+                            paddingLeft={4}
+                            sx={{
+                                "h3, h5": {
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
+                                    whiteSpace: "nowrap",
+                                },
+                                "h5": {
+                                    lineHeight: "short",
+                                },
+                            }}
+                        >
+                            <Text as="h3" paddingBottom={0.5}>
+                                {name}
+                            </Text>
+                            <Text as="h5">{firstLine}</Text>
+                            <Text as="h5">{secondLine}</Text>
+                        </Flex>
+                    </Flex>
+                </Hide>
             )}
         </AnimatePresence>
     );
 }
 
+// display: flex;
+//     width: 250px;
+//     flex-direction: column;
+//     position: relative;
+//     padding-left: 20px;
+//     text-align: left;
+
+//
+//     & h4 {
+//         margin-bottom: 2px;
+//     }
+//     & h5 {
+//         color: ${theme.core.subtext};
+//         align-items: flex-end;
+//         line-height: 1.3;
+//     }
+
 interface LanyardContent {
-    largeImage?: string;
-    smallImage?: string;
     name: string;
+    largeImage: string;
+    largeText: string;
+    smallImage?: string;
+    smallText?: string;
     firstLine?: string;
     secondLine?: string;
 }
@@ -98,23 +151,19 @@ interface LanyardContent {
 const buildAsset = (applicationId: string, assetId: string): string =>
     `https://cdn.discordapp.com/app-assets/${applicationId}/${assetId}.png`;
 
-const handleSpotify = (spotify?: Spotify): LanyardContent | null => {
-    if (!spotify) return null;
-    return {
-        largeImage: spotify.album_art_url,
-        name: spotify.song,
-        firstLine: "By " + spotify.artist.replaceAll(";", ","),
-        secondLine: "On " + spotify.album.replaceAll(";", ","),
-    };
-};
-
 const handleGame = (activity: Activity): LanyardContent | null => {
     const { assets } = activity;
     const applicationId = activity.application_id;
     if (!assets || !applicationId) return null;
 
-    let largeImage: string = buildAsset(applicationId, assets.large_image);
+    let largeImage: string | undefined;
     let smallImage: string | undefined;
+    const largeText: string | undefined = assets.large_text;
+    const smallText: string | undefined = assets.small_text;
+
+    if (assets.large_image) {
+        largeImage = buildAsset(applicationId, assets.large_image);
+    }
 
     if (assets.small_image)
         if (largeImage) {
@@ -123,88 +172,23 @@ const handleGame = (activity: Activity): LanyardContent | null => {
             largeImage = buildAsset(applicationId, assets.small_image);
         }
 
+    if (!largeImage || !largeText) return null;
+
     const { name } = activity;
     const firstLine = activity.details;
     const secondLine = activity.state;
 
     return {
-        largeImage,
-        smallImage,
         name,
+        largeImage,
+        largeText,
+        smallImage,
+        smallText,
         firstLine,
         secondLine,
     };
 };
-
-const LanyardContainer = styled(motion.div)`
-    display: flex;
-    position: relative;
-    padding: 20px;
-    margin-top: 20px;
-    height: 135px;
-    width: 380px;
-    border-radius: 6px;
-    background: ${theme.accent.background};
-    box-shadow: 0 4px 10px rgb(0 0 0 / 25%);
-`;
-
-const Images = styled.div`
-    position: relative;
-`;
-
-const NoImage = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 95px;
-    height: 95px;
-    background: ${theme.core.main};
-    opacity: 0.8;
-    border-radius: 4px;
-    box-shadow: 0 0px 10px rgb(0 0 0 / 25%);
-
-    & svg {
-        width: unset;
-        height: unset;
-    }
-`;
-
-// !important bcuz next/image lol
-const LargeImage = styled(Image)`
-    border-radius: 4px;
-    box-shadow: 0 0px 10px rgb(0 0 0 / 25%) !important;
-`;
-
-const SmallImageContainer = styled.div`
-    position: absolute;
-    right: -8px;
-    bottom: -8px;
-`;
-
-const SmallImage = styled(Image)`
-    border-radius: 50%;
-    border: ${theme.core.main} 2px solid !important;
-`;
-
-const Text = styled.div`
-    display: flex;
-    width: 250px;
-    flex-direction: column;
-    position: relative;
-    padding-left: 20px;
-    text-align: left;
-
-    & * {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-    & h4 {
-        margin-bottom: 2px;
-    }
-    & h5 {
-        color: ${theme.core.subtext};
-        align-items: flex-end;
-        line-height: 1.3;
-    }
-`;
+// const Text = styled.div`
+//
+//
+// `;

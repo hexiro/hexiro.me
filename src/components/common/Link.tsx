@@ -3,11 +3,14 @@ import type { PropsWithChildren } from "react";
 
 import { lightPop } from "commons/animations";
 
+import type { LinkProps as ChakraLinkProps } from "@chakra-ui/react";
 import { Link as ChakraLink } from "@chakra-ui/react";
 
-type ToProps = PropsWithChildren<{ href: string }>;
+interface LinkProps extends ChakraLinkProps {
+    href: string;
+}
 
-export const To = ({ href, children }: ToProps) => (
+export const Link = ({ href, children }: PropsWithChildren<LinkProps>) => (
     <NextLink passHref href={href}>
         <ChakraLink rel="norefferer" target="_blank" transform="auto" _hover={lightPop}>
             {children}
