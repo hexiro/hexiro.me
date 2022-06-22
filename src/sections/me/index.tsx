@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { pop } from "commons/animations";
+import { extraLightPop } from "commons/animations";
 import { GITHUB } from "commons/config";
 import Lanyard from "sections/me/lanyard";
 import SocialMedia from "sections/me/socials";
@@ -40,11 +40,14 @@ export const Me = forwardRef<MeProps, typeof Flex>(({ inView, description }, ref
                 Hi! I&apos;m{" "}
                 <Box
                     as="span"
-                    transform="auto"
-                    willChange="transform"
+                    display="inline-block"
                     color="brand.primary"
                     fontWeight={400}
-                    _hover={pop}
+                    transform="auto"
+                    transitionProperty="transform"
+                    transitionDuration="fast"
+                    willChange="transform"
+                    _hover={extraLightPop}
                 >
                     Hexiro
                 </Box>
