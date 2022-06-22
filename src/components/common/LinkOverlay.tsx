@@ -10,7 +10,9 @@ interface LinkOverlayProps extends ChakraLinkOverlayProps {
 export default function LinkOverlay({ href, children, ...rest }: LinkOverlayProps) {
     return (
         <NextLink passHref href={href}>
-            <ChakraLinkOverlay {...rest}>{children}</ChakraLinkOverlay>
+            <ChakraLinkOverlay rel="norefferer" target="_blank" {...rest}>
+                {children}
+            </ChakraLinkOverlay>
         </NextLink>
     );
 }

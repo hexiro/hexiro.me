@@ -56,11 +56,11 @@ export const Me = forwardRef<MeProps, typeof Flex>(({ inView, description }, ref
             <Text minWidth="200px" marginBottom="20px">
                 {description}
             </Text>
-            <Box as="ul" whiteSpace="nowrap">
+            <Flex as="ul" whiteSpace="nowrap" align="center">
                 <SocialMedia type="Twitter" />
                 <SocialMedia type="GitHub" />
-                <SocialMedia type="Steam" />
-            </Box>
+                <SocialMedia type="Discord" />
+            </Flex>
             <Lanyard />
         </Flex>
         <Box className="me-right" paddingLeft={{ base: 0, xl: 5 }} flexBasis="50%">

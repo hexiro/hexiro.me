@@ -10,9 +10,9 @@ interface LinkProps extends ChakraLinkProps {
     href: string;
 }
 
-export const Link = ({ href, children }: PropsWithChildren<LinkProps>) => (
+export const Link = ({ href, children, ...rest }: PropsWithChildren<LinkProps>) => (
     <NextLink passHref href={href}>
-        <ChakraLink rel="norefferer" target="_blank" transform="auto" _hover={lightPop}>
+        <ChakraLink rel="norefferer" target="_blank" transform="auto" _hover={lightPop} {...rest}>
             {children}
         </ChakraLink>
     </NextLink>
