@@ -1,6 +1,7 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
-import { Flex, FlexProps, SimpleGrid } from "@chakra-ui/react";
+import type { FlexProps } from "@chakra-ui/react";
+import { SimpleGrid } from "@chakra-ui/react";
 
 export default function RepositoryContainer({ children, ...rest }: PropsWithChildren<FlexProps>) {
     return (

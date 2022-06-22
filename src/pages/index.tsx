@@ -10,7 +10,8 @@ import { Projects } from "sections/projects";
 
 import { VStack } from "@chakra-ui/react";
 import { Page } from "layout/Page";
-import { IntersectionOptions, useInView } from "react-intersection-observer";
+import type { IntersectionOptions } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
 
 interface HomeProps {
     projectsRepositories: RepositoryProps[];

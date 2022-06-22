@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
 
-import { pop, fade, lightPop } from "commons/animations";
+import { lightPop } from "commons/animations";
 import { GITHUB } from "commons/config";
 import type { RepositoryProps } from "commons/graphql";
 import { ParseHTML, To } from "components/common";

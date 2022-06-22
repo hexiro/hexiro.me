@@ -1,6 +1,7 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
-import { Box, BoxProps, Heading, Text } from "@chakra-ui/react";
+import type { BoxProps } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 
 interface RepositorySectionTextProps extends BoxProps {
     title: string;
