@@ -1,10 +1,10 @@
+import type { ComponentWithAs, IconProps } from "@chakra-ui/react";
+import { Box, Icon } from "@chakra-ui/react";
+
 import { extraLightPop } from "commons/animations";
 import { TWITTER_LINK, GITHUB_LINK, DISCORD_LINK } from "commons/config";
 import { TwitterIcon, GithubIcon, DiscordIcon } from "commons/icons";
 import { Link } from "components/common";
-
-import type { ComponentWithAs, IconProps } from "@chakra-ui/react";
-import { Box, Icon } from "@chakra-ui/react";
 import type { IconType } from "react-icons";
 
 interface SocialMediaProps {

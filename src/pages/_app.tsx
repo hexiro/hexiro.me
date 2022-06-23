@@ -1,7 +1,9 @@
+import "react-tippy/dist/tippy.css";
+
 import type { AppProps } from "next/app";
 
 import { ChakraProvider } from "@chakra-ui/react";
-import "react-tippy/dist/tippy.css";
+
 import theme from "theme";
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {

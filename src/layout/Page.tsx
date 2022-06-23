@@ -1,8 +1,8 @@
 import type { PropsWithChildren } from "react";
 
-import { TWITTER } from "commons/config";
-
 import { Container } from "@chakra-ui/react";
+
+import { TWITTER } from "commons/config";
 import { DefaultSeo } from "next-seo";
 import theme from "theme";
 

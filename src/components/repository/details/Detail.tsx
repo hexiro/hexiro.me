@@ -1,4 +1,5 @@
 import { HStack, Icon, Text } from "@chakra-ui/react";
+
 import type { IconType } from "react-icons";
 
 interface DetailProps {

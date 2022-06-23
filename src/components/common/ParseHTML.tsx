@@ -1,5 +1,4 @@
 import { Link } from "components/common";
-
 import { Element } from "domhandler";
 import type { DOMNode, HTMLReactParserOptions } from "html-react-parser";
 import parse, { domToReact } from "html-react-parser";

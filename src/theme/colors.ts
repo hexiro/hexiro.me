@@ -10,6 +10,7 @@ const colors: Colors = {
     background: {
         primary: "#191c1d",
         secondary: "#292d2f",
+        tertiary: "#212526",
     },
 };
 export default colors;

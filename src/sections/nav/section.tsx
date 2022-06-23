@@ -1,6 +1,6 @@
-import { spring, fadeChildren, extraLightPop } from "commons/animations";
-
 import { Box, chakra, Heading } from "@chakra-ui/react";
+
+import { spring, extraLightPop, lightTap } from "commons/animations";
 import { isValidMotionProp, motion } from "framer-motion";
 
 interface SectionProps {
@@ -17,9 +17,7 @@ export default function Section({ name, highlight, current }: SectionProps): JSX
 
     return (
         <Box
-            as={motion.li}
             id={`nav-section-${name}`}
-            variants={fadeChildren}
             display="inline-block"
             position="relative"
             whiteSpace="nowrap"
@@ -38,6 +36,7 @@ export default function Section({ name, highlight, current }: SectionProps): JSX
                 transitionProperty="transform"
                 transitionDuration="fast"
                 _hover={extraLightPop}
+                _active={lightTap}
                 onClick={onTap}
             >
                 {name}
@@ -75,5 +74,5 @@ const HighlightedSectionBar = () => (
         layoutId="underline"
         // @ts-expect-error no problem in operation, although type error appears.
         transition={spring}
-     />
+    />
 );

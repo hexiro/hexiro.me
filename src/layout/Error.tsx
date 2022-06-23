@@ -1,5 +1,6 @@
-import { Page } from "./Page";
 import { Center, Heading, Text } from "@chakra-ui/react";
+
+import { Page } from "./Page";
 
 interface ErrorPageProps {
     status: number | string;

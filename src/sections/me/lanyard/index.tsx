@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-import { DISCORD } from "commons/config";
-
 import { Box, Flex, Hide, Text, Tooltip } from "@chakra-ui/react";
+
+import { DISCORD } from "commons/config";
 import { AnimatePresence } from "framer-motion";
 import type { Activity } from "use-lanyard";
 import { useLanyardWs } from "use-lanyard";
@@ -26,12 +26,6 @@ export default function Lanyard(): JSX.Element | null {
             {content && largeImage && largeText && (
                 <Hide below="sm">
                     <Flex
-                        // as={motion.div}
-                        // id="discord-presence"
-                        // initial="start"
-                        // animate="complete"
-                        // exit="start"
-                        // variants={fade}
                         position="relative"
                         padding={5}
                         marginTop={5}

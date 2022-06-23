@@ -1,5 +1,6 @@
 import type { Theme as ChakraTheme } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
+
 import colors from "theme/colors";
 import components from "theme/components";
 import config from "theme/config";

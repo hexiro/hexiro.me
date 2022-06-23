@@ -14,7 +14,7 @@ const components: Record<string, ComponentStyleConfig> = {
     Tooltip: {
         baseStyle: {
             borderRadius: "md",
-            backgroundColor: "brand.scrollbar",
+            backgroundColor: "background.tertiary",
             textColor: "brand.text",
             paddingY: 1,
             paddingX: 2,

@@ -1,18 +1,17 @@
 import type { GetStaticProps } from "next";
 
+import { VStack } from "@chakra-ui/react";
+
 import type { RepositoryProps, PullRequestProps } from "commons/graphql";
 import contributions from "commons/graphql/contributions";
 import projects from "commons/graphql/projects";
+import { Page } from "layout/Page";
+import type { IntersectionOptions } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
 import { Contributions } from "sections/contributions";
 import { Me } from "sections/me";
 import Nav from "sections/nav";
 import { Projects } from "sections/projects";
-
-import { VStack } from "@chakra-ui/react";
-import { Page } from "layout/Page";
-import mainPy from "py/main.py";
-import type { IntersectionOptions } from "react-intersection-observer";
-import { useInView } from "react-intersection-observer";
 
 interface HomeProps {
     projectsRepositories: RepositoryProps[];
@@ -32,8 +31,6 @@ export default function Home({ projectsRepositories, contributionsPullRequests }
 
     const description =
         "A self-taught software engineer who enjoys problem solving, technology, building software, and contributing to open source projects.";
-
-    console.log({ mainPy });
 
     return (
         <Page name="Home" description={`Hi! I'm Hexiro, ${description}`}>

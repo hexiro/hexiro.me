@@ -1,14 +1,13 @@
 import type { PropsWithChildren } from "react";
 
+import { Box, Flex, Heading, HStack, LinkBox, Text } from "@chakra-ui/react";
+
 import { lightPop } from "commons/animations";
 import { GITHUB } from "commons/config";
 import type { RepositoryProps } from "commons/graphql";
-import { ParseHTML } from "components/common";
-import LinkOverlay from "components/common/LinkOverlay";
+import { ParseHTML, LinkOverlay } from "components/common";
 import { Forks, Stars } from "components/repository/details";
 import Language from "components/repository/language";
-
-import { Box, Flex, Heading, HStack, LinkBox, Text } from "@chakra-ui/react";
 
 type ProjectProps = PropsWithChildren<{
     details: RepositoryProps;

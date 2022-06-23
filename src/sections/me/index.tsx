@@ -1,12 +1,12 @@
 import Image from "next/image";
 
+import { Box, Flex, forwardRef, Heading, Text } from "@chakra-ui/react";
+
 import { extraLightPop } from "commons/animations";
 import { GITHUB } from "commons/config";
+import { AnimatePresence } from "framer-motion";
 import Lanyard from "sections/me/lanyard";
 import SocialMedia from "sections/me/socials";
-
-import { Box, Flex, forwardRef, Heading, Text } from "@chakra-ui/react";
-import { AnimatePresence } from "framer-motion";
 
 interface MeProps {
     description: string;

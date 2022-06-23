@@ -2,15 +2,15 @@ export const styles = {
     global: {
         // css
         "::-webkit-scrollbar": {
-            width: "0.5em",
-            height: "0.5em",
+            width: "0.35em",
+            height: "0.35em",
         },
         "::-webkit-scrollbar-track": {
             boxShadow: "inset 0 0 6px rgba(0, 0, 0, 0.3)",
             borderRadius: "10px",
         },
         "::-webkit-scrollbar-thumb": {
-            background: "brand.scrollbar",
+            background: "brand.primary",
             borderRadius: "10px",
         },
         "*:focus-visible": {

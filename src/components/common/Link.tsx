@@ -1,10 +1,10 @@
 import NextLink from "next/link";
 import type { PropsWithChildren } from "react";
 
-import { lightPop } from "commons/animations";
-
 import type { LinkProps as ChakraLinkProps } from "@chakra-ui/react";
 import { Link as ChakraLink } from "@chakra-ui/react";
+
+import { lightPop } from "commons/animations";
 
 interface LinkProps extends ChakraLinkProps {
     href: string;

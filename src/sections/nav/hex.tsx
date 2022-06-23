@@ -1,6 +1,6 @@
-import { hover, tap } from "commons/animations";
-
 import { Box } from "@chakra-ui/react";
+
+import { hover, tap } from "commons/animations";
 
 const onTap = () => {
     window.scrollTo(0, 0);
