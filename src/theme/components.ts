@@ -19,6 +19,8 @@ const components: Record<string, ComponentStyleConfig> = {
             paddingY: 1,
             paddingX: 2,
             fontWeight: 400,
+            border: "1px solid",
+            borderColor: "whiteAlpha.300",
         },
         defaultProps: {
             placement: "top",
