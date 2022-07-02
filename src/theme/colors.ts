@@ -9,6 +9,7 @@ const colors: Colors = {
     },
     background: {
         primary: "#191c1d",
+        lightened: "#2F3335",
         secondary: "#292d2f",
         tertiary: "#212526",
     },

@@ -34,7 +34,7 @@ export default function Status(): JSX.Element | null {
                         borderRadius="lg"
                         background="background.secondary"
                         border="1px"
-                        borderColor="whiteAlpha.100"
+                        borderColor="background.lightened"
                     >
                         <Box
                             height={24}
@@ -69,10 +69,10 @@ export default function Status(): JSX.Element | null {
                                         width="34px"
                                         sx={{
                                             "& > :first-of-type": {
-                                                borderRadius: "50%!important",
-                                                border: "2px solid!important",
+                                                borderRadius: "50% !important",
+                                                border: "2px solid !important",
                                                 borderColor:
-                                                    "var(--chakra-colors-brand-primary)!important",
+                                                    "var(--chakra-colors-brand-primary) !important",
                                             },
                                         }}
                                     >

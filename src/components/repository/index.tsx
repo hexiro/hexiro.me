@@ -32,7 +32,7 @@ export default function Repository({ children, details }: ProjectProps): JSX.Ele
             cursor="pointer"
             width="100%"
             border="1px"
-            borderColor="whiteAlpha.100"
+            borderColor="background.lightened"
             _hover={lightPop}
         >
             <Box>
