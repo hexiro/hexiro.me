@@ -27,17 +27,10 @@ export interface RepositoryProps {
     primaryLanguage: {
         name: string | null;
     };
-    defaultBranchRef: {
-        target: {
-            history: {
-                totalCount: number;
-            };
-        };
-    };
 }
 
 export interface PullRequestProps {
     additions: number;
     deletions: number;
-    baseRepository: RepositoryProps;
+    baseRepository: RepositoryProps & { isPrivate: boolean };
 }

@@ -31,15 +31,6 @@ const PROJECTS = gql`
                         primaryLanguage {
                             name
                         }
-                        defaultBranchRef {
-                            target {
-                                ... on Commit {
-                                    history {
-                                        totalCount
-                                    }
-                                }
-                            }
-                        }
                     }
                 }
             }

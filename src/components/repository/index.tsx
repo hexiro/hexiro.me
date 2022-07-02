@@ -77,10 +77,10 @@ export default function Repository({ children, details }: ProjectProps): JSX.Ele
                     position="absolute"
                     bottom={3}
                 >
-                    <Language name={details.primaryLanguage.name} />
-                    <Box as="span" marginLeft={2}>
-                        {details.primaryLanguage.name}
-                    </Box>
+                    <HStack spacing={2}>
+                        <Language name={details.primaryLanguage.name} />
+                        <Box as="span">{details.primaryLanguage.name}</Box>
+                    </HStack>
                     {children}
                 </Flex>
             </Box>

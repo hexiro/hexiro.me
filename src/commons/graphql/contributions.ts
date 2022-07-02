@@ -15,8 +15,10 @@ export default async function contributions(): Promise<PullRequestProps[]> {
         `${baseRepository.owner.login}/${baseRepository.name}`;
 
     contributions = json.data.viewer.pullRequests.nodes;
-    // remove user repos
-    contributions = contributions.filter(x => x.baseRepository.owner.login !== GITHUB);
+    // remove user repos && private repos
+    contributions = contributions.filter(
+        x => x.baseRepository.owner.login !== GITHUB && !x.baseRepository.isPrivate
+    );
     // sort
     contributions = contributions.sort((a, b) => (total(a) > total(b) ? -1 : 1));
     // remove duplicates
@@ -43,6 +45,7 @@ const CONTRIBUTIONS = gql`
                         name
                         descriptionHTML
                         url
+                        isPrivate
                         owner {
                             login
                         }
@@ -54,15 +57,6 @@ const CONTRIBUTIONS = gql`
                         }
                         primaryLanguage {
                             name
-                        }
-                        defaultBranchRef {
-                            target {
-                                ... on Commit {
-                                    history {
-                                        totalCount
-                                    }
-                                }
-                            }
                         }
                     }
                 }
