@@ -1,7 +1,5 @@
 import { createIcon } from "@chakra-ui/react";
 
-export { BiStar as StargazersIcon, BiGitRepoForked as ForksIcon } from "react-icons/bi";
-
 export {
     SiPython as PythonIcon,
     SiTypescript as TypeScriptIcon,
@@ -9,6 +7,62 @@ export {
     SiRust as RustIcon,
     SiJavascript as JavaScriptIcon,
 } from "react-icons/si";
+
+export const ForkedIcon = createIcon({
+    displayName: "ForkedIcon",
+    viewBox: "0 0 17 17",
+    path: (
+        <>
+            <path
+                d="M5.40517 3.07759C5.40517 4.36308 4.36308 5.40517 3.07759 5.40517C1.7921 5.40517 0.75 4.36308 0.75 3.07759C0.75 1.7921 1.7921 0.75 3.07759 0.75C4.36308 0.75 5.40517 1.7921 5.40517 3.07759Z"
+                stroke="currentColor"
+                fill="none"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M15.7499 3.07759C15.7499 4.36308 14.7078 5.40517 13.4223 5.40517C12.1369 5.40517 11.0947 4.36308 11.0947 3.07759C11.0947 1.7921 12.1369 0.75 13.4223 0.75C14.7078 0.75 15.7499 1.7921 15.7499 3.07759Z"
+                stroke="currentColor"
+                fill="none"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M10.5775 13.4223C10.5775 14.7078 9.5354 15.7499 8.24995 15.7499C6.9645 15.7499 5.92236 14.7078 5.92236 13.4223C5.92236 12.1369 6.9645 11.0947 8.24995 11.0947C9.5354 11.0947 10.5775 12.1369 10.5775 13.4223Z"
+                stroke="currentColor"
+                fill="none"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M2.81885 5.66382V6.43968C2.81885 7.58237 3.74515 8.50865 4.88781 8.50865H8.24988M13.6809 5.66382V6.43968C13.6809 7.58237 12.7546 8.50865 11.612 8.50865H8.24988M8.24988 8.50865V10.8362"
+                stroke="currentColor"
+                fill="none"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </>
+    ),
+});
+
+export const StarIcon = createIcon({
+    displayName: "StarIcon",
+    viewBox: "0 0 18 17",
+    path: (
+        <path
+            d="M9 1L11.472 5.93691L17 6.73344L13 10.5741L13.944 16L9 13.4369L4.056 16L5 10.5741L1 6.73344L6.528 5.93691L9 1Z"
+            stroke="currentColor"
+            fill="none"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+    ),
+});
 
 export const DiscordIcon = createIcon({
     viewBox: "0 0 16 15",

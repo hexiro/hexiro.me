@@ -1,10 +1,11 @@
+import type { ComponentWithAs, IconProps} from "@chakra-ui/react";
 import { HStack, Icon, Text } from "@chakra-ui/react";
 
 import type { IconType } from "react-icons";
 
 interface DetailProps {
     count: number;
-    icon: IconType;
+    icon: IconType | ComponentWithAs<"svg", IconProps>;
 }
 
 export default function Detail({ count, icon }: DetailProps): JSX.Element | null {
@@ -18,7 +19,7 @@ export default function Detail({ count, icon }: DetailProps): JSX.Element | null
     }
 
     return (
-        <HStack display="inline-flex" align="center" spacing={0.5} whiteSpace="nowrap">
+        <HStack display="inline-flex" align="center" spacing={1} whiteSpace="nowrap">
             <Icon as={icon} color="brand.primary" />
             <Text as="h4">{detail}</Text>
         </HStack>
