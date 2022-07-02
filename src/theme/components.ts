@@ -27,6 +27,11 @@ const components: Record<string, ComponentStyleConfig> = {
             placement: "top",
         },
     },
+    Link: {
+        baseStyle: {
+            color: "brand.primary",
+        },
+    },
 };
 
 export default components;

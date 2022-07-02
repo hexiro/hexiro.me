@@ -1,7 +1,6 @@
 import type { ComponentWithAs, IconProps } from "@chakra-ui/react";
 import { Box, Icon } from "@chakra-ui/react";
 
-import { extraLightPop } from "commons/animations";
 import { TWITTER_LINK, GITHUB_LINK, DISCORD_LINK } from "commons/config";
 import { TwitterIcon, GithubIcon, DiscordIcon } from "commons/icons";
 import { Link } from "components/common";
@@ -36,15 +35,10 @@ export default function SocialMedia({ type }: SocialMediaProps) {
             as="li"
             display="inline-block"
             marginX={3}
-            transform="auto"
-            transitionProperty="transform"
-            transitionDuration="fast"
-            willChange="transform"
-            _first={{ xl: { marginLeft: "unset" } }}
-            _hover={extraLightPop}
             boxSize={5}
+            _first={{ xl: { marginLeft: "unset" } }}
         >
-            <Link href={href}>
+            <Link hasAnimation href={href}>
                 <Icon boxSize={5} color="brand.primary" as={icon} />
             </Link>
         </Box>

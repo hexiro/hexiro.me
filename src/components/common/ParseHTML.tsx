@@ -23,7 +23,7 @@ const replace = (node: DOMNode): JSX.Element | null => {
             // Replace a with custom link
             case "a": {
                 return (
-                    <Link key={key} href={node.attribs.href}>
+                    <Link key={key} hasAnimation href={node.attribs.href}>
                         {domToReact(node.children)}
                     </Link>
                 );
