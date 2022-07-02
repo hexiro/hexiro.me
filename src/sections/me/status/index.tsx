@@ -7,7 +7,7 @@ import { AnimatePresence } from "framer-motion";
 import type { Activity } from "use-lanyard";
 import { useLanyardWs } from "use-lanyard";
 
-export default function Lanyard(): JSX.Element | null {
+export default function Status(): JSX.Element | null {
     const data = useLanyardWs(DISCORD);
 
     const activity = data?.activities?.find(act => act.type === 0);
@@ -28,14 +28,16 @@ export default function Lanyard(): JSX.Element | null {
                     <Flex
                         position="relative"
                         padding={5}
-                        marginTop={5}
+                        marginTop={8}
                         width={96}
                         boxShadow="md"
                         borderRadius="lg"
                         background="background.secondary"
+                        border="1px"
+                        borderColor="whiteAlpha.100"
                     >
                         <Box
-                            height="95px"
+                            height={24}
                             position="relative"
                             sx={{
                                 "& img": {
@@ -44,7 +46,7 @@ export default function Lanyard(): JSX.Element | null {
                                 },
                             }}
                         >
-                            <Tooltip label={largeText} placement="top">
+                            <Tooltip hasArrow gutter={4} label={largeText} placement="top">
                                 <Box>
                                     <Image
                                         priority
@@ -52,13 +54,13 @@ export default function Lanyard(): JSX.Element | null {
                                         draggable={false}
                                         src={largeImage}
                                         layout="fixed"
-                                        height={95}
-                                        width={95}
+                                        height="96px"
+                                        width="96px"
                                     />
                                 </Box>
                             </Tooltip>
                             {smallImage && (
-                                <Tooltip label={smallText} placement="top">
+                                <Tooltip hasArrow label={smallText} placement="top">
                                     <Box
                                         position="absolute"
                                         right="-8px"
@@ -66,7 +68,7 @@ export default function Lanyard(): JSX.Element | null {
                                         height="34px"
                                         width="34px"
                                         sx={{
-                                            "& > :first-child": {
+                                            "& > :first-of-type": {
                                                 borderRadius: "50%!important",
                                                 border: "2px solid!important",
                                                 borderColor:
@@ -78,8 +80,8 @@ export default function Lanyard(): JSX.Element | null {
                                             alt="small image of application"
                                             draggable={false}
                                             src={smallImage}
-                                            height={30}
-                                            width={30}
+                                            height="30px"
+                                            width="30px"
                                         />
                                     </Box>
                                 </Tooltip>
@@ -114,23 +116,6 @@ export default function Lanyard(): JSX.Element | null {
         </AnimatePresence>
     );
 }
-
-// display: flex;
-//     width: 250px;
-//     flex-direction: column;
-//     position: relative;
-//     padding-left: 20px;
-//     text-align: left;
-
-//
-//     & h4 {
-//         margin-bottom: 2px;
-//     }
-//     & h5 {
-//         color: ${theme.core.subtext};
-//         align-items: flex-end;
-//         line-height: 1.3;
-//     }
 
 interface LanyardContent {
     name: string;
@@ -182,7 +167,3 @@ const handleGame = (activity: Activity): LanyardContent | null => {
         secondLine,
     };
 };
-// const Text = styled.div`
-//
-//
-// `;

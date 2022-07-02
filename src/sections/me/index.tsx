@@ -5,8 +5,8 @@ import { Box, Flex, forwardRef, Heading, Text } from "@chakra-ui/react";
 import { extraLightPop } from "commons/animations";
 import { GITHUB } from "commons/config";
 import { AnimatePresence } from "framer-motion";
-import Lanyard from "sections/me/lanyard";
 import SocialMedia from "sections/me/socials";
+import Status from "sections/me/status";
 
 interface MeProps {
     description: string;
@@ -26,13 +26,13 @@ export const Me = forwardRef<MeProps, typeof Flex>(({ inView, description }, ref
         <Flex
             className="me-left"
             align="center"
-            maxWidth="500px"
+            maxWidth="lg"
             paddingRight={{ base: 0, xl: 5 }}
             display={{ base: "flex", xl: "revert" }}
             direction={{ base: "column", xl: "row" }}
             justify={{ base: "center", xl: "revert" }}
             textAlign={{ base: "center", xl: "revert" }}
-            marginTop={{ base: "20px", xl: "revert" }}
+            marginTop={{ base: 5, xl: "revert" }}
             width={{ base: "100%", xl: "75%" }}
             flexBasis="50%"
         >
@@ -47,21 +47,20 @@ export const Me = forwardRef<MeProps, typeof Flex>(({ inView, description }, ref
                     transitionProperty="transform"
                     transitionDuration="fast"
                     willChange="transform"
+                    cursor="default"
                     _hover={extraLightPop}
                 >
                     Hexiro
                 </Box>
                 ,
             </Heading>
-            <Text minWidth="200px" marginBottom="20px">
-                {description}
-            </Text>
+            <Text minWidth={48} marginBottom={3}>{description}</Text>
             <Flex as="ul" whiteSpace="nowrap" align="center">
                 <SocialMedia type="Twitter" />
                 <SocialMedia type="GitHub" />
                 <SocialMedia type="Discord" />
             </Flex>
-            <Lanyard />
+            <Status />
         </Flex>
         <Box className="me-right" paddingLeft={{ base: 0, xl: 5 }} flexBasis="50%">
             <AnimatePresence>

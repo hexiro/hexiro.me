@@ -7,20 +7,16 @@ export const styles = {
         },
         "::-webkit-scrollbar-track": {
             boxShadow: "inset 0 0 6px rgba(0, 0, 0, 0.3)",
-            borderRadius: "10px",
+            borderRadius: "xl",
         },
         "::-webkit-scrollbar-thumb": {
             background: "brand.primary",
-            borderRadius: "10px",
+            borderRadius: "xl",
         },
         "*:focus-visible": {
             outline: "none",
         },
-        "*, *::before, *::after": {
-            margin: 0,
-            padding: 0,
-            boxSizing: "border-box",
-        },
+
         html: {
             scrollBehavior: "smooth",
         },
@@ -52,6 +48,12 @@ export const styles = {
         },
         "h4, h5, h6": {
             color: "brand.text",
+        },
+        // chakra overrides
+        "div[data-popper-arrow-inner]": {
+            borderBottom: "1px",
+            borderRight: "1px",
+            borderColor: "whiteAlpha.300",
         },
         // h1: {
         //     fontSize: { base: "lg", sm: "lg", md: "xl" },

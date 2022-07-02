@@ -13,6 +13,7 @@ const components: Record<string, ComponentStyleConfig> = {
     },
     Tooltip: {
         baseStyle: {
+            "--tooltip-bg": "var(--chakra-colors-background-tertiary)",
             borderRadius: "md",
             backgroundColor: "background.tertiary",
             textColor: "brand.text",

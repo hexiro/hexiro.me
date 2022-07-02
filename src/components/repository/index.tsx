@@ -20,7 +20,7 @@ export default function Repository({ children, details }: ProjectProps): JSX.Ele
             position="relative"
             paddingX={5}
             paddingY={3}
-            height="200px"
+            height={48}
             borderRadius="lg"
             background="background.secondary"
             boxShadow="md"
@@ -31,6 +31,8 @@ export default function Repository({ children, details }: ProjectProps): JSX.Ele
             wordBreak="break-word"
             cursor="pointer"
             width="100%"
+            border="1px"
+            borderColor="whiteAlpha.100"
             _hover={lightPop}
         >
             <Box>
@@ -85,5 +87,3 @@ export default function Repository({ children, details }: ProjectProps): JSX.Ele
         </LinkBox>
     );
 }
-
-// box-shadow: 0 6px 13px rgba(0, 0, 0, 0.25);

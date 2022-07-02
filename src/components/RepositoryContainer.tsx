@@ -8,7 +8,6 @@ export default function RepositoryContainer({ children, ...rest }: PropsWithChil
         <SimpleGrid
             className="repositories-container"
             wrap="wrap"
-            // justify={{ base: "center", xl: "revert" }}
             minChildWidth={{ base: "200px", sm: "300px", md: "400px" }}
             spacing={5}
             {...rest}

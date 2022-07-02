@@ -44,7 +44,7 @@ export default function Section({ name, highlight, current }: SectionProps): JSX
             <Box
                 height={1}
                 width="100%"
-                borderRadius="4px"
+                borderRadius="base"
                 zIndex={-1}
                 background="background.secondary"
             >
@@ -68,7 +68,7 @@ const HighlightedSectionBar = () => (
         position="absolute"
         height={1}
         width="100%"
-        borderRadius="4px"
+        borderRadius="base"
         zIndex={2}
         background="brand.primary"
         layoutId="underline"

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Flex, Hide, HStack } from "@chakra-ui/react";
 
 import { AnimatePresence } from "framer-motion";
-import usePassedScrollPosition from "hooks/useScrollPosition";
+import useHasScrolled from "hooks/useHasScrolled";
 import Hex from "sections/nav/hex";
 import Section from "sections/nav/section";
 
@@ -19,7 +19,7 @@ interface NavProps {
 
 export default function Nav({ sections }: NavProps): JSX.Element {
     const [active, setActive] = useState(0);
-    const scrolled = usePassedScrollPosition({ pixels: 50, defaultValue: false });
+    const scrolled = useHasScrolled();
 
     useEffect(() => {
         const sectionsInView = Object.values(sections).map(({ inView }) => inView);
@@ -45,7 +45,7 @@ export default function Nav({ sections }: NavProps): JSX.Element {
             backgroundColor="transparent"
             borderBottom="1px solid"
             borderBottomColor="transparent"
-            transitionDuration="225ms"
+            transitionDuration="normal"
             transitionProperty="background-color, border-color"
             sx={
                 scrolled

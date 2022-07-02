@@ -9,14 +9,6 @@ export const ParseHTML = ({ html }: { html: string }): JSX.Element => <>{parse(h
 const replace = (element: DOMNode): JSX.Element | null => {
     if (element instanceof Element)
         switch (element.name) {
-            case "script": {
-                return null;
-            }
-
-            case "style": {
-                return null;
-            }
-
             // Replace a with custom link
             case "a": {
                 return <Link href={element.attribs.href}>{domToReact(element.children)}</Link>;

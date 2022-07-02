@@ -38,7 +38,7 @@ export const Contributions = forwardRef<ContributionsProps, typeof Flex>(
                             display="inline"
                             color="red.400"
                             marginLeft={1}
-                            marginRight="10px"
+                            marginRight={2}
                         >{`-${pullRequest.deletions}`}</Box>
                     </Repository>
                 ))}
