@@ -11,7 +11,7 @@ interface ProjectsProps {
     repositories: RepositoryProps[];
 }
 
-export const Projects = forwardRef<ProjectsProps, typeof Flex>(({ repositories, inView }, ref) => (
+export const Projects = forwardRef<ProjectsProps, typeof Flex>(({ repositories }, ref) => (
     <RepositorySection ref={ref} id="projects">
         <RepositorySectionText
             title="Projects"

@@ -1,33 +1,46 @@
+import { Fragment } from "react";
+
 import { Link } from "components/common";
-import { Element } from "domhandler";
+import { Element, Text } from "domhandler";
 import type { DOMNode, HTMLReactParserOptions } from "html-react-parser";
 import parse, { domToReact } from "html-react-parser";
+import hash from "object-hash";
 
 // Returns string, JSX.Element[], JSX.Element all as JSX.Element
 export const ParseHTML = ({ html }: { html: string }): JSX.Element => <>{parse(html, options)}</>;
 
-const replace = (element: DOMNode): JSX.Element | null => {
-    if (element instanceof Element)
-        switch (element.name) {
+const replace = (node: DOMNode): JSX.Element | null => {
+    const key = hash(node);
+
+    if (node instanceof Text) {
+        if (node.next || node.prev) {
+            return <span key={key}>{node.data}</span>;
+        }
+    }
+
+    if (node instanceof Element) {
+        switch (node.name) {
             // Replace a with custom link
             case "a": {
-                return <Link href={element.attribs.href}>{domToReact(element.children)}</Link>;
+                return (
+                    <Link key={key} href={node.attribs.href}>
+                        {domToReact(node.children)}
+                    </Link>
+                );
             }
 
             case "g-emoji":
-                return <>{domToReact(element.children)}</>;
-
             case "div": {
-                const children = element.children.map(child => replace(child));
-                // eslint-disable-next-line react/jsx-no-useless-fragment
-                return <>{children}</>;
+                const children = node.children.map(child => replace(child));
+                return <Fragment key={key}>{children}</Fragment>;
             }
 
             default:
-                break;
+                return <Fragment key={key}>{domToReact([node])}</Fragment>;
         }
+    }
 
-    return <>{domToReact([element])}</>;
+    return <Fragment key={key}>{domToReact([node])}</Fragment>;
 };
 
 const options: HTMLReactParserOptions = {

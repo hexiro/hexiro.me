@@ -12,7 +12,7 @@ interface MeProps {
     description: string;
 }
 
-export const Me = forwardRef<MeProps, typeof Flex>(({ inView, description }, ref) => (
+export const Me = forwardRef<MeProps, typeof Flex>(({ description }, ref) => (
     <Flex
         ref={ref}
         id="me"

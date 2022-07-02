@@ -1,17 +1,13 @@
 import type { GetStaticProps } from "next";
 
-import { VStack } from "@chakra-ui/react";
-
 import type { RepositoryProps, PullRequestProps } from "commons/graphql";
 import contributions from "commons/graphql/contributions";
 import projects from "commons/graphql/projects";
 import { Page } from "layout/Page";
 import type { IntersectionOptions } from "react-intersection-observer";
 import { useInView } from "react-intersection-observer";
-import { Contributions } from "sections/contributions";
-import { Me } from "sections/me";
+import Content from "sections/me/Content";
 import Nav from "sections/nav";
-import { Projects } from "sections/projects";
 
 interface HomeProps {
     projectsRepositories: RepositoryProps[];
@@ -41,19 +37,14 @@ export default function Home({ projectsRepositories, contributionsPullRequests }
                     contributions: { inView: contributionsInView, current: contributionsCurrent },
                 }}
             />
-            <VStack spacing={20} _first={{ paddingTop: 40 }} _last={{ paddingBottom: 40 }}>
-                <Me ref={meRef} inView={meInView} description={description} />
-                <Projects
-                    ref={projectsRef}
-                    inView={projectsInView}
-                    repositories={projectsRepositories}
-                />
-                <Contributions
-                    ref={contributionsRef}
-                    inView={contributionsInView}
-                    pullRequests={contributionsPullRequests}
-                />
-            </VStack>
+            <Content
+                meRef={meRef}
+                description={description}
+                projectsRef={projectsRef}
+                projectsRepositories={projectsRepositories}
+                contributionsRef={contributionsRef}
+                contributionsPullRequests={contributionsPullRequests}
+            />
         </Page>
     );
 }
