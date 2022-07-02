@@ -40,7 +40,7 @@ export default function Nav({ sections }: NavProps): JSX.Element {
             width="100%"
             height={20}
             paddingX="2%"
-            zIndex={9999}
+            zIndex={2}
             backdropFilter="auto"
             backgroundColor="transparent"
             borderBottom="1px solid"

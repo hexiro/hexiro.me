@@ -54,7 +54,9 @@ export const Me = forwardRef<MeProps, typeof Flex>(({ inView, description }, ref
                 </Box>
                 ,
             </Heading>
-            <Text minWidth={48} marginBottom={3}>{description}</Text>
+            <Text minWidth={48} marginBottom={3}>
+                {description}
+            </Text>
             <Flex as="ul" whiteSpace="nowrap" align="center">
                 <SocialMedia type="Twitter" />
                 <SocialMedia type="GitHub" />

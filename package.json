@@ -9,7 +9,8 @@
         "lint:fix": "next lint --fix",
         "test": "next build && next start",
         "typecheck": "yarn tsc",
-        "style": "prettier -w \"src/**/*.*\""
+        "style": "prettier -w \"src/**/*.*\"",
+        "analyze": "cross-env ANALYZE=true next build"
     },
     "dependencies": {
         "@chakra-ui/react": "^2.2.1",
@@ -23,13 +24,13 @@
         "react-dom": "^18.2.0",
         "react-icons": "^4.3.1",
         "react-intersection-observer": "^8.34.0",
-        "react-tippy": "^1.4.0",
         "react-use": "^17.3.2",
         "sharp": "^0.30.5",
         "styled-components": "^5.3.5",
         "use-lanyard": "^1.1.0"
     },
     "devDependencies": {
+        "@next/bundle-analyzer": "^12.2.0",
         "@trivago/prettier-plugin-sort-imports": "^3.2.0",
         "@types/node": "^18.0.0",
         "@types/react": "^18.0.14",
@@ -37,6 +38,7 @@
         "@types/styled-components": "^5.1.14",
         "@typescript-eslint/eslint-plugin": "5.23.0",
         "@typescript-eslint/parser": "5.23.0",
+        "cross-env": "^7.0.3",
         "eslint": "^8.18.0",
         "eslint-config-next": "^12.1.6",
         "eslint-config-prettier": "^8.5.0",

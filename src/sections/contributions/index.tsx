@@ -12,7 +12,7 @@ interface ContributionsProps {
 }
 
 export const Contributions = forwardRef<ContributionsProps, typeof Flex>(
-    ({ pullRequests, inView }, ref) => (
+    ({ pullRequests }, ref) => (
         <RepositorySection ref={ref} id="contributions">
             <RepositorySectionText
                 title="Contributions"
