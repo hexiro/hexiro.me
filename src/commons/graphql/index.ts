@@ -10,27 +10,3 @@ export default async function githubGraphQL(query: string): Promise<Response> {
         body: JSON.stringify({ query }),
     });
 }
-
-export interface RepositoryProps {
-    name: string;
-    descriptionHTML: string;
-    url: string;
-    owner: {
-        login: string;
-    };
-    stargazers: {
-        totalCount: number;
-    };
-    forks: {
-        totalCount: number;
-    };
-    primaryLanguage: {
-        name: string | null;
-    };
-}
-
-export interface PullRequestProps {
-    additions: number;
-    deletions: number;
-    baseRepository: RepositoryProps & { isPrivate: boolean };
-}

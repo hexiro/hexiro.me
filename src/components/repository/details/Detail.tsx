@@ -1,4 +1,4 @@
-import type { ComponentWithAs, IconProps} from "@chakra-ui/react";
+import type { ComponentWithAs, IconProps } from "@chakra-ui/react";
 import { HStack, Icon, Text } from "@chakra-ui/react";
 
 import type { IconType } from "react-icons";

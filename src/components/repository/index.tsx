@@ -4,16 +4,19 @@ import { Box, Flex, Heading, HStack, LinkBox, Text } from "@chakra-ui/react";
 
 import { lightPop } from "commons/animations";
 import { GITHUB } from "commons/config";
-import type { RepositoryProps } from "commons/graphql";
+import type { Project } from "commons/graphql/projects";
+import LanguageBadge from "components/LanguageBadge";
 import { ParseHTML, LinkOverlay } from "components/common";
 import { Forks, Stars } from "components/repository/details";
-import Language from "components/repository/language";
 
-type ProjectProps = PropsWithChildren<{
-    details: RepositoryProps;
-}>;
+interface ProjectProps {
+    details: Project;
+}
 
-export default function Repository({ children, details }: ProjectProps): JSX.Element {
+export default function Repository({
+    details,
+    children,
+}: PropsWithChildren<ProjectProps>): JSX.Element {
     return (
         <LinkBox
             className="repository"
@@ -36,7 +39,7 @@ export default function Repository({ children, details }: ProjectProps): JSX.Ele
             _hover={lightPop}
         >
             <Box>
-                <Flex as="header" className="repository-header" align="center" paddingBottom={1}>
+                <Flex as="header" className="repository-header" align="center" paddingBottom={0.5}>
                     <Heading
                         className="repository-name"
                         as="h3"
@@ -47,9 +50,9 @@ export default function Repository({ children, details }: ProjectProps): JSX.Ele
                         whiteSpace="nowrap"
                     >
                         <LinkOverlay href={details.url}>
-                            {details.owner.login !== GITHUB && (
-                                <Box as="span" display={{ base: "none", sm: "none", md: "revert" }}>
-                                    {details.owner.login}/
+                            {details.ownerName !== GITHUB && (
+                                <Box as="span" display={{ base: "none", md: "revert" }}>
+                                    {details.ownerName}/
                                 </Box>
                             )}
                             <Box as="span">{details.name}</Box>
@@ -62,10 +65,15 @@ export default function Repository({ children, details }: ProjectProps): JSX.Ele
                         paddingLeft="4%"
                     >
                         <HStack spacing={2}>
-                            <Stars stargazers={details.stargazers.totalCount} />
-                            <Forks forks={details.forks.totalCount} />
+                            <Stars stargazers={details.totalStars} />
+                            <Forks forks={details.totalForks} />
                         </HStack>
                     </Flex>
+                </Flex>
+                <Flex className="repository-badges" paddingBottom={1} gap={2} wrap="wrap">
+                    {details.languages.map(language => (
+                        <LanguageBadge key={language} name={language} />
+                    ))}
                 </Flex>
                 <Text paddingBottom={4}>
                     <ParseHTML html={details.descriptionHTML} />
@@ -77,10 +85,6 @@ export default function Repository({ children, details }: ProjectProps): JSX.Ele
                     position="absolute"
                     bottom={3}
                 >
-                    <HStack spacing={2}>
-                        <Language name={details.primaryLanguage.name} />
-                        <Box as="span">{details.primaryLanguage.name}</Box>
-                    </HStack>
                     {children}
                 </Flex>
             </Box>

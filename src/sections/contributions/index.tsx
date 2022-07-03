@@ -1,18 +1,18 @@
 import type { Flex } from "@chakra-ui/react";
-import { Box, forwardRef } from "@chakra-ui/react";
+import { forwardRef, Text, HStack } from "@chakra-ui/react";
 
-import type { PullRequestProps } from "commons/graphql";
+import type { ProjectWithContribution } from "commons/graphql/contributions";
 import RepositoryContainer from "components/RepositoryContainer";
 import RepositorySection from "components/RepositorySection";
 import RepositorySectionText from "components/RepositorySectionText";
 import Repository from "components/repository";
 
 interface ContributionsProps {
-    pullRequests: PullRequestProps[];
+    projectsWithContribution: ProjectWithContribution[];
 }
 
 export const Contributions = forwardRef<ContributionsProps, typeof Flex>(
-    ({ pullRequests }, ref) => (
+    ({ projectsWithContribution }, ref) => (
         <RepositorySection ref={ref} id="contributions">
             <RepositorySectionText
                 title="Contributions"
@@ -22,24 +22,21 @@ export const Contributions = forwardRef<ContributionsProps, typeof Flex>(
                 onRight
             />
             <RepositoryContainer>
-                {pullRequests.map(pullRequest => (
+                {projectsWithContribution.map(projectWithContribution => (
                     <Repository
-                        key={pullRequest.baseRepository.name}
-                        details={pullRequest.baseRepository}
+                        key={projectWithContribution.name}
+                        details={projectWithContribution}
                     >
-                        <Box
-                            as="span"
-                            display="inline"
-                            color="brand.primary"
-                            marginX={1}
-                        >{`+${pullRequest.additions}`}</Box>
-                        <Box
-                            as="span"
-                            display="inline"
-                            color="red.400"
-                            marginLeft={1}
-                            marginRight={2}
-                        >{`-${pullRequest.deletions}`}</Box>
+                        <HStack spacing={2}>
+                            <Text
+                                fontSize="sm"
+                                color="brand.primary"
+                            >{`+${projectWithContribution.additions}`}</Text>
+                            <Text
+                                fontSize="sm"
+                                color="red.400"
+                            >{`-${projectWithContribution.deletions}`}</Text>
+                        </HStack>
                     </Repository>
                 ))}
             </RepositoryContainer>

@@ -1,7 +1,8 @@
 import type { GetStaticProps } from "next";
 
-import type { RepositoryProps, PullRequestProps } from "commons/graphql";
+import type { ProjectWithContribution } from "commons/graphql/contributions";
 import contributions from "commons/graphql/contributions";
+import type { Project } from "commons/graphql/projects";
 import projects from "commons/graphql/projects";
 import { Page } from "layout/Page";
 import type { IntersectionOptions } from "react-intersection-observer";
@@ -10,11 +11,11 @@ import Content from "sections/me/Content";
 import Nav from "sections/nav";
 
 interface HomeProps {
-    projectsRepositories: RepositoryProps[];
-    contributionsPullRequests: PullRequestProps[];
+    projects: Project[];
+    projectsWithContribution: ProjectWithContribution[];
 }
 
-export default function Home({ projectsRepositories, contributionsPullRequests }: HomeProps) {
+export default function Home({ projects, projectsWithContribution }: HomeProps) {
     const useInViewOptions: IntersectionOptions = {
         threshold: 0.3,
         fallbackInView: true,
@@ -39,11 +40,11 @@ export default function Home({ projectsRepositories, contributionsPullRequests }
             />
             <Content
                 meRef={meRef}
-                description={description}
                 projectsRef={projectsRef}
-                projectsRepositories={projectsRepositories}
                 contributionsRef={contributionsRef}
-                contributionsPullRequests={contributionsPullRequests}
+                description={description}
+                projects={projects}
+                projectsWithContribution={projectsWithContribution}
             />
         </Page>
     );
@@ -51,8 +52,8 @@ export default function Home({ projectsRepositories, contributionsPullRequests }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => ({
     props: {
-        projectsRepositories: await projects(),
-        contributionsPullRequests: await contributions(),
+        projects: await projects(),
+        projectsWithContribution: await contributions(),
     },
     revalidate: 3600,
 });
