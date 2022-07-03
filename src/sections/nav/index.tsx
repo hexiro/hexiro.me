@@ -61,7 +61,7 @@ export default function Nav({ sections }: NavProps): JSX.Element {
             <AnimatePresence>
                 <Hide below="md">
                     <HStack className="nav-sections" justify="flex-end" width="100%" spacing={10}>
-                        {Object.entries(sections).map(([name, { inView, current }], index) => (
+                        {Object.entries(sections).map(([name, { current }], index) => (
                             <Section
                                 key={name}
                                 name={name}

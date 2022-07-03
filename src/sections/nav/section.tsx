@@ -12,7 +12,17 @@ interface SectionProps {
 export default function Section({ name, highlight, current }: SectionProps): JSX.Element {
     const onTap = () => {
         if (!current) return;
-        current.target.scrollIntoView();
+
+        const heightOfNav = 80;
+        const buffer = 20;
+        let y = current.target.getBoundingClientRect().top + window.scrollY - heightOfNav - buffer;
+
+        if (y < 100) y = 0;
+
+        window.scroll({
+            top: y,
+            behavior: "smooth",
+        });
     };
 
     return (
