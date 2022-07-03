@@ -45,6 +45,7 @@ export default function Repository({
                         as="h3"
                         size="md"
                         fontWeight={300}
+                        lineHeight="unset"
                         overflow="hidden"
                         textOverflow="ellipsis"
                         whiteSpace="nowrap"
