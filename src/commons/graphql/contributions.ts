@@ -1,31 +1,60 @@
 import { GITHUB } from "commons/config";
-import type { PullRequestProps } from "commons/graphql";
 import githubGraphQL from "commons/graphql";
 import gql from "commons/graphql/gql";
+import type { Project, RepositoryData } from "commons/graphql/projects";
+import { parseProject } from "commons/graphql/projects";
 
-export default async function contributions(): Promise<PullRequestProps[]> {
+export interface ProjectWithContribution extends Project {
+    additions: number;
+    deletions: number;
+}
+
+export default async function contributions(): Promise<ProjectWithContribution[]> {
     /* eslint-disable @typescript-eslint/no-unsafe-assignment */
     const resp = await githubGraphQL(CONTRIBUTIONS);
     const json = await resp.json();
-    let contributions: PullRequestProps[];
 
-    const total = ({ additions, deletions }: PullRequestProps) => additions + deletions;
+    let rawProjectsWithContribution: ContributionsAndRepositoryData[] =
+        json.data.viewer.pullRequests.nodes;
 
-    const nameWithOwner = ({ baseRepository }: PullRequestProps) =>
+    const total = ({ additions, deletions }: ContributionsAndRepositoryData) =>
+        additions + deletions;
+
+    const nameWithOwner = ({ baseRepository }: ContributionsAndRepositoryData) =>
         `${baseRepository.owner.login}/${baseRepository.name}`;
 
-    contributions = json.data.viewer.pullRequests.nodes;
-    // remove user repos
-    contributions = contributions.filter(x => x.baseRepository.owner.login !== GITHUB);
+    // remove user repos && private repos
+    rawProjectsWithContribution = rawProjectsWithContribution.filter(
+        x => x.baseRepository.owner.login !== GITHUB && !x.baseRepository.isPrivate
+    );
     // sort
-    contributions = contributions.sort((a, b) => (total(a) > total(b) ? -1 : 1));
+    rawProjectsWithContribution = rawProjectsWithContribution.sort((a, b) =>
+        total(a) > total(b) ? -1 : 1
+    );
     // remove duplicates
-    contributions = contributions.filter(
-        (x, index) => index === contributions.findIndex(y => nameWithOwner(x) === nameWithOwner(y))
+    rawProjectsWithContribution = rawProjectsWithContribution.filter(
+        (x, index) =>
+            index ===
+            rawProjectsWithContribution.findIndex(y => nameWithOwner(x) === nameWithOwner(y))
     );
     // slice
-    contributions = contributions.slice(0, 6);
-    return contributions;
+    rawProjectsWithContribution = rawProjectsWithContribution.slice(0, 6);
+
+    const projectsWithContribution: ProjectWithContribution[] = rawProjectsWithContribution.map(
+        ({ additions, deletions, baseRepository }) => ({
+            ...parseProject(baseRepository),
+            additions,
+            deletions,
+        })
+    );
+
+    return projectsWithContribution;
+}
+
+interface ContributionsAndRepositoryData {
+    additions: number;
+    deletions: number;
+    baseRepository: RepositoryData & { isPrivate: boolean };
 }
 
 const CONTRIBUTIONS = gql`
@@ -43,6 +72,7 @@ const CONTRIBUTIONS = gql`
                         name
                         descriptionHTML
                         url
+                        isPrivate
                         owner {
                             login
                         }
@@ -52,17 +82,16 @@ const CONTRIBUTIONS = gql`
                         forks {
                             totalCount
                         }
-                        primaryLanguage {
-                            name
-                        }
-                        defaultBranchRef {
-                            target {
-                                ... on Commit {
-                                    history {
-                                        totalCount
+                        languages(first: 3, orderBy: { field: SIZE, direction: DESC }) {
+                            edges {
+                                ... on LanguageEdge {
+                                    size
+                                    node {
+                                        name
                                     }
                                 }
                             }
+                            totalSize
                         }
                     }
                 }

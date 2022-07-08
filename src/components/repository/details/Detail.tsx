@@ -1,10 +1,14 @@
-import type { PropsWithChildren } from "react";
+import type { ComponentWithAs, IconProps } from "@chakra-ui/react";
+import { HStack, Icon, Text } from "@chakra-ui/react";
 
-import styled from "styled-components";
+import type { IconType } from "react-icons";
 
-type DetailProps = PropsWithChildren<{ count: number }>;
+interface DetailProps {
+    count: number;
+    icon: IconType | ComponentWithAs<"svg", IconProps>;
+}
 
-export default function Detail({ count, children }: DetailProps): JSX.Element | null {
+export default function Detail({ count, icon }: DetailProps): JSX.Element | null {
     if (count <= 0) return null;
     let detail: string | number;
     if (count >= 1000 && count < 10000) {
@@ -15,18 +19,9 @@ export default function Detail({ count, children }: DetailProps): JSX.Element | 
     }
 
     return (
-        <ProjectDetail>
-            {children}
-            <h4>{detail}</h4>
-        </ProjectDetail>
+        <HStack display="inline-flex" align="center" spacing={1} whiteSpace="nowrap">
+            <Icon as={icon} color="brand.primary" />
+            <Text as="h4">{detail}</Text>
+        </HStack>
     );
 }
-
-const ProjectDetail = styled.li`
-    display: inline-flex;
-    align-items: center;
-    margin-right: 10px;
-    & h4 {
-        margin-left: 2px;
-    }
-`;

@@ -1,10 +1,10 @@
-import { fade } from "commons/animations";
-import { TWITTER_LINK, GITHUB_LINK, STEAM_LINK } from "commons/config";
-import { TwitterIcon, GithubIcon, SteamIcon } from "commons/icons";
-import { To } from "components/common";
+import type { ComponentWithAs, IconProps } from "@chakra-ui/react";
+import { Box, Icon } from "@chakra-ui/react";
 
-import { motion } from "framer-motion";
-import styled from "styled-components";
+import { TWITTER_LINK, GITHUB_LINK, DISCORD_LINK } from "commons/config";
+import { TwitterIcon, GithubIcon, DiscordIcon } from "commons/icons";
+import { Link } from "components/common";
+import type { IconType } from "react-icons";
 
 interface SocialMediaProps {
     type: string;
@@ -12,38 +12,35 @@ interface SocialMediaProps {
 
 export default function SocialMedia({ type }: SocialMediaProps) {
     let href: string;
-    let icon;
-    const size = 25;
+    let icon: IconType | ComponentWithAs<"svg", IconProps>;
     switch (type.toLowerCase()) {
         case "twitter":
             href = TWITTER_LINK;
-            icon = <TwitterIcon size={size} />;
+            icon = TwitterIcon;
             break;
         case "github":
             href = GITHUB_LINK;
-            icon = <GithubIcon size={size} />;
+            icon = GithubIcon;
             break;
-        case "steam":
-            href = STEAM_LINK;
-            icon = <SteamIcon size={size} />;
+        case "discord":
+            href = DISCORD_LINK;
+            icon = DiscordIcon;
             break;
         default:
             return null;
     }
 
     return (
-        <SocialItem variants={fade}>
-            <To href={href}>{icon}</To>
-        </SocialItem>
+        <Box
+            as="li"
+            display="inline-block"
+            marginX={3}
+            boxSize={5}
+            _first={{ xl: { marginLeft: "unset" } }}
+        >
+            <Link hasAnimation href={href}>
+                <Icon boxSize={5} color="brand.primary" as={icon} />
+            </Link>
+        </Box>
     );
 }
-
-const SocialItem = styled(motion.li)`
-    margin-right: 30px;
-    display: inline-block;
-    cursor: pointer;
-
-    &:last-child {
-        margin-right: 0;
-    }
-`;

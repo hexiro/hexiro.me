@@ -1,19 +1,11 @@
 import { useEffect, useState } from "react";
 
-interface UsePassedScrollPositionProps {
-    pixels: number;
-    defaultValue?: boolean;
-}
-
-export default function usePassedScrollPosition({
-    pixels,
-    defaultValue,
-}: UsePassedScrollPositionProps): boolean {
-    const [state, setState] = useState(defaultValue ?? false);
+export default function useHasScrolled(): boolean {
+    const [state, setState] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > pixels) {
+            if (window.scrollY > 0) {
                 setState(true);
             } else {
                 setState(false);
@@ -25,7 +17,7 @@ export default function usePassedScrollPosition({
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, [pixels]);
+    }, []);
 
     return state;
 }

@@ -1,6 +1,6 @@
 // copy of https://github.com/jane/gql-compress
 // made to work with Tagged Template Literals
-// which not only looks cool, but it works with syntax highlighting from this extenstion:
+// which not only looks cool, but it works with syntax highlighting from this extension:
 // https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql
 
 export default function gql(query: TemplateStringsArray, ...variables: string[]): string {

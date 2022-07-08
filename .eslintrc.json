@@ -1,0 +1,36 @@
+{
+    "env": {
+        "es2021": true,
+        "node": true
+    },
+    "extends": ["xo", "xo-react", "xo-typescript", "prettier", "next/core-web-vitals"],
+    "plugins": ["react", "unused-imports", "no-relative-import-paths"],
+    "rules": {
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/no-confusing-void-expression": "off",
+        "@typescript-eslint/consistent-type-imports": [
+            "error",
+            {
+                "prefer": "type-imports"
+            }
+        ],
+        "unused-imports/no-unused-imports": "error",
+        "no-relative-import-paths/no-relative-import-paths": [
+            "error",
+            { "allowSameFolder": false, "rootDir": "src" }
+        ],
+        "react/display-name": "off",
+        "react/function-component-definition": "off",
+        "import/no-anonymous-default-export": "off",
+        "capitalized-comments": "off",
+        "@typescript-eslint/ban-types": "off"
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    }
+}

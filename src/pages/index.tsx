@@ -1,21 +1,22 @@
 import type { GetStaticProps } from "next";
 
-import type { RepositoryProps, PullRequestProps } from "commons/graphql";
+import type { ProjectWithContribution } from "commons/graphql/contributions";
 import contributions from "commons/graphql/contributions";
+import type { Project } from "commons/graphql/projects";
 import projects from "commons/graphql/projects";
-import { Page } from "components/pages";
-import Sections, { Contributions, Me, Projects } from "sections";
+import { Page } from "layout/Page";
+import type { IntersectionOptions } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
+import Content from "sections/me/Content";
 import Nav from "sections/nav";
 
-import { useInView } from "react-intersection-observer";
-
 interface HomeProps {
-    projectsRepositories: RepositoryProps[];
-    contributionsPullRequests: PullRequestProps[];
+    projects: Project[];
+    projectsWithContribution: ProjectWithContribution[];
 }
 
-export default function Home({ projectsRepositories, contributionsPullRequests }: HomeProps) {
-    const useInViewOptions = {
+export default function Home({ projects, projectsWithContribution }: HomeProps) {
+    const useInViewOptions: IntersectionOptions = {
         threshold: 0.3,
         fallbackInView: true,
     };
@@ -31,34 +32,28 @@ export default function Home({ projectsRepositories, contributionsPullRequests }
     return (
         <Page name="Home" description={`Hi! I'm Hexiro, ${description}`}>
             <Nav
-                me={meCurrent}
-                meInView={meInView}
-                projects={projectsCurrent}
-                projectsInView={projectsInView}
-                contributions={contributionsCurrent}
-                contributionsInView={contributionsInView}
+                sections={{
+                    me: { inView: meInView, current: meCurrent },
+                    projects: { inView: projectsInView, current: projectsCurrent },
+                    contributions: { inView: contributionsInView, current: contributionsCurrent },
+                }}
             />
-            <Sections>
-                <Me ref={meRef} inView={meInView} description={description} />
-                <Projects
-                    ref={projectsRef}
-                    inView={projectsInView}
-                    repositories={projectsRepositories}
-                />
-                <Contributions
-                    ref={contributionsRef}
-                    inView={contributionsInView}
-                    pullRequests={contributionsPullRequests}
-                />
-            </Sections>
+            <Content
+                meRef={meRef}
+                projectsRef={projectsRef}
+                contributionsRef={contributionsRef}
+                description={description}
+                projects={projects}
+                projectsWithContribution={projectsWithContribution}
+            />
         </Page>
     );
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => ({
     props: {
-        projectsRepositories: await projects(),
-        contributionsPullRequests: await contributions(),
+        projects: await projects(),
+        projectsWithContribution: await contributions(),
     },
     revalidate: 3600,
 });

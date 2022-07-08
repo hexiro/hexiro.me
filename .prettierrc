@@ -5,7 +5,12 @@
     "printWidth": 100,
     "tabWidth": 4,
     "useTabs": false,
-    "importOrder": ["^(react|next)(/.*|)$", "^(components|commons|hooks|sections)(/.*|)$", ".*"],
+    "importOrder": [
+        "((^@fontsource)|(.css$))",
+        "^(react|next)(/.*|)$",
+        "^(@chakra-ui)(/.*|)$",
+        ".*"
+    ],
     "importOrderSeparation": true,
     "quoteProps": "preserve",
     "arrowParens": "avoid"

@@ -12,3 +12,4 @@ yarn-error.log*
 .vscode/
 .env.local
 .graphqlrc.yaml
+tsconfig.tsbuildinfo

@@ -1,112 +1,77 @@
 import { useEffect, useState } from "react";
 
-import { fadeDown } from "commons/animations";
-import theme from "commons/theme";
-import usePassedScrollPosition from "hooks/useScrollPosition";
+import { Flex, Hide, HStack } from "@chakra-ui/react";
+
+import { AnimatePresence } from "framer-motion";
+import useHasScrolled from "hooks/useHasScrolled";
 import Hex from "sections/nav/hex";
 import Section from "sections/nav/section";
 
-import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
-import { useMedia } from "react-use";
-import styled, { css } from "styled-components";
-
 interface NavProps {
-    me?: IntersectionObserverEntry;
-    projects?: IntersectionObserverEntry;
-    contributions?: IntersectionObserverEntry;
-    meInView: boolean;
-    projectsInView: boolean;
-    contributionsInView: boolean;
+    sections: Record<
+        string,
+        {
+            inView: boolean;
+            current: IntersectionObserverEntry | undefined;
+        }
+    >;
 }
 
-export default function Nav({
-    me,
-    projects,
-    contributions,
-    meInView,
-    projectsInView,
-    contributionsInView,
-}: NavProps): JSX.Element {
+export default function Nav({ sections }: NavProps): JSX.Element {
     const [active, setActive] = useState(0);
-    const background = usePassedScrollPosition({ pixels: 100, defaultValue: false });
-    const shouldFadeOut = useMedia("(max-width: 600px)", false);
+    const scrolled = useHasScrolled();
 
     useEffect(() => {
-        const sectionsInView = [meInView, projectsInView, contributionsInView];
+        const sectionsInView = Object.values(sections).map(({ inView }) => inView);
 
-        let newActive = 0;
-
-        for (const [index, inView] of sectionsInView.reverse().entries()) {
-            if (inView) {
-                newActive = sectionsInView.length - 1 - index;
-                break;
-            }
-        }
-
-        if (active !== newActive) {
-            setActive(newActive);
-        }
-
-        // if active was in the deps list it would rerender forever
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [meInView, projectsInView, contributionsInView]);
+        setActive(() => {
+            const active = sectionsInView.findIndex(inView => inView);
+            if (active === -1) return 0;
+            return active;
+        });
+    }, [sections]);
 
     return (
-        <NavContainer background={background}>
+        <Flex
+            as="nav"
+            position="fixed"
+            top={0}
+            left={0}
+            width="100%"
+            height={20}
+            paddingX="2%"
+            zIndex={2}
+            backdropFilter="auto"
+            backgroundColor="transparent"
+            borderBottom="1px solid"
+            borderBottomColor="transparent"
+            transitionDuration="normal"
+            transitionProperty="background-color, border-color"
+            sx={
+                scrolled
+                    ? {
+                          backdropBlur: "2px",
+                          backgroundColor: "blackAlpha.400",
+                          borderBottomColor: "background.secondary",
+                      }
+                    : undefined
+            }
+        >
             <Hex />
             <AnimatePresence>
-                {!shouldFadeOut && (
-                    <AnimateSharedLayout>
-                        <Sections
-                            initial="start"
-                            animate="complete"
-                            exit="start"
-                            variants={fadeDown}
-                        >
-                            <Section name="me" index={0} active={active} current={me} />
-                            <Section name="projects" index={1} active={active} current={projects} />
+                <Hide below="md">
+                    <HStack className="nav-sections" justify="flex-end" width="100%" spacing={10}>
+                        {Object.entries(sections).map(([name, { current }], index) => (
                             <Section
-                                name="contributions"
-                                index={2}
-                                active={active}
-                                current={contributions}
+                                key={name}
+                                name={name}
+                                current={current}
+                                highlight={index === active}
                             />
-                        </Sections>
-                    </AnimateSharedLayout>
-                )}
+                        ))}
+                    </HStack>
+                </Hide>
             </AnimatePresence>
-        </NavContainer>
+        </Flex>
     );
 }
-
-interface NavContainerProps {
-    background: boolean;
-}
-
-const Sections = styled(motion.ul)`
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    padding: 20px 0;
-`;
-
-const NavContainer = styled.nav<NavContainerProps>`
-    position: fixed;
-    top: 0;
-    display: flex;
-    width: 100%;
-    height: 80px;
-    padding: 0 2%;
-    z-index: 2;
-    background-color: transparent;
-    border-bottom: 1px solid transparent;
-    transition: ease all 0.225s;
-    ${({ background }) => {
-        if (!background) return;
-        return css`
-            backdrop-filter: blur(2px);
-            background-color: rgba(0, 0, 0, 0.2);
-            border-bottom: 1px solid ${theme.accent.background};
-        `;
-    }}
-`;

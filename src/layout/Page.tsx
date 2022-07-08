@@ -1,9 +1,10 @@
 import type { PropsWithChildren } from "react";
 
-import { TWITTER } from "commons/config";
-import theme from "commons/theme";
+import { Container } from "@chakra-ui/react";
 
+import { TWITTER } from "commons/config";
 import { DefaultSeo } from "next-seo";
+import theme from "theme";
 
 type PageProps = PropsWithChildren<{
     name: string;
@@ -16,7 +17,7 @@ export const Page = ({ name, description, children }: PageProps): JSX.Element =>
             description={description}
             title={name}
             titleTemplate="%s | Hexiro"
-            defaultTitle="Page | Hexiro"
+            defaultTitle="Page"
             canonical="https://hexiro.me/"
             openGraph={{
                 type: "website",
@@ -44,11 +45,11 @@ export const Page = ({ name, description, children }: PageProps): JSX.Element =>
                 },
                 {
                     name: "theme-color",
-                    content: theme.accent.main,
+                    content: theme.colors.brand.primary,
                 },
                 {
                     name: "msapplication-TileColor",
-                    content: theme.core.background,
+                    content: theme.colors.background.primary,
                 },
                 {
                     httpEquiv: "x-ua-compatible",
@@ -76,7 +77,7 @@ export const Page = ({ name, description, children }: PageProps): JSX.Element =>
                 {
                     rel: "mask-icon",
                     href: "/safari-pinned-tab.svg",
-                    color: theme.accent.main,
+                    color: theme.colors.brand.primary,
                 },
                 {
                     rel: "manifest",
@@ -84,14 +85,10 @@ export const Page = ({ name, description, children }: PageProps): JSX.Element =>
                 },
             ]}
         />
-        {children}
-        <noscript>
-            <style
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{
-                    __html: "*[style*='opacity:0']{opacity:1!important;}",
-                }}
-            />
-        </noscript>
+
+        <Container height="100vh" maxWidth="65%" padding="unset">
+            {children}
+        </Container>
+        {/* <Footer oneScreen={oneScreen} /> */}
     </>
 );
