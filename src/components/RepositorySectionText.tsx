@@ -1,5 +1,3 @@
-import type { PropsWithChildren } from "react";
-
 import type { BoxProps } from "@chakra-ui/react";
 import { Box, Heading, Text } from "@chakra-ui/react";
 
@@ -13,9 +11,8 @@ export default function RepositorySectionText({
     title,
     description,
     onRight,
-    children,
     ...rest
-}: PropsWithChildren<RepositorySectionTextProps>) {
+}: RepositorySectionTextProps) {
     return (
         <Box
             textAlign={{ base: "center", lg: onRight ? "right" : "left" }}
