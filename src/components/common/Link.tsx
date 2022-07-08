@@ -59,5 +59,3 @@ const WithAnimation = ({ hasAnimation, children }: PropsWithChildren<{ hasAnimat
         // eslint-disable-next-line react/jsx-no-useless-fragment
         <>{children}</>
     );
-
-//  withAnimation that takes animation as a prop, and animates the link like in the socials section

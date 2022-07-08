@@ -55,21 +55,6 @@ export const styles = {
             borderRight: "1px",
             borderColor: "whiteAlpha.300",
         },
-        // h1: {
-        //     fontSize: { base: "lg", sm: "lg", md: "xl" },
-        //     fontWeight: 400,
-        // },
-        // h2: {
-        //     fontSize: { base: "md", sm: "md", md: "lg" },
-        // },
-
-        // h3: {
-        //     fontSize: { base: "sm", sm: "sm", md: "md" },
-        // },
-
-        // h4: {
-        //     fontSize: { base: "xs", sm: "xs", md: "sm" },
-        // },
     },
 };
 

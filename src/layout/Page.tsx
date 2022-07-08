@@ -90,13 +90,5 @@ export const Page = ({ name, description, children }: PageProps): JSX.Element =>
             {children}
         </Container>
         {/* <Footer oneScreen={oneScreen} /> */}
-        <noscript>
-            <style
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{
-                    __html: "*[style*='opacity:0']{opacity:1!important;}",
-                }}
-            />
-        </noscript>
     </>
 );
