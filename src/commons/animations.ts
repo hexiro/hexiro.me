@@ -1,6 +1,5 @@
-export const pop = { translateY: -3 };
-export const lightPop = { translateY: -2 };
-export const extraLightPop = { translateY: -1 };
+export const pop = { translateY: -2 };
+export const lightPop = { translateY: -1 };
 
 // !important-s are needed as :hover takes precedence over :active in pure css
 export const tap = { scale: "0.92!important" };

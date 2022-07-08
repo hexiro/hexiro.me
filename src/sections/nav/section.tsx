@@ -1,6 +1,6 @@
 import { Box, chakra, Heading } from "@chakra-ui/react";
 
-import { spring, extraLightPop, lightTap } from "commons/animations";
+import { spring, lightPop, lightTap } from "commons/animations";
 import { isValidMotionProp, motion } from "framer-motion";
 
 interface SectionProps {
@@ -45,7 +45,7 @@ export default function Section({ name, highlight, current }: SectionProps): JSX
                 willChange="transform"
                 transitionProperty="transform"
                 transitionDuration="fast"
-                _hover={extraLightPop}
+                _hover={lightPop}
                 _active={lightTap}
                 onClick={onTap}
             >

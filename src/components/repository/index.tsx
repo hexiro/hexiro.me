@@ -2,7 +2,7 @@ import type { PropsWithChildren } from "react";
 
 import { Box, Flex, Heading, HStack, LinkBox, Text } from "@chakra-ui/react";
 
-import { lightPop } from "commons/animations";
+import { pop } from "commons/animations";
 import { GITHUB } from "commons/config";
 import type { Project } from "commons/graphql/projects";
 import LanguageBadge from "components/LanguageBadge";
@@ -36,7 +36,7 @@ export default function Repository({
             width="100%"
             border="1px"
             borderColor="background.lightened"
-            _hover={lightPop}
+            _hover={pop}
         >
             <Box>
                 <Flex as="header" className="repository-header" align="center" paddingBottom={0.5}>

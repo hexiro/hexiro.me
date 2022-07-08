@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { Box, Flex, forwardRef, Heading, Text } from "@chakra-ui/react";
 
-import { extraLightPop } from "commons/animations";
+import { lightPop } from "commons/animations";
 import { GITHUB } from "commons/config";
 import { AnimatePresence } from "framer-motion";
 import SocialMedia from "sections/me/socials";
@@ -48,7 +48,7 @@ export const Me = forwardRef<MeProps, typeof Flex>(({ description }, ref) => (
                     transitionDuration="fast"
                     willChange="transform"
                     cursor="default"
-                    _hover={extraLightPop}
+                    _hover={lightPop}
                 >
                     Hexiro
                 </Box>

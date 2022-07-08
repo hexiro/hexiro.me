@@ -4,7 +4,7 @@ import type { PropsWithChildren } from "react";
 import type { LinkProps as ChakraLinkProps } from "@chakra-ui/react";
 import { Box, Link as ChakraLink } from "@chakra-ui/react";
 
-import { extraLightPop } from "commons/animations";
+import { lightPop } from "commons/animations";
 
 interface LinkProps extends ChakraLinkProps {
     href: string;
@@ -12,26 +12,46 @@ interface LinkProps extends ChakraLinkProps {
 }
 
 export const Link = ({ href, hasAnimation, children, ...rest }: PropsWithChildren<LinkProps>) => (
-    <NextLink passHref href={href}>
-        <ChakraLink position="relative" rel="norefferer" target="_blank" {...rest}>
-            <WithAnimation hasAnimation={hasAnimation}>{children}</WithAnimation>
-        </ChakraLink>
-    </NextLink>
+    <WithAnimation hasAnimation={hasAnimation}>
+        <NextLink passHref href={href}>
+            <ChakraLink
+                position="relative"
+                rel="norefferer"
+                target="_blank"
+                _hover={{ textDecoration: "none" }}
+                {...rest}
+            >
+                {children}
+            </ChakraLink>
+        </NextLink>
+    </WithAnimation>
 );
 
 const WithAnimation = ({ hasAnimation, children }: PropsWithChildren<{ hasAnimation?: boolean }>) =>
     hasAnimation ? (
         <Box
             as="span"
-            display="inline-block"
-            transform="auto-gpu"
-            transitionProperty="transform"
-            transitionDuration="fast"
-            willChange="transform"
+            position="relative"
             sx={{
                 "--chakra-translate-y": "initial",
+                "& > a": {
+                    display: "inline-block",
+                    transform: "auto-gpu",
+                    transitionProperty: "transform",
+                    transitionDuration: "fast",
+                    willChange: "transform",
+                },
             }}
-            _hover={{ ...extraLightPop, paddingBottom: 1 }}
+            _hover={{ "& > a": lightPop }}
+            _after={{
+                content: "''",
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                width: "100%",
+                height: 1,
+                _hover: { "& > a": lightPop },
+            }}
         >
             {children}
         </Box>
