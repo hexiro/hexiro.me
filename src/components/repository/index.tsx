@@ -5,7 +5,7 @@ import { Box, Flex, Heading, HStack, LinkBox, Text } from "@chakra-ui/react";
 import { pop } from "commons/animations";
 import { GITHUB } from "commons/config";
 import type { Project } from "commons/graphql/projects";
-import LanguageBadge from "components/LanguageBadge";
+import LanguageBadge from "components/repository/LanguageBadge";
 import { ParseHTML, LinkOverlay } from "components/common";
 import { Forks, Stars } from "components/repository/details";
 
