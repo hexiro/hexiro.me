@@ -4,9 +4,6 @@ import { ColorModeScript } from "@chakra-ui/react";
 
 import theme from "theme";
 
-// Copied from
-// https://github.com/vercel/next.js/blob/master/examples/with-styled-components/pages/_document.js#L4
-
 export default class Document extends NextDocument {
     render() {
         return (

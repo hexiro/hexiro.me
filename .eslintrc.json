@@ -4,8 +4,10 @@
         "node": true
     },
     "extends": ["xo", "xo-react", "xo-typescript", "prettier", "next/core-web-vitals"],
-    "plugins": ["react", "unused-imports", "no-relative-import-paths"],
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["react", "react-hooks", "chakra-ui", "unused-imports", "no-relative-import-paths"],
     "rules": {
+        "chakra-ui/require-specific-component": "error",
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/naming-convention": "off",
         "@typescript-eslint/no-confusing-void-expression": "off",
