@@ -4,7 +4,7 @@ interface LanguageProps {
     name: string | null;
 }
 
-export default function Language({ name }: LanguageProps): JSX.Element | null {
+export default function LanguageIcon({ name }: LanguageProps): JSX.Element | null {
     if (!name) return null;
     switch (name) {
         case "Python":

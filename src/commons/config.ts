@@ -1,5 +1,5 @@
 // public
-export const GITHUB = "Hexiro";
+export const GITHUB = "hexiro";
 export const TWITTER = "Hexiiro";
 export const DISCORD = "291632819006865408";
 

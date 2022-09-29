@@ -1,6 +1,6 @@
 import { Badge, Box, HStack } from "@chakra-ui/react";
 
-import Language from "components/repository/language";
+import LanguageIcon from "components/repository/LanguageIcon";
 
 interface LanguageBadgeProps {
     name: string;
@@ -11,13 +11,16 @@ export default function LanguageBadge({ name }: LanguageBadgeProps) {
         <Badge
             variant="subtle"
             color="brand.text"
-            background="blackAlpha.300"
+            background="blackAlpha.400"
+            borderColor="whiteAlpha.100"
+            borderWidth={1}
             paddingX={1.5}
+            paddingY={0.5}
             fontSize="0.825rem"
             borderRadius="md"
         >
             <HStack spacing={1} align="center" height="100%">
-                <Language name={name} />
+                <LanguageIcon name={name} />
                 <Box as="span">{name}</Box>
             </HStack>
         </Badge>

@@ -13,7 +13,7 @@ const replace = (node: DOMNode): JSX.Element | null => {
     const key = hash(node);
 
     if (node instanceof Text) {
-        if (node.next || node.prev) {
+        if (node.next ?? node.prev) {
             return <span key={key}>{node.data}</span>;
         }
     }
@@ -31,7 +31,7 @@ const replace = (node: DOMNode): JSX.Element | null => {
 
             case "g-emoji":
             case "div": {
-                const children = node.children.map(child => replace(child));
+                const children = node.children.map((child) => replace(child));
                 return <Fragment key={key}>{children}</Fragment>;
             }
 

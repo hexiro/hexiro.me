@@ -25,7 +25,7 @@ export default function Nav({ sections }: NavProps): JSX.Element {
         const sectionsInView = Object.values(sections).map(({ inView }) => inView);
 
         setActive(() => {
-            const active = sectionsInView.findIndex(inView => inView);
+            const active = sectionsInView.findIndex((inView) => inView);
             if (active === -1) return 0;
             return active;
         });

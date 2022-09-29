@@ -2,10 +2,10 @@ import type { Flex } from "@chakra-ui/react";
 import { forwardRef, Text, HStack } from "@chakra-ui/react";
 
 import type { ProjectWithContribution } from "commons/graphql/contributions";
-import RepositoryContainer from "components/RepositoryContainer";
-import RepositorySection from "components/RepositorySection";
-import RepositorySectionText from "components/RepositorySectionText";
 import Repository from "components/repository";
+import RepositoryContainer from "components/repository/RepositoryContainer";
+import RepositorySection from "components/repository/RepositorySection";
+import RepositorySectionText from "components/repository/RepositorySectionText";
 
 interface ContributionsProps {
     projectsWithContribution: ProjectWithContribution[];
@@ -16,13 +16,10 @@ export const Contributions = forwardRef<ContributionsProps, typeof Flex>(
         <RepositorySection ref={ref} id="contributions">
             <RepositorySectionText
                 title="Contributions"
-                description="These pull requests are my top 6 GitHub pull requests. They're sorted by
-                additions and deletions to showcase where my changes had a meaningful impact on the
-                project."
-                onRight
+                description="These are the top 6 repositories I've contributed to, sorted by additions and deletions to showcase where my changes had a meaningful impact on the project."
             />
             <RepositoryContainer>
-                {projectsWithContribution.map(projectWithContribution => (
+                {projectsWithContribution.map((projectWithContribution) => (
                     <Repository
                         key={projectWithContribution.name}
                         details={projectWithContribution}

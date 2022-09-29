@@ -13,5 +13,5 @@
     ],
     "importOrderSeparation": true,
     "quoteProps": "preserve",
-    "arrowParens": "avoid"
+    "arrowParens": "always"
 }

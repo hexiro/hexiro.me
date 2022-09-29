@@ -2,10 +2,10 @@ import type { Flex } from "@chakra-ui/react";
 import { forwardRef } from "@chakra-ui/react";
 
 import type { Project } from "commons/graphql/projects";
-import RepositoryContainer from "components/RepositoryContainer";
-import RepositorySection from "components/RepositorySection";
-import RepositorySectionText from "components/RepositorySectionText";
 import Repository from "components/repository";
+import RepositoryContainer from "components/repository/RepositoryContainer";
+import RepositorySection from "components/repository/RepositorySection";
+import RepositorySectionText from "components/repository/RepositorySectionText";
 
 interface ProjectsProps {
     projects: Project[];
@@ -19,7 +19,7 @@ export const Projects = forwardRef<ProjectsProps, typeof Flex>(({ projects }, re
                     hand-picked each repository as they nicely display my skill set and creativity."
         />
         <RepositoryContainer>
-            {projects.map(project => (
+            {projects.map((project) => (
                 <Repository key={project.name} details={project} />
             ))}
         </RepositoryContainer>

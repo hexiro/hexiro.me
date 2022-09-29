@@ -1,4 +1,4 @@
-import { GITHUB } from "commons/config";
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import githubGraphQL from "commons/graphql";
 import gql from "commons/graphql/gql";
 import type { Project, RepositoryData } from "commons/graphql/projects";
@@ -10,88 +10,191 @@ export interface ProjectWithContribution extends Project {
 }
 
 export default async function contributions(): Promise<ProjectWithContribution[]> {
-    /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-    const resp = await githubGraphQL(CONTRIBUTIONS);
-    const json = await resp.json();
+    let resp: Response;
+    let json: any;
+
+    resp = await githubGraphQL(CONTRIBUTIONS_FIRST_PAGE);
+    json = await resp.json();
 
     let rawProjectsWithContribution: ContributionsAndRepositoryData[] =
         json.data.viewer.pullRequests.nodes;
 
-    const total = ({ additions, deletions }: ContributionsAndRepositoryData) =>
-        additions + deletions;
+    while (json.data.viewer.pullRequests.pageInfo.hasNextPage) {
+        // eslint-disable-next-line prefer-destructuring
+        const pullRequests: PullRequestsData = json.data.viewer.pullRequests;
+
+        // eslint-disable-next-line no-await-in-loop
+        resp = await githubGraphQL(contributionsFromCursor(pullRequests.pageInfo.endCursor));
+        // eslint-disable-next-line no-await-in-loop
+        json = await resp.json();
+
+        rawProjectsWithContribution = rawProjectsWithContribution.concat(
+            json.data.viewer.pullRequests.nodes
+        );
+    }
 
     const nameWithOwner = ({ baseRepository }: ContributionsAndRepositoryData) =>
         `${baseRepository.owner.login}/${baseRepository.name}`;
 
-    // remove user repos && private repos
-    rawProjectsWithContribution = rawProjectsWithContribution.filter(
-        x => x.baseRepository.owner.login !== GITHUB && !x.baseRepository.isPrivate
+    // remove repos the user has access to, is in the organization of, or owns
+    rawProjectsWithContribution = rawProjectsWithContribution.filter((x) =>
+        x.authorAssociation.includes("CONTRIBUTOR")
     );
-    // sort
-    rawProjectsWithContribution = rawProjectsWithContribution.sort((a, b) =>
-        total(a) > total(b) ? -1 : 1
-    );
-    // remove duplicates
-    rawProjectsWithContribution = rawProjectsWithContribution.filter(
-        (x, index) =>
-            index ===
-            rawProjectsWithContribution.findIndex(y => nameWithOwner(x) === nameWithOwner(y))
-    );
-    // slice
-    rawProjectsWithContribution = rawProjectsWithContribution.slice(0, 6);
 
-    const projectsWithContribution: ProjectWithContribution[] = rawProjectsWithContribution.map(
-        ({ additions, deletions, baseRepository }) => ({
-            ...parseProject(baseRepository),
-            additions,
-            deletions,
-        })
+    const matchedProjects: Record<string, ContributionsAndRepositoryData[]> = {};
+
+    // merge contributions
+
+    for (const rawProjectWithContribution of rawProjectsWithContribution) {
+        const name = nameWithOwner(rawProjectWithContribution);
+        if (matchedProjects[name]) {
+            matchedProjects[name].push(rawProjectWithContribution);
+        } else {
+            matchedProjects[name] = [rawProjectWithContribution];
+        }
+    }
+
+    let projectsWithContribution: ProjectWithContribution[] = Object.values(matchedProjects).map(
+        (matches) => {
+            const { baseRepository } = matches[0];
+            const additions = matches.reduce((acc, x) => acc + x.additions, 0);
+            const deletions = matches.reduce((acc, x) => acc + x.deletions, 0);
+            return {
+                ...parseProject(baseRepository),
+                additions,
+                deletions,
+            };
+        }
     );
+
+    // sort
+    projectsWithContribution = projectsWithContribution.sort((a, b) =>
+        a.additions + a.deletions > b.additions + b.deletions ? -1 : 1
+    );
+
+    // slice
+    projectsWithContribution = projectsWithContribution.slice(0, 6);
 
     return projectsWithContribution;
+}
+
+interface PullRequestsData {
+    pageInfo: {
+        hasNextPage: boolean;
+        endCursor: string;
+    };
+    nodes: ContributionsAndRepositoryData[];
 }
 
 interface ContributionsAndRepositoryData {
     additions: number;
     deletions: number;
-    baseRepository: RepositoryData & { isPrivate: boolean };
+    authorAssociation:
+        | "MEMBER"
+        | "OWNER"
+        | "MANNEQUIN"
+        | "COLLABORATOR"
+        | "CONTRIBUTOR"
+        | "FIRST_TIME_CONTRIBUTOR"
+        | "FIRST_TIMER"
+        | "NONE";
+    baseRepository: RepositoryData;
 }
 
-const CONTRIBUTIONS = gql`
+const CONTRIBUTIONS_FIRST_PAGE = gql`
     {
         viewer {
             pullRequests(
-                states: MERGED
                 first: 50
+                states: MERGED
                 orderBy: { field: CREATED_AT, direction: DESC }
             ) {
+                totalCount
+                pageInfo {
+                    hasNextPage
+                    endCursor
+                }
                 nodes {
-                    additions
-                    deletions
-                    baseRepository {
-                        name
-                        descriptionHTML
-                        url
-                        isPrivate
-                        owner {
-                            login
-                        }
-                        stargazers {
-                            totalCount
-                        }
-                        forks {
-                            totalCount
-                        }
-                        languages(first: 3, orderBy: { field: SIZE, direction: DESC }) {
-                            edges {
-                                ... on LanguageEdge {
-                                    size
-                                    node {
-                                        name
+                    ... on PullRequest {
+                        additions
+                        deletions
+                        authorAssociation
+                        baseRepository {
+                            name
+                            descriptionHTML
+                            url
+                            isPrivate
+                            owner {
+                                login
+                            }
+                            stargazers {
+                                totalCount
+                            }
+                            forks {
+                                totalCount
+                            }
+                            languages(first: 3, orderBy: { field: SIZE, direction: DESC }) {
+                                edges {
+                                    ... on LanguageEdge {
+                                        size
+                                        node {
+                                            name
+                                        }
                                     }
                                 }
+                                totalSize
                             }
-                            totalSize
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
+
+const contributionsFromCursor = (cursor: string) => gql`
+    {
+        viewer {
+            pullRequests(
+                first: 50
+                states: MERGED
+                orderBy: { field: CREATED_AT, direction: DESC },
+                after: "${cursor}"
+            ) {
+                totalCount
+                pageInfo {
+                    hasNextPage
+                    endCursor
+                }
+                nodes {
+                    ... on PullRequest {
+                        additions
+                        deletions
+                        authorAssociation
+                        baseRepository {
+                            name
+                            descriptionHTML
+                            url
+                            owner {
+                                login
+                            }
+                            stargazers {
+                                totalCount
+                            }
+                            forks {
+                                totalCount
+                            }
+                            languages(first: 3, orderBy: { field: SIZE, direction: DESC }) {
+                                edges {
+                                    ... on LanguageEdge {
+                                        size
+                                        node {
+                                            name
+                                        }
+                                    }
+                                }
+                                totalSize
+                            }
                         }
                     }
                 }
