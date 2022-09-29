@@ -5,8 +5,8 @@ import { Box, Flex, Heading, HStack, LinkBox, Text } from "@chakra-ui/react";
 import { pop } from "commons/animations";
 import { GITHUB } from "commons/config";
 import type { Project } from "commons/graphql/projects";
-import LanguageBadge from "components/repository/LanguageBadge";
 import { ParseHTML, LinkOverlay } from "components/common";
+import LanguageBadge from "components/repository/LanguageBadge";
 import { Forks, Stars } from "components/repository/details";
 
 interface ProjectProps {
@@ -72,7 +72,7 @@ export default function Repository({
                     </Flex>
                 </Flex>
                 <Flex className="repository-badges" paddingBottom={1} gap={2} wrap="wrap">
-                    {details.languages.map(language => (
+                    {details.languages.map((language) => (
                         <LanguageBadge key={language} name={language} />
                     ))}
                 </Flex>

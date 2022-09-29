@@ -2,10 +2,10 @@ import type { Flex } from "@chakra-ui/react";
 import { forwardRef, Text, HStack } from "@chakra-ui/react";
 
 import type { ProjectWithContribution } from "commons/graphql/contributions";
+import Repository from "components/repository";
 import RepositoryContainer from "components/repository/RepositoryContainer";
 import RepositorySection from "components/repository/RepositorySection";
 import RepositorySectionText from "components/repository/RepositorySectionText";
-import Repository from "components/repository";
 
 interface ContributionsProps {
     projectsWithContribution: ProjectWithContribution[];
@@ -22,7 +22,7 @@ export const Contributions = forwardRef<ContributionsProps, typeof Flex>(
                 onRight
             />
             <RepositoryContainer>
-                {projectsWithContribution.map(projectWithContribution => (
+                {projectsWithContribution.map((projectWithContribution) => (
                     <Repository
                         key={projectWithContribution.name}
                         details={projectWithContribution}

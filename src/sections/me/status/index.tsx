@@ -10,7 +10,7 @@ import { useLanyardWs } from "use-lanyard";
 export default function Status(): JSX.Element | null {
     const data = useLanyardWs(DISCORD);
 
-    const activity = data?.activities?.find(act => act.type === 0);
+    const activity = data?.activities?.find((act) => act.type === 0);
 
     let content: LanyardContent | null = null;
 
