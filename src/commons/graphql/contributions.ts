@@ -1,4 +1,4 @@
-import { GITHUB } from "commons/config";
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import githubGraphQL from "commons/graphql";
 import gql from "commons/graphql/gql";
 import type { Project, RepositoryData } from "commons/graphql/projects";
@@ -20,9 +20,12 @@ export default async function contributions(): Promise<ProjectWithContribution[]
         json.data.viewer.pullRequests.nodes;
 
     while (json.data.viewer.pullRequests.pageInfo.hasNextPage) {
+        // eslint-disable-next-line prefer-destructuring
         const pullRequests: PullRequestsData = json.data.viewer.pullRequests;
 
+        // eslint-disable-next-line no-await-in-loop
         resp = await githubGraphQL(contributionsFromCursor(pullRequests.pageInfo.endCursor));
+        // eslint-disable-next-line no-await-in-loop
         json = await resp.json();
 
         rawProjectsWithContribution = rawProjectsWithContribution.concat(

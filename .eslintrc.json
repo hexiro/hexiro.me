@@ -4,8 +4,8 @@
         "node": true
     },
     "extends": ["xo", "xo-react", "xo-typescript", "prettier", "next/core-web-vitals"],
-    "parser": "@typescript-eslint/parser",
     "plugins": ["react", "react-hooks", "chakra-ui", "unused-imports", "no-relative-import-paths"],
+    "parser": "@typescript-eslint/parser",
     "rules": {
         "chakra-ui/require-specific-component": "error",
         "@typescript-eslint/no-unused-vars": "off",
@@ -26,7 +26,9 @@
         "react/function-component-definition": "off",
         "import/no-anonymous-default-export": "off",
         "capitalized-comments": "off",
-        "@typescript-eslint/ban-types": "off"
+        "@typescript-eslint/ban-types": "off",
+        "@typescript-eslint/consistent-type-definitions": "off",
+        "react/boolean-prop-naming": "off"
     },
     "parserOptions": {
         "ecmaFeatures": {
