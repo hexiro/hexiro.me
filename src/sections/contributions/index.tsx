@@ -16,10 +16,7 @@ export const Contributions = forwardRef<ContributionsProps, typeof Flex>(
         <RepositorySection ref={ref} id="contributions">
             <RepositorySectionText
                 title="Contributions"
-                description="These pull requests are my top 6 GitHub pull requests. They're sorted by
-                additions and deletions to showcase where my changes had a meaningful impact on the
-                project."
-                onRight
+                description="These are the top 6 repositories I've contributed to, sorted by additions and deletions to showcase where my changes had a meaningful impact on the project."
             />
             <RepositoryContainer>
                 {projectsWithContribution.map((projectWithContribution) => (
