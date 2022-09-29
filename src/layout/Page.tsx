@@ -16,8 +16,8 @@ export const Page = ({ name, description, children }: PageProps): JSX.Element =>
         <DefaultSeo
             description={description}
             title={name}
-            titleTemplate="%s | Hexiro"
-            defaultTitle="Page"
+            titleTemplate="Hexiro | %s"
+            defaultTitle="Hexiro"
             canonical="https://hexiro.me/"
             openGraph={{
                 type: "website",
