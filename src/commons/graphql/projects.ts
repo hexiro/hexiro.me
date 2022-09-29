@@ -16,7 +16,7 @@ export default async function projects(): Promise<Project[]> {
     const resp = await githubGraphQL(PROJECTS);
     const json = await resp.json();
     const rawProjects: RepositoryData[] = json.data.viewer.pinnedItems.nodes;
-    const projects = rawProjects.map(rawProject => parseProject(rawProject));
+    const projects = rawProjects.map((rawProject) => parseProject(rawProject));
     return projects;
 }
 

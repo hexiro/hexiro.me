@@ -31,7 +31,7 @@ const replace = (node: DOMNode): JSX.Element | null => {
 
             case "g-emoji":
             case "div": {
-                const children = node.children.map(child => replace(child));
+                const children = node.children.map((child) => replace(child));
                 return <Fragment key={key}>{children}</Fragment>;
             }
 
