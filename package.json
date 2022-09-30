@@ -13,7 +13,7 @@
         "analyze": "cross-env ANALYZE=true next build"
     },
     "dependencies": {
-        "@chakra-ui/react": "^2.2.1",
+        "@chakra-ui/react": "^2.3.2",
         "@emotion/react": "^11",
         "@emotion/styled": "^11",
         "framer-motion": "^6",
