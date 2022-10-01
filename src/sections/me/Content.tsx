@@ -26,7 +26,7 @@ const Content = ({
     projects,
     projectsWithContribution,
 }: ContentProps) => (
-    <VStack spacing={32} _first={{ paddingTop: 40 }} _last={{ paddingBottom: 20 }}>
+    <VStack spacing={32} _first={{ paddingTop: 40 }} _last={{ paddingBottom: 24 }}>
         <Me ref={meRef} description={description} />
         <Projects ref={projectsRef} projects={projects} />
         <Contributions ref={contributionsRef} projectsWithContribution={projectsWithContribution} />
