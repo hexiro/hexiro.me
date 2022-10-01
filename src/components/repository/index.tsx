@@ -38,57 +38,55 @@ export default function Repository({
             borderColor="background.lightened"
             _hover={pop}
         >
-            <Box>
-                <Flex as="header" className="repository-header" align="center" paddingBottom={0.5}>
-                    <Heading
-                        className="repository-name"
-                        as="h3"
-                        size="md"
-                        fontWeight={300}
-                        lineHeight="unset"
-                        overflow="hidden"
-                        textOverflow="ellipsis"
-                        whiteSpace="nowrap"
-                    >
-                        <LinkOverlay href={details.url}>
-                            {details.ownerName !== GITHUB && (
-                                <Box as="span" display={{ base: "none", md: "revert" }}>
-                                    {details.ownerName}/
-                                </Box>
-                            )}
-                            <Box as="span">{details.name}</Box>
-                        </LinkOverlay>
-                    </Heading>
-                    <Flex
-                        className="repository-details"
-                        align="center"
-                        marginLeft="auto"
-                        paddingLeft="4%"
-                    >
-                        <HStack spacing={2}>
-                            <Stars stargazers={details.totalStars} />
-                            <Forks forks={details.totalForks} />
-                        </HStack>
-                    </Flex>
-                </Flex>
-                <Flex className="repository-badges" paddingBottom={1} gap={2} wrap="wrap">
-                    {details.languages.map((language) => (
-                        <LanguageBadge key={language} name={language} />
-                    ))}
-                </Flex>
-                <Text paddingBottom={4}>
-                    <ParseHTML html={details.descriptionHTML} />
-                </Text>
-                <Flex
-                    as="footer"
-                    className="repository-footer"
-                    align="center"
-                    position="absolute"
-                    bottom={3}
+            <Flex as="header" className="repository-header" align="center" paddingBottom={0.5}>
+                <Heading
+                    className="repository-name"
+                    as="h3"
+                    size="md"
+                    fontWeight={300}
+                    lineHeight="unset"
+                    overflow="hidden"
+                    textOverflow="ellipsis"
+                    whiteSpace="nowrap"
                 >
-                    {children}
+                    <LinkOverlay href={details.url}>
+                        {details.ownerName !== GITHUB && (
+                            <Box as="span" display={{ base: "none", md: "revert" }}>
+                                {details.ownerName}/
+                            </Box>
+                        )}
+                        <Box as="span">{details.name}</Box>
+                    </LinkOverlay>
+                </Heading>
+                <Flex
+                    className="repository-details"
+                    align="center"
+                    marginLeft="auto"
+                    paddingLeft="4%"
+                >
+                    <HStack spacing={2}>
+                        <Stars stargazers={details.totalStars} />
+                        <Forks forks={details.totalForks} />
+                    </HStack>
                 </Flex>
-            </Box>
+            </Flex>
+            <Flex className="repository-badges" paddingBottom={1} gap={2} wrap="wrap">
+                {details.languages.map((language) => (
+                    <LanguageBadge key={language} name={language} />
+                ))}
+            </Flex>
+            <Text paddingBottom={4} fontSize={{ base: "xs", sm: "sm", md: "md" }}>
+                <ParseHTML html={details.descriptionHTML} />
+            </Text>
+            <Flex
+                as="footer"
+                className="repository-footer"
+                align="center"
+                position="absolute"
+                bottom={3}
+            >
+                {children}
+            </Flex>
         </LinkBox>
     );
 }
