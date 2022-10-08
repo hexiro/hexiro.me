@@ -75,7 +75,12 @@ export default function Repository({
                     <LanguageBadge key={language} name={language} />
                 ))}
             </Flex>
-            <Text paddingBottom={4} fontSize={{ base: "xs", sm: "sm", md: "md" }}>
+            <Text
+                display="-webkit-box"
+                overflow="hidden"
+                textOverflow="ellipsis"
+                sx={{ lineClamp: "3", "-webkit-line-clamp": "3", "-webkit-box-orient": "vertical" }}
+            >
                 <ParseHTML html={details.descriptionHTML} />
             </Text>
             <Flex
