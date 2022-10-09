@@ -13,7 +13,8 @@ const replace = (node: DOMNode): JSX.Element | null => {
     const key = hash(node);
 
     if (node instanceof Text) {
-        if (node.next ?? node.prev) {
+        // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+        if (node.next || node.prev) {
             return <span key={key}>{node.data}</span>;
         }
     }
