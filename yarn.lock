@@ -4080,11 +4080,6 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-swr@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/swr/-/swr-1.3.0.tgz#c6531866a35b4db37b38b72c45a63171faf9f4e8"
-  integrity sha512-dkghQrOl2ORX9HYrMDtPa7LTVHJjCTeZoB1dqTbnnEDlSvN8JEKpYIYurDfvbQFUUS8Cg8PceFVZNkW0KNNYPw==
-
 tar-fs@^2.0.0, tar-fs@^2.1.1:
   version "2.1.1"
   resolved "https://registry.npmjs.org/tar-fs/-/tar-fs-2.1.1.tgz"
@@ -4228,12 +4223,10 @@ use-callback-ref@^1.3.0:
   dependencies:
     tslib "^2.0.0"
 
-use-lanyard@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/use-lanyard/-/use-lanyard-1.2.0.tgz#672193fe2e9c46d66c08a6037cd21f67295cb498"
-  integrity sha512-cFGuRhQx1K7Mh3jAR+7GdNdQ/zRCp1FRg8b/ROPGXRKNptFdEXw1V1I3144WkDORXzkEQnJg6YSx1iq/7cLuCQ==
-  dependencies:
-    swr "^1.3.0"
+use-lanyard@^1.3.3:
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/use-lanyard/-/use-lanyard-1.3.7.tgz#57268a2ceebea0dfe8eb65aa9c022f1e77d1cbdc"
+  integrity sha512-bxIBdehr77mJOW6c6l5L6tXYuT/EzVaDltVOy+IL4knqXhl0zI51sOhg0M5HvV/QhKNLXED4Cg3OyiSd+Xp88Q==
 
 use-sidecar@^1.1.2:
   version "1.1.2"
