@@ -30,7 +30,7 @@ export default function Home({ projects, projectsWithContribution }: HomeProps) 
         useInView(useInViewOptions);
 
     return (
-        <Page name="Home" description={`Hi! I'm Hexiro, ${description}`}>
+        <Page name="Home" description={`Hi! I'm Hexiro, ${DESCRIPTION}`}>
             <Nav
                 sections={{
                     me: { inView: meInView, current: meCurrent },
