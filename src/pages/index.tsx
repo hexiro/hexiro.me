@@ -15,6 +15,9 @@ interface HomeProps {
     projectsWithContribution: ProjectWithContribution[];
 }
 
+const DESCRIPTION =
+      "A self-taught software engineer who enjoys problem solving, technology, building software, and contributing to open source projects.";
+
 export default function Home({ projects, projectsWithContribution }: HomeProps) {
     const useInViewOptions: IntersectionOptions = {
         threshold: 0.3,
@@ -25,9 +28,6 @@ export default function Home({ projects, projectsWithContribution }: HomeProps) 
     const [projectsRef, projectsInView, projectsCurrent] = useInView(useInViewOptions);
     const [contributionsRef, contributionsInView, contributionsCurrent] =
         useInView(useInViewOptions);
-
-    const description =
-        "A self-taught software engineer who enjoys problem solving, technology, building software, and contributing to open source projects.";
 
     return (
         <Page name="Home" description={`Hi! I'm Hexiro, ${description}`}>
@@ -42,7 +42,7 @@ export default function Home({ projects, projectsWithContribution }: HomeProps) 
                 meRef={meRef}
                 projectsRef={projectsRef}
                 contributionsRef={contributionsRef}
-                description={description}
+                description={DESCRIPTION}
                 projects={projects}
                 projectsWithContribution={projectsWithContribution}
             />
