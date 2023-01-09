@@ -4,10 +4,20 @@
         "node": true
     },
     "extends": ["xo", "xo-react", "xo-typescript", "prettier", "next/core-web-vitals"],
-    "plugins": ["react", "react-hooks", "chakra-ui", "unused-imports", "no-relative-import-paths"],
+    "plugins": ["react", "react-hooks", "unused-imports", "no-relative-import-paths"],
     "parser": "@typescript-eslint/parser",
     "rules": {
-        "chakra-ui/require-specific-component": "error",
+        "no-negated-condition": "off",
+        "capitalized-comments": "off",
+        "unused-imports/no-unused-imports": "error",
+        "no-relative-import-paths/no-relative-import-paths": [
+            "error",
+            { "allowSameFolder": false, "rootDir": "src" }
+        ],
+        "import/no-anonymous-default-export": "off",
+        "react/display-name": "off",
+        "react/function-component-definition": "off",
+        "react/boolean-prop-naming": "off",
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/naming-convention": "off",
         "@typescript-eslint/no-confusing-void-expression": "off",
@@ -17,18 +27,8 @@
                 "prefer": "type-imports"
             }
         ],
-        "unused-imports/no-unused-imports": "error",
-        "no-relative-import-paths/no-relative-import-paths": [
-            "error",
-            { "allowSameFolder": false, "rootDir": "src" }
-        ],
-        "react/display-name": "off",
-        "react/function-component-definition": "off",
-        "import/no-anonymous-default-export": "off",
-        "capitalized-comments": "off",
         "@typescript-eslint/ban-types": "off",
-        "@typescript-eslint/consistent-type-definitions": "off",
-        "react/boolean-prop-naming": "off"
+        "@typescript-eslint/consistent-type-definitions": "off"
     },
     "parserOptions": {
         "ecmaFeatures": {
