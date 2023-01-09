@@ -13,7 +13,7 @@ const Span = styled("span", {
             pop: {
                 display: "inline-block",
                 willChange: "transform",
-                transition: "transform 0.2s ease-in-out",
+                transition: "transform 0.2s $ease-in-out",
                 "&:hover": {
                     transform: "translateY(-2px)",
                 },

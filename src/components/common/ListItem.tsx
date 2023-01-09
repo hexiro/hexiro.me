@@ -6,13 +6,6 @@ const ListItem = styled("li", {
     fontSize: 28,
     fontWeight: 500,
     listStyle: "none",
-
-    willChange: "transform",
-    transition: "transform 0.2s ease-in-out",
-
-    "&:hover": {
-        transform: "translateY(-2px)",
-    },
 });
 
 export default ListItem;

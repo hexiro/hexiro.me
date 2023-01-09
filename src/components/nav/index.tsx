@@ -1,15 +1,18 @@
 import { styled } from "theme";
 
-import Heading from "components/Heading";
-import Link from "components/Link";
-import ListItem from "components/ListItem";
-import Span from "components/Span";
+import { useState } from "react";
+
+import Heading from "components/common/Heading";
+import Span from "components/common/Span";
+import Route from "components/nav/Route";
 
 interface NavProps {
     routes: string[];
 }
 
 export default function Nav({ routes }: NavProps) {
+    const [selectedRoute, setSelectedRoute] = useState(routes[0]);
+
     return (
         <NavContainer>
             <NavLeft>
@@ -18,9 +21,7 @@ export default function Nav({ routes }: NavProps) {
                 </Heading>
                 <UnorderedList>
                     {routes.map((name) => (
-                        <ListItem key={name} style={{ textTransform: "capitalize" }}>
-                            <Link href={`/${name.toLowerCase()}`}>{name}</Link>
-                        </ListItem>
+                        <Route key={name} name={name} isSelected={name === selectedRoute} />
                     ))}
                 </UnorderedList>
             </NavLeft>
@@ -29,6 +30,7 @@ export default function Nav({ routes }: NavProps) {
 }
 
 const NavContainer = styled("nav", {
+    position: "relative",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",

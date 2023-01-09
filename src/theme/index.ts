@@ -57,7 +57,9 @@ const stitches = createStitches({
         },
         shadows: {},
         zIndices: {},
-        transitions: {},
+        transitions: {
+            "ease-in-out": "cubic-bezier(0.4, 0, 0.2, 1)",
+        },
     },
 });
 
