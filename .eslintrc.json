@@ -9,6 +9,7 @@
     "rules": {
         "no-negated-condition": "off",
         "capitalized-comments": "off",
+        "new-cap": "off",
         "unused-imports/no-unused-imports": "error",
         "no-relative-import-paths/no-relative-import-paths": [
             "error",
@@ -18,6 +19,7 @@
         "react/display-name": "off",
         "react/function-component-definition": "off",
         "react/boolean-prop-naming": "off",
+        "react/no-danger": "off",
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/naming-convention": "off",
         "@typescript-eslint/no-confusing-void-expression": "off",

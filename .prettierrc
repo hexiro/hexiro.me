@@ -5,7 +5,7 @@
     "printWidth": 100,
     "tabWidth": 4,
     "useTabs": false,
-    "importOrder": ["((^@fontsource)|(.css$))", "^(react|next)(/.*|)$", ".*"],
+    "importOrder": ["^(theme)$", "^(react|next)(/.*|)$", ".*"],
     "importOrderSeparation": true,
     "quoteProps": "preserve",
     "arrowParens": "always"

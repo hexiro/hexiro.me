@@ -3,11 +3,19 @@ import { createStitches } from "@stitches/react";
 const stitches = createStitches({
     theme: {
         colors: {
-            primary: "rgb(32 33 34)",
-            secondary: "rgb(32 33 36)",
-            tertiary: "rgba(198, 183, 203, 0.4)",
-            "text-primary": "rgb(218, 218, 225)",
-            "text-secondary": "rgb(171, 171, 212)",
+            // brand colors
+            "brand-primary": "#4BFF9F",
+            "brand-accent": "#E7FFF2",
+            // text colors
+            "text-primary": "#D2E0D5",
+            "text-secondary": "#B7BEB9",
+            // background colors
+            "background-primary": "#191C1D",
+            "background-secondary": "#292C2F",
+            "background-tertiary": "rgba(232, 255, 232, 0.2)",
+            // modifiers
+            "lighten-10": "rgba(255, 255, 255, 0.1)",
+            "lighten-20": "rgba(255, 255, 255, 0.2)",
         },
         space: {
             1: "5px",
@@ -22,7 +30,7 @@ const stitches = createStitches({
         },
         fonts: {
             heading: "Plus Jakarta Sans, sans-serif",
-            // text: "Plus Jakarta Sans, sans-serif",
+            text: "Plus Jakarta Sans, sans-serif",
             // mono: "JetBrains Mono, monospace",
         },
         media: {
@@ -66,19 +74,18 @@ export const globalStyles = globalCss({
         scrollBehavior: "smooth",
     },
     body: {
-        fontFamily: "$heading",
+        fontFamily: "$text",
         fontWeight: 400,
         fontSize: 16,
-        lineHeight: 1.5,
-        overflowX: "hidden",
-        backgroundColor: "$primary",
+        lineHeight: 1.2,
         minHeight: "100vh",
         height: "100%",
+        overflowX: "hidden",
         color: "$text-primary",
-    },
-    "h1, h2, h3, h4, h5, h6": {
-        fontFamily: "$heading",
-        color: "$text-primary",
+        backgroundColor: "$background-primary",
+        "-webkit-font-smoothing": "antialiased",
+        "-moz-osx-font-smoothing": "grayscale",
+        textRendering: "optimizeLegibility",
     },
     "input, button, textarea, select": {
         all: "unset",

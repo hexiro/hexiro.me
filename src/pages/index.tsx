@@ -1,5 +1,5 @@
+import Nav from "components/Nav";
+
 export default function Home() {
-    return (
-        <div style={{ padding: 60, height: "100vh", fontWeight: 600, fontSize: "4em" }}>123</div>
-    );
+    return <Nav routes={["Me", "Projects", "Skills", "Dashboard"]} />;
 }
