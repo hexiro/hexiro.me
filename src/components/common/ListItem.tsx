@@ -4,7 +4,7 @@ const ListItem = styled("li", {
     color: "$text-primary",
     fontFamily: "$heading",
     fontSize: 28,
-    fontWeight: 500,
+    fontWeight: 600,
     listStyle: "none",
 });
 

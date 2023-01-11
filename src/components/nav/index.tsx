@@ -15,7 +15,7 @@ export default function Nav({ routes }: NavProps) {
 
     return (
         <NavContainer>
-            <NavLeft>
+            {/* <NavLeft> */}
                 <Heading as="h2">
                     hexiro<Span color="brand-accent">.me</Span>
                 </Heading>
@@ -24,30 +24,35 @@ export default function Nav({ routes }: NavProps) {
                         <Route key={name} name={name} isSelected={name === selectedRoute} />
                     ))}
                 </UnorderedList>
-            </NavLeft>
+            {/* </NavLeft> */}
+            {/* <NavRight>
+                <Heading as="h3">Hello, world!</Heading>
+            </NavRight> */}
         </NavContainer>
     );
 }
 
 const NavContainer = styled("nav", {
-    position: "relative",
     display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
+    position: "relative",
+    flexDirection: "column",
+    alignItems: "flex-start",
     width: "100%",
-    padding: "25px 150px",
+    paddingY: 25,
+    paddingX: "min(10%, 150px)",
     borderBottom: "1px solid $lighten-10",
 });
 
-const NavLeft = styled("div", {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-start",
-    // lineHeight: 1,
-});
+// const NavLeft = styled("div", {
+//     display: "flex",
+//     flexDirection: "column",
+//     alignItems: "flex-start",
+//     width: "100%",
+// });
 
 const UnorderedList = styled("ul", {
     display: "flex",
     flexDirection: "row",
     gap: "$3",
+    width: "100%",
 });

@@ -16,7 +16,7 @@ export default function Route({ name, isSelected }: RouteProps) {
             <Link href={`/${name.toLowerCase()}`}>
                 <Span animation="pop">{name}</Span>
             </Link>
-            {isSelected && <Underline layoutId="underline" />}
+            {/* {isSelected && <Underline layoutId="underline" />} */}
         </ListItem>
     );
 }
