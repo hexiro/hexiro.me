@@ -27,6 +27,7 @@ const stitches = createStitches({
             7: "45px",
             8: "65px",
             9: "80px",
+            "main-lr-padding": "min(10%, 150px)",
         },
         fonts: {
             heading: "Plus Jakarta Sans, sans-serif",
@@ -83,6 +84,7 @@ const stitches = createStitches({
             marginBottom: value,
         }),
     },
+    prefix: "hexiro",
 });
 
 export const { styled, css, getCssText } = stitches;
