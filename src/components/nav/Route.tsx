@@ -22,16 +22,9 @@ export default function Route({ name, isSelected }: RouteProps) {
 }
 
 const AnchorListItemWrapper = styled(ListItem, {
-    fontSize: 20,
-    textTransform: "capitalize",
     position: "relative",
-
-    "@lg": {
-        fontSize: 24,
-    },
-    "@xl": {
-        fontSize: 28,
-    },
+    
+    
 });
 
 const Underline = styled(motion.div, {

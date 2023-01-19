@@ -2,10 +2,18 @@ import { styled } from "theme";
 
 const ListItem = styled("li", {
     color: "$text-primary",
+    fontSize: 20,
     fontFamily: "$heading",
-    fontSize: 28,
     fontWeight: 600,
     listStyle: "none",
+    textTransform: "capitalize",
+
+    "@lg": {
+        fontSize: 24,
+    },
+    "@xl": {
+        fontSize: 28,
+    },
 });
 
 export default ListItem;

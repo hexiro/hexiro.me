@@ -13,6 +13,7 @@ import Route from "components/nav/Route";
 import type { Variants, Transition } from "framer-motion";
 import { motion, AnimatePresence } from "framer-motion";
 import { Squash as Hamburger } from "hamburger-react";
+import ListItem from "components/common/ListItem";
 
 interface NavProps {
     routes: string[];
@@ -52,6 +53,9 @@ export default function Nav({ routes }: NavProps) {
                         ))}
                     </UnorderedList>
                 </Hide>
+                <Show below="sm">
+                    <ListItem as="p">Portfolio</ListItem>
+                </Show>
             </NavLeft>
             <NavRight>
                 <Hide below="sm">
