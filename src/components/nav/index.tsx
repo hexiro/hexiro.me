@@ -2,7 +2,9 @@ import { styled } from "theme";
 
 import { useState } from "react";
 
+import { GITHUB_LINK, LINKED_IN_LINK, TWITTER_LINK } from "commons/config";
 import { LinkedIn, GitHub, Twitter } from "commons/icons";
+import AnchorList from "components/common/AnchorList";
 import Heading from "components/common/Heading";
 import Span from "components/common/Span";
 import Hide from "components/layout/Hide";
@@ -43,7 +45,7 @@ export default function Nav({ routes }: NavProps) {
                 <Heading as="h2">
                     hexiro<Span color="brand-accent">.me</Span>
                 </Heading>
-                <Hide below="md">
+                <Hide below="sm">
                     <UnorderedList>
                         {routes.map((name) => (
                             <Route key={name} name={name} isSelected={name === selectedRoute} />
@@ -52,14 +54,20 @@ export default function Nav({ routes }: NavProps) {
                 </Hide>
             </NavLeft>
             <NavRight>
-                <Hide below="md">
-                    <Icons>
-                        <Twitter />
-                        <GitHub />
-                        <LinkedIn />
-                    </Icons>
+                <Hide below="sm">
+                    <AnchorList.List>
+                        <AnchorList.Item newTab href={TWITTER_LINK}>
+                            <Twitter size="lg" />
+                        </AnchorList.Item>
+                        <AnchorList.Item newTab href={GITHUB_LINK}>
+                            <GitHub size="lg" />
+                        </AnchorList.Item>
+                        <AnchorList.Item newTab href={LINKED_IN_LINK}>
+                            <LinkedIn size="lg" />
+                        </AnchorList.Item>
+                    </AnchorList.List>
                 </Hide>
-                <Show below="md">
+                <Show below="sm">
                     <StyledHamburger
                         rounded
                         size={30}
@@ -83,17 +91,6 @@ export default function Nav({ routes }: NavProps) {
     );
 }
 
-const Icons = styled("div", {
-    display: "flex",
-    flexDirection: "row",
-    gap: "$3",
-
-    "& > svg": {
-        height: 34,
-        color: "$brand-primary",
-    },
-});
-
 const StyledHamburger = styled(Hamburger, {
     color: "$text-primary",
 });
@@ -113,6 +110,7 @@ const NavLeft = styled("div", {
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
+    paddingRight: "$4",
 });
 
 const NavRight = styled("div", {
@@ -120,6 +118,7 @@ const NavRight = styled("div", {
     flexDirection: "column",
     alignItems: "flex-start",
     marginLeft: "auto",
+    paddingLeft: "$4",
 });
 
 const UnorderedList = styled("ul", {
