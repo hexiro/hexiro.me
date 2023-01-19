@@ -12,14 +12,27 @@ interface RouteProps {
 
 export default function Route({ name, isSelected }: RouteProps) {
     return (
-        <ListItem key={name} style={{ textTransform: "capitalize", position: "relative" }}>
+        <AnchorListItemWrapper key={name}>
             <Link href={`/${name.toLowerCase()}`}>
                 <Span animation="pop">{name}</Span>
             </Link>
-            {/* {isSelected && <Underline layoutId="underline" />} */}
-        </ListItem>
+            {isSelected && <Underline layoutId="underline" />}
+        </AnchorListItemWrapper>
     );
 }
+
+const AnchorListItemWrapper = styled(ListItem, {
+    fontSize: 20,
+    textTransform: "capitalize",
+    position: "relative",
+
+    "@lg": {
+        fontSize: 24,
+    },
+    "@xl": {
+        fontSize: 28,
+    },
+});
 
 const Underline = styled(motion.div, {
     position: "absolute",

@@ -5,7 +5,7 @@ import Nav from "components/nav";
 export default function Home() {
     return (
         <Page>
-            <Nav routes={["Me", "Projects", "Skills", "Dashboard"]} />
+            <Nav routes={["Home", "Projects", "Skills", "Dashboard"]} />
         </Page>
     );
 }
