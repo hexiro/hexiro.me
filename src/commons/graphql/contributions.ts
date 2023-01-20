@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import githubGraphQL from "@/commons/graphql";
 import gql from "@/commons/graphql/gql";
 import type { Project, RepositoryData } from "@/commons/graphql/projects";
@@ -9,36 +8,32 @@ export interface ProjectWithContribution extends Project {
     deletions: number;
 }
 
+type JsonType = { data: { viewer: { pullRequests: PullRequestsData } } };
+
 export default async function contributions(): Promise<ProjectWithContribution[]> {
     let resp: Response;
-    let json: any;
+    let json: JsonType;
 
     resp = await githubGraphQL(CONTRIBUTIONS_FIRST_PAGE);
-    json = await resp.json();
+    json = (await resp.json()) as JsonType;
 
-    let rawProjectsWithContribution: ContributionsAndRepositoryData[] =
-        json.data.viewer.pullRequests.nodes;
+    let rawProjectsWithContribution = json.data.viewer.pullRequests.nodes;
 
     while (json.data.viewer.pullRequests.pageInfo.hasNextPage) {
-        // eslint-disable-next-line prefer-destructuring
-        const pullRequests: PullRequestsData = json.data.viewer.pullRequests;
+        const { pullRequests } = json.data.viewer;
 
-        // eslint-disable-next-line no-await-in-loop
         resp = await githubGraphQL(contributionsFromCursor(pullRequests.pageInfo.endCursor));
-        // eslint-disable-next-line no-await-in-loop
-        json = await resp.json();
+        json = (await resp.json()) as JsonType;
 
-        rawProjectsWithContribution = rawProjectsWithContribution.concat(
-            json.data.viewer.pullRequests.nodes
-        );
+        rawProjectsWithContribution.push(...json.data.viewer.pullRequests.nodes);
     }
 
     const nameWithOwner = ({ baseRepository }: ContributionsAndRepositoryData) =>
         `${baseRepository.owner.login}/${baseRepository.name}`;
 
     // remove repos the user has access to, is in the organization of, or owns
-    rawProjectsWithContribution = rawProjectsWithContribution.filter(
-        (x: { authorAssociation: string | string[] }) => x.authorAssociation.includes("CONTRIBUTOR")
+    rawProjectsWithContribution = rawProjectsWithContribution.filter((x) =>
+        x.authorAssociation.includes("CONTRIBUTOR")
     );
 
     const matchedProjects: Record<string, ContributionsAndRepositoryData[]> = {};

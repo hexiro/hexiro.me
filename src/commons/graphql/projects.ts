@@ -11,11 +11,12 @@ export interface Project {
     languages: string[];
 }
 
+type JsonType = { data: { viewer: { pinnedItems: { nodes: RepositoryData[] } } } };
+
 export default async function projects(): Promise<Project[]> {
-    /* eslint-disable @typescript-eslint/no-unsafe-assignment */
     const resp = await githubGraphQL(PROJECTS);
-    const json = await resp.json();
-    const rawProjects: RepositoryData[] = json.data.viewer.pinnedItems.nodes;
+    const json = (await resp.json()) as JsonType;
+    const rawProjects = json.data.viewer.pinnedItems.nodes;
     const projects = rawProjects.map((rawProject) => parseProject(rawProject));
     return projects;
 }
