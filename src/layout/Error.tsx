@@ -1,4 +1,4 @@
-export {}
+export {};
 // import { Center, Heading, Text } from "@chakra-ui/react";
 
 // import { Page } from "layout/Page";

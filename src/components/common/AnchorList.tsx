@@ -2,9 +2,9 @@ import { styled } from "theme";
 
 import type { PropsWithChildren } from "react";
 
-import Link from "components/common/Link";
-import ListItem from "components/common/ListItem";
-import Span from "components/common/Span";
+import Link from "@/components/common/Link";
+import ListItem from "@/components/common/ListItem";
+import Span from "@/components/common/Span";
 
 const AnchorList = styled("ul", {
     display: "flex",

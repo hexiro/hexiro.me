@@ -1,11 +1,12 @@
+import type { ComponentProps } from "@stitches/react";
 import { styled } from "theme";
 
 import { createElement } from "react";
 
-import type { ComponentProps } from "@stitches/react";
-import type { IconType } from "commons/icons";
-import Link from "components/common/Link";
-import { AnimatePresence, motion, Transition, Variants } from "framer-motion";
+import type { IconType } from "@/commons/icons";
+import Link from "@/components/common/Link";
+import type { Transition, Variants } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 type MenuItemProps = {
     name: string;

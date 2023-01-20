@@ -1,5 +1,5 @@
-import githubGraphQL from "commons/graphql";
-import gql from "commons/graphql/gql";
+import githubGraphQL from "@/commons/graphql";
+import gql from "@/commons/graphql/gql";
 
 export interface Project {
     name: string;

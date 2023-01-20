@@ -1,8 +1,7 @@
+import type { ComponentProps } from "@stitches/react";
 import { styled } from "theme";
 
 import NextLink from "next/link";
-
-import type { ComponentProps } from "@stitches/react";
 
 const LinkWrapper = styled(NextLink, {
     color: "inherit",

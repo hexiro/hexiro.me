@@ -1,8 +1,7 @@
+import type { ComponentProps } from "@stitches/react";
 import { styled } from "theme";
 
 import { forwardRef } from "react";
-
-import type { ComponentProps } from "@stitches/react";
 
 const Icon = styled("svg", {
     color: "$brand-primary",

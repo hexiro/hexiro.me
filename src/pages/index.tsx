@@ -1,6 +1,6 @@
 import { styled } from "theme";
 
-import { GITHUB_LINK, LINKED_IN_LINK, TWITTER_LINK } from "commons/config";
+import { GITHUB_LINK, LINKED_IN_LINK, TWITTER_LINK } from "@/commons/config";
 import {
     DashboardIcon,
     GitHubIcon,
@@ -9,9 +9,9 @@ import {
     ProjectsIcon,
     SkillsIcon,
     TwitterIcon,
-} from "commons/icons";
-import type { NavRoute } from "components/nav";
-import Nav from "components/nav";
+} from "@/commons/icons";
+import type { NavRoute } from "@/components/nav";
+import Nav from "@/components/nav";
 
 const ROUTES: NavRoute[] = [
     {

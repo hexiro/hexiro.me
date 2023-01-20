@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import githubGraphQL from "commons/graphql";
-import gql from "commons/graphql/gql";
-import type { Project, RepositoryData } from "commons/graphql/projects";
-import { parseProject } from "commons/graphql/projects";
+import githubGraphQL from "@/commons/graphql";
+import gql from "@/commons/graphql/gql";
+import type { Project, RepositoryData } from "@/commons/graphql/projects";
+import { parseProject } from "@/commons/graphql/projects";
 
 export interface ProjectWithContribution extends Project {
     additions: number;
@@ -37,8 +37,8 @@ export default async function contributions(): Promise<ProjectWithContribution[]
         `${baseRepository.owner.login}/${baseRepository.name}`;
 
     // remove repos the user has access to, is in the organization of, or owns
-    rawProjectsWithContribution = rawProjectsWithContribution.filter((x) =>
-        x.authorAssociation.includes("CONTRIBUTOR")
+    rawProjectsWithContribution = rawProjectsWithContribution.filter(
+        (x: { authorAssociation: string | string[] }) => x.authorAssociation.includes("CONTRIBUTOR")
     );
 
     const matchedProjects: Record<string, ContributionsAndRepositoryData[]> = {};
