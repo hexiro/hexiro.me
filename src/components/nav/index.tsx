@@ -49,10 +49,10 @@ export default function Nav({ routes, socials }: NavProps) {
     const menuRef = useRef<HTMLUListElement>(null);
     const hamburgerOpenButtonRef = useRef<HTMLButtonElement>(null);
 
-    const [selectedRoute, setSelectedRoute] = useState(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const [hoveredMenuItem, setHoveredMenuItem] = useState<number | null>(null);
+    const [selectedRouteIndex, setSelectedRouteIndex] = useState<number>(0);
+    const [hoveredMenuItemIndex, setHoveredMenuItemIndex] = useState<number | null>(null);
 
     useOutsideMenuClick({
         menuRef,
@@ -73,7 +73,7 @@ export default function Nav({ routes, socials }: NavProps) {
                                 key={name}
                                 name={name}
                                 href={href}
-                                isSelected={index === selectedRoute}
+                                isSelected={index === selectedRouteIndex}
                             />
                         ))}
                     </UnorderedList>
@@ -109,7 +109,7 @@ export default function Nav({ routes, socials }: NavProps) {
                                 initial="initial"
                                 animate="animate"
                                 exit="initial"
-                                onHoverEnd={() => setHoveredMenuItem(null)}
+                                onHoverEnd={() => setHoveredMenuItemIndex(null)}
                             >
                                 {routes.map(({ name, href, icon }, index) => (
                                     <MenuItem
@@ -117,9 +117,9 @@ export default function Nav({ routes, socials }: NavProps) {
                                         name={name}
                                         href={href}
                                         icon={icon}
-                                        highlighted={index === selectedRoute}
-                                        isSelected={index === hoveredMenuItem}
-                                        onHoverStart={() => setHoveredMenuItem(index)}
+                                        highlighted={index === selectedRouteIndex}
+                                        isSelected={index === hoveredMenuItemIndex}
+                                        onHoverStart={() => setHoveredMenuItemIndex(index)}
                                     />
                                 ))}
                                 <Divider />
@@ -130,9 +130,9 @@ export default function Nav({ routes, socials }: NavProps) {
                                         name={name}
                                         href={href}
                                         icon={icon}
-                                        isSelected={index + routes.length === hoveredMenuItem}
+                                        isSelected={index + routes.length === hoveredMenuItemIndex}
                                         onHoverStart={() =>
-                                            setHoveredMenuItem(index + routes.length)
+                                            setHoveredMenuItemIndex(index + routes.length)
                                         }
                                     />
                                 ))}
