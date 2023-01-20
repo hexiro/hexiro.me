@@ -6,12 +6,6 @@ import NextLink from "next/link";
 const LinkWrapper = styled(NextLink, {
     color: "inherit",
     textDecoration: "inherit",
-    // willChange: "transform",
-    // transition: "transform 0.2s ease-in-out",
-
-    // "&:hover": {
-    //     transform: "translateY(-2px)",
-    // },
 });
 
 type LinkProps = Omit<ComponentProps<typeof LinkWrapper>, "target"> & {
