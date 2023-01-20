@@ -147,8 +147,8 @@ const NavContainer = styled("nav", {
     flexDirection: "row",
     alignItems: "center",
     width: "100%",
-    paddingY: 25,
-    paddingX: "$main-lr-padding",
+    paddingY: "$main-y-padding",
+    paddingX: "$main-x-padding",
     borderBottom: "2px solid $lighten-10",
 });
 
@@ -193,7 +193,7 @@ const Menu = styled(motion.ul, {
     borderRadius: "$lg",
     border: "solid 1px $lighten-10",
 
-    right: "$main-lr-padding",
+    right: "$main-x-padding",
     top: "90%",
 
     paddingY: "20px",

@@ -1,22 +1,24 @@
+import type { PropertyValue } from "@stitches/react";
 import { createStitches } from "@stitches/react";
+
+export const colors = {
+    // brand colors
+    "brand-primary": "#4BFF9F",
+    "brand-accent": "#E7FFF2",
+    // text colors
+    "text-primary": "#D2E0D5",
+    "text-secondary": "#B7BEB9",
+    // background colors
+    "background-primary": "#191C1D",
+    "background-secondary": "#292C2F",
+    "background-tertiary": "#778088",
+    // modifiers
+    "lighten-10": "rgba(255, 255, 255, 0.1)",
+} as const;
 
 const stitches = createStitches({
     theme: {
-        colors: {
-            // brand colors
-            "brand-primary": "#4BFF9F",
-            "brand-accent": "#E7FFF2",
-            // text colors
-            "text-primary": "#D2E0D5",
-            "text-secondary": "#B7BEB9",
-            // background colors
-            "background-primary": "#191C1D",
-            "background-secondary": "#292C2F",
-            "background-tertiary": "#778088",
-            // modifiers
-            "lighten-10": "rgba(255, 255, 255, 0.1)",
-            "lighten-20": "rgba(255, 255, 255, 0.2)",
-        },
+        colors,
         space: {
             1: "5px",
             2: "10px",
@@ -27,7 +29,8 @@ const stitches = createStitches({
             7: "45px",
             8: "65px",
             9: "80px",
-            "main-lr-padding": "min(10%, 150px)",
+            "main-y-padding": "25px",
+            "main-x-padding": "min(10%, 150px)",
         },
         fonts: {
             heading: "Plus Jakarta Sans, sans-serif",
@@ -63,23 +66,23 @@ const stitches = createStitches({
         "2xl": "(min-width: 96em)",
     },
     utils: {
-        size: (value: string | number) => ({
+        size: (value: PropertyValue<"width">) => ({
             width: value,
             height: value,
         }),
-        paddingX: (value: string | number) => ({
+        paddingX: (value: PropertyValue<"paddingLeft">) => ({
             paddingLeft: value,
             paddingRight: value,
         }),
-        paddingY: (value: string | number) => ({
+        paddingY: (value: PropertyValue<"paddingTop">) => ({
             paddingTop: value,
             paddingBottom: value,
         }),
-        marginX: (value: string | number) => ({
+        marginX: (value: PropertyValue<"marginLeft">) => ({
             marginLeft: value,
             marginRight: value,
         }),
-        marginY: (value: string | number) => ({
+        marginY: (value: PropertyValue<"marginTop">) => ({
             marginTop: value,
             marginBottom: value,
         }),
