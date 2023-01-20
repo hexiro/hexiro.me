@@ -7,13 +7,14 @@ import { motion } from "framer-motion";
 
 interface RouteProps {
     name: string;
+    href: string;
     isSelected: boolean;
 }
 
-export default function Route({ name, isSelected }: RouteProps) {
+export default function Route({ name, href, isSelected }: RouteProps) {
     return (
         <AnchorListItemWrapper key={name}>
-            <Link href={`/${name.toLowerCase()}`}>
+            <Link href={href}>
                 <Span animation="pop">{name}</Span>
             </Link>
             {isSelected && <Underline layoutId="underline" />}
@@ -23,8 +24,6 @@ export default function Route({ name, isSelected }: RouteProps) {
 
 const AnchorListItemWrapper = styled(ListItem, {
     position: "relative",
-    
-    
 });
 
 const Underline = styled(motion.div, {

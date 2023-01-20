@@ -23,15 +23,14 @@ const Heading = styled("h1", {
                 },
             },
             h2: {
-                // fontSize: 40,
-                fontSize: 40,
+                fontSize: 36,
                 fontWeight: 700,
 
                 "@lg": {
-                    fontSize: 48,
+                    fontSize: 40,
                 },
                 "@xl": {
-                    fontSize: 52,
+                    fontSize: 44,
                 },
             },
             h3: {

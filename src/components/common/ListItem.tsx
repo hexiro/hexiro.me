@@ -12,7 +12,7 @@ const ListItem = styled("li", {
         fontSize: 24,
     },
     "@xl": {
-        fontSize: 28,
+        fontSize: 26,
     },
 });
 

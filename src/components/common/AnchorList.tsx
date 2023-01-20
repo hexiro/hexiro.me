@@ -24,7 +24,7 @@ const AnchorList = styled("ul", {
 type AnchorListItemProps = PropsWithChildren<{ href: string; newTab?: boolean }>;
 
 const AnchorListItemInner = ({ href, newTab, children }: AnchorListItemProps) => (
-    <Link href={href} target={newTab ? "_black" : undefined}>
+    <Link newTab href={href}>
         <Span animation="pop">{children}</Span>
     </Link>
 );
@@ -38,6 +38,14 @@ const AnchorListTextItem = (props: AnchorListItemProps) => (
 const AnchorListItem = (props: AnchorListItemProps) => (
     <DefaultListItem>
         <AnchorListItemInner {...props} />
+    </DefaultListItem>
+);
+
+const AnchorListItemNoAnimation = ({ href, newTab, children }: AnchorListItemProps) => (
+    <DefaultListItem>
+        <Link newTab href={href}>
+            {children}
+        </Link>
     </DefaultListItem>
 );
 
@@ -62,4 +70,5 @@ export default {
     List: AnchorList,
     TextItem: AnchorListTextItem,
     Item: AnchorListItem,
+    ItemNoAnimation: AnchorListItemNoAnimation,
 };

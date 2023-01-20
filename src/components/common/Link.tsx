@@ -2,7 +2,9 @@ import { styled } from "theme";
 
 import NextLink from "next/link";
 
-const Link = styled(NextLink, {
+import type { ComponentProps } from "@stitches/react";
+
+const LinkWrapper = styled(NextLink, {
     color: "inherit",
     textDecoration: "inherit",
     // willChange: "transform",
@@ -12,5 +14,13 @@ const Link = styled(NextLink, {
     //     transform: "translateY(-2px)",
     // },
 });
+
+type LinkProps = Omit<ComponentProps<typeof LinkWrapper>, "target"> & {
+    newTab?: boolean;
+};
+
+const Link = ({ newTab, ...props }: LinkProps) => (
+    <LinkWrapper target={newTab ? "_black" : undefined} {...props} />
+);
 
 export default Link;

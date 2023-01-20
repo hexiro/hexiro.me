@@ -1,11 +1,12 @@
 import { styled } from "theme";
 
-import { useState } from "react";
+import { createElement, useState } from "react";
 
-import { GITHUB_LINK, LINKED_IN_LINK, TWITTER_LINK } from "commons/config";
-import { LinkedIn, GitHub, Twitter } from "commons/icons";
+import type { IconType } from "commons/icons";
+import MenuItem from "components/MenuItem";
 import AnchorList from "components/common/AnchorList";
 import Heading from "components/common/Heading";
+import ListItem from "components/common/ListItem";
 import Span from "components/common/Span";
 import Hide from "components/layout/Hide";
 import Show from "components/layout/Show";
@@ -13,32 +14,40 @@ import Route from "components/nav/Route";
 import type { Variants, Transition } from "framer-motion";
 import { motion, AnimatePresence } from "framer-motion";
 import { Squash as Hamburger } from "hamburger-react";
-import ListItem from "components/common/ListItem";
 
-interface NavProps {
-    routes: string[];
+export interface NavRoute {
+    name: string;
+    href: string;
+    icon: IconType;
 }
 
-export default function Nav({ routes }: NavProps) {
-    const [selectedRoute, setSelectedRoute] = useState(routes[0]);
+interface NavProps {
+    routes: NavRoute[];
+    socials: NavRoute[];
+}
+
+const transition: Transition = {
+    type: "spring",
+    duration: 0.45,
+    bounce: 0.5,
+};
+
+const variants: Variants = {
+    animate: {
+        scale: 1,
+        opacity: 1,
+    },
+    initial: {
+        scale: 0.8,
+        opacity: 0,
+    },
+};
+
+export default function Nav({ routes, socials }: NavProps) {
+    const [selectedRoute, setSelectedRoute] = useState(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const transition: Transition = {
-        type: "spring",
-        duration: 0.45,
-        bounce: 0.5,
-    };
-
-    const variants: Variants = {
-        animate: {
-            scale: 1,
-            opacity: 1,
-        },
-        initial: {
-            scale: 0.8,
-            opacity: 0,
-        },
-    };
+    const [hoveredMenuItem, setHoveredMenuItem] = useState<number | null>(null);
 
     return (
         <NavContainer>
@@ -46,32 +55,33 @@ export default function Nav({ routes }: NavProps) {
                 <Heading as="h2">
                     hexiro<Span color="brand-accent">.me</Span>
                 </Heading>
-                <Hide below="sm">
+                <Hide below="md">
                     <UnorderedList>
-                        {routes.map((name) => (
-                            <Route key={name} name={name} isSelected={name === selectedRoute} />
+                        {routes.map(({ name, href }, index) => (
+                            <Route
+                                key={name}
+                                name={name}
+                                href={href}
+                                isSelected={index === selectedRoute}
+                            />
                         ))}
                     </UnorderedList>
                 </Hide>
-                <Show below="sm">
+                <Show below="md">
                     <ListItem as="p">Portfolio</ListItem>
                 </Show>
             </NavLeft>
             <NavRight>
-                <Hide below="sm">
+                <Hide below="md">
                     <AnchorList.List>
-                        <AnchorList.Item newTab href={TWITTER_LINK}>
-                            <Twitter size="lg" />
-                        </AnchorList.Item>
-                        <AnchorList.Item newTab href={GITHUB_LINK}>
-                            <GitHub size="lg" />
-                        </AnchorList.Item>
-                        <AnchorList.Item newTab href={LINKED_IN_LINK}>
-                            <LinkedIn size="lg" />
-                        </AnchorList.Item>
+                        {socials.map(({ name, href, icon }) => (
+                            <AnchorList.Item key={name} newTab href={href}>
+                                {createElement(icon)}
+                            </AnchorList.Item>
+                        ))}
                     </AnchorList.List>
                 </Hide>
-                <Show below="sm">
+                <Show below="md">
                     <StyledHamburger
                         rounded
                         size={30}
@@ -86,7 +96,34 @@ export default function Nav({ routes }: NavProps) {
                                 initial="initial"
                                 animate="animate"
                                 exit="initial"
-                            />
+                                onHoverEnd={() => setHoveredMenuItem(null)}
+                            >
+                                {routes.map(({ name, href, icon }, index) => (
+                                    <MenuItem
+                                        key={name}
+                                        name={name}
+                                        href={href}
+                                        icon={icon}
+                                        highlighted={index === selectedRoute}
+                                        isSelected={index === hoveredMenuItem}
+                                        onHoverStart={() => setHoveredMenuItem(index)}
+                                    />
+                                ))}
+                                <Divider />
+                                {socials.map(({ name, href, icon }, index) => (
+                                    <MenuItem
+                                        key={name}
+                                        newTab
+                                        name={name}
+                                        href={href}
+                                        icon={icon}
+                                        isSelected={index + routes.length === hoveredMenuItem}
+                                        onHoverStart={() =>
+                                            setHoveredMenuItem(index + routes.length)
+                                        }
+                                    />
+                                ))}
+                            </Menu>
                         )}
                     </AnimatePresence>
                 </Show>
@@ -142,15 +179,23 @@ const Menu = styled(motion.ul, {
     flexDirection: "column",
     gap: "$2",
     width: "14em",
-    height: "25em",
+    listStyle: "none",
 
     willChange: "transform",
     transformOrigin: "top right",
 
     backgroundColor: "$background-secondary",
     borderRadius: "$lg",
-    border: "solid 2px $lighten-10",
+    border: "solid 1px $lighten-10",
 
     right: "$main-lr-padding",
     top: "90%",
+
+    paddingY: "20px",
+});
+
+const Divider = styled("hr", {
+    width: "100%",
+    borderBottom: "1px solid $lighten-10",
+    marginY: "12px",
 });

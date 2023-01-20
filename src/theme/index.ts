@@ -12,7 +12,7 @@ const stitches = createStitches({
             // background colors
             "background-primary": "#191C1D",
             "background-secondary": "#292C2F",
-            "background-tertiary": "rgba(232, 255, 232, 0.2)",
+            "background-tertiary": "#778088",
             // modifiers
             "lighten-10": "rgba(255, 255, 255, 0.1)",
             "lighten-20": "rgba(255, 255, 255, 0.2)",
@@ -114,7 +114,7 @@ export const globalStyles = globalCss({
         "-moz-osx-font-smoothing": "grayscale",
         textRendering: "optimizeLegibility",
     },
-    "input, button, textarea, select": {
+    "input, button, textarea, select, hr": {
         all: "unset",
     },
 });
