@@ -1,5 +1,7 @@
 import { styled } from "theme";
 
+import { forwardRef } from "react";
+
 import type { ComponentProps } from "@stitches/react";
 
 const Icon = styled("svg", {
@@ -64,22 +66,23 @@ const Icon = styled("svg", {
 });
 
 export type IconType = typeof TwitterIcon;
+export type IconProps = ComponentProps<typeof Icon>;
 
-export const TwitterIcon = (props?: ComponentProps<typeof Icon>) => (
+export const TwitterIcon = (props?: IconProps) => (
     <Icon {...props}>
         <path d="M0 0h24v24H0z" fill="none" stroke="none" />
         <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
     </Icon>
 );
 
-export const GitHubIcon = (props?: ComponentProps<typeof Icon>) => (
+export const GitHubIcon = (props?: IconProps) => (
     <Icon {...props}>
         <path d="M0 0h24v24H0z" fill="none" stroke="none" />
         <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
     </Icon>
 );
 
-export const LinkedInIcon = (props?: ComponentProps<typeof Icon>) => (
+export const LinkedInIcon = (props?: IconProps) => (
     <Icon {...props}>
         <path d="M0 0h24v24H0z" fill="none" stroke="none" />
         <rect x="4" y="4" width="16" height="16" rx="2" />
@@ -90,21 +93,21 @@ export const LinkedInIcon = (props?: ComponentProps<typeof Icon>) => (
     </Icon>
 );
 
-export const MeIcon = (props?: ComponentProps<typeof Icon>) => (
+export const MeIcon = (props?: IconProps) => (
     <Icon {...props}>
         <path d="M21 21V19C21 17.9391 20.5259 16.9217 19.682 16.1716C18.8381 15.4214 17.6935 15 16.5 15H7.5C6.30653 15 5.16193 15.4214 4.31802 16.1716C3.47411 16.9217 3 17.9391 3 19V21" />
         <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" />
     </Icon>
 );
 
-export const ProjectsIcon = (props?: ComponentProps<typeof Icon>) => (
+export const ProjectsIcon = (props?: IconProps) => (
     <Icon {...props}>
         <rect width="14.5" height="14.5" x="4.75" y="4.75" rx="2" />
         <path d="M8.75 10.75L11.25 13L8.75 15.25" />
     </Icon>
 );
 
-export const SkillsIcon = (props?: ComponentProps<typeof Icon>) => (
+export const SkillsIcon = (props?: IconProps) => (
     <Icon {...props}>
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <circle cx="15" cy="15" r="3" />
@@ -116,9 +119,9 @@ export const SkillsIcon = (props?: ComponentProps<typeof Icon>) => (
     </Icon>
 );
 
-export const DashboardIcon = (props?: ComponentProps<typeof Icon>) => (
+export const DashboardIcon = (props?: IconProps) => (
     <Icon {...props}>
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M0 0h24v24H0z" fill="none" stroke="none" />
         <rect x="3" y="4" width="18" height="12" rx="1" />
         <path d="M7 20h10" />
         <path d="M9 16v4" />
@@ -127,5 +130,22 @@ export const DashboardIcon = (props?: ComponentProps<typeof Icon>) => (
         <path d="M12 12v-1" />
         <path d="M15 12v-2" />
         <path d="M12 12v-1" />
+    </Icon>
+);
+
+export const HamburgerMenuIcon = forwardRef<SVGSVGElement, IconProps>((props, ref) => (
+    <Icon ref={ref} {...props}>
+        <path d="M0 0h24v24H0z" fill="none" stroke="none" />
+        <line x1="4" y1="6" x2="20" y2="6" />
+        <line x1="4" y1="12" x2="20" y2="12" />
+        <line x1="4" y1="18" x2="20" y2="18" />
+    </Icon>
+));
+
+export const CloseIcon = (props?: IconProps) => (
+    <Icon {...props}>
+        <path d="M0 0h24v24H0z" fill="none" stroke="none" />
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
     </Icon>
 );

@@ -1,8 +1,10 @@
 import { styled } from "theme";
 
-import { createElement, useState } from "react";
+import { createElement, useRef, useState } from "react";
 
 import type { IconType } from "commons/icons";
+import { CloseIcon } from "commons/icons";
+import { HamburgerMenuIcon } from "commons/icons";
 import MenuItem from "components/MenuItem";
 import AnchorList from "components/common/AnchorList";
 import Heading from "components/common/Heading";
@@ -13,7 +15,7 @@ import Show from "components/layout/Show";
 import Route from "components/nav/Route";
 import type { Variants, Transition } from "framer-motion";
 import { motion, AnimatePresence } from "framer-motion";
-import { Squash as Hamburger } from "hamburger-react";
+import useOutsideMenuClick from "hooks/useOutsideMenuClick";
 
 export interface NavRoute {
     name: string;
@@ -44,10 +46,19 @@ const variants: Variants = {
 };
 
 export default function Nav({ routes, socials }: NavProps) {
+    const menuRef = useRef<HTMLUListElement>(null);
+    const hamburgerOpenButtonRef = useRef<HTMLButtonElement>(null);
+
     const [selectedRoute, setSelectedRoute] = useState(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const [hoveredMenuItem, setHoveredMenuItem] = useState<number | null>(null);
+
+    useOutsideMenuClick({
+        menuRef,
+        buttonRef: hamburgerOpenButtonRef,
+        handler: () => setIsMenuOpen(false),
+    });
 
     return (
         <NavContainer>
@@ -82,15 +93,17 @@ export default function Nav({ routes, socials }: NavProps) {
                     </AnchorList.List>
                 </Hide>
                 <Show below="md">
-                    <StyledHamburger
-                        rounded
-                        size={30}
-                        label="Open menu"
-                        onToggle={() => setIsMenuOpen(!isMenuOpen)}
-                    />
+                    <button
+                        ref={hamburgerOpenButtonRef}
+                        type="button"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    >
+                        {isMenuOpen ? <CloseIcon /> : <HamburgerMenuIcon />}
+                    </button>
                     <AnimatePresence>
                         {isMenuOpen && (
                             <Menu
+                                ref={menuRef}
                                 variants={variants}
                                 transition={transition}
                                 initial="initial"
@@ -131,10 +144,6 @@ export default function Nav({ routes, socials }: NavProps) {
         </NavContainer>
     );
 }
-
-const StyledHamburger = styled(Hamburger, {
-    color: "$text-primary",
-});
 
 const NavContainer = styled("nav", {
     display: "flex",

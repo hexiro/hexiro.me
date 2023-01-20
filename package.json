@@ -16,7 +16,6 @@
         "@next/font": "^13.1.1",
         "@stitches/react": "^1.2.8",
         "framer-motion": "^8.2.4",
-        "hamburger-react": "^2.5.0",
         "html-react-parser": "1.4.8",
         "next": "^13.1.1",
         "next-seo": "^5.5.0",
