@@ -1,4 +1,4 @@
-import { config } from "theme";
+import { config } from "@/theme";
 
 import { TWITTER } from "@/commons/config";
 

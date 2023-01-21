@@ -1,5 +1,5 @@
+import { styled } from "@/theme";
 import type { ComponentProps } from "@stitches/react";
-import { styled } from "theme";
 
 import { createElement } from "react";
 

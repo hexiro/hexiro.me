@@ -1,4 +1,4 @@
-import { getCssText } from "theme";
+import { getCssText } from "@/theme";
 
 import { Html, Head, Main, NextScript } from "next/document";
 

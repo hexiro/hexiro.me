@@ -1,4 +1,4 @@
-import { styled } from "theme";
+import { styled } from "@/theme";
 
 const Show = styled("div", {
     lineHeight: 1,

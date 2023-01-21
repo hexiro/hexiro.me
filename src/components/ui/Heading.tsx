@@ -1,4 +1,4 @@
-import { styled } from "theme";
+import { styled } from "@/theme";
 
 const Heading = styled("h1", {
     color: "$brand-primary",

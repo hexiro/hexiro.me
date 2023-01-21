@@ -1,4 +1,4 @@
-import { styled } from "theme";
+import { styled } from "@/theme";
 
 const ListItem = styled("li", {
     color: "$text-primary",

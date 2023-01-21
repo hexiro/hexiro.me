@@ -1,4 +1,4 @@
-import { styled } from "theme";
+import { styled } from "@/theme";
 
 import Link from "@/components/ui/Link";
 import ListItem from "@/components/ui/ListItem";
