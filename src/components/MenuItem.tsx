@@ -4,7 +4,7 @@ import { styled } from "theme";
 import { createElement } from "react";
 
 import type { IconType } from "@/commons/icons";
-import Link from "@/components/common/Link";
+import Link from "@/components/ui/Link";
 
 import type { Transition, Variants } from "framer-motion";
 import { AnimatePresence, motion } from "framer-motion";

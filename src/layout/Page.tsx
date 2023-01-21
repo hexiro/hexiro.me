@@ -12,8 +12,8 @@ import {
     SkillsIcon,
     TwitterIcon,
 } from "@/commons/icons";
-import type { NavRoute } from "@/components/nav";
-import Nav from "@/components/nav";
+import type { NavRoute } from "@/layout/Nav";
+import Nav from "@/layout/Nav";
 
 import SEO from "layout/SEO";
 

@@ -1,8 +1,8 @@
 import { styled } from "theme";
 
-import Link from "@/components/common/Link";
-import ListItem from "@/components/common/ListItem";
-import Span from "@/components/common/Span";
+import Link from "@/components/ui/Link";
+import ListItem from "@/components/ui/ListItem";
+import Span from "@/components/ui/Span";
 
 import { motion } from "framer-motion";
 
@@ -14,18 +14,14 @@ interface RouteProps {
 
 export default function Route({ name, href, isSelected }: RouteProps) {
     return (
-        <AnchorListItemWrapper key={name}>
+        <ListItem key={name} css={{ position: "relative" }}>
             <Link href={href}>
                 <Span animation="pop">{name}</Span>
             </Link>
             {isSelected && <Underline layoutId="underline" />}
-        </AnchorListItemWrapper>
+        </ListItem>
     );
 }
-
-const AnchorListItemWrapper = styled(ListItem, {
-    position: "relative",
-});
 
 const Underline = styled(motion.div, {
     position: "absolute",

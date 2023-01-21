@@ -5,9 +5,9 @@ import { createElement, useRef, useState } from "react";
 import type { IconType } from "@/commons/icons";
 import { CloseIcon, HamburgerMenuIcon } from "@/commons/icons";
 import MenuItem from "@/components/MenuItem";
-import { AnchorList, Heading, ListItem, Span } from "@/components/common";
+import Route from "@/components/Route";
 import { Hide, Show } from "@/components/layout";
-import Route from "@/components/nav/Route";
+import { AnchorList, Heading, ListItem, Span } from "@/components/ui";
 
 import type { Variants, Transition } from "framer-motion";
 import { motion, AnimatePresence } from "framer-motion";
