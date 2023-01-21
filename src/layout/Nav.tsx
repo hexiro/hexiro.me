@@ -170,20 +170,32 @@ const Menu = styled(motion.ul, {
     display: "flex",
     flexDirection: "column",
     gap: "$2",
-    width: "14em",
     listStyle: "none",
 
     willChange: "transform",
-    transformOrigin: "top right",
+    transformOrigin: "top",
 
-    backgroundColor: "$background-secondary",
+    backgroundColor: "$background-secondary-alpha-75",
+    backdropFilter: "blur(4px)",
+
     borderRadius: "$lg",
     border: "solid 1px $lighten-10",
 
-    right: "$main-x-padding",
-    top: "90%",
+    top: "110%",
+    left: 0,
+    marginX: "0.5rem",
+    width: "calc(100% - 1rem)",
 
     paddingY: "20px",
+
+    "@xs": {
+        width: "14em",
+        left: "unset",
+        top: "90%",
+        right: "$main-x-padding",
+        margin: "unset",
+        transformOrigin: "top right",
+    },
 });
 
 const Divider = styled("hr", {

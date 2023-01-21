@@ -16,6 +16,10 @@ const stitches = createStitches({
             "background-tertiary": "#778088",
             // modifiers
             "lighten-10": "rgba(255, 255, 255, 0.1)",
+            // alpha
+            "background-secondary-alpha-75": "rgba(41, 44, 47, 0.75)",
+            "background-secondary-alpha-50": "rgba(41, 44, 47, 0.5)",
+            "background-secondary-alpha-25": "rgba(41, 44, 47, 0.25)",
         },
         space: {
             1: "5px",
