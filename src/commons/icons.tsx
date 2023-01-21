@@ -47,7 +47,7 @@ const Icon = styled("svg", {
                     height: 40,
                 },
             },
-            "2xl": {
+            xxl: {
                 width: 44,
                 height: 44,
                 "@md": {

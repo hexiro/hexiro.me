@@ -16,7 +16,7 @@ export default function Route({ name, href, isSelected }: RouteProps) {
     return (
         <ListItem key={name} css={{ position: "relative" }}>
             <Link href={href}>
-                <Span animation="pop">{name}</Span>
+                <Span animation="popAndTap">{name}</Span>
             </Link>
             {isSelected && <Underline layoutId="underline" />}
         </ListItem>

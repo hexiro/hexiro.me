@@ -28,9 +28,9 @@ const Hide = styled("div", {
                     display: "unset",
                 },
             },
-            "2xl": {
+            "xxl": {
                 display: "none",
-                "@2xl": {
+                "@xxl": {
                     display: "unset",
                 },
             },
@@ -56,8 +56,8 @@ const Hide = styled("div", {
                     display: "none",
                 },
             },
-            "2xl": {
-                "@2xl": {
+            "xxl": {
+                "@xxl": {
                     display: "none",
                 },
             },

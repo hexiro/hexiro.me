@@ -29,9 +29,6 @@ const Heading = styled("h1", {
                 "@lg": {
                     fontSize: 40,
                 },
-                "@xl": {
-                    fontSize: 44,
-                },
             },
             h3: {
                 fontSize: 24,

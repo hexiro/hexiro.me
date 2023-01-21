@@ -11,9 +11,6 @@ const ListItem = styled("li", {
     "@lg": {
         fontSize: 24,
     },
-    "@xl": {
-        fontSize: 26,
-    },
 });
 
 export default ListItem;

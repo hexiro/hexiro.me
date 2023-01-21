@@ -19,6 +19,17 @@ const Span = styled("span", {
                     transform: "translateY(-2px)",
                 },
             },
+            popAndTap: {
+                display: "inline-block",
+                willChange: "transform",
+                transition: "transform 0.2s $ease-in-out",
+                "&:hover": {
+                    transform: "translateY(-2px)",
+                },
+                "&:active": {
+                    transform: "scale(0.96)!important",
+                },
+            },
         },
     },
 });

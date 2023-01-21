@@ -4,6 +4,11 @@ const Show = styled("div", {
     lineHeight: 1,
     variants: {
         below: {
+            xxs: {
+                "@xxs": {
+                    display: "none",
+                },
+            },
             sm: {
                 "@sm": {
                     display: "none",
@@ -24,13 +29,19 @@ const Show = styled("div", {
                     display: "none",
                 },
             },
-            "2xl": {
-                "@2xl": {
+            "xxl": {
+                "@xxl": {
                     display: "none",
                 },
             },
         },
         above: {
+            xxs: {
+                display: "none",
+                "@xxs": {
+                    display: "unset",
+                },
+            },
             sm: {
                 display: "none",
                 "@sm": {
@@ -55,9 +66,9 @@ const Show = styled("div", {
                     display: "unset",
                 },
             },
-            "2xl": {
+            "xxl": {
                 display: "none",
-                "@2xl": {
+                "@xxl": {
                     display: "unset",
                 },
             },

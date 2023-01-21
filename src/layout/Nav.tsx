@@ -49,7 +49,7 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
                 <Heading as="h2">
                     hexiro<Span color="brand-accent">.me</Span>
                 </Heading>
-                <Hide below="md">
+                <Hide below="sm">
                     <UnorderedList>
                         {routes.map(({ name, href }, index) => (
                             <Route
@@ -61,12 +61,12 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
                         ))}
                     </UnorderedList>
                 </Hide>
-                <Show below="md">
+                <Show below="sm">
                     <ListItem as="p">{routes[selectedRouteIndex].name}</ListItem>
                 </Show>
             </NavLeft>
             <NavRight>
-                <Hide below="md">
+                <Hide below="sm">
                     <AnchorList.List>
                         {socials.map(({ name, href, icon }) => (
                             <AnchorList.Item key={name} newTab href={href}>
@@ -75,7 +75,7 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
                         ))}
                     </AnchorList.List>
                 </Hide>
-                <Show below="md">
+                <Show below="sm">
                     <button
                         ref={menuButtonRef}
                         type="button"
