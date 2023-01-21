@@ -2,9 +2,9 @@ import Page from "@/layout/Page";
 
 const DESCRIPTION = "Skills";
 
-export default function Home() {
+export default function Skills() {
     return (
-        <Page name="Skills" description={DESCRIPTION}>
+        <Page name="Skills" index={2} description={DESCRIPTION}>
             Skills
         </Page>
     );

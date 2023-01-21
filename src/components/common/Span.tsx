@@ -1,6 +1,7 @@
 import { styled } from "theme";
 
 const Span = styled("span", {
+    lineHeight: 1,
     variants: {
         color: {
             "brand-accent": { color: "$brand-accent" },

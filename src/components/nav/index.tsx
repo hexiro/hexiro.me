@@ -22,12 +22,13 @@ export interface NavRoute {
 interface NavProps {
     routes: NavRoute[];
     socials: NavRoute[];
+    index: number;
 }
 
 const transition: Transition = {
     type: "spring",
-    duration: 0.45,
-    bounce: 0.5,
+    duration: 0.4,
+    bounce: 0.25,
 };
 
 const variants: Variants = {
@@ -41,18 +42,16 @@ const variants: Variants = {
     },
 };
 
-export default function Nav({ routes, socials }: NavProps) {
+export default function Nav({ routes, socials, index: selectedRouteIndex }: NavProps) {
     const menuRef = useRef<HTMLUListElement>(null);
-    const hamburgerOpenButtonRef = useRef<HTMLButtonElement>(null);
+    const menuButtonRef = useRef<HTMLButtonElement>(null);
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    const [selectedRouteIndex, setSelectedRouteIndex] = useState<number>(0);
     const [hoveredMenuItemIndex, setHoveredMenuItemIndex] = useState<number | null>(null);
 
     useOutsideMenuClick({
         menuRef,
-        buttonRef: hamburgerOpenButtonRef,
+        buttonRef: menuButtonRef,
         handler: () => setIsMenuOpen(false),
     });
 
@@ -75,7 +74,7 @@ export default function Nav({ routes, socials }: NavProps) {
                     </UnorderedList>
                 </Hide>
                 <Show below="md">
-                    <ListItem as="p">Portfolio</ListItem>
+                    <ListItem as="p">{routes[selectedRouteIndex].name}</ListItem>
                 </Show>
             </NavLeft>
             <NavRight>
@@ -90,7 +89,7 @@ export default function Nav({ routes, socials }: NavProps) {
                 </Hide>
                 <Show below="md">
                     <button
-                        ref={hamburgerOpenButtonRef}
+                        ref={menuButtonRef}
                         type="button"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >

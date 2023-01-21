@@ -20,7 +20,7 @@ type MenuItemProps = {
 const transition: Transition = {
     type: "spring",
     duration: 0.45,
-    bounce: 0.35,
+    bounce: 0.15,
 };
 
 const variants: Variants = {
@@ -59,13 +59,13 @@ const FlexLink = styled(Link, {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    gap: "16px",
+    gap: "12px",
     height: "100%",
     paddingX: "20px",
 });
 
 const Text = styled("p", {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 600,
     color: "$text-primary",
     paddingLeft: "",
@@ -73,8 +73,7 @@ const Text = styled("p", {
 
 const MenuItemWrapper = styled(motion.li, {
     position: "relative",
-    height: "40px",
-    // paddingY: "12px",
+    paddingY: "7px",
 
     variants: {
         highlighted: {

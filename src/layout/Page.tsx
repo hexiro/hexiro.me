@@ -19,16 +19,17 @@ import SEO from "layout/SEO";
 
 type PageProps = PropsWithChildren<{
     name: string;
+    index: number;
     description: string;
 }>;
 
-export default function Page({ name, description, children }: PageProps) {
+export default function Page({ name, index, description, children }: PageProps) {
     return (
         <>
             {/* eslint-disable-next-line react/jsx-pascal-case */}
             <SEO name={name} description={description} />
             <PageContainer>
-                <Nav routes={ROUTES} socials={SOCIALS} />
+                <Nav routes={ROUTES} socials={SOCIALS} index={index} />
                 <Main>{children}</Main>
             </PageContainer>
         </>

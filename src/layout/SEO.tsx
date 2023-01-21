@@ -1,4 +1,4 @@
-import { colors } from "theme";
+import { config } from "theme";
 
 import { TWITTER } from "@/commons/config";
 
@@ -43,11 +43,11 @@ export default function SEO({ name, description }: SEOProps) {
                 },
                 {
                     name: "theme-color",
-                    content: colors["brand-primary"],
+                    content: config.theme.colors["brand-primary"],
                 },
                 {
                     name: "msapplication-TileColor",
-                    content: colors["background-primary"],
+                    content: config.theme.colors["background-primary"],
                 },
             ]}
             additionalLinkTags={[
@@ -71,7 +71,7 @@ export default function SEO({ name, description }: SEOProps) {
                 {
                     rel: "mask-icon",
                     href: "/safari-pinned-tab.svg",
-                    color: colors["brand-primary"],
+                    color: config.theme.colors["brand-primary"],
                 },
                 {
                     rel: "manifest",

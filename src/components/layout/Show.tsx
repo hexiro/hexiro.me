@@ -1,6 +1,7 @@
 import { styled } from "theme";
 
 const Show = styled("div", {
+    lineHeight: 1,
     variants: {
         below: {
             sm: {

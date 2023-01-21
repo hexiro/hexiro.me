@@ -1,24 +1,22 @@
 import type { PropertyValue } from "@stitches/react";
 import { createStitches } from "@stitches/react";
 
-export const colors = {
-    // brand colors
-    "brand-primary": "#4BFF9F",
-    "brand-accent": "#E7FFF2",
-    // text colors
-    "text-primary": "#D2E0D5",
-    "text-secondary": "#B7BEB9",
-    // background colors
-    "background-primary": "#191C1D",
-    "background-secondary": "#292C2F",
-    "background-tertiary": "#778088",
-    // modifiers
-    "lighten-10": "rgba(255, 255, 255, 0.1)",
-} as const;
-
 const stitches = createStitches({
     theme: {
-        colors,
+        colors: {
+            // brand colors
+            "brand-primary": "#4BFF9F",
+            "brand-accent": "#E7FFF2",
+            // text colors
+            "text-primary": "#D2E0D5",
+            "text-secondary": "#B7BEB9",
+            // background colors
+            "background-primary": "#191C1D",
+            "background-secondary": "#292C2F",
+            "background-tertiary": "#778088",
+            // modifiers
+            "lighten-10": "rgba(255, 255, 255, 0.1)",
+        },
         space: {
             1: "5px",
             2: "10px",
@@ -90,7 +88,7 @@ const stitches = createStitches({
     prefix: "hexiro",
 });
 
-export const { styled, css, getCssText } = stitches;
+export const { styled, css, getCssText, config } = stitches;
 const { globalCss } = stitches;
 
 export const globalStyles = globalCss({
