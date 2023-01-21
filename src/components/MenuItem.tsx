@@ -19,7 +19,7 @@ type MenuItemProps = {
 
 const transition: Transition = {
     type: "spring",
-    duration: 0.45,
+    duration: 0.4,
     bounce: 0.15,
 };
 

@@ -7,7 +7,7 @@ import {
     DashboardIcon,
     GitHubIcon,
     LinkedInIcon,
-    MeIcon,
+    HomeIcon,
     ProjectsIcon,
     SkillsIcon,
     TwitterIcon,
@@ -38,9 +38,9 @@ export default function Page({ name, index, description, children }: PageProps) 
 
 const ROUTES: NavRoute[] = [
     {
-        name: "Me",
+        name: "Home",
         href: "/",
-        icon: MeIcon,
+        icon: HomeIcon,
     },
     {
         name: "Projects",
