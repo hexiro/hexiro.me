@@ -3,10 +3,10 @@ import type { ComponentProps } from "@stitches/react";
 
 import { createElement } from "react";
 
+import { fadeIn, smallBounce } from "@/commons/animations";
 import type { IconType } from "@/commons/icons";
 import Link from "@/components/ui/Link";
 
-import type { Transition, Variants } from "framer-motion";
 import { AnimatePresence, motion } from "framer-motion";
 
 type MenuItemProps = {
@@ -17,21 +17,6 @@ type MenuItemProps = {
     newTab?: boolean;
 } & ComponentProps<typeof MenuItemWrapper>;
 
-const transition: Transition = {
-    type: "spring",
-    duration: 0.4,
-    bounce: 0.15,
-};
-
-const variants: Variants = {
-    animate: {
-        opacity: 1,
-    },
-    initial: {
-        opacity: 0,
-    },
-};
-
 const MenuItem = ({ name, href, icon, isSelected, newTab, ...props }: MenuItemProps) => (
     <MenuItemWrapper {...props}>
         <FlexLink newTab={newTab} href={href}>
@@ -41,8 +26,8 @@ const MenuItem = ({ name, href, icon, isSelected, newTab, ...props }: MenuItemPr
         <AnimatePresence initial={false}>
             {isSelected && (
                 <MenuHoverHighlight
-                    variants={variants}
-                    transition={transition}
+                    variants={fadeIn}
+                    transition={smallBounce}
                     layoutId="menu-hover-highlight"
                     initial="initial"
                     animate="animate"

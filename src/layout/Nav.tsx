@@ -2,6 +2,7 @@ import { styled } from "@/theme";
 
 import { createElement, useRef } from "react";
 
+import { fadeInAndScale, normalBounce } from "@/commons/animations";
 import type { IconType } from "@/commons/icons";
 import { CloseIcon, HamburgerMenuIcon } from "@/commons/icons";
 import MenuItem from "@/components/MenuItem";
@@ -10,7 +11,6 @@ import { Hide, Show } from "@/components/layout";
 import { AnchorList, Heading, ListItem, Span } from "@/components/ui";
 import { isMenuOpenAtom, menuHoverIndexAtom } from "@/state/atoms";
 
-import type { Variants, Transition } from "framer-motion";
 import { motion, AnimatePresence } from "framer-motion";
 import useOutsideMenuClick from "hooks/useOutsideMenuClick";
 import { useAtom } from "jotai";
@@ -26,23 +26,6 @@ interface NavProps {
     socials: NavRoute[];
     index: number;
 }
-
-const transition: Transition = {
-    type: "spring",
-    duration: 0.4,
-    bounce: 0.25,
-};
-
-const variants: Variants = {
-    animate: {
-        scale: 1,
-        opacity: 1,
-    },
-    initial: {
-        scale: 0.8,
-        opacity: 0,
-    },
-};
 
 export default function Nav({ routes, socials, index: selectedRouteIndex }: NavProps) {
     const menuRef = useRef<HTMLUListElement>(null);
@@ -104,8 +87,8 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
                         {isMenuOpen && (
                             <Menu
                                 ref={menuRef}
-                                variants={variants}
-                                transition={transition}
+                                variants={fadeInAndScale}
+                                transition={normalBounce}
                                 initial="initial"
                                 animate="animate"
                                 exit="initial"
