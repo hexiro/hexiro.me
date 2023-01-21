@@ -1,6 +1,6 @@
 import { styled } from "@/theme";
 
-import { createElement, useRef, useState } from "react";
+import { createElement, useRef } from "react";
 
 import type { IconType } from "@/commons/icons";
 import { CloseIcon, HamburgerMenuIcon } from "@/commons/icons";
@@ -8,10 +8,12 @@ import MenuItem from "@/components/MenuItem";
 import Route from "@/components/Route";
 import { Hide, Show } from "@/components/layout";
 import { AnchorList, Heading, ListItem, Span } from "@/components/ui";
+import { isMenuOpenAtom, menuHoverIndexAtom } from "@/state/atoms";
 
 import type { Variants, Transition } from "framer-motion";
 import { motion, AnimatePresence } from "framer-motion";
 import useOutsideMenuClick from "hooks/useOutsideMenuClick";
+import { useAtom } from "jotai";
 
 export interface NavRoute {
     name: string;
@@ -46,13 +48,16 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
     const menuRef = useRef<HTMLUListElement>(null);
     const menuButtonRef = useRef<HTMLButtonElement>(null);
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [hoveredMenuItemIndex, setHoveredMenuItemIndex] = useState<number | null>(null);
+    const [isMenuOpen, setIsMenuOpen] = useAtom(isMenuOpenAtom);
+    const [menuHoverIndex, setMenuHoverIndex] = useAtom(menuHoverIndexAtom);
 
     useOutsideMenuClick({
         menuRef,
         buttonRef: menuButtonRef,
-        handler: () => setIsMenuOpen(false),
+        handler() {
+            setIsMenuOpen(false);
+            setMenuHoverIndex(null);
+        },
     });
 
     return (
@@ -95,7 +100,7 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
                     >
                         {isMenuOpen ? <CloseIcon /> : <HamburgerMenuIcon />}
                     </button>
-                    <AnimatePresence>
+                    <AnimatePresence initial={false}>
                         {isMenuOpen && (
                             <Menu
                                 ref={menuRef}
@@ -104,7 +109,7 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
                                 initial="initial"
                                 animate="animate"
                                 exit="initial"
-                                onHoverEnd={() => setHoveredMenuItemIndex(null)}
+                                onHoverEnd={() => setMenuHoverIndex(null)}
                             >
                                 {routes.map(({ name, href, icon }, index) => (
                                     <MenuItem
@@ -113,8 +118,8 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
                                         href={href}
                                         icon={icon}
                                         highlighted={index === selectedRouteIndex}
-                                        isSelected={index === hoveredMenuItemIndex}
-                                        onHoverStart={() => setHoveredMenuItemIndex(index)}
+                                        isSelected={index === menuHoverIndex}
+                                        onHoverStart={() => setMenuHoverIndex(index)}
                                     />
                                 ))}
                                 <Divider />
@@ -125,9 +130,9 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
                                         name={name}
                                         href={href}
                                         icon={icon}
-                                        isSelected={index + routes.length === hoveredMenuItemIndex}
+                                        isSelected={index + routes.length === menuHoverIndex}
                                         onHoverStart={() =>
-                                            setHoveredMenuItemIndex(index + routes.length)
+                                            setMenuHoverIndex(index + routes.length)
                                         }
                                     />
                                 ))}

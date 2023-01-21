@@ -38,7 +38,7 @@ const MenuItem = ({ name, href, icon, isSelected, newTab, ...props }: MenuItemPr
             {createElement(icon)}
             <Text>{name}</Text>
         </FlexLink>
-        <AnimatePresence>
+        <AnimatePresence initial={false}>
             {isSelected && (
                 <MenuHoverHighlight
                     variants={variants}
