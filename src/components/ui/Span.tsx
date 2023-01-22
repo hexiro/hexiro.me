@@ -1,24 +1,25 @@
 import { css, styled } from "@/theme";
+import type { CSS } from "@stitches/react";
 
-const animationStyles = css({
+const animationStyles: CSS = {
     display: "inline-block",
     willChange: "transform",
     willTransition: "transform",
     transitionDuration: "$fast",
     transitionTimingFunction: "$ease-in-out",
-});
+};
 
-const pop = css({
+const pop: CSS = {
     "&:hover": {
         transform: "translateY(-2px)",
     },
-});
+};
 
-const tap = css({
+const tap: CSS = {
     "&:active": {
         transform: "scale(0.96)!important",
     },
-});
+};
 
 const Span = styled("span", {
     lineHeight: 1,

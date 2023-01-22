@@ -137,6 +137,7 @@ const NavContainer = styled("nav", {
     paddingY: "$main-y-padding",
     paddingX: "$main-x-padding",
     borderBottom: "2px solid $lighten-10",
+    boxShadow: "0 4px 20px 10px rgb(0 0 0 / 10%)",
 });
 
 const NavLeft = styled("div", {
