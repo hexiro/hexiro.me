@@ -28,6 +28,7 @@ export default function Page({
 const Main = styled(Flex, {
     flexGrow: 1,
     height: "100%",
-    paddingY: "$main-y-padding",
+    paddingTop: 140,
+    paddingBottom: "$main-y-padding",
     paddingX: "$main-x-padding",
 });

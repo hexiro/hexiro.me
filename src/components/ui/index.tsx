@@ -7,5 +7,19 @@ import Link from "@/components/ui/Link";
 import ListItem from "@/components/ui/ListItem";
 import Paragraph from "@/components/ui/Paragraph";
 import Span from "@/components/ui/Span";
+import Subheading from "@/components/ui/Subheading";
+import Subtext from "@/components/ui/Subtext";
 
-export { AnchorList, Button, ButtonLink, Flex, Heading, Link, ListItem, Paragraph, Span };
+export {
+    AnchorList,
+    Button,
+    ButtonLink,
+    Flex,
+    Heading,
+    Link,
+    ListItem,
+    Paragraph,
+    Span,
+    Subheading,
+    Subtext,
+};

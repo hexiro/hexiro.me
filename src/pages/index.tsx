@@ -1,3 +1,4 @@
+import { Heading, Paragraph, Span, Subheading } from "@/components/ui";
 import Page from "@/layout/Page";
 
 const DESCRIPTION =
@@ -6,7 +7,15 @@ const DESCRIPTION =
 export default function Home() {
     return (
         <Page name="Home" description={DESCRIPTION}>
-            Home
+            <Subheading>{"hi! I'm"}</Subheading>
+            <Heading as="h1">
+                Nathan <Span color="brand-accent">Lodge</Span>
+                <Span color="text-primary">,</Span>
+            </Heading>
+            <Paragraph>
+                an inspired programmer interested in problem-solving, modern technology, and open
+                source while aiming to build beautiful and efficient software.
+            </Paragraph>
         </Page>
     );
 }

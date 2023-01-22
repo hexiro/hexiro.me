@@ -1,12 +1,12 @@
 import { styled } from "@/theme";
 
-const Paragraph = styled("p", {
+const Subtext = styled("p", {
     color: "$text-secondary",
     fontFamily: "$text",
-    fontSize: 20,
-    fontWeight: 500,
-    lineHeight: 1.5,
-    maxWidth: 700,
+    fontSize: 26,
+    fontWeight: 600,
+    lineHeight: 1.4,
+    maxWidth: 600,
 
     variants: {
         align: {
@@ -23,4 +23,4 @@ const Paragraph = styled("p", {
     },
 });
 
-export default Paragraph;
+export default Subtext;
