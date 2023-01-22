@@ -1,10 +1,11 @@
 import { styled } from "@/theme";
 
+import { fadeIn } from "@/commons/animations";
 import Link from "@/components/ui/Link";
 import ListItem from "@/components/ui/ListItem";
 import Span from "@/components/ui/Span";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface RouteProps {
     name: string;
@@ -18,12 +19,22 @@ export default function Route({ name, href, isSelected }: RouteProps) {
             <Link href={href}>
                 <Span animation="popAndTap">{name}</Span>
             </Link>
-            {isSelected && <Underline layoutId="underline" />}
+            <AnimatePresence initial={false}>
+                {isSelected && (
+                    <RouteUnderline
+                        variants={fadeIn}
+                        layoutId="nav-route-underline"
+                        initial="initial"
+                        animate="animate"
+                        exit="initial"
+                    />
+                )}
+            </AnimatePresence>
         </ListItem>
     );
 }
 
-const Underline = styled(motion.div, {
+const RouteUnderline = styled(motion.div, {
     position: "absolute",
     bottom: -25,
     left: "-2%",
