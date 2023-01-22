@@ -5,7 +5,7 @@ const DESCRIPTION =
 
 export default function Home() {
     return (
-        <Page name="Home" index={0} description={DESCRIPTION}>
+        <Page name="Home" description={DESCRIPTION}>
             Home
         </Page>
     );

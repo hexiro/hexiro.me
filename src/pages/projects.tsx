@@ -4,7 +4,7 @@ const DESCRIPTION = "Projects";
 
 export default function Projects() {
     return (
-        <Page name="Projects" index={1} description={DESCRIPTION}>
+        <Page name="Projects" description={DESCRIPTION}>
             Projects
         </Page>
     );

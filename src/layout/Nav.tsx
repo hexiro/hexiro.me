@@ -1,6 +1,6 @@
 import { styled } from "@/theme";
 
-import { createElement, useRef } from "react";
+import { createElement, useRef, useState } from "react";
 
 import { fadeInAndScale, normalBounce } from "@/commons/animations";
 import type { IconType } from "@/commons/icons";
@@ -9,11 +9,9 @@ import MenuItem from "@/components/MenuItem";
 import Route from "@/components/Route";
 import { Hide, Show } from "@/components/layout";
 import { AnchorList, Heading, ListItem, Span } from "@/components/ui";
-import { isMenuOpenAtom, menuHoverIndexAtom } from "@/state/atoms";
 
 import { motion, AnimatePresence } from "framer-motion";
 import useOutsideMenuClick from "hooks/useOutsideMenuClick";
-import { useAtom } from "jotai";
 
 export interface NavRoute {
     name: string;
@@ -31,8 +29,10 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
     const menuRef = useRef<HTMLUListElement>(null);
     const menuButtonRef = useRef<HTMLButtonElement>(null);
 
-    const [isMenuOpen, setIsMenuOpen] = useAtom(isMenuOpenAtom);
-    const [menuHoverIndex, setMenuHoverIndex] = useAtom(menuHoverIndexAtom);
+    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+    const [menuHoverIndex, setMenuHoverIndex] = useState<number | null>(null);
+
+    const pageName = routes[selectedRouteIndex]?.name ?? "Portfolio";
 
     useOutsideMenuClick({
         menuRef,
@@ -62,7 +62,7 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
                     </UnorderedList>
                 </Hide>
                 <Show below="sm">
-                    <ListItem as="p">{routes[selectedRouteIndex].name}</ListItem>
+                    <ListItem as="p">{pageName}</ListItem>
                 </Show>
             </NavLeft>
             <NavRight>

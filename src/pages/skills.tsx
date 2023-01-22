@@ -4,7 +4,7 @@ const DESCRIPTION = "Skills";
 
 export default function Skills() {
     return (
-        <Page name="Skills" index={2} description={DESCRIPTION}>
+        <Page name="Skills" description={DESCRIPTION}>
             Skills
         </Page>
     );

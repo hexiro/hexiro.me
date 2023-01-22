@@ -1,17 +1,79 @@
-import { globalStyles } from "@/theme";
+import { globalStyles, styled } from "@/theme";
 
 import type { AppProps } from "next/app";
 
-// import { Plus_Jakarta_Sans } from "@next/font/google";
+import { TWITTER_LINK, GITHUB_LINK, LINKED_IN_LINK } from "@/commons/config";
+import {
+    HomeIcon,
+    ProjectsIcon,
+    SkillsIcon,
+    DashboardIcon,
+    TwitterIcon,
+    GitHubIcon,
+    LinkedInIcon,
+} from "@/commons/icons";
+import type { NavRoute } from "@/layout/Nav";
+import Nav from "@/layout/Nav";
 
-// const font = Plus_Jakarta_Sans({
-//     weight: "variable",
-//     subsets: ["latin"],
-//     style: "normal",
-//     preload: true,
-// });
-
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps, router }: AppProps) {
     globalStyles();
-    return <Component {...pageProps} />;
+
+    const index = ROUTES.findIndex(({ href }) => href === router.pathname.toLowerCase());
+
+    return (
+        <Body>
+            <Nav routes={ROUTES} socials={SOCIALS} index={index} />
+            <Component {...pageProps} />
+        </Body>
+    );
 }
+
+const ROUTES: NavRoute[] = [
+    {
+        name: "Home",
+        href: "/",
+        icon: HomeIcon,
+    },
+    {
+        name: "Projects",
+        href: "/projects",
+        icon: ProjectsIcon,
+    },
+    {
+        name: "Skills",
+        href: "/skills",
+        icon: SkillsIcon,
+    },
+    {
+        name: "Dashboard",
+        href: "/dashboard",
+        icon: DashboardIcon,
+    },
+];
+
+const SOCIALS: NavRoute[] = [
+    {
+        name: "Twitter",
+        href: TWITTER_LINK,
+        icon: TwitterIcon,
+    },
+    {
+        name: "GitHub",
+        href: GITHUB_LINK,
+        icon: GitHubIcon,
+    },
+    {
+        name: "LinkedIn",
+        href: LINKED_IN_LINK,
+        icon: LinkedInIcon,
+    },
+];
+
+const Body = styled("div", {
+    display: "flex",
+    flexDirection: "column",
+    height: "100%",
+    width: "100%",
+    minHeight: "100vh",
+    minWidth: "100vw",
+});

@@ -6,21 +6,15 @@ const Heading = styled("h1", {
     variants: {
         as: {
             h1: {
-                fontSize: 28,
+                fontSize: 64,
                 fontWeight: 800,
 
-                "@sm": {
-                    fontSize: 32,
-                },
-                "@md": {
-                    fontSize: 44,
-                },
-                "@lg": {
-                    fontSize: 50,
-                },
-                "@xl": {
-                    fontSize: 64,
-                },
+                // "@lg": {
+                //     fontSize: 54,
+                // },
+                // "@xl": {
+                //     fontSize: 64,
+                // },
             },
             h2: {
                 fontSize: 36,

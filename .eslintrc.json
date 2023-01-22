@@ -21,6 +21,7 @@
         "react/function-component-definition": "off",
         "react/boolean-prop-naming": "off",
         "react/no-danger": "off",
+        "react/jsx-pascal-case": "off",
         "@typescript-eslint/no-unsafe-assignment": "off",
         "@typescript-eslint/no-unsafe-call": "off",
         "@typescript-eslint/no-unsafe-return": "off",
