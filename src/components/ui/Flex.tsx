@@ -1,7 +1,11 @@
 import { styled } from "@stitches/react";
 
-const Stack = styled("div", {
+const Flex = styled("div", {
     display: "flex",
+
+    defaultVariants: {
+        dir: "col",
+    },
 
     variants: {
         dir: {
@@ -45,4 +49,4 @@ const Stack = styled("div", {
     ],
 });
 
-export default Stack;
+export default Flex;

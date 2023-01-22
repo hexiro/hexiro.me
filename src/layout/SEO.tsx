@@ -4,7 +4,7 @@ import { TWITTER } from "@/commons/config";
 
 import { DefaultSeo } from "next-seo";
 
-interface SEOProps {
+export interface SEOProps {
     name: string;
     description: string;
 }

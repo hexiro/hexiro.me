@@ -26,7 +26,7 @@ const Icon = styled("svg", {
             md: {
                 width: 24,
                 height: 24,
-                "@md": {
+                "@lg": {
                     width: 28,
                     height: 28,
                 },
