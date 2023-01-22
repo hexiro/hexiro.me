@@ -1,7 +1,8 @@
 import type { PropertyValue } from "@stitches/react";
-import { createStitches } from "@stitches/react";
+import { createStitches, defaultThemeMap } from "@stitches/react";
 
 const stitches = createStitches({
+    prefix: "hexiro",
     theme: {
         colors: {
             // brand colors
@@ -15,8 +16,12 @@ const stitches = createStitches({
             "background-secondary": "#292C2F",
             "background-tertiary": "#778088",
             // modifiers
+            "lighten-5": "rgba(255, 255, 255, 0.05)",
             "lighten-10": "rgba(255, 255, 255, 0.1)",
             // alpha
+            "brand-primary-alpha-75": "rgba(75, 255, 159, 0.75)",
+            "brand-primary-alpha-50": "rgba(75, 255, 159, 0.5)",
+            "brand-primary-alpha-25": "rgba(75, 255, 159, 0.25)",
             "background-secondary-alpha-75": "rgba(41, 44, 47, 0.75)",
             "background-secondary-alpha-50": "rgba(41, 44, 47, 0.5)",
             "background-secondary-alpha-25": "rgba(41, 44, 47, 0.25)",
@@ -39,9 +44,17 @@ const stitches = createStitches({
             text: "Plus Jakarta Sans, sans-serif",
             // mono: "JetBrains Mono, monospace",
         },
-        sizes: {},
-        borderWidths: {},
-        borderStyles: {},
+        sizes: {
+            1: "5px",
+            2: "10px",
+            3: "15px",
+            4: "20px",
+            5: "25px",
+            6: "35px",
+            7: "45px",
+            8: "65px",
+            9: "80px",
+        },
         radii: {
             sm: "0.125rem",
             base: "0.25rem",
@@ -49,10 +62,19 @@ const stitches = createStitches({
             lg: "0.5rem",
             xl: "0.75rem",
             "xxl": "1rem",
+            "max": "9999px",
+        },
+        lineHeights: {
+            "single": 1,
+            "multi": 1.2,
         },
         shadows: {},
         zIndices: {},
-        transitions: {
+        transitionDurations: {
+            "fast": "0.2s",
+            "normal": "0.45s",
+        },
+        transitionTimingFunctions: {
             "ease-in-out": "cubic-bezier(0.4, 0, 0.2, 1)",
         },
     },
@@ -66,6 +88,10 @@ const stitches = createStitches({
         xxl: "(min-width: 1536px)",
     },
     utils: {
+        willTransition: (value: PropertyValue<"willChange">) => ({
+            willChange: value,
+            transitionProperty: value,
+        }),
         size: (value: PropertyValue<"width">) => ({
             width: value,
             height: value,
@@ -87,7 +113,11 @@ const stitches = createStitches({
             marginBottom: value,
         }),
     },
-    prefix: "hexiro",
+    themeMap: {
+        ...defaultThemeMap,
+        transitionDuration: "transitionDurations",
+        transitionTimingFunction: "transitionTimingFunctions",
+    },
 });
 
 export const { styled, css, getCssText, config } = stitches;

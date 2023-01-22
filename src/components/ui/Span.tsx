@@ -14,15 +14,18 @@ const Span = styled("span", {
             pop: {
                 display: "inline-block",
                 willChange: "transform",
-                transition: "transform 0.2s $ease-in-out",
+                willTransition: "transform",
+                transitionDuration: "$fast",
+                transitionTimingFunction: "$ease-in-out",
                 "&:hover": {
                     transform: "translateY(-2px)",
                 },
             },
             popAndTap: {
                 display: "inline-block",
-                willChange: "transform",
-                transition: "transform 0.2s $ease-in-out",
+                willTransition: "transform",
+                transitionDuration: "$fast",
+                transitionTimingFunction: "$ease-in-out",
                 "&:hover": {
                     transform: "translateY(-2px)",
                 },
