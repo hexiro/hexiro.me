@@ -1,4 +1,24 @@
-import { styled } from "@/theme";
+import { css, styled } from "@/theme";
+
+const animationStyles = css({
+    display: "inline-block",
+    willChange: "transform",
+    willTransition: "transform",
+    transitionDuration: "$fast",
+    transitionTimingFunction: "$ease-in-out",
+});
+
+const pop = css({
+    "&:hover": {
+        transform: "translateY(-2px)",
+    },
+});
+
+const tap = css({
+    "&:active": {
+        transform: "scale(0.96)!important",
+    },
+});
 
 const Span = styled("span", {
     lineHeight: 1,
@@ -12,26 +32,17 @@ const Span = styled("span", {
         },
         animation: {
             pop: {
-                display: "inline-block",
-                willChange: "transform",
-                willTransition: "transform",
-                transitionDuration: "$fast",
-                transitionTimingFunction: "$ease-in-out",
-                "&:hover": {
-                    transform: "translateY(-2px)",
-                },
+                ...animationStyles,
+                ...pop,
+            },
+            tap: {
+                ...animationStyles,
+                ...tap,
             },
             popAndTap: {
-                display: "inline-block",
-                willTransition: "transform",
-                transitionDuration: "$fast",
-                transitionTimingFunction: "$ease-in-out",
-                "&:hover": {
-                    transform: "translateY(-2px)",
-                },
-                "&:active": {
-                    transform: "scale(0.96)!important",
-                },
+                ...animationStyles,
+                ...pop,
+                ...tap,
             },
         },
     },
