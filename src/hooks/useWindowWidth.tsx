@@ -29,8 +29,6 @@ export default function useWindowWidthInBounds({
         const handleResize = () => {
             const width = window.innerWidth;
 
-            console.log({ width, min, max }, isWidthWithinBounds);
-
             if (min && width <= min) return setIsWidthWithinBounds(false);
             if (max && width >= max) return setIsWidthWithinBounds(false);
 
