@@ -13,7 +13,7 @@ type LinkProps = Omit<ComponentProps<typeof LinkWrapper>, "target"> & {
 };
 
 const Link = ({ newTab, ...props }: LinkProps) => (
-    <LinkWrapper target={newTab ? "_black" : undefined} {...props} />
+    <LinkWrapper target={newTab ? "_blank" : undefined} {...props} />
 );
 
 export default Link;

@@ -144,3 +144,20 @@ export const CloseIcon = (props?: IconProps) => (
         <line x1="6" y1="6" x2="18" y2="18" />
     </Icon>
 );
+
+export const ExternalLinkIcon = (props?: IconProps) => (
+    // 'share' from iconic
+    <Icon viewBox="0 0 24 24" {...props}>
+        <path d="M9.25 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V17.25C4.75 18.3546 5.64543 19.25 6.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25V14.75" />
+        <path d="M19.25 9.25V4.75H14.75" />
+        <path d="M19 5L11.75 12.25" />
+    </Icon>
+);
+
+export const PackageIcon = (props?: IconProps) => (
+    // 'package' from tabler
+    <Icon viewBox="0 0 24 24" {...props}>
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5m0 9l8 -4.5m-8 4.5l0 9m0 -9l-8 -4.5m12 -2.25l-8 4.5" />
+    </Icon>
+);

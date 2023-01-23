@@ -167,6 +167,7 @@ const UnorderedList = styled("ul", {
 });
 
 const Menu = styled(motion.ul, {
+    zIndex: 1,
     position: "absolute",
     display: "flex",
     flexDirection: "column",
