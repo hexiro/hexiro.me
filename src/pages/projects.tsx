@@ -1,4 +1,4 @@
-import { Heading, Subheading, Subtext } from "@/components/ui";
+import { Heading, Subtext } from "@/components/ui";
 import Page from "@/layout/Page";
 
 const DESCRIPTION = "Projects";

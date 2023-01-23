@@ -23,7 +23,7 @@
         "react/no-danger": "off",
         "react/jsx-pascal-case": "off",
         "react/jsx-curly-brace-presence": [
-            true,
+            2,
             { "props": "never", "children": "ignore", "propElementValues": "always" }
         ],
         "@typescript-eslint/no-unsafe-assignment": "off",
