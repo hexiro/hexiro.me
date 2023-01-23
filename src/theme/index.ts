@@ -6,25 +6,27 @@ const stitches = createStitches({
     theme: {
         colors: {
             // brand colors
-            "brand-primary": "#4BFF9F",
+            "brand-primary-rgb": "75, 255, 159",
+            "brand-primary": "rgb($brand-primary-rgb)",
             "brand-accent": "#E7FFF2",
             // text colors
             "text-primary": "#D2E0D5",
             "text-secondary": "#B7BEB9",
             // background colors
             "background-primary": "#191C1D",
-            "background-secondary": "#292C2F",
+            "background-secondary-rgb": "41, 44, 47",
+            "background-secondary": "rgb($background-secondary-rgb)",
             "background-tertiary": "#778088",
             // modifiers
             "lighten-5": "rgba(255, 255, 255, 0.05)",
             "lighten-10": "rgba(255, 255, 255, 0.1)",
             // alpha
-            "brand-primary-alpha-75": "rgba(75, 255, 159, 0.75)",
-            "brand-primary-alpha-50": "rgba(75, 255, 159, 0.5)",
-            "brand-primary-alpha-25": "rgba(75, 255, 159, 0.25)",
-            "background-secondary-alpha-75": "rgba(41, 44, 47, 0.75)",
-            "background-secondary-alpha-50": "rgba(41, 44, 47, 0.5)",
-            "background-secondary-alpha-25": "rgba(41, 44, 47, 0.25)",
+            "brand-primary-alpha-75": "rgba($brand-primary-rgb, 0.75)",
+            "brand-primary-alpha-50": "rgba($brand-primary-rgb, 0.5)",
+            "brand-primary-alpha-25": "rgba($brand-primary-rgb, 0.25)",
+            "background-secondary-alpha-75": "rgba($background-secondary-rgb, 0.75)",
+            "background-secondary-alpha-50": "rgba($background-secondary-rgb, 0.5)",
+            "background-secondary-alpha-25": "rgba($background-secondary-rgb, 0.25)",
         },
         space: {
             1: "5px",
