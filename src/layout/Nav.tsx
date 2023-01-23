@@ -9,6 +9,7 @@ import MenuItem from "@/components/MenuItem";
 import Route from "@/components/Route";
 import { Hide, Show } from "@/components/layout";
 import { AnchorList, Heading, ListItem, Span } from "@/components/ui";
+import useWindowWidthInBounds from "@/hooks/useWindowWidth";
 
 import { motion, AnimatePresence } from "framer-motion";
 import useOutsideMenuClick from "hooks/useOutsideMenuClick";
@@ -40,6 +41,13 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
         handler() {
             setIsMenuOpen(false);
             setMenuHoverIndex(null);
+        },
+    });
+
+    useWindowWidthInBounds({
+        min: 640, // sm
+        handler() {
+            setIsMenuOpen(false);
         },
     });
 
