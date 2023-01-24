@@ -36,14 +36,14 @@ const replace = (node: DOMNode): JSX.Element | null => {
                 );
             }
 
-            case "p": {
-                return <Paragraph key={key}>{domToReact(node.children)}</Paragraph>;
-            }
-
             case "g-emoji":
             case "div": {
                 const children = node.children.map((child) => replace(child));
-                return <Paragraph key={key}>{children}</Paragraph>;
+                return (
+                    <Paragraph key={key} css={{ minHeight: 90 }}>
+                        {children}
+                    </Paragraph>
+                );
             }
 
             default:
