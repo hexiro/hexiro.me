@@ -1,63 +1,85 @@
 import githubGraphQL from "@/commons/graphql";
 import gql from "@/commons/graphql/gql";
 
-export interface Project {
+export interface ProjectData {
     name: string;
     descriptionHTML: string;
-    url: string;
-    ownerName: string;
-    totalStars: number;
-    totalForks: number;
+    stars: number;
     languages: string[];
+    topics: string[];
+    url: string;
+    packageUrl: string | null;
 }
 
 type JsonType = { data: { viewer: { pinnedItems: { nodes: RepositoryData[] } } } };
 
-export default async function projects(): Promise<Project[]> {
-    const resp = await githubGraphQL(PROJECTS);
+export default async function projects(): Promise<ProjectData[]> {
+    const resp = await githubGraphQL(PROJECTS_QUERY);
     const json = (await resp.json()) as JsonType;
-    const rawProjects = json.data.viewer.pinnedItems.nodes;
-    const projects = rawProjects.map((rawProject) => parseProject(rawProject));
+    const pinnedItemsData = json.data.viewer.pinnedItems.nodes;
+
+    const projects = pinnedItemsData.map((repository) => parseProject(repository));
     return projects;
 }
 
-export const parseProject = (rawProject: RepositoryData): Project => {
-    const { totalSize } = rawProject.languages;
+// topics that indicate a project is a package
+const packageTopics = ["npm", "pypi"] as const;
 
-    // 3% of the total and it counts with a max of 3
-    const languages = rawProject.languages.edges
-        .filter(({ size }) => size / totalSize >= 0.03)
-        .map(({ node }) => node.name)
+const parsePackageUrl = (
+    repository: RepositoryData,
+    packageTopic: typeof packageTopics[number]
+): string | null => {
+    switch (packageTopic) {
+        case "npm":
+            return `https://www.npmjs.com/package/${repository.name}`;
+        case "pypi":
+            return `https://pypi.org/project/${repository.name}`;
+        default:
+            return null;
+    }
+};
+
+const parseProject = (repository: RepositoryData): ProjectData => {
+    const { totalSize } = repository.languages;
+
+    // each language has to be at least 10% of the total size of the repository
+    const languages = repository.languages.edges
+        .sort((a, b) => b.size - a.size)
+        .filter(({ size }) => size / totalSize >= 0.1)
+        .map(({ node }) => node.name.toLowerCase())
         .slice(0, 3);
 
-    const project: Project = {
-        name: rawProject.name,
-        descriptionHTML: rawProject.descriptionHTML,
-        url: rawProject.url,
-        ownerName: rawProject.owner.login,
-        totalStars: rawProject.stargazers.totalCount,
-        totalForks: rawProject.forks.totalCount,
+    const topics = repository.repositoryTopics.nodes
+        .map(({ topic }) => topic.name.toLowerCase())
+        .filter((topic) => !languages.includes(topic));
+
+    const packageTopicIndex = packageTopics.findIndex((topic) => topics.includes(topic));
+
+    let packageUrl: string | null = null;
+    if (packageTopicIndex !== -1) {
+        topics.splice(packageTopicIndex, 1);
+        packageUrl = parsePackageUrl(repository, packageTopics[packageTopicIndex]);
+    }
+
+    const { name, descriptionHTML, url, stargazerCount: stars } = repository;
+
+    const project: ProjectData = {
+        name,
+        descriptionHTML,
+        stars,
         languages,
+        topics,
+        url,
+        packageUrl,
     };
     return project;
 };
 
-export interface RepositoryData {
+interface RepositoryData {
     name: string;
     descriptionHTML: string;
     url: string;
-    owner: {
-        login: string;
-    };
-    stargazers: {
-        totalCount: number;
-    };
-    forks: {
-        totalCount: number;
-    };
-    primaryLanguage: {
-        name: string;
-    };
+    stargazerCount: number;
     languages: {
         edges: Array<{
             size: number;
@@ -67,9 +89,16 @@ export interface RepositoryData {
         }>;
         totalSize: number;
     };
+    repositoryTopics: {
+        nodes: Array<{
+            topic: {
+                name: string;
+            };
+        }>;
+    };
 }
 
-const PROJECTS = gql`
+const PROJECTS_QUERY = gql`
     {
         viewer {
             pinnedItems(first: 6, types: REPOSITORY) {
@@ -78,15 +107,7 @@ const PROJECTS = gql`
                         name
                         descriptionHTML
                         url
-                        owner {
-                            login
-                        }
-                        stargazers {
-                            totalCount
-                        }
-                        forks {
-                            totalCount
-                        }
+                        stargazerCount
                         languages(first: 3, orderBy: { field: SIZE, direction: DESC }) {
                             edges {
                                 ... on LanguageEdge {
@@ -97,6 +118,15 @@ const PROJECTS = gql`
                                 }
                             }
                             totalSize
+                        }
+                        repositoryTopics(first: 10) {
+                            nodes {
+                                ... on RepositoryTopic {
+                                    topic {
+                                        name
+                                    }
+                                }
+                            }
                         }
                     }
                 }

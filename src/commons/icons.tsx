@@ -15,6 +15,14 @@ const Icon = styled("svg", {
 
     variants: {
         size: {
+            "auto-height": {
+                width: "auto",
+                height: "100%",
+            },
+            "auto-width": {
+                width: "100%",
+                height: "auto",
+            },
             sm: {
                 width: 16,
                 height: 16,
@@ -155,9 +163,17 @@ export const ExternalLinkIcon = (props?: IconProps) => (
 );
 
 export const PackageIcon = (props?: IconProps) => (
-    // 'package' from tabler
+    // 'package' from tabler (flipped horizontally)
     <Icon viewBox="0 0 24 24" {...props}>
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5m0 9l8 -4.5m-8 4.5l0 9m0 -9l-8 -4.5m12 -2.25l-8 4.5" />
+        <path d="M0 0h24v24H0z" fill="none" stroke="none" />
+        <path d="M4 7.5L12 3L20 7.5M4 7.5V16.5L12 21M4 7.5L12 12M12 21L20 16.5V7.5M12 21V12M20 7.5L12 12M8 5.25L16 9.75" />
+    </Icon>
+);
+
+export const StarIcon = (props?: IconProps) => (
+    // 'star' from tabler
+    <Icon viewBox="0 0 24 24" {...props}>
+        <path d="M0 0h24v24H0z" fill="none" stroke="none" />
+        <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
     </Icon>
 );

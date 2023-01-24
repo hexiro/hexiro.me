@@ -4,8 +4,10 @@ import type { ComponentProps } from "@stitches/react";
 import NextLink from "next/link";
 
 const LinkWrapper = styled(NextLink, {
-    color: "inherit",
+    display: "inline-block",
     textDecoration: "inherit",
+    color: "inherit",
+    height: "100%",
 });
 
 type LinkProps = Omit<ComponentProps<typeof LinkWrapper>, "target"> & {

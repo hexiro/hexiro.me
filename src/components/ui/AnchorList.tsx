@@ -9,8 +9,11 @@ import Span from "@/components/ui/Span";
 const AnchorList = styled("ul", {
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     gap: "$2",
     width: "100%",
+    height: "100%",
 
     "@md": {
         gap: "$3",
@@ -64,6 +67,7 @@ const AnchorListTextItemWrapper = styled(ListItem, {
 
 const DefaultListItem = styled("li", {
     listStyle: "none",
+    height: "100%",
 });
 
 export default {
