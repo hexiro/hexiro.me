@@ -46,7 +46,7 @@ const AnchorListItem = (props: AnchorListItemProps) => (
 
 const AnchorListItemNoAnimation = ({ href, newTab, children }: AnchorListItemProps) => (
     <DefaultListItem>
-        <Link newTab href={href}>
+        <Link newTab={newTab} href={href}>
             {children}
         </Link>
     </DefaultListItem>

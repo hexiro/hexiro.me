@@ -2,6 +2,7 @@ import { styled } from "@/theme";
 
 import type { ProjectData } from "@/commons/graphql/projects";
 import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
+import ParseHTML from "@/components/ParseHTML";
 import { AnchorList, Heading, Paragraph } from "@/components/ui";
 
 import LanguageIcon from "components/project/LanguageIcon";
@@ -11,7 +12,7 @@ interface ProjectProps {
 }
 
 export default function Project({ data }: ProjectProps) {
-    const { name, descriptionHTML, url, packageUrl, languages, topics } = data;
+    const { name, descriptionHTML, stars, languages, topics, url, packageUrl } = data;
 
     return (
         <ProjectContainer>
@@ -22,7 +23,7 @@ export default function Project({ data }: ProjectProps) {
                 <ProjectInformation>
                     <ProjectDetail>
                         <StarIcon size="sm" />
-                        <Paragraph>20</Paragraph>
+                        <Paragraph>{stars}</Paragraph>
                     </ProjectDetail>
                     <VerticalDivider />
                     <AnchorList.List css={{ gap: "$1" }}>
@@ -48,6 +49,7 @@ export default function Project({ data }: ProjectProps) {
                     <Topic key={name}>{name}</Topic>
                 ))}
             </ProjectTopics>
+            <ParseHTML html={descriptionHTML} />
         </ProjectContainer>
     );
 }
@@ -60,6 +62,7 @@ const ProjectTopics = styled("ul", {
     lineHeight: "$single",
     height: "28px",
     overflow: "hidden",
+    marginBottom: "$3",
 });
 
 const Topic = styled("li", {
