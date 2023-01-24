@@ -26,6 +26,13 @@ const Heading = styled("h1", {
                 fontWeight: 600,
             },
         },
+        ellipsis: {
+            true: {
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+            },
+        },
     },
 });
 export default Heading;

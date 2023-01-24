@@ -22,8 +22,6 @@ const tap: CSS = {
 };
 
 const Span = styled("span", {
-    height: "100%",
-    width: "100%",
     variants: {
         lineHeight: {
             "single": { lineHeight: 1 },

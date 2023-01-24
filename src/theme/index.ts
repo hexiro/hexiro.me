@@ -9,6 +9,7 @@ const stitches = createStitches({
             "brand-primary-rgb": "75, 255, 159",
             "brand-primary": "rgb($brand-primary-rgb)",
             "brand-accent": "#E7FFF2",
+            "brand-tertiary": "rgba(232, 255, 232, 0.2)",
             // text colors
             "text-primary": "#D2E0D5",
             "text-secondary": "#B7BEB9",

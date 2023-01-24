@@ -24,11 +24,9 @@ export default async function projects(): Promise<ProjectData[]> {
 
 // topics that indicate a project is a package
 const packageTopics = ["npm", "pypi"] as const;
+type PackageTopic = typeof packageTopics[number];
 
-const parsePackageUrl = (
-    repository: RepositoryData,
-    packageTopic: typeof packageTopics[number]
-): string | null => {
+const parsePackageUrl = (repository: RepositoryData, packageTopic: PackageTopic): string | null => {
     switch (packageTopic) {
         case "npm":
             return `https://www.npmjs.com/package/${repository.name}`;
@@ -42,6 +40,8 @@ const parsePackageUrl = (
 const parseProject = (repository: RepositoryData): ProjectData => {
     const { totalSize } = repository.languages;
 
+    const topicNames = repository.repositoryTopics.nodes.map(({ topic: { name } }) => name);
+
     // each language has to be at least 10% of the total size of the repository
     const languages = repository.languages.edges
         .sort((a, b) => b.size - a.size)
@@ -53,12 +53,16 @@ const parseProject = (repository: RepositoryData): ProjectData => {
         .map(({ topic }) => topic.name.toLowerCase())
         .filter((topic) => !languages.includes(topic));
 
-    const packageTopicIndex = packageTopics.findIndex((topic) => topics.includes(topic));
-
     let packageUrl: string | null = null;
+
+    // @ts-expect-error - string is not equal to string literal -- try and fix this later
+    const packageTopicIndex = topics.findIndex((topic) => packageTopics.includes(topic));
+
     if (packageTopicIndex !== -1) {
+        const packageTopic = topics[packageTopicIndex] as PackageTopic;
+        packageUrl = parsePackageUrl(repository, packageTopic);
+
         topics.splice(packageTopicIndex, 1);
-        packageUrl = parsePackageUrl(repository, packageTopics[packageTopicIndex]);
     }
 
     const { name, descriptionHTML, url, stargazerCount: stars } = repository;

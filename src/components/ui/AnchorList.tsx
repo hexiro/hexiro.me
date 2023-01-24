@@ -27,7 +27,7 @@ const AnchorList = styled("ul", {
 type AnchorListItemProps = PropsWithChildren<{ href: string; newTab?: boolean }>;
 
 const AnchorListItemInner = ({ href, newTab, children }: AnchorListItemProps) => (
-    <Link newTab href={href}>
+    <Link newTab={newTab} href={href} css={{ lineHeight: "$single" }}>
         <Span animation="pop">{children}</Span>
     </Link>
 );
@@ -67,7 +67,9 @@ const AnchorListTextItemWrapper = styled(ListItem, {
 
 const DefaultListItem = styled("li", {
     listStyle: "none",
-    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
 });
 
 export default {

@@ -7,7 +7,6 @@ const LinkWrapper = styled(NextLink, {
     display: "inline-block",
     textDecoration: "inherit",
     color: "inherit",
-    height: "100%",
 });
 
 type LinkProps = Omit<ComponentProps<typeof LinkWrapper>, "target"> & {
