@@ -1,21 +1,33 @@
 import { styled } from "@/theme";
 
+import { useRef, useState } from "react";
+
+import { childStaggerAnimation, extraBounce } from "@/commons/animations";
 import type { ProjectData } from "@/commons/graphql/projects";
 import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
 import ParseHTML from "@/components/ParseHTML";
 import { AnchorList, Heading, Paragraph } from "@/components/ui";
 
 import LanguageIcon from "components/project/LanguageIcon";
+import { motion } from "framer-motion";
 
 interface ProjectProps {
     data: ProjectData;
 }
 
 export default function Project({ data }: ProjectProps) {
+    const ref = useRef<HTMLDivElement>(null);
+    const [animationComplete, setAnimationComplete] = useState<boolean>(false);
     const { name, descriptionHTML, stars, languages, topics, url, packageUrl } = data;
 
     return (
-        <ProjectContainer>
+        <ProjectContainer
+            ref={ref}
+            variants={childStaggerAnimation}
+            transition={extraBounce}
+            enableHoverAnimation={animationComplete}
+            onAnimationComplete={() => setAnimationComplete(true)}
+        >
             <ProjectHeader>
                 <Heading ellipsis as="h3" css={{ paddingRight: "$1" }}>
                     {name}
@@ -113,7 +125,7 @@ const VerticalDivider = styled("hr", {
     borderRadius: "$max",
 });
 
-const ProjectContainer = styled("div", {
+const ProjectContainer = styled(motion.div, {
     aspectRatio: "20 / 7",
     width: "100%",
     height: "auto",
@@ -124,12 +136,22 @@ const ProjectContainer = styled("div", {
     padding: "$4",
     display: "flex",
     flexDirection: "column",
-
     willTransition: "transform",
-    transitionDuration: "$fast",
-    transitionTimingFunction: "$ease-in-out",
 
     "@xl": {
         width: "48%",
+    },
+
+    variants: {
+        enableHoverAnimation: {
+            true: {
+                transitionDuration: "$fast",
+                transitionTimingFunction: "$ease-in-out",
+
+                "&:hover": {
+                    transform: "translateY(-4px)!important",
+                },
+            },
+        },
     },
 });

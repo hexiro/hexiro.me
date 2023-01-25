@@ -2,11 +2,14 @@ import { styled } from "@/theme";
 
 import type { GetStaticProps } from "next";
 
+import { staggerAnimation } from "@/commons/animations";
 import type { ProjectData } from "@/commons/graphql/projects";
 import projects from "@/commons/graphql/projects";
 import Project from "@/components/project";
 import { Heading, Subtext } from "@/components/ui";
 import Page from "@/layout/Page";
+
+import { motion } from "framer-motion";
 
 const DESCRIPTION = "Projects";
 
@@ -22,7 +25,7 @@ export default function ProjectsPage({ projects }: ProjectsPageProps) {
                 I hand-picked these six projects to showcase my skill set and creativity. I host
                 each project on GitHub.
             </Subtext>
-            <ProjectsContainer>
+            <ProjectsContainer variants={staggerAnimation} initial="initial" animate="animate">
                 {projects.map((project) => (
                     <Project key={project.name} data={project} />
                 ))}
@@ -31,7 +34,7 @@ export default function ProjectsPage({ projects }: ProjectsPageProps) {
     );
 }
 
-const ProjectsContainer = styled("div", {
+const ProjectsContainer = styled(motion.div, {
     width: "100%",
     height: "100%",
     display: "flex",
