@@ -20,7 +20,7 @@ export default function replace(node: DOMNode): JSX.Element | null {
         switch (node.name) {
             case "a": {
                 return (
-                    <Link key={key} href={node.attribs.href}>
+                    <Link key={key} href={node.attribs.href} css={{ zIndex: 1 }}>
                         <Span animation="pop" color="brand-primary">
                             {domToReact(node.children)}
                         </Span>

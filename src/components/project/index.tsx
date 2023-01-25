@@ -6,7 +6,7 @@ import { childStaggerAnimation, extraBounce } from "@/commons/animations";
 import type { ProjectData } from "@/commons/graphql/projects";
 import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
 import ParseHTML from "@/components/ParseHTML";
-import { AnchorList, Heading, Paragraph } from "@/components/ui";
+import { AnchorList, Heading, Link, Paragraph } from "@/components/ui";
 
 import LanguageIcon from "components/project/LanguageIcon";
 import replace from "components/project/replace";
@@ -31,7 +31,25 @@ export default function Project({ data }: ProjectProps) {
         >
             <ProjectHeader>
                 <Heading ellipsis as="h3" css={{ paddingRight: "$1" }}>
-                    {name}
+                    <Link
+                        newTab
+                        href={url}
+                        css={{
+                            "&::before": {
+                                content: "''",
+                                cursor: "inherit",
+                                display: "block",
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                zIndex: 0,
+                                width: "100%",
+                                height: "100%",
+                            },
+                        }}
+                    >
+                        {name}
+                    </Link>
                 </Heading>
                 <ProjectInformation>
                     <ProjectDetail>
@@ -39,7 +57,7 @@ export default function Project({ data }: ProjectProps) {
                         <Paragraph>{stars}</Paragraph>
                     </ProjectDetail>
                     <VerticalDivider />
-                    <AnchorList.List css={{ gap: "$1" }}>
+                    <AnchorList.List css={{ gap: "$1", zIndex: 1 }}>
                         {packageUrl ? (
                             <AnchorList.Item newTab href={packageUrl}>
                                 <PackageIcon size="md" />
@@ -98,7 +116,6 @@ const ProjectHeader = styled("div", {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    lineHeight: 5,
     height: "40px",
     paddingBottom: "$1",
 });
@@ -127,6 +144,7 @@ const VerticalDivider = styled("hr", {
 });
 
 const ProjectContainer = styled(motion.div, {
+    position: "relative",
     aspectRatio: "20 / 7",
     width: "100%",
     height: "auto",
