@@ -9,6 +9,7 @@ import ParseHTML from "@/components/ParseHTML";
 import { AnchorList, Heading, Paragraph } from "@/components/ui";
 
 import LanguageIcon from "components/project/LanguageIcon";
+import replace from "components/project/replace";
 import { motion } from "framer-motion";
 
 interface ProjectProps {
@@ -61,7 +62,7 @@ export default function Project({ data }: ProjectProps) {
                     <Topic key={name}>{name}</Topic>
                 ))}
             </ProjectTopics>
-            <ParseHTML html={descriptionHTML} />
+            <ParseHTML html={descriptionHTML} replace={replace} />
         </ProjectContainer>
     );
 }
