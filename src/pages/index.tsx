@@ -1,3 +1,4 @@
+import DiscordPresence from "@/components/DiscordPresence";
 import { Heading, Paragraph, Span, Subheading } from "@/components/ui";
 import Page from "@/layout/Page";
 
@@ -16,6 +17,7 @@ export default function Home() {
                 an inspired programmer interested in problem-solving, modern technology, and open
                 source while aiming to build beautiful and efficient software.
             </Paragraph>
+            <DiscordPresence />
         </Page>
     );
 }
