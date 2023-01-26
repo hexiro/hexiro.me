@@ -6,6 +6,8 @@ import Link from "@/components/ui/Link";
 import ListItem from "@/components/ui/ListItem";
 import Span from "@/components/ui/Span";
 
+import { Tooltip } from "react-tippy";
+
 const AnchorList = styled("ul", {
     display: "flex",
     flexDirection: "row",
@@ -44,6 +46,17 @@ const AnchorListItem = (props: AnchorListItemProps) => (
     </DefaultListItem>
 );
 
+const AnchorListTooltipItem = ({
+    tooltip,
+    ...props
+}: AnchorListItemProps & { tooltip: string }) => (
+    <DefaultListItem>
+        <Tooltip arrow title={tooltip} style={{ display: "block" }} position="bottom">
+            <AnchorListItemInner {...props} />
+        </Tooltip>
+    </DefaultListItem>
+);
+
 const AnchorListItemNoAnimation = ({ href, newTab, children }: AnchorListItemProps) => (
     <DefaultListItem>
         <Link newTab={newTab} href={href}>
@@ -77,4 +90,5 @@ export default {
     TextItem: AnchorListTextItem,
     Item: AnchorListItem,
     ItemNoAnimation: AnchorListItemNoAnimation,
+    ItemWithTooltip: AnchorListTooltipItem,
 };

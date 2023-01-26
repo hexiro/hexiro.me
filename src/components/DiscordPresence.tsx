@@ -37,7 +37,11 @@ export default function DiscordPresence() {
                     exit="initial"
                 >
                     <Images>
-                        <Tooltip style={{ display: "block" }} title={state.images.large.tooltip}>
+                        <Tooltip
+                            arrow
+                            style={{ display: "block" }}
+                            title={state.images.large.tooltip}
+                        >
                             <LargeImage
                                 width={100}
                                 height={100}

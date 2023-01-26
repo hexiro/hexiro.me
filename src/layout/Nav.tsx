@@ -77,9 +77,14 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
                 <Hide below="sm">
                     <AnchorList.List>
                         {socials.map(({ name, href, icon }) => (
-                            <AnchorList.Item key={name} newTab href={href}>
+                            <AnchorList.ItemWithTooltip
+                                key={name}
+                                newTab
+                                tooltip={name}
+                                href={href}
+                            >
                                 {createElement(icon)}
-                            </AnchorList.Item>
+                            </AnchorList.ItemWithTooltip>
                         ))}
                     </AnchorList.List>
                 </Hide>
