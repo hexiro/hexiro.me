@@ -6,7 +6,7 @@ import { staggerAnimation } from "@/commons/animations";
 import type { ProjectData } from "@/commons/graphql/projects";
 import projects from "@/commons/graphql/projects";
 import Project from "@/components/project";
-import { Heading, Subtext } from "@/components/ui";
+import { Heading, Paragraph } from "@/components/ui";
 import Page from "@/layout/Page";
 
 import { motion } from "framer-motion";
@@ -21,10 +21,10 @@ export default function ProjectsPage({ projects }: ProjectsPageProps) {
     return (
         <Page name="Projects" description={DESCRIPTION}>
             <Heading as="h1">Projects</Heading>
-            <Subtext>
+            <Paragraph size="lg">
                 I hand-picked these six projects to showcase my skill set and creativity. I host
                 each project on GitHub.
-            </Subtext>
+            </Paragraph>
             <ProjectsContainer variants={staggerAnimation} initial="initial" animate="animate">
                 {projects.map((project) => (
                     <Project key={project.name} data={project} />
@@ -42,7 +42,7 @@ const ProjectsContainer = styled(motion.div, {
     flexWrap: "wrap",
     columnGap: "2%",
     rowGap: "$4",
-    marginTop: "6em",
+    marginTop: "$6",
 
     // one-column layout
     "@lg": {

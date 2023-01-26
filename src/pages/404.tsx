@@ -1,4 +1,4 @@
-import { ButtonLink, Heading, Subtext } from "@/components/ui";
+import { ButtonLink, Heading, Paragraph } from "@/components/ui";
 import Page from "@/layout/Page";
 
 export default function NotFound() {
@@ -7,7 +7,9 @@ export default function NotFound() {
             <Heading as="h1" css={{ fontSize: 96 }}>
                 404
             </Heading>
-            <Subtext align="center">{"Oops? This page couldn't be found!"}</Subtext>
+            <Paragraph size="lg" align="center">
+                {"Oops? This page couldn't be found!"}
+            </Paragraph>
             <ButtonLink priority="secondary" href="/" css={{ marginTop: "2em" }}>
                 Go Home
             </ButtonLink>

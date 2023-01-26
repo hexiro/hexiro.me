@@ -15,7 +15,7 @@ type UseWindowWidthMinMaxOptions =
       };
 
 type UseWindowWidthOptions = UseWindowWidthMinMaxOptions & {
-    handler?: () => void;
+    handler?: (state: boolean) => void;
 };
 
 export default function useWindowWidthInBounds({
@@ -29,13 +29,16 @@ export default function useWindowWidthInBounds({
         const handleResize = () => {
             const width = window.innerWidth;
 
-            if (min && width <= min) return setIsWidthWithinBounds(false);
-            if (max && width >= max) return setIsWidthWithinBounds(false);
+            let newState: boolean;
 
-            if (isWidthWithinBounds) return;
+            if (min && width <= min) newState = false;
+            else if (max && width >= max) newState = false;
+            else newState = true;
 
-            if (handler) handler();
-            setIsWidthWithinBounds(true);
+            if (newState === isWidthWithinBounds) return;
+
+            if (handler) handler(newState);
+            setIsWidthWithinBounds(newState);
         };
 
         window.addEventListener("resize", handleResize);

@@ -8,7 +8,6 @@ import ListItem from "@/components/ui/ListItem";
 import Paragraph from "@/components/ui/Paragraph";
 import Span from "@/components/ui/Span";
 import Subheading from "@/components/ui/Subheading";
-import Subtext from "@/components/ui/Subtext";
 
 export {
     AnchorList,
@@ -21,5 +20,4 @@ export {
     Paragraph,
     Span,
     Subheading,
-    Subtext,
 };

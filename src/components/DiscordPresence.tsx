@@ -1,23 +1,40 @@
-import { styled } from "@/theme";
+import { breakpoints, styled } from "@/theme";
 
 import Image from "next/image";
+import { useState } from "react";
 
+import { childStaggerAnimation, extraBounce } from "@/commons/animations";
 import { DISCORD } from "@/commons/config";
+import useWindowWidthInBounds from "@/hooks/useWindowWidth";
 
+import { Paragraph, Heading } from "components/ui";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Activity } from "use-lanyard";
 import { useLanyardWS } from "use-lanyard";
 
 export default function DiscordPresence() {
+    const [visible, setVisible] = useState<boolean>(true);
+
     const presence = useLanyardWS(DISCORD);
     const state = parseActivities(presence?.activities);
 
-    console.log({ state });
+    useWindowWidthInBounds({
+        min: breakpoints.xxs,
+        handler(state) {
+            setVisible(state);
+        },
+    });
 
     return (
         <AnimatePresence>
-            {state && (
-                <DiscordPresenceContainer>
+            {visible && state ? (
+                <DiscordPresenceContainer
+                    variants={childStaggerAnimation}
+                    transition={extraBounce}
+                    initial="initial"
+                    animate="animate"
+                    exit="initial"
+                >
                     <Images>
                         <Image fill src={state.images.large.src} alt={state.images.large.tooltip} />
                         <SmallImage>
@@ -28,27 +45,58 @@ export default function DiscordPresence() {
                             />
                         </SmallImage>
                     </Images>
-                    <FlexBox />
+                    <Text>
+                        <Heading ellipsis as="h4">
+                            {state.name}
+                        </Heading>
+                        <TextBody>
+                            {state.lines.map((line, index) => (
+                                // usually not ideal to use index as key, but in this case they should remain in the same order
+                                // and it'd be too complex to generate a key / parse from the line
+                                // eslint-disable-next-line react/no-array-index-key
+                                <Paragraph key={index} ellipsis size="sm">
+                                    {line.map((chunk) =>
+                                        chunk.highlighted ? (
+                                            <Highlight key={chunk.text}>{chunk.text}</Highlight>
+                                        ) : (
+                                            chunk.text
+                                        )
+                                    )}
+                                </Paragraph>
+                            ))}
+                        </TextBody>
+                    </Text>
                 </DiscordPresenceContainer>
-            )}
+            ) : null}
         </AnimatePresence>
     );
 }
 
 const DiscordPresenceContainer = styled(motion.div, {
     position: "relative",
-    aspectRatio: "64 / 23",
+    aspectRatio: "68 / 23",
     width: "100%",
-    maxWidth: "400px",
+    maxWidth: "425px",
     height: "auto",
     backgroundColor: "$background-secondary",
     borderRadius: "$xl",
     border: "2px solid $lighten-10",
     boxShadow: "$md",
     padding: "$4",
+    paddingRight: "$2",
     display: "flex",
     flexDirection: "row",
     willTransition: "transform",
+
+    "@lg": {
+        minWidth: "425px",
+    },
+});
+
+const Highlight = styled("span", {
+    color: "$brand-accent",
+    fontWeight: 600,
+    marginX: 2,
 });
 
 const Images = styled("div", {
@@ -63,13 +111,20 @@ const Images = styled("div", {
     },
 });
 
-const FlexBox = styled("div", {
+const Text = styled("div", {
     display: "flex",
     flexGrow: 1,
+    flexDirection: "column",
+    paddingLeft: "4%",
+    overflow: "hidden",
 
     "& > img": {
         borderRadius: "$lg",
     },
+});
+
+const TextBody = styled("div", {
+    paddingY: "$1",
 });
 
 const SmallImage = styled("div", {
@@ -87,16 +142,23 @@ const SmallImage = styled("div", {
 
 interface DiscordPresenceIDEState {
     name: string;
-    lines: string[];
+    lines: DiscordPresenceLine[];
     images: {
-        large: DiscordPresenceImageState;
-        small: DiscordPresenceImageState;
+        large: DiscordPresenceImage;
+        small: DiscordPresenceImage;
     };
 }
 
-interface DiscordPresenceImageState {
+interface DiscordPresenceImage {
     src: string;
     tooltip: string;
+}
+
+type DiscordPresenceLine = DiscordPresenceLineChunk[];
+
+interface DiscordPresenceLineChunk {
+    text: string;
+    highlighted: boolean;
 }
 
 const parseActivities = (activities: Activity[] | undefined): DiscordPresenceIDEState | null => {
@@ -118,23 +180,35 @@ function parseActivity(activity: Activity): DiscordPresenceIDEState | null {
     if (!assets.large_image || !assets.large_text || !assets.small_image || !assets.small_text)
         return null;
 
-    const lines = [activity.state];
-    if (activity.details) lines.unshift(activity.details);
+    const large = parseImage(application_id, assets.large_image, assets.large_text);
+    const small = parseImage(application_id, assets.small_image, assets.small_text);
 
-    const large: DiscordPresenceImageState = {
-        src: buildAsset(application_id, assets.large_image),
-        tooltip: assets.large_text,
-    };
-
-    const small: DiscordPresenceImageState = {
-        src: buildAsset(application_id, assets.small_image),
-        tooltip: assets.small_text,
-    };
+    const lines = [parseLine(activity.state)];
+    if (activity.details) lines.unshift(parseLine(activity.details));
 
     return {
         name: activity.name,
-        lines,
         images: { large, small },
+        lines,
+    };
+}
+
+function parseLine(text: string): DiscordPresenceLine {
+    const highlightSplit = text.split("`");
+    const chunks: DiscordPresenceLineChunk[] = [];
+
+    for (const [i, chunk] of highlightSplit.entries()) {
+        const highlighted = i % 2 === 1;
+        chunks.push({ text: chunk, highlighted });
+    }
+
+    return chunks;
+}
+
+function parseImage(applicationId: string, assetId: string, text: string): DiscordPresenceImage {
+    return {
+        src: buildAsset(applicationId, assetId),
+        tooltip: text,
     };
 }
 

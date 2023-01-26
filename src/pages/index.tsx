@@ -1,3 +1,5 @@
+import { styled } from "@/theme";
+
 import DiscordPresence from "@/components/DiscordPresence";
 import { Heading, Paragraph, Span, Subheading } from "@/components/ui";
 import Page from "@/layout/Page";
@@ -7,17 +9,24 @@ const DESCRIPTION =
 
 export default function Home() {
     return (
-        <Page name="Home" description={DESCRIPTION}>
-            <Subheading>{"hi! I'm"}</Subheading>
-            <Heading as="h1">
-                Nathan <Span color="brand-accent">Lodge</Span>
-                <Span color="text-primary">,</Span>
-            </Heading>
-            <Paragraph>
-                an inspired programmer interested in problem-solving, modern technology, and open
-                source while aiming to build beautiful and efficient software.
-            </Paragraph>
+        <Page name="Home" description={DESCRIPTION} dir="col" css={{ gap: "$6" }}>
+            <Text>
+                <Subheading>{"hi! I'm"}</Subheading>
+                <Heading as="h1">
+                    Nathan <Span color="brand-accent">Lodge</Span>
+                    <Span color="text-primary">,</Span>
+                </Heading>
+                <Paragraph>
+                    an inspired programmer interested in problem-solving, modern technology, and
+                    open source while aiming to build beautiful and efficient software.
+                </Paragraph>
+            </Text>
             <DiscordPresence />
         </Page>
     );
 }
+
+const Text = styled("div", {
+    display: "flex",
+    flexDirection: "column",
+});

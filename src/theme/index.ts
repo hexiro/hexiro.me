@@ -1,6 +1,20 @@
 import type { PropertyValue } from "@stitches/react";
 import { createStitches, defaultThemeMap } from "@stitches/react";
 
+const media = {
+    xxs: "(min-width: 360px)",
+    xs: "(min-width: 480px)",
+    sm: "(min-width: 640px)",
+    md: "(min-width: 768px)",
+    lg: "(min-width: 1024px)",
+    xl: "(min-width: 1280px)",
+    xxl: "(min-width: 1536px)",
+};
+
+export const breakpoints = Object.fromEntries(
+    Object.entries(media).map(([key, value]) => [key, Number(value.replace(/\D/g, ""))])
+) as Record<keyof typeof media, number>;
+
 const stitches = createStitches({
     prefix: "hexiro",
     theme: {
@@ -88,15 +102,7 @@ const stitches = createStitches({
             "ease-in-out": "cubic-bezier(0.4, 0, 0.2, 1)",
         },
     },
-    media: {
-        xxs: "(min-width: 360px)",
-        xs: "(min-width: 480px)",
-        sm: "(min-width: 640px)",
-        md: "(min-width: 768px)",
-        lg: "(min-width: 1024px)",
-        xl: "(min-width: 1280px)",
-        xxl: "(min-width: 1536px)",
-    },
+    media,
     utils: {
         willTransition: (value: PropertyValue<"willChange">) => ({
             willChange: value,

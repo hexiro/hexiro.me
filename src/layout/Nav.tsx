@@ -1,4 +1,4 @@
-import { styled } from "@/theme";
+import { breakpoints, styled } from "@/theme";
 
 import { createElement, useRef, useState } from "react";
 
@@ -45,9 +45,9 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
     });
 
     useWindowWidthInBounds({
-        min: 640, // sm
-        handler() {
-            setIsMenuOpen(false);
+        min: breakpoints.sm,
+        handler(state) {
+            if (state) setIsMenuOpen(false);
         },
     });
 
