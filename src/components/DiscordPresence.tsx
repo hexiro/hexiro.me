@@ -9,6 +9,7 @@ import useWindowWidthInBounds from "@/hooks/useWindowWidth";
 
 import { Paragraph, Heading } from "components/ui";
 import { AnimatePresence, motion } from "framer-motion";
+import { Tooltip } from "react-tippy";
 import type { Activity } from "use-lanyard";
 import { useLanyardWS } from "use-lanyard";
 
@@ -36,14 +37,28 @@ export default function DiscordPresence() {
                     exit="initial"
                 >
                     <Images>
-                        <Image fill src={state.images.large.src} alt={state.images.large.tooltip} />
-                        <SmallImage>
-                            <Image
-                                fill
-                                src={state.images.small.src}
-                                alt={state.images.small.tooltip}
+                        <Tooltip style={{ display: "block" }} title={state.images.large.tooltip}>
+                            <LargeImage
+                                width={100}
+                                height={100}
+                                src={state.images.large.src}
+                                alt={state.images.large.tooltip}
                             />
-                        </SmallImage>
+                        </Tooltip>
+                        <SmallImageContainer>
+                            <Tooltip
+                                style={{ display: "block" }}
+                                title={state.images.small.tooltip}
+                                size="small"
+                            >
+                                <SmallImage
+                                    width={35}
+                                    height={35}
+                                    src={state.images.small.src}
+                                    alt={state.images.small.tooltip}
+                                />
+                            </Tooltip>
+                        </SmallImageContainer>
                     </Images>
                     <Text>
                         <Heading ellipsis as="h4">
@@ -75,9 +90,10 @@ export default function DiscordPresence() {
 const DiscordPresenceContainer = styled(motion.div, {
     position: "relative",
     aspectRatio: "68 / 23",
-    width: "100%",
-    maxWidth: "425px",
-    height: "auto",
+
+    maxWidth: 414,
+    height: 140,
+
     backgroundColor: "$background-secondary",
     borderRadius: "$xl",
     border: "2px solid $lighten-10",
@@ -101,14 +117,23 @@ const Highlight = styled("span", {
 
 const Images = styled("div", {
     position: "relative",
-    height: "100%",
-    width: "auto",
-    aspectRatio: "1 / 1",
+    size: "100px",
+});
 
-    "& > img": {
-        border: "2px solid hsl(137deg 20% 41%)",
-        borderRadius: "$md",
-    },
+const LargeImage = styled(Image, {
+    border: "2px solid hsl(137deg 20% 41%)",
+    borderRadius: "$md",
+});
+
+const SmallImageContainer = styled("div", {
+    position: "absolute",
+    bottom: "-$1",
+    right: "-$1",
+});
+
+const SmallImage = styled(Image, {
+    border: "2px solid rgba(255, 255, 255, 0.75)",
+    borderRadius: "50%",
 });
 
 const Text = styled("div", {
@@ -125,19 +150,6 @@ const Text = styled("div", {
 
 const TextBody = styled("div", {
     paddingY: "$1",
-});
-
-const SmallImage = styled("div", {
-    position: "absolute",
-    bottom: "-$1",
-    right: "-$1",
-    size: "$6",
-
-    border: "2px solid rgba(255, 255, 255, 0.75)",
-
-    "&, & > img": {
-        borderRadius: "50%",
-    },
 });
 
 interface DiscordPresenceIDEState {

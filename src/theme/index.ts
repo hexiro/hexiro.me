@@ -112,6 +112,14 @@ const stitches = createStitches({
             width: value,
             height: value,
         }),
+        maxSize: (value: PropertyValue<"maxWidth">) => ({
+            maxWidth: value,
+            maxHeight: value,
+        }),
+        minSize: (value: PropertyValue<"minWidth">) => ({
+            minWidth: value,
+            minHeight: value,
+        }),
         paddingX: (value: PropertyValue<"paddingLeft">) => ({
             paddingLeft: value,
             paddingRight: value,

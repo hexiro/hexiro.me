@@ -15,6 +15,8 @@ import {
 import type { NavRoute } from "@/layout/Nav";
 import Nav from "@/layout/Nav";
 
+import "react-tippy/dist/tippy.css";
+
 export default function App({ Component, pageProps, router }: AppProps) {
     globalStyles();
 
