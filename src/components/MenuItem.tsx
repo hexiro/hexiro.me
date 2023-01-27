@@ -5,7 +5,7 @@ import { createElement } from "react";
 
 import { fadeIn, smallBounce } from "@/commons/animations";
 import type { IconType } from "@/commons/icons";
-import Link from "@/components/ui/Link";
+import { Link } from "@/components/ui";
 
 import { AnimatePresence, motion } from "framer-motion";
 

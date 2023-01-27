@@ -1,8 +1,7 @@
 import { styled } from "@/theme";
 import type { ComponentProps } from "@stitches/react";
 
-import Button from "@/components/ui/Button";
-import Link from "@/components/ui/Link";
+import { Button, Link } from "@/components/ui";
 
 type ButtonLinkProps = Omit<ComponentProps<typeof Button> & ComponentProps<typeof Link>, "as">;
 
