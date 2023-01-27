@@ -1,7 +1,10 @@
 import { styled } from "@/theme";
-import type { ComponentProps } from "@stitches/react";
+import type { ComponentProps, VariantProps } from "@stitches/react";
 
 import NextLink from "next/link";
+import type { PropsWithChildren } from "react";
+
+import { Span } from "@/components/ui";
 
 const LinkWrapper = styled(NextLink, {
     display: "inline-block",
@@ -9,12 +12,27 @@ const LinkWrapper = styled(NextLink, {
     color: "inherit",
 });
 
-type LinkProps = Omit<ComponentProps<typeof LinkWrapper>, "target"> & {
-    newTab?: boolean;
-};
+type SpanProps = VariantProps<typeof Span>;
 
-const Link = ({ newTab, ...props }: LinkProps) => (
-    <LinkWrapper target={newTab ? "_blank" : undefined} {...props} />
+type LinkProps = Omit<ComponentProps<typeof LinkWrapper>, "target"> &
+    SpanProps & {
+        newTab?: boolean;
+    };
+
+const Link = ({ newTab, animation, color, lineHeight, ...props }: LinkProps) => (
+    <WithSpan animation={animation} color={color} lineHeight={lineHeight}>
+        <LinkWrapper target={newTab ? "_blank" : undefined} {...props} />
+    </WithSpan>
 );
+
+const WithSpan = ({ animation, color, lineHeight, children }: PropsWithChildren<SpanProps>) => {
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    if (!animation && !color && !lineHeight) return <>{children}</>;
+    return (
+        <Span animation={animation} color={color} lineHeight={lineHeight}>
+            {children}
+        </Span>
+    );
+};
 
 export default Link;

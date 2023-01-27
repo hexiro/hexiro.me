@@ -1,12 +1,13 @@
 import { breakpoints, styled } from "@/theme";
 
-import { createElement, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import { fadeInAndScale, normalBounce } from "@/commons/animations";
 import type { IconType } from "@/commons/icons";
 import { CloseIcon, HamburgerMenuIcon } from "@/commons/icons";
 import MenuItem from "@/components/MenuItem";
 import Route from "@/components/Route";
+import Social from "@/components/Social";
 import { Hide, Show } from "@/components/layout";
 import { AnchorList, Heading, ListItem, Span } from "@/components/ui";
 import useWindowWidthInBounds from "@/hooks/useWindowWidth";
@@ -75,18 +76,11 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
             </NavLeft>
             <NavRight>
                 <Hide below="sm">
-                    <AnchorList.List>
-                        {socials.map(({ name, href, icon }) => (
-                            <AnchorList.ItemWithTooltip
-                                key={name}
-                                newTab
-                                tooltip={name}
-                                href={href}
-                            >
-                                {createElement(icon)}
-                            </AnchorList.ItemWithTooltip>
+                    <AnchorList>
+                        {socials.map((props) => (
+                            <Social key={props.name} {...props} />
                         ))}
-                    </AnchorList.List>
+                    </AnchorList>
                 </Hide>
                 <Show below="sm">
                     <button

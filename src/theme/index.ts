@@ -174,4 +174,7 @@ export const globalStyles = globalCss({
     "input, button, textarea, select, hr": {
         all: "unset",
     },
+    "li": {
+        listStyle: "none",
+    },
 });

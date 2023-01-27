@@ -57,16 +57,20 @@ export default function Project({ data }: ProjectProps) {
                         <Paragraph>{stars}</Paragraph>
                     </ProjectDetail>
                     <VerticalDivider />
-                    <AnchorList.List css={{ gap: "$1", zIndex: 1 }}>
+                    <AnchorList css={{ gap: "$1", zIndex: 1 }}>
                         {packageUrl ? (
-                            <AnchorList.Item newTab href={packageUrl}>
-                                <PackageIcon size="md" />
-                            </AnchorList.Item>
+                            <li>
+                                <Link newTab href={packageUrl} animation="pop" lineHeight="single">
+                                    <PackageIcon size="md" />
+                                </Link>
+                            </li>
                         ) : null}
-                        <AnchorList.Item newTab href={url}>
-                            <ExternalLinkIcon size="md" />
-                        </AnchorList.Item>
-                    </AnchorList.List>
+                        <li>
+                            <Link newTab href={url} animation="pop" lineHeight="single">
+                                <ExternalLinkIcon size="md" />
+                            </Link>
+                        </li>
+                    </AnchorList>
                 </ProjectInformation>
             </ProjectHeader>
             <ProjectTopics>
