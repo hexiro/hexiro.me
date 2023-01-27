@@ -6,7 +6,14 @@ import { Tooltip } from "react-tippy";
 export default function Social({ name, href, icon }: NavRoute) {
     return (
         <li>
-            <Tooltip arrow title={name} style={{ display: "block" }} position="bottom">
+            <Tooltip
+                arrow
+                animation="shift"
+                title={name}
+                style={{ display: "block" }}
+                position="bottom"
+                distance={5}
+            >
                 <Link newTab href={href} animation="pop" lineHeight="single">
                     {icon()}
                 </Link>

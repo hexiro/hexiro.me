@@ -39,6 +39,7 @@ export default function DiscordPresence() {
                     <Images>
                         <Tooltip
                             arrow
+                            theme="transparent"
                             style={{ display: "block" }}
                             title={state.images.large.tooltip}
                         >
@@ -195,12 +196,14 @@ function parseActivity(activity: Activity): DiscordPresenceIDEState | null {
     if (!assets || !application_id) return null;
     if (!assets.large_image || !assets.large_text || !assets.small_image || !assets.small_text)
         return null;
+    if (!activity.state || !activity.details) return null;
 
     const large = parseImage(application_id, assets.large_image, assets.large_text);
     const small = parseImage(application_id, assets.small_image, assets.small_text);
 
-    const lines = [parseLine(activity.state)];
-    if (activity.details) lines.unshift(parseLine(activity.details));
+    const lines: DiscordPresenceLine[] = [];
+    if (activity.details) lines.push(parseLine(activity.details));
+    if (activity.state) lines.push(parseLine(activity.state));
 
     return {
         name: activity.name,
