@@ -72,6 +72,9 @@ const stitches = createStitches({
             7: "45px",
             8: "65px",
             9: "80px",
+            "tippy-arrow-small": "5px",
+            "tippy-arrow-medium": "7px",
+            "tippy-arrow-large": "10px",
         },
         radii: {
             sm: "0.125rem",
@@ -200,27 +203,26 @@ export const tippyStyles = globalCss({
         pointerEvents: "none",
     },
     ".tippy-popper.html-template": {
-        // maxWidth: "96%",
         maxWidth: "calc(100% - 20px)",
     },
     ".tippy-popper[x-placement^=top] [x-arrow]": {
-        borderTop: "7px solid #333",
-        borderRight: "7px solid transparent",
-        borderLeft: "7px solid transparent",
-        bottom: "-7px",
+        borderTop: "$sizes$tippy-arrow-medium solid #333",
+        borderRight: "$sizes$tippy-arrow-medium solid transparent",
+        borderLeft: "$sizes$tippy-arrow-medium solid transparent",
+        bottom: "-$sizes$tippy-arrow-medium",
         margin: "0 9px",
     },
     ".tippy-popper[x-placement^=top] [x-arrow].arrow-small": {
-        borderTop: "5px solid #333",
-        borderRight: "5px solid transparent",
-        borderLeft: "5px solid transparent",
-        bottom: "-5px",
+        borderTop: "$sizes$tippy-arrow-small solid #333",
+        borderRight: "$sizes$tippy-arrow-small solid transparent",
+        borderLeft: "$sizes$tippy-arrow-small solid transparent",
+        bottom: "-$sizes$tippy-arrow-small",
     },
     ".tippy-popper[x-placement^=top] [x-arrow].arrow-big": {
-        borderTop: "10px solid #333",
-        borderRight: "10px solid transparent",
-        borderLeft: "10px solid transparent",
-        bottom: "-10px",
+        borderTop: "$sizes$tippy-arrow-big solid #333",
+        borderRight: "$sizes$tippy-arrow-big solid transparent",
+        borderLeft: "$sizes$tippy-arrow-big solid transparent",
+        bottom: "-$sizes$tippy-arrow-big",
     },
     ".tippy-popper[x-placement^=top] [x-circle]": {
         transformOrigin: "0 33%",
@@ -232,42 +234,6 @@ export const tippyStyles = globalCss({
     ".tippy-popper[x-placement^=top] [x-circle].leave": {
         transform: "scale(0.15) translate(-50%, -50%)",
         opacity: 0,
-    },
-    ".tippy-popper[x-placement^=top] .tippy-tooltip.light-theme [x-circle]": {
-        backgroundColor: "#fff",
-    },
-    ".tippy-popper[x-placement^=top] .tippy-tooltip.light-theme [x-arrow]": {
-        borderTop: "7px solid #fff",
-        borderRight: "7px solid transparent",
-        borderLeft: "7px solid transparent",
-    },
-    ".tippy-popper[x-placement^=top] .tippy-tooltip.light-theme [x-arrow].arrow-small": {
-        borderTop: "5px solid #fff",
-        borderRight: "5px solid transparent",
-        borderLeft: "5px solid transparent",
-    },
-    ".tippy-popper[x-placement^=top] .tippy-tooltip.light-theme [x-arrow].arrow-big": {
-        borderTop: "10px solid #fff",
-        borderRight: "10px solid transparent",
-        borderLeft: "10px solid transparent",
-    },
-    ".tippy-popper[x-placement^=top] .tippy-tooltip.transparent-theme [x-circle]": {
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
-    },
-    ".tippy-popper[x-placement^=top] .tippy-tooltip.transparent-theme [x-arrow]": {
-        borderTop: "7px solid rgba(0, 0, 0, 0.7)",
-        borderRight: "7px solid transparent",
-        borderLeft: "7px solid transparent",
-    },
-    ".tippy-popper[x-placement^=top] .tippy-tooltip.transparent-theme [x-arrow].arrow-small": {
-        borderTop: "5px solid rgba(0, 0, 0, 0.7)",
-        borderRight: "5px solid transparent",
-        borderLeft: "5px solid transparent",
-    },
-    ".tippy-popper[x-placement^=top] .tippy-tooltip.transparent-theme [x-arrow].arrow-big": {
-        borderTop: "10px solid rgba(0, 0, 0, 0.7)",
-        borderRight: "10px solid transparent",
-        borderLeft: "10px solid transparent",
     },
     ".tippy-popper[x-placement^=top] [data-animation=perspective]": {
         transformOrigin: "bottom",
@@ -305,23 +271,23 @@ export const tippyStyles = globalCss({
         transform: "translateY(0) scale(0)",
     },
     ".tippy-popper[x-placement^=bottom] [x-arrow]": {
-        borderBottom: "7px solid #333",
-        borderRight: "7px solid transparent",
-        borderLeft: "7px solid transparent",
-        top: "-7px",
+        borderBottom: "$sizes$tippy-arrow-medium solid #333",
+        borderRight: "$sizes$tippy-arrow-medium solid transparent",
+        borderLeft: "$sizes$tippy-arrow-medium solid transparent",
+        top: "-$sizes$tippy-arrow-medium",
         margin: "0 9px",
     },
     ".tippy-popper[x-placement^=bottom] [x-arrow].arrow-small": {
-        borderBottom: "5px solid #333",
-        borderRight: "5px solid transparent",
-        borderLeft: "5px solid transparent",
-        top: "-5px",
+        borderBottom: "$sizes$tippy-arrow-small solid #333",
+        borderRight: "$sizes$tippy-arrow-small solid transparent",
+        borderLeft: "$sizes$tippy-arrow-small solid transparent",
+        top: "-$sizes$tippy-arrow-small",
     },
     ".tippy-popper[x-placement^=bottom] [x-arrow].arrow-big": {
-        borderBottom: "10px solid #333",
-        borderRight: "10px solid transparent",
-        borderLeft: "10px solid transparent",
-        top: "-10px",
+        borderBottom: "$sizes$tippy-arrow-big solid #333",
+        borderRight: "$sizes$tippy-arrow-big solid transparent",
+        borderLeft: "$sizes$tippy-arrow-big solid transparent",
+        top: "-$sizes$tippy-arrow-big",
     },
     ".tippy-popper[x-placement^=bottom] [x-circle]": {
         transformOrigin: "0 -50%",
@@ -333,42 +299,6 @@ export const tippyStyles = globalCss({
     ".tippy-popper[x-placement^=bottom] [x-circle].leave": {
         transform: "scale(0.15) translate(-50%, -5%)",
         opacity: 0,
-    },
-    ".tippy-popper[x-placement^=bottom] .tippy-tooltip.light-theme [x-circle]": {
-        backgroundColor: "#fff",
-    },
-    ".tippy-popper[x-placement^=bottom] .tippy-tooltip.light-theme [x-arrow]": {
-        borderBottom: "7px solid #fff",
-        borderRight: "7px solid transparent",
-        borderLeft: "7px solid transparent",
-    },
-    ".tippy-popper[x-placement^=bottom] .tippy-tooltip.light-theme [x-arrow].arrow-small": {
-        borderBottom: "5px solid #fff",
-        borderRight: "5px solid transparent",
-        borderLeft: "5px solid transparent",
-    },
-    ".tippy-popper[x-placement^=bottom] .tippy-tooltip.light-theme [x-arrow].arrow-big": {
-        borderBottom: "10px solid #fff",
-        borderRight: "10px solid transparent",
-        borderLeft: "10px solid transparent",
-    },
-    ".tippy-popper[x-placement^=bottom] .tippy-tooltip.transparent-theme [x-circle]": {
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
-    },
-    ".tippy-popper[x-placement^=bottom] .tippy-tooltip.transparent-theme [x-arrow]": {
-        borderBottom: "7px solid rgba(0, 0, 0, 0.7)",
-        borderRight: "7px solid transparent",
-        borderLeft: "7px solid transparent",
-    },
-    ".tippy-popper[x-placement^=bottom] .tippy-tooltip.transparent-theme [x-arrow].arrow-small": {
-        borderBottom: "5px solid rgba(0, 0, 0, 0.7)",
-        borderRight: "5px solid transparent",
-        borderLeft: "5px solid transparent",
-    },
-    ".tippy-popper[x-placement^=bottom] .tippy-tooltip.transparent-theme [x-arrow].arrow-big": {
-        borderBottom: "10px solid rgba(0, 0, 0, 0.7)",
-        borderRight: "10px solid transparent",
-        borderLeft: "10px solid transparent",
     },
     ".tippy-popper[x-placement^=bottom] [data-animation=perspective]": {
         transformOrigin: "top",
@@ -406,23 +336,23 @@ export const tippyStyles = globalCss({
         transform: "translateY(0) scale(0)",
     },
     ".tippy-popper[x-placement^=left] [x-arrow]": {
-        borderLeft: "7px solid #333",
-        borderTop: "7px solid transparent",
-        borderBottom: "7px solid transparent",
-        right: "-7px",
+        borderLeft: "$sizes$tippy-arrow-medium solid #333",
+        borderTop: "$sizes$tippy-arrow-medium solid transparent",
+        borderBottom: "$sizes$tippy-arrow-medium solid transparent",
+        right: "-$sizes$tippy-arrow-medium",
         margin: "6px 0",
     },
     ".tippy-popper[x-placement^=left] [x-arrow].arrow-small": {
-        borderLeft: "5px solid #333",
-        borderTop: "5px solid transparent",
-        borderBottom: "5px solid transparent",
-        right: "-5px",
+        borderLeft: "$sizes$tippy-arrow-small solid #333",
+        borderTop: "$sizes$tippy-arrow-small solid transparent",
+        borderBottom: "$sizes$tippy-arrow-small solid transparent",
+        right: "-$sizes$tippy-arrow-small",
     },
     ".tippy-popper[x-placement^=left] [x-arrow].arrow-big": {
-        borderLeft: "10px solid #333",
-        borderTop: "10px solid transparent",
-        borderBottom: "10px solid transparent",
-        right: "-10px",
+        borderLeft: "$sizes$tippy-arrow-big solid #333",
+        borderTop: "$sizes$tippy-arrow-big solid transparent",
+        borderBottom: "$sizes$tippy-arrow-big solid transparent",
+        right: "-$sizes$tippy-arrow-big",
     },
     ".tippy-popper[x-placement^=left] [x-circle]": {
         transformOrigin: "50% 0",
@@ -434,42 +364,6 @@ export const tippyStyles = globalCss({
     ".tippy-popper[x-placement^=left] [x-circle].leave": {
         transform: "scale(0.15) translate(-50%, -50%)",
         opacity: 0,
-    },
-    ".tippy-popper[x-placement^=left] .tippy-tooltip.light-theme [x-circle]": {
-        backgroundColor: "#fff",
-    },
-    ".tippy-popper[x-placement^=left] .tippy-tooltip.light-theme [x-arrow]": {
-        borderLeft: "7px solid #fff",
-        borderTop: "7px solid transparent",
-        borderBottom: "7px solid transparent",
-    },
-    ".tippy-popper[x-placement^=left] .tippy-tooltip.light-theme [x-arrow].arrow-small": {
-        borderLeft: "5px solid #fff",
-        borderTop: "5px solid transparent",
-        borderBottom: "5px solid transparent",
-    },
-    ".tippy-popper[x-placement^=left] .tippy-tooltip.light-theme [x-arrow].arrow-big": {
-        borderLeft: "10px solid #fff",
-        borderTop: "10px solid transparent",
-        borderBottom: "10px solid transparent",
-    },
-    ".tippy-popper[x-placement^=left] .tippy-tooltip.transparent-theme [x-circle]": {
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
-    },
-    ".tippy-popper[x-placement^=left] .tippy-tooltip.transparent-theme [x-arrow]": {
-        borderLeft: "7px solid rgba(0, 0, 0, 0.7)",
-        borderTop: "7px solid transparent",
-        borderBottom: "7px solid transparent",
-    },
-    ".tippy-popper[x-placement^=left] .tippy-tooltip.transparent-theme [x-arrow].arrow-small": {
-        borderLeft: "5px solid rgba(0, 0, 0, 0.7)",
-        borderTop: "5px solid transparent",
-        borderBottom: "5px solid transparent",
-    },
-    ".tippy-popper[x-placement^=left] .tippy-tooltip.transparent-theme [x-arrow].arrow-big": {
-        borderLeft: "10px solid rgba(0, 0, 0, 0.7)",
-        borderTop: "10px solid transparent",
-        borderBottom: "10px solid transparent",
     },
     ".tippy-popper[x-placement^=left] [data-animation=perspective]": {
         transformOrigin: "right",
@@ -507,23 +401,23 @@ export const tippyStyles = globalCss({
         transform: "translateX(0) scale(0)",
     },
     ".tippy-popper[x-placement^=right] [x-arrow]": {
-        borderRight: "7px solid #333",
-        borderTop: "7px solid transparent",
-        borderBottom: "7px solid transparent",
-        left: "-7px",
+        borderRight: "$sizes$tippy-arrow-medium solid #333",
+        borderTop: "$sizes$tippy-arrow-medium solid transparent",
+        borderBottom: "$sizes$tippy-arrow-medium solid transparent",
+        left: "-$sizes$tippy-arrow-medium",
         margin: "6px 0",
     },
     ".tippy-popper[x-placement^=right] [x-arrow].arrow-small": {
-        borderRight: "5px solid #333",
-        borderTop: "5px solid transparent",
-        borderBottom: "5px solid transparent",
-        left: "-5px",
+        borderRight: "$sizes$tippy-arrow-small solid #333",
+        borderTop: "$sizes$tippy-arrow-small solid transparent",
+        borderBottom: "$sizes$tippy-arrow-small solid transparent",
+        left: "-$sizes$tippy-arrow-small",
     },
     ".tippy-popper[x-placement^=right] [x-arrow].arrow-big": {
-        borderRight: "10px solid #333",
-        borderTop: "10px solid transparent",
-        borderBottom: "10px solid transparent",
-        left: "-10px",
+        borderRight: "$sizes$tippy-arrow-big solid #333",
+        borderTop: "$sizes$tippy-arrow-big solid transparent",
+        borderBottom: "$sizes$tippy-arrow-big solid transparent",
+        left: "-$sizes$tippy-arrow-big  ",
     },
     ".tippy-popper[x-placement^=right] [x-circle]": {
         transformOrigin: "-50% 0",
@@ -535,42 +429,6 @@ export const tippyStyles = globalCss({
     ".tippy-popper[x-placement^=right] [x-circle].leave": {
         transform: "scale(0.15) translate(-50%, -50%)",
         opacity: 0,
-    },
-    ".tippy-popper[x-placement^=right] .tippy-tooltip.light-theme [x-circle]": {
-        backgroundColor: "#fff",
-    },
-    ".tippy-popper[x-placement^=right] .tippy-tooltip.light-theme [x-arrow]": {
-        borderRight: "7px solid #fff",
-        borderTop: "7px solid transparent",
-        borderBottom: "7px solid transparent",
-    },
-    ".tippy-popper[x-placement^=right] .tippy-tooltip.light-theme [x-arrow].arrow-small": {
-        borderRight: "5px solid #fff",
-        borderTop: "5px solid transparent",
-        borderBottom: "5px solid transparent",
-    },
-    ".tippy-popper[x-placement^=right] .tippy-tooltip.light-theme [x-arrow].arrow-big": {
-        borderRight: "10px solid #fff",
-        borderTop: "10px solid transparent",
-        borderBottom: "10px solid transparent",
-    },
-    ".tippy-popper[x-placement^=right] .tippy-tooltip.transparent-theme [x-circle]": {
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
-    },
-    ".tippy-popper[x-placement^=right] .tippy-tooltip.transparent-theme [x-arrow]": {
-        borderRight: "7px solid rgba(0, 0, 0, 0.7)",
-        borderTop: "7px solid transparent",
-        borderBottom: "7px solid transparent",
-    },
-    ".tippy-popper[x-placement^=right] .tippy-tooltip.transparent-theme [x-arrow].arrow-small": {
-        borderRight: "5px solid rgba(0, 0, 0, 0.7)",
-        borderTop: "5px solid transparent",
-        borderBottom: "5px solid transparent",
-    },
-    ".tippy-popper[x-placement^=right] .tippy-tooltip.transparent-theme [x-arrow].arrow-big": {
-        borderRight: "10px solid rgba(0, 0, 0, 0.7)",
-        borderTop: "10px solid transparent",
-        borderBottom: "10px solid transparent",
     },
     ".tippy-popper[x-placement^=right] [data-animation=perspective]": {
         transformOrigin: "left",
@@ -606,21 +464,6 @@ export const tippyStyles = globalCss({
     ".tippy-popper[x-placement^=right] [data-animation=scale].leave": {
         opacity: 0,
         transform: "translateX(0) scale(0)",
-    },
-    ".tippy-popper .tippy-tooltip.transparent-theme": {
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
-    },
-    ".tippy-popper .tippy-tooltip.transparent-theme[data-animatefill]": {
-        backgroundColor: "transparent",
-    },
-
-    ".tippy-popper .tippy-tooltip.light-theme": {
-        color: "#26323d",
-        boxShadow: "0 4px 20px 4px rgba(0, 20, 60, 0.1), 0 4px 80px -8px rgba(0, 20, 60, 0.2)",
-        backgroundColor: "#fff",
-    },
-    ".tippy-popper .tippy-tooltip.light-theme[data-animatefill]": {
-        backgroundColor: "transparent",
     },
     ".tippy-tooltip": {
         position: "relative",
@@ -660,7 +503,6 @@ export const tippyStyles = globalCss({
         willChange: "transform",
         backgroundColor: "#333",
         borderRadius: "50%",
-        // width: "130%",
         width: "calc(110% + 2rem)",
         left: "50%",
         top: "50%",
@@ -675,7 +517,6 @@ export const tippyStyles = globalCss({
     },
     "@media (max-width: 450px)": {
         ".tippy-popper": {
-            // maxWidth: "96%",
             maxWidth: "calc(100% - 20px)",
         },
     },
