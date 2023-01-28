@@ -16,13 +16,13 @@ export default async function contributionsCalendar(): Promise<GitHubContributio
     return trimmedContributions;
 }
 
-const dateSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
-const hexSchema = z.string().regex(/^#[0-9a-f]{6}$/);
-
 export type GitHubContributionsCalendar = Array<{
     date: string;
     count: number;
 }>;
+
+const dateSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
+const hexSchema = z.string().regex(/^#[0-9a-f]{6}$/);
 
 const contributionsSchema = z.object({
     years: z.array(

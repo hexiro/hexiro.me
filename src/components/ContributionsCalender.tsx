@@ -25,10 +25,11 @@ export default function ContributionsCalendar({ data }: ContributionsCalendarPro
                 <Heading as="h3">Contributions Calendar</Heading>
                 <Paragraph>{`${sum.toLocaleString()} contributions in the last year`}</Paragraph>
             </Text>
+            <Divider />
             <Calendar
                 values={transformed}
                 panelColors={[
-                    theme.colors["background-tertiary"].computedValue,
+                    "rgba(255, 255, 255, 0.2)",
                     `rgba(${theme.colors["brand-primary-rgb"].computedValue}, 0.15)`,
                     `rgba(${theme.colors["brand-primary-rgb"].computedValue}, 0.3)`,
                     `rgba(${theme.colors["brand-primary-rgb"].computedValue}, 0.45)`,
@@ -60,5 +61,10 @@ const ContributionsContainer = styled(ImportantContainer, {
 });
 
 const Text = styled("div", {
-    marginBottom: "$4",
+});
+
+const Divider = styled("hr", {
+    width: "100%",
+    borderBottom: "1px solid $lighten-10",
+    marginY: "$2",
 });
