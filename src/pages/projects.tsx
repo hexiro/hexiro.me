@@ -60,7 +60,7 @@ const ProjectsContainer = styled(motion.div, {
     },
 });
 
-export const getStaticProps: GetStaticProps = async () => ({
+export const getStaticProps: GetStaticProps<ProjectsPageProps> = async () => ({
     props: {
         projects: await projects(),
     },
