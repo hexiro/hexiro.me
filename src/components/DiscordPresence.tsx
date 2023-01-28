@@ -7,8 +7,8 @@ import { childStaggerAnimation, extraBounce } from "@/commons/animations";
 import { DISCORD } from "@/commons/config";
 import useWindowWidthInBounds from "@/hooks/useWindowWidth";
 
-import { Paragraph, Heading, Tooltip } from "components/ui";
-import { AnimatePresence, motion } from "framer-motion";
+import { Paragraph, Heading, Tooltip, ImportantContainer } from "components/ui";
+import { AnimatePresence } from "framer-motion";
 import type { Activity } from "use-lanyard";
 import { useLanyardWS } from "use-lanyard";
 
@@ -82,20 +82,11 @@ export default function DiscordPresence() {
     );
 }
 
-const DiscordPresenceContainer = styled(motion.div, {
-    position: "relative",
+const DiscordPresenceContainer = styled(ImportantContainer, {
     aspectRatio: "68 / 23",
-
     maxWidth: 414,
     height: 140,
-
-    backgroundColor: "$background-secondary",
-    borderRadius: "$xl",
-    border: "2px solid $lighten-10",
-    boxShadow: "$md",
-    padding: "$4",
     paddingRight: "$2",
-    display: "flex",
     flexDirection: "row",
     willTransition: "transform",
 

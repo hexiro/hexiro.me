@@ -6,11 +6,10 @@ import { childStaggerAnimation, extraBounce } from "@/commons/animations";
 import type { ProjectData } from "@/commons/graphql/projects";
 import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
 import ParseHTML from "@/components/ParseHTML";
-import { AnchorList, Heading, Link, Paragraph } from "@/components/ui";
+import { AnchorList, Heading, ImportantContainer, Link, Paragraph } from "@/components/ui";
 
 import LanguageIcon from "components/project/LanguageIcon";
 import replace from "components/project/replace";
-import { motion } from "framer-motion";
 
 interface ProjectProps {
     data: ProjectData;
@@ -147,19 +146,13 @@ const VerticalDivider = styled("hr", {
     borderRadius: "$max",
 });
 
-const ProjectContainer = styled(motion.div, {
-    position: "relative",
+const ProjectContainer = styled(ImportantContainer, {
     aspectRatio: "20 / 7",
     width: "100%",
     height: "auto",
-    backgroundColor: "$background-secondary",
     borderRadius: "$xxl",
-    border: "2px solid $lighten-10",
-    boxShadow: "$md",
-    padding: "$4",
-    display: "flex",
-    flexDirection: "column",
     willTransition: "transform",
+    flexDirection: "column",
 
     "@xl": {
         width: "48%",

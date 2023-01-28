@@ -154,7 +154,7 @@ const stitches = createStitches({
     },
 });
 
-export const { styled, css, getCssText, config } = stitches;
+export const { styled, css, getCssText, config, theme } = stitches;
 const { globalCss } = stitches;
 
 export const globalStyles = globalCss({
