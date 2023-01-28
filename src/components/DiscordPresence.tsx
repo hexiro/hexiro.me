@@ -38,7 +38,6 @@ export default function DiscordPresence() {
                 >
                     <Images>
                         <Tooltip
-                            arrow
                             theme="transparent"
                             style={{ display: "block" }}
                             title={state.images.large.tooltip}

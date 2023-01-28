@@ -7,7 +7,6 @@ export default function Social({ name, href, icon }: NavRoute) {
     return (
         <li>
             <Tooltip
-                arrow
                 animation="shift"
                 title={name}
                 style={{ display: "block" }}
