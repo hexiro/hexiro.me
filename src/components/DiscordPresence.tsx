@@ -7,9 +7,8 @@ import { childStaggerAnimation, extraBounce } from "@/commons/animations";
 import { DISCORD } from "@/commons/config";
 import useWindowWidthInBounds from "@/hooks/useWindowWidth";
 
-import { Paragraph, Heading } from "components/ui";
+import { Paragraph, Heading, Tooltip } from "components/ui";
 import { AnimatePresence, motion } from "framer-motion";
-import { Tooltip } from "react-tippy";
 import type { Activity } from "use-lanyard";
 import { useLanyardWS } from "use-lanyard";
 
@@ -37,11 +36,7 @@ export default function DiscordPresence() {
                     exit="initial"
                 >
                     <Images>
-                        <Tooltip
-                            theme="transparent"
-                            style={{ display: "block" }}
-                            title={state.images.large.tooltip}
-                        >
+                        <Tooltip title={state.images.large.tooltip}>
                             <LargeImage
                                 width={100}
                                 height={100}
@@ -50,11 +45,7 @@ export default function DiscordPresence() {
                             />
                         </Tooltip>
                         <SmallImageContainer>
-                            <Tooltip
-                                style={{ display: "block" }}
-                                title={state.images.small.tooltip}
-                                size="small"
-                            >
+                            <Tooltip title={state.images.small.tooltip} size="small">
                                 <SmallImage
                                     width={35}
                                     height={35}

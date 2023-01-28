@@ -1,7 +1,5 @@
-import { Link } from "@/components/ui";
+import { Link, Tooltip } from "@/components/ui";
 import type { NavRoute } from "@/layout/Nav";
-
-import { Tooltip } from "react-tippy";
 
 export default function Social({ name, href, icon }: NavRoute) {
     return (
