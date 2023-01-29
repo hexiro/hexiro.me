@@ -1,6 +1,6 @@
 import { theme, css, styled } from "@/theme";
 
-import Calendar from "@/components/dashboard/GithubCalendar";
+import Calendar from "@/components/dashboard/GitHubCalendar";
 import { Divider } from "@/components/layout";
 import { Heading, ImportantContainer, Paragraph } from "@/components/ui";
 

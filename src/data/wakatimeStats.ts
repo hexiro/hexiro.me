@@ -12,8 +12,6 @@ export default async function wakatimeStats() {
     const resp = await fetch(url, { headers });
     const { data } = wakatimeSchema.parse(await resp.json());
 
-    console.log({ data });
-
     const dailyAverageDuration = data.daily_average_including_other_language;
     const last7daysDuration = data.total_seconds_including_other_language;
 
