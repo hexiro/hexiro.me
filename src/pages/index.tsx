@@ -1,6 +1,6 @@
 import { styled } from "@/theme";
 
-import DiscordPresence from "@/components/DiscordPresence";
+import DiscordPresence from "@/components/home/DiscordPresence";
 import { Heading, Paragraph, Span, Subheading } from "@/components/ui";
 
 import Page from "@/layout/Page";

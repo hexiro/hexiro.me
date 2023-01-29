@@ -6,7 +6,7 @@ import { staggerAnimation } from "@/commons/animations";
 import type { ProjectData } from "@/commons/graphql/projects";
 import projects from "@/commons/graphql/projects";
 
-import Project from "@/components/project";
+import Project from "@/components/projects/Project";
 import { Heading, Paragraph } from "@/components/ui";
 
 import Page from "@/layout/Page";

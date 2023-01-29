@@ -6,7 +6,7 @@ import { fadeInAndScale, normalBounce } from "@/commons/animations";
 import type { IconType } from "@/commons/icons";
 import { CloseIcon, HamburgerMenuIcon } from "@/commons/icons";
 
-import MenuItem from "@/components/MenuItem";
+import MenuItem from "@/components/home/MenuItem";
 import Route from "@/components/Route";
 import Social from "@/components/Social";
 import { Divider, Hide, Show } from "@/components/layout";

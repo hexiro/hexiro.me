@@ -6,11 +6,11 @@ import { childStaggerAnimation, extraBounce } from "@/commons/animations";
 import type { ProjectData } from "@/commons/graphql/projects";
 import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
 
-import ParseHTML from "@/components/ParseHTML";
+import ParseHTML from "@/components/projects/ParseHTML";
 import { AnchorList, Heading, ImportantContainer, Link, Paragraph } from "@/components/ui";
 
-import LanguageIcon from "components/project/LanguageIcon";
-import replace from "components/project/replace";
+import LanguageIcon from "@/components/projects/LanguageIcon";
+import replace from "@/components/projects/replace";
 
 interface ProjectProps {
     data: ProjectData;
