@@ -21,7 +21,11 @@ type LinkProps = Omit<ComponentProps<typeof LinkWrapper>, "target"> &
 
 const Link = ({ newTab, animation, color, lineHeight, ...props }: LinkProps) => (
     <WithSpan animation={animation} color={color} lineHeight={lineHeight}>
-        <LinkWrapper target={newTab ? "_blank" : undefined} {...props} />
+        <LinkWrapper
+            target={newTab ? "_blank" : undefined}
+            rel={newTab ? "noreferrer" : undefined}
+            {...props}
+        />
     </WithSpan>
 );
 

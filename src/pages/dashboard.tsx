@@ -4,17 +4,18 @@ import type { GetStaticProps } from "next";
 
 import ContributionsCalendar from "@/components/ContributionsCalender";
 import { Heading, Paragraph } from "@/components/ui";
-import type { GitHubContributionsCalendar } from "@/data/contributionsCalendar";
 import contributionsCalendar from "@/data/contributionsCalendar";
+import wakatimeStats from "@/data/wakatimeStats";
 import Page from "@/layout/Page";
 
 const DESCRIPTION = "Dashboard";
 
 interface DashboardPageProps {
-    contributionsCalendar: GitHubContributionsCalendar;
+    contributionsCalendar: Awaited<ReturnType<typeof contributionsCalendar>>;
+    wakatimeStats: Awaited<ReturnType<typeof wakatimeStats>>;
 }
 
-export default function Dashboard({ contributionsCalendar }: DashboardPageProps) {
+export default function Dashboard({ contributionsCalendar, wakatimeStats }: DashboardPageProps) {
     return (
         <Page name="Dashboard" description={DESCRIPTION}>
             <TextContainer>
@@ -23,7 +24,13 @@ export default function Dashboard({ contributionsCalendar }: DashboardPageProps)
                     This dashboard is a collection of statistics related to myself and programming.
                 </Paragraph>
             </TextContainer>
-            <ContributionsCalendar data={contributionsCalendar} />
+            <SectionsContainer>
+                <ContributionsCalendar data={contributionsCalendar} />
+                {/* <ProgrammingTimeStats
+                    dailyAverage={wakatimeStats.dailyAverageDuration}
+                    last7Days={wakatimeStats.last7daysDuration}
+                /> */}
+            </SectionsContainer>
         </Page>
     );
 }
@@ -32,8 +39,16 @@ const TextContainer = styled("div", {
     marginBottom: "$6",
 });
 
+const SectionsContainer = styled("div", {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: "$4",
+});
+
 export const getStaticProps: GetStaticProps<DashboardPageProps> = async () => ({
     props: {
         contributionsCalendar: await contributionsCalendar(),
+        wakatimeStats: await wakatimeStats(),
     },
 });

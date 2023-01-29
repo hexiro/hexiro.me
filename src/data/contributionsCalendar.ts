@@ -7,10 +7,11 @@ export default async function contributionsCalendar(): Promise<GitHubContributio
     const resp = await fetch(url);
     const data = contributionsSchema.parse(await resp.json());
 
-    const oneYearAgo = new Date();
-    oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+    const calendarBeginning = new Date();
+    calendarBeginning.setFullYear(calendarBeginning.getFullYear() - 1);
+    calendarBeginning.setMonth(calendarBeginning.getMonth() - 1);
 
-    const filteredContributions = data.contributions.filter((c) => new Date(c.date) > oneYearAgo);
+    const filteredContributions = data.contributions.filter((c) => new Date(c.date) > calendarBeginning);
     const trimmedContributions = filteredContributions.map(({ date, count }) => ({ date, count }));
 
     return trimmedContributions;

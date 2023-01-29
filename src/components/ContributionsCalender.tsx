@@ -58,10 +58,11 @@ const panelStyles = css({
 const ContributionsContainer = styled(ImportantContainer, {
     maxWidth: 756,
     flexDirection: "column",
+    width: "100%",
+    height: "min-content",
 });
 
-const Text = styled("div", {
-});
+const Text = styled("div", {});
 
 const Divider = styled("hr", {
     width: "100%",
