@@ -12,6 +12,7 @@ import {
     GitHubIcon,
     LinkedInIcon,
 } from "@/commons/icons";
+
 import type { NavRoute } from "@/layout/Nav";
 import Nav from "@/layout/Nav";
 

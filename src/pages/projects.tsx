@@ -5,8 +5,10 @@ import type { GetStaticProps } from "next";
 import { staggerAnimation } from "@/commons/animations";
 import type { ProjectData } from "@/commons/graphql/projects";
 import projects from "@/commons/graphql/projects";
+
 import Project from "@/components/project";
 import { Heading, Paragraph } from "@/components/ui";
+
 import Page from "@/layout/Page";
 
 import { motion } from "framer-motion";

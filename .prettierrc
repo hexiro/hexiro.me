@@ -5,7 +5,15 @@
     "printWidth": 100,
     "tabWidth": 4,
     "useTabs": false,
-    "importOrder": ["^(@/theme)|(@stitches/react)$", "^(react|next)(/.*|)$", "^(@)((/.*|))$", ".*"],
+    "importOrder": [
+        "^(@/theme)|(@stitches/react)$",
+        "^(react|next)(/.*|)$",
+        "^(@/commons)((/.*|))$",
+        "^(@/components)((/.*|))$",
+        "^(@/data)((/.*|))$",
+        "^(@)((/.*|))$",
+        ".*"
+    ],
     "importOrderSeparation": true,
     "quoteProps": "preserve",
     "arrowParens": "always"

@@ -7,7 +7,7 @@ const Paragraph = styled("p", {
     maxWidth: 700,
 
     defaultVariants: {
-        size: "md"
+        size: "md",
     },
 
     variants: {

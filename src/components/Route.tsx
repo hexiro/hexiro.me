@@ -1,6 +1,7 @@
 import { styled } from "@/theme";
 
 import { fadeIn } from "@/commons/animations";
+
 import { Link, ListItem, Span } from "@/components/ui";
 
 import { AnimatePresence, motion } from "framer-motion";

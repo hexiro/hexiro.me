@@ -3,11 +3,13 @@ import { styled } from "@/theme";
 import type { GetStaticProps } from "next";
 
 import ContributionsCalendar from "@/components/ContributionsCalender";
+import ProgrammingTimeStats from "@/components/ProgrammingTimeStats";
 import { Heading, Paragraph } from "@/components/ui";
+
 import contributionsCalendar from "@/data/contributionsCalendar";
 import wakatimeStats from "@/data/wakatimeStats";
+
 import Page from "@/layout/Page";
-import ProgrammingTimeStats from "@/components/ProgrammingTimeStats";
 
 const DESCRIPTION = "Dashboard";
 

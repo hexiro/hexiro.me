@@ -4,6 +4,7 @@ import type { ComponentProps } from "@stitches/react";
 import type { PropsWithChildren } from "react";
 
 import { Flex } from "@/components/ui";
+
 import type { SEOProps } from "@/layout/SEO";
 import SEO from "@/layout/SEO";
 

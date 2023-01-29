@@ -2,6 +2,7 @@ import { theme, css, styled } from "@/theme";
 
 import { Divider } from "@/components/layout";
 import { Heading, ImportantContainer, Paragraph } from "@/components/ui";
+
 import type { GitHubContributionsCalendar } from "@/data/contributionsCalendar";
 
 import Calendar from "react-github-contribution-calendar";

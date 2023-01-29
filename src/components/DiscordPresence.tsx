@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { childStaggerAnimation, extraBounce } from "@/commons/animations";
 import { DISCORD } from "@/commons/config";
+
 import useWindowWidthInBounds from "@/hooks/useWindowWidth";
 
 import { Paragraph, Heading, Tooltip, ImportantContainer } from "components/ui";

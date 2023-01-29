@@ -1,4 +1,5 @@
 import { ButtonLink, Heading, Paragraph } from "@/components/ui";
+
 import Page from "@/layout/Page";
 
 export default function NotFound() {

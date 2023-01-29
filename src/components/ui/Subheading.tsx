@@ -8,7 +8,7 @@ const Subheading = styled("span", {
 
     "@lg": {
         fontSize: 48,
-    }
+    },
 });
 
 export default Subheading;
