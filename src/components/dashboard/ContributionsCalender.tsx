@@ -1,6 +1,6 @@
 import { theme, css, styled } from "@/theme";
 
-import Calendar from "@/components/dashboard/GitHubCalendar";
+import GitHubCalendar from "@/components/dashboard/GitHubCalendar";
 import { Divider } from "@/components/layout";
 import { Heading, ImportantContainer, Paragraph } from "@/components/ui";
 
@@ -26,7 +26,7 @@ export default function ContributionsCalendar({ data }: ContributionsCalendarPro
             <Heading as="h3">Contributions Calendar</Heading>
             <Paragraph>{`I've made ${sum.toLocaleString()} contributions in the last year`}</Paragraph>
             <Divider />
-            <Calendar
+            <GitHubCalendar
                 values={transformed}
                 panelColors={[
                     "rgba(255, 255, 255, 0.1)",
