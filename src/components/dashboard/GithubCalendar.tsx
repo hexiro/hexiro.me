@@ -83,6 +83,15 @@ export default class GitHubCalendar extends React.Component<Props, State> {
         };
     }
 
+    getPanelColor(value: number): string {
+        const { panelColors } = this.props;
+        if (!panelColors) return "#fff";
+
+        const numOfColors = panelColors.length;
+        const color = value >= numOfColors ? panelColors[numOfColors - 1] : panelColors[value];
+        return color;
+    }
+
     makeCalendarData(history: Record<string, number>, lastDay: string, columns: number) {
         const date = dayjs(lastDay, { format: this.props.dateFormat });
         const lastDate = date.endOf("week");
@@ -121,40 +130,32 @@ export default class GitHubCalendar extends React.Component<Props, State> {
         const { values } = this.props;
         const { until } = this.props;
 
-        if (
-            this.props.panelColors === undefined ||
-            this.props.weekNames === undefined ||
-            this.props.monthNames === undefined
-        ) {
-            return;
-        }
+        if (!this.props.panelColors || !this.props.weekNames || !this.props.monthNames) return;
 
         const contributions = this.makeCalendarData(values, until, columns);
         const innerDom: ReactElement[] = [];
 
         // panels
-        for (let i = 0; i < columns; i++) {
-            for (let j = 0; j < 7; j++) {
-                const contribution = contributions[i][j];
-                if (contribution === null) continue;
-                const pos = this.getPanelPosition(i, j);
-                const numOfColors = this.props.panelColors.length;
-                const color =
-                    contribution.value >= numOfColors
-                        ? this.props.panelColors[numOfColors - 1]
-                        : this.props.panelColors[contribution.value];
-                const dom = (
+        for (let weekIndex = 0; weekIndex < columns; weekIndex++) {
+            const week = contributions[weekIndex];
+            for (let dayIndex = 0; dayIndex < week.length; dayIndex++) {
+                const contribution = week[dayIndex];
+                if (!contribution) continue;
+
+                const pos = this.getPanelPosition(weekIndex, dayIndex);
+                const color = this.getPanelColor(contribution.value);
+
+                const el = (
                     <rect
-                        key={`panel_key_${i}_${j}`}
-                        x={pos.x}
-                        y={pos.y}
+                        key={`panel_key_${weekIndex}_${dayIndex}`}
                         width={this.panelSize}
                         height={this.panelSize}
                         fill={color}
+                        {...pos}
                         {...this.props.panelAttributes}
                     />
                 );
-                innerDom.push(dom);
+                innerDom.push(el);
             }
         }
 
