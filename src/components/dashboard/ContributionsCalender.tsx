@@ -6,6 +6,8 @@ import { Heading, ImportantContainer, Paragraph } from "@/components/ui";
 
 import type { GitHubContributionsCalendar } from "@/data/contributionsCalendar";
 
+import dayjs from "dayjs";
+
 interface ContributionsCalendarProps {
     data: GitHubContributionsCalendar;
 }
@@ -15,8 +17,7 @@ export default function ContributionsCalendar({ data }: ContributionsCalendarPro
         data.map(({ date, count }) => [date, count])
     );
 
-    const today = new Date();
-    const until = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    const until = dayjs().format("YYYY-MM-DD");
 
     const sum = data.reduce((acc, { count }) => acc + count, 0);
 

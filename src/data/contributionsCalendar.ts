@@ -1,5 +1,6 @@
 import { GITHUB } from "@/commons/config";
 
+import dayjs from "dayjs";
 import { z } from "zod";
 
 export default async function contributionsCalendar(): Promise<GitHubContributionsCalendar> {
@@ -7,13 +8,9 @@ export default async function contributionsCalendar(): Promise<GitHubContributio
     const resp = await fetch(url);
     const data = contributionsSchema.parse(await resp.json());
 
-    const calendarBeginning = new Date();
-    calendarBeginning.setFullYear(calendarBeginning.getFullYear() - 1);
-    calendarBeginning.setMonth(calendarBeginning.getMonth() - 1);
+    const start = dayjs().subtract(1, "year").subtract(1, "month");
 
-    const filteredContributions = data.contributions.filter(
-        (c) => new Date(c.date) > calendarBeginning
-    );
+    const filteredContributions = data.contributions.filter((c) => dayjs(c.date) > start);
     const trimmedContributions = filteredContributions.map(({ date, count }) => ({ date, count }));
 
     return trimmedContributions;
