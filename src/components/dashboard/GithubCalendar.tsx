@@ -144,14 +144,13 @@ export default class GitHubCalendar extends React.Component<Props, State> {
         const innerDom: ReactElement[] = [];
 
         // panels
-        for (let weekIndex = 0; weekIndex < columns; weekIndex++) {
-            const week = contributions[weekIndex];
-            for (let dayIndex = 0; dayIndex < week.length; dayIndex++) {
-                const contribution = week[dayIndex];
-                if (!contribution) continue;
+
+        for (const [weekIndex, week] of contributions.entries()) {
+            for (const [dayIndex, day] of week.entries()) {
+                if (!day) continue;
 
                 const pos = this.getPanelPosition(weekIndex, dayIndex);
-                const color = this.getPanelColor(contribution.value);
+                const color = this.getPanelColor(day.value);
 
                 const el = (
                     <rect
@@ -168,11 +167,11 @@ export default class GitHubCalendar extends React.Component<Props, State> {
         }
 
         // week texts
-        for (let i = 0; i < this.props.weekNames.length; i++) {
-            const textBasePos = this.getPanelPosition(0, i);
-            const dom = (
+        for (const [weekIndex, weekName] of this.props.weekNames.entries()) {
+            const textBasePos = this.getPanelPosition(0, weekIndex);
+            const el = (
                 <text
-                    key={`week_key_${i}`}
+                    key={`week_key_${weekIndex}`}
                     style={{
                         fontSize: 9,
                         alignmentBaseline: "central",
@@ -183,27 +182,23 @@ export default class GitHubCalendar extends React.Component<Props, State> {
                     textAnchor="middle"
                     {...this.props.weekLabelAttributes}
                 >
-                    {this.props.weekNames[i]}
+                    {weekName}
                 </text>
             );
-            innerDom.push(dom);
+            innerDom.push(el);
         }
 
-        // month texts
-        let prevMonth = -1;
-        for (let i = 0; i < columns; i++) {
-            const c = contributions[i][0];
-            if (c === null) continue;
-            if (columns > 1 && i === 0 && c.month !== contributions[i + 1][0]?.month) {
-                // skip first month name to avoid text overlap
-                continue;
-            }
+        // month texts (set to 0 to skip first month)
+        let prevMonth = 0;
+        for (const [weekIndex, week] of contributions.entries()) {
+            const day = week[0];
+            if (!day) continue;
 
-            if (c.month !== prevMonth) {
-                const textBasePos = this.getPanelPosition(i, 0);
-                innerDom.push(
+            if (day.month !== prevMonth) {
+                const textBasePos = this.getPanelPosition(weekIndex, 0);
+                const el = (
                     <text
-                        key={`month_key_${i}`}
+                        key={`month_key_${weekIndex}`}
                         style={{
                             fontSize: 10,
                             alignmentBaseline: "central",
@@ -214,12 +209,13 @@ export default class GitHubCalendar extends React.Component<Props, State> {
                         textAnchor="middle"
                         {...this.props.monthLabelAttributes}
                     >
-                        {this.props.monthNames[c.month]}
+                        {this.props.monthNames[day.month]}
                     </text>
                 );
+                innerDom.push(el);
             }
 
-            prevMonth = c.month;
+            prevMonth = day.month;
         }
 
         return (
