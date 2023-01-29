@@ -6,6 +6,8 @@
  * modified to support typescript better & have tooltips
  */
 import type { ReactElement, SVGProps } from "react";
+import { useCallback } from "react";
+import { useState } from "react";
 import React from "react";
 
 import dayjs from "dayjs";
@@ -30,84 +32,78 @@ interface State {
     maxWidth: number;
 }
 
-export default class GitHubCalendar extends React.Component<Props, State> {
-    monthLabelHeight: number;
-    weekLabelWidth: number;
-    panelSize: number;
-    panelMargin: number;
-    state: State;
+type Day = { value: number; month: number } | null;
+type Week = Day[];
+type Calendar = Week[];
 
-    static get defaultProps() {
-        return {
-            weekNames: ["", "M", "", "W", "", "F", ""],
-            monthNames: [
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
-            ],
-            panelColors: ["#EEE", "#DDD", "#AAA", "#444"],
-            dateFormat: "YYYY-MM-DD",
-            weekLabelAttributes: undefined,
-            monthLabelAttributes: undefined,
-            panelAttributes: undefined,
-        };
-    }
+export default function GithubCalendar({
+    values,
+    until,
+    weekNames = ["", "M", "", "W", "", "F", ""],
+    monthNames = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+    ],
+    panelColors = ["#EEE", "#DDD", "#AAA", "#444"],
+    dateFormat = "YYYY-MM-DD",
+    weekLabelAttributes = undefined,
+    monthLabelAttributes = undefined,
+    panelAttributes = undefined,
+}: Props) {
+    const [rows, setRows] = useState<number>(7);
+    const [columns, setColumns] = useState<number>(53);
+    const [maxWidth, setMaxWidth] = useState<number>(53);
 
-    constructor(props: Props) {
-        super(props);
+    const monthLabelHeight = 15;
+    const weekLabelWidth = 15;
+    const panelSize = 11;
+    const panelMargin = 2;
 
-        this.monthLabelHeight = 15;
-        this.weekLabelWidth = 15;
-        this.panelSize = 11;
-        this.panelMargin = 2;
+    const getPanelPosition = useCallback(
+        (row: number, col: number) => {
+            const bounds = panelSize + panelMargin;
+            return {
+                x: weekLabelWidth + bounds * row,
+                y: monthLabelHeight + bounds * col,
+            };
+        },
+        [panelSize, panelMargin, weekLabelWidth, monthLabelHeight]
+    );
 
-        this.state = {
-            rows: 7,
-            columns: 53,
-            maxWidth: 53,
-        };
-    }
+    const getPanelColor = useCallback(
+        (value: number) => {
+            const numOfColors = panelColors.length;
+            const color = value >= numOfColors ? panelColors[numOfColors - 1] : panelColors[value];
+            return color;
+        },
+        [panelColors]
+    );
 
-    getPanelPosition(row: number, col: number): { x: number; y: number } {
-        const bounds = this.panelSize + this.panelMargin;
-        return {
-            x: this.weekLabelWidth + bounds * row,
-            y: this.monthLabelHeight + bounds * col,
-        };
-    }
+    const updateSize = useCallback(
+        (size?: BoundingRect) => {
+            if (!size) return;
 
-    getPanelColor(value: number): string {
-        const { panelColors } = this.props;
-        if (!panelColors) return "#fff";
+            const visibleWeeks = Math.floor((size.width - weekLabelWidth) / 13);
 
-        const numOfColors = panelColors.length;
-        const color = value >= numOfColors ? panelColors[numOfColors - 1] : panelColors[value];
-        return color;
-    }
+            setColumns(Math.min(visibleWeeks, maxWidth));
+        },
+        [weekLabelWidth, maxWidth]
+    );
 
-    makeCalendarData(
-        history: Record<string, number>,
-        lastDay: string,
-        columns: number,
-        rows: number
-    ) {
-        const { dateFormat } = this.props;
-        const date = dayjs(lastDay, { format: dateFormat });
+    const makeCalendarData = useCallback(() => {
+        const date = dayjs(until, { format: dateFormat });
         const lastDate = date.endOf("week");
         const startDate = date.endOf("day");
-
-        type Day = { value: number; month: number } | null;
-        type Week = Day[];
-        type Calendar = Week[];
 
         const result: Calendar = Array.from({ length: columns }, () => Array(rows));
 
@@ -120,7 +116,7 @@ export default class GitHubCalendar extends React.Component<Props, State> {
 
                 if (currentDate <= startDate) {
                     const formatted = currentDate.format(dateFormat);
-                    const value = history[formatted] || 0;
+                    const value = values[formatted] || 0;
                     result[week][day] = {
                         value,
                         month: currentDate.month(),
@@ -132,119 +128,114 @@ export default class GitHubCalendar extends React.Component<Props, State> {
         }
 
         return result;
-    }
+    }, [columns, rows, values, until, dateFormat]);
 
-    render() {
-        const { columns, rows } = this.state;
-        const { values, until } = this.props;
+    const constructInnerSVG = useCallback(
+        (contributions: Calendar) => {
+            const innerDom: ReactElement[] = [];
 
-        if (!this.props.panelColors || !this.props.weekNames || !this.props.monthNames) return;
+            // panels
 
-        const contributions = this.makeCalendarData(values, until, columns, rows);
-        const innerDom: ReactElement[] = [];
+            for (const [weekIndex, week] of contributions.entries()) {
+                for (const [dayIndex, day] of week.entries()) {
+                    if (!day) continue;
 
-        // panels
+                    const pos = getPanelPosition(weekIndex, dayIndex);
+                    const color = getPanelColor(day.value);
 
-        for (const [weekIndex, week] of contributions.entries()) {
-            for (const [dayIndex, day] of week.entries()) {
-                if (!day) continue;
-
-                const pos = this.getPanelPosition(weekIndex, dayIndex);
-                const color = this.getPanelColor(day.value);
-
-                const el = (
-                    <rect
-                        key={`panel_key_${weekIndex}_${dayIndex}`}
-                        width={this.panelSize}
-                        height={this.panelSize}
-                        fill={color}
-                        {...pos}
-                        {...this.props.panelAttributes}
-                    />
-                );
-                innerDom.push(el);
+                    const el = (
+                        <rect
+                            key={`panel_key_${weekIndex}_${dayIndex}`}
+                            width={panelSize}
+                            height={panelSize}
+                            fill={color}
+                            {...pos}
+                            {...panelAttributes}
+                        />
+                    );
+                    innerDom.push(el);
+                }
             }
-        }
 
-        // week texts
-        for (const [weekIndex, weekName] of this.props.weekNames.entries()) {
-            const textBasePos = this.getPanelPosition(0, weekIndex);
-            const el = (
-                <text
-                    key={`week_key_${weekIndex}`}
-                    style={{
-                        fontSize: 9,
-                        alignmentBaseline: "central",
-                        fill: "#AAA",
-                    }}
-                    x={textBasePos.x - this.panelSize / 2 - 2}
-                    y={textBasePos.y + this.panelSize / 2}
-                    textAnchor="middle"
-                    {...this.props.weekLabelAttributes}
-                >
-                    {weekName}
-                </text>
-            );
-            innerDom.push(el);
-        }
-
-        // month texts (set to 0 to skip first month)
-        let prevMonth = 0;
-        for (const [weekIndex, week] of contributions.entries()) {
-            const day = week[0];
-            if (!day) continue;
-
-            if (day.month !== prevMonth) {
-                const textBasePos = this.getPanelPosition(weekIndex, 0);
+            // week texts
+            for (const [weekIndex, weekName] of weekNames.entries()) {
+                const textBasePos = getPanelPosition(0, weekIndex);
                 const el = (
                     <text
-                        key={`month_key_${weekIndex}`}
+                        key={`week_key_${weekIndex}`}
                         style={{
-                            fontSize: 10,
+                            fontSize: 9,
                             alignmentBaseline: "central",
                             fill: "#AAA",
                         }}
-                        x={textBasePos.x + this.panelSize / 2}
-                        y={textBasePos.y - this.panelSize / 2 - 2}
+                        x={textBasePos.x - panelSize / 2 - 2}
+                        y={textBasePos.y + panelSize / 2}
                         textAnchor="middle"
-                        {...this.props.monthLabelAttributes}
+                        {...weekLabelAttributes}
                     >
-                        {this.props.monthNames[day.month]}
+                        {weekName}
                     </text>
                 );
                 innerDom.push(el);
             }
 
-            prevMonth = day.month;
-        }
+            // month texts (set to 0 to skip first month)
+            let prevMonth = 0;
+            for (const [weekIndex, week] of contributions.entries()) {
+                const day = week[0];
+                if (!day) continue;
 
-        return (
-            // @ts-expect-error react being weird
-            <Measure bounds onResize={(rect) => this.updateSize(rect.bounds)}>
-                {({ measureRef }) => (
-                    <div ref={measureRef} style={{ width: "100%" }}>
-                        <svg
+                if (day.month !== prevMonth) {
+                    const textBasePos = getPanelPosition(weekIndex, 0);
+                    const el = (
+                        <text
+                            key={`month_key_${weekIndex}`}
                             style={{
-                                fontFamily:
-                                    "Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif",
-                                width: "100%",
+                                fontSize: 10,
+                                alignmentBaseline: "central",
+                                fill: "#AAA",
                             }}
-                            height="110"
+                            x={textBasePos.x + panelSize / 2}
+                            y={textBasePos.y - panelSize / 2 - 2}
+                            textAnchor="middle"
+                            {...monthLabelAttributes}
                         >
-                            {innerDom}
-                        </svg>
-                    </div>
-                )}
-            </Measure>
-        );
-    }
+                            {monthNames[day.month]}
+                        </text>
+                    );
+                    innerDom.push(el);
+                }
 
-    updateSize(size?: BoundingRect) {
-        if (!size) return;
+                prevMonth = day.month;
+            }
 
-        const visibleWeeks = Math.floor((size.width - this.weekLabelWidth) / 13);
-        this.setState((prevState) => ({
-            columns: Math.min(visibleWeeks, prevState.maxWidth),
-        }));
-    }
+            return innerDom;
+        },
+        [
+            getPanelPosition,
+            getPanelColor,
+            panelSize,
+            weekNames,
+            monthNames,
+            weekLabelAttributes,
+            monthLabelAttributes,
+            panelAttributes,
+        ]
+    );
+
+    const contributions = makeCalendarData();
+    const innerDom = constructInnerSVG(contributions);
+
+    return (
+        // @ts-expect-error react being weird
+        <Measure bounds onResize={(rect) => updateSize(rect.bounds)}>
+            {({ measureRef }) => (
+                <div ref={measureRef} style={{ position: "relative", width: "100%" }}>
+                    <svg height={110} style={{ width: "100%" }}>
+                        {innerDom}
+                    </svg>
+                </div>
+            )}
+        </Measure>
+    );
 }
