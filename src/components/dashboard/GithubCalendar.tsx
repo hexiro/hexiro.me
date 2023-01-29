@@ -5,21 +5,23 @@
  * modified date: 2023-28-01
  * modified to support typescript better & have tooltips
  */
-import React, { ReactElement } from "react";
+import type { ReactElement, SVGProps } from "react";
+import React from "react";
 
 import dayjs from "dayjs";
-import Measure, { BoundingRect } from "react-measure";
+import type { BoundingRect } from "react-measure";
+import Measure from "react-measure";
 
 interface Props {
+    values: Record<string, number>;
+    until: string;
     weekNames?: string[];
     monthNames?: string[];
     panelColors?: string[];
-    values: { [date: string]: number };
-    until: string;
     dateFormat?: string;
-    weekLabelAttributes: any | undefined;
-    monthLabelAttributes: any | undefined;
-    panelAttributes: any | undefined;
+    weekLabelAttributes?: SVGProps<SVGTextElement>;
+    monthLabelAttributes?: SVGProps<SVGTextElement>;
+    panelAttributes?: SVGProps<SVGRectElement>;
 }
 
 interface State {
@@ -32,8 +34,34 @@ export default class GitHubCalendar extends React.Component<Props, State> {
     weekLabelWidth: number;
     panelSize: number;
     panelMargin: number;
+    state: State;
 
-    constructor(props: any) {
+    static get defaultProps() {
+        return {
+            weekNames: ["", "M", "", "W", "", "F", ""],
+            monthNames: [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+            ],
+            panelColors: ["#EEE", "#DDD", "#AAA", "#444"],
+            dateFormat: "YYYY-MM-DD",
+            weekLabelAttributes: undefined,
+            monthLabelAttributes: undefined,
+            panelAttributes: undefined,
+        };
+    }
+
+    constructor(props: Props) {
         super(props);
 
         this.monthLabelHeight = 15;
@@ -47,7 +75,7 @@ export default class GitHubCalendar extends React.Component<Props, State> {
         };
     }
 
-    getPanelPosition(row: number, col: number) {
+    getPanelPosition(row: number, col: number): { x: number; y: number } {
         const bounds = this.panelSize + this.panelMargin;
         return {
             x: this.weekLabelWidth + bounds * row,
@@ -55,16 +83,16 @@ export default class GitHubCalendar extends React.Component<Props, State> {
         };
     }
 
-    makeCalendarData(history: { [k: string]: number }, lastDay: string, columns: number) {
+    makeCalendarData(history: Record<string, number>, lastDay: string, columns: number) {
         const d = dayjs(lastDay, { format: this.props.dateFormat });
         const lastWeekend = d.endOf("week");
         const endDate = d.endOf("day");
 
-        var result: ({ value: number; month: number } | null)[][] = [];
-        for (var i = 0; i < columns; i++) {
+        const result: Array<Array<{ value: number; month: number } | null>> = [];
+        for (let i = 0; i < columns; i++) {
             result[i] = [];
-            for (var j = 0; j < 7; j++) {
-                var date = lastWeekend.subtract((columns - i - 1) * 7 + (6 - j), "day");
+            for (let j = 0; j < 7; j++) {
+                const date = lastWeekend.subtract((columns - i - 1) * 7 + (6 - j), "day");
                 if (date <= endDate) {
                     result[i][j] = {
                         value: history[date.format(this.props.dateFormat)] || 0,
@@ -80,26 +108,25 @@ export default class GitHubCalendar extends React.Component<Props, State> {
     }
 
     render() {
-        const columns = this.state.columns;
-        const values = this.props.values;
-        const until = this.props.until;
+        const { columns } = this.state;
+        const { values } = this.props;
+        const { until } = this.props;
 
-        // TODO: More sophisticated typing
         if (
-            this.props.panelColors == undefined ||
-            this.props.weekNames == undefined ||
-            this.props.monthNames == undefined
+            this.props.panelColors === undefined ||
+            this.props.weekNames === undefined ||
+            this.props.monthNames === undefined
         ) {
             return;
         }
 
-        var contributions = this.makeCalendarData(values, until, columns);
-        var innerDom: ReactElement[] = [];
+        const contributions = this.makeCalendarData(values, until, columns);
+        const innerDom: ReactElement[] = [];
 
         // panels
         for (var i = 0; i < columns; i++) {
-            for (var j = 0; j < 7; j++) {
-                var contribution = contributions[i][j];
+            for (let j = 0; j < 7; j++) {
+                const contribution = contributions[i][j];
                 if (contribution === null) continue;
                 const pos = this.getPanelPosition(i, j);
                 const numOfColors = this.props.panelColors.length;
@@ -135,7 +162,7 @@ export default class GitHubCalendar extends React.Component<Props, State> {
                     }}
                     x={textBasePos.x - this.panelSize / 2 - 2}
                     y={textBasePos.y + this.panelSize / 2}
-                    textAnchor={"middle"}
+                    textAnchor="middle"
                     {...this.props.weekLabelAttributes}
                 >
                     {this.props.weekNames[i]}
@@ -145,16 +172,17 @@ export default class GitHubCalendar extends React.Component<Props, State> {
         }
 
         // month texts
-        var prevMonth = -1;
+        let prevMonth = -1;
         for (var i = 0; i < columns; i++) {
             const c = contributions[i][0];
             if (c === null) continue;
-            if (columns > 1 && i == 0 && c.month != contributions[i + 1][0]?.month) {
+            if (columns > 1 && i === 0 && c.month !== contributions[i + 1][0]?.month) {
                 // skip first month name to avoid text overlap
                 continue;
             }
-            if (c.month != prevMonth) {
-                var textBasePos = this.getPanelPosition(i, 0);
+
+            if (c.month !== prevMonth) {
+                const textBasePos = this.getPanelPosition(i, 0);
                 innerDom.push(
                     <text
                         key={"month_key_" + i}
@@ -165,19 +193,20 @@ export default class GitHubCalendar extends React.Component<Props, State> {
                         }}
                         x={textBasePos.x + this.panelSize / 2}
                         y={textBasePos.y - this.panelSize / 2 - 2}
-                        textAnchor={"middle"}
+                        textAnchor="middle"
                         {...this.props.monthLabelAttributes}
                     >
                         {this.props.monthNames[c.month]}
                     </text>
                 );
             }
+
             prevMonth = c.month;
         }
 
         return (
             <Measure bounds onResize={(rect) => this.updateSize(rect.bounds)}>
-                {({ measureRef }: any) => (
+                {({ measureRef }) => (
                     <div ref={measureRef} style={{ width: "100%" }}>
                         <svg
                             style={{
@@ -199,29 +228,8 @@ export default class GitHubCalendar extends React.Component<Props, State> {
         if (!size) return;
 
         const visibleWeeks = Math.floor((size.width - this.weekLabelWidth) / 13);
-        this.setState({
-            columns: Math.min(visibleWeeks, this.state.maxWidth),
-        });
+        this.setState((prevState) => ({
+            columns: Math.min(visibleWeeks, prevState.maxWidth),
+        }));
     }
 }
-
-// @ts-ignore
-GitHubCalendar.defaultProps = {
-    weekNames: ["", "M", "", "W", "", "F", ""],
-    monthNames: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-    ],
-    panelColors: ["#EEE", "#DDD", "#AAA", "#444"],
-    dateFormat: "YYYY-MM-DD",
-};
