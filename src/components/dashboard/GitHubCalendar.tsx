@@ -298,4 +298,5 @@ const TooltipWrapper = styled("div", {
 
     padding: "0.25rem 0.5rem",
     fontSize: "0.8rem",
+    zIndex: "$max",
 });

@@ -12,7 +12,13 @@ export default function Social({ name, href, icon }: NavRoute) {
                 position="bottom"
                 distance={5}
             >
-                <Link newTab href={href} animation="pop" lineHeight="single">
+                <Link
+                    newTab
+                    href={href}
+                    aria-label={`${name} social network icon`}
+                    animation="pop"
+                    lineHeight="single"
+                >
                     {icon()}
                 </Link>
             </Tooltip>

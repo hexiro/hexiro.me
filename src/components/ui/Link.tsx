@@ -6,12 +6,6 @@ import type { PropsWithChildren } from "react";
 
 import { Span } from "@/components/ui";
 
-const LinkWrapper = styled(NextLink, {
-    display: "inline-block",
-    textDecoration: "inherit",
-    color: "inherit",
-});
-
 type SpanProps = VariantProps<typeof Span>;
 
 type LinkProps = Omit<ComponentProps<typeof LinkWrapper>, "target"> &
@@ -28,6 +22,12 @@ const Link = ({ newTab, animation, color, lineHeight, ...props }: LinkProps) => 
         />
     </WithSpan>
 );
+
+const LinkWrapper = styled(NextLink, {
+    display: "inline-block",
+    textDecoration: "inherit",
+    color: "inherit",
+});
 
 const WithSpan = ({ animation, color, lineHeight, children }: PropsWithChildren<SpanProps>) => {
     // eslint-disable-next-line react/jsx-no-useless-fragment
