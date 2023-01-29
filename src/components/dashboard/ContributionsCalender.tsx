@@ -1,11 +1,10 @@
 import { theme, css, styled } from "@/theme";
 
+import Calendar from "@/components/dashboard/GithubCalendar";
 import { Divider } from "@/components/layout";
 import { Heading, ImportantContainer, Paragraph } from "@/components/ui";
 
 import type { GitHubContributionsCalendar } from "@/data/contributionsCalendar";
-
-import Calendar from "react-github-contribution-calendar";
 
 interface ContributionsCalendarProps {
     data: GitHubContributionsCalendar;
@@ -29,7 +28,7 @@ export default function ContributionsCalendar({ data }: ContributionsCalendarPro
             <Calendar
                 values={transformed}
                 panelColors={[
-                    "rgba(255, 255, 255, 0.2)",
+                    "rgba(255, 255, 255, 0.1)",
                     `rgba(${theme.colors["brand-primary-rgb"].computedValue}, 0.15)`,
                     `rgba(${theme.colors["brand-primary-rgb"].computedValue}, 0.3)`,
                     `rgba(${theme.colors["brand-primary-rgb"].computedValue}, 0.45)`,
