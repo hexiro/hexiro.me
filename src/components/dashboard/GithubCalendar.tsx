@@ -84,22 +84,31 @@ export default class GitHubCalendar extends React.Component<Props, State> {
     }
 
     makeCalendarData(history: Record<string, number>, lastDay: string, columns: number) {
-        const d = dayjs(lastDay, { format: this.props.dateFormat });
-        const lastWeekend = d.endOf("week");
-        const endDate = d.endOf("day");
+        const date = dayjs(lastDay, { format: this.props.dateFormat });
+        const lastDate = date.endOf("week");
+        const startDate = date.endOf("day");
 
-        const result: Array<Array<{ value: number; month: number } | null>> = [];
-        for (let i = 0; i < columns; i++) {
-            result[i] = [];
-            for (let j = 0; j < 7; j++) {
-                const date = lastWeekend.subtract((columns - i - 1) * 7 + (6 - j), "day");
-                if (date <= endDate) {
-                    result[i][j] = {
-                        value: history[date.format(this.props.dateFormat)] || 0,
-                        month: date.month(),
+        type DayValue = { value: number; month: number } | null;
+        type Week = DayValue[];
+        type Calendar = Week[];
+
+        const result: Calendar = Array.from({ length: 53 }, () => Array(7));
+        for (let week = 0; week < columns; week++) {
+            for (let day = 0; day < 7; day++) {
+                // start at end and remove days until start date is reached
+                const currentDate = lastDate
+                    .subtract(columns - week - 1, "week")
+                    .subtract(6 - day, "day");
+
+                if (currentDate <= startDate) {
+                    const formatted = currentDate.format(this.props.dateFormat);
+                    const value = history[formatted] || 0;
+                    result[week][day] = {
+                        value,
+                        month: currentDate.month(),
                     };
                 } else {
-                    result[i][j] = null;
+                    result[week][day] = null;
                 }
             }
         }
@@ -124,7 +133,7 @@ export default class GitHubCalendar extends React.Component<Props, State> {
         const innerDom: ReactElement[] = [];
 
         // panels
-        for (var i = 0; i < columns; i++) {
+        for (let i = 0; i < columns; i++) {
             for (let j = 0; j < 7; j++) {
                 const contribution = contributions[i][j];
                 if (contribution === null) continue;
@@ -136,7 +145,7 @@ export default class GitHubCalendar extends React.Component<Props, State> {
                         : this.props.panelColors[contribution.value];
                 const dom = (
                     <rect
-                        key={"panel_key_" + i + "_" + j}
+                        key={`panel_key_${i}_${j}`}
                         x={pos.x}
                         y={pos.y}
                         width={this.panelSize}
@@ -150,11 +159,11 @@ export default class GitHubCalendar extends React.Component<Props, State> {
         }
 
         // week texts
-        for (var i = 0; i < this.props.weekNames.length; i++) {
+        for (let i = 0; i < this.props.weekNames.length; i++) {
             const textBasePos = this.getPanelPosition(0, i);
             const dom = (
                 <text
-                    key={"week_key_" + i}
+                    key={`week_key_${i}`}
                     style={{
                         fontSize: 9,
                         alignmentBaseline: "central",
@@ -173,7 +182,7 @@ export default class GitHubCalendar extends React.Component<Props, State> {
 
         // month texts
         let prevMonth = -1;
-        for (var i = 0; i < columns; i++) {
+        for (let i = 0; i < columns; i++) {
             const c = contributions[i][0];
             if (c === null) continue;
             if (columns > 1 && i === 0 && c.month !== contributions[i + 1][0]?.month) {
@@ -185,7 +194,7 @@ export default class GitHubCalendar extends React.Component<Props, State> {
                 const textBasePos = this.getPanelPosition(i, 0);
                 innerDom.push(
                     <text
-                        key={"month_key_" + i}
+                        key={`month_key_${i}`}
                         style={{
                             fontSize: 10,
                             alignmentBaseline: "central",
@@ -205,6 +214,7 @@ export default class GitHubCalendar extends React.Component<Props, State> {
         }
 
         return (
+            // @ts-expect-error react being weird
             <Measure bounds onResize={(rect) => this.updateSize(rect.bounds)}>
                 {({ measureRef }) => (
                     <div ref={measureRef} style={{ width: "100%" }}>
