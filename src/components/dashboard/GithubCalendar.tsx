@@ -25,6 +25,7 @@ interface Props {
 }
 
 interface State {
+    rows: number;
     columns: number;
     maxWidth: number;
 }
@@ -70,6 +71,7 @@ export default class GitHubCalendar extends React.Component<Props, State> {
         this.panelMargin = 2;
 
         this.state = {
+            rows: 7,
             columns: 53,
             maxWidth: 53,
         };
@@ -92,25 +94,32 @@ export default class GitHubCalendar extends React.Component<Props, State> {
         return color;
     }
 
-    makeCalendarData(history: Record<string, number>, lastDay: string, columns: number) {
-        const date = dayjs(lastDay, { format: this.props.dateFormat });
+    makeCalendarData(
+        history: Record<string, number>,
+        lastDay: string,
+        columns: number,
+        rows: number
+    ) {
+        const { dateFormat } = this.props;
+        const date = dayjs(lastDay, { format: dateFormat });
         const lastDate = date.endOf("week");
         const startDate = date.endOf("day");
 
-        type DayValue = { value: number; month: number } | null;
-        type Week = DayValue[];
+        type Day = { value: number; month: number } | null;
+        type Week = Day[];
         type Calendar = Week[];
 
-        const result: Calendar = Array.from({ length: 53 }, () => Array(7));
+        const result: Calendar = Array.from({ length: columns }, () => Array(rows));
+
         for (let week = 0; week < columns; week++) {
-            for (let day = 0; day < 7; day++) {
+            for (let day = 0; day < rows; day++) {
                 // start at end and remove days until start date is reached
                 const currentDate = lastDate
                     .subtract(columns - week - 1, "week")
-                    .subtract(6 - day, "day");
+                    .subtract(rows - day - 1, "day");
 
                 if (currentDate <= startDate) {
-                    const formatted = currentDate.format(this.props.dateFormat);
+                    const formatted = currentDate.format(dateFormat);
                     const value = history[formatted] || 0;
                     result[week][day] = {
                         value,
@@ -126,13 +135,12 @@ export default class GitHubCalendar extends React.Component<Props, State> {
     }
 
     render() {
-        const { columns } = this.state;
-        const { values } = this.props;
-        const { until } = this.props;
+        const { columns, rows } = this.state;
+        const { values, until } = this.props;
 
         if (!this.props.panelColors || !this.props.weekNames || !this.props.monthNames) return;
 
-        const contributions = this.makeCalendarData(values, until, columns);
+        const contributions = this.makeCalendarData(values, until, columns, rows);
         const innerDom: ReactElement[] = [];
 
         // panels
