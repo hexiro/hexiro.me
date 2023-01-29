@@ -8,7 +8,7 @@ import { CloseIcon, HamburgerMenuIcon } from "@/commons/icons";
 import MenuItem from "@/components/MenuItem";
 import Route from "@/components/Route";
 import Social from "@/components/Social";
-import { Hide, Show } from "@/components/layout";
+import { Divider, Hide, Show } from "@/components/layout";
 import { AnchorList, Heading, ListItem, Span } from "@/components/ui";
 import useWindowWidthInBounds from "@/hooks/useWindowWidth";
 
@@ -205,10 +205,4 @@ const Menu = styled(motion.ul, {
         margin: "unset",
         transformOrigin: "top right",
     },
-});
-
-const Divider = styled("hr", {
-    width: "100%",
-    borderBottom: "1px solid $lighten-10",
-    marginY: "12px",
 });

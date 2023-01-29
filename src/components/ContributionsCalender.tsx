@@ -1,5 +1,6 @@
 import { theme, css, styled } from "@/theme";
 
+import { Divider } from "@/components/layout";
 import { Heading, ImportantContainer, Paragraph } from "@/components/ui";
 import type { GitHubContributionsCalendar } from "@/data/contributionsCalendar";
 
@@ -21,10 +22,8 @@ export default function ContributionsCalendar({ data }: ContributionsCalendarPro
 
     return (
         <ContributionsContainer>
-            <Text>
-                <Heading as="h3">Contributions Calendar</Heading>
-                <Paragraph>{`${sum.toLocaleString()} contributions in the last year`}</Paragraph>
-            </Text>
+            <Heading as="h3">Contributions Calendar</Heading>
+            <Paragraph>{`I've made ${sum.toLocaleString()} contributions in the last year`}</Paragraph>
             <Divider />
             <Calendar
                 values={transformed}
@@ -60,12 +59,4 @@ const ContributionsContainer = styled(ImportantContainer, {
     flexDirection: "column",
     width: "100%",
     height: "min-content",
-});
-
-const Text = styled("div", {});
-
-const Divider = styled("hr", {
-    width: "100%",
-    borderBottom: "1px solid $lighten-10",
-    marginY: "$2",
 });

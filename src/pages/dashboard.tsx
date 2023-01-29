@@ -7,6 +7,7 @@ import { Heading, Paragraph } from "@/components/ui";
 import contributionsCalendar from "@/data/contributionsCalendar";
 import wakatimeStats from "@/data/wakatimeStats";
 import Page from "@/layout/Page";
+import ProgrammingTimeStats from "@/components/ProgrammingTimeStats";
 
 const DESCRIPTION = "Dashboard";
 
@@ -26,10 +27,10 @@ export default function Dashboard({ contributionsCalendar, wakatimeStats }: Dash
             </TextContainer>
             <SectionsContainer>
                 <ContributionsCalendar data={contributionsCalendar} />
-                {/* <ProgrammingTimeStats
+                <ProgrammingTimeStats
                     dailyAverage={wakatimeStats.dailyAverageDuration}
                     last7Days={wakatimeStats.last7daysDuration}
-                /> */}
+                />
             </SectionsContainer>
         </Page>
     );
