@@ -13,7 +13,7 @@ const Paragraph = styled("p", {
     variants: {
         size: {
             sm: {
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: 500,
             },
             md: { fontSize: 20, fontWeight: 500 },

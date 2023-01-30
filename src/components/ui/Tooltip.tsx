@@ -6,6 +6,7 @@ interface TooltipProps extends Omit<TippyTooltipProps, "theme"> {
 }
 
 export default function Tooltip({
+    title,
     block = true,
     animateFill,
     style,
@@ -13,12 +14,25 @@ export default function Tooltip({
     ...props
 }: TooltipProps) {
     return (
-        <TippyTooltip
+        <WithTippyTooltip
+            title={title}
             animateFill={animateFill ?? false}
             style={{ display: block ? "block" : "inline", ...style }}
             {...props}
         >
             {children}
-        </TippyTooltip>
+        </WithTippyTooltip>
     );
 }
+
+// if title is not provided,
+// tippy will not render when it is provided on rerenders,
+// need to control when to render
+const WithTippyTooltip = ({ children, ...props }: TooltipProps) => {
+    if (!props.title) {
+        // eslint-disable-next-line react/jsx-no-useless-fragment
+        return <>{children}</>;
+    }
+
+    return <TippyTooltip {...props}>{children}</TippyTooltip>;
+};

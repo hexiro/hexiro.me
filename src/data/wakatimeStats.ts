@@ -3,25 +3,34 @@ import { WAKATIME, WAKATIME_TOKEN } from "@/commons/config";
 import { z } from "zod";
 
 export default async function wakatimeStats() {
-    const url = `https://wakatime.com/api/v1/users/${WAKATIME}/stats/last_7_days`;
+    const last7DaysUrl = `https://wakatime.com/api/v1/users/${WAKATIME}/stats/last_7_days`;
+    const allTimeUrl = `https://wakatime.com/api/v1/users/${WAKATIME}/stats/all_time`;
 
     const headers = {
         Authorization: `Basic ${Buffer.from(WAKATIME_TOKEN).toString("base64")}`,
     };
 
-    const resp = await fetch(url, { headers });
-    const { data } = wakatimeSchema.parse(await resp.json());
+    const fetchPromises = [fetch(last7DaysUrl, { headers }), fetch(allTimeUrl, { headers })];
+    const [last7Resp, allTimeResp] = await Promise.all(fetchPromises);
+    const jsonPromises = [last7Resp.json(), allTimeResp.json()];
+    const [last7Json, allTimeJson] = await Promise.all(jsonPromises);
 
-    const dailyAverageDuration = data.daily_average_including_other_language;
-    const last7daysDuration = data.total_seconds_including_other_language;
+    const { data: last7Data } = wakatimeSchema.parse(last7Json);
+    const { data: allTImeData } = wakatimeSchema.parse(allTimeJson);
 
-    const editors = data.editors.slice(0, 3);
-    const languages = data.languages.slice(0, 3);
+    const dailyAverageDuration = last7Data.daily_average_including_other_language;
+    const last7daysDuration = last7Data.total_seconds_including_other_language;
+
+    const sortFn = (a: SingleMultiInfo, b: SingleMultiInfo) => b.total_seconds - a.total_seconds;
+
+    const editors = allTImeData.editors.sort(sortFn).slice(0, 3);
+    const languages = allTImeData.languages.sort(sortFn).slice(0, 3);
 
     return { dailyAverageDuration, last7daysDuration, editors, languages };
 }
 
-type MultiInfo = z.infer<typeof multiInfoSchema>;
+export type MultiInfo = z.infer<typeof multiInfoSchema>;
+type SingleMultiInfo = MultiInfo[0];
 
 const multiInfoSchema = z.array(
     z.object({

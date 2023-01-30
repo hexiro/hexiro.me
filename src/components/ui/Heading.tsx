@@ -26,7 +26,7 @@ const Heading = styled("h1", {
                 fontWeight: 600,
             },
             h4: {
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: 600,
             },
         },

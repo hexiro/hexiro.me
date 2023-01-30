@@ -10,13 +10,17 @@ import useWindowWidthInBounds from "@/hooks/useWindowWidth";
 
 import { Paragraph, Heading, Tooltip, ImportantContainer } from "components/ui";
 import { AnimatePresence } from "framer-motion";
-import type { Activity } from "use-lanyard";
+import type {
+    Activity as LanyardActivity,
+    Data as LanyardData,
+    Assets as LanyardAssets,
+} from "use-lanyard";
 import { useLanyardWS } from "use-lanyard";
 
 export default function DiscordPresence() {
     const [visible, setVisible] = useState<boolean>(true);
 
-    const presence = useLanyardWS(DISCORD);
+    const presence = useLanyardWS(DISCORD, { initialData });
     const state = parseActivities(presence?.activities);
 
     useWindowWidthInBounds({
@@ -25,6 +29,8 @@ export default function DiscordPresence() {
             setVisible(state);
         },
     });
+
+    console.log({ presence, state });
 
     return (
         <AnimatePresence>
@@ -42,7 +48,9 @@ export default function DiscordPresence() {
                                 width={100}
                                 height={100}
                                 src={state.images.large.src}
-                                alt={state.images.large.tooltip}
+                                alt={
+                                    state.images.large.tooltip ?? "Discord application large image"
+                                }
                             />
                         </Tooltip>
                         <SmallImageContainer>
@@ -51,7 +59,10 @@ export default function DiscordPresence() {
                                     width={35}
                                     height={35}
                                     src={state.images.small.src}
-                                    alt={state.images.small.tooltip}
+                                    alt={
+                                        state.images.small.tooltip ??
+                                        "Discord application small image"
+                                    }
                                 />
                             </Tooltip>
                         </SmallImageContainer>
@@ -83,9 +94,48 @@ export default function DiscordPresence() {
     );
 }
 
+const assets = {
+    small_text: "Snoozin...",
+    small_image:
+        "mp:external/Y6xAhARpHfRM8Bkdw0a1ZkbTAIXqKJFmrSAvHjKs6B0/https/raw.githubusercontent.com/LeonardSSH/vscord/main/assets/icons/idle.png",
+    large_image:
+        "mp:external/ByjawWsm2QtMAOa2doThD3bIfP42xs9pmNqRE9rs1X4/https/raw.githubusercontent.com/LeonardSSH/vscord/main/assets/icons/idle-vscode.png",
+} as LanyardAssets;
+
+const activity = {
+    type: 0,
+    session_id: "d2466f47875f6a0030d0fbc474ff5905",
+    name: "Visual Studio Code",
+    id: "3c8c68a3ca808bd6",
+    flags: 1,
+    details: "Not actively working!",
+    created_at: 1675121071515,
+    assets,
+    application_id: "810516608442695700",
+} as unknown as LanyardActivity;
+
+const initialData: LanyardData = {
+    spotify: null,
+    kv: {},
+    listening_to_spotify: false,
+    discord_user: {
+        username: "hexiro",
+        public_flags: 4194432,
+        id: "291632819006865408",
+        discriminator: "8250",
+        bot: false,
+        avatar_decoration: null,
+        avatar: "6215b611d45fd9c6fe7e8392c8d52c23",
+    },
+    discord_status: "dnd",
+    activities: [activity],
+    active_on_discord_web: false,
+    active_on_discord_mobile: false,
+    active_on_discord_desktop: true,
+};
 const DiscordPresenceContainer = styled(ImportantContainer, {
-    aspectRatio: "68 / 23",
-    maxWidth: 414,
+    aspectRatio: "22 / 7",
+    maxWidth: 440,
     height: 140,
     paddingRight: "$2",
     flexDirection: "row",
@@ -108,7 +158,7 @@ const Images = styled("div", {
 });
 
 const LargeImage = styled(Image, {
-    border: "2px solid hsl(137deg 20% 41%)",
+    border: "2px solid rgba(255, 255, 255, 0.2)",
     borderRadius: "$md",
 });
 
@@ -119,7 +169,7 @@ const SmallImageContainer = styled("div", {
 });
 
 const SmallImage = styled(Image, {
-    border: "2px solid rgba(255, 255, 255, 0.75)",
+    border: "2px solid rgba($brand-primary-rgb, 0.75)",
     borderRadius: "50%",
 });
 
@@ -150,7 +200,7 @@ interface DiscordPresenceIDEState {
 
 interface DiscordPresenceImage {
     src: string;
-    tooltip: string;
+    tooltip?: string;
 }
 
 type DiscordPresenceLine = DiscordPresenceLineChunk[];
@@ -160,7 +210,9 @@ interface DiscordPresenceLineChunk {
     highlighted: boolean;
 }
 
-const parseActivities = (activities: Activity[] | undefined): DiscordPresenceIDEState | null => {
+const parseActivities = (
+    activities: LanyardActivity[] | undefined
+): DiscordPresenceIDEState | null => {
     if (!activities) return null;
 
     for (const activity of activities) {
@@ -171,20 +223,18 @@ const parseActivities = (activities: Activity[] | undefined): DiscordPresenceIDE
     return null;
 };
 
-function parseActivity(activity: Activity): DiscordPresenceIDEState | null {
+function parseActivity(activity: LanyardActivity): DiscordPresenceIDEState | null {
     if (activity.type !== 0) return null;
 
     const { assets, application_id } = activity;
     if (!assets || !application_id) return null;
-    if (!assets.large_image || !assets.large_text || !assets.small_image || !assets.small_text)
-        return null;
-    if (!activity.state || !activity.details) return null;
+    if (!assets.large_image || !assets.small_image) return null;
+    if (!activity.details) return null;
 
     const large = parseImage(application_id, assets.large_image, assets.large_text);
     const small = parseImage(application_id, assets.small_image, assets.small_text);
 
-    const lines: DiscordPresenceLine[] = [];
-    if (activity.details) lines.push(parseLine(activity.details));
+    const lines: DiscordPresenceLine[] = [parseLine(activity.details)];
     if (activity.state) lines.push(parseLine(activity.state));
 
     return {
@@ -206,7 +256,11 @@ function parseLine(text: string): DiscordPresenceLine {
     return chunks;
 }
 
-function parseImage(applicationId: string, assetId: string, text: string): DiscordPresenceImage {
+function parseImage(
+    applicationId: string,
+    assetId: string,
+    text: string | undefined
+): DiscordPresenceImage {
     return {
         src: buildAsset(applicationId, assetId),
         tooltip: text,
