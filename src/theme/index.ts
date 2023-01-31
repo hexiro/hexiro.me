@@ -146,6 +146,22 @@ const stitches = createStitches({
             marginTop: value,
             marginBottom: value,
         }),
+        borderRightRadius: (value: PropertyValue<"borderTopRightRadius">) => ({
+            borderTopRightRadius: value,
+            borderBottomRightRadius: value,
+        }),
+        borderBottomRadius: (value: PropertyValue<"borderBottomLeftRadius">) => ({
+            borderBottomLeftRadius: value,
+            borderBottomRightRadius: value,
+        }),
+        borderTopRadius: (value: PropertyValue<"borderTopLeftRadius">) => ({
+            borderTopLeftRadius: value,
+            borderTopRightRadius: value,
+        }),
+        borderLeftRadius: (value: PropertyValue<"borderTopLeftRadius">) => ({
+            borderTopLeftRadius: value,
+            borderBottomLeftRadius: value,
+        }),
     },
     themeMap: {
         ...defaultThemeMap,
@@ -162,6 +178,18 @@ export const globalStyles = globalCss({
         margin: 0,
         padding: 0,
         boxSizing: "border-box",
+    },
+    "::-webkit-scrollbar": {
+        width: "0.35em",
+        height: "0.35em",
+    },
+    "::-webkit-scrollbar-track": {
+        boxShadow: "inset 0 0 6px rgba(0, 0, 0, 0.3)",
+    },
+    "::-webkit-scrollbar-thumb": {
+        backgroundColor: "rgba($brand-primary-rgb, 0.55)",
+        borderLeftRadius: "$xl",
+        borderRightRadius: "$md"
     },
     html: {
         scrollBehavior: "smooth",
