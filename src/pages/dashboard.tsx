@@ -4,13 +4,13 @@ import type { GetStaticProps } from "next";
 
 import ContributionsCalendar from "@/components/dashboard/ContributionsCalender";
 import ProgrammingTimeStats from "@/components/dashboard/ProgrammingTimeStats";
+import TopLanguages from "@/components/dashboard/TopLanguages";
 import { Heading, Paragraph } from "@/components/ui";
 
 import contributionsCalendar from "@/data/contributionsCalendar";
 import wakatimeStats from "@/data/wakatimeStats";
 
 import Page from "@/layout/Page";
-import TopLanguages from "@/components/dashboard/TopLanguages";
 
 const DESCRIPTION = "Dashboard";
 
@@ -34,7 +34,7 @@ export default function Dashboard({ contributionsCalendar, wakatimeStats }: Dash
                     dailyAverage={wakatimeStats.dailyAverageDuration}
                     last7Days={wakatimeStats.last7daysDuration}
                 />
-                <TopLanguages languages={wakatimeStats.languages}/>
+                <TopLanguages languages={wakatimeStats.languages} />
             </SectionsContainer>
         </Page>
     );

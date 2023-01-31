@@ -4,22 +4,25 @@ import GitHubCalendar from "@/components/dashboard/GitHubCalendar";
 import { Divider } from "@/components/layout";
 import { Heading, ImportantContainer, Paragraph } from "@/components/ui";
 
-import type { GitHubContributionsCalendar } from "@/data/contributionsCalendar";
+import type { CompressedGitHubContributionsCalendar } from "@/data/contributionsCalendar";
+import { decompress } from "@/data/contributionsCalendar";
 
 import dayjs from "dayjs";
 
 interface ContributionsCalendarProps {
-    data: GitHubContributionsCalendar;
+    data: CompressedGitHubContributionsCalendar;
 }
 
 export default function ContributionsCalendar({ data }: ContributionsCalendarProps) {
+    const decompressed = decompress(data);
+
     const transformed: Record<string, number> = Object.fromEntries(
-        data.map(({ date, count }) => [date, count])
+        decompressed.map(({ date, count }) => [date, count])
     );
 
     const until = dayjs().format("YYYY-MM-DD");
 
-    const sum = data.reduce((acc, { count }) => acc + count, 0);
+    const sum = decompressed.reduce((acc, { count }) => acc + count, 0);
 
     return (
         <ContributionsContainer>
