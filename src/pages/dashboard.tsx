@@ -56,4 +56,5 @@ export const getStaticProps: GetStaticProps<DashboardPageProps> = async () => ({
         contributionsCalendar: await contributionsCalendar(),
         wakatimeStats: await wakatimeStats(),
     },
+    revalidate: 60 * 60 * 6,
 });
