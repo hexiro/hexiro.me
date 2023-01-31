@@ -19,14 +19,9 @@ export default function DiscordPresence() {
     const [visible, setVisible] = useState<boolean>(true);
 
     const presence = useLanyardWS(DISCORD, { initialData });
-    const state = parseActivities(presence?.activities);
+    const state = parseActivities(presence?.activities) ?? parseActivities(initialData.activities);
 
-    // useWindowWidthInBounds({
-    //     min: breakpoints.xxs,
-    //     handler(state) {
-    //         setVisible(state);
-    //     },
-    // });
+    const isOnline = presence?.discord_status && presence.discord_status !== "offline";
 
     return (
         <AnimatePresence>
@@ -41,8 +36,6 @@ export default function DiscordPresence() {
                     <Images>
                         <Tooltip title={state.images.large.tooltip}>
                             <LargeImage
-                                // width={100}
-                                // height={100}
                                 fill
                                 src={state.images.large.src}
                                 alt={
@@ -54,8 +47,7 @@ export default function DiscordPresence() {
                             <Tooltip title={state.images.small.tooltip} size="small">
                                 <SmallImage
                                     fill
-                                    // width={35}
-                                    // height={35}
+                                    isOnline={isOnline}
                                     src={state.images.small.src}
                                     alt={
                                         state.images.small.tooltip ??
@@ -101,15 +93,16 @@ const assets = {
 } as LanyardAssets;
 
 const activity = {
-    type: 0,
-    session_id: "d2466f47875f6a0030d0fbc474ff5905",
-    name: "Visual Studio Code",
-    id: "3c8c68a3ca808bd6",
-    flags: 1,
-    details: "Not actively working!",
-    created_at: 1675121071515,
-    assets,
     application_id: "810516608442695700",
+    assets,
+    buttons: ["View Repository"],
+    created_at: 1675121071515,
+    details: "Not actively working!",
+    flags: 1,
+    id: "3c8c68a3ca808bd6",
+    name: "Visual Studio Code",
+    session_id: "d2466f47875f6a0030d0fbc474ff5905",
+    type: 0,
 } as unknown as LanyardActivity;
 
 const initialData: LanyardData = {
@@ -172,8 +165,18 @@ const SmallImageContainer = styled("div", {
 });
 
 const SmallImage = styled(Image, {
-    border: "2px solid rgba($brand-primary-rgb, 0.75)",
+    borderStyle: "solid",
+    borderWidth: "2px",
     borderRadius: "50%",
+
+    borderColor: "$$borderColor",
+
+    variants: {
+        isOnline: {
+            true: { $$borderColor: "rgba($colors$brand-primary-rgb, 0.75)" },
+            false: { $$borderColor: "rgba(255, 255, 255, 0.2)" },
+        },
+    },
 });
 
 const Text = styled("div", {

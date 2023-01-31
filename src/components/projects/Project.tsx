@@ -6,11 +6,10 @@ import { childStaggerAnimation, extraBounce } from "@/commons/animations";
 import type { ProjectData } from "@/commons/graphql/projects";
 import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
 
-import ParseHTML from "@/components/projects/ParseHTML";
-import { AnchorList, Heading, ImportantContainer, Link, Paragraph } from "@/components/ui";
-
 import LanguageIcon from "@/components/projects/LanguageIcon";
+import ParseHTML from "@/components/projects/ParseHTML";
 import replace from "@/components/projects/replace";
+import { AnchorList, Heading, ImportantContainer, Link, Paragraph } from "@/components/ui";
 
 interface ProjectProps {
     data: ProjectData;
@@ -31,25 +30,9 @@ export default function Project({ data }: ProjectProps) {
         >
             <ProjectHeader>
                 <Heading ellipsis as="h3" css={{ paddingRight: "$1" }}>
-                    <Link
-                        newTab
-                        href={url}
-                        css={{
-                            "&::before": {
-                                content: "''",
-                                cursor: "inherit",
-                                display: "block",
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                                zIndex: 0,
-                                width: "100%",
-                                height: "100%",
-                            },
-                        }}
-                    >
+                    <ProjectLink newTab href={url}>
                         {name}
-                    </Link>
+                    </ProjectLink>
                 </Heading>
                 <ProjectInformation>
                     <ProjectDetail>
@@ -88,6 +71,20 @@ export default function Project({ data }: ProjectProps) {
         </ProjectContainer>
     );
 }
+
+const ProjectLink = styled(Link, {
+    "&::before": {
+        content: "''",
+        cursor: "inherit",
+        display: "block",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        zIndex: 0,
+        width: "100%",
+        height: "100%",
+    },
+});
 
 const ProjectTopics = styled("ul", {
     display: "flex",
@@ -166,7 +163,7 @@ const ProjectContainer = styled(ImportantContainer, {
                 transitionTimingFunction: "$ease-in-out",
 
                 "&:hover": {
-                    transform: "translateY(-4px)!important",
+                    transform: "translateY(-6px)!important",
                 },
             },
         },

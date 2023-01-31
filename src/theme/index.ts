@@ -106,7 +106,8 @@ const stitches = createStitches({
         },
         transitionDurations: {
             "fast": "0.2s",
-            "normal": "0.45s",
+            "medium": "0.3s",
+            "slow": "0.45s",
         },
         transitionTimingFunctions: {
             "ease-in-out": "cubic-bezier(0.4, 0, 0.2, 1)",
@@ -189,7 +190,7 @@ export const globalStyles = globalCss({
     "::-webkit-scrollbar-thumb": {
         backgroundColor: "rgba($brand-primary-rgb, 0.55)",
         borderLeftRadius: "$xl",
-        borderRightRadius: "$md"
+        borderRightRadius: "$md",
     },
     html: {
         scrollBehavior: "smooth",
