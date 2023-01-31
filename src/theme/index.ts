@@ -56,7 +56,7 @@ const stitches = createStitches({
             7: "45px",
             8: "65px",
             9: "80px",
-            "main-y-padding": "25px",
+            "main-y-padding": "$5",
             "main-x-padding": "min(10%, 150px)",
         },
         fonts: {

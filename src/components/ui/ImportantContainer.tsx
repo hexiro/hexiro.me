@@ -8,9 +8,10 @@ const ImportantContainer = styled(motion.div, {
     borderRadius: "$xl",
     border: "2px solid $lighten-10",
     boxShadow: "$md",
-    padding: "$4",
     display: "flex",
     flexDirection: "row",
+    paddingX: "20px",
+    paddingY: "16px",
 });
 
 export default ImportantContainer;

@@ -5,6 +5,7 @@ const Paragraph = styled("p", {
     fontFamily: "$text",
     lineHeight: 1.5,
     maxWidth: 700,
+    fontWeight: 500,
 
     defaultVariants: {
         size: "md",
@@ -13,10 +14,15 @@ const Paragraph = styled("p", {
     variants: {
         size: {
             sm: {
-                fontSize: 18,
-                fontWeight: 500,
+                fontSize: 16,
+
+                "@lg": {
+                    fontSize: 18,
+                },
             },
-            md: { fontSize: 20, fontWeight: 500 },
+            md: {
+                fontSize: 20,
+            },
             lg: {
                 fontSize: 26,
                 fontWeight: 600,

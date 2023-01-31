@@ -1,12 +1,10 @@
-import { breakpoints, styled } from "@/theme";
+import { styled } from "@/theme";
 
 import Image from "next/image";
 import { useState } from "react";
 
 import { childStaggerAnimation, extraBounce } from "@/commons/animations";
 import { DISCORD } from "@/commons/config";
-
-import useWindowWidthInBounds from "@/hooks/useWindowWidth";
 
 import { Paragraph, Heading, Tooltip, ImportantContainer } from "components/ui";
 import { AnimatePresence } from "framer-motion";
@@ -23,14 +21,12 @@ export default function DiscordPresence() {
     const presence = useLanyardWS(DISCORD, { initialData });
     const state = parseActivities(presence?.activities);
 
-    useWindowWidthInBounds({
-        min: breakpoints.xxs,
-        handler(state) {
-            setVisible(state);
-        },
-    });
-
-    console.log({ presence, state });
+    // useWindowWidthInBounds({
+    //     min: breakpoints.xxs,
+    //     handler(state) {
+    //         setVisible(state);
+    //     },
+    // });
 
     return (
         <AnimatePresence>
@@ -45,8 +41,9 @@ export default function DiscordPresence() {
                     <Images>
                         <Tooltip title={state.images.large.tooltip}>
                             <LargeImage
-                                width={100}
-                                height={100}
+                                // width={100}
+                                // height={100}
+                                fill
                                 src={state.images.large.src}
                                 alt={
                                     state.images.large.tooltip ?? "Discord application large image"
@@ -56,8 +53,9 @@ export default function DiscordPresence() {
                         <SmallImageContainer>
                             <Tooltip title={state.images.small.tooltip} size="small">
                                 <SmallImage
-                                    width={35}
-                                    height={35}
+                                    fill
+                                    // width={35}
+                                    // height={35}
                                     src={state.images.small.src}
                                     alt={
                                         state.images.small.tooltip ??
@@ -134,14 +132,17 @@ const initialData: LanyardData = {
     active_on_discord_desktop: true,
 };
 const DiscordPresenceContainer = styled(ImportantContainer, {
-    aspectRatio: "22 / 7",
+    aspectRatio: "55 / 18",
     maxWidth: 440,
-    height: 140,
+    maxHeight: 144,
+    size: "100%",
     paddingRight: "$2",
     flexDirection: "row",
     willTransition: "transform",
+    padding: "$3",
 
-    "@lg": {
+    "@xs": {
+        padding: "$4",
         minWidth: "425px",
     },
 });
@@ -154,7 +155,8 @@ const Highlight = styled("span", {
 
 const Images = styled("div", {
     position: "relative",
-    size: "100px",
+    height: "100%",
+    aspectRatio: "1 / 1",
 });
 
 const LargeImage = styled(Image, {
@@ -166,6 +168,7 @@ const SmallImageContainer = styled("div", {
     position: "absolute",
     bottom: "-$1",
     right: "-$1",
+    size: "33%",
 });
 
 const SmallImage = styled(Image, {
@@ -175,7 +178,6 @@ const SmallImage = styled(Image, {
 
 const Text = styled("div", {
     display: "flex",
-    flexGrow: 1,
     flexDirection: "column",
     paddingLeft: "4%",
     overflow: "hidden",

@@ -22,12 +22,20 @@ const Heading = styled("h1", {
                 },
             },
             h3: {
-                fontSize: 24,
+                fontSize: 22,
                 fontWeight: 600,
+
+                "@lg": {
+                    fontSize: 24,
+                },
             },
             h4: {
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: 600,
+
+                "@lg": {
+                    fontSize: 20,
+                },
             },
         },
         ellipsis: {
