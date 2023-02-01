@@ -30,8 +30,8 @@ const Main = styled(Flex, {
     position: "relative",
     flexGrow: 1,
     height: "100%",
-    paddingTop: 140,
-    paddingBottom: "$main-y-padding",
+    paddingTop: 264,
+    paddingBottom: 100,
     paddingX: "$main-x-padding",
 
     "&::before": {

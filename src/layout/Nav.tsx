@@ -6,9 +6,9 @@ import { fadeInAndScale, normalBounce } from "@/commons/animations";
 import type { IconType } from "@/commons/icons";
 import { CloseIcon, HamburgerMenuIcon } from "@/commons/icons";
 
-import MenuItem from "@/components/home/MenuItem";
 import Route from "@/components/Route";
 import Social from "@/components/Social";
+import MenuItem from "@/components/home/MenuItem";
 import { Divider, Hide, Show } from "@/components/layout";
 import { AnchorList, Heading, ListItem, Span } from "@/components/ui";
 
@@ -139,7 +139,7 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
 
 const NavContainer = styled("nav", {
     display: "flex",
-    position: "relative",
+    position: "fixed",
     flexDirection: "row",
     alignItems: "center",
     width: "100%",
@@ -147,6 +147,8 @@ const NavContainer = styled("nav", {
     paddingX: "$main-x-padding",
     borderBottom: "2px solid $lighten-10",
     boxShadow: "0 4px 20px 10px rgb(0 0 0 / 10%)",
+    backgroundColor: "$background-primary",
+    zIndex: "$above",
 });
 
 const NavLeft = styled("div", {
