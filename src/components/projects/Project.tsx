@@ -30,7 +30,7 @@ export default function Project({ data }: ProjectProps) {
         >
             <ProjectHeader>
                 <Heading ellipsis as="h3" css={{ paddingRight: "$1" }}>
-                    <ProjectLink newTab href={url}>
+                    <ProjectLink newTab noNextLink href={url}>
                         {name}
                     </ProjectLink>
                 </Heading>
@@ -43,7 +43,7 @@ export default function Project({ data }: ProjectProps) {
                     <AnchorList css={{ gap: "$1", zIndex: 1 }}>
                         {packageUrl ? (
                             <li>
-                                <Link newTab href={packageUrl} animation="pop" lineHeight="single">
+                                <Link  newTab href={packageUrl} animation="pop" lineHeight="single">
                                     <PackageIcon size="md" />
                                 </Link>
                             </li>

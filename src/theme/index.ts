@@ -57,12 +57,11 @@ const stitches = createStitches({
             8: "65px",
             9: "80px",
             "main-y-padding": "$5",
-            "main-x-padding": "min(10%, 150px)",
+            "main-x-padding": "10%",
         },
         fonts: {
             heading: "Plus Jakarta Sans, sans-serif",
             text: "Plus Jakarta Sans, sans-serif",
-            // mono: "JetBrains Mono, monospace",
         },
         sizes: {
             1: "5px",
@@ -192,7 +191,7 @@ export const globalStyles = globalCss({
         borderLeftRadius: "$xl",
         borderRightRadius: "$md",
     },
-    html: {
+    "html, body": {
         scrollBehavior: "smooth",
     },
     body: {

@@ -1,33 +1,79 @@
-import { styled } from "@/theme";
+import type { GetStaticProps } from "next";
+import { useRef } from "react";
 
-import DiscordPresence from "@/components/home/DiscordPresence";
-import { Heading, Paragraph, Span, Subheading } from "@/components/ui";
+import { TWITTER_LINK, GITHUB_LINK, LINKED_IN_LINK } from "@/commons/config";
+import type { ProjectData } from "@/commons/graphql/projects";
+import projects from "@/commons/graphql/projects";
+import { HomeIcon, ProjectsIcon, TwitterIcon, GitHubIcon, LinkedInIcon } from "@/commons/icons";
 
-import Page from "@/layout/Page";
+import Home from "@/layout/Home";
+import type { NavRoute, SocialRoute } from "@/layout/Nav";
+import Nav from "@/layout/Nav";
+import Projects from "@/layout/Projects";
 
-const DESCRIPTION =
-    "A self-taught software engineer who enjoys problem solving, technology, building software, and contributing to open source projects.";
+import { useInView } from "framer-motion";
 
-export default function Home() {
+interface HomePageProps {
+    projects: ProjectData[];
+}
+
+export default function HomePage({ projects }: HomePageProps) {
+    const inViewOptions = {
+        amount: 0.3,
+    };
+
+    const homeRef = useRef<HTMLDivElement>(null);
+    const homeInView = useInView(homeRef, inViewOptions);
+    const projectsRef = useRef<HTMLDivElement>(null);
+    const projectsInView = useInView(projectsRef, inViewOptions);
+
+    const routes: NavRoute[] = [
+        {
+            name: "Home",
+            ref: homeRef,
+            icon: HomeIcon,
+            inView: homeInView,
+        },
+        {
+            name: "Projects",
+            ref: projectsRef,
+            icon: ProjectsIcon,
+            inView: projectsInView,
+        },
+    ];
+
+    console.log(routes);
+
     return (
-        <Page name="Home" description={DESCRIPTION} dir="col" css={{ gap: "$6" }}>
-            <Text>
-                <Subheading>{"hi! I'm"}</Subheading>
-                <Heading as="h1">
-                    Nathan <Span color="brand-accent">Lodge</Span>
-                    <Span color="text-primary">,</Span>
-                </Heading>
-                <Paragraph size="lg">
-                    an inspired programmer interested in problem-solving, modern technology, and
-                    open source while aiming to build beautiful and efficient software.
-                </Paragraph>
-            </Text>
-            <DiscordPresence />
-        </Page>
+        <>
+            <Nav routes={routes} socials={SOCIALS} />
+            <Home ref={homeRef} />
+            <Projects ref={projectsRef} projects={projects} />
+        </>
     );
 }
 
-const Text = styled("div", {
-    display: "flex",
-    flexDirection: "column",
+export const getStaticProps: GetStaticProps<HomePageProps> = async () => ({
+    props: {
+        projects: await projects(),
+    },
+    revalidate: 60 * 60,
 });
+
+const SOCIALS: SocialRoute[] = [
+    {
+        name: "Twitter",
+        href: TWITTER_LINK,
+        icon: TwitterIcon,
+    },
+    {
+        name: "GitHub",
+        href: GITHUB_LINK,
+        icon: GitHubIcon,
+    },
+    {
+        name: "LinkedIn",
+        href: LINKED_IN_LINK,
+        icon: LinkedInIcon,
+    },
+];

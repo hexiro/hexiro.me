@@ -8,14 +8,15 @@ import { AnimatePresence, motion } from "framer-motion";
 
 interface RouteProps {
     name: string;
-    href: string;
     isSelected: boolean;
 }
 
-export default function Route({ name, href, isSelected }: RouteProps) {
+export default function Route({ name, isSelected }: RouteProps) {
+    const href = `#${name.toLowerCase()}`;
+    console.log({ href });
     return (
         <ListItem key={name} css={{ position: "relative" }}>
-            <Link href={href}>
+            <Link noNextLink href={href}>
                 <Span animation="popAndTap">{name}</Span>
             </Link>
             <AnimatePresence initial={false}>

@@ -1,5 +1,6 @@
 import { breakpoints, styled } from "@/theme";
 
+import type { RefObject } from "react";
 import { useRef, useState } from "react";
 
 import { fadeInAndScale, normalBounce } from "@/commons/animations";
@@ -12,6 +13,7 @@ import MenuItem from "@/components/home/MenuItem";
 import { Divider, Hide, Show } from "@/components/layout";
 import { AnchorList, Heading, ListItem, Span } from "@/components/ui";
 
+import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 import useWindowWidthInBounds from "@/hooks/useWindowWidth";
 
 import { motion, AnimatePresence } from "framer-motion";
@@ -19,24 +21,32 @@ import useOutsideMenuClick from "hooks/useOutsideMenuClick";
 
 export interface NavRoute {
     name: string;
+    ref: RefObject<HTMLElement>;
+    icon: IconType;
+    inView: boolean;
+}
+
+export interface SocialRoute {
+    name: string;
     href: string;
     icon: IconType;
 }
 
 interface NavProps {
     routes: NavRoute[];
-    socials: NavRoute[];
-    index: number;
+    socials: SocialRoute[];
 }
 
-export default function Nav({ routes, socials, index: selectedRouteIndex }: NavProps) {
+export default function Nav({ routes, socials }: NavProps) {
     const menuRef = useRef<HTMLUListElement>(null);
     const menuButtonRef = useRef<HTMLButtonElement>(null);
 
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     const [menuHoverIndex, setMenuHoverIndex] = useState<number | null>(null);
 
-    const pageName = routes[selectedRouteIndex]?.name ?? "Portfolio";
+    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+    const pageName = routes[selectedIndex]?.name ?? "Portfolio";
 
     useOutsideMenuClick({
         menuRef,
@@ -54,6 +64,17 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
         },
     });
 
+    useIsomorphicLayoutEffect(() => {
+        const inViews = routes.map(({ inView }) => inView);
+
+        for (let i = inViews.length - 1; i >= 0; i--) {
+            if (inViews[i]) {
+                setSelectedIndex(i);
+                break;
+            }
+        }
+    }, [routes]);
+
     return (
         <NavContainer>
             <NavLeft>
@@ -62,12 +83,11 @@ export default function Nav({ routes, socials, index: selectedRouteIndex }: NavP
                 </Heading>
                 <Hide below="sm">
                     <UnorderedList>
-                        {routes.map(({ name, href }, index) => (
+                        {routes.map(({ name }, index) => (
                             <Route
                                 key={name}
                                 name={name}
-                                href={href}
-                                isSelected={index === selectedRouteIndex}
+                                isSelected={index === selectedIndex}
                             />
                         ))}
                     </UnorderedList>

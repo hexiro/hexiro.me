@@ -1,8 +1,8 @@
 import { Link, Tooltip } from "@/components/ui";
 
-import type { NavRoute } from "@/layout/Nav";
+import type { SocialRoute } from "@/layout/Nav";
 
-export default function Social({ name, href, icon }: NavRoute) {
+export default function Social({ name, href, icon }: SocialRoute) {
     return (
         <li>
             <Tooltip
