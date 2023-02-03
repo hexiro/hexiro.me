@@ -17,7 +17,7 @@ export default function Home() {
                     Nathan <Span color="brand-accent">Lodge</Span>
                     <Span color="text-primary">,</Span>
                 </Heading>
-                <Paragraph>
+                <Paragraph size="lg">
                     an inspired programmer interested in problem-solving, modern technology, and
                     open source while aiming to build beautiful and efficient software.
                 </Paragraph>
