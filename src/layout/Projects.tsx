@@ -1,6 +1,6 @@
 import { styled } from "@/theme";
 
-import { forwardRef } from "react";
+import { forwardRef, memo } from "react";
 
 import { staggerAnimation } from "@/commons/animations";
 import type { ProjectData } from "@/commons/graphql/projects";
@@ -32,7 +32,7 @@ const Projects = forwardRef<HTMLElement, ProjectsProps>(({ projects }, ref) => (
     </Page>
 ));
 
-export default Projects;
+export default memo(Projects);
 
 const ProjectsContainer = styled(motion.div, {
     width: "100%",

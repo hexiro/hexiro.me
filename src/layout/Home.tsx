@@ -1,6 +1,6 @@
 import { styled } from "@/theme";
 
-import { forwardRef } from "react";
+import { forwardRef, memo } from "react";
 
 import DiscordPresence from "@/components/home/DiscordPresence";
 import { Heading, Paragraph, Span, Subheading } from "@/components/ui";
@@ -10,7 +10,7 @@ import Page from "@/layout/Page";
 const DESCRIPTION =
     "A self-taught software engineer who enjoys problem solving, technology, building software, and contributing to open source projects.";
 
-const Home = forwardRef<HTMLElement>((props, ref) => (
+const Home = forwardRef<HTMLElement>((_, ref) => (
     <Page ref={ref} name="Home" description={DESCRIPTION} dir="col" css={{ gap: "$6" }}>
         <Text>
             <Subheading>{"hi! I'm"}</Subheading>
@@ -27,7 +27,7 @@ const Home = forwardRef<HTMLElement>((props, ref) => (
     </Page>
 ));
 
-export default Home;
+export default memo(Home);
 
 const Text = styled("div", {
     display: "flex",
