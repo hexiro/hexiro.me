@@ -42,8 +42,6 @@ export default function HomePage({ projects }: HomePageProps) {
         },
     ];
 
-    console.log(routes);
-
     return (
         <>
             <Nav routes={routes} socials={SOCIALS} />

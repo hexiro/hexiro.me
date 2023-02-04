@@ -12,9 +12,6 @@ export default async function contributionsCalendar(): Promise<CompressedGitHubC
     const start = now.subtract(1, "year").subtract(1, "month");
     const end = now.add(1, "week");
 
-    console.log("end - start", end.diff(start));
-    console.log("end - now", end.diff(now));
-
     const filteredContributions = data.contributions.filter((c) => {
         const date = dayjs(c.date);
         return date.isAfter(start) && date.isBefore(end);
@@ -47,7 +44,6 @@ export const compress = (
     }
 
     const firstDate = dayjs(firstContribution.date);
-    console.log(firstContribution.date, firstDate.format("YYYY-MM-DD"));
 
     const data: number[][] = [[firstContribution.count]];
 

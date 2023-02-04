@@ -7,9 +7,9 @@ import type { ProjectData } from "@/commons/graphql/projects";
 import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
 
 import LanguageIcon from "@/components/projects/LanguageIcon";
-import ParseHTML from "@/components/projects/ParseHTML";
-import replace from "@/components/projects/replace";
 import { AnchorList, Heading, ImportantContainer, Link, Paragraph } from "@/components/ui";
+
+import ipaddr from "ipaddr.js";
 
 interface ProjectProps {
     data: ProjectData;
@@ -18,7 +18,9 @@ interface ProjectProps {
 export default function Project({ data }: ProjectProps) {
     const ref = useRef<HTMLDivElement>(null);
     const [animationComplete, setAnimationComplete] = useState<boolean>(false);
-    const { name, descriptionHTML, stars, languages, topics, url, packageUrl } = data;
+    const { name, description, stars, languages, topics, url, packageUrl } = data;
+
+    const descriptionSections = extractLinks(description);
 
     return (
         <ProjectContainer
@@ -41,9 +43,9 @@ export default function Project({ data }: ProjectProps) {
                     </ProjectDetail>
                     <VerticalDivider />
                     <AnchorList css={{ gap: "$1", zIndex: 1 }}>
-                        {packageUrl ? (
+                        {packageUrl !== null ? (
                             <li>
-                                <Link  newTab href={packageUrl} animation="pop" lineHeight="single">
+                                <Link newTab href={packageUrl} animation="pop" lineHeight="single">
                                     <PackageIcon size="md" />
                                 </Link>
                             </li>
@@ -67,10 +69,29 @@ export default function Project({ data }: ProjectProps) {
                     <Topic key={name}>{name}</Topic>
                 ))}
             </ProjectTopics>
-            <ParseHTML html={descriptionHTML} replace={replace} />
+            <ProjectDescription>
+                {descriptionSections.map(({ value, type }) =>
+                    type === "link" ? (
+                        <DescriptionLink
+                            key={value}
+                            href={value}
+                            animation="pop"
+                            color="brand-primary"
+                        >
+                            {value}
+                        </DescriptionLink>
+                    ) : (
+                        <span key={value}>{value}</span>
+                    )
+                )}
+            </ProjectDescription>
         </ProjectContainer>
     );
 }
+
+const ProjectDescription = styled(Paragraph, {
+    minHeight: 90,
+});
 
 const ProjectLink = styled(Link, {
     "&::before": {
@@ -84,6 +105,10 @@ const ProjectLink = styled(Link, {
         width: "100%",
         height: "100%",
     },
+});
+
+const DescriptionLink = styled(Link, {
+    zIndex: 1,
 });
 
 const ProjectTopics = styled("ul", {
@@ -169,3 +194,61 @@ const ProjectContainer = styled(ImportantContainer, {
         },
     },
 });
+
+const URL_REGEX =
+    /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)/gm;
+
+interface ExtractedSection {
+    type: "text" | "link";
+    value: string;
+}
+
+function extractLinks(description: string): ExtractedSection[] {
+    const isPublicUrl = (match: RegExpMatchArray): boolean => {
+        let url: URL;
+        try {
+            url = new URL(match[0]);
+        } catch (e: unknown) {
+            // not valid url -- bad
+            return false;
+        }
+
+        let ip: ReturnType<typeof ipaddr.process>;
+        try {
+            ip = ipaddr.process(url.hostname);
+        } catch (e: unknown) {
+            // not ip -- good
+            return true;
+        }
+
+        if (ip.kind() === "ipv6") return false;
+        if (ip.range() === "private") return false;
+
+        return true;
+    };
+
+    let linkMatches: RegExpMatchArray[];
+    linkMatches = Array.from(description.matchAll(URL_REGEX));
+    console.log(linkMatches);
+    linkMatches = linkMatches.filter(isPublicUrl);
+    console.log(linkMatches);
+
+    if (linkMatches.length === 0) return [{ type: "text", value: description }];
+
+    const sections: ExtractedSection[] = [];
+    let start = 0;
+
+    for (const linkMatch of linkMatches) {
+        const link = linkMatch[0];
+        const { index } = linkMatch;
+
+        if (index === undefined) continue;
+
+        sections.push({ value: description.slice(start, index), type: "text" });
+        sections.push({ value: link, type: "link" });
+
+        start = index + link.length;
+    }
+
+    return sections;
+}

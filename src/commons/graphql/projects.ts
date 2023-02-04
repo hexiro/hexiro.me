@@ -3,7 +3,7 @@ import gql from "@/commons/graphql/gql";
 
 export interface ProjectData {
     name: string;
-    descriptionHTML: string;
+    description: string;
     stars: number;
     languages: string[];
     topics: string[];
@@ -65,11 +65,11 @@ const parseProject = (repository: RepositoryData): ProjectData => {
         topics.splice(packageTopicIndex, 1);
     }
 
-    const { name, descriptionHTML, url, stargazerCount: stars } = repository;
+    const { name, description, url, stargazerCount: stars } = repository;
 
     const project: ProjectData = {
         name,
-        descriptionHTML,
+        description,
         stars,
         languages,
         topics,
@@ -81,7 +81,7 @@ const parseProject = (repository: RepositoryData): ProjectData => {
 
 interface RepositoryData {
     name: string;
-    descriptionHTML: string;
+    description: string;
     url: string;
     stargazerCount: number;
     languages: {
@@ -109,7 +109,7 @@ const PROJECTS_QUERY = gql`
                 nodes {
                     ... on Repository {
                         name
-                        descriptionHTML
+                        description
                         url
                         stargazerCount
                         languages(first: 3, orderBy: { field: SIZE, direction: DESC }) {
