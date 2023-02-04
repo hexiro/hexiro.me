@@ -1,4 +1,4 @@
-import type { config } from "@/theme";
+import type { Media, CSS } from "@/theme";
 import { styled } from "@/theme";
 import type { ComponentProps, VariantProps } from "@stitches/react";
 
@@ -30,7 +30,7 @@ const Link = ({ href, newTab, noNextLink, animation, color, lineHeight, ...props
     </WithSpan>
 );
 
-type Anchor = StyledComponent<"a", {}, typeof config["media"], typeof config>;
+type Anchor = StyledComponent<"a", {}, Media, CSS>;
 
 const LinkWrapper = styled(NextLink, {
     display: "inline-block",

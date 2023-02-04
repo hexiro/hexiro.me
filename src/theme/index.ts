@@ -2,6 +2,7 @@ import type { PropertyValue } from "@stitches/react";
 import { createStitches, defaultThemeMap } from "@stitches/react";
 
 import { Plus_Jakarta_Sans as JakartaSans } from "@next/font/google";
+import type * as CSSUtil from "@stitches/react/types/css-util";
 
 const media = {
     xxs: "(min-width: 360px)",
@@ -182,6 +183,12 @@ const stitches = createStitches({
 
 export const { styled, css, getCssText, config, theme } = stitches;
 const { globalCss } = stitches;
+
+export type Media = typeof config["media"];
+export type Theme = typeof config["theme"];
+export type ThemeMap = typeof config["themeMap"];
+export type Utils = typeof config["utils"];
+export type CSS = CSSUtil.CSS<Media, Theme, ThemeMap, Utils>;
 
 export const globalStyles = globalCss({
     "*, *:before, *:after": {

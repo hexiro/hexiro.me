@@ -11,7 +11,6 @@ export default function NotFound() {
             <Paragraph size="lg" align="center">
                 {"Oops? This page couldn't be found!"}
             </Paragraph>
-            {/* @ts-expect-error will fix later */}
             <ButtonLink priority="secondary" href="/" css={{ marginTop: "2em" }}>
                 Go Home
             </ButtonLink>
