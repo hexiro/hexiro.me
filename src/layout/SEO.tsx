@@ -2,19 +2,20 @@ import { config } from "@/theme";
 
 import { TWITTER } from "@/commons/config";
 
-import { DefaultSeo } from "next-seo";
+import { NextSeo, DefaultSeo } from "next-seo";
 
 export interface SEOProps {
     name: string;
     description: string;
 }
 
-export default function SEO({ name, description }: SEOProps) {
+export function SEO({ name, description }: SEOProps) {
+    return <NextSeo title={name} titleTemplate="Hexiro | %s" description={description} />;
+}
+
+export function GlobalSEO() {
     return (
         <DefaultSeo
-            title={name}
-            titleTemplate="Hexiro | %s"
-            description={description}
             defaultTitle="Hexiro"
             canonical="https://hexiro.me/"
             openGraph={{
@@ -28,6 +29,7 @@ export default function SEO({ name, description }: SEOProps) {
                 site: `@${TWITTER}`,
                 cardType: "summary_large_image",
             }}
+            themeColor={config.theme.colors["brand-primary"]}
             additionalMetaTags={[
                 {
                     name: "application-name",

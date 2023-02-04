@@ -3,6 +3,7 @@ import { globalStyles, tippyStyles, styled } from "@/theme";
 import type { AppProps } from "next/app";
 
 import Nav from "@/layout/Nav";
+import { GlobalSEO } from "@/layout/SEO";
 
 export default function App({ Component, pageProps, router }: AppProps) {
     globalStyles();
@@ -13,10 +14,13 @@ export default function App({ Component, pageProps, router }: AppProps) {
     // const isHome = router.pathname === "/";
 
     return (
-        <Main>
-            <Nav />
-            <Component {...pageProps} />
-        </Main>
+        <>
+            <GlobalSEO />
+            <Main>
+                <Nav />
+                <Component {...pageProps} />
+            </Main>
+        </>
     );
 }
 

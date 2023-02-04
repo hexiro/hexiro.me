@@ -9,30 +9,30 @@ import { Heading, Paragraph } from "@/components/ui";
 
 import Project from "@/components/projects/Project";
 
+import type { SectionSelectedProps } from "@/layout/Section";
+import Section from "@/layout/Section";
+
 import { motion } from "framer-motion";
-import Page from "layout/Page";
 
-interface ProjectsProps {
+type ProjectsProps = {
     projects: ProjectData[];
-}
+} & SectionSelectedProps;
 
-const DESCRIPTION = "Projects";
+const DESCRIPTION =
+    "I hand-picked these six projects to showcase my skill set and creativity. I host each project on GitHub.";
 
-const Projects = forwardRef<HTMLElement, ProjectsProps>(({ projects }, ref) => {
+const Projects = forwardRef<HTMLElement, ProjectsProps>(({ projects, isSelected }, ref) => {
     console.log("Projects");
     return (
-        <Page ref={ref} name="Projects" description={DESCRIPTION}>
+        <Section ref={ref} name="Projects" description={DESCRIPTION} isSelected={isSelected}>
             <Heading as="h1">Projects</Heading>
-            <Paragraph size="lg">
-                I hand-picked these six projects to showcase my skill set and creativity. I host
-                each project on GitHub.
-            </Paragraph>
+            <Paragraph size="lg">{DESCRIPTION}</Paragraph>
             <ProjectsContainer variants={staggerAnimation} initial="initial" animate="animate">
                 {projects.map((project) => (
                     <Project key={project.name} data={project} />
                 ))}
             </ProjectsContainer>
-        </Page>
+        </Section>
     );
 });
 

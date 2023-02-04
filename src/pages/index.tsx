@@ -12,7 +12,7 @@ import Projects from "@/layout/Projects";
 import { useInView } from "framer-motion";
 import { useAtom } from "jotai";
 
-interface HomePageProps {
+interface IndexPageProps {
     projects: ProjectData[];
 }
 
@@ -20,22 +20,23 @@ const inViewOptions: NonNullable<Parameters<typeof useInView>[1]> = {
     amount: 0.3,
 };
 
-export default function HomePage({ projects }: HomePageProps) {
+export default function IndexPage({ projects }: IndexPageProps) {
     console.log("Index");
 
     const homeRef = useRef<HTMLDivElement>(null);
-    const homeInView = useInView(homeRef, inViewOptions);
     const projectsRef = useRef<HTMLDivElement>(null);
+
+    const homeInView = useInView(homeRef, inViewOptions);
     const projectsInView = useInView(projectsRef, inViewOptions);
 
-    const [, setSelectedRouteIndexAtom] = useAtom(selectedRouteIndexAtom);
+    const [selectedRouteIndex, setSelectedRouteIndex] = useAtom(selectedRouteIndexAtom);
 
     useIsomorphicLayoutEffect(() => {
         const inViews = [homeInView, projectsInView];
 
         for (let i = inViews.length - 1; i >= 0; i--) {
             if (inViews[i]) {
-                setSelectedRouteIndexAtom(i);
+                setSelectedRouteIndex(i);
                 break;
             }
         }
@@ -43,13 +44,13 @@ export default function HomePage({ projects }: HomePageProps) {
 
     return (
         <>
-            <Home ref={homeRef} />
-            <Projects ref={projectsRef} projects={projects} />
+            <Home ref={homeRef} isSelected={selectedRouteIndex === 0} />
+            <Projects ref={projectsRef} projects={projects} isSelected={selectedRouteIndex === 1} />
         </>
     );
 }
 
-export const getStaticProps: GetStaticProps<HomePageProps> = async () => ({
+export const getStaticProps: GetStaticProps<IndexPageProps> = async () => ({
     props: {
         projects: await projects(),
     },
