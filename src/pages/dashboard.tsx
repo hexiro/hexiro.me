@@ -2,10 +2,11 @@ import { styled } from "@/theme";
 
 import type { GetStaticProps } from "next";
 
+import { Heading, Paragraph } from "@/components/ui";
+
 import ContributionsCalendar from "@/components/dashboard/ContributionsCalender";
 import ProgrammingTimeStats from "@/components/dashboard/ProgrammingTimeStats";
 import TopLanguages from "@/components/dashboard/TopLanguages";
-import { Heading, Paragraph } from "@/components/ui";
 
 import contributionsCalendar from "@/data/contributionsCalendar";
 import wakatimeStats from "@/data/wakatimeStats";

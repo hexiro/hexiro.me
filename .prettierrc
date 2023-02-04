@@ -9,6 +9,7 @@
         "^(@/theme)|(@stitches/react)$",
         "^(react|next)(/.*|)$",
         "^(@/commons)((/.*|))$",
+        "^(@/components/)(ui|layout)((/.*|))$",
         "^(@/components)((/.*|))$",
         "^(@/data)((/.*|))$",
         "^(@)((/.*|))$",

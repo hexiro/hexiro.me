@@ -5,8 +5,9 @@ import { forwardRef, memo } from "react";
 import { staggerAnimation } from "@/commons/animations";
 import type { ProjectData } from "@/commons/graphql/projects";
 
-import Project from "@/components/projects/Project";
 import { Heading, Paragraph } from "@/components/ui";
+
+import Project from "@/components/projects/Project";
 
 import { motion } from "framer-motion";
 import Page from "layout/Page";

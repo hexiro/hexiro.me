@@ -1,8 +1,9 @@
 import { theme, css, styled } from "@/theme";
 
-import GitHubCalendar from "@/components/dashboard/GitHubCalendar";
 import { Divider } from "@/components/layout";
 import { Heading, ImportantContainer, Paragraph } from "@/components/ui";
+
+import GitHubCalendar from "@/components/dashboard/GitHubCalendar";
 
 import type { CompressedGitHubContributionsCalendar } from "@/data/contributionsCalendar";
 import { decompress } from "@/data/contributionsCalendar";

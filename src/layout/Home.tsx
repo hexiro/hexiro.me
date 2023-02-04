@@ -2,8 +2,9 @@ import { styled } from "@/theme";
 
 import { forwardRef, memo } from "react";
 
-import DiscordPresence from "@/components/home/DiscordPresence";
 import { Heading, Paragraph, Span, Subheading } from "@/components/ui";
+
+import DiscordPresence from "@/components/home/DiscordPresence";
 
 import Page from "@/layout/Page";
 

@@ -6,8 +6,9 @@ import { childStaggerAnimation, extraBounce } from "@/commons/animations";
 import type { ProjectData } from "@/commons/graphql/projects";
 import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
 
-import LanguageIcon from "@/components/projects/LanguageIcon";
 import { AnchorList, Heading, ImportantContainer, Link, Paragraph } from "@/components/ui";
+
+import LanguageIcon from "@/components/projects/LanguageIcon";
 
 import ipaddr from "ipaddr.js";
 

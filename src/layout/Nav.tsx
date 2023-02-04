@@ -7,11 +7,12 @@ import { fadeInAndScale, normalBounce } from "@/commons/animations";
 import type { IconType } from "@/commons/icons";
 import { CloseIcon, HamburgerMenuIcon } from "@/commons/icons";
 
+import { Divider, Hide, Show } from "@/components/layout";
+import { AnchorList, Heading, ListItem, Span } from "@/components/ui";
+
 import Route from "@/components/Route";
 import Social from "@/components/Social";
 import MenuItem from "@/components/home/MenuItem";
-import { Divider, Hide, Show } from "@/components/layout";
-import { AnchorList, Heading, ListItem, Span } from "@/components/ui";
 
 import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 import useWindowWidthInBounds from "@/hooks/useWindowWidth";
