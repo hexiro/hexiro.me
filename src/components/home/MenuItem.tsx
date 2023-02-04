@@ -1,8 +1,7 @@
 import { styled } from "@/theme";
 import type { ComponentProps } from "@stitches/react";
 
-import { createElement } from "react";
-
+import { idToHref } from "@/commons";
 import { fadeIn, smallBounce } from "@/commons/animations";
 import type { IconType } from "@/commons/icons";
 
@@ -12,16 +11,16 @@ import { AnimatePresence, motion } from "framer-motion";
 
 type MenuItemProps = {
     name: string;
-    href: string;
     icon: IconType;
     isSelected: boolean;
+    href?: string;
     newTab?: boolean;
 } & ComponentProps<typeof MenuItemWrapper>;
 
-const MenuItem = ({ name, href, icon, isSelected, newTab, ...props }: MenuItemProps) => (
+const MenuItem = ({ name, icon, href, isSelected, newTab, ...props }: MenuItemProps) => (
     <MenuItemWrapper {...props}>
-        <FlexLink newTab={newTab} href={href}>
-            {createElement(icon)}
+        <FlexLink noNextLink newTab={newTab} href={href ? href : idToHref(name)}>
+            {icon()}
             <Text>{name}</Text>
         </FlexLink>
         <AnimatePresence initial={false}>
@@ -54,7 +53,6 @@ const Text = styled("p", {
     fontSize: 18,
     fontWeight: 600,
     color: "$text-primary",
-    paddingLeft: "",
 });
 
 const MenuItemWrapper = styled(motion.li, {

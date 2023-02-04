@@ -84,11 +84,7 @@ export default function Nav({ routes, socials }: NavProps) {
                 <Hide below="sm">
                     <UnorderedList>
                         {routes.map(({ name }, index) => (
-                            <Route
-                                key={name}
-                                name={name}
-                                isSelected={index === selectedIndex}
-                            />
+                            <Route key={name} name={name} isSelected={index === selectedIndex} />
                         ))}
                     </UnorderedList>
                 </Hide>
@@ -123,13 +119,12 @@ export default function Nav({ routes, socials }: NavProps) {
                                 exit="initial"
                                 onHoverEnd={() => setMenuHoverIndex(null)}
                             >
-                                {routes.map(({ name, href, icon }, index) => (
+                                {routes.map(({ name, icon }, index) => (
                                     <MenuItem
                                         key={name}
                                         name={name}
-                                        href={href}
                                         icon={icon}
-                                        highlighted={index === selectedRouteIndex}
+                                        highlighted={index === selectedIndex}
                                         isSelected={index === menuHoverIndex}
                                         onHoverStart={() => setMenuHoverIndex(index)}
                                     />

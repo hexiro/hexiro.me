@@ -44,7 +44,7 @@ export default function DiscordPresence() {
                             />
                         </Tooltip>
                         <SmallImageContainer>
-                            <Tooltip title={state.images.small.tooltip} size="small">
+                            <Tooltip title={state.images.small.tooltip} size="sm">
                                 <SmallImage
                                     fill
                                     isOnline={isOnline}

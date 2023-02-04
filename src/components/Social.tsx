@@ -5,13 +5,7 @@ import type { SocialRoute } from "@/layout/Nav";
 export default function Social({ name, href, icon }: SocialRoute) {
     return (
         <li>
-            <Tooltip
-                animation="shift"
-                title={name}
-                style={{ display: "block" }}
-                position="bottom"
-                distance={5}
-            >
+            <Tooltip title={name} size="sm" animation="shift" position="bottom" distance={5}>
                 <Link
                     newTab
                     href={href}
