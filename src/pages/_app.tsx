@@ -2,6 +2,8 @@ import { globalStyles, tippyStyles, styled } from "@/theme";
 
 import type { AppProps } from "next/app";
 
+import NoScript from "@/components/NoScript";
+
 import Nav from "@/layout/Nav";
 import { GlobalSEO } from "@/layout/SEO";
 
@@ -16,6 +18,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
     return (
         <>
             <GlobalSEO />
+            <NoScript />
             <Main>
                 <Nav />
                 <Component {...pageProps} />

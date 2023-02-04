@@ -1,8 +1,8 @@
 import type { PropertyValue } from "@stitches/react";
 import { createStitches, defaultThemeMap } from "@stitches/react";
+import type * as CSSUtil from "@stitches/react/types/css-util";
 
 import { Plus_Jakarta_Sans as JakartaSans } from "@next/font/google";
-import type * as CSSUtil from "@stitches/react/types/css-util";
 
 const media = {
     xxs: "(min-width: 360px)",

@@ -6,7 +6,7 @@
     "tabWidth": 4,
     "useTabs": false,
     "importOrder": [
-        "^(@/theme)|(@stitches/react)$",
+        "^(@/theme)|(@stitches/react(/.*|))$",
         "^(react|next)(/.*|)$",
         "^(@/commons)((/.*|))$",
         "^(@/components/)(ui|layout)((/.*|))$",
