@@ -1,5 +1,5 @@
+import type { CSS } from "@/theme";
 import { styled } from "@/theme";
-import type { CSS } from "@stitches/react";
 
 const animationStyles: CSS = {
     display: "inline-block",

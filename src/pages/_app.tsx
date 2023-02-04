@@ -8,11 +8,13 @@ export default function App({ Component, pageProps, router }: AppProps) {
     globalStyles();
     tippyStyles();
 
-    const isHome = router.pathname === "/";
+    console.log(router.pathname);
+
+    // const isHome = router.pathname === "/";
 
     return (
         <Main>
-            <Nav isHome={isHome} />
+            <Nav />
             <Component {...pageProps} />
         </Main>
     );

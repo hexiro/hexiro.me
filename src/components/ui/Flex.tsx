@@ -1,4 +1,4 @@
-import { styled } from "@stitches/react";
+import { styled } from "@/theme";
 
 const Flex = styled("div", {
     display: "flex",
