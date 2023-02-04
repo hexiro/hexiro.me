@@ -1,3 +1,3 @@
 export function idToHref(id: string): string {
-    return `#${id.toLowerCase()}`;
+    return `/#${id.toLowerCase()}`;
 }

@@ -230,9 +230,7 @@ function extractLinks(description: string): ExtractedSection[] {
 
     let linkMatches: RegExpMatchArray[];
     linkMatches = Array.from(description.matchAll(URL_REGEX));
-    console.log(linkMatches);
     linkMatches = linkMatches.filter(isPublicUrl);
-    console.log(linkMatches);
 
     if (linkMatches.length === 0) return [{ type: "text", value: description }];
 

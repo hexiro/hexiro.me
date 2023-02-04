@@ -2,13 +2,18 @@ import { globalStyles, tippyStyles, styled } from "@/theme";
 
 import type { AppProps } from "next/app";
 
+import Nav from "@/layout/Nav";
+
 export default function App({ Component, pageProps, router }: AppProps) {
     globalStyles();
     tippyStyles();
 
+    const isHome = router.pathname === "/";
+
     return (
         <Main>
-            <Component router={router} {...pageProps} />
+            <Nav isHome={isHome} />
+            <Component {...pageProps} />
         </Main>
     );
 }

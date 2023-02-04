@@ -1,11 +1,12 @@
 import { breakpoints, styled } from "@/theme";
 
-import type { RefObject } from "react";
 import { useRef, useState } from "react";
 
 import { fadeInAndScale, normalBounce } from "@/commons/animations";
+import { selectedRouteIndexAtom } from "@/commons/atoms";
 import type { IconType } from "@/commons/icons";
 import { CloseIcon, HamburgerMenuIcon } from "@/commons/icons";
+import { ROUTES, SOCIALS } from "@/commons/secitions";
 
 import { Divider, Hide, Show } from "@/components/layout";
 import { AnchorList, Heading, ListItem, Span } from "@/components/ui";
@@ -14,17 +15,15 @@ import Route from "@/components/Route";
 import Social from "@/components/Social";
 import MenuItem from "@/components/home/MenuItem";
 
-import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 import useWindowWidthInBounds from "@/hooks/useWindowWidth";
 
 import { motion, AnimatePresence } from "framer-motion";
 import useOutsideMenuClick from "hooks/useOutsideMenuClick";
+import { useAtom } from "jotai";
 
 export interface NavRoute {
     name: string;
-    ref: RefObject<HTMLElement>;
     icon: IconType;
-    inView: boolean;
 }
 
 export interface SocialRoute {
@@ -34,20 +33,19 @@ export interface SocialRoute {
 }
 
 interface NavProps {
-    routes: NavRoute[];
-    socials: SocialRoute[];
+    isHome: boolean;
 }
 
-export default function Nav({ routes, socials }: NavProps) {
+export default function Nav({ isHome }: NavProps) {
     const menuRef = useRef<HTMLUListElement>(null);
     const menuButtonRef = useRef<HTMLButtonElement>(null);
 
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     const [menuHoverIndex, setMenuHoverIndex] = useState<number | null>(null);
 
-    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+    const [selectedIndex, setSelectedIndex] = useAtom(selectedRouteIndexAtom);
 
-    const pageName = routes[selectedIndex]?.name ?? "Portfolio";
+    const pageName = ROUTES[selectedIndex]?.name ?? "Portfolio";
 
     useOutsideMenuClick({
         menuRef,
@@ -65,17 +63,6 @@ export default function Nav({ routes, socials }: NavProps) {
         },
     });
 
-    useIsomorphicLayoutEffect(() => {
-        const inViews = routes.map(({ inView }) => inView);
-
-        for (let i = inViews.length - 1; i >= 0; i--) {
-            if (inViews[i]) {
-                setSelectedIndex(i);
-                break;
-            }
-        }
-    }, [routes]);
-
     return (
         <NavContainer>
             <NavLeft>
@@ -84,8 +71,12 @@ export default function Nav({ routes, socials }: NavProps) {
                 </Heading>
                 <Hide below="sm">
                     <UnorderedList>
-                        {routes.map(({ name }, index) => (
-                            <Route key={name} name={name} isSelected={index === selectedIndex} />
+                        {ROUTES.map(({ name }, index) => (
+                            <Route
+                                key={name}
+                                name={name}
+                                isSelected={isHome && index === selectedIndex}
+                            />
                         ))}
                     </UnorderedList>
                 </Hide>
@@ -96,7 +87,7 @@ export default function Nav({ routes, socials }: NavProps) {
             <NavRight>
                 <Hide below="sm">
                     <AnchorList>
-                        {socials.map((props) => (
+                        {SOCIALS.map((props) => (
                             <Social key={props.name} {...props} />
                         ))}
                     </AnchorList>
@@ -120,27 +111,27 @@ export default function Nav({ routes, socials }: NavProps) {
                                 exit="initial"
                                 onHoverEnd={() => setMenuHoverIndex(null)}
                             >
-                                {routes.map(({ name, icon }, index) => (
+                                {ROUTES.map(({ name, icon }, index) => (
                                     <MenuItem
                                         key={name}
                                         name={name}
                                         icon={icon}
                                         highlighted={index === selectedIndex}
-                                        isSelected={index === menuHoverIndex}
+                                        isSelected={isHome && index === menuHoverIndex}
                                         onHoverStart={() => setMenuHoverIndex(index)}
                                     />
                                 ))}
                                 <Divider />
-                                {socials.map(({ name, href, icon }, index) => (
+                                {SOCIALS.map(({ name, href, icon }, index) => (
                                     <MenuItem
                                         key={name}
                                         newTab
                                         name={name}
                                         href={href}
                                         icon={icon}
-                                        isSelected={index + routes.length === menuHoverIndex}
+                                        isSelected={index + ROUTES.length === menuHoverIndex}
                                         onHoverStart={() =>
-                                            setMenuHoverIndex(index + routes.length)
+                                            setMenuHoverIndex(index + ROUTES.length)
                                         }
                                     />
                                 ))}

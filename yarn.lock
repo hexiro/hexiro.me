@@ -2066,6 +2066,11 @@ javascript-natural-sort@0.7.1:
   resolved "https://registry.npmjs.org/javascript-natural-sort/-/javascript-natural-sort-0.7.1.tgz"
   integrity sha1-+eIwPUUH9tdDVac2ZNFED7Wg71k=
 
+jotai@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/jotai/-/jotai-2.0.0.tgz#3938ad0166130417811bb57ec2de8abeb24bd948"
+  integrity sha512-04G0CRZQgp3xrFAezd6X14psZ2TRGekHeYMBcbDJ/BR8ZJQPS+j0YkMTxUxyG58HJnN2+adfj5sWQWoqgtp1XQ==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"

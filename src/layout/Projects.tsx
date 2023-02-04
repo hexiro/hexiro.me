@@ -18,20 +18,23 @@ interface ProjectsProps {
 
 const DESCRIPTION = "Projects";
 
-const Projects = forwardRef<HTMLElement, ProjectsProps>(({ projects }, ref) => (
-    <Page ref={ref} name="Projects" description={DESCRIPTION}>
-        <Heading as="h1">Projects</Heading>
-        <Paragraph size="lg">
-            I hand-picked these six projects to showcase my skill set and creativity. I host each
-            project on GitHub.
-        </Paragraph>
-        <ProjectsContainer variants={staggerAnimation} initial="initial" animate="animate">
-            {projects.map((project) => (
-                <Project key={project.name} data={project} />
-            ))}
-        </ProjectsContainer>
-    </Page>
-));
+const Projects = forwardRef<HTMLElement, ProjectsProps>(({ projects }, ref) => {
+    console.log("Projects");
+    return (
+        <Page ref={ref} name="Projects" description={DESCRIPTION}>
+            <Heading as="h1">Projects</Heading>
+            <Paragraph size="lg">
+                I hand-picked these six projects to showcase my skill set and creativity. I host
+                each project on GitHub.
+            </Paragraph>
+            <ProjectsContainer variants={staggerAnimation} initial="initial" animate="animate">
+                {projects.map((project) => (
+                    <Project key={project.name} data={project} />
+                ))}
+            </ProjectsContainer>
+        </Page>
+    );
+});
 
 export default memo(Projects);
 

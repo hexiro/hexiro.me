@@ -1,50 +1,48 @@
 import type { GetStaticProps } from "next";
 import { useRef } from "react";
 
-import { TWITTER_LINK, GITHUB_LINK, LINKED_IN_LINK } from "@/commons/config";
+import { selectedRouteIndexAtom } from "@/commons/atoms";
 import type { ProjectData } from "@/commons/graphql/projects";
 import projects from "@/commons/graphql/projects";
-import { HomeIcon, ProjectsIcon, TwitterIcon, GitHubIcon, LinkedInIcon } from "@/commons/icons";
 
+import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 import Home from "@/layout/Home";
-import type { NavRoute, SocialRoute } from "@/layout/Nav";
-import Nav from "@/layout/Nav";
 import Projects from "@/layout/Projects";
 
 import { useInView } from "framer-motion";
+import { useAtom } from "jotai";
 
 interface HomePageProps {
     projects: ProjectData[];
 }
 
+const inViewOptions: NonNullable<Parameters<typeof useInView>[1]> = {
+    amount: 0.3,
+};
+
 export default function HomePage({ projects }: HomePageProps) {
-    const inViewOptions = {
-        amount: 0.3,
-    };
+    console.log("Index");
 
     const homeRef = useRef<HTMLDivElement>(null);
     const homeInView = useInView(homeRef, inViewOptions);
     const projectsRef = useRef<HTMLDivElement>(null);
     const projectsInView = useInView(projectsRef, inViewOptions);
 
-    const routes: NavRoute[] = [
-        {
-            name: "Home",
-            ref: homeRef,
-            icon: HomeIcon,
-            inView: homeInView,
-        },
-        {
-            name: "Projects",
-            ref: projectsRef,
-            icon: ProjectsIcon,
-            inView: projectsInView,
-        },
-    ];
+    const [, setSelectedRouteIndexAtom] = useAtom(selectedRouteIndexAtom);
+
+    useIsomorphicLayoutEffect(() => {
+        const inViews = [homeInView, projectsInView];
+
+        for (let i = inViews.length - 1; i >= 0; i--) {
+            if (inViews[i]) {
+                setSelectedRouteIndexAtom(i);
+                break;
+            }
+        }
+    }, [homeInView, projectsInView]);
 
     return (
         <>
-            <Nav routes={routes} socials={SOCIALS} />
             <Home ref={homeRef} />
             <Projects ref={projectsRef} projects={projects} />
         </>
@@ -57,21 +55,3 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => ({
     },
     revalidate: 60 * 60,
 });
-
-const SOCIALS: SocialRoute[] = [
-    {
-        name: "Twitter",
-        href: TWITTER_LINK,
-        icon: TwitterIcon,
-    },
-    {
-        name: "GitHub",
-        href: GITHUB_LINK,
-        icon: GitHubIcon,
-    },
-    {
-        name: "LinkedIn",
-        href: LINKED_IN_LINK,
-        icon: LinkedInIcon,
-    },
-];
