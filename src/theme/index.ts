@@ -1,6 +1,8 @@
 import type { PropertyValue } from "@stitches/react";
 import { createStitches, defaultThemeMap } from "@stitches/react";
 
+import { Plus_Jakarta_Sans as JakartaSans } from "@next/font/google";
+
 const media = {
     xxs: "(min-width: 360px)",
     xs: "(min-width: 480px)",
@@ -14,6 +16,14 @@ const media = {
 export const breakpoints = Object.fromEntries(
     Object.entries(media).map(([key, value]) => [key, Number(value.replace(/\D/g, ""))])
 ) as Record<keyof typeof media, number>;
+
+const font = JakartaSans({
+    weight: "variable",
+    style: "normal",
+    display: "swap",
+    preload: true,
+    subsets: ["latin"],
+});
 
 const stitches = createStitches({
     prefix: "hexiro",
@@ -60,8 +70,8 @@ const stitches = createStitches({
             "main-x-padding": "10%",
         },
         fonts: {
-            heading: "Plus Jakarta Sans, sans-serif",
-            text: "Plus Jakarta Sans, sans-serif",
+            heading: `${font.style.fontFamily}, sans-serif`,
+            text: `${font.style.fontFamily}, sans-serif`,
         },
         sizes: {
             1: "5px",
