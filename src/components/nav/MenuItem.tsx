@@ -2,7 +2,7 @@ import { styled } from "@/theme";
 import type { ComponentProps } from "@stitches/react";
 
 import { idToHref } from "@/commons";
-import { fadeIn, smallBounce } from "@/commons/animations";
+import { fadeIn, smallBounce } from "@/commons/framer";
 import type { IconType } from "@/commons/icons";
 
 import { Link } from "@/components/ui";

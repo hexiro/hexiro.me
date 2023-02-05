@@ -1,4 +1,8 @@
-import type { Variants, Transition } from "framer-motion";
+import type { Variants, Transition, useInView } from "framer-motion";
+
+export const useInViewOptions: NonNullable<Parameters<typeof useInView>[1]> = {
+    amount: 0.35,
+};
 
 export const pop = { translateY: -2 };
 export const lightPop = { translateY: -1 };

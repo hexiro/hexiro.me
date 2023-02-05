@@ -1,7 +1,7 @@
 import { styled } from "@/theme";
 
 import { idToHref } from "@/commons";
-import { fadeIn } from "@/commons/animations";
+import { fadeIn } from "@/commons/framer";
 
 import { Link, ListItem, Span } from "@/components/ui";
 

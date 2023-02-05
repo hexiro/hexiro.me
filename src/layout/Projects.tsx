@@ -2,29 +2,30 @@ import { styled } from "@/theme";
 
 import { forwardRef, memo } from "react";
 
-import { staggerAnimation } from "@/commons/animations";
+import { staggerAnimation } from "@/commons/framer";
 import type { ProjectData } from "@/commons/graphql/projects";
 
 import { Heading, Paragraph } from "@/components/ui";
 
 import Project from "@/components/projects/Project";
 
-import type { SectionSelectedProps } from "@/layout/Section";
 import Section from "@/layout/Section";
 
 import { motion } from "framer-motion";
 
 type ProjectsProps = {
     projects: ProjectData[];
-} & SectionSelectedProps;
+};
 
+const NAME = "Projects";
 const DESCRIPTION =
     "I hand-picked these six projects to showcase my skill set and creativity. I host each project on GitHub.";
+const INDEX = 1;
 
-const Projects = forwardRef<HTMLElement, ProjectsProps>(({ projects, isSelected }, ref) => {
+const Projects = forwardRef<HTMLElement, ProjectsProps>(({ projects }, ref) => {
     console.log("Projects");
     return (
-        <Section ref={ref} name="Projects" description={DESCRIPTION} isSelected={isSelected}>
+        <Section ref={ref} name={NAME} description={DESCRIPTION} index={INDEX}>
             <Heading as="h1">Projects</Heading>
             <Paragraph size="lg">{DESCRIPTION}</Paragraph>
             <ProjectsContainer variants={staggerAnimation} initial="initial" animate="animate">

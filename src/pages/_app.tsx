@@ -7,23 +7,23 @@ import NoScript from "@/components/NoScript";
 import Nav from "@/layout/Nav";
 import { GlobalSEO } from "@/layout/SEO";
 
+import { Provider as JotaiProvider } from "jotai";
+
 export default function App({ Component, pageProps, router }: AppProps) {
     globalStyles();
     tippyStyles();
 
-    console.log(router.pathname);
-
     // const isHome = router.pathname === "/";
 
     return (
-        <>
+        <JotaiProvider>
             <GlobalSEO />
             <NoScript />
             <Main>
                 <Nav />
                 <Component {...pageProps} />
             </Main>
-        </>
+        </JotaiProvider>
     );
 }
 

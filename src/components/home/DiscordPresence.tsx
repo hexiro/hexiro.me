@@ -3,8 +3,8 @@ import { styled } from "@/theme";
 import Image from "next/image";
 import { useState } from "react";
 
-import { childStaggerAnimation, extraBounce } from "@/commons/animations";
 import { DISCORD } from "@/commons/config";
+import { childStaggerAnimation, extraBounce } from "@/commons/framer";
 
 import { Paragraph, Heading, Tooltip, ImportantContainer } from "components/ui";
 import { AnimatePresence } from "framer-motion";

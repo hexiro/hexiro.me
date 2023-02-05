@@ -1,11 +1,11 @@
 import type { SectionProps } from "@/layout/Section";
 import Section from "@/layout/Section";
 
-type PageProps = Omit<SectionProps, "isSelected">;
+type PageProps = Omit<SectionProps, "index">;
 
 export default function Page({ children, ...props }: PageProps) {
     return (
-        <Section isSelected {...props}>
+        <Section index={null} {...props}>
             {children}
         </Section>
     );

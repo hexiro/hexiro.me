@@ -2,7 +2,7 @@ import { styled } from "@/theme";
 
 import { useRef, useState } from "react";
 
-import { childStaggerAnimation, extraBounce } from "@/commons/animations";
+import { childStaggerAnimation, extraBounce } from "@/commons/framer";
 import type { ProjectData } from "@/commons/graphql/projects";
 import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
 
