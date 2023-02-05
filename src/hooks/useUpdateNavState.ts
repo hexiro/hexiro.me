@@ -50,8 +50,7 @@ export default function useUpdateNavState({ homeRef, projectsRef }: UseUpdateNav
  * https://gist.githubusercontent.com/rijkvanzanten/df73ae28e80b9c6e5030baed4d1a90a6/raw/6669db80891150aeea1f0ca07ca4c15171c1e70e/percentage-in-view.js
  */
 function getViewPercentage(element: HTMLElement) {
-    const navHeightPixels = theme.space["nav-height"].value;
-    const navHeight = Number(navHeightPixels.substring(0, navHeightPixels.length - 2));
+    const navHeight = Number.parseInt(theme.space["nav-height"].value, 10);
 
     const viewport = {
         top: window.pageYOffset + navHeight,

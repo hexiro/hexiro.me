@@ -4,9 +4,6 @@ export const useInViewOptions: NonNullable<Parameters<typeof useInView>[1]> = {
     amount: 0.35,
 };
 
-export const pop = { translateY: -2 };
-export const lightPop = { translateY: -1 };
-
 export const smallBounce: Transition = {
     type: "spring",
     duration: 0.4,

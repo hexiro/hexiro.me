@@ -1,7 +1,9 @@
 import { globalStyles, tippyStyles, styled } from "@/theme";
 
 import type { AppProps } from "next/app";
+import { useEffect, useRef } from "react";
 
+import Cursor, { loadCursor } from "@/components/Cursor";
 import NoScript from "@/components/NoScript";
 
 import Nav from "@/layout/Nav";
@@ -9,20 +11,28 @@ import { GlobalSEO } from "@/layout/SEO";
 
 import { Provider as JotaiProvider } from "jotai";
 
-export default function App({ Component, pageProps, router }: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
     globalStyles();
     tippyStyles();
 
-    // const isHome = router.pathname === "/";
+    const cursorRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!cursorRef.current) return;
+        if (typeof window === "undefined") return;
+
+        loadCursor(cursorRef.current);
+    });
 
     return (
         <JotaiProvider>
             <GlobalSEO />
-            <NoScript />
             <Main>
                 <Nav />
                 <Component {...pageProps} />
             </Main>
+            <Cursor ref={cursorRef} />
+            <NoScript />
         </JotaiProvider>
     );
 }
