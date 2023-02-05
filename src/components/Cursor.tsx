@@ -14,19 +14,21 @@ export default function Cursor() {
 
         const cursor = ref.current;
 
-        let x = window.innerWidth / 2;
-        let y = window.innerHeight / 2;
+        let x: number | null = null;
+        let y: number | null = null;
 
-        let ballX = x;
-        let ballY = y;
+        let ballX: number | null = x;
+        let ballY: number | null = y;
 
         let hideTimeout: NodeJS.Timeout | null = null;
         let requestAnimationId: number;
 
-        let visible = true;
+        let visible = false;
         let scaled = false;
 
         function animateCursor() {
+            if (x === null || y === null || ballX === null || ballY === null) return;
+
             ballX += (x - ballX) * 0.1;
             ballY += (y - ballY) * 0.1;
 
@@ -52,6 +54,11 @@ export default function Cursor() {
         function mousemove(event: MouseEvent) {
             clearHideTimeout();
 
+            if (x === null || y === null) {
+                ballX = event.pageX;
+                ballY = event.pageY;
+            }
+
             x = event.pageX;
             y = event.pageY;
 
@@ -76,31 +83,30 @@ export default function Cursor() {
         }
 
         function show() {
-            console.log("SHOWING CURSOR");
             cursor.classList.remove(cursorHiddenClassName);
             visible = true;
         }
 
         function hide() {
-            console.log("HIDING CURSOR");
             cursor.classList.add(cursorHiddenClassName);
             visible = false;
         }
 
         function scale() {
-            console.log("SCALING CURSOR");
             cursor.classList.add(cursorScaledClassName);
             scaled = true;
         }
 
         function unscale() {
-            console.log("UNSCALING CURSOR");
             cursor.classList.remove(cursorScaledClassName);
             scaled = false;
         }
 
         function startHideTimeout() {
-            hideTimeout = setTimeout(hide, 300);
+            hideTimeout = setTimeout(() => {
+                hide();
+                hideTimeout = null;
+            }, 500);
         }
 
         function clearHideTimeout() {
@@ -128,7 +134,7 @@ export default function Cursor() {
         };
     });
 
-    return <CursorContainer ref={ref} />;
+    return <CursorContainer ref={ref} className={cursorHiddenClassName} />;
 }
 
 const CursorContainer = styled("div", {
