@@ -1,80 +1,137 @@
-import { styled } from "@/theme";
+import { css, styled } from "@/theme";
 
-export function loadCursor(cursor: HTMLElement) {
-    /**
-     * @reference https://github.com/alii/website/blob/45c16023cc15e8d8444ba1eb8bf9e77c86d0119f/src/util/cursor.ts
-     */
+import { useEffect, useRef } from "react";
 
-    let x = window.innerWidth / 2;
-    let y = window.innerHeight / 2;
+/**
+ * @reference https://github.com/alii/website/blob/45c16023cc15e8d8444ba1eb8bf9e77c86d0119f/src/util/cursor.ts
+ */
+export default function Cursor() {
+    const ref = useRef<HTMLDivElement>(null);
 
-    let ballX = x;
-    let ballY = y;
+    useEffect(() => {
+        if (!ref.current) return;
+        if (typeof window === "undefined") return;
 
-    // let hideTimeout: NodeJS.Timeout | null = null;
+        const cursor = ref.current;
 
-    function drawBall() {
-        ballX += (x - ballX) * 0.1;
-        ballY += (y - ballY) * 0.1;
+        let x = window.innerWidth / 2;
+        let y = window.innerHeight / 2;
 
-        const heightOffset = Math.floor(cursor.clientHeight / 2);
-        const widthOffset = Math.floor(cursor.clientWidth / 2);
+        let ballX = x;
+        let ballY = y;
 
-        cursor.style.top = `${ballY - window.scrollY - heightOffset}px`;
-        cursor.style.left = `${ballX - widthOffset}px`;
-    }
+        let hideTimeout: NodeJS.Timeout | null = null;
+        let requestAnimationId: number;
 
-    function loop() {
-        drawBall();
-        requestAnimationFrame(loop);
-    }
+        let visible = true;
+        let scaled = false;
 
-    loop();
+        function animateCursor() {
+            ballX += (x - ballX) * 0.1;
+            ballY += (y - ballY) * 0.1;
 
-    function touch(event: TouchEvent) {
-        x = event.touches[0].pageX;
-        y = event.touches[0].pageY;
-    }
+            const heightOffset = Math.floor(cursor.clientHeight / 2);
+            const widthOffset = Math.floor(cursor.clientWidth / 2);
 
-    function mousemove(event: MouseEvent) {
-        cursor.style.opacity = "1";
+            cursor.style.top = `${ballY - window.scrollY - heightOffset}px`;
+            cursor.style.left = `${ballX - widthOffset}px`;
+        }
 
-        // if (hideTimeout) {
-        //     clearTimeout(hideTimeout);
-        // }
+        function loop() {
+            animateCursor();
+            requestAnimationId = requestAnimationFrame(loop);
+        }
 
-        x = event.pageX;
-        y = event.pageY;
+        loop();
 
-        // hideTimeout = setTimeout(() => {
-        //     ball.style.opacity = "0";
-        // }, 300);
-    }
+        function touch(event: TouchEvent) {
+            x = event.touches[0].pageX;
+            y = event.touches[0].pageY;
+        }
 
-    function mousedown() {
-        cursor.style.transform = "scale(2)";
-    }
+        function mousemove(event: MouseEvent) {
+            clearHideTimeout();
 
-    function mouseup() {
-        cursor.style.transform = "scale(1)";
-    }
+            x = event.pageX;
+            y = event.pageY;
 
-    window.addEventListener("touchstart", touch);
-    window.addEventListener("touchmove", touch);
-    window.addEventListener("mousemove", mousemove);
-    window.addEventListener("mousedown", mousedown);
-    window.addEventListener("mouseup", mouseup);
+            if (!scaled) startHideTimeout();
+        }
 
-    return () => {
-        window.removeEventListener("touchstart", touch);
-        window.removeEventListener("touchmove", touch);
-        window.removeEventListener("mousemove", mousemove);
-        window.removeEventListener("mousedown", mousedown);
-        window.removeEventListener("mouseup", mouseup);
-    };
+        function mousedown() {
+            if (!visible) show();
+
+            scale();
+
+            clearHideTimeout();
+        }
+
+        function mouseup() {
+            show();
+
+            if (scaled) unscale();
+            if (!hideTimeout) hide();
+
+            startHideTimeout();
+        }
+
+        function show() {
+            console.log("SHOWING CURSOR");
+            cursor.classList.remove(cursorHiddenClassName);
+            visible = true;
+        }
+
+        function hide() {
+            console.log("HIDING CURSOR");
+            cursor.classList.add(cursorHiddenClassName);
+            visible = false;
+        }
+
+        function scale() {
+            console.log("SCALING CURSOR");
+            cursor.classList.add(cursorScaledClassName);
+            scaled = true;
+        }
+
+        function unscale() {
+            console.log("UNSCALING CURSOR");
+            cursor.classList.remove(cursorScaledClassName);
+            scaled = false;
+        }
+
+        function startHideTimeout() {
+            hideTimeout = setTimeout(hide, 300);
+        }
+
+        function clearHideTimeout() {
+            if (hideTimeout) {
+                clearTimeout(hideTimeout);
+                hideTimeout = null;
+            }
+
+            if (!visible) show();
+        }
+
+        window.addEventListener("touchstart", touch);
+        window.addEventListener("touchmove", touch);
+        window.addEventListener("mousemove", mousemove);
+        window.addEventListener("mousedown", mousedown);
+        window.addEventListener("mouseup", mouseup);
+
+        return () => {
+            cancelAnimationFrame(requestAnimationId);
+            window.removeEventListener("touchstart", touch);
+            window.removeEventListener("touchmove", touch);
+            window.removeEventListener("mousemove", mousemove);
+            window.removeEventListener("mousedown", mousedown);
+            window.removeEventListener("mouseup", mouseup);
+        };
+    });
+
+    return <CursorContainer ref={ref} />;
 }
 
-const Cursor = styled("div", {
+const CursorContainer = styled("div", {
     position: "fixed",
     pointerEvents: "none",
     zIndex: "$max",
@@ -88,4 +145,14 @@ const Cursor = styled("div", {
     transitionTimingFunction: "$ease-in-out",
 });
 
-export default Cursor;
+const cursorHidden = css({
+    opacity: 0,
+});
+
+const cursorHiddenClassName = cursorHidden.toString();
+
+const cursorScaled = css({
+    transform: "scale(2)",
+});
+
+const cursorScaledClassName = cursorScaled.toString();

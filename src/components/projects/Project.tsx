@@ -75,6 +75,7 @@ export default function Project({ data }: ProjectProps) {
                     type === "link" ? (
                         <DescriptionLink
                             key={value}
+                            newTab
                             href={value}
                             animation="pop"
                             color="brand-primary"

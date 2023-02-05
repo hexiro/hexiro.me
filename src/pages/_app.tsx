@@ -15,15 +15,6 @@ export default function App({ Component, pageProps }: AppProps) {
     globalStyles();
     tippyStyles();
 
-    const cursorRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (!cursorRef.current) return;
-        if (typeof window === "undefined") return;
-
-        loadCursor(cursorRef.current);
-    });
-
     return (
         <JotaiProvider>
             <GlobalSEO />
@@ -31,7 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <Nav />
                 <Component {...pageProps} />
             </Main>
-            <Cursor ref={cursorRef} />
+            <Cursor />
             <NoScript />
         </JotaiProvider>
     );
