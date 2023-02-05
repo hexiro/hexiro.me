@@ -1,80 +1,107 @@
 import { styled } from "@/theme";
 
-export function loadCursor(cursor: HTMLElement) {
-    /**
-     * @reference https://github.com/alii/website/blob/45c16023cc15e8d8444ba1eb8bf9e77c86d0119f/src/util/cursor.ts
-     */
+import React, { useContext, useEffect, useRef, useState } from "react";
 
-    let x = window.innerWidth / 2;
-    let y = window.innerHeight / 2;
+import { CursorContext } from "@/commons/contexts";
 
-    let ballX = x;
-    let ballY = y;
+/**
+ * @reference https://github.com/alii/website/blob/45c16023cc15e8d8444ba1eb8bf9e77c86d0119f/src/util/cursor.ts
+ */
+export default function Cursor() {
+    const ref = useRef<HTMLDivElement>(null);
 
-    // let hideTimeout: NodeJS.Timeout | null = null;
+    const [x, setX] = useState<number>(0);
+    const [y, setY] = useState<number>(0);
 
-    function drawBall() {
-        ballX += (x - ballX) * 0.1;
-        ballY += (y - ballY) * 0.1;
+    const { position } = useContext(CursorContext);
 
-        const heightOffset = Math.floor(cursor.clientHeight / 2);
-        const widthOffset = Math.floor(cursor.clientWidth / 2);
+    useEffect(() => {
+        if (typeof window === "undefined" || !ref.current) return;
 
-        cursor.style.top = `${ballY - window.scrollY - heightOffset}px`;
-        cursor.style.left = `${ballX - widthOffset}px`;
-    }
+        const cursor = ref.current;
 
-    function loop() {
-        drawBall();
-        requestAnimationFrame(loop);
-    }
+        let cursorX = position?.x ?? x;
+        let cursorY = position?.y ?? y;
 
-    loop();
+        let ballX = x;
+        let ballY = y;
 
-    function touch(event: TouchEvent) {
-        x = event.touches[0].pageX;
-        y = event.touches[0].pageY;
-    }
+        console.log("cursor", cursorX, cursorY);
 
-    function mousemove(event: MouseEvent) {
-        cursor.style.opacity = "1";
+        function drawBall() {
+            ballX += (cursorX - ballX) * 0.1;
+            ballY += (cursorY - ballY) * 0.1;
 
-        // if (hideTimeout) {
-        //     clearTimeout(hideTimeout);
-        // }
+            const midW = cursor.clientWidth / 2;
+            const midH = cursor.clientHeight / 2;
 
-        x = event.pageX;
-        y = event.pageY;
+            cursor.style.left = `${ballX}px`;
+            cursor.style.top = `${ballY - window.scrollY}px`;
 
-        // hideTimeout = setTimeout(() => {
-        //     ball.style.opacity = "0";
-        // }, 300);
-    }
+            if (position && Math.round(ballX) === position.x && Math.round(ballY) === position.y) {
+                console.log("123");
+                // cursor.style.transform = "scale(2)";
+            }
+        }
 
-    function mousedown() {
-        cursor.style.transform = "scale(2)";
-    }
+        // todo: figure out how to stop this loop on rerender
+        function loop() {
+            drawBall();
+            // requestAnimationFrame(loop);
+        }
 
-    function mouseup() {
-        cursor.style.transform = "scale(1)";
-    }
+        loop();
 
-    window.addEventListener("touchstart", touch);
-    window.addEventListener("touchmove", touch);
-    window.addEventListener("mousemove", mousemove);
-    window.addEventListener("mousedown", mousedown);
-    window.addEventListener("mouseup", mouseup);
+        function touch(event: TouchEvent) {
+            const newX = event.touches[0].pageX;
+            const newY = event.touches[0].pageY;
+            setX(newX);
+            setY(newY);
+            if (!position) {
+                cursorX = newX;
+                cursorY = newY;
+            }
+        }
 
-    return () => {
-        window.removeEventListener("touchstart", touch);
-        window.removeEventListener("touchmove", touch);
-        window.removeEventListener("mousemove", mousemove);
-        window.removeEventListener("mousedown", mousedown);
-        window.removeEventListener("mouseup", mouseup);
-    };
+        function mousemove(event: MouseEvent) {
+            const newX = event.pageX;
+            const newY = event.pageY;
+            setX(cursorX);
+            setY(cursorY);
+            if (!position) {
+                cursorX = newX;
+                cursorY = newY;
+            }
+        }
+
+        function mousedown() {
+            cursor.style.transform = "scale(2)";
+        }
+
+        function mouseup() {
+            cursor.style.transform = "scale(1)";
+        }
+
+        window.addEventListener("touchstart", touch);
+        window.addEventListener("touchmove", touch);
+        window.addEventListener("mousemove", mousemove);
+        window.addEventListener("mousedown", mousedown);
+        window.addEventListener("mouseup", mouseup);
+
+        return () => {
+            window.removeEventListener("touchstart", touch);
+            window.removeEventListener("touchmove", touch);
+            window.removeEventListener("mousemove", mousemove);
+            window.removeEventListener("mousedown", mousedown);
+            window.removeEventListener("mouseup", mouseup);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [position]);
+
+    return <CursorContainer ref={ref} />;
 }
 
-const Cursor = styled("div", {
+const CursorContainer = styled("div", {
     position: "fixed",
     pointerEvents: "none",
     zIndex: "$max",
@@ -87,5 +114,3 @@ const Cursor = styled("div", {
     transitionDuration: "$fast",
     transitionTimingFunction: "$ease-in-out",
 });
-
-export default Cursor;
