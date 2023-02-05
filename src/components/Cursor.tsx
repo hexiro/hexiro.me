@@ -39,17 +39,15 @@ export default function Cursor() {
             cursor.style.top = `${ballY - window.scrollY}px`;
 
             if (position && Math.round(ballX) === position.x && Math.round(ballY) === position.y) {
-                cursor.style.transform = "scale(2)";
-            } else {
-                cursor.style.transform = "scale(1)";
+                console.log("123");
+                // cursor.style.transform = "scale(2)";
             }
         }
 
-        let requestId: number;
-
+        // todo: figure out how to stop this loop on rerender
         function loop() {
             drawBall();
-            requestId = requestAnimationFrame(loop);
+            // requestAnimationFrame(loop);
         }
 
         loop();
@@ -91,7 +89,6 @@ export default function Cursor() {
         window.addEventListener("mouseup", mouseup);
 
         return () => {
-            cancelAnimationFrame(requestId);
             window.removeEventListener("touchstart", touch);
             window.removeEventListener("touchmove", touch);
             window.removeEventListener("mousemove", mousemove);
