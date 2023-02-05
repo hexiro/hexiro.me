@@ -1,13 +1,9 @@
 import { globalStyles, tippyStyles, styled } from "@/theme";
 
 import type { AppProps } from "next/app";
-import type { UIEvent } from "react";
-import { useCallback, useMemo, useState } from "react";
+import { useEffect, useRef } from "react";
 
-import type { Position, Scale } from "@/commons/contexts";
-import { CursorContext } from "@/commons/contexts";
-
-import Cursor from "@/components/Cursor";
+import Cursor, { loadCursor } from "@/components/Cursor";
 import NoScript from "@/components/NoScript";
 
 import Nav from "@/layout/Nav";
@@ -19,52 +15,23 @@ export default function App({ Component, pageProps }: AppProps) {
     globalStyles();
     tippyStyles();
 
-    const [scale, setScale] = useState<Scale | null>(null);
-    const [position, setPosition] = useState<Position | null>(null);
+    const cursorRef = useRef<HTMLDivElement>(null);
 
-    const wrap = useCallback((element: HTMLElement) => {
-        console.log("wrap", element);
+    useEffect(() => {
+        if (!cursorRef.current) return;
+        if (typeof window === "undefined") return;
 
-        const x = element.offsetLeft;
-        const y = element.offsetTop;
-
-        setPosition({ x, y });
-    }, []);
-
-    const unwrap = useCallback(() => {
-        setScale(null);
-        setPosition(null);
-    }, []);
-
-    const scroll = useCallback((e: UIEvent<HTMLElement>) => {
-        const { scrollLeft, scrollTop } = e.currentTarget;
-
-        setPosition((prev) => {
-            if (!prev) return null;
-
-            return {
-                x: prev.x - scrollLeft,
-                y: prev.y - scrollTop,
-            };
-        });
-    }, []);
-
-    const value = useMemo(
-        () => ({ scale, position, scroll, wrap, unwrap }),
-        [scale, position, scroll, wrap, unwrap]
-    );
+        loadCursor(cursorRef.current);
+    });
 
     return (
         <JotaiProvider>
-            <CursorContext.Provider value={value}>
-                <Main>
-                    <Nav />
-                    <Component {...pageProps} />
-                </Main>
-                <Cursor />
-            </CursorContext.Provider>
-
             <GlobalSEO />
+            <Main>
+                <Nav />
+                <Component {...pageProps} />
+            </Main>
+            <Cursor ref={cursorRef} />
             <NoScript />
         </JotaiProvider>
     );
