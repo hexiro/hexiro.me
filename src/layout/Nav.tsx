@@ -47,6 +47,7 @@ const NavContainer = styled("nav", {
     flexDirection: "row",
     alignItems: "center",
     width: "100%",
+    maxheight: "$nav-height",
     paddingY: "$main-y-padding",
     paddingX: "$main-x-padding",
     borderBottom: "2px solid $lighten-10",

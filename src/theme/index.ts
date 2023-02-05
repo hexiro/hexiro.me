@@ -69,6 +69,7 @@ const stitches = createStitches({
             9: "80px",
             "main-y-padding": "$5",
             "main-x-padding": "10%",
+            "nav-height": "124px",
         },
         fonts: {
             heading: `${font.style.fontFamily}, sans-serif`,
