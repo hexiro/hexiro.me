@@ -1,6 +1,6 @@
 import { styled } from "@/theme";
 
-import { ROUTES } from "@/commons/secitions";
+import { ROUTES } from "@/commons/sections";
 
 import { Hide, Show } from "@/components/layout";
 import { ListItem } from "@/components/ui";

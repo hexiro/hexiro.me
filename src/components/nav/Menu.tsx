@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 
 import { fadeInAndScale, normalBounce } from "@/commons/framer";
 import { CloseIcon, HamburgerMenuIcon } from "@/commons/icons";
-import { ROUTES, SOCIALS } from "@/commons/secitions";
+import { ROUTES, SOCIALS } from "@/commons/sections";
 
 import { Divider } from "@/components/layout";
 

@@ -8,16 +8,10 @@ import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 
 import { useAtom } from "jotai";
 
-interface UseUpdateNavStateOptions {
-    homeRef: RefObject<HTMLElement>;
-    projectsRef: RefObject<HTMLElement>;
-}
-
-export default function useUpdateNavState({ homeRef, projectsRef }: UseUpdateNavStateOptions) {
+export default function useUpdateNavState(...refs: Array<RefObject<HTMLElement>>) {
     // const homeInView = useInView(homeRef, useInViewOptions);
     // const projectsInView = useInView(projectsRef, useInViewOptions);
 
-    const refs = [homeRef, projectsRef];
     const [, setSelectedRouteIndex] = useAtom(selectedRouteIndexAtom);
 
     useIsomorphicLayoutEffect(() => {
@@ -42,12 +36,11 @@ export default function useUpdateNavState({ homeRef, projectsRef }: UseUpdateNav
 
         window.addEventListener("scroll", handler);
         return () => window.removeEventListener("scroll", handler);
-    }, [homeRef, projectsRef]);
+    }, [refs]);
 }
 
 /**
- * reference:
- * https://gist.githubusercontent.com/rijkvanzanten/df73ae28e80b9c6e5030baed4d1a90a6/raw/6669db80891150aeea1f0ca07ca4c15171c1e70e/percentage-in-view.js
+ * @reference https://gist.githubusercontent.com/rijkvanzanten/df73ae28e80b9c6e5030baed4d1a90a6/raw/6669db80891150aeea1f0ca07ca4c15171c1e70e/percentage-in-view.js
  */
 function getViewPercentage(element: HTMLElement) {
     const navHeight = Number.parseInt(theme.space["nav-height"].value, 10);

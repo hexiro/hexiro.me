@@ -13,7 +13,7 @@ import Section from "@/layout/Section";
 
 import { motion } from "framer-motion";
 
-type ProjectsProps = {
+export type ProjectsProps = {
     projects: ProjectData[];
 };
 
@@ -26,7 +26,7 @@ const Projects = forwardRef<HTMLElement, ProjectsProps>(({ projects }, ref) => {
     console.log("Projects");
     return (
         <Section ref={ref} name={NAME} description={DESCRIPTION} index={INDEX}>
-            <Heading as="h1">Projects</Heading>
+            <Heading as="h1">{NAME}</Heading>
             <Paragraph size="lg">{DESCRIPTION}</Paragraph>
             <ProjectsContainer variants={staggerAnimation} initial="initial" animate="animate">
                 {projects.map((project) => (

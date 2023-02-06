@@ -1,7 +1,7 @@
-import { SOCIALS } from "@/commons/secitions";
+import { SOCIALS } from "@/commons/sections";
 
-import { AnchorList } from "components/ui";
 import Social from "components/nav/Social";
+import { AnchorList } from "components/ui";
 
 export default function Socials() {
     return (

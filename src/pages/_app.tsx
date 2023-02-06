@@ -1,9 +1,8 @@
 import { globalStyles, tippyStyles, styled } from "@/theme";
 
 import type { AppProps } from "next/app";
-import { useEffect, useRef } from "react";
 
-import Cursor, { loadCursor } from "@/components/Cursor";
+import Cursor from "@/components/Cursor";
 import NoScript from "@/components/NoScript";
 
 import Nav from "@/layout/Nav";
