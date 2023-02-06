@@ -77,7 +77,6 @@ export default function Cursor() {
             show();
 
             if (scaled) unscale();
-            if (!hideTimeout) hide();
 
             startHideTimeout();
         }
@@ -103,18 +102,11 @@ export default function Cursor() {
         }
 
         function startHideTimeout() {
-            hideTimeout = setTimeout(() => {
-                hide();
-                hideTimeout = null;
-            }, 500);
+            hideTimeout = setTimeout(hide, 500);
         }
 
         function clearHideTimeout() {
-            if (hideTimeout) {
-                clearTimeout(hideTimeout);
-                hideTimeout = null;
-            }
-
+            if (hideTimeout) clearTimeout(hideTimeout);
             if (!visible) show();
         }
 
@@ -144,7 +136,7 @@ const CursorContainer = styled("div", {
     size: "2em",
     borderRadius: "50%",
     borderWidth: 2,
-    borderColor: "rgba(255, 255, 255, 0.5)",
+    borderColor: "$text-secondary",
     borderStyle: "solid",
     willTransition: "opacity, transform",
     transitionDuration: "$fast",
@@ -158,7 +150,7 @@ const cursorHidden = css({
 const cursorHiddenClassName = cursorHidden.toString();
 
 const cursorScaled = css({
-    transform: "scale(2)",
+    transform: "scale(1.5)",
 });
 
 const cursorScaledClassName = cursorScaled.toString();
