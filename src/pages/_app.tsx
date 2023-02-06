@@ -2,14 +2,13 @@ import { globalStyles, tippyStyles, styled } from "@/theme";
 
 import type { AppProps } from "next/app";
 
-import Cursor from "@/components/Cursor";
 import NoScript from "@/components/NoScript";
 
+import Footer from "@/layout/Footer";
 import Nav from "@/layout/Nav";
 import { GlobalSEO } from "@/layout/SEO";
 
 import { Provider as JotaiProvider } from "jotai";
-import Footer from "@/layout/Footer";
 
 export default function App({ Component, pageProps }: AppProps) {
     globalStyles();
@@ -23,7 +22,6 @@ export default function App({ Component, pageProps }: AppProps) {
                 <Component {...pageProps} />
                 <Footer />
             </Main>
-            <Cursor />
             <NoScript />
         </JotaiProvider>
     );
