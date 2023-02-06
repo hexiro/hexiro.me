@@ -54,6 +54,6 @@ const SectionContainer = styled(Flex, {
 
 const SectionIdElement = styled("div", {
     position: "absolute",
-    top: "-$nav-height",
+    top: "-$sizes$nav-height",
     left: 0,
 });

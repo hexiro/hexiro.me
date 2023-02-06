@@ -33,11 +33,11 @@ const stitches = createStitches({
             // brand colors
             "brand-primary-rgb": "75, 255, 159",
             "brand-primary": "rgb($brand-primary-rgb)",
-            "brand-accent": "#E7FFF2",
+            "brand-accent": "hsl(133deg 25% 85%)",
             "brand-tertiary": "rgba(232, 255, 232, 0.2)",
             // text colors
             "text-primary": "#D2E0D5",
-            "text-secondary": "#B7BEB9",
+            "text-secondary": "hsl(137deg 5% 67%)",
             // background colors
             "background-primary": "#191C1D",
             "background-secondary-rgb": "41, 44, 47",
@@ -69,7 +69,6 @@ const stitches = createStitches({
             9: "80px",
             "main-y-padding": "$5",
             "main-x-padding": "10%",
-            "nav-height": "124px",
         },
         fonts: {
             heading: `${font.style.fontFamily}, sans-serif`,
@@ -85,6 +84,7 @@ const stitches = createStitches({
             7: "45px",
             8: "65px",
             9: "80px",
+            "nav-height": "124px",
             "tippy-arrow-small": "5px",
             "tippy-arrow-medium": "7px",
             "tippy-arrow-large": "10px",
@@ -185,10 +185,10 @@ const stitches = createStitches({
 export const { styled, css, getCssText, config, theme } = stitches;
 const { globalCss } = stitches;
 
-export type Media = typeof config["media"];
-export type Theme = typeof config["theme"];
-export type ThemeMap = typeof config["themeMap"];
-export type Utils = typeof config["utils"];
+export type Media = (typeof config)["media"];
+export type Theme = (typeof config)["theme"];
+export type ThemeMap = (typeof config)["themeMap"];
+export type Utils = (typeof config)["utils"];
 export type CSS = CSSUtil.CSS<Media, Theme, ThemeMap, Utils>;
 
 export const globalStyles = globalCss({

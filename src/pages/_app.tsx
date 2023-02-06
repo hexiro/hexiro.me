@@ -9,6 +9,7 @@ import Nav from "@/layout/Nav";
 import { GlobalSEO } from "@/layout/SEO";
 
 import { Provider as JotaiProvider } from "jotai";
+import Footer from "@/layout/Footer";
 
 export default function App({ Component, pageProps }: AppProps) {
     globalStyles();
@@ -20,6 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <Main>
                 <Nav />
                 <Component {...pageProps} />
+                <Footer />
             </Main>
             <Cursor />
             <NoScript />

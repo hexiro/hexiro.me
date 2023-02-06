@@ -59,17 +59,21 @@ const MenuItemWrapper = styled(motion.li, {
     position: "relative",
     paddingY: "7px",
 
+    "& svg": {
+        color: "$$svgColor",
+    },
+
+    defaultVariants: {
+        highlighted: true,
+    },
+
     variants: {
         highlighted: {
             true: {
-                "& svg": {
-                    color: "$brand-primary",
-                },
+                $$svgColor: "$colors$brand-primary",
             },
             false: {
-                "& svg": {
-                    color: "$background-tertiary",
-                },
+                $$svgColor: "$colors$background-tertiary",
             },
         },
     },
