@@ -2,7 +2,7 @@ import { styled } from "@/theme";
 
 import { motion } from "framer-motion";
 
-const ImportantContainer = styled(motion.div, {
+const BrandedBox = styled(motion.div, {
     position: "relative",
     backgroundColor: "$background-secondary",
     borderRadius: "$xl",
@@ -14,4 +14,4 @@ const ImportantContainer = styled(motion.div, {
     paddingY: "16px",
 });
 
-export default ImportantContainer;
+export default BrandedBox;

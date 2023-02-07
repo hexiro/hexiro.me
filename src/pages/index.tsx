@@ -49,10 +49,3 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => ({
     },
     revalidate: 60 * 60,
 });
-
-// export const getStaticProps: GetStaticProps<DashboardPageProps> = async () => ({
-//     props: {
-
-//     },
-//     revalidate: 60 * 60 * 6,
-// });

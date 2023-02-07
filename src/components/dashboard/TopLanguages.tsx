@@ -1,7 +1,7 @@
 import { styled } from "@/theme";
 
 import { Divider } from "@/components/layout";
-import { Heading, ImportantContainer, Paragraph } from "@/components/ui";
+import { Heading, BrandedBox, Paragraph } from "@/components/ui";
 
 import type { MultiInfo } from "@/data/wakatimeStats";
 
@@ -41,7 +41,7 @@ export default function TopLanguages({ languages }: TopLanguagesProps) {
     );
 }
 
-const TopLanguagesContainer = styled(ImportantContainer, {
+const TopLanguagesContainer = styled(BrandedBox, {
     flexDirection: "column",
 });
 

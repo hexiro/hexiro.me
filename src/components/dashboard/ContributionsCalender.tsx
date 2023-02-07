@@ -1,7 +1,7 @@
 import { theme, css, styled } from "@/theme";
 
 import { Divider } from "@/components/layout";
-import { Heading, ImportantContainer, Paragraph } from "@/components/ui";
+import { Heading, BrandedBox, Paragraph } from "@/components/ui";
 
 import GitHubCalendar from "@/components/dashboard/GitHubCalendar";
 
@@ -59,7 +59,7 @@ const panelStyles = css({
     ry: "$radii$sm",
 });
 
-const ContributionsContainer = styled(ImportantContainer, {
+const ContributionsContainer = styled(BrandedBox, {
     maxWidth: 756,
     flexDirection: "column",
     width: "100%",

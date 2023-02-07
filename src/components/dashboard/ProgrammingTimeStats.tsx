@@ -1,7 +1,7 @@
 import { styled } from "@/theme";
 
 import { Divider } from "@/components/layout";
-import { Heading, ImportantContainer, Paragraph } from "@/components/ui";
+import { Heading, BrandedBox, Paragraph } from "@/components/ui";
 
 interface ProgrammingTimeStatsProps {
     dailyAverage: number;
@@ -27,7 +27,7 @@ export default function ProgrammingTimeStats({
     );
 }
 
-const ProgrammingTimeStatsContainer = styled(ImportantContainer, {
+const ProgrammingTimeStatsContainer = styled(BrandedBox, {
     flexDirection: "column",
 });
 

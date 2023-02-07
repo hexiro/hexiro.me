@@ -1,9 +1,11 @@
 import { styled } from "@/theme";
 
+import type { RefObject } from "react";
 import { forwardRef, memo } from "react";
 
 import { Heading, Paragraph } from "@/components/ui";
 
+import BrandedBoxContainer from "@/components/BrandedBoxContainer";
 import ContributionsCalendar from "@/components/dashboard/ContributionsCalender";
 import ProgrammingTimeStats from "@/components/dashboard/ProgrammingTimeStats";
 import TopLanguages from "@/components/dashboard/TopLanguages";
@@ -11,6 +13,7 @@ import TopLanguages from "@/components/dashboard/TopLanguages";
 import type contributionsCalendar from "@/data/contributionsCalendar";
 import type wakatimeStats from "@/data/wakatimeStats";
 
+import useFirstTimeInView from "@/hooks/useFirstTimeInView";
 import Section from "@/layout/Section";
 
 export interface DashboardProps {
@@ -25,21 +28,22 @@ const INDEX = 2;
 
 const Dashboard = forwardRef<HTMLElement, DashboardProps>(
     ({ contributionsCalendar, wakatimeStats }, ref) => {
-        console.log("Dashboard");
+        const animate = useFirstTimeInView(ref as RefObject<HTMLElement>);
+
         return (
             <Section ref={ref} name={NAME} description={DESCRIPTION} index={INDEX}>
                 <TextContainer>
                     <Heading as="h1">{NAME}</Heading>
                     <Paragraph size="lg">{DESCRIPTION}</Paragraph>
                 </TextContainer>
-                <SectionsContainer>
+                <BrandedBoxContainer>
                     <ContributionsCalendar data={contributionsCalendar} />
                     <ProgrammingTimeStats
                         dailyAverage={wakatimeStats.dailyAverageDuration}
                         last7Days={wakatimeStats.last7daysDuration}
                     />
                     <TopLanguages languages={wakatimeStats.languages} />
-                </SectionsContainer>
+                </BrandedBoxContainer>
             </Section>
         );
     }
@@ -49,11 +53,4 @@ export default memo(Dashboard);
 
 const TextContainer = styled("div", {
     marginBottom: "$6",
-});
-
-const SectionsContainer = styled("div", {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: "$4",
 });

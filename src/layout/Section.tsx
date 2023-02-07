@@ -4,11 +4,13 @@ import type { ComponentProps } from "@stitches/react";
 import type { PropsWithChildren } from "react";
 import { forwardRef } from "react";
 
-import { Flex } from "@/components/ui";
+import { topLevelStaggerChildren } from "@/commons/framer";
 
 import useNavSectionIsSelected from "@/hooks/useNavSectionIsSelected";
 import type { SEOProps } from "@/layout/SEO";
 import { SEO } from "@/layout/SEO";
+
+import { motion } from "framer-motion";
 
 export type SectionProps = ComponentProps<typeof SectionContainer> & SectionSEOProps;
 
@@ -19,7 +21,14 @@ type SectionSEOProps = SEOProps & {
 const Section = forwardRef<HTMLElement, PropsWithChildren<SectionProps>>(
     ({ name, description, index, children, ...props }, ref) => (
         <>
-            <SectionContainer ref={ref} as="section" {...props}>
+            <SectionContainer
+                ref={ref}
+                variants={topLevelStaggerChildren}
+                initial="initial"
+                animate="animate"
+                exit="initial"
+                {...props}
+            >
                 <SectionIdElement id={name.toLowerCase()} />
                 {children}
             </SectionContainer>
@@ -39,7 +48,7 @@ const SectionSEO = ({ name, description, index }: SectionSEOProps) => {
 
 export default Section;
 
-const SectionContainer = styled(Flex, {
+const SectionContainer = styled(motion.section, {
     position: "relative",
     flexGrow: 1,
     height: "100%",

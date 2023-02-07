@@ -4,6 +4,7 @@ export const useInViewOptions: NonNullable<Parameters<typeof useInView>[1]> = {
     amount: 0.35,
 };
 
+// transitions
 export const smallBounce: Transition = {
     type: "spring",
     duration: 0.4,
@@ -21,6 +22,34 @@ export const extraBounce: Transition = {
     damping: 15,
     stiffness: 200,
 };
+
+// variants
+
+// parent variants
+
+export const topLevelStaggerChildren: Variants = {
+    initial: {},
+    animate: {
+        transition: {
+            delayChildren: 0.05,
+            staggerChildren: 0.03,
+        },
+    },
+};
+
+export const staggerChildren: Variants = {
+    initial: {
+        opacity: 0,
+    },
+    animate: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.07,
+        },
+    },
+};
+
+// child variants
 
 export const fadeInAndScale: Variants = {
     animate: {
@@ -42,12 +71,19 @@ export const fadeIn: Variants = {
     },
 };
 
-export const staggerAnimation: Variants = {
-    initial: {},
-    animate: { transition: { staggerChildren: 0.07 } },
+export const slideFromLeft: Variants = {
+    initial: {
+        x: -32,
+        opacity: 0,
+    },
+    animate: {
+        x: 0,
+        opacity: 1,
+        transition: extraBounce,
+    },
 };
 
-export const childStaggerAnimation: Variants = {
+export const slideFromBottom: Variants = {
     initial: {
         y: 20,
         opacity: 0,
@@ -55,5 +91,6 @@ export const childStaggerAnimation: Variants = {
     animate: {
         y: 0,
         opacity: 1,
+        transition: extraBounce,
     },
 };

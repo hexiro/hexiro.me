@@ -2,11 +2,11 @@ import { styled } from "@/theme";
 
 import { useRef, useState } from "react";
 
-import { childStaggerAnimation, extraBounce } from "@/commons/framer";
+import { slideFromBottom, extraBounce } from "@/commons/framer";
 import type { ProjectData } from "@/commons/graphql/projects";
 import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
 
-import { AnchorList, Heading, ImportantContainer, Link, Paragraph } from "@/components/ui";
+import { AnchorList, Heading, BrandedBox, Link, Paragraph } from "@/components/ui";
 
 import LanguageIcon from "@/components/projects/LanguageIcon";
 
@@ -26,7 +26,7 @@ export default function Project({ data }: ProjectProps) {
     return (
         <ProjectContainer
             ref={ref}
-            variants={childStaggerAnimation}
+            variants={slideFromBottom}
             transition={extraBounce}
             enableHoverAnimation={animationComplete}
             onAnimationComplete={() => setAnimationComplete(true)}
@@ -171,7 +171,7 @@ const VerticalDivider = styled("hr", {
     borderRadius: "$max",
 });
 
-const ProjectContainer = styled(ImportantContainer, {
+const ProjectContainer = styled(BrandedBox, {
     aspectRatio: "20 / 7",
     width: "100%",
     height: "auto",

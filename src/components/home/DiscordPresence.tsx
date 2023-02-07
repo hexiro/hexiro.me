@@ -1,13 +1,11 @@
 import { styled } from "@/theme";
 
 import Image from "next/image";
-import { useState } from "react";
 
 import { DISCORD } from "@/commons/config";
-import { childStaggerAnimation, extraBounce } from "@/commons/framer";
+import { slideFromBottom } from "@/commons/framer";
 
-import { Paragraph, Heading, Tooltip, ImportantContainer } from "components/ui";
-import { AnimatePresence } from "framer-motion";
+import { Paragraph, Heading, Tooltip, BrandedBox } from "components/ui";
 import type {
     Activity as LanyardActivity,
     Data as LanyardData,
@@ -16,71 +14,56 @@ import type {
 import { useLanyardWS } from "use-lanyard";
 
 export default function DiscordPresence() {
-    const [visible, setVisible] = useState<boolean>(true);
-
     const presence = useLanyardWS(DISCORD, { initialData });
-    const state = parseActivities(presence?.activities) ?? parseActivities(initialData.activities);
+    const state =
+        parseActivities(presence?.activities) ??
+        (parseActivities(initialData.activities) as DiscordPresenceIDEState);
 
     const isOnline = presence?.discord_status && presence.discord_status !== "offline";
 
     return (
-        <AnimatePresence>
-            {visible && state ? (
-                <DiscordPresenceContainer
-                    variants={childStaggerAnimation}
-                    transition={extraBounce}
-                    initial="initial"
-                    animate="animate"
-                    exit="initial"
-                >
-                    <Images>
-                        <Tooltip title={state.images.large.tooltip}>
-                            <LargeImage
-                                fill
-                                src={state.images.large.src}
-                                alt={
-                                    state.images.large.tooltip ?? "Discord application large image"
-                                }
-                            />
-                        </Tooltip>
-                        <SmallImageContainer>
-                            <Tooltip title={state.images.small.tooltip} size="sm">
-                                <SmallImage
-                                    fill
-                                    isOnline={isOnline}
-                                    src={state.images.small.src}
-                                    alt={
-                                        state.images.small.tooltip ??
-                                        "Discord application small image"
-                                    }
-                                />
-                            </Tooltip>
-                        </SmallImageContainer>
-                    </Images>
-                    <Text>
-                        <Heading ellipsis as="h4">
-                            {state.name}
-                        </Heading>
-                        <TextBody>
-                            {state.lines.map((line, index) => (
-                                // usually not ideal to use index as key, but in this case they should remain in the same order
-                                // and it'd be too complex to generate a key / parse from the line
-                                // eslint-disable-next-line react/no-array-index-key
-                                <Paragraph key={index} ellipsis size="sm">
-                                    {line.map((chunk) =>
-                                        chunk.highlighted ? (
-                                            <Highlight key={chunk.text}>{chunk.text}</Highlight>
-                                        ) : (
-                                            chunk.text
-                                        )
-                                    )}
-                                </Paragraph>
-                            ))}
-                        </TextBody>
-                    </Text>
-                </DiscordPresenceContainer>
-            ) : null}
-        </AnimatePresence>
+        <DiscordPresenceContainer variants={slideFromBottom}>
+            <Images>
+                <Tooltip title={state.images.large.tooltip}>
+                    <LargeImage
+                        fill
+                        src={state.images.large.src}
+                        alt={state.images.large.tooltip ?? "Discord application large image"}
+                    />
+                </Tooltip>
+                <SmallImageContainer>
+                    <Tooltip title={state.images.small.tooltip} size="sm">
+                        <SmallImage
+                            fill
+                            isOnline={isOnline}
+                            src={state.images.small.src}
+                            alt={state.images.small.tooltip ?? "Discord application small image"}
+                        />
+                    </Tooltip>
+                </SmallImageContainer>
+            </Images>
+            <Text>
+                <Heading ellipsis as="h4">
+                    {state.name}
+                </Heading>
+                <TextBody>
+                    {state.lines.map((line, index) => (
+                        // usually not ideal to use index as key, but in this case they should remain in the same order
+                        // and it'd be too complex to generate a key / parse from the line
+                        // eslint-disable-next-line react/no-array-index-key
+                        <Paragraph key={index} ellipsis size="sm">
+                            {line.map((chunk) =>
+                                chunk.highlighted ? (
+                                    <Highlight key={chunk.text}>{chunk.text}</Highlight>
+                                ) : (
+                                    chunk.text
+                                )
+                            )}
+                        </Paragraph>
+                    ))}
+                </TextBody>
+            </Text>
+        </DiscordPresenceContainer>
     );
 }
 
@@ -124,7 +107,7 @@ const initialData: LanyardData = {
     active_on_discord_mobile: false,
     active_on_discord_desktop: true,
 };
-const DiscordPresenceContainer = styled(ImportantContainer, {
+const DiscordPresenceContainer = styled(BrandedBox, {
     aspectRatio: "55 / 18",
     maxWidth: 440,
     maxHeight: 144,
@@ -133,6 +116,7 @@ const DiscordPresenceContainer = styled(ImportantContainer, {
     flexDirection: "row",
     willTransition: "transform",
     padding: "$3",
+    marginTop: "$6",
 
     "@xs": {
         padding: "$4",
