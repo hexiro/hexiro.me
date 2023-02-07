@@ -90,7 +90,7 @@ type LinkWithIconProps = {
 } & Omit<ComponentProps<typeof FlexLink>, "noNextLink" | "href">;
 
 const LinkWithIcon = ({ name, href, icon, ...props }: LinkWithIconProps) => (
-    <FlexLink noNextLink href={href ? href : idToHref(name)} {...props}>
+    <FlexLink noNextLink href={href ? href : idToHref(name)} animation="popAndTap" {...props}>
         {icon({ size: "sm" })}
         <Text>{name}</Text>
     </FlexLink>
@@ -98,6 +98,6 @@ const LinkWithIcon = ({ name, href, icon, ...props }: LinkWithIconProps) => (
 
 const Text = styled("p", {
     fontSize: 16,
-    fontWeight: 600,
+    fontWeight: 500,
     color: "$text-primary",
 });
