@@ -13,7 +13,7 @@ import TopLanguages from "@/components/dashboard/TopLanguages";
 import type contributionsCalendar from "@/data/contributionsCalendar";
 import type wakatimeStats from "@/data/wakatimeStats";
 
-import useFirstTimeInView from "@/hooks/useFirstTimeInView";
+import useViewportAnimation from "@/hooks/useViewportAnimation";
 import Section from "@/layout/Section";
 
 export interface DashboardProps {
@@ -28,7 +28,7 @@ const INDEX = 2;
 
 const Dashboard = forwardRef<HTMLElement, DashboardProps>(
     ({ contributionsCalendar, wakatimeStats }, ref) => {
-        const animate = useFirstTimeInView(ref as RefObject<HTMLElement>);
+        const animate = useViewportAnimation(ref as RefObject<HTMLElement>);
 
         return (
             <Section ref={ref} name={NAME} description={DESCRIPTION} index={INDEX}>

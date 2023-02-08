@@ -13,12 +13,7 @@ type BrandedBoxContainerProps = PropsWithChildren<
 
 export default function BrandedBoxContainer({ children, ...props }: BrandedBoxContainerProps) {
     return (
-        <BrandedBoxContainerWrapper
-            variants={staggerChildren}
-            initial="initial"
-            animate="animate"
-            {...props}
-        >
+        <BrandedBoxContainerWrapper variants={staggerChildren} {...props}>
             {children}
         </BrandedBoxContainerWrapper>
     );
@@ -32,7 +27,6 @@ const BrandedBoxContainerWrapper = styled(motion.div, {
     flexWrap: "wrap",
     columnGap: "2%",
     rowGap: "$4",
-    marginTop: "$6",
 
     // one-column layout
     "@lg": {

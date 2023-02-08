@@ -1,40 +1,46 @@
 import { styled } from "@/theme";
 import type { ComponentProps } from "@stitches/react";
 
-import type { PropsWithChildren } from "react";
+import type { PropsWithChildren, RefObject } from "react";
 import { forwardRef } from "react";
 
 import { topLevelStaggerChildren } from "@/commons/framer";
 
 import useNavSectionIsSelected from "@/hooks/useNavSectionIsSelected";
+import useViewportAnimation from "@/hooks/useViewportAnimation";
 import type { SEOProps } from "@/layout/SEO";
 import { SEO } from "@/layout/SEO";
 
 import { motion } from "framer-motion";
 
-export type SectionProps = ComponentProps<typeof SectionContainer> & SectionSEOProps;
+export type SectionProps = PropsWithChildren<
+    ComponentProps<typeof SectionContainer> & SectionSEOProps
+>;
 
 type SectionSEOProps = SEOProps & {
     index: number | null;
 };
 
-const Section = forwardRef<HTMLElement, PropsWithChildren<SectionProps>>(
-    ({ name, description, index, children, ...props }, ref) => (
-        <>
-            <SectionContainer
-                ref={ref}
-                variants={topLevelStaggerChildren}
-                initial="initial"
-                animate="animate"
-                exit="initial"
-                {...props}
-            >
-                <SectionIdElement id={name.toLowerCase()} />
-                {children}
-            </SectionContainer>
-            <SectionSEO name={name} description={description} index={index} />
-        </>
-    )
+const Section = forwardRef<HTMLElement, SectionProps>(
+    ({ name, description, index, children, ...props }, ref) => {
+        const controls = useViewportAnimation(ref as RefObject<HTMLElement>);
+        return (
+            <>
+                <SectionContainer
+                    ref={ref}
+                    variants={topLevelStaggerChildren}
+                    initial="initial"
+                    animate={controls}
+                    exit="initial"
+                    {...props}
+                >
+                    <SectionIdElement id={name.toLowerCase()} />
+                    {children}
+                </SectionContainer>
+                <SectionSEO name={name} description={description} index={index} />
+            </>
+        );
+    }
 );
 
 const SectionSEO = ({ name, description, index }: SectionSEOProps) => {
