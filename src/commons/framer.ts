@@ -27,16 +27,6 @@ export const extraBounce: Transition = {
 
 // parent variants
 
-export const topLevelStaggerChildren: Variants = {
-    initial: {},
-    animate: {
-        transition: {
-            delayChildren: 0.05,
-            staggerChildren: 0.03,
-        },
-    },
-};
-
 export const staggerChildren: Variants = {
     initial: {
         opacity: 0,
@@ -44,6 +34,7 @@ export const staggerChildren: Variants = {
     animate: {
         opacity: 1,
         transition: {
+            delayChildren: 0.05,
             staggerChildren: 0.07,
         },
     },

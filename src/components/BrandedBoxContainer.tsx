@@ -27,6 +27,7 @@ const BrandedBoxContainerWrapper = styled(motion.div, {
     flexWrap: "wrap",
     columnGap: "2%",
     rowGap: "$4",
+    marginTop: "$6",
 
     // one-column layout
     "@lg": {

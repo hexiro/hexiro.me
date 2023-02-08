@@ -37,12 +37,12 @@ const Dashboard = forwardRef<HTMLElement, DashboardProps>(
                     <Paragraph size="lg">{DESCRIPTION}</Paragraph>
                 </TextContainer>
                 <BrandedBoxContainer>
-                    <ContributionsCalendar data={contributionsCalendar} />
                     <ProgrammingTimeStats
                         dailyAverage={wakatimeStats.dailyAverageDuration}
                         last7Days={wakatimeStats.last7daysDuration}
                     />
                     <TopLanguages languages={wakatimeStats.languages} />
+                    <ContributionsCalendar data={contributionsCalendar} />
                 </BrandedBoxContainer>
             </Section>
         );

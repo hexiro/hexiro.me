@@ -2,7 +2,6 @@ import { styled } from "@/theme";
 
 import { useRef, useState } from "react";
 
-import { slideFromBottom, extraBounce } from "@/commons/framer";
 import type { ProjectData } from "@/commons/graphql/projects";
 import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
 
@@ -26,8 +25,6 @@ export default function Project({ data }: ProjectProps) {
     return (
         <ProjectContainer
             ref={ref}
-            variants={slideFromBottom}
-            transition={extraBounce}
             enableHoverAnimation={animationComplete}
             onAnimationComplete={() => setAnimationComplete(true)}
         >

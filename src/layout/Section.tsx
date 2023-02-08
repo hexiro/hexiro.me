@@ -1,10 +1,10 @@
 import { styled } from "@/theme";
 import type { ComponentProps } from "@stitches/react";
 
-import type { PropsWithChildren, RefObject } from "react";
+import type { PropsWithChildren } from "react";
 import { forwardRef } from "react";
 
-import { topLevelStaggerChildren } from "@/commons/framer";
+import { staggerChildren } from "@/commons/framer";
 
 import useNavSectionIsSelected from "@/hooks/useNavSectionIsSelected";
 import useViewportAnimation from "@/hooks/useViewportAnimation";
@@ -23,12 +23,12 @@ type SectionSEOProps = SEOProps & {
 
 const Section = forwardRef<HTMLElement, SectionProps>(
     ({ name, description, index, children, ...props }, ref) => {
-        const controls = useViewportAnimation(ref as RefObject<HTMLElement>);
+        const controls = useViewportAnimation(ref);
         return (
             <>
                 <SectionContainer
                     ref={ref}
-                    variants={topLevelStaggerChildren}
+                    variants={staggerChildren}
                     initial="initial"
                     animate={controls}
                     exit="initial"

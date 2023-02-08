@@ -1,8 +1,22 @@
 import { styled } from "@/theme";
 
+import type { ComponentProps, PropsWithChildren } from "react";
+
+import { slideFromBottom } from "@/commons/framer";
+
 import { motion } from "framer-motion";
 
-const BrandedBox = styled(motion.div, {
+type BrandedBoxProps = PropsWithChildren<ComponentProps<typeof BrandedBoxContainer>>;
+
+export default function BrandedBox({ children, ...props }: BrandedBoxProps) {
+    return (
+        <BrandedBoxContainer variants={slideFromBottom} {...props}>
+            {children}
+        </BrandedBoxContainer>
+    );
+}
+
+const BrandedBoxContainer = styled(motion.div, {
     position: "relative",
     backgroundColor: "$background-secondary",
     borderRadius: "$xl",
@@ -13,5 +27,3 @@ const BrandedBox = styled(motion.div, {
     paddingX: "20px",
     paddingY: "16px",
 });
-
-export default BrandedBox;
