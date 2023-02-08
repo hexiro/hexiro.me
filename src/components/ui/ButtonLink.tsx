@@ -5,7 +5,11 @@ import { Button, Link } from "@/components/ui";
 
 type ButtonLinkProps = Omit<ComponentProps<typeof Button> & ComponentProps<typeof Link>, "as">;
 
-const ButtonLink = ({ ...props }: ButtonLinkProps) => <ButtonLinkWrapper {...props} as={Link} />;
+const ButtonLink = ({ children, priority, ...props }: ButtonLinkProps) => (
+    <ButtonLinkWrapper as={Link} priority={priority} {...props}>
+        {children}
+    </ButtonLinkWrapper>
+);
 
 const ButtonLinkWrapper = styled(Button, {
     color: "inherit",

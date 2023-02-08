@@ -1,14 +1,10 @@
 import { forwardRef, memo } from "react";
 
-import { slideFromLeft } from "@/commons/framer";
-
-import { Heading, Paragraph, Span, Subheading } from "@/components/ui";
+import { Heading, Span } from "@/components/ui";
 
 import DiscordPresence from "@/components/home/DiscordPresence";
 
 import Section from "@/layout/Section";
-
-import { motion } from "framer-motion";
 
 const NAME = "Home";
 const DESCRIPTION =
@@ -16,19 +12,19 @@ const DESCRIPTION =
 const INDEX = 0;
 
 const Home = forwardRef<HTMLElement>((_, ref) => (
-    <Section ref={ref} name={NAME} description={DESCRIPTION} index={INDEX}>
-        <motion.div variants={slideFromLeft}>
-            <Subheading>{"hi! I'm"}</Subheading>
-        </motion.div>
-        <motion.div variants={slideFromLeft}>
+    <Section
+        ref={ref}
+        index={INDEX}
+        subheading="hi! I'm"
+        name={NAME}
+        description={DESCRIPTION}
+        nameElement={() => (
             <Heading as="h1">
                 Nathan <Span color="brand-accent">Lodge</Span>
                 <Span color="text-primary">,</Span>
             </Heading>
-        </motion.div>
-        <motion.div variants={slideFromLeft}>
-            <Paragraph size="lg">{DESCRIPTION}</Paragraph>
-        </motion.div>
+        )}
+    >
         <DiscordPresence />
     </Section>
 ));

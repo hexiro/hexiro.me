@@ -17,19 +17,10 @@ const Button = styled("button", {
 
     variants: {
         priority: {
-            primary: {
-                backgroundColor: "$brand-primary",
-                color: "$background-secondary",
-                fontWeight: 800,
-
-                "&:hover": {
-                    backgroundColor: "$brand-primary-alpha-50",
-                },
-            },
             secondary: {
                 backgroundColor: "$background-secondary",
                 color: "$text-primary",
-                borderWidth: "1px",
+                borderWidth: "2px",
                 borderStyle: "solid",
                 borderColor: "$lighten-10",
 

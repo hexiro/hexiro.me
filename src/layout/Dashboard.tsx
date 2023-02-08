@@ -1,9 +1,4 @@
-import { styled } from "@/theme";
-
-import type { RefObject } from "react";
 import { forwardRef, memo } from "react";
-
-import { Heading, Paragraph } from "@/components/ui";
 
 import BrandedBoxContainer from "@/components/BrandedBoxContainer";
 import ContributionsCalendar from "@/components/dashboard/ContributionsCalender";
@@ -13,7 +8,6 @@ import TopLanguages from "@/components/dashboard/TopLanguages";
 import type contributionsCalendar from "@/data/contributionsCalendar";
 import type wakatimeStats from "@/data/wakatimeStats";
 
-import useViewportAnimation from "@/hooks/useViewportAnimation";
 import Section from "@/layout/Section";
 
 export interface DashboardProps {
@@ -27,30 +21,18 @@ const DESCRIPTION =
 const INDEX = 2;
 
 const Dashboard = forwardRef<HTMLElement, DashboardProps>(
-    ({ contributionsCalendar, wakatimeStats }, ref) => {
-        const animate = useViewportAnimation(ref as RefObject<HTMLElement>);
-
-        return (
-            <Section ref={ref} name={NAME} description={DESCRIPTION} index={INDEX}>
-                <TextContainer>
-                    <Heading as="h1">{NAME}</Heading>
-                    <Paragraph size="lg">{DESCRIPTION}</Paragraph>
-                </TextContainer>
-                <BrandedBoxContainer>
-                    <ProgrammingTimeStats
-                        dailyAverage={wakatimeStats.dailyAverageDuration}
-                        last7Days={wakatimeStats.last7daysDuration}
-                    />
-                    <TopLanguages languages={wakatimeStats.languages} />
-                    <ContributionsCalendar data={contributionsCalendar} />
-                </BrandedBoxContainer>
-            </Section>
-        );
-    }
+    ({ contributionsCalendar, wakatimeStats }, ref) => (
+        <Section ref={ref} name={NAME} description={DESCRIPTION} index={INDEX}>
+            <BrandedBoxContainer>
+                <ProgrammingTimeStats
+                    dailyAverage={wakatimeStats.dailyAverageDuration}
+                    last7Days={wakatimeStats.last7daysDuration}
+                />
+                <TopLanguages languages={wakatimeStats.languages} />
+                <ContributionsCalendar data={contributionsCalendar} />
+            </BrandedBoxContainer>
+        </Section>
+    )
 );
 
 export default memo(Dashboard);
-
-const TextContainer = styled("div", {
-    marginBottom: "$6",
-});
