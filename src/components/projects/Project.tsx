@@ -59,7 +59,7 @@ export default function Project({ data }: ProjectProps) {
             <ProjectTopics>
                 {languages.map((name) => (
                     <Topic key={name}>
-                        <LanguageIcon name={name} css={{ height: "1em", width: "auto" }} />
+                        <LanguageIcon name={name} css={{ height: "20px", width: "auto" }} />
                         <LanguageTextSpan>{name}</LanguageTextSpan>
                     </Topic>
                 ))}
@@ -116,7 +116,7 @@ const ProjectTopics = styled("ul", {
     flexWrap: "wrap",
     gap: "$2",
     lineHeight: "$single",
-    height: "28px",
+    height: "32px",
     overflow: "hidden",
     marginBottom: "$3",
 });
@@ -124,12 +124,16 @@ const ProjectTopics = styled("ul", {
 const Topic = styled("li", {
     listStyle: "none",
     display: "flex",
+    alignItems: "center",
     flexDirection: "row",
     position: "relative",
     backgroundColor: "$brand-tertiary",
     fontWeight: 600,
-    padding: "6px 12px",
+    padding: "4px 12px",
     borderRadius: "$xl",
+    borderWidth: 2,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.075)",
 });
 
 const LanguageTextSpan = styled("span", {
