@@ -14,12 +14,11 @@ export type ProjectsProps = {
 const NAME = "Projects";
 const DESCRIPTION =
     "I hand-picked these six projects to showcase my skill set and creativity. I host each project on GitHub.";
-const INDEX = 1;
 
 const Projects = forwardRef<HTMLElement, ProjectsProps>(({ projects }, ref) => {
     console.log("Projects");
     return (
-        <Section ref={ref} name={NAME} description={DESCRIPTION} index={INDEX}>
+        <Section ref={ref} name={NAME} description={DESCRIPTION}>
             <BrandedBoxContainer>
                 {projects.map((project) => (
                     <Project key={project.name} data={project} />

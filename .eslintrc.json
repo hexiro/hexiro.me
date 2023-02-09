@@ -28,6 +28,7 @@
             { "props": "never", "children": "ignore", "propElementValues": "always" }
         ],
         "react/static-property-placement": ["error", "static getter"],
+        "react/require-default-props": "off",
         "@typescript-eslint/no-unsafe-assignment": "off",
         "@typescript-eslint/no-unsafe-call": "off",
         "@typescript-eslint/no-unsafe-return": "off",

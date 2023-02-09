@@ -1,12 +1,46 @@
-import type { SectionProps } from "@/layout/Section";
-import Section from "@/layout/Section";
+import { forwardRef } from "react";
 
-type PageProps = Omit<SectionProps, "index">;
+import { staggerChildren } from "@/commons/framer";
 
-export default function Page({ children, ...props }: PageProps) {
-    return (
-        <Section index={null} {...props}>
-            {children}
-        </Section>
-    );
-}
+import type { SectionContainerProps } from "@/components/SectionContainer";
+import SectionContainer from "@/components/SectionContainer";
+
+import { SEO } from "layout/SEO";
+
+export const Page = forwardRef<HTMLElement, SectionContainerProps>(
+    (
+        {
+            name,
+            description,
+            subheading,
+            nameElement,
+            descriptionElement,
+            subheadingElement,
+            children,
+            ...props
+        },
+        ref
+    ) => (
+        <>
+            <SectionContainer
+                ref={ref}
+                name={name}
+                description={description}
+                subheading={subheading}
+                nameElement={nameElement}
+                descriptionElement={descriptionElement}
+                subheadingElement={subheadingElement}
+                variants={staggerChildren}
+                initial="initial"
+                animate="animate"
+                exit="initial"
+                {...props}
+            >
+                {children}
+            </SectionContainer>
+            <SEO name={name} description={description} />
+        </>
+    )
+);
+
+export default Page;

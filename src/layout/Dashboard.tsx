@@ -18,11 +18,10 @@ export interface DashboardProps {
 const NAME = "Dashboard";
 const DESCRIPTION =
     "This dashboard is a collection of statistics related to myself and programming.";
-const INDEX = 2;
 
 const Dashboard = forwardRef<HTMLElement, DashboardProps>(
     ({ contributionsCalendar, wakatimeStats }, ref) => (
-        <Section ref={ref} name={NAME} description={DESCRIPTION} index={INDEX}>
+        <Section ref={ref} name={NAME} description={DESCRIPTION}>
             <BrandedBoxContainer>
                 <ProgrammingTimeStats
                     dailyAverage={wakatimeStats.dailyAverageDuration}

@@ -1,11 +1,13 @@
 import { selectedRouteIndexAtom } from "@/commons/atoms";
+import type { RouteName } from "@/commons/sections";
+import { ROUTE_NAMES } from "@/commons/sections";
 
 import { useAtom } from "jotai";
 
-export default function useNavSectionIsSelected(index: number | null): boolean {
-    const [selectedRouteIndex] = useAtom(selectedRouteIndexAtom);
+export default function useNavSectionIsSelected(routeName: RouteName) {
+    const [selectedIndex] = useAtom(selectedRouteIndexAtom);
 
-    if (index === null) return false;
+    const index = ROUTE_NAMES.findIndex((name) => name === routeName);
 
-    return selectedRouteIndex === index;
+    return index === selectedIndex;
 }

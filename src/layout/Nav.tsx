@@ -1,24 +1,11 @@
 import { styled } from "@/theme";
 
-import type { IconType } from "@/commons/icons";
-
 import { Hide, Show } from "@/components/layout";
 import { Heading, Span } from "@/components/ui";
 
 import Menu from "@/components/nav/Menu";
 import Routes from "@/components/nav/Routes";
 import Socials from "@/components/nav/Socials";
-
-export interface NavRoute {
-    name: string;
-    icon: IconType;
-}
-
-export interface SocialRoute {
-    name: string;
-    href: string;
-    icon: IconType;
-}
 
 export default function Nav() {
     return (

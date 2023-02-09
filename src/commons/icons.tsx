@@ -83,7 +83,7 @@ const Icon = styled("svg", {
     },
 });
 
-export type IconType = typeof TwitterIcon;
+export type IconType = (props?: IconProps) => JSX.Element;
 export type IconProps = ComponentProps<typeof Icon>;
 
 export const TwitterIcon = (props?: IconProps) => (

@@ -6,13 +6,10 @@ import { selectedRouteIndexAtom } from "@/commons/atoms";
 
 import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 
-import { useAtom } from "jotai";
+import { useSetAtom } from "jotai";
 
 export default function useUpdateNavState(...refs: Array<RefObject<HTMLElement>>) {
-    // const homeInView = useInView(homeRef, useInViewOptions);
-    // const projectsInView = useInView(projectsRef, useInViewOptions);
-
-    const [, setSelectedRouteIndex] = useAtom(selectedRouteIndexAtom);
+    const setSelectedRouteIndex = useSetAtom(selectedRouteIndexAtom);
 
     useIsomorphicLayoutEffect(() => {
         if (!refs.every((ref) => ref.current !== null)) return;
