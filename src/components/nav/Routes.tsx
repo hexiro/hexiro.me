@@ -7,23 +7,18 @@ import { ListItem } from "@/components/ui";
 
 import Route from "@/components/nav/Route";
 
-import useNavState from "@/hooks/useNavState";
+import useCurrentSectionInView from "@/hooks/useCurrentSectionInView";
 
 export default function Routes() {
-    const { selectedIndex, isHome } = useNavState();
-
-    const pageName = ROUTES[selectedIndex]?.name ?? "Portfolio";
+    const currentSection = useCurrentSectionInView();
+    const pageName = currentSection?.name ?? "Portfolio";
 
     return (
         <>
             <Hide below="sm">
                 <UnorderedList>
-                    {ROUTES.map(({ name }, index) => (
-                        <Route
-                            key={name}
-                            name={name}
-                            isSelected={isHome && index === selectedIndex}
-                        />
+                    {ROUTES.map(({ name }) => (
+                        <Route key={name} name={name} />
                     ))}
                 </UnorderedList>
             </Hide>

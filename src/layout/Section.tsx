@@ -6,7 +6,7 @@ import type { RouteName } from "@/commons/sections";
 import type { SectionContainerProps } from "@/components/SectionContainer";
 import SectionContainer from "@/components/SectionContainer";
 
-import useNavSectionIsSelected from "@/hooks/useNavSectionIsSelected";
+import useNavSectionIsSelected from "@/hooks/useIsSectionCurrentSectionInView";
 import useViewportAnimation from "@/hooks/useViewportAnimation";
 import type { SEOProps } from "@/layout/SEO";
 import { SEO } from "@/layout/SEO";

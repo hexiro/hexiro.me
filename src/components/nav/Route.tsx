@@ -2,24 +2,30 @@ import { styled } from "@/theme";
 
 import { idToHref } from "@/commons";
 import { fadeIn } from "@/commons/framer";
+import type { RouteName } from "@/commons/sections";
 
 import { Link, ListItem, Span } from "@/components/ui";
+
+import useIsIndexPage from "@/hooks/useIsIndexPage";
+import useIsSectionCurrentSectionInView from "@/hooks/useIsSectionCurrentSectionInView";
 
 import { AnimatePresence, motion } from "framer-motion";
 
 interface RouteProps {
-    name: string;
-    isSelected: boolean;
+    name: RouteName;
 }
 
-export default function Route({ name, isSelected }: RouteProps) {
+export default function Route({ name }: RouteProps) {
+    const isIndexPage = useIsIndexPage();
+    const isSelected = useIsSectionCurrentSectionInView(name);
+
     return (
         <ListItem key={name} css={{ position: "relative" }}>
             <Link noNextLink href={idToHref(name)}>
                 <Span animation="popAndTap">{name}</Span>
             </Link>
             <AnimatePresence initial={false}>
-                {isSelected && (
+                {isIndexPage && isSelected ? (
                     <RouteUnderline
                         variants={fadeIn}
                         layoutId="nav-route-underline"
@@ -27,7 +33,7 @@ export default function Route({ name, isSelected }: RouteProps) {
                         animate="animate"
                         exit="initial"
                     />
-                )}
+                ) : null}
             </AnimatePresence>
         </ListItem>
     );

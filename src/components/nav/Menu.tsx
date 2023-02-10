@@ -2,6 +2,7 @@ import { styled, breakpoints } from "@/theme";
 
 import { useRef, useState } from "react";
 
+import { menuHoverIndexAtom } from "@/commons/atoms";
 import { fadeInAndScale, normalBounce } from "@/commons/framer";
 import { CloseIcon, HamburgerMenuIcon } from "@/commons/icons";
 import { ROUTES, SOCIALS } from "@/commons/sections";
@@ -10,20 +11,18 @@ import { Divider } from "@/components/layout";
 
 import MenuItem from "@/components/nav/MenuItem";
 
-import useNavState from "@/hooks/useNavState";
 import useOutsideMenuClick from "@/hooks/useOutsideMenuClick";
 import useWindowWidthInBounds from "@/hooks/useWindowWidth";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { useSetAtom } from "jotai";
 
 export default function Menu() {
     const menuRef = useRef<HTMLUListElement>(null);
     const menuButtonRef = useRef<HTMLButtonElement>(null);
 
-    const { selectedIndex, isHome } = useNavState();
-
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-    const [menuHoverIndex, setMenuHoverIndex] = useState<number | null>(null);
+    const setMenuHoverIndex = useSetAtom(menuHoverIndexAtom);
 
     useOutsideMenuClick({
         menuRef,
@@ -57,7 +56,7 @@ export default function Menu() {
                         exit="initial"
                         onHoverEnd={() => setMenuHoverIndex(null)}
                     >
-                        {ROUTES.map(({ name, icon }, index) => (
+                        {ROUTES.map(({ name, icon }) => (
                             <MenuItem
                                 key={name}
                                 name={name}
