@@ -1,13 +1,10 @@
-import { useMemo } from "react";
-
-import { menuHoverIndexAtom } from "@/commons/atoms";
-import type { RouteName, SocialsName } from "@/commons/sections";
+import { menuHoverAtom } from "@/commons/atoms";
+import type { SectionName, SocialName } from "@/commons/sections";
 
 import { useAtomValue } from "jotai";
 
-export default function useIsSectionHovered(name: RouteName | SocialsName) {
-    const hoveredSection = useAtomValue(menuHoverIndexAtom);
-    const isHovered = useMemo(() => hoveredSection === name, [hoveredSection, name]);
+export default function useIsSectionHovered(name: SectionName | SocialName) {
+    const hoveredSection = useAtomValue(menuHoverAtom);
 
-    return isHovered;
+    return hoveredSection === name;
 }

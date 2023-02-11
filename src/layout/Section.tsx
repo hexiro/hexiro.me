@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 import { staggerChildren } from "@/commons/framer";
-import type { RouteName } from "@/commons/sections";
+import type { SectionName } from "@/commons/sections";
 
 import type { SectionContainerProps } from "@/components/SectionContainer";
 import SectionContainer from "@/components/SectionContainer";
@@ -12,7 +12,7 @@ import type { SEOProps } from "@/layout/SEO";
 import { SEO } from "@/layout/SEO";
 
 type SectionProps = SectionContainerProps & {
-    name: RouteName;
+    name: SectionName;
 };
 
 const Section = forwardRef<HTMLElement, SectionProps>(
@@ -56,7 +56,7 @@ const Section = forwardRef<HTMLElement, SectionProps>(
 );
 
 type SectionSEOProps = SEOProps & {
-    name: RouteName;
+    name: SectionName;
 };
 
 const SectionSEO = ({ name, description }: SectionSEOProps) => {

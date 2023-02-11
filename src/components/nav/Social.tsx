@@ -1,8 +1,8 @@
-import type { NavSocial } from "@/commons/sections";
+import type { Social } from "@/commons/sections";
 
 import { Link, Tooltip } from "@/components/ui";
 
-export default function Social({ name, href, icon }: NavSocial) {
+export default function Social({ name, href, icon }: Social) {
     return (
         <li>
             <Tooltip title={name} size="sm" animation="shift" position="bottom" distance={5}>

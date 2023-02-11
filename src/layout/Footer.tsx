@@ -3,7 +3,7 @@ import type { ComponentProps } from "@stitches/react";
 
 import { idToHref } from "@/commons";
 import type { IconType } from "@/commons/icons";
-import { ROUTES, SOCIALS } from "@/commons/sections";
+import { SECTIONS, SOCIALS } from "@/commons/sections";
 
 import { Divider } from "@/components/layout";
 import { Heading, Link } from "@/components/ui";
@@ -24,7 +24,7 @@ export default function Footer() {
                 <SectionsAndLinks>
                     <SectionsSlashLinks>
                         <SectionsSlashLinksHeading as="h4">Sections</SectionsSlashLinksHeading>
-                        {ROUTES.map(({ name, icon }) => (
+                        {SECTIONS.map(({ name, icon }) => (
                             <LinkWithIcon key={name} name={name} icon={icon} />
                         ))}
                     </SectionsSlashLinks>

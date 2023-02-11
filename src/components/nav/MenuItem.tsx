@@ -2,10 +2,10 @@ import { styled } from "@/theme";
 import type { ComponentProps } from "@stitches/react";
 
 import { idToHref } from "@/commons";
-import { menuHoverIndexAtom } from "@/commons/atoms";
+import { menuHoverAtom } from "@/commons/atoms";
 import { fadeIn, smallBounce } from "@/commons/framer";
 import type { IconType } from "@/commons/icons";
-import type { RouteName, SocialsName } from "@/commons/sections";
+import type { SectionName, SocialName } from "@/commons/sections";
 
 import { Link } from "@/components/ui";
 
@@ -15,7 +15,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useSetAtom } from "jotai";
 
 export type MenuItemProps = {
-    name: RouteName | SocialsName;
+    name: SectionName | SocialName;
     icon: IconType;
     href?: string;
     newTab?: boolean;
@@ -23,10 +23,10 @@ export type MenuItemProps = {
 
 const MenuItem = ({ name, icon, href, newTab, ...props }: MenuItemProps) => {
     const isHovered = useIsSectionHovered(name);
-    const setMenuHoverIndex = useSetAtom(menuHoverIndexAtom);
+    const setMenuHover = useSetAtom(menuHoverAtom);
 
     return (
-        <MenuItemWrapper onHoverStart={() => setMenuHoverIndex(name)} {...props}>
+        <MenuItemWrapper onHoverStart={() => setMenuHover(name)} {...props}>
             <FlexLink noNextLink newTab={newTab} href={href ? href : idToHref(name)}>
                 {icon()}
                 <Text>{name}</Text>

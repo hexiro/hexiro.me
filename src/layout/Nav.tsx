@@ -4,7 +4,7 @@ import { Hide, Show } from "@/components/layout";
 import { Heading, Span } from "@/components/ui";
 
 import Menu from "@/components/nav/Menu";
-import Routes from "@/components/nav/Routes";
+import Sections from "@/components/nav/Sections";
 import Socials from "@/components/nav/Socials";
 
 export default function Nav() {
@@ -14,7 +14,7 @@ export default function Nav() {
                 <Heading as="h2">
                     hexiro<Span color="brand-accent">.me</Span>
                 </Heading>
-                <Routes />
+                <Sections />
             </NavLeft>
             <NavRight>
                 <Hide below="sm">

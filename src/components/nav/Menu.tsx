@@ -2,10 +2,10 @@ import { styled, breakpoints } from "@/theme";
 
 import { useRef, useState } from "react";
 
-import { menuHoverIndexAtom } from "@/commons/atoms";
+import { menuHoverAtom } from "@/commons/atoms";
 import { fadeInAndScale, normalBounce } from "@/commons/framer";
 import { CloseIcon, HamburgerMenuIcon } from "@/commons/icons";
-import { ROUTES, SOCIALS } from "@/commons/sections";
+import { SECTIONS, SOCIALS } from "@/commons/sections";
 
 import { Divider } from "@/components/layout";
 
@@ -23,14 +23,14 @@ export default function Menu() {
     const menuButtonRef = useRef<HTMLButtonElement>(null);
 
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-    const setMenuHoverIndex = useSetAtom(menuHoverIndexAtom);
+    const setMenuHover = useSetAtom(menuHoverAtom);
 
     useOutsideMenuClick({
         menuRef,
         buttonRef: menuButtonRef,
         handler() {
             setIsMenuOpen(false);
-            setMenuHoverIndex(null);
+            setMenuHover(null);
         },
     });
 
@@ -55,9 +55,9 @@ export default function Menu() {
                         initial="initial"
                         animate="animate"
                         exit="initial"
-                        onHoverEnd={() => setMenuHoverIndex(null)}
+                        onHoverEnd={() => setMenuHover(null)}
                     >
-                        {ROUTES.map(({ name, icon }) => (
+                        {SECTIONS.map(({ name, icon }) => (
                             <SectionMenuItem key={name} name={name} icon={icon} />
                         ))}
                         <Divider />

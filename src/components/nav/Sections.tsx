@@ -1,24 +1,25 @@
 import { styled } from "@/theme";
 
-import { ROUTES } from "@/commons/sections";
+import { selectedSectionAtom } from "@/commons/atoms";
+import { SECTIONS } from "@/commons/sections";
 
 import { Hide, Show } from "@/components/layout";
 import { ListItem } from "@/components/ui";
 
-import Route from "@/components/nav/Route";
+import Section from "@/components/nav/Section";
 
-import useCurrentSectionInView from "@/hooks/useCurrentSectionInView";
+import { useAtomValue } from "jotai";
 
-export default function Routes() {
-    const currentSection = useCurrentSectionInView();
+export default function Sections() {
+    const currentSection = useAtomValue(selectedSectionAtom);
     const pageName = currentSection?.name ?? "Portfolio";
 
     return (
         <>
             <Hide below="sm">
                 <UnorderedList>
-                    {ROUTES.map(({ name }) => (
-                        <Route key={name} name={name} />
+                    {SECTIONS.map(({ name }) => (
+                        <Section key={name} name={name} />
                     ))}
                 </UnorderedList>
             </Hide>

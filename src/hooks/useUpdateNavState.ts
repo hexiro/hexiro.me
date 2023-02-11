@@ -2,14 +2,15 @@ import { theme } from "@/theme";
 
 import type { RefObject } from "react";
 
-import { selectedRouteIndexAtom } from "@/commons/atoms";
+import { selectedSectionAtom } from "@/commons/atoms";
+import { SECTIONS } from "@/commons/sections";
 
 import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 
 import { useSetAtom } from "jotai";
 
 export default function useUpdateNavState(...refs: Array<RefObject<HTMLElement>>) {
-    const setSelectedRouteIndex = useSetAtom(selectedRouteIndexAtom);
+    const setSelectedSection = useSetAtom(selectedSectionAtom);
 
     useIsomorphicLayoutEffect(() => {
         if (!refs.every((ref) => ref.current !== null)) return;
@@ -28,7 +29,8 @@ export default function useUpdateNavState(...refs: Array<RefObject<HTMLElement>>
                 }
             }
 
-            setSelectedRouteIndex(index);
+            const section = SECTIONS[index] ?? null;
+            setSelectedSection(section);
         };
 
         window.addEventListener("scroll", handler);

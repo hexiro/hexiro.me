@@ -10,7 +10,7 @@ import { GlobalSEO } from "@/layout/SEO";
 
 import { Provider as JotaiProvider } from "jotai";
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps, router }: AppProps) {
     globalStyles();
     tippyStyles();
 

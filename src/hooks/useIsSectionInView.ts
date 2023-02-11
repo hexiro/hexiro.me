@@ -1,13 +1,10 @@
-import { selectedRouteIndexAtom } from "@/commons/atoms";
-import type { RouteName } from "@/commons/sections";
-import { ROUTE_NAMES } from "@/commons/sections";
+import { selectedSectionAtom } from "@/commons/atoms";
+import type { SectionName } from "@/commons/sections";
 
 import { useAtom } from "jotai";
 
-export default function useIsSectionInView(routeName: RouteName) {
-    const [selectedIndex] = useAtom(selectedRouteIndexAtom);
+export default function useIsSectionInView(sectionName: SectionName) {
+    const [selectedSection] = useAtom(selectedSectionAtom);
 
-    const index = ROUTE_NAMES.findIndex((name) => name === routeName);
-
-    return index === selectedIndex;
+    return selectedSection?.name === sectionName;
 }

@@ -9,7 +9,7 @@ import {
     DashboardIcon,
 } from "@/commons/icons";
 
-export const ROUTES = [
+export const SECTIONS = [
     {
         name: "Home",
         icon: HomeIcon as IconType,
@@ -24,8 +24,7 @@ export const ROUTES = [
     },
 ] as const;
 
-export type RouteName = (typeof ROUTES)[number]["name"];
-export const ROUTE_NAMES = ROUTES.map((route) => route.name);
+export type SectionName = (typeof SECTIONS)[number]["name"];
 
 export const SOCIALS = [
     {
@@ -45,8 +44,7 @@ export const SOCIALS = [
     },
 ] as const;
 
-export type SocialsName = (typeof SOCIALS)[number]["name"];
-export const SOCIALS_NAMES = SOCIALS.map((social) => social.name);
+export type SocialName = (typeof SOCIALS)[number]["name"];
 
-export type NavSection = (typeof ROUTES)[number];
-export type NavSocial = (typeof SOCIALS)[number];
+export type Section = (typeof SECTIONS)[number];
+export type Social = (typeof SOCIALS)[number];

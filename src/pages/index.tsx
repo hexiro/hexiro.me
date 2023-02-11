@@ -20,7 +20,6 @@ export default function IndexPage({
     contributionsCalendar,
     wakatimeStats,
 }: IndexPageProps) {
-    console.log("Index");
 
     const homeRef = useRef<HTMLElement>(null);
     const projectsRef = useRef<HTMLElement>(null);
