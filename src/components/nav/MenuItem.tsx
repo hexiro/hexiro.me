@@ -2,41 +2,50 @@ import { styled } from "@/theme";
 import type { ComponentProps } from "@stitches/react";
 
 import { idToHref } from "@/commons";
+import { menuHoverIndexAtom } from "@/commons/atoms";
 import { fadeIn, smallBounce } from "@/commons/framer";
 import type { IconType } from "@/commons/icons";
+import type { RouteName, SocialsName } from "@/commons/sections";
 
 import { Link } from "@/components/ui";
 
-import { AnimatePresence, motion } from "framer-motion";
+import useIsSectionHovered from "@/hooks/useIsSectionHovered";
 
-type MenuItemProps = {
-    name: string;
+import { AnimatePresence, motion } from "framer-motion";
+import { useSetAtom } from "jotai";
+
+export type MenuItemProps = {
+    name: RouteName | SocialsName;
     icon: IconType;
-    isSelected: boolean;
     href?: string;
     newTab?: boolean;
 } & ComponentProps<typeof MenuItemWrapper>;
 
-const MenuItem = ({ name, icon, href, isSelected, newTab, ...props }: MenuItemProps) => (
-    <MenuItemWrapper {...props}>
-        <FlexLink noNextLink newTab={newTab} href={href ? href : idToHref(name)}>
-            {icon()}
-            <Text>{name}</Text>
-        </FlexLink>
-        <AnimatePresence initial={false}>
-            {isSelected && (
-                <MenuHoverHighlight
-                    variants={fadeIn}
-                    transition={smallBounce}
-                    layoutId="menu-hover-highlight"
-                    initial="initial"
-                    animate="animate"
-                    exit="initial"
-                />
-            )}
-        </AnimatePresence>
-    </MenuItemWrapper>
-);
+const MenuItem = ({ name, icon, href, newTab, ...props }: MenuItemProps) => {
+    const isHovered = useIsSectionHovered(name);
+    const setMenuHoverIndex = useSetAtom(menuHoverIndexAtom);
+
+    return (
+        <MenuItemWrapper onHoverStart={() => setMenuHoverIndex(name)} {...props}>
+            <FlexLink noNextLink newTab={newTab} href={href ? href : idToHref(name)}>
+                {icon()}
+                <Text>{name}</Text>
+            </FlexLink>
+            <AnimatePresence initial={false}>
+                {isHovered && (
+                    <MenuHoverHighlight
+                        variants={fadeIn}
+                        transition={smallBounce}
+                        layoutId="menu-hover-highlight"
+                        initial="initial"
+                        animate="animate"
+                        exit="initial"
+                    />
+                )}
+            </AnimatePresence>
+        </MenuItemWrapper>
+    );
+};
 
 export default MenuItem;
 
@@ -64,11 +73,11 @@ const MenuItemWrapper = styled(motion.li, {
     },
 
     defaultVariants: {
-        highlighted: true,
+        coloredIcon: true,
     },
 
     variants: {
-        highlighted: {
+        coloredIcon: {
             true: {
                 $$svgColor: "$colors$brand-primary",
             },

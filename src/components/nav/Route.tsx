@@ -7,7 +7,7 @@ import type { RouteName } from "@/commons/sections";
 import { Link, ListItem, Span } from "@/components/ui";
 
 import useIsIndexPage from "@/hooks/useIsIndexPage";
-import useIsSectionCurrentSectionInView from "@/hooks/useIsSectionCurrentSectionInView";
+import useIsSectionInView from "@/hooks/useIsSectionInView";
 
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -17,7 +17,7 @@ interface RouteProps {
 
 export default function Route({ name }: RouteProps) {
     const isIndexPage = useIsIndexPage();
-    const isSelected = useIsSectionCurrentSectionInView(name);
+    const isSelected = useIsSectionInView(name);
 
     return (
         <ListItem key={name} css={{ position: "relative" }}>

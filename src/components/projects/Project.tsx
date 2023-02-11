@@ -1,6 +1,6 @@
 import { styled } from "@/theme";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import type { ProjectData } from "@/commons/graphql/projects";
 import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
@@ -16,7 +16,6 @@ interface ProjectProps {
 }
 
 export default function Project({ data }: ProjectProps) {
-    const ref = useRef<HTMLDivElement>(null);
     const [animationComplete, setAnimationComplete] = useState<boolean>(false);
     const { name, description, stars, languages, topics, url, packageUrl } = data;
 
@@ -24,7 +23,6 @@ export default function Project({ data }: ProjectProps) {
 
     return (
         <ProjectContainer
-            ref={ref}
             enableHoverAnimation={animationComplete}
             onAnimationComplete={() => setAnimationComplete(true)}
         >

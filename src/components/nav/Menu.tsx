@@ -14,6 +14,7 @@ import MenuItem from "@/components/nav/MenuItem";
 import useOutsideMenuClick from "@/hooks/useOutsideMenuClick";
 import useWindowWidthInBounds from "@/hooks/useWindowWidth";
 
+import SectionMenuItem from "components/nav/SectionMenuItem";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSetAtom } from "jotai";
 
@@ -57,26 +58,11 @@ export default function Menu() {
                         onHoverEnd={() => setMenuHoverIndex(null)}
                     >
                         {ROUTES.map(({ name, icon }) => (
-                            <MenuItem
-                                key={name}
-                                name={name}
-                                icon={icon}
-                                highlighted={index === selectedIndex}
-                                isSelected={isHome && index === menuHoverIndex}
-                                onHoverStart={() => setMenuHoverIndex(index)}
-                            />
+                            <SectionMenuItem key={name} name={name} icon={icon} />
                         ))}
                         <Divider />
                         {SOCIALS.map(({ name, href, icon }, index) => (
-                            <MenuItem
-                                key={name}
-                                newTab
-                                name={name}
-                                href={href}
-                                icon={icon}
-                                isSelected={index + ROUTES.length === menuHoverIndex}
-                                onHoverStart={() => setMenuHoverIndex(index + ROUTES.length)}
-                            />
+                            <MenuItem key={name} newTab name={name} href={href} icon={icon} />
                         ))}
                     </MenuContainer>
                 )}
