@@ -5,6 +5,5 @@ import { useAtom } from "jotai";
 
 export default function useIsSectionInView(sectionName: SectionName) {
     const [selectedSection] = useAtom(selectedSectionAtom);
-
-    return selectedSection?.name === sectionName;
+    return selectedSection.name === sectionName;
 }

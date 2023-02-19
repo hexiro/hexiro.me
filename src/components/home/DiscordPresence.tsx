@@ -1,113 +1,82 @@
 import { styled } from "@/theme";
 
 import Image from "next/image";
+import type { PropsWithChildren } from "react";
 
+import { sectionsAnimated } from "@/commons/atoms";
 import { DISCORD } from "@/commons/config";
 import { slideFromBottom } from "@/commons/framer";
 
 import { Paragraph, Heading, Tooltip, BrandedBox } from "components/ui";
-import type {
-    Activity as LanyardActivity,
-    Data as LanyardData,
-    Assets as LanyardAssets,
-} from "use-lanyard";
+import { AnimatePresence } from "framer-motion";
+import { useAtomValue } from "jotai";
+import type { Activity as LanyardActivity } from "use-lanyard";
 import { useLanyardWS } from "use-lanyard";
 
 export default function DiscordPresence() {
-    const presence = useLanyardWS(DISCORD, { initialData });
-    const state =
-        parseActivities(presence?.activities) ??
-        (parseActivities(initialData.activities) as DiscordPresenceIDEState);
+    const presence = useLanyardWS(DISCORD);
+    const state = parseActivities(presence?.activities);
 
     const isOnline = presence?.discord_status && presence.discord_status !== "offline";
 
+    const hasHomeSectionAnimated = useAtomValue(sectionsAnimated.Home);
+
     return (
-        <DiscordPresenceContainer variants={slideFromBottom}>
-            <Images>
-                <Tooltip title={state.images.large.tooltip}>
-                    <LargeImage
-                        fill
-                        src={state.images.large.src}
-                        alt={state.images.large.tooltip ?? "Discord application large image"}
-                    />
-                </Tooltip>
-                <SmallImageContainer>
-                    <Tooltip title={state.images.small.tooltip} size="sm">
-                        <SmallImage
-                            fill
-                            isOnline={isOnline}
-                            src={state.images.small.src}
-                            alt={state.images.small.tooltip ?? "Discord application small image"}
-                        />
-                    </Tooltip>
-                </SmallImageContainer>
-            </Images>
-            <Text>
-                <Heading ellipsis as="h4">
-                    {state.name}
-                </Heading>
-                <TextBody>
-                    {state.lines.map((line, index) => (
-                        // usually not ideal to use index as key, but in this case they should remain in the same order
-                        // and it'd be too complex to generate a key / parse from the line
-                        // eslint-disable-next-line react/no-array-index-key
-                        <Paragraph key={index} ellipsis size="sm">
-                            {line.map((chunk) =>
-                                chunk.highlighted ? (
-                                    <Highlight key={chunk.text}>{chunk.text}</Highlight>
-                                ) : (
-                                    chunk.text
-                                )
-                            )}
-                        </Paragraph>
-                    ))}
-                </TextBody>
-            </Text>
-        </DiscordPresenceContainer>
+        <AnimatePresence>
+            {state ? (
+                <DiscordPresenceContainer hasHomeSectionAnimated={hasHomeSectionAnimated}>
+                    <Images>
+                        <Tooltip title={state.images.large.tooltip}>
+                            <LargeImage
+                                fill
+                                src={state.images.large.src}
+                                alt={
+                                    state.images.large.tooltip ?? "Discord application large image"
+                                }
+                            />
+                        </Tooltip>
+                        <SmallImageContainer>
+                            <Tooltip title={state.images.small.tooltip} size="sm">
+                                <SmallImage
+                                    fill
+                                    isOnline={isOnline}
+                                    src={state.images.small.src}
+                                    alt={
+                                        state.images.small.tooltip ??
+                                        "Discord application small image"
+                                    }
+                                />
+                            </Tooltip>
+                        </SmallImageContainer>
+                    </Images>
+                    <Text>
+                        <Heading ellipsis as="h4">
+                            {state.name}
+                        </Heading>
+                        <TextBody>
+                            {state.lines.map((line, index) => (
+                                // usually not ideal to use index as key, but in this case they should remain in the same order
+                                // and it'd be too complex to generate a key / parse from the line
+                                // eslint-disable-next-line react/no-array-index-key
+                                <Paragraph key={index} ellipsis size="sm">
+                                    {line.map((chunk) =>
+                                        chunk.highlighted ? (
+                                            <Highlight key={chunk.text}>{chunk.text}</Highlight>
+                                        ) : (
+                                            chunk.text
+                                        )
+                                    )}
+                                </Paragraph>
+                            ))}
+                        </TextBody>
+                    </Text>
+                </DiscordPresenceContainer>
+            ) : null}
+        </AnimatePresence>
     );
 }
 
-const assets = {
-    small_text: "Snoozin...",
-    small_image:
-        "mp:external/Y6xAhARpHfRM8Bkdw0a1ZkbTAIXqKJFmrSAvHjKs6B0/https/raw.githubusercontent.com/LeonardSSH/vscord/main/assets/icons/idle.png",
-    large_image:
-        "mp:external/ByjawWsm2QtMAOa2doThD3bIfP42xs9pmNqRE9rs1X4/https/raw.githubusercontent.com/LeonardSSH/vscord/main/assets/icons/idle-vscode.png",
-} as LanyardAssets;
-
-const activity = {
-    application_id: "810516608442695700",
-    assets,
-    buttons: ["View Repository"],
-    created_at: 1675121071515,
-    details: "Not actively working!",
-    flags: 1,
-    id: "3c8c68a3ca808bd6",
-    name: "Visual Studio Code",
-    session_id: "d2466f47875f6a0030d0fbc474ff5905",
-    type: 0,
-} as unknown as LanyardActivity;
-
-const initialData: LanyardData = {
-    spotify: null,
-    kv: {},
-    listening_to_spotify: false,
-    discord_user: {
-        username: "hexiro",
-        public_flags: 4194432,
-        id: "291632819006865408",
-        discriminator: "8250",
-        bot: false,
-        avatar_decoration: null,
-        avatar: "6215b611d45fd9c6fe7e8392c8d52c23",
-    },
-    discord_status: "dnd",
-    activities: [activity],
-    active_on_discord_web: false,
-    active_on_discord_mobile: false,
-    active_on_discord_desktop: true,
-};
-const DiscordPresenceContainer = styled(BrandedBox, {
+const DiscordPresenceContainerWrapper = styled(BrandedBox, {
     aspectRatio: "55 / 18",
     maxWidth: 440,
     maxHeight: 144,
@@ -123,6 +92,34 @@ const DiscordPresenceContainer = styled(BrandedBox, {
         minWidth: "425px",
     },
 });
+
+interface DiscordPresenceContainerProps {
+    hasHomeSectionAnimated: boolean;
+}
+
+const DiscordPresenceContainer = ({
+    hasHomeSectionAnimated,
+    children,
+}: PropsWithChildren<DiscordPresenceContainerProps>) => {
+    if (hasHomeSectionAnimated) {
+        return (
+            <DiscordPresenceContainerWrapper
+                variants={slideFromBottom}
+                initial="initial"
+                animate="animate"
+                exit="initial"
+            >
+                {children}
+            </DiscordPresenceContainerWrapper>
+        );
+    }
+
+    return (
+        <DiscordPresenceContainerWrapper variants={slideFromBottom}>
+            {children}
+        </DiscordPresenceContainerWrapper>
+    );
+};
 
 const Highlight = styled("span", {
     color: "$brand-accent",

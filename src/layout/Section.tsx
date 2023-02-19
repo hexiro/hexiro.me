@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 
+import { sectionsAnimated } from "@/commons/atoms";
 import { staggerChildren } from "@/commons/framer";
 import type { SectionName } from "@/commons/sections";
 
@@ -10,6 +11,8 @@ import useNavSectionIsSelected from "@/hooks/useIsSectionInView";
 import useViewportAnimation from "@/hooks/useViewportAnimation";
 import type { SEOProps } from "@/layout/SEO";
 import { SEO } from "@/layout/SEO";
+
+import { useSetAtom } from "jotai";
 
 type SectionProps = SectionContainerProps & {
     name: SectionName;
@@ -30,6 +33,7 @@ const Section = forwardRef<HTMLElement, SectionProps>(
         ref
     ) => {
         const controls = useViewportAnimation(ref);
+        const setHasSectionAnimated = useSetAtom(sectionsAnimated[name]);
 
         return (
             <>
@@ -45,6 +49,7 @@ const Section = forwardRef<HTMLElement, SectionProps>(
                     initial="initial"
                     animate={controls}
                     exit="initial"
+                    onAnimationComplete={() => setHasSectionAnimated(true)}
                     {...props}
                 >
                     {children}

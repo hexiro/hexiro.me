@@ -25,6 +25,7 @@ export const SECTIONS = [
 ] as const;
 
 export type SectionName = (typeof SECTIONS)[number]["name"];
+export const SECTION_NAMES = SECTIONS.map((section) => section.name);
 
 export const SOCIALS = [
     {
@@ -45,6 +46,7 @@ export const SOCIALS = [
 ] as const;
 
 export type SocialName = (typeof SOCIALS)[number]["name"];
+export const SOCIAL_NAMES = SOCIALS.map((social) => social.name);
 
 export type Section = (typeof SECTIONS)[number];
 export type Social = (typeof SOCIALS)[number];
