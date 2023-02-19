@@ -18,10 +18,10 @@ export default async function wakatimeStats() {
     const { data: last7Data } = wakatimeSchema.parse(last7Json);
     const { data: allTImeData } = wakatimeSchema.parse(allTimeJson);
 
-    const dailyAverageDuration = last7Data.daily_average_including_other_language;
+    const dailyAverageDuration = allTImeData.daily_average_including_other_language;
     const last7daysDuration = last7Data.total_seconds_including_other_language;
 
-    const sortFn = (a: SingleMultiInfo, b: SingleMultiInfo) => b.total_seconds - a.total_seconds;
+    const sortFn = (a: SingleInfo, b: SingleInfo) => b.total_seconds - a.total_seconds;
 
     const editors = allTImeData.editors.sort(sortFn).slice(0, 3);
     const languages = allTImeData.languages.sort(sortFn).slice(0, 3);
@@ -30,7 +30,7 @@ export default async function wakatimeStats() {
 }
 
 export type MultiInfo = z.infer<typeof multiInfoSchema>;
-type SingleMultiInfo = MultiInfo[0];
+type SingleInfo = MultiInfo[0];
 
 const multiInfoSchema = z.array(
     z.object({

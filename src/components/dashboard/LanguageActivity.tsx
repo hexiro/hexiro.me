@@ -12,15 +12,15 @@ interface TopLanguagesProps {
 export default function TopLanguages({ languages }: TopLanguagesProps) {
     return (
         <TopLanguagesContainer>
-            <Heading as="h3">Top Languages</Heading>
-            <Paragraph css={{ maxWidth: 300 }}>
+            <Heading as="h3">Language Activity</Heading>
+            <Paragraph size="sm" css={{ maxWidth: 300 }} >
                 {"The programming languages I've used the most."}
             </Paragraph>
             <Divider />
             <BarContainer>
                 <List>
                     {languages.map((language) => (
-                        <ListItem key={language.name}>
+                        <ListItem key={language.name} position="end">
                             <Heading as="h4" css={{ color: "$brand-accent" }}>
                                 {language.name}
                             </Heading>
@@ -29,10 +29,12 @@ export default function TopLanguages({ languages }: TopLanguagesProps) {
                 </List>
                 <List css={{ width: "100%" }}>
                     {languages.map((language, index) => (
-                        <ListItem key={language.decimal}>
-                            <Bar index={index as 0 | 1 | 2} css={{ width: `${language.percent}%` }}>
-                                <BarPercent>{language.percent}</BarPercent>
-                            </Bar>
+                        <ListItem key={language.decimal} position="start">
+                            <Bar
+                                index={index as 0 | 1 | 2}
+                                css={{ width: `${language.percent}%` }}
+                            />
+                            <BarPercent>{`${language.percent}%`}</BarPercent>
                         </ListItem>
                     ))}
                 </List>
@@ -46,6 +48,7 @@ const TopLanguagesContainer = styled(BrandedBox, {
 });
 
 const BarContainer = styled("div", {
+    paddingY: "$2",
     display: "flex",
     flexDirection: "row",
     gap: "$2",
@@ -60,13 +63,29 @@ const List = styled("ul", {
 });
 
 const ListItem = styled("li", {
+    display: "flex",
     lineHeight: "$single",
+    justifyContent: "$$position",
+
+    variants: {
+        position: {
+            start: {
+                $$position: "flex-start",
+            },
+            end: {
+                $$position: "flex-end",
+            },
+        },
+    },
 });
 
 const Bar = styled("div", {
     position: "relative",
     height: 18,
     backgroundColor: "$$bgColor",
+
+    borderLeftRadius: "$sm",
+    borderRightRadius: "$md",
 
     variants: {
         index: {
@@ -84,13 +103,10 @@ const Bar = styled("div", {
 });
 
 const BarPercent = styled("span", {
-    position: "absolute",
-    marginLeft: "auto",
-    marginRight: "auto",
-    left: "$2",
-    right: 0,
+    marginLeft: "$2",
+    color: "$text-secondary",
     textAlign: "left",
+    fontSize: 14,
+    letterSpacing: -0.2,
     fontWeight: 600,
-    color: "rgba(0, 0, 0, 0.7)",
-    mixBlendMode: "difference",
 });

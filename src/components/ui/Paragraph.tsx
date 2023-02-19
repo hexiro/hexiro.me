@@ -16,7 +16,7 @@ const Paragraph = styled("p", {
             sm: {
                 fontSize: 16,
 
-                "@lg": {
+                "@sm": {
                     fontSize: 18,
                 },
             },

@@ -3,19 +3,19 @@ import { styled } from "@/theme";
 import { Divider } from "@/components/layout";
 import { Heading, BrandedBox, Paragraph } from "@/components/ui";
 
-interface ProgrammingTimeStatsProps {
+interface ProgrammingActivityProps {
     dailyAverage: number;
     last7Days: number;
 }
 
-export default function ProgrammingTimeStats({
+export default function ProgrammingActivity({
     dailyAverage,
     last7Days,
-}: ProgrammingTimeStatsProps) {
+}: ProgrammingActivityProps) {
     return (
-        <ProgrammingTimeStatsContainer>
-            <Heading as="h3">Time Spent</Heading>
-            <Paragraph css={{ maxWidth: 300 }}>
+        <ProgrammingActivityContainer>
+            <Heading as="h3">Programming Activity</Heading>
+            <Paragraph size="sm" css={{ maxWidth: 300 }}>
                 {"Time I've spent coding over different time frames"}
             </Paragraph>
             <Divider />
@@ -23,11 +23,11 @@ export default function ProgrammingTimeStats({
                 <Detail title="Daily Average" duration={dailyAverage} />
                 <Detail title="Past Week" duration={last7Days} />
             </DetailsContainer>
-        </ProgrammingTimeStatsContainer>
+        </ProgrammingActivityContainer>
     );
 }
 
-const ProgrammingTimeStatsContainer = styled(BrandedBox, {
+const ProgrammingActivityContainer = styled(BrandedBox, {
     flexDirection: "column",
 });
 

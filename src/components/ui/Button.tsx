@@ -1,9 +1,6 @@
 import { styled } from "@/theme";
 
 const Button = styled("button", {
-    height: "$6",
-    paddingX: "$4",
-    borderRadius: "$xxl",
     fontWeight: 600,
     lineHeight: 1,
 
@@ -13,9 +10,23 @@ const Button = styled("button", {
 
     defaultVariants: {
         priority: "secondary",
+        size: "md",
     },
 
     variants: {
+        size: {
+            sm: {
+                fontSize: "0.9em",
+                height: "$5",
+                paddingX: "$3",
+                borderRadius: "$xl",
+            },
+            md: {
+                height: "$6",
+                paddingX: "$4",
+                borderRadius: "$xxl",
+            },
+        },
         priority: {
             secondary: {
                 backgroundColor: "$background-secondary",

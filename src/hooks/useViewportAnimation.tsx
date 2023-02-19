@@ -6,6 +6,7 @@ import { useAnimationControls, useInView } from "framer-motion";
 export default function useViewportAnimation(ref: Ref<HTMLElement>) {
     const controls = useAnimationControls();
 
+    // start animating in slightly before the section is selected
     const inView = useInView(ref as RefObject<HTMLElement>, { once: true, amount: 0.35 });
 
     useEffect(() => {
