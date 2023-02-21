@@ -2,12 +2,13 @@ import { styled } from "@/theme";
 
 import { useState } from "react";
 
-import type { ProjectData } from "@/commons/graphql/projects";
 import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
 
 import { AnchorList, Heading, BrandedBox, Link, Paragraph } from "@/components/ui";
 
 import LanguageIcon from "@/components/projects/LanguageIcon";
+
+import type { ProjectData } from "@/data/projects";
 
 import ipaddr from "ipaddr.js";
 

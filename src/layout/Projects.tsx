@@ -1,9 +1,9 @@
 import { forwardRef, memo } from "react";
 
-import type { ProjectData } from "@/commons/graphql/projects";
-
 import BrandedBoxContainer from "@/components/BrandedBoxContainer";
 import Project from "@/components/projects/Project";
+
+import type { ProjectData } from "@/data/projects";
 
 import Section from "@/layout/Section";
 

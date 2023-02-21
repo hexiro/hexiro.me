@@ -1,9 +1,8 @@
 import type { GetStaticProps } from "next";
 import { useRef } from "react";
 
-import projects from "@/commons/graphql/projects";
-
 import contributionsCalendar from "@/data/contributionsCalendar";
+import projects from "@/data/projects";
 import wakatimeStats from "@/data/wakatimeStats";
 
 import useUpdateNavState from "@/hooks/useUpdateNavState";
@@ -20,7 +19,6 @@ export default function IndexPage({
     contributionsCalendar,
     wakatimeStats,
 }: IndexPageProps) {
-
     const homeRef = useRef<HTMLElement>(null);
     const projectsRef = useRef<HTMLElement>(null);
     const dashboardRef = useRef<HTMLElement>(null);
