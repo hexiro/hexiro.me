@@ -27,7 +27,7 @@ export default function Project({ data }: ProjectProps) {
             onAnimationComplete={() => setAnimationComplete(true)}
         >
             <ProjectHeader>
-                <Heading ellipsis as="h3" css={{ paddingRight: "$1" }}>
+                <Heading ellipsis as="h3">
                     <ProjectLink newTab noNextLink href={url}>
                         {name}
                     </ProjectLink>
@@ -153,6 +153,7 @@ const ProjectInformation = styled("div", {
     flexDirection: "row",
     alignItems: "center",
     marginLeft: "auto",
+    paddingLeft: "$2",
     height: "100%",
 });
 
