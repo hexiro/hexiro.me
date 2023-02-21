@@ -35,23 +35,23 @@ export default function Project({ data }: ProjectProps) {
                 <ProjectInformation>
                     <ProjectDetail>
                         <StarIcon size="sm" />
-                        <Paragraph>{stars}</Paragraph>
+                        <Paragraph css={{ lineHeight: "$single" }}>{stars}</Paragraph>
                     </ProjectDetail>
                     <VerticalDivider />
-                    <AnchorList css={{ gap: "$1", zIndex: 1 }}>
+                    <IconList>
                         {packageUrl !== null ? (
-                            <li>
+                            <IconListItem>
                                 <Link newTab href={packageUrl} animation="pop" lineHeight="single">
                                     <PackageIcon size="md" />
                                 </Link>
-                            </li>
+                            </IconListItem>
                         ) : null}
-                        <li>
+                        <IconListItem>
                             <Link newTab href={url} animation="pop" lineHeight="single">
                                 <ExternalLinkIcon size="md" />
                             </Link>
-                        </li>
-                    </AnchorList>
+                        </IconListItem>
+                    </IconList>
                 </ProjectInformation>
             </ProjectHeader>
             <ProjectTopics>
@@ -162,6 +162,7 @@ const ProjectDetail = styled("div", {
     flexDirection: "row",
     alignItems: "center",
     gap: "$1",
+    height: "100%",
 });
 
 const VerticalDivider = styled("hr", {
@@ -169,6 +170,20 @@ const VerticalDivider = styled("hr", {
     borderLeft: "2px solid $lighten-10",
     marginX: "12px",
     borderRadius: "$max",
+});
+
+const IconListItem = styled("li", {
+    display: "flex",
+    alignItems: "center",
+});
+
+const IconList = styled(AnchorList, {
+    gap: "$1",
+    zIndex: 1,
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    [`& ${IconListItem}, & ${IconListItem} > span`]: {
+        height: "24px",
+    },
 });
 
 const ProjectContainer = styled(BrandedBox, {

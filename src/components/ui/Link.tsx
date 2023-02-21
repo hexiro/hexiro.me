@@ -1,13 +1,12 @@
 import type { Media, CSS } from "@/theme";
 import { styled } from "@/theme";
 import type { ComponentProps, VariantProps } from "@stitches/react";
+import type { StyledComponent } from "@stitches/react/types/styled-component";
 
 import NextLink from "next/link";
 import type { PropsWithChildren } from "react";
 
 import { Span } from "@/components/ui";
-
-import type { StyledComponent } from "@stitches/react/types/styled-component";
 
 type SpanProps = VariantProps<typeof Span>;
 
