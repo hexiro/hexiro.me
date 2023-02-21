@@ -195,7 +195,6 @@ export const StarIcon = (props?: IconProps) => (
 );
 
 // raw programming language icons
-// sourced from simple icons, not from any icon pack
 
 export const PythonIcon = (props?: IconProps) => (
     <Icon viewBox="0 0 24 24" {...props}>

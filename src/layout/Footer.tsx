@@ -23,13 +23,13 @@ export default function Footer() {
                 </div>
                 <SectionsAndLinks>
                     <SectionsSlashLinks>
-                        <SectionsSlashLinksHeading as="h4">Sections</SectionsSlashLinksHeading>
+                        <SectionsSlashContactsHeading as="h4">Sections</SectionsSlashContactsHeading>
                         {SECTIONS.map(({ name, icon }) => (
                             <LinkWithIcon key={name} name={name} icon={icon} />
                         ))}
                     </SectionsSlashLinks>
                     <SectionsSlashLinks>
-                        <SectionsSlashLinksHeading as="h4">Links</SectionsSlashLinksHeading>
+                        <SectionsSlashContactsHeading as="h4">Contacts</SectionsSlashContactsHeading>
                         {SOCIALS.map(({ name, href, icon }) => (
                             <LinkWithIcon key={name} newTab name={name} href={href} icon={icon} />
                         ))}
@@ -55,7 +55,6 @@ const FooterContent = styled("div", {
     alignItems: "flex-start",
     width: "100%",
     marginTop: "$4",
-    // paddingRight: "10%",
 });
 
 const SectionsAndLinks = styled("div", {
@@ -70,7 +69,7 @@ const SectionsSlashLinks = styled("div", {
     gap: "$2",
 });
 
-const SectionsSlashLinksHeading = styled(Heading, {
+const SectionsSlashContactsHeading = styled(Heading, {
     color: "$text-secondary",
     marginBottom: "$2",
 });
