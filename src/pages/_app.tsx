@@ -21,13 +21,13 @@ export default function App({ Component, pageProps, router }: AppProps) {
     return (
         <JotaiProvider>
             <GlobalSEO />
-            <AnimatePresence mode="wait" initial={false}>
-                <Body>
-                    <Nav pageRouteIndex={pageRouteIndex} />
-                    <Component key={router.asPath} {...pageProps} />
-                    <Footer />
-                </Body>
-            </AnimatePresence>
+            <Body>
+                <Nav pageRouteIndex={pageRouteIndex} />
+                <AnimatePresence mode="wait" initial={false}>
+                    <Component key={router.pathname} {...pageProps} />
+                </AnimatePresence>
+                <Footer />
+            </Body>
             <NoScript />
         </JotaiProvider>
     );

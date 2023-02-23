@@ -13,7 +13,7 @@ type PageRouteProps = Omit<PageRouteType, "icon"> & {
 
 export default function PageRoute({ name, href, isSelected }: PageRouteProps) {
     return (
-        <RouteLinkItem key={name} layoutScroll>
+        <RouteListItem>
             <Link href={href} animation="popAndTap">
                 {name}
             </Link>
@@ -28,11 +28,11 @@ export default function PageRoute({ name, href, isSelected }: PageRouteProps) {
                     />
                 )}
             </AnimatePresence>
-        </RouteLinkItem>
+        </RouteListItem>
     );
 }
 
-const RouteLinkItem = styled(motion(ListItem), {
+const RouteListItem = styled(motion(ListItem), {
     position: "relative",
 });
 

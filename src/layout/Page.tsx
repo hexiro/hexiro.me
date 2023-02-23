@@ -69,11 +69,7 @@ const PageContainer = styled(motion.main, {
     flexGrow: 1,
     height: "100%",
     minHeight: "100vh",
-    paddingTop: 64,
+    paddingTop: 264,
     paddingBottom: 100,
     paddingX: "$main-x-padding",
-
-    "&:first-of-type": {
-        paddingTop: 264,
-    },
 });

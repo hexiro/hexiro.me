@@ -8,7 +8,7 @@ import { ListItem } from "@/components/ui";
 
 import PageRoute from "@/components/nav/PageRoute";
 
-import { motion } from "framer-motion";
+import {  motion } from "framer-motion";
 
 interface RoutesProps {
     pageRouteIndex: number;
@@ -21,7 +21,7 @@ export default function Routes({ pageRouteIndex }: RoutesProps) {
     return (
         <>
             <Hide below="sm">
-                <UnorderedList layoutScroll>
+                <UnorderedList>
                     {PAGE_ROUTES.map(({ name, href }, index) => (
                         <PageRoute
                             key={name}
