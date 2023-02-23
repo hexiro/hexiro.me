@@ -14,9 +14,7 @@ import { AnimatePresence } from "framer-motion";
 import { Provider as JotaiProvider } from "jotai";
 
 export default function App({ Component, pageProps, router }: AppProps) {
-    const pageRouteIndex = PAGE_ROUTES.findIndex(
-        ({ href }) => href === router.pathname.toLowerCase()
-    );
+    const pageRouteIndex = PAGE_ROUTES.findIndex(({ href }) => href === router.pathname);
 
     return (
         <JotaiProvider>

@@ -11,7 +11,7 @@ import {
 
 interface Route {
     name: string;
-    href: string;
+    href: Lowercase<string>;
     icon: IconType;
 }
 
