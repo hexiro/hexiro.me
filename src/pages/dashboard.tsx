@@ -1,27 +1,27 @@
-import { forwardRef, memo } from "react";
+import type { GetStaticProps } from "next";
 
 import BrandedBoxContainer from "@/components/BrandedBoxContainer";
 import ContributionsCalendar from "@/components/dashboard/ContributionsCalender";
 import TopLanguages from "@/components/dashboard/LanguageActivity";
 import ProgrammingActivity from "@/components/dashboard/ProgrammingActivity";
 
-import type contributionsCalendar from "@/data/contributionsCalendar";
-import type wakatimeStats from "@/data/wakatimeStats";
+import fetchContributionsCalendar from "@/data/contributionsCalendar";
+import fetchWakatimeStats from "@/data/wakatimeStats";
 
-import Section from "@/layout/Section";
+import Page from "@/layout/Page";
 
-export interface DashboardProps {
-    contributionsCalendar: Awaited<ReturnType<typeof contributionsCalendar>>;
-    wakatimeStats: Awaited<ReturnType<typeof wakatimeStats>>;
+interface DashboardProps {
+    contributionsCalendar: Awaited<ReturnType<typeof fetchContributionsCalendar>>;
+    wakatimeStats: Awaited<ReturnType<typeof fetchWakatimeStats>>;
 }
 
 const NAME = "Dashboard";
 const DESCRIPTION =
     "This dashboard is a collection of statistics related to myself and programming.";
 
-const Dashboard = forwardRef<HTMLElement, DashboardProps>(
-    ({ contributionsCalendar, wakatimeStats }, ref) => (
-        <Section ref={ref} name={NAME} description={DESCRIPTION}>
+export default function DashboardPage({ wakatimeStats, contributionsCalendar }: DashboardProps) {
+    return (
+        <Page name={NAME} description={DESCRIPTION}>
             <BrandedBoxContainer>
                 <ProgrammingActivity
                     dailyAverage={wakatimeStats.dailyAverageDuration}
@@ -30,8 +30,14 @@ const Dashboard = forwardRef<HTMLElement, DashboardProps>(
                 <TopLanguages languages={wakatimeStats.languages} />
                 <ContributionsCalendar data={contributionsCalendar} />
             </BrandedBoxContainer>
-        </Section>
-    )
-);
+        </Page>
+    );
+}
 
-export default memo(Dashboard);
+export const getStaticProps: GetStaticProps<DashboardProps> = async () => ({
+    props: {
+        contributionsCalendar: await fetchContributionsCalendar(),
+        wakatimeStats: await fetchWakatimeStats(),
+    },
+    revalidate: 60 * 60,
+});

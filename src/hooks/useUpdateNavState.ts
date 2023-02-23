@@ -3,7 +3,7 @@ import { theme } from "@/theme";
 import type { RefObject } from "react";
 
 import { selectedSectionAtom } from "@/commons/atoms";
-import { SECTIONS } from "@/commons/sections";
+import { PAGE_ROUTES } from "@/commons/routes";
 
 import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 
@@ -29,7 +29,7 @@ export default function useUpdateNavState(...refs: Array<RefObject<HTMLElement>>
                 }
             }
 
-            const section = SECTIONS[index] ?? null;
+            const section = PAGE_ROUTES[index] ?? null;
             setSelectedSection(section);
         };
 

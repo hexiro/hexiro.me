@@ -1,6 +1,8 @@
-import { globalStyles, tippyStyles, styled } from "@/theme";
+import { styled } from "@/theme";
 
 import type { AppProps } from "next/app";
+
+import { PAGE_ROUTES } from "@/commons/routes";
 
 import NoScript from "@/components/NoScript";
 
@@ -8,22 +10,18 @@ import Footer from "@/layout/Footer";
 import Nav from "@/layout/Nav";
 import { GlobalSEO } from "@/layout/SEO";
 
-import { Provider as JotaiProvider } from "jotai";
-
 export default function App({ Component, pageProps, router }: AppProps) {
-    globalStyles();
-    tippyStyles();
-
+    const index = PAGE_ROUTES.findIndex(({ href }) => href === router.pathname.toLowerCase());
     return (
-        <JotaiProvider>
+        <>
             <GlobalSEO />
             <Main>
-                <Nav />
+                <Nav index={index} />
                 <Component {...pageProps} />
                 <Footer />
             </Main>
             <NoScript />
-        </JotaiProvider>
+        </>
     );
 }
 

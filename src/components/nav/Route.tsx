@@ -2,7 +2,7 @@ import { styled } from "@/theme";
 
 import { idToHref } from "@/commons";
 import { fadeIn } from "@/commons/framer";
-import type { SectionName } from "@/commons/sections";
+import type { PageRouteName } from "@/commons/routes";
 
 import { Link, ListItem } from "@/components/ui";
 
@@ -12,7 +12,7 @@ import useIsSectionInView from "@/hooks/useIsSectionInView";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface SectionProps {
-    name: SectionName;
+    name: PageRouteName;
 }
 
 export default function Section({ name }: SectionProps) {

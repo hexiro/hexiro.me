@@ -1,4 +1,4 @@
-import type { SectionName } from "@/commons/sections";
+import type { PageRouteName } from "@/commons/routes";
 
 import useIsSectionInView from "@/hooks/useIsSectionInView";
 
@@ -6,7 +6,7 @@ import type { MenuItemProps } from "components/nav/MenuItem";
 import MenuItem from "components/nav/MenuItem";
 
 type SectionMenuItemProps = Omit<MenuItemProps, "highlighted"> & {
-    name: SectionName;
+    name: PageRouteName;
 };
 
 export default function SectionMenuItem({ name, ...props }: SectionMenuItemProps) {

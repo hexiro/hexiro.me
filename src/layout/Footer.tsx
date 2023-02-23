@@ -3,7 +3,7 @@ import type { ComponentProps } from "@stitches/react";
 
 import { idToHref } from "@/commons";
 import type { IconType } from "@/commons/icons";
-import { SECTIONS, SOCIALS } from "@/commons/sections";
+import { PAGE_ROUTES, SOCIAL_ROUTES } from "@/commons/routes";
 
 import { Divider } from "@/components/layout";
 import { Heading, Link } from "@/components/ui";
@@ -23,14 +23,18 @@ export default function Footer() {
                 </div>
                 <SectionsAndLinks>
                     <SectionsSlashLinks>
-                        <SectionsSlashContactsHeading as="h4">Sections</SectionsSlashContactsHeading>
-                        {SECTIONS.map(({ name, icon }) => (
+                        <SectionsSlashContactsHeading as="h4">
+                            Sections
+                        </SectionsSlashContactsHeading>
+                        {PAGE_ROUTES.map(({ name, icon }) => (
                             <LinkWithIcon key={name} name={name} icon={icon} />
                         ))}
                     </SectionsSlashLinks>
                     <SectionsSlashLinks>
-                        <SectionsSlashContactsHeading as="h4">Contacts</SectionsSlashContactsHeading>
-                        {SOCIALS.map(({ name, href, icon }) => (
+                        <SectionsSlashContactsHeading as="h4">
+                            Contacts
+                        </SectionsSlashContactsHeading>
+                        {SOCIAL_ROUTES.map(({ name, href, icon }) => (
                             <LinkWithIcon key={name} newTab name={name} href={href} icon={icon} />
                         ))}
                     </SectionsSlashLinks>

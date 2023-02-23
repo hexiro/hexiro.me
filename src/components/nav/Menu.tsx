@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import { menuHoverAtom } from "@/commons/atoms";
 import { fadeInAndScale, normalBounce } from "@/commons/framer";
 import { CloseIcon, HamburgerMenuIcon } from "@/commons/icons";
-import { SECTIONS, SOCIALS } from "@/commons/sections";
+import { PAGE_ROUTES, SOCIAL_ROUTES } from "@/commons/routes";
 
 import { Divider } from "@/components/layout";
 
@@ -14,7 +14,7 @@ import MenuItem from "@/components/nav/MenuItem";
 import useOutsideMenuClick from "@/hooks/useOutsideMenuClick";
 import useWindowWidthInBounds from "@/hooks/useWindowWidth";
 
-import SectionMenuItem from "components/nav/SectionMenuItem";
+import SectionMenuItem from "@/components/nav/RouteMenuItem";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSetAtom } from "jotai";
 
@@ -57,11 +57,11 @@ export default function Menu() {
                         exit="initial"
                         onHoverEnd={() => setMenuHover(null)}
                     >
-                        {SECTIONS.map(({ name, icon }) => (
+                        {PAGE_ROUTES.map(({ name, icon }) => (
                             <SectionMenuItem key={name} name={name} icon={icon} />
                         ))}
                         <Divider />
-                        {SOCIALS.map(({ name, href, icon }, index) => (
+                        {SOCIAL_ROUTES.map(({ name, href, icon }, index) => (
                             <MenuItem key={name} newTab name={name} href={href} icon={icon} />
                         ))}
                     </MenuContainer>

@@ -235,6 +235,8 @@ export const globalStyles = globalCss({
     },
 });
 
+globalStyles();
+
 export const tippyStyles = globalCss({
     ".tippy-touch": {
         cursor: "pointer !important",
@@ -571,3 +573,5 @@ export const tippyStyles = globalCss({
         },
     },
 });
+
+tippyStyles();

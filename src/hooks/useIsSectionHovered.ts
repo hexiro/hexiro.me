@@ -1,9 +1,9 @@
 import { menuHoverAtom } from "@/commons/atoms";
-import type { SectionName, SocialName } from "@/commons/sections";
+import type { PageRouteName, SocialRouteName } from "@/commons/routes";
 
 import { useAtomValue } from "jotai";
 
-export default function useIsSectionHovered(name: SectionName | SocialName) {
+export default function useIsSectionHovered(name: PageRouteName | SocialRouteName) {
     const hoveredSection = useAtomValue(menuHoverAtom);
 
     return hoveredSection === name;

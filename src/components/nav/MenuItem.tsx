@@ -5,7 +5,7 @@ import { idToHref } from "@/commons";
 import { menuHoverAtom } from "@/commons/atoms";
 import { fadeIn, smallBounce } from "@/commons/framer";
 import type { IconType } from "@/commons/icons";
-import type { SectionName, SocialName } from "@/commons/sections";
+import type { PageRouteName, SocialRouteName } from "@/commons/routes";
 
 import { Link } from "@/components/ui";
 
@@ -15,7 +15,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useSetAtom } from "jotai";
 
 export type MenuItemProps = {
-    name: SectionName | SocialName;
+    name: PageRouteName | SocialRouteName;
     icon: IconType;
     href?: string;
     newTab?: boolean;

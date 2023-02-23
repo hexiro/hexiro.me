@@ -1,48 +1,36 @@
-import type { GetStaticProps } from "next";
-import { useRef } from "react";
+import { Heading, Span } from "@/components/ui";
 
-import contributionsCalendar from "@/data/contributionsCalendar";
-import projects from "@/data/projects";
-import wakatimeStats from "@/data/wakatimeStats";
+import DiscordPresence from "@/components/home/DiscordPresence";
 
-import useUpdateNavState from "@/hooks/useUpdateNavState";
-import type { DashboardProps } from "@/layout/Dashboard";
-import Dashboard from "@/layout/Dashboard";
-import Home from "@/layout/Home";
-import type { ProjectsProps } from "@/layout/Projects";
-import Projects from "@/layout/Projects";
+import Page from "@/layout/Page";
 
-type IndexPageProps = ProjectsProps & DashboardProps;
+const NAME = "Home";
+const DESCRIPTION =
+    "A self-taught software engineer who enjoys problem solving, technology, building software, and contributing to open source projects.";
 
-export default function IndexPage({
-    projects,
-    contributionsCalendar,
-    wakatimeStats,
-}: IndexPageProps) {
-    const homeRef = useRef<HTMLElement>(null);
-    const projectsRef = useRef<HTMLElement>(null);
-    const dashboardRef = useRef<HTMLElement>(null);
-
-    useUpdateNavState(homeRef, projectsRef, dashboardRef);
-
+export default function HomePage() {
     return (
-        <>
-            <Home ref={homeRef} />
-            <Projects ref={projectsRef} projects={projects} />
-            <Dashboard
-                ref={dashboardRef}
-                contributionsCalendar={contributionsCalendar}
-                wakatimeStats={wakatimeStats}
-            />
-        </>
+        <Page
+            subheading="hi! I'm"
+            name={NAME}
+            description={DESCRIPTION}
+            nameElement={() => (
+                <Heading as="h1">
+                    Nathan <Span color="brand-accent">Lodge</Span>
+                    <Span color="text-primary">,</Span>
+                </Heading>
+            )}
+        >
+            <DiscordPresence />
+        </Page>
     );
 }
 
-export const getStaticProps: GetStaticProps<IndexPageProps> = async () => ({
-    props: {
-        projects: await projects(),
-        contributionsCalendar: await contributionsCalendar(),
-        wakatimeStats: await wakatimeStats(),
-    },
-    revalidate: 60 * 60,
-});
+// const getStaticProps: GetStaticProps<IndexPageProps> = async () => ({
+//     props: {
+//         projects: await projects(),
+//         contributionsCalendar: await contributionsCalendar(),
+//         wakatimeStats: await wakatimeStats(),
+//     },
+//     revalidate: 60 * 60,
+// });
