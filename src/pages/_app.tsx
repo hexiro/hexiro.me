@@ -10,22 +10,29 @@ import Footer from "@/layout/Footer";
 import Nav from "@/layout/Nav";
 import { GlobalSEO } from "@/layout/SEO";
 
+import { AnimatePresence } from "framer-motion";
+
 export default function App({ Component, pageProps, router }: AppProps) {
-    const index = PAGE_ROUTES.findIndex(({ href }) => href === router.pathname.toLowerCase());
+    const pageRouteIndex = PAGE_ROUTES.findIndex(
+        ({ href }) => href === router.pathname.toLowerCase()
+    );
+
     return (
         <>
             <GlobalSEO />
-            <Main>
-                <Nav index={index} />
-                <Component {...pageProps} />
-                <Footer />
-            </Main>
+            <AnimatePresence mode="wait" initial={false}>
+                <Body>
+                    <Nav pageRouteIndex={pageRouteIndex} />
+                    <Component key={router.asPath} {...pageProps} />
+                    <Footer />
+                </Body>
+            </AnimatePresence>
             <NoScript />
         </>
     );
 }
 
-const Main = styled("main", {
+const Body = styled("div", {
     position: "relative",
     display: "flex",
     flexDirection: "column",

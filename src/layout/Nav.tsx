@@ -4,24 +4,28 @@ import { Hide, Show } from "@/components/layout";
 import { Heading, Span } from "@/components/ui";
 
 import Menu from "@/components/nav/Menu";
-import Routes from "@/components/nav/Routes";
-import Socials from "@/components/nav/Socials";
+import PageRoutes from "@/components/nav/PageRoutes";
+import SocialRoutes from "@/components/nav/SocialRoutes";
 
-export default function Nav() {
+interface NavProps {
+    pageRouteIndex: number;
+}
+
+export default function Nav({ pageRouteIndex }: NavProps) {
     return (
         <NavContainer>
             <NavLeft>
                 <Heading as="h2">
                     hexiro<Span color="brand-accent">.me</Span>
                 </Heading>
-                <Routes />
+                <PageRoutes pageRouteIndex={pageRouteIndex} />
             </NavLeft>
             <NavRight>
                 <Hide below="sm">
-                    <Socials />
+                    <SocialRoutes />
                 </Hide>
                 <Show below="sm">
-                    <Menu />
+                    <Menu pageRouteIndex={pageRouteIndex} />
                 </Show>
             </NavRight>
         </NavContainer>

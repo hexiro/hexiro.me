@@ -1,8 +1,8 @@
-import type { SocialRoute } from "@/commons/routes";
+import type { SocialRouteType } from "@/commons/routes";
 
 import { Link, Tooltip } from "@/components/ui";
 
-export default function Social({ name, href, icon }: SocialRoute) {
+export default function SocialRoute({ name, href, icon }: SocialRouteType) {
     return (
         <li>
             <Tooltip title={name} size="sm" animation="shift" position="bottom" distance={5}>

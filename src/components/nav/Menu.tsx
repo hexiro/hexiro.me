@@ -14,11 +14,14 @@ import MenuItem from "@/components/nav/MenuItem";
 import useOutsideMenuClick from "@/hooks/useOutsideMenuClick";
 import useWindowWidthInBounds from "@/hooks/useWindowWidth";
 
-import SectionMenuItem from "@/components/nav/RouteMenuItem";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSetAtom } from "jotai";
 
-export default function Menu() {
+interface MenuProps {
+    pageRouteIndex: number;
+}
+
+export default function Menu({ pageRouteIndex }: MenuProps) {
     const menuRef = useRef<HTMLUListElement>(null);
     const menuButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -57,12 +60,25 @@ export default function Menu() {
                         exit="initial"
                         onHoverEnd={() => setMenuHover(null)}
                     >
-                        {PAGE_ROUTES.map(({ name, icon }) => (
-                            <SectionMenuItem key={name} name={name} icon={icon} />
+                        {PAGE_ROUTES.map(({ name, href, icon }, index) => (
+                            <MenuItem
+                                key={name}
+                                name={name}
+                                icon={icon}
+                                href={href}
+                                coloredIcon={pageRouteIndex === index}
+                            />
                         ))}
                         <Divider />
-                        {SOCIAL_ROUTES.map(({ name, href, icon }, index) => (
-                            <MenuItem key={name} newTab name={name} href={href} icon={icon} />
+                        {SOCIAL_ROUTES.map(({ name, href, icon }) => (
+                            <MenuItem
+                                key={name}
+                                newTab
+                                coloredIcon
+                                name={name}
+                                href={href}
+                                icon={icon}
+                            />
                         ))}
                     </MenuContainer>
                 )}

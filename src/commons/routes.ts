@@ -34,6 +34,7 @@ export const PAGE_ROUTES = ([
 ] as const) satisfies readonly Route[];
 
 export type PageRouteName = (typeof PAGE_ROUTES)[number]["name"];
+export type PageRouteHref = (typeof PAGE_ROUTES)[number]["href"];
 export const PAGE_ROUTE_NAMES = PAGE_ROUTES.map((pageRoute) => pageRoute.name);
 
 export const SOCIAL_ROUTES = ([
@@ -55,7 +56,8 @@ export const SOCIAL_ROUTES = ([
 ] as const) satisfies readonly Route[];
 
 export type SocialRouteName = (typeof SOCIAL_ROUTES)[number]["name"];
+export type SocialRouteHref = (typeof SOCIAL_ROUTES)[number]["href"];
 export const SOCIAL_ROUTE_NAMES = SOCIAL_ROUTES.map((socialRoute) => socialRoute.name);
 
-export type PageRoute = (typeof PAGE_ROUTES)[number];
-export type SocialRoute = (typeof SOCIAL_ROUTES)[number];
+export type PageRouteType = (typeof PAGE_ROUTES)[number];
+export type SocialRouteType = (typeof SOCIAL_ROUTES)[number];
