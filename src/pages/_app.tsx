@@ -11,6 +11,7 @@ import Nav from "@/layout/Nav";
 import { GlobalSEO } from "@/layout/SEO";
 
 import { AnimatePresence } from "framer-motion";
+import { Provider as JotaiProvider } from "jotai";
 
 export default function App({ Component, pageProps, router }: AppProps) {
     const pageRouteIndex = PAGE_ROUTES.findIndex(
@@ -18,7 +19,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
     );
 
     return (
-        <>
+        <JotaiProvider>
             <GlobalSEO />
             <AnimatePresence mode="wait" initial={false}>
                 <Body>
@@ -28,7 +29,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                 </Body>
             </AnimatePresence>
             <NoScript />
-        </>
+        </JotaiProvider>
     );
 }
 
