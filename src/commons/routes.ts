@@ -1,5 +1,6 @@
 import { TWITTER_LINK, GITHUB_LINK, LINKED_IN_LINK } from "@/commons/config";
 import type { IconType } from "@/commons/icons";
+import { ToolsIcon } from "@/commons/icons";
 import {
     HomeIcon,
     ProjectsIcon,
@@ -19,18 +20,25 @@ export const PAGE_ROUTES = ([
     {
         name: "Home",
         href: "/",
-        icon: HomeIcon as IconType,
+        icon: HomeIcon,
     },
     {
         name: "Projects",
         href: "/projects",
-        icon: ProjectsIcon as IconType,
+        icon: ProjectsIcon,
+    },
+    {
+        name: "Tools",
+        href: "/tools",
+        icon: ToolsIcon,
+        
     },
     {
         name: "Dashboard",
         href: "/dashboard",
-        icon: DashboardIcon as IconType,
+        icon: DashboardIcon,
     },
+
 ] as const) satisfies readonly Route[];
 
 export type PageRouteName = (typeof PAGE_ROUTES)[number]["name"];
@@ -41,17 +49,17 @@ export const SOCIAL_ROUTES = ([
     {
         name: "Twitter",
         href: TWITTER_LINK,
-        icon: TwitterIcon as IconType,
+        icon: TwitterIcon,
     },
     {
         name: "GitHub",
         href: GITHUB_LINK,
-        icon: GitHubIcon as IconType,
+        icon: GitHubIcon,
     },
     {
         name: "LinkedIn",
         href: LINKED_IN_LINK,
-        icon: LinkedInIcon as IconType,
+        icon: LinkedInIcon,
     },
 ] as const) satisfies readonly Route[];
 
