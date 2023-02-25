@@ -174,6 +174,12 @@ const stitches = createStitches({
             borderTopLeftRadius: value,
             borderBottomLeftRadius: value,
         }),
+        gridColumns: (value: string | number) => ({
+            gridTemplateColumns: `repeat(${value}, minmax(0, 1fr))`,
+        }),
+        gridRows: (value: string | number) => ({
+            gridTemplateRows: `repeat(${value}, minmax(0, 1fr))`,
+        }),
     },
     themeMap: {
         ...defaultThemeMap,

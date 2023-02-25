@@ -21,7 +21,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
             <GlobalSEO />
             <Body>
                 <Nav pageRouteIndex={pageRouteIndex} />
-                <AnimatePresence mode="wait" initial={false}>
+                <AnimatePresence mode="wait">
                     <Component key={router.pathname} {...pageProps} />
                 </AnimatePresence>
                 <Footer />

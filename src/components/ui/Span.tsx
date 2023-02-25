@@ -30,7 +30,6 @@ const Span = styled("span", {
         color: {
             "brand-accent": { color: "$brand-accent" },
             "brand-primary": { color: "$brand-primary" },
-            "brand-secondary": { color: "$brand-secondary" },
             "text-primary": { color: "$text-primary" },
             "text-secondary": { color: "$text-secondary" },
         },

@@ -38,25 +38,27 @@ export default function Page({
                 exit="initial"
                 {...props}
             >
-                {subheading ? (
+                <TextWrapper>
+                    {subheading ? (
+                        <motion.div variants={slideFromLeft}>
+                            {subheadingElement ? (
+                                subheadingElement()
+                            ) : (
+                                <Subheading>{subheading}</Subheading>
+                            )}
+                        </motion.div>
+                    ) : null}
                     <motion.div variants={slideFromLeft}>
-                        {subheadingElement ? (
-                            subheadingElement()
+                        {nameElement ? nameElement() : <Heading as="h1">{name}</Heading>}
+                    </motion.div>
+                    <motion.div variants={slideFromLeft}>
+                        {descriptionElement ? (
+                            descriptionElement()
                         ) : (
-                            <Subheading>{subheading}</Subheading>
+                            <Paragraph size="lg">{description}</Paragraph>
                         )}
                     </motion.div>
-                ) : null}
-                <motion.div variants={slideFromLeft}>
-                    {nameElement ? nameElement() : <Heading as="h1">{name}</Heading>}
-                </motion.div>
-                <motion.div variants={slideFromLeft}>
-                    {descriptionElement ? (
-                        descriptionElement()
-                    ) : (
-                        <Paragraph size="lg">{description}</Paragraph>
-                    )}
-                </motion.div>
+                </TextWrapper>
                 {children}
             </PageContainer>
             <SEO name={name} description={description} />
@@ -72,4 +74,8 @@ const PageContainer = styled(motion.main, {
     paddingTop: 264,
     paddingBottom: 100,
     paddingX: "$main-x-padding",
+});
+
+const TextWrapper = styled("div", {
+    paddingBottom: "$7",
 });
