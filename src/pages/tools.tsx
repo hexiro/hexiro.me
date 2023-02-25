@@ -1,11 +1,12 @@
 import Page from "@/layout/Page";
 
-const DESCRIPTION = "Tools";
+const NAME = "Tools";
+const DESCRIPTION = "A look at my technical skills and the tools I utilize in my work, including programming languages, frameworks, and software.";
 
 export default function ToolsPage() {
     return (
-        <Page name="Tools" description={DESCRIPTION}>
-            Tools
+        <Page name={NAME} description={DESCRIPTION}>
+            {}
         </Page>
     );
 }
