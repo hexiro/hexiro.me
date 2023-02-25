@@ -7,25 +7,21 @@ import Menu from "@/components/nav/Menu";
 import PageRoutes from "@/components/nav/PageRoutes";
 import SocialRoutes from "@/components/nav/SocialRoutes";
 
-interface NavProps {
-    pageRouteIndex: number;
-}
-
-export default function Nav({ pageRouteIndex }: NavProps) {
+export default function Nav() {
     return (
         <NavContainer>
             <NavLeft>
                 <Heading as="h2">
                     hexiro<Span color="brand-accent">.me</Span>
                 </Heading>
-                <PageRoutes pageRouteIndex={pageRouteIndex} />
+                <PageRoutes />
             </NavLeft>
             <NavRight>
                 <Hide below="sm">
                     <SocialRoutes />
                 </Hide>
                 <Show below="sm">
-                    <Menu pageRouteIndex={pageRouteIndex} />
+                    <Menu />
                 </Show>
             </NavRight>
         </NavContainer>

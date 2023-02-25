@@ -1,6 +1,5 @@
 import { styled } from "@/theme";
 
-import type { PageRouteType } from "@/commons/routes";
 import { PAGE_ROUTES } from "@/commons/routes";
 
 import { Hide, Show } from "@/components/layout";
@@ -8,14 +7,12 @@ import { ListItem } from "@/components/ui";
 
 import PageRoute from "@/components/nav/PageRoute";
 
-import {  motion } from "framer-motion";
+import usePageRoute from "@/hooks/usePageRoute";
 
-interface RoutesProps {
-    pageRouteIndex: number;
-}
+import { motion } from "framer-motion";
 
-export default function Routes({ pageRouteIndex }: RoutesProps) {
-    const pageRoute = PAGE_ROUTES[pageRouteIndex] as PageRouteType | undefined;
+export default function Routes() {
+    const pageRoute = usePageRoute();
     const pageName = pageRoute?.name ?? "Portfolio";
 
     return (
@@ -23,12 +20,7 @@ export default function Routes({ pageRouteIndex }: RoutesProps) {
             <Hide below="sm">
                 <UnorderedList>
                     {PAGE_ROUTES.map(({ name, href }, index) => (
-                        <PageRoute
-                            key={name}
-                            name={name}
-                            href={href}
-                            isSelected={pageRouteIndex === index}
-                        />
+                        <PageRoute key={name} name={name} href={href} />
                     ))}
                 </UnorderedList>
             </Hide>

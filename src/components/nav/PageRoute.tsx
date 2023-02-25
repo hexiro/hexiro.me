@@ -5,20 +5,20 @@ import type { PageRouteType } from "@/commons/routes";
 
 import { Link, ListItem } from "@/components/ui";
 
+import usePageRoute from "@/hooks/usePageRoute";
+
 import { AnimatePresence, motion } from "framer-motion";
 
-type PageRouteProps = Omit<PageRouteType, "icon"> & {
-    isSelected: boolean;
-};
-
-export default function PageRoute({ name, href, isSelected }: PageRouteProps) {
+type PageRouteProps = Omit<PageRouteType, "icon">;
+export default function PageRoute({ name, href }: PageRouteProps) {
+    const pageRoute = usePageRoute();
     return (
         <RouteListItem>
             <Link href={href} animation="popAndTap">
                 {name}
             </Link>
             <AnimatePresence initial={false}>
-                {isSelected && (
+                {pageRoute?.name === name && (
                     <RouteUnderline
                         variants={fadeIn}
                         layoutId="nav-route-underline"

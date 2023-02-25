@@ -2,7 +2,7 @@ import { styled, breakpoints } from "@/theme";
 
 import { useRef, useState } from "react";
 
-import { menuHoverAtom } from "@/commons/atoms";
+import { hoveredRouteAtom } from "@/commons/atoms";
 import { fadeInAndScale, normalBounce } from "@/commons/framer";
 import { CloseIcon, HamburgerMenuIcon } from "@/commons/icons";
 import { PAGE_ROUTES, SOCIAL_ROUTES } from "@/commons/routes";
@@ -17,23 +17,19 @@ import useWindowWidthInBounds from "@/hooks/useWindowWidth";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSetAtom } from "jotai";
 
-interface MenuProps {
-    pageRouteIndex: number;
-}
-
-export default function Menu({ pageRouteIndex }: MenuProps) {
+export default function Menu() {
     const menuRef = useRef<HTMLUListElement>(null);
     const menuButtonRef = useRef<HTMLButtonElement>(null);
 
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-    const setMenuHover = useSetAtom(menuHoverAtom);
+    const setHoveredRoute = useSetAtom(hoveredRouteAtom);
 
     useOutsideMenuClick({
         menuRef,
         buttonRef: menuButtonRef,
         handler() {
             setIsMenuOpen(false);
-            setMenuHover(null);
+            setHoveredRoute(null);
         },
     });
 
@@ -58,16 +54,10 @@ export default function Menu({ pageRouteIndex }: MenuProps) {
                         initial="initial"
                         animate="animate"
                         exit="initial"
-                        onHoverEnd={() => setMenuHover(null)}
+                        onHoverEnd={() => setHoveredRoute(null)}
                     >
-                        {PAGE_ROUTES.map(({ name, href, icon }, index) => (
-                            <MenuItem
-                                key={name}
-                                name={name}
-                                icon={icon}
-                                href={href}
-                                coloredIcon={pageRouteIndex === index}
-                            />
+                        {PAGE_ROUTES.map(({ name, href, icon }) => (
+                            <MenuItem key={name} name={name} icon={icon} href={href} />
                         ))}
                         <Divider />
                         {SOCIAL_ROUTES.map(({ name, href, icon }) => (

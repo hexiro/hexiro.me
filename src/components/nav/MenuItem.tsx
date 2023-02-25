@@ -1,32 +1,41 @@
 import { styled } from "@/theme";
 import type { ComponentProps } from "@stitches/react";
 
-import { menuHoverAtom } from "@/commons/atoms";
+import { hoveredRouteAtom } from "@/commons/atoms";
 import { fadeIn, smallBounce } from "@/commons/framer";
 import type { IconType } from "@/commons/icons";
 import type { PageRouteName, SocialRouteName } from "@/commons/routes";
 
 import { Link } from "@/components/ui";
 
-import useIsSectionHovered from "@/hooks/useIsSectionHovered";
+import useIsRouteHovered from "@/hooks/useIsRouteHovered";
+import usePageRoute from "@/hooks/usePageRoute";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useSetAtom } from "jotai";
 
-export type MenuItemProps = {
+export type MenuItemProps = ComponentProps<typeof MenuItemWrapper> & {
     name: PageRouteName | SocialRouteName;
     icon: IconType;
     href: string;
     newTab?: boolean;
-} & ComponentProps<typeof MenuItemWrapper>;
+};
 
-const MenuItem = ({ name, icon, href, newTab, ...props }: MenuItemProps) => {
-    const isHovered = useIsSectionHovered(name);
-    const setMenuHover = useSetAtom(menuHoverAtom);
+const MenuItem = ({ name, icon, href, newTab, coloredIcon, ...props }: MenuItemProps) => {
+    const pageRoute = usePageRoute();
+
+    const isHovered = useIsRouteHovered(name);
+    const setMenuHover = useSetAtom(hoveredRouteAtom);
+
+    coloredIcon ??= pageRoute?.name === name;
 
     return (
-        <MenuItemWrapper onHoverStart={() => setMenuHover(name)} {...props}>
-            <FlexLink noNextLink newTab={newTab} href={href}>
+        <MenuItemWrapper
+            coloredIcon={coloredIcon}
+            onHoverStart={() => setMenuHover(name)}
+            {...props}
+        >
+            <FlexLink newTab={newTab} href={href}>
                 {icon()}
                 <Text>{name}</Text>
             </FlexLink>

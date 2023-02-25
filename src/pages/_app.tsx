@@ -2,8 +2,6 @@ import { styled } from "@/theme";
 
 import type { AppProps } from "next/app";
 
-import { PAGE_ROUTES } from "@/commons/routes";
-
 import NoScript from "@/components/NoScript";
 
 import Footer from "@/layout/Footer";
@@ -14,13 +12,11 @@ import { AnimatePresence } from "framer-motion";
 import { Provider as JotaiProvider } from "jotai";
 
 export default function App({ Component, pageProps, router }: AppProps) {
-    const pageRouteIndex = PAGE_ROUTES.findIndex(({ href }) => href === router.pathname);
-
     return (
         <JotaiProvider>
             <GlobalSEO />
             <Body>
-                <Nav pageRouteIndex={pageRouteIndex} />
+                <Nav />
                 <AnimatePresence mode="wait">
                     <Component key={router.pathname} {...pageProps} />
                 </AnimatePresence>
