@@ -1,13 +1,13 @@
 import { TWITTER_LINK, GITHUB_LINK, LINKED_IN_LINK } from "@/commons/config";
 import type { IconType } from "@/commons/icons";
-import { ToolsIcon } from "@/commons/icons";
 import {
     HomeIcon,
     ProjectsIcon,
+    ToolsIcon,
+    DashboardIcon,
     TwitterIcon,
     GitHubIcon,
     LinkedInIcon,
-    DashboardIcon,
 } from "@/commons/icons";
 
 interface Route {
