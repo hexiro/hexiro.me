@@ -19,24 +19,21 @@ export type MenuItemProps = ComponentProps<typeof MenuItemWrapper> & {
     icon: IconType;
     href: string;
     newTab?: boolean;
+    highlightedIcon?: boolean;
 };
 
-const MenuItem = ({ name, icon, href, newTab, coloredIcon, ...props }: MenuItemProps) => {
+const MenuItem = ({ name, icon, href, newTab, highlightedIcon, ...props }: MenuItemProps) => {
     const pageRoute = usePageRoute();
 
     const isHovered = useIsRouteHovered(name);
     const setMenuHover = useSetAtom(hoveredRouteAtom);
 
-    coloredIcon ??= pageRoute?.name === name;
+    highlightedIcon ??= pageRoute?.name === name;
 
     return (
-        <MenuItemWrapper
-            coloredIcon={coloredIcon}
-            onHoverStart={() => setMenuHover(name)}
-            {...props}
-        >
+        <MenuItemWrapper onHoverStart={() => setMenuHover(name)} {...props}>
             <FlexLink newTab={newTab} href={href}>
-                {icon()}
+                <RouteIcon highlighted={highlightedIcon}>{icon()}</RouteIcon>
                 <Text>{name}</Text>
             </FlexLink>
             <AnimatePresence initial={false}>
@@ -76,23 +73,8 @@ const MenuItemWrapper = styled(motion.li, {
     position: "relative",
     paddingY: "7px",
 
-    "& svg": {
-        color: "$$svgColor",
-    },
-
     defaultVariants: {
         coloredIcon: true,
-    },
-
-    variants: {
-        coloredIcon: {
-            true: {
-                $$svgColor: "$colors$brand-primary",
-            },
-            false: {
-                $$svgColor: "$colors$background-tertiary",
-            },
-        },
     },
 });
 
@@ -104,4 +86,24 @@ const MenuHoverHighlight = styled(motion.div, {
     height: "100%",
     backgroundColor: "$lighten-10",
     zIndex: -1,
+});
+
+const RouteIcon = styled(motion.div, {
+    "& svg": {
+        willTransition: "color",
+        transitionDuration: "$medium",
+        transitionTimingFunction: "$ease-in-out",
+        color: "$$svgColor",
+    },
+
+    variants: {
+        highlighted: {
+            true: {
+                $$svgColor: "$colors$brand-primary",
+            },
+            false: {
+                $$svgColor: "$colors$background-tertiary",
+            },
+        },
+    },
 });
