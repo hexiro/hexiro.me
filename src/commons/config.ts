@@ -13,3 +13,6 @@ export const LINKED_IN_LINK = `https://www.linkedin.com/in/${LINKED_IN}` as cons
 // private
 export const GITHUB_TOKEN = process.env.GITHUB_TOKEN ?? "";
 export const WAKATIME_TOKEN = process.env.WAKATIME_TOKEN ?? "";
+export const TMDB_V3_TOKEN = process.env.TMDB_V3_TOKEN ?? "";
+export const TMDB_V4_TOKEN = process.env.TMDB_V4_TOKEN ?? "";
+export const TMDB_ACCOUNT_ID = process.env.TMDB_ACCOUNT_ID ?? "";

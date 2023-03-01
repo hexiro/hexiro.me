@@ -25,12 +25,3 @@ export default function HomePage() {
         </Page>
     );
 }
-
-// const getStaticProps: GetStaticProps<IndexPageProps> = async () => ({
-//     props: {
-//         projects: await projects(),
-//         contributionsCalendar: await contributionsCalendar(),
-//         wakatimeStats: await wakatimeStats(),
-//     },
-//     revalidate: 60 * 60,
-// });

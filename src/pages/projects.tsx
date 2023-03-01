@@ -8,7 +8,7 @@ import fetchProjects from "@/data/projects";
 
 import Page from "@/layout/Page";
 
-interface ProjectsProps {
+interface ProjectsPageProps {
     projects: ProjectData[];
 }
 
@@ -16,7 +16,7 @@ const NAME = "Projects";
 const DESCRIPTION =
     "I hand-picked these six projects to showcase my skill set and creativity. I host each project on GitHub.";
 
-export default function ProjectsPage({ projects }: ProjectsProps) {
+export default function ProjectsPage({ projects }: ProjectsPageProps) {
     return (
         <Page name={NAME} description={DESCRIPTION}>
             <BrandedBoxContainer>
@@ -28,7 +28,7 @@ export default function ProjectsPage({ projects }: ProjectsProps) {
     );
 }
 
-export const getStaticProps: GetStaticProps<ProjectsProps> = async () => ({
+export const getStaticProps: GetStaticProps<ProjectsPageProps> = async () => ({
     props: {
         projects: await fetchProjects(),
     },
