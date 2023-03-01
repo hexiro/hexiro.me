@@ -10,6 +10,7 @@ import LanguageIcon from "@/components/projects/LanguageIcon";
 
 import type { ProjectData } from "@/data/projects";
 
+import { Divider } from "components/layout";
 import ipaddr from "ipaddr.js";
 
 interface ProjectProps {
@@ -38,7 +39,7 @@ export default function Project({ data }: ProjectProps) {
                         <StarIcon size="sm" />
                         <Paragraph css={{ lineHeight: "$single" }}>{stars}</Paragraph>
                     </ProjectDetail>
-                    <VerticalDivider />
+                    <Divider orientation="vertical" size={2} margin={12} />
                     <IconList>
                         {packageUrl !== null ? (
                             <IconListItem>
@@ -164,13 +165,6 @@ const ProjectDetail = styled("div", {
     alignItems: "center",
     gap: "$1",
     height: "100%",
-});
-
-const VerticalDivider = styled("hr", {
-    height: "100%",
-    borderLeft: "2px solid $lighten-10",
-    marginX: "12px",
-    borderRadius: "$max",
 });
 
 const IconListItem = styled("li", {
