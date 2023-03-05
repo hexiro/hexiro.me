@@ -47,8 +47,12 @@ const FooterContainer = styled("footer", {
     display: "flex",
     flexDirection: "column",
     marginTop: "$9",
-    paddingX: "$main-x-padding",
     paddingBottom: "100px",
+    paddingX: "$main-x-padding",
+
+    "@lg": {
+        paddingX: "$main-x-padding-lg",
+    },    
 });
 
 const FooterContent = styled("div", {

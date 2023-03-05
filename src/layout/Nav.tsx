@@ -41,6 +41,10 @@ const NavContainer = styled("nav", {
     boxShadow: "0 4px 20px 10px rgb(0 0 0 / 10%)",
     backgroundColor: "$background-primary",
     zIndex: "$above",
+
+    "@lg": {
+        paddingX: "$main-x-padding-lg",
+    }
 });
 
 const NavLeft = styled("div", {

@@ -29,8 +29,8 @@ export default function AboutPage({ movieRatings }: AboutPageProps) {
             <Heading as="h2">Movies</Heading>
             <MoviesContainer>
                 {movieRatings
-                    ?.filter((x) => x.isFavorite)
-                    .map((movie) => (
+                    // .filter((x) => x.isFavorite)
+                    ?.map((movie) => (
                         <Movie key={movie.title} movie={movie} />
                     ))}
             </MoviesContainer>
@@ -65,13 +65,15 @@ const Movie = ({ movie }: { movie: MovieRating }) => (
         </MoviePosterContainer>
         <Flex>
             <SubLine>
-                <Heading ellipsis as="h3">
+                <Heading ellipsis as="h4">
                     {movie.title}
                 </Heading>
                 <Divider orientation="vertical" margin={8} size={2} />
                 <SmallText>{movie.rating}/10</SmallText>
             </SubLine>
-            <Paragraph css={{ color: "$brand-accent" }}>{movie.releaseYear}</Paragraph>
+            <Paragraph size="sm" css={{ color: "$brand-accent" }}>
+                {movie.releaseYear}
+            </Paragraph>
         </Flex>
     </MovieContainer>
 );
@@ -129,13 +131,9 @@ const MoviePosterContainer = styled("div", {
     [`&, & > ${MoviePoster}`]: {
         width: "100%",
         height: "auto",
-        maxWidth: "150px",
         aspectRatio: "2 / 3",
         borderRadius: "$md",
-
-        "@xs": {
-            maxWidth: "200px",
-        },
+        maxWidth: "$$posterWidth",
     },
 });
 
@@ -145,52 +143,28 @@ const MovieContainer = styled(BrandedBox, {
     padding: "$3 $4",
     flexDirection: "column",
 
-    width: "calc(1.05 * (200px + 4px + ($sizes$4 * 2)))",
+    $$posterWidth: "150px",
 
     "@xs": {
-        width: "100%",
+        $$posterWidth: "150px",
     },
 
-    "@xl": {
-        // poster width + border width + padding
-        maxWidth: "calc(200px + 4px + ($sizes$4 * 2))",
-    },
+    width: "calc($$posterWidth + 4px + ($sizes$4 * 2))",
 });
 
 const MoviesContainer = styled(motion.div, {
-    flexWrap: "wrap",
+    // display: "grid",
+    gridGap: "$3",
+    paddingY: "$3",
+    // gridRows: 2,
+    // // gridColumns: 4,
+    // overFlowX: "scroll",
 
-    display: "$$display",
-    gap: "$$gap",
-    gridGap: "$$gap",
-    flexDirection: "$$direction",
-    gridColumns: "$$columns",
-    justifyContent: "$$justify",
-
-    $$display: "flex",
-    $$gap: "$space$3",
-    $$direction: "row",
-    $$justify: "center",
-
-    "@xs": {
-        $$direction: "column",
-        $$display: "grid",
-        $$columns: 2,
-        $$justify: "initial",
-    },
-
-    "@md": {
-        $$columns: 3,
-    },
-
-    "@lg": {
-        $$columns: 4,
-    },
-
-    "@xl": {
-        $$display: "flex",
-        $$direction: "row",
-    },
+    display: "grid",
+    // /* auto auto is telling the browser to render two rows, if needed */
+    gridTemplateRows: "auto auto",
+    gridAutoFlow: "column",
+    overflowX: "scroll",
 });
 
 const SmallText = styled("span", {

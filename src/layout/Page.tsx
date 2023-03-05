@@ -77,9 +77,13 @@ const PageContainer = styled(motion.main, {
     flexGrow: 1,
     height: "100%",
     minHeight: "100vh",
-    paddingTop: 264,
+    paddingTop: 225,
     paddingBottom: 100,
     paddingX: "$main-x-padding",
+
+    "@lg": {
+        paddingX: "$main-x-padding-lg",
+    },
 });
 
 const TextWrapper = styled("div", {
