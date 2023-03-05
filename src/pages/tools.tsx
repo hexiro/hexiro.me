@@ -68,8 +68,10 @@ const ToolSectionContainer = styled(motion.div, {
 
 const ToolsContainer = styled(motion.div, {
     flexWrap: "wrap",
+
     display: "$$display",
     gap: "$$gap",
+    gridGap: "$$gap",
     flexDirection: "$$direction",
     gridColumns: "$$columns",
 
@@ -80,7 +82,6 @@ const ToolsContainer = styled(motion.div, {
 
     "@xs": {
         $$display: "grid",
-        gridGap: "$$gap",
     },
 
     "@sm": {
@@ -90,7 +91,6 @@ const ToolsContainer = styled(motion.div, {
     "@md": {
         $$display: "flex",
         $$direction: "row",
-        gap: "$$gap",
     },
 });
 

@@ -4,12 +4,14 @@ import type { GetStaticProps } from "next";
 import Image from "next/image";
 
 import { Divider } from "@/components/layout";
-import { BrandedBox, Heading, Paragraph } from "@/components/ui";
+import { BrandedBox, Flex, Heading, Paragraph } from "@/components/ui";
 
 import type { MovieRating } from "@/data/movieRatings";
 import fetchMovieRatings from "@/data/movieRatings";
 
 import Page from "@/layout/Page";
+
+import { motion } from "framer-motion";
 
 interface AboutPageProps {
     movieRatings: MovieRating[] | null;
@@ -40,23 +42,18 @@ const Movie = ({ movie }: { movie: MovieRating }) => (
             src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movie.posterPath}`}
             alt={`Poster for ${movie.title}`}
         />
-
-        <SubLine>
-            {/* <HeadingContainer> */}
+        <Flex>
+            <SubLine>
                 <Heading ellipsis as="h3">
                     {movie.title}
                 </Heading>
-            {/* </HeadingContainer> */}
-            <Divider orientation="vertical" margin={8} size={2} />
-            <SmallText>{movie.rating}/10</SmallText>
-        </SubLine>
-        <Paragraph css={{ color: "$brand-accent" }}>{movie.releaseYear}</Paragraph>
+                <Divider orientation="vertical" margin={8} size={2} />
+                <SmallText>{movie.rating}/10</SmallText>
+            </SubLine>
+            <Paragraph css={{ color: "$brand-accent" }}>{movie.releaseYear}</Paragraph>
+        </Flex>
     </MovieContainer>
 );
-
-const HeadingContainer = styled("div", {
-    flexGrow: 1,
-});
 
 const SubLine = styled("div", {
     display: "flex",
@@ -65,29 +62,66 @@ const SubLine = styled("div", {
 });
 
 const MoviePoster = styled(Image, {
-    width: 200,
-    height: 300,
+    width: "100%",
+    height: "auto",
+    maxWidth: "200px",
+
+    aspectRatio: "2 / 3",
+
     borderRadius: "$md",
     marginBottom: "$3",
+
+    alignSelf: "center",
+
+    boxShadow: "$md",
 });
 
 const MovieContainer = styled(BrandedBox, {
     display: "flex",
-    padding: "$2 $3",
+    padding: "$3 $4",
     flexDirection: "column",
-    width: 234,
-    height: 420,
+
+    width: "100%",
+
+    "@xl": {
+        // poster width + border width + padding
+        maxWidth: "calc(200px + 4px + ($sizes$4 * 2))",
+    },
 });
 
-const MoviesContainer = styled("div", {
-    display: "flex",
-    flexDirection: "row",
-    gap: "$4",
+const MoviesContainer = styled(motion.div, {
     flexWrap: "wrap",
+
+    display: "$$display",
+    gap: "$$gap",
+    gridGap: "$$gap",
+    flexDirection: "$$direction",
+    gridColumns: "$$columns",
+
+    $$display: "flex",
+    $$gap: "$space$3",
+    $$direction: "column",
+
+    "@xs": {
+        $$display: "grid",
+        $$columns: 2,
+    },
+
+    "@md": {
+        $$columns: 3,
+    },
+
+    "@lg": {
+        $$columns: 4,
+    },
+
+    "@xl": {
+        $$display: "flex",
+        $$direction: "row",
+    },
 });
 
 const SmallText = styled("span", {
-    // marginLeft: "$2",
     color: "$text-secondary",
     textAlign: "left",
     fontSize: 14,
