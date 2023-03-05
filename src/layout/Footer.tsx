@@ -1,7 +1,6 @@
 import { styled } from "@/theme";
 import type { ComponentProps } from "@stitches/react";
 
-import { idToHref } from "@/commons";
 import type { IconType } from "@/commons/icons";
 import { PAGE_ROUTES, SOCIAL_ROUTES } from "@/commons/routes";
 
@@ -26,8 +25,8 @@ export default function Footer() {
                         <SectionsSlashContactsHeading as="h4">
                             Sections
                         </SectionsSlashContactsHeading>
-                        {PAGE_ROUTES.map(({ name, icon }) => (
-                            <LinkWithIcon key={name} name={name} icon={icon} />
+                        {PAGE_ROUTES.map(({ name, href, icon }) => (
+                            <LinkWithIcon key={name} name={name} href={href} icon={icon} />
                         ))}
                     </SectionsSlashLinks>
                     <SectionsSlashLinks>
@@ -86,14 +85,14 @@ const FlexLink = styled(Link, {
     height: "100%",
 });
 
-type LinkWithIconProps = {
+type LinkWithIconProps = ComponentProps<typeof FlexLink> & {
     name: string;
     icon: IconType;
-    href?: string;
-} & Omit<ComponentProps<typeof FlexLink>, "noNextLink" | "href">;
+    href: string;
+};
 
-const LinkWithIcon = ({ name, href, icon, ...props }: LinkWithIconProps) => (
-    <FlexLink noNextLink href={href ? href : idToHref(name)} animation="popAndTap" {...props}>
+const LinkWithIcon = ({ name, icon, ...props }: LinkWithIconProps) => (
+    <FlexLink animation="popAndTap" {...props}>
         {icon({ size: "sm" })}
         <Text>{name}</Text>
     </FlexLink>

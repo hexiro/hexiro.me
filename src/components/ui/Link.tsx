@@ -13,17 +13,15 @@ type SpanProps = VariantProps<typeof Span>;
 type LinkProps = Omit<ComponentProps<Anchor>, "target"> &
     SpanProps & {
         href: string;
-        noNextLink?: boolean;
         newTab?: boolean;
     };
 
-const Link = ({ href, newTab, noNextLink, animation, color, lineHeight, ...props }: LinkProps) => (
+const Link = ({ href, newTab, animation, color, lineHeight, ...props }: LinkProps) => (
     <WithSpan animation={animation} color={color} lineHeight={lineHeight}>
         <LinkWrapper
             href={href}
             target={newTab ? "_blank" : undefined}
             rel={newTab ? "noreferrer" : undefined}
-            as={noNextLink ? "a" : undefined}
             {...props}
         />
     </WithSpan>

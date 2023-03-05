@@ -30,7 +30,7 @@ export default function Project({ data }: ProjectProps) {
         >
             <ProjectHeader>
                 <Heading ellipsis as="h3">
-                    <ProjectLink newTab noNextLink href={url}>
+                    <ProjectLink newTab href={url}>
                         {name}
                     </ProjectLink>
                 </Heading>
