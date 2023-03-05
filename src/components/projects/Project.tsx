@@ -1,7 +1,5 @@
 import { styled } from "@/theme";
 
-import { useState } from "react";
-
 import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
 
 import { AnchorList, Heading, BrandedBox, Link, Paragraph } from "@/components/ui";
@@ -187,19 +185,6 @@ const ProjectContainer = styled(BrandedBox, {
 
     "@xl": {
         width: "48%",
-    },
-
-    variants: {
-        enableHoverAnimation: {
-            true: {
-                transitionDuration: "$fast",
-                transitionTimingFunction: "$ease-in-out",
-
-                "&:hover": {
-                    transform: "translateY(-6px)!important",
-                },
-            },
-        },
     },
 });
 

@@ -40,6 +40,7 @@ const BrandedBoxContainer = styled(motion.div, {
             true: {
                 transitionDuration: "$fast",
                 transitionTimingFunction: "$ease-in-out",
+                willTransition: "transform",
 
                 "&:hover": {
                     transform: "translateY(-6px)!important",

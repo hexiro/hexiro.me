@@ -270,8 +270,14 @@ export const HTMLIcon: IconType = (props) => (
 export const CSSIcon: IconType = (props) => (
     // 'brand-css3' icon from tabler
     <Icon {...props}>
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M20 4l-2 14.5l-6 2l-6 -2l-2 -14.5z" />
         <path d="M8.5 8h7l-4.5 4h4l-.5 3.5l-2.5 .75l-2.5 -.75l-.1 -.5" />
+    </Icon>
+);
+
+export const HeartIcon: IconType = (props) => (
+    // 'heart' icon from tabler
+    <Icon {...props}>
+        <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
     </Icon>
 );

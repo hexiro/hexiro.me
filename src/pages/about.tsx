@@ -3,8 +3,10 @@ import { styled } from "@/theme";
 import type { GetStaticProps } from "next";
 import Image from "next/image";
 
+import { HeartIcon } from "@/commons/icons";
+
 import { Divider } from "@/components/layout";
-import { BrandedBox, Flex, Heading, Paragraph } from "@/components/ui";
+import { BrandedBox, Flex, Heading, Paragraph, Tooltip } from "@/components/ui";
 
 import type { MovieRating } from "@/data/movieRatings";
 import fetchMovieRatings from "@/data/movieRatings";
@@ -26,9 +28,11 @@ export default function AboutPage({ movieRatings }: AboutPageProps) {
         <Page name={NAME} description={DESCRIPTION}>
             <Heading as="h2">Movies</Heading>
             <MoviesContainer>
-                {movieRatings?.map((movie) => (
-                    <Movie key={movie.title} movie={movie} />
-                ))}
+                {movieRatings
+                    ?.filter((x) => x.isFavorite)
+                    .map((movie) => (
+                        <Movie key={movie.title} movie={movie} />
+                    ))}
             </MoviesContainer>
         </Page>
     );
@@ -36,12 +40,29 @@ export default function AboutPage({ movieRatings }: AboutPageProps) {
 
 const Movie = ({ movie }: { movie: MovieRating }) => (
     <MovieContainer>
-        <MoviePoster
-            width={200}
-            height={300}
-            src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movie.posterPath}`}
-            alt={`Poster for ${movie.title}`}
-        />
+        <MoviePosterContainer>
+            <MoviePoster
+                width={200}
+                height={300}
+                src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movie.posterPath}`}
+                alt={`Poster for ${movie.title}`}
+            />
+            {movie.isFavorite ? (
+                <FavoriteContainer>
+                    <Tooltip
+                        title="Personal Favorite"
+                        size="sm"
+                        style={{ width: "100%", height: "100%" }}
+                        distance={6}
+                    >
+                        <Circle>
+                            <HeartIcon fill />
+                        </Circle>
+                    </Tooltip>
+                    <LowerCircle />
+                </FavoriteContainer>
+            ) : null}
+        </MoviePosterContainer>
         <Flex>
             <SubLine>
                 <Heading ellipsis as="h3">
@@ -55,6 +76,39 @@ const Movie = ({ movie }: { movie: MovieRating }) => (
     </MovieContainer>
 );
 
+const FavoriteContainer = styled("div", {
+    position: "absolute",
+    top: "-$1",
+    right: "-$1",
+    size: "30px",
+    zIndex: 1,
+});
+
+const LowerCircle = styled("div", {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    size: "100%",
+    borderRadius: "50%",
+    backgroundColor: "rgb(0, 0, 0)",
+    zIndex: 1,
+});
+
+const Circle = styled("div", {
+    position: "relative",
+    size: "100%",
+    borderRadius: "50%",
+
+    backgroundColor: "$brand-tertiary",
+    zIndex: 2,
+
+    display: "flex",
+    padding: "$1",
+    alignItems: "center",
+    justifyContent: "center",
+    border: "2px solid $lighten-10",
+});
+
 const SubLine = styled("div", {
     display: "flex",
     flexDirection: "row",
@@ -62,26 +116,40 @@ const SubLine = styled("div", {
 });
 
 const MoviePoster = styled(Image, {
-    width: "100%",
-    height: "auto",
-    maxWidth: "200px",
-
-    aspectRatio: "2 / 3",
-
     borderRadius: "$md",
-    marginBottom: "$3",
-
-    alignSelf: "center",
-
     boxShadow: "$md",
 });
 
+const MoviePosterContainer = styled("div", {
+    position: "relative",
+    alignSelf: "center",
+    marginBottom: "$3",
+
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    [`&, & > ${MoviePoster}`]: {
+        width: "100%",
+        height: "auto",
+        maxWidth: "150px",
+        aspectRatio: "2 / 3",
+        borderRadius: "$md",
+
+        "@xs": {
+            maxWidth: "200px",
+        },
+    },
+});
+
 const MovieContainer = styled(BrandedBox, {
+    position: "relative",
     display: "flex",
     padding: "$3 $4",
     flexDirection: "column",
 
-    width: "100%",
+    width: "calc(1.05 * (200px + 4px + ($sizes$4 * 2)))",
+
+    "@xs": {
+        width: "100%",
+    },
 
     "@xl": {
         // poster width + border width + padding
@@ -97,14 +165,18 @@ const MoviesContainer = styled(motion.div, {
     gridGap: "$$gap",
     flexDirection: "$$direction",
     gridColumns: "$$columns",
+    justifyContent: "$$justify",
 
     $$display: "flex",
     $$gap: "$space$3",
-    $$direction: "column",
+    $$direction: "row",
+    $$justify: "center",
 
     "@xs": {
+        $$direction: "column",
         $$display: "grid",
         $$columns: 2,
+        $$justify: "initial",
     },
 
     "@md": {
