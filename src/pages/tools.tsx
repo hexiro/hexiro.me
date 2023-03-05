@@ -1,6 +1,11 @@
 import { styled } from "@/theme";
 
-import { slideFromBottom, slideFromLeft, staggerChildren } from "@/commons/framer";
+import {
+    extendedStaggerChildren,
+    slideFromBottom,
+    slideFromLeft,
+    staggerChildren,
+} from "@/commons/framer";
 import type { IconType } from "@/commons/icons";
 import { PythonIcon, TypeScriptIcon, JavaScriptIcon, CSSIcon, HTMLIcon } from "@/commons/icons";
 
@@ -17,13 +22,19 @@ const DESCRIPTION =
 export default function ToolsPage() {
     return (
         <Page name={NAME} description={DESCRIPTION}>
-            <ToolsSections variants={staggerChildren}>
+            <ToolsSections variants={extendedStaggerChildren}>
                 <ToolSection name="Languages">
                     <Tool name="Python" icon={PythonIcon} />
                     <Tool name="TypeScript" icon={TypeScriptIcon} />
                     <Tool name="JavaScript" icon={JavaScriptIcon} />
                     <Tool name="HTML" icon={HTMLIcon} />
                     <Tool name="CSS" icon={CSSIcon} />
+                </ToolSection>
+                <ToolSection name="Environment">
+                    <Tool name="Windows" icon={PythonIcon} />
+                    <Tool name="Linux" icon={TypeScriptIcon} />
+                    <Tool name="VS Code" icon={TypeScriptIcon} />
+                    <Tool name="PyCharm" icon={TypeScriptIcon} />
                 </ToolSection>
             </ToolsSections>
         </Page>
@@ -37,7 +48,7 @@ interface ToolProps {
 
 const Tool = ({ name, icon }: ToolProps) => (
     <ToolContainer variants={slideFromBottom}>
-        {icon({ size: "xl" })}
+        {icon({ size: "lg" })}
         <ToolName size="sm" align="center">
             {name}
         </ToolName>

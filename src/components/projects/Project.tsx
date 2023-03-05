@@ -18,16 +18,12 @@ interface ProjectProps {
 }
 
 export default function Project({ data }: ProjectProps) {
-    const [animationComplete, setAnimationComplete] = useState<boolean>(false);
     const { name, description, stars, languages, topics, url, packageUrl } = data;
 
     const descriptionSections = extractLinks(description);
 
     return (
-        <ProjectContainer
-            enableHoverAnimation={animationComplete}
-            onAnimationComplete={() => setAnimationComplete(true)}
-        >
+        <ProjectContainer>
             <ProjectHeader>
                 <Heading ellipsis as="h3">
                     <ProjectLink newTab href={url}>

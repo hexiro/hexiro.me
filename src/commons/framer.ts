@@ -40,6 +40,19 @@ export const staggerChildren: Variants = {
     },
 };
 
+export const extendedStaggerChildren: Variants = {
+    initial: {
+        opacity: 0,
+    },
+    animate: {
+        opacity: 1,
+        transition: {
+            delayChildren: 0.05,
+            staggerChildren: 0.14,
+        },
+    },
+};
+
 // child variants
 
 export const fadeInAndScale: Variants = {

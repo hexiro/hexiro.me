@@ -3,11 +3,13 @@ import type { ComponentProps } from "@stitches/react";
 
 import type { PropsWithChildren } from "react";
 
+import { pageAnimationOverAtom } from "@/commons/atoms";
 import { slideFromLeft, staggerChildren } from "@/commons/framer";
 
 import { Subheading, Heading, Paragraph } from "@/components/ui";
 
 import { motion } from "framer-motion";
+import { useSetAtom } from "jotai";
 import { SEO } from "layout/SEO";
 
 type PageProps = PropsWithChildren<ComponentProps<typeof PageContainer>> & {
@@ -29,6 +31,8 @@ export default function Page({
     children,
     ...props
 }: PageProps) {
+    const setPageAnimationOver = useSetAtom(pageAnimationOverAtom);
+
     return (
         <>
             <PageContainer
@@ -36,6 +40,8 @@ export default function Page({
                 initial="initial"
                 animate="animate"
                 exit="initial"
+                onAnimationStart={() => setPageAnimationOver(false)}
+                onAnimationComplete={() => setPageAnimationOver(true)}
                 {...props}
             >
                 <TextWrapper>
