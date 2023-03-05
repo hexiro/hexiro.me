@@ -6,7 +6,7 @@ import Image from "next/image";
 import { HeartIcon } from "@/commons/icons";
 
 import { Divider } from "@/components/layout";
-import { BrandedBox, Flex, Heading, Paragraph, Tooltip } from "@/components/ui";
+import { BrandedBox, Flex, Heading, LinkOverlay, Paragraph, Tooltip } from "@/components/ui";
 
 import type { MovieRating } from "@/data/movieRatings";
 import fetchMovieRatings from "@/data/movieRatings";
@@ -40,29 +40,31 @@ export default function AboutPage({ movieRatings }: AboutPageProps) {
 
 const Movie = ({ movie }: { movie: MovieRating }) => (
     <MovieContainer>
-        <MoviePosterContainer>
-            <MoviePoster
-                width={200}
-                height={300}
-                src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movie.posterPath}`}
-                alt={`Poster for ${movie.title}`}
-            />
-            {movie.isFavorite ? (
-                <FavoriteContainer>
-                    <Tooltip
-                        title="Personal Favorite"
-                        size="sm"
-                        style={{ width: "100%", height: "100%" }}
-                        distance={6}
-                    >
-                        <Circle>
-                            <HeartIcon fill />
-                        </Circle>
-                    </Tooltip>
-                    <LowerCircle />
-                </FavoriteContainer>
-            ) : null}
-        </MoviePosterContainer>
+        <LinkOverlay newTab href={`https://www.themoviedb.org/movie/${movie.id}`}>
+            <MoviePosterContainer>
+                <MoviePoster
+                    width={200}
+                    height={300}
+                    src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movie.posterPath}`}
+                    alt={`Poster for ${movie.title}`}
+                />
+                {movie.isFavorite ? (
+                    <FavoriteContainer>
+                        <Tooltip
+                            title="Personal Favorite"
+                            size="sm"
+                            style={{ width: "100%", height: "100%" }}
+                            distance={6}
+                        >
+                            <Circle>
+                                <HeartIcon fill />
+                            </Circle>
+                        </Tooltip>
+                        <LowerCircle />
+                    </FavoriteContainer>
+                ) : null}
+            </MoviePosterContainer>
+        </LinkOverlay>
         <Flex>
             <SubLine>
                 <Heading ellipsis as="h4">

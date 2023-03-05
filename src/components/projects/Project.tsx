@@ -2,7 +2,7 @@ import { styled } from "@/theme";
 
 import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
 
-import { AnchorList, Heading, BrandedBox, Link, Paragraph } from "@/components/ui";
+import { AnchorList, Heading, BrandedBox, Link, Paragraph, LinkOverlay } from "@/components/ui";
 
 import LanguageIcon from "@/components/projects/LanguageIcon";
 
@@ -24,9 +24,9 @@ export default function Project({ data }: ProjectProps) {
         <ProjectContainer>
             <ProjectHeader>
                 <Heading ellipsis as="h3">
-                    <ProjectLink newTab href={url}>
+                    <LinkOverlay newTab href={url}>
                         {name}
-                    </ProjectLink>
+                    </LinkOverlay>
                 </Heading>
                 <ProjectInformation>
                     <ProjectDetail>
@@ -84,20 +84,6 @@ export default function Project({ data }: ProjectProps) {
 
 const ProjectDescription = styled(Paragraph, {
     minHeight: 90,
-});
-
-const ProjectLink = styled(Link, {
-    "&::before": {
-        content: "''",
-        cursor: "inherit",
-        display: "block",
-        position: "absolute",
-        top: 0,
-        left: 0,
-        zIndex: 0,
-        width: "100%",
-        height: "100%",
-    },
 });
 
 const DescriptionLink = styled(Link, {
