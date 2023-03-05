@@ -23,6 +23,11 @@ export const PAGE_ROUTES = ([
         icon: HomeIcon,
     },
     {
+        name: "About",
+        href: "/about",
+        icon: HomeIcon,
+    },
+    {
         name: "Projects",
         href: "/projects",
         icon: ProjectsIcon,
