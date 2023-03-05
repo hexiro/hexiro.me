@@ -143,7 +143,7 @@ const MovieContainer = styled(BrandedBox, {
     padding: "$3 $4",
     flexDirection: "column",
 
-    $$posterWidth: "150px",
+    $$posterWidth: "125px",
 
     "@xs": {
         $$posterWidth: "150px",
@@ -153,18 +153,17 @@ const MovieContainer = styled(BrandedBox, {
 });
 
 const MoviesContainer = styled(motion.div, {
-    // display: "grid",
-    gridGap: "$3",
-    paddingY: "$3",
-    // gridRows: 2,
-    // // gridColumns: 4,
-    // overFlowX: "scroll",
-
     display: "grid",
-    // /* auto auto is telling the browser to render two rows, if needed */
-    gridTemplateRows: "auto auto",
+    gridGap: "$3",
     gridAutoFlow: "column",
     overflowX: "scroll",
+    paddingTop: "$3",
+    paddingBottom: "$2",
+    gridTemplateRows: "auto auto",
+
+    "@xxl": {
+        gridTemplateRows: "auto auto auto",
+    },
 });
 
 const SmallText = styled("span", {
