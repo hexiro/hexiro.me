@@ -8,10 +8,7 @@ interface ProgrammingActivityProps {
     last7Days: number;
 }
 
-export default function ProgrammingActivity({
-    dailyAverage,
-    last7Days,
-}: ProgrammingActivityProps) {
+export default function ProgrammingActivity({ dailyAverage, last7Days }: ProgrammingActivityProps) {
     return (
         <ProgrammingActivityContainer>
             <Heading as="h3">Programming Activity</Heading>

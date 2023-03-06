@@ -44,7 +44,7 @@ const NavContainer = styled("nav", {
 
     "@lg": {
         paddingX: "$main-x-padding-lg",
-    }
+    },
 });
 
 const NavLeft = styled("div", {

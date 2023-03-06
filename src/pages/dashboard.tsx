@@ -19,7 +19,10 @@ const NAME = "Dashboard";
 const DESCRIPTION =
     "This dashboard is a collection of statistics related to myself and programming.";
 
-export default function DashboardPage({ wakatimeStats, contributionsCalendar }: DashboardPageProps) {
+export default function DashboardPage({
+    wakatimeStats,
+    contributionsCalendar,
+}: DashboardPageProps) {
     return (
         <Page name={NAME} description={DESCRIPTION}>
             <BrandedBoxContainer>

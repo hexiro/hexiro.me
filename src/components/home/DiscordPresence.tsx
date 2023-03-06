@@ -3,6 +3,7 @@ import { styled } from "@/theme";
 import Image from "next/image";
 import type { PropsWithChildren } from "react";
 
+import { pageAnimationOverAtom } from "@/commons/atoms";
 import { DISCORD } from "@/commons/config";
 import { slideFromBottom } from "@/commons/framer";
 
@@ -11,7 +12,6 @@ import { AnimatePresence } from "framer-motion";
 import { useAtomValue } from "jotai";
 import type { Activity as LanyardActivity } from "use-lanyard";
 import { useLanyardWS } from "use-lanyard";
-import { pageAnimationOverAtom } from "@/commons/atoms";
 
 export default function DiscordPresence() {
     const presence = useLanyardWS(DISCORD);

@@ -13,7 +13,7 @@ export default function TopLanguages({ languages }: TopLanguagesProps) {
     return (
         <TopLanguagesContainer>
             <Heading as="h3">Language Activity</Heading>
-            <Paragraph size="sm" css={{ maxWidth: 300 }} >
+            <Paragraph size="sm" css={{ maxWidth: 300 }}>
                 {"The programming languages I've used the most."}
             </Paragraph>
             <Divider />

@@ -52,7 +52,7 @@ const FooterContainer = styled("footer", {
 
     "@lg": {
         paddingX: "$main-x-padding-lg",
-    },    
+    },
 });
 
 const FooterContent = styled("div", {

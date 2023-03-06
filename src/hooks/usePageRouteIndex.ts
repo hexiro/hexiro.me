@@ -1,5 +1,6 @@
-import { PAGE_ROUTES } from "@/commons/routes";
 import { useRouter } from "next/router";
+
+import { PAGE_ROUTES } from "@/commons/routes";
 
 export default function usePageRouteIndex() {
     const router = useRouter();
