@@ -159,6 +159,7 @@ const MoviesContainer = styled(motion.div, {
     gridGap: "$3",
     gridAutoFlow: "column",
     overflowX: "scroll",
+    overflowY: "hidden",
     paddingTop: "$3",
     paddingBottom: "$2",
     gridTemplateRows: "auto auto",

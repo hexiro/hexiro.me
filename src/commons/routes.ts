@@ -2,6 +2,7 @@ import { TWITTER_LINK, GITHUB_LINK, LINKED_IN_LINK } from "@/commons/config";
 import type { IconType } from "@/commons/icons";
 import {
     HomeIcon,
+    AboutIcon,
     ProjectsIcon,
     ToolsIcon,
     DashboardIcon,
@@ -25,7 +26,7 @@ export const PAGE_ROUTES = ([
     {
         name: "About",
         href: "/about",
-        icon: HomeIcon,
+        icon: AboutIcon,
     },
     {
         name: "Projects",
