@@ -1,7 +1,5 @@
-import type { Media, CSS } from "@/theme";
 import { styled } from "@/theme";
 import type { ComponentProps, VariantProps } from "@stitches/react";
-import type { StyledComponent } from "@stitches/react/types/styled-component";
 
 import NextLink from "next/link";
 import type { PropsWithChildren } from "react";
@@ -10,7 +8,9 @@ import { Span } from "@/components/ui";
 
 type SpanProps = VariantProps<typeof Span>;
 
-type LinkProps = Omit<ComponentProps<Anchor>, "target"> &
+type AnchorProps = Omit<ComponentProps<typeof LinkWrapper>, "target">;
+
+type LinkProps = AnchorProps &
     SpanProps & {
         href: string;
         newTab?: boolean;
@@ -26,8 +26,6 @@ const Link = ({ href, newTab, animation, color, lineHeight, ...props }: LinkProp
         />
     </WithSpan>
 );
-
-type Anchor = StyledComponent<"a", {}, Media, CSS>;
 
 const LinkWrapper = styled(NextLink, {
     display: "inline-block",
