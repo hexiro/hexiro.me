@@ -17,7 +17,7 @@ interface Route {
     icon: IconType;
 }
 
-export const PAGE_ROUTES = ([
+export const PAGE_ROUTES = [
     {
         name: "Home",
         href: "/",
@@ -45,13 +45,13 @@ export const PAGE_ROUTES = ([
         icon: DashboardIcon,
     },
 
-] as const) satisfies readonly Route[];
+] as const satisfies readonly Route[];
 
 export type PageRouteName = (typeof PAGE_ROUTES)[number]["name"];
 export type PageRouteHref = (typeof PAGE_ROUTES)[number]["href"];
 export const PAGE_ROUTE_NAMES = PAGE_ROUTES.map((pageRoute) => pageRoute.name);
 
-export const SOCIAL_ROUTES = ([
+export const SOCIAL_ROUTES = [
     {
         name: "Twitter",
         href: TWITTER_LINK,
@@ -67,7 +67,7 @@ export const SOCIAL_ROUTES = ([
         href: LINKED_IN_LINK,
         icon: LinkedInIcon,
     },
-] as const) satisfies readonly Route[];
+] as const satisfies readonly Route[];
 
 export type SocialRouteName = (typeof SOCIAL_ROUTES)[number]["name"];
 export type SocialRouteHref = (typeof SOCIAL_ROUTES)[number]["href"];
