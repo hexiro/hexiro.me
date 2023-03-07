@@ -1,16 +1,31 @@
+import { slideFromBottom } from "@/commons/framer";
+
 import { ButtonLink } from "@/components/ui";
 
-import Page from "@/layout/Page";
+import Page, { PageDescription, PageHeading, PageText } from "@/layout/Page";
+import { styled } from "@/theme";
+
+import { motion } from "framer-motion";
 
 const NAME = "404";
 const DESCRIPTION = "404 | Not Found";
 
 export default function NotFound() {
     return (
-        <Page name={NAME} description={DESCRIPTION} css={{ paddingTop: 240 }}>
-            <ButtonLink priority="secondary" href="/" css={{ marginTop: "2em" }}>
-                Go Home
-            </ButtonLink>
+        <Page name={NAME} description={DESCRIPTION}>
+            <PageText>
+                <PageHeading>{NAME}</PageHeading>
+                <PageDescription>{DESCRIPTION}</PageDescription>
+                <HomeButtonContainer variants={slideFromBottom}>
+                    <ButtonLink href="/" size="lg">
+                        Go Home
+                    </ButtonLink>
+                </HomeButtonContainer>
+            </PageText>
         </Page>
     );
 }
+
+const HomeButtonContainer = styled(motion.div, {
+    marginTop: "$5",
+});

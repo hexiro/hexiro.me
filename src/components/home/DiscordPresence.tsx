@@ -85,7 +85,6 @@ const DiscordPresenceContainerWrapper = styled(BrandedBox, {
     flexDirection: "row",
     willTransition: "transform",
     padding: "$3",
-    marginTop: "$6",
 
     "@xs": {
         padding: "$4",

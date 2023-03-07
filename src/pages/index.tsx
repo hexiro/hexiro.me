@@ -1,8 +1,15 @@
-import { Span } from "@/components/ui";
+import { styled } from "@/theme";
+
+import { slideFromBottom, staggerChildren } from "@/commons/framer";
+import { AboutIcon, ProjectsIcon } from "@/commons/icons";
+
+import { ButtonLink, Span } from "@/components/ui";
 
 import DiscordPresence from "@/components/home/DiscordPresence";
 
 import Page, { PageDescription, PageHeading, PageSubheading, PageText } from "@/layout/Page";
+
+import { motion } from "framer-motion";
 
 const NAME = "Home";
 const DESCRIPTION =
@@ -18,8 +25,28 @@ export default function HomePage() {
                     <Span color="text-primary">,</Span>
                 </PageHeading>
                 <PageDescription>{DESCRIPTION}</PageDescription>
+                <ButtonsContainer variants={staggerChildren}>
+                    <motion.div variants={slideFromBottom}>
+                        <ButtonLink icon={AboutIcon} priority="primary" href="/about" size="lg">
+                            About me
+                        </ButtonLink>
+                    </motion.div>
+                    <motion.div variants={slideFromBottom}>
+                        <ButtonLink icon={ProjectsIcon} href="/projects" size="lg">
+                            View Projects
+                        </ButtonLink>
+                    </motion.div>
+                </ButtonsContainer>
             </PageText>
             <DiscordPresence />
         </Page>
     );
 }
+
+const ButtonsContainer = styled(motion.div, {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: "$5",
+    gap: "$3",
+});

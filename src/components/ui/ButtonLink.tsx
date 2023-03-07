@@ -13,7 +13,6 @@ const ButtonLink = styled(ButtonAsLink, {
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    color: "inherit",
     textDecoration: "inherit",
 });
 
