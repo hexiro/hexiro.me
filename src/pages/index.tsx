@@ -1,8 +1,8 @@
-import { Heading, Span } from "@/components/ui";
+import { Span } from "@/components/ui";
 
 import DiscordPresence from "@/components/home/DiscordPresence";
 
-import Page from "@/layout/Page";
+import Page, { PageDescription, PageHeading, PageSubheading, PageText } from "@/layout/Page";
 
 const NAME = "Home";
 const DESCRIPTION =
@@ -10,17 +10,15 @@ const DESCRIPTION =
 
 export default function HomePage() {
     return (
-        <Page
-            subheading="hi! I'm"
-            name={NAME}
-            description={DESCRIPTION}
-            nameElement={() => (
-                <Heading as="h1">
+        <Page name={NAME} description={DESCRIPTION}>
+            <PageText>
+                <PageSubheading>{"hi! I'm"}</PageSubheading>
+                <PageHeading>
                     Nathan <Span color="brand-accent">Lodge</Span>
                     <Span color="text-primary">,</Span>
-                </Heading>
-            )}
-        >
+                </PageHeading>
+                <PageDescription>{DESCRIPTION}</PageDescription>
+            </PageText>
             <DiscordPresence />
         </Page>
     );

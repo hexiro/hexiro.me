@@ -3,6 +3,7 @@ import { styled } from "@/theme";
 import type { GetStaticProps } from "next";
 import Image from "next/image";
 
+import { slideFromLeft } from "@/commons/framer";
 import { HeartIcon } from "@/commons/icons";
 
 import { Divider } from "@/components/layout";
@@ -11,7 +12,7 @@ import { BrandedBox, Flex, Heading, LinkOverlay, Paragraph, Tooltip } from "@/co
 import type { MovieRating } from "@/data/movieRatings";
 import fetchMovieRatings from "@/data/movieRatings";
 
-import Page from "@/layout/Page";
+import Page, { PageDescription, PageHeading, PageText } from "@/layout/Page";
 
 import { motion } from "framer-motion";
 
@@ -26,7 +27,13 @@ export default function AboutPage({ movieRatings }: AboutPageProps) {
     console.log(movieRatings);
     return (
         <Page name={NAME} description={DESCRIPTION}>
-            <Heading as="h2">Movies</Heading>
+            <PageText>
+                <PageHeading>{NAME}</PageHeading>
+                <PageDescription>{DESCRIPTION}</PageDescription>
+            </PageText>
+            <motion.div variants={slideFromLeft}>
+                <Heading as="h2">Movies</Heading>
+            </motion.div>
             <MoviesContainer>
                 {movieRatings
                     // .filter((x) => x.isFavorite)

@@ -6,7 +6,7 @@ import type { PropsWithChildren } from "react";
 import { pageAnimationOverAtom } from "@/commons/atoms";
 import { slideFromLeft, staggerChildren } from "@/commons/framer";
 
-import { Subheading, Heading, Paragraph } from "@/components/ui";
+import { Heading, Paragraph } from "@/components/ui";
 
 import { motion } from "framer-motion";
 import { useSetAtom } from "jotai";
@@ -15,22 +15,9 @@ import { SEO } from "layout/SEO";
 type PageProps = PropsWithChildren<ComponentProps<typeof PageContainer>> & {
     name: string;
     description: string;
-    subheading?: string;
-    nameElement?: () => JSX.Element;
-    descriptionElement?: () => JSX.Element;
-    subheadingElement?: () => JSX.Element;
 };
 
-export default function Page({
-    name,
-    description,
-    subheading,
-    nameElement,
-    descriptionElement,
-    subheadingElement,
-    children,
-    ...props
-}: PageProps) {
+export default function Page({ name, description, children, ...props }: PageProps) {
     const setPageAnimationOver = useSetAtom(pageAnimationOverAtom);
 
     return (
@@ -44,27 +31,6 @@ export default function Page({
                 onAnimationComplete={() => setPageAnimationOver(true)}
                 {...props}
             >
-                <TextWrapper>
-                    {subheading ? (
-                        <motion.div variants={slideFromLeft}>
-                            {subheadingElement ? (
-                                subheadingElement()
-                            ) : (
-                                <Subheading>{subheading}</Subheading>
-                            )}
-                        </motion.div>
-                    ) : null}
-                    <motion.div variants={slideFromLeft}>
-                        {nameElement ? nameElement() : <Heading as="h1">{name}</Heading>}
-                    </motion.div>
-                    <motion.div variants={slideFromLeft}>
-                        {descriptionElement ? (
-                            descriptionElement()
-                        ) : (
-                            <Paragraph size="lg">{description}</Paragraph>
-                        )}
-                    </motion.div>
-                </TextWrapper>
                 {children}
             </PageContainer>
             <SEO name={name} description={description} />
@@ -86,6 +52,35 @@ const PageContainer = styled(motion.main, {
     },
 });
 
-const TextWrapper = styled("div", {
+const Subheading = styled("span", {
+    color: "$text-primary",
+    fontFamily: "$heading",
+    fontSize: 40,
+    fontWeight: 600,
+
+    "@lg": {
+        fontSize: 48,
+    },
+});
+
+export const PageText = styled("div", {
     paddingBottom: "$7",
 });
+
+export const PageSubheading = (props: PropsWithChildren<ComponentProps<typeof Subheading>>) => (
+    <motion.div variants={slideFromLeft}>
+        <Subheading {...props} />
+    </motion.div>
+);
+
+export const PageHeading = (props: PropsWithChildren<ComponentProps<typeof Heading>>) => (
+    <motion.div variants={slideFromLeft}>
+        <Heading as="h1" {...props} />
+    </motion.div>
+);
+
+export const PageDescription = (props: PropsWithChildren<ComponentProps<typeof Paragraph>>) => (
+    <motion.div variants={slideFromLeft}>
+        <Paragraph size="lg" {...props} />
+    </motion.div>
+);

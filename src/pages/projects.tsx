@@ -6,7 +6,7 @@ import Project from "@/components/projects/Project";
 import type { ProjectData } from "@/data/projects";
 import fetchProjects from "@/data/projects";
 
-import Page from "@/layout/Page";
+import Page, { PageDescription, PageHeading, PageText } from "@/layout/Page";
 
 interface ProjectsPageProps {
     projects: ProjectData[];
@@ -19,6 +19,10 @@ const DESCRIPTION =
 export default function ProjectsPage({ projects }: ProjectsPageProps) {
     return (
         <Page name={NAME} description={DESCRIPTION}>
+            <PageText>
+                <PageHeading>{NAME}</PageHeading>
+                <PageDescription>{DESCRIPTION}</PageDescription>
+            </PageText>
             <BrandedBoxContainer>
                 {projects.map((project) => (
                     <Project key={project.name} data={project} />

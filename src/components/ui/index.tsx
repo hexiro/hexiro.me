@@ -9,7 +9,6 @@ import LinkOverlay from "@/components/ui/LinkOverlay";
 import ListItem from "@/components/ui/ListItem";
 import Paragraph from "@/components/ui/Paragraph";
 import Span from "@/components/ui/Span";
-import Subheading from "@/components/ui/Subheading";
 import Tooltip from "@/components/ui/Tooltip";
 
 export {
@@ -24,6 +23,5 @@ export {
     ListItem,
     Paragraph,
     Span,
-    Subheading,
     Tooltip,
 };
