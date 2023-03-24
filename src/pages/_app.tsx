@@ -17,7 +17,17 @@ export default function App({ Component, pageProps, router }: AppProps) {
             <GlobalSEO />
             <Body>
                 <Nav />
-                <AnimatePresence mode="wait">
+                <AnimatePresence
+                    mode="wait"
+                    onExitComplete={() =>
+                        window.scroll({
+                            top: 0,
+                            left: 0,
+                            // @ts-expect-error https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollTo behavior: instant defined on mozilla.org
+                            behavior: "instant",
+                        })
+                    }
+                >
                     <Component key={router.pathname} {...pageProps} />
                 </AnimatePresence>
                 <Footer />

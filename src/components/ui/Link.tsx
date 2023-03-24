@@ -8,7 +8,7 @@ import { Span } from "@/components/ui";
 
 type SpanProps = VariantProps<typeof Span>;
 
-type AnchorProps = Omit<ComponentProps<typeof LinkWrapper>, "target">;
+type AnchorProps = Omit<ComponentProps<typeof LinkWrapper>, "target" | "rel" | "scroll">;
 
 type LinkProps = AnchorProps &
     SpanProps & {
@@ -22,6 +22,7 @@ const Link = ({ href, newTab, animation, color, lineHeight, ...props }: LinkProp
             href={href}
             target={newTab ? "_blank" : undefined}
             rel={newTab ? "noreferrer" : undefined}
+            scroll={false}
             {...props}
         />
     </WithSpan>
