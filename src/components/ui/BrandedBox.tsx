@@ -36,11 +36,13 @@ const BrandedBoxContainer = styled(motion.div, {
     paddingY: "16px",
 
     variants: {
+        // needs to be !important for framer-motion & react-use-draggable-scroll in certain cases
         enableHover: {
             true: {
-                transitionDuration: "$fast",
-                transitionTimingFunction: "$ease-in-out",
-                willTransition: "transform",
+                transitionDuration: "$fast !important",
+                transitionTimingFunction: "$ease-in-out !important",
+                willTransition: "transform !important",
+                transform: "none !important",
 
                 "&:hover": {
                     transform: "translateY(-6px)!important",

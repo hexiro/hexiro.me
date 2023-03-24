@@ -26,6 +26,7 @@
         "react-dom": "^18.2.0",
         "react-measure": "^2.5.2",
         "react-tippy": "^1.4.0",
+        "react-use-draggable-scroll": "^0.4.7",
         "sharp": "^0.31.0",
         "use-lanyard": "^1.4.0",
         "zod": "^3.20.2"

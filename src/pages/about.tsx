@@ -2,6 +2,8 @@ import { styled } from "@/theme";
 
 import type { GetStaticProps } from "next";
 import Image from "next/image";
+import type { MutableRefObject } from "react";
+import { useRef } from "react";
 
 import { slideFromLeft } from "@/commons/framer";
 import { HeartIcon } from "@/commons/icons";
@@ -15,6 +17,7 @@ import fetchMovieRatings from "@/data/movieRatings";
 import Page, { PageDescription, PageHeading, PageText } from "@/layout/Page";
 
 import { motion } from "framer-motion";
+import { useDraggable } from "react-use-draggable-scroll";
 
 interface AboutPageProps {
     movieRatings: MovieRating[] | null;
@@ -28,6 +31,9 @@ const DESCRIPTION_PT_2 =
     "Aside from coding, I also enjoy watching movies. I love films that make me think and my favorite genres are Psychological Thriller, Drama, and Crime. Listed below are movies I’ve watched over the years and my review of them. I try not to be overly critical, so I’ve given a lot of movies a 10/10. The movies marked with hearts are my personal favorites.";
 
 export default function AboutPage({ movieRatings }: AboutPageProps) {
+    const ref = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>;
+    const { events } = useDraggable(ref);
+
     return (
         <Page name={NAME} description={DESCRIPTION_PT_1}>
             <PageText>
@@ -39,7 +45,7 @@ export default function AboutPage({ movieRatings }: AboutPageProps) {
             <motion.div variants={slideFromLeft}>
                 <Heading as="h2">Movies</Heading>
             </motion.div>
-            <MoviesContainer>
+            <MoviesContainer ref={ref} {...events}>
                 {movieRatings?.map((movie) => (
                     <Movie key={movie.title} movie={movie} />
                 ))}
@@ -80,7 +86,7 @@ const Movie = ({ movie }: { movie: MovieRating }) => (
                 <Heading ellipsis as="h4">
                     {movie.title}
                 </Heading>
-                <Divider orientation="vertical" margin={8} size={2} />
+                <Divider orientation="vertical" margin={8} size={2} css={{ height: "80%" }} />
                 <SmallText>{movie.rating}/10</SmallText>
             </SubLine>
             <Paragraph size="sm" css={{ color: "$brand-accent" }}>
