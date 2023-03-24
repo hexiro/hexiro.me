@@ -28,7 +28,6 @@ const DESCRIPTION_PT_2 =
     "Aside from coding, I also enjoy watching movies. I love films that make me think and my favorite genres are Psychological Thriller, Drama, and Crime. Listed below are movies I’ve watched over the years and my review of them. I try not to be overly critical, so I’ve given a lot of movies a 10/10. The movies marked with hearts are my personal favorites.";
 
 export default function AboutPage({ movieRatings }: AboutPageProps) {
-    console.log(movieRatings);
     return (
         <Page name={NAME} description={DESCRIPTION_PT_1}>
             <PageText>
@@ -41,11 +40,9 @@ export default function AboutPage({ movieRatings }: AboutPageProps) {
                 <Heading as="h2">Movies</Heading>
             </motion.div>
             <MoviesContainer>
-                {movieRatings
-                    // .filter((x) => x.isFavorite)
-                    ?.map((movie) => (
-                        <Movie key={movie.title} movie={movie} />
-                    ))}
+                {movieRatings?.map((movie) => (
+                    <Movie key={movie.title} movie={movie} />
+                ))}
             </MoviesContainer>
         </Page>
     );
