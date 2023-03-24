@@ -1,6 +1,7 @@
 import { styled } from "@/theme";
 
 const Divider = styled("hr", {
+    display: "block",
     borderRadius: "$max",
 
     defaultVariants: {

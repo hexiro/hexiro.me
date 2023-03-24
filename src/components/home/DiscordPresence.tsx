@@ -79,6 +79,7 @@ export default function DiscordPresence() {
 const DiscordPresenceContainerWrapper = styled(BrandedBox, {
     aspectRatio: "55 / 18",
     maxWidth: 440,
+    minHeight: 124,
     maxHeight: 144,
     size: "100%",
     paddingRight: "$2",

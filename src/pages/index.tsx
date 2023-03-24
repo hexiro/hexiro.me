@@ -45,8 +45,20 @@ export default function HomePage() {
 
 const ButtonsContainer = styled(motion.div, {
     display: "flex",
-    flexDirection: "row",
     alignItems: "center",
     marginTop: "$5",
     gap: "$3",
+
+    flexDirection: "column",
+
+    "> div, > div > a": {
+        width: "100%",
+    },
+
+    "@xs": {
+        flexDirection: "row",
+        "> div, > div > a": {
+            width: "auto",
+        },
+    },
 });
