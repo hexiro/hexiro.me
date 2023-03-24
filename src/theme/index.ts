@@ -33,6 +33,7 @@ const stitches = createStitches({
             // brand colors
             "brand-primary-rgb": "75, 255, 159",
             "brand-primary": "rgb($brand-primary-rgb)",
+            "brand-secondary": "hsl(147deg 51% 34%)",
             "brand-accent": "hsl(133deg 25% 85%)",
             "brand-tertiary": "rgba(232, 255, 232, 0.2)",
             // text colors
@@ -212,7 +213,7 @@ export const globalStyles = globalCss({
         boxShadow: "inset 0 0 6px rgba(0, 0, 0, 0.3)",
     },
     "::-webkit-scrollbar-thumb": {
-        backgroundColor: "rgba($brand-primary-rgb, 0.55)",
+        backgroundColor: "$brand-secondary",
         borderLeftRadius: "$xl",
         borderRightRadius: "$md",
     },

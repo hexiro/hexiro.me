@@ -89,9 +89,9 @@ export const ButtonContainer = styled("button", {
         priority: {
             primary: {
                 $$color: "$colors$text-primary",
-                $$bgColor: "hsl(147, 36%, 25%)",
-                $$borderColor: "rgba($colors$brand-primary-rgb, 0.2)",
-                $$hoverColor: "rgba($colors$brand-primary-rgb, 0.35)",
+                $$bgColor: "$colors$brand-secondary",
+                $$borderColor: "rgba($colors$brand-primary-rgb, 0.3)",
+                $$hoverColor: "rgba($colors$brand-primary-rgb, 0.3)",
             },
             secondary: {
                 $$color: "$colors$text-secondary",
