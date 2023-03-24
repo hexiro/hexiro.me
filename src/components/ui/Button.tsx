@@ -3,9 +3,23 @@ import type { ComponentProps } from "@stitches/react";
 
 import type { IconType } from "@/commons/icons";
 
-type ButtonProps = Omit<ComponentProps<typeof ButtonContainer>, "hasIcon"> & {
-    icon?: IconType;
-};
+import type { Link } from "components/ui";
+
+type ButtonProps = Omit<ComponentProps<typeof ButtonContainer>, "hasIcon"> &
+    ButtonLinkButtonProps & {
+        icon?: IconType;
+    };
+
+// may be a easier way to allow polymorphism?
+type ButtonLinkButtonProps =
+    | {
+          as?: never;
+          href?: never;
+      }
+    | {
+          as: typeof Link;
+          href: string;
+      };
 
 export default function Button({ icon, children, ...props }: ButtonProps) {
     return (
@@ -16,7 +30,7 @@ export default function Button({ icon, children, ...props }: ButtonProps) {
     );
 }
 
-const ButtonContainer = styled("button", {
+export const ButtonContainer = styled("button", {
     fontWeight: 600,
     lineHeight: 1,
 
@@ -58,17 +72,17 @@ const ButtonContainer = styled("button", {
                 fontSize: "0.9em",
                 height: "$5",
                 paddingX: "$3",
-                borderRadius: "$xl",
+                borderRadius: "$lg",
             },
             md: {
                 height: "$6",
                 paddingX: "$4",
-                borderRadius: "$xxl",
+                borderRadius: "$xl",
             },
             lg: {
-                height: "40px",
+                height: "2.75em",
                 paddingX: "$5",
-                borderRadius: "$xxl",
+                borderRadius: "$xl",
                 fontWeight: 700,
             },
         },

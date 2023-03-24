@@ -28,7 +28,7 @@ export default function HomePage() {
                 <ButtonsContainer variants={staggerChildren}>
                     <motion.div variants={slideFromBottom}>
                         <ButtonLink icon={AboutIcon} priority="primary" href="/about" size="lg">
-                            About me
+                            About Me
                         </ButtonLink>
                     </motion.div>
                     <motion.div variants={slideFromBottom}>
