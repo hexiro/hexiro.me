@@ -21,6 +21,7 @@ export default function PageRoute({ name, href }: PageRouteProps) {
                 {pageRoute?.name === name && (
                     <RouteUnderline
                         variants={fadeIn}
+                        style={{ originY: "0px" }}
                         layoutId="nav-route-underline"
                         initial="initial"
                         animate="animate"
