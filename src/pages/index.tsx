@@ -17,9 +17,9 @@ const DESCRIPTION =
 
 export default function HomePage() {
     return (
-        <Page name={NAME} description={DESCRIPTION}>
+        <Page name={NAME} description={`hi! i'm Nathan Lodge, ${DESCRIPTION}`}>
             <PageText>
-                <PageSubheading>{"hi! I'm"}</PageSubheading>
+                <PageSubheading>{"hi! i'm"}</PageSubheading>
                 <PageHeading>
                     Nathan <Span color="brand-accent">Lodge</Span>
                     <Span color="text-primary">,</Span>
