@@ -4,8 +4,6 @@ import {
     HomeIcon,
     AboutIcon,
     ProjectsIcon,
-    ToolsIcon,
-    DashboardIcon,
     TwitterIcon,
     GitHubIcon,
     LinkedInIcon,
@@ -33,17 +31,7 @@ export const PAGE_ROUTES = [
         href: "/projects",
         icon: ProjectsIcon,
     },
-    {
-        name: "Tools",
-        href: "/tools",
-        icon: ToolsIcon,
-        
-    },
-    {
-        name: "Dashboard",
-        href: "/dashboard",
-        icon: DashboardIcon,
-    },
+    
 
 ] as const satisfies readonly Route[];
 
