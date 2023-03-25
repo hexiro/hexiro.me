@@ -5,7 +5,7 @@ import Image from "next/image";
 import type { MutableRefObject } from "react";
 import { useRef } from "react";
 
-import { slideFromLeft } from "@/commons/framer";
+import { slideFromLeft } from "@/commons/animations";
 import { HeartIcon } from "@/commons/icons";
 
 import { Divider } from "@/components/layout";

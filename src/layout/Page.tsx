@@ -3,8 +3,8 @@ import type { ComponentProps } from "@stitches/react";
 
 import type { PropsWithChildren } from "react";
 
+import { slideFromLeft, staggerChildren } from "@/commons/animations";
 import { pageAnimationOverAtom } from "@/commons/atoms";
-import { slideFromLeft, staggerChildren } from "@/commons/framer";
 
 import { Heading, Paragraph } from "@/components/ui";
 

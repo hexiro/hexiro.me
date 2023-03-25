@@ -1,8 +1,8 @@
 import { styled } from "@/theme";
 import type { ComponentProps } from "@stitches/react";
 
+import { fadeIn, smallBounce } from "@/commons/animations";
 import { hoveredRouteAtom } from "@/commons/atoms";
-import { fadeIn, smallBounce } from "@/commons/framer";
 import type { IconType } from "@/commons/icons";
 import type { PageRouteName, SocialRouteName } from "@/commons/routes";
 

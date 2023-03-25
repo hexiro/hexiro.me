@@ -1,6 +1,6 @@
 import { styled } from "@/theme";
 
-import { slideFromBottom, staggerChildren } from "@/commons/framer";
+import { slideFromBottom, staggerChildren } from "@/commons/animations";
 import { AboutIcon, ProjectsIcon } from "@/commons/icons";
 
 import { ButtonLink, Span } from "@/components/ui";

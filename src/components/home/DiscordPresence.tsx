@@ -3,9 +3,9 @@ import { styled } from "@/theme";
 import Image from "next/image";
 import type { PropsWithChildren } from "react";
 
+import { slideFromBottom } from "@/commons/animations";
 import { pageAnimationOverAtom } from "@/commons/atoms";
 import { DISCORD } from "@/commons/config";
-import { slideFromBottom } from "@/commons/framer";
 
 import { Paragraph, Heading, Tooltip } from "@/components/ui";
 

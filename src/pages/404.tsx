@@ -1,9 +1,10 @@
-import { slideFromBottom } from "@/commons/framer";
+import { styled } from "@/theme";
+
+import { slideFromBottom } from "@/commons/animations";
 
 import { ButtonLink } from "@/components/ui";
 
 import Page, { PageDescription, PageHeading, PageText } from "@/layout/Page";
-import { styled } from "@/theme";
 
 import { motion } from "framer-motion";
 

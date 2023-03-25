@@ -3,7 +3,7 @@ import type { ComponentProps } from "@stitches/react";
 
 import type { PropsWithChildren } from "react";
 
-import { staggerChildren } from "@/commons/framer";
+import { staggerChildren } from "@/commons/animations";
 
 import { motion } from "framer-motion";
 

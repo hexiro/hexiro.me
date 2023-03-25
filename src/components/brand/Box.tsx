@@ -3,7 +3,7 @@ import { styled } from "@/theme";
 import type { ComponentProps, PropsWithChildren } from "react";
 import { useState } from "react";
 
-import { slideFromBottom } from "@/commons/framer";
+import { slideFromBottom } from "@/commons/animations";
 
 import { motion } from "framer-motion";
 

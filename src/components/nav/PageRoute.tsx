@@ -1,6 +1,6 @@
 import { styled } from "@/theme";
 
-import { fadeIn } from "@/commons/framer";
+import { fadeIn } from "@/commons/animations";
 import type { PageRouteType } from "@/commons/routes";
 
 import { Link, ListItem } from "@/components/ui";

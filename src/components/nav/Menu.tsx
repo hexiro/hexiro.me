@@ -2,8 +2,8 @@ import { styled, breakpoints } from "@/theme";
 
 import { useRef, useState } from "react";
 
+import { fadeInAndScale, normalBounce } from "@/commons/animations";
 import { hoveredRouteAtom } from "@/commons/atoms";
-import { fadeInAndScale, normalBounce } from "@/commons/framer";
 import { CloseIcon, HamburgerMenuIcon } from "@/commons/icons";
 import { PAGE_ROUTES, SOCIAL_ROUTES } from "@/commons/routes";
 

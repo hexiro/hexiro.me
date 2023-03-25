@@ -1,25 +1,6 @@
-import type { CSS } from "@/theme";
 import { styled } from "@/theme";
 
-const animationStyles: CSS = {
-    display: "inline-block",
-    willChange: "transform",
-    willTransition: "transform",
-    transitionDuration: "$fast",
-    transitionTimingFunction: "$ease-in-out",
-};
-
-const pop: CSS = {
-    "&:hover": {
-        transform: "translateY(-2px)",
-    },
-};
-
-const tap: CSS = {
-    "&:active": {
-        transform: "scale(0.96)!important",
-    },
-};
+import { animationStylesWithDisplay, pop, tap } from "@/commons/animations";
 
 const Span = styled("span", {
     variants: {
@@ -35,15 +16,15 @@ const Span = styled("span", {
         },
         animation: {
             pop: {
-                ...animationStyles,
+                ...animationStylesWithDisplay,
                 ...pop,
             },
             tap: {
-                ...animationStyles,
+                ...animationStylesWithDisplay,
                 ...tap,
             },
             popAndTap: {
-                ...animationStyles,
+                ...animationStylesWithDisplay,
                 ...pop,
                 ...tap,
             },
