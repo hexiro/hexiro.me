@@ -9,7 +9,9 @@ import { slideFromLeft } from "@/commons/framer";
 import { HeartIcon } from "@/commons/icons";
 
 import { Divider } from "@/components/layout";
-import { BrandedBox, Flex, Heading, LinkOverlay, Paragraph, Tooltip } from "@/components/ui";
+import { Flex, Heading, LinkOverlay, Paragraph, Tooltip } from "@/components/ui";
+
+import { Box } from "@/components/brand";
 
 import type { MovieRating } from "@/data/movieRatings";
 import fetchMovieRatings from "@/data/movieRatings";
@@ -155,7 +157,7 @@ const MoviePosterContainer = styled("div", {
     },
 });
 
-const MovieContainer = styled(BrandedBox, {
+const MovieContainer = styled(Box, {
     position: "relative",
     display: "flex",
     padding: "$3 $4",

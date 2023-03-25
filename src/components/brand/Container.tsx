@@ -7,19 +7,17 @@ import { staggerChildren } from "@/commons/framer";
 
 import { motion } from "framer-motion";
 
-type BrandedBoxContainerProps = PropsWithChildren<
-    ComponentProps<typeof BrandedBoxContainerWrapper>
->;
+type ContainerProps = PropsWithChildren<ComponentProps<typeof Wrapper>>;
 
-export default function BrandedBoxContainer({ children, ...props }: BrandedBoxContainerProps) {
+export default function Container({ children, ...props }: ContainerProps) {
     return (
-        <BrandedBoxContainerWrapper variants={staggerChildren} {...props}>
+        <Wrapper variants={staggerChildren} {...props}>
             {children}
-        </BrandedBoxContainerWrapper>
+        </Wrapper>
     );
 }
 
-const BrandedBoxContainerWrapper = styled(motion.div, {
+const Wrapper = styled(motion.div, {
     width: "100%",
     height: "100%",
     display: "flex",

@@ -7,7 +7,10 @@ import { pageAnimationOverAtom } from "@/commons/atoms";
 import { DISCORD } from "@/commons/config";
 import { slideFromBottom } from "@/commons/framer";
 
-import { Paragraph, Heading, Tooltip, BrandedBox } from "components/ui";
+import { Paragraph, Heading, Tooltip } from "@/components/ui";
+
+import { Box } from "@/components/brand";
+
 import { AnimatePresence } from "framer-motion";
 import { useAtomValue } from "jotai";
 import type { Activity as LanyardActivity } from "use-lanyard";
@@ -76,7 +79,7 @@ export default function DiscordPresence() {
     );
 }
 
-const DiscordPresenceContainerWrapper = styled(BrandedBox, {
+const DiscordPresenceContainerWrapper = styled(Box, {
     aspectRatio: "55 / 18",
     maxWidth: 440,
     minHeight: 124,

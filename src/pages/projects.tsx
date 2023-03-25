@@ -1,6 +1,6 @@
 import type { GetStaticProps } from "next";
 
-import BrandedBoxContainer from "@/components/BrandedBoxContainer";
+import { Container } from "@/components/brand";
 import Project from "@/components/projects/Project";
 
 import type { ProjectData } from "@/data/projects";
@@ -23,11 +23,11 @@ export default function ProjectsPage({ projects }: ProjectsPageProps) {
                 <PageHeading>{NAME}</PageHeading>
                 <PageDescription>{DESCRIPTION}</PageDescription>
             </PageText>
-            <BrandedBoxContainer>
+            <Container>
                 {projects.map((project) => (
                     <Project key={project.name} data={project} />
                 ))}
-            </BrandedBoxContainer>
+            </Container>
         </Page>
     );
 }

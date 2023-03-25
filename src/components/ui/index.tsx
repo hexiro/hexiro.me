@@ -1,5 +1,4 @@
 import AnchorList from "@/components/ui/AnchorList";
-import BrandedBox from "@/components/ui/BrandedBox";
 import Button from "@/components/ui/Button";
 import ButtonLink from "@/components/ui/ButtonLink";
 import Flex from "@/components/ui/Flex";
@@ -13,7 +12,6 @@ import Tooltip from "@/components/ui/Tooltip";
 
 export {
     AnchorList,
-    BrandedBox,
     Button,
     ButtonLink,
     Flex,

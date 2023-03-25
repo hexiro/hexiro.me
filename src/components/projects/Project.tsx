@@ -2,13 +2,14 @@ import { styled } from "@/theme";
 
 import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
 
-import { AnchorList, Heading, BrandedBox, Link, Paragraph, LinkOverlay } from "@/components/ui";
+import { Divider } from "@/components/layout";
+import { AnchorList, Heading, Link, Paragraph, LinkOverlay } from "@/components/ui";
 
+import { Box } from "@/components/brand";
 import LanguageIcon from "@/components/projects/LanguageIcon";
 
 import type { ProjectData } from "@/data/projects";
 
-import { Divider } from "components/layout";
 import ipaddr from "ipaddr.js";
 
 interface ProjectProps {
@@ -161,7 +162,7 @@ const IconList = styled(AnchorList, {
     },
 });
 
-const ProjectContainer = styled(BrandedBox, {
+const ProjectContainer = styled(Box, {
     aspectRatio: "20 / 7",
     width: "100%",
     height: "auto",

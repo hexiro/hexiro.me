@@ -7,26 +7,26 @@ import { slideFromBottom } from "@/commons/framer";
 
 import { motion } from "framer-motion";
 
-type BrandedBoxProps = PropsWithChildren<ComponentProps<typeof BrandedBoxContainer>> & {
+type BoxProps = PropsWithChildren<ComponentProps<typeof BoxContainer>> & {
     hoverable?: boolean;
 };
 
-export default function BrandedBox({ hoverable, children, ...props }: BrandedBoxProps) {
+export default function Box({ hoverable, children, ...props }: BoxProps) {
     const [animationComplete, setAnimationComplete] = useState(false);
 
     return (
-        <BrandedBoxContainer
+        <BoxContainer
             variants={slideFromBottom}
             enableHover={hoverable && animationComplete}
             onAnimationComplete={() => setAnimationComplete(true)}
             {...props}
         >
             {children}
-        </BrandedBoxContainer>
+        </BoxContainer>
     );
 }
 
-const BrandedBoxContainer = styled(motion.div, {
+const BoxContainer = styled(motion.div, {
     position: "relative",
     backgroundColor: "$background-secondary",
     borderRadius: "$xl",
@@ -38,7 +38,8 @@ const BrandedBoxContainer = styled(motion.div, {
     paddingY: "16px",
 
     variants: {
-        // needs to be !important for framer-motion & react-use-draggable-scroll in certain cases
+        // needs to be !important for framer-motion & react-use-draggable-scroll in certain cases although not idea
+        // should be reanalyzed in the future
         enableHover: {
             true: {
                 transitionDuration: "$fast !important",
