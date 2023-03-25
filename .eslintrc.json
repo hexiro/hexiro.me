@@ -4,31 +4,48 @@
         "node": true
     },
     "extends": ["xo", "xo-react", "xo-typescript", "prettier", "next/core-web-vitals"],
-    "plugins": ["react", "react-hooks", "chakra-ui", "unused-imports", "no-relative-import-paths"],
+    "plugins": ["react", "react-hooks", "unused-imports", "no-relative-import-paths"],
     "parser": "@typescript-eslint/parser",
     "rules": {
-        "chakra-ui/require-specific-component": "error",
-        "@typescript-eslint/no-unused-vars": "off",
-        "@typescript-eslint/naming-convention": "off",
-        "@typescript-eslint/no-confusing-void-expression": "off",
-        "@typescript-eslint/consistent-type-imports": [
-            "error",
-            {
-                "prefer": "type-imports"
-            }
-        ],
+        "no-negated-condition": "off",
+        "capitalized-comments": "off",
+        "new-cap": "off",
+        "no-await-in-loop": "off",
         "unused-imports/no-unused-imports": "error",
         "no-relative-import-paths/no-relative-import-paths": [
             "error",
             { "allowSameFolder": false, "rootDir": "src" }
         ],
+        "import/no-anonymous-default-export": "off",
         "react/display-name": "off",
         "react/function-component-definition": "off",
-        "import/no-anonymous-default-export": "off",
-        "capitalized-comments": "off",
+        "react/boolean-prop-naming": "off",
+        "react/no-danger": "off",
+        "react/jsx-pascal-case": "off",
+        "react/state-in-constructor": "off",
+        "react/jsx-curly-brace-presence": [
+            "error",
+            { "props": "never", "children": "ignore", "propElementValues": "always" }
+        ],
+        "react/static-property-placement": ["error", "static getter"],
+        "react/require-default-props": "off",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-return": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/no-confusing-void-expression": "off",
+        "@typescript-eslint/consistent-type-assertions": "off",
         "@typescript-eslint/ban-types": "off",
         "@typescript-eslint/consistent-type-definitions": "off",
-        "react/boolean-prop-naming": "off"
+        "@typescript-eslint/non-nullable-type-assertion-style": "off",
+        "@typescript-eslint/no-unnecessary-condition": "error",
+        "@typescript-eslint/consistent-type-imports": [
+            "error",
+            {
+                "prefer": "type-imports"
+            }
+        ]
     },
     "parserOptions": {
         "ecmaFeatures": {

@@ -6,9 +6,13 @@
     "tabWidth": 4,
     "useTabs": false,
     "importOrder": [
-        "((^@fontsource)|(.css$))",
+        "^(@/theme)|(@stitches/react(/.*|))$",
         "^(react|next)(/.*|)$",
-        "^(@chakra-ui)(/.*|)$",
+        "^(@/commons)((/.*|))$",
+        "^(@/components/)(ui|layout)((/.*|))$",
+        "^(@/components)((/.*|))$",
+        "^(@/data)((/.*|))$",
+        "^(@)((/.*|))$",
         ".*"
     ],
     "importOrderSeparation": true,

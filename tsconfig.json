@@ -4,7 +4,6 @@
         "module": "esnext",
         "moduleResolution": "node",
         "jsx": "preserve",
-        "baseUrl": "src",
         "lib": ["dom", "dom.iterable", "esnext"],
         "strict": true,
         "noFallthroughCasesInSwitch": true,
@@ -16,7 +15,11 @@
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
         "incremental": true,
-        "downlevelIteration": true
+        "downlevelIteration": true,
+        "baseUrl": "src",
+        "paths": {
+            "@/*": ["*"]
+        }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
     "exclude": ["node_modules"]

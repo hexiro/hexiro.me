@@ -1,59 +1,43 @@
-import type { GetStaticProps } from "next";
+import { slideFromBottom, staggerChildren } from "@/commons/animations";
+import { AboutIcon, ProjectsIcon } from "@/commons/icons";
 
-import type { ProjectWithContribution } from "commons/graphql/contributions";
-import contributions from "commons/graphql/contributions";
-import type { Project } from "commons/graphql/projects";
-import projects from "commons/graphql/projects";
-import { Page } from "layout/Page";
-import type { IntersectionOptions } from "react-intersection-observer";
-import { useInView } from "react-intersection-observer";
-import Content from "sections/me/Content";
-import Nav from "sections/nav";
+import { ButtonLink, Span } from "@/components/ui";
 
-interface HomeProps {
-    projects: Project[];
-    projectsWithContribution: ProjectWithContribution[];
-}
+import ButtonsContainer from "@/components/home/ButtonsContainer";
+import DiscordPresence from "@/components/home/DiscordPresence";
 
+import Page, { PageDescription, PageHeading, PageSubheading, PageText } from "@/layout/Page";
+
+import { motion } from "framer-motion";
+
+const NAME = "Home";
 const DESCRIPTION =
-      "A self-taught software engineer who enjoys problem solving, technology, building software, and contributing to open source projects.";
+    "A self-taught software engineer who enjoys problem solving, technology, building software, and contributing to open source projects.";
 
-export default function Home({ projects, projectsWithContribution }: HomeProps) {
-    const useInViewOptions: IntersectionOptions = {
-        threshold: 0.3,
-        fallbackInView: true,
-    };
-
-    const [meRef, meInView, meCurrent] = useInView(useInViewOptions);
-    const [projectsRef, projectsInView, projectsCurrent] = useInView(useInViewOptions);
-    const [contributionsRef, contributionsInView, contributionsCurrent] =
-        useInView(useInViewOptions);
-
+export default function HomePage() {
     return (
-        <Page name="Home" description={`Hi! I'm Hexiro, ${DESCRIPTION}`}>
-            <Nav
-                sections={{
-                    me: { inView: meInView, current: meCurrent },
-                    projects: { inView: projectsInView, current: projectsCurrent },
-                    contributions: { inView: contributionsInView, current: contributionsCurrent },
-                }}
-            />
-            <Content
-                meRef={meRef}
-                projectsRef={projectsRef}
-                contributionsRef={contributionsRef}
-                description={DESCRIPTION}
-                projects={projects}
-                projectsWithContribution={projectsWithContribution}
-            />
+        <Page name={NAME} description={`hi! i'm Nathan Lodge, ${DESCRIPTION}`}>
+            <PageText>
+                <PageSubheading>{"hi! i'm"}</PageSubheading>
+                <PageHeading>
+                    Nathan <Span color="brand-accent">Lodge</Span>
+                    <Span color="text-primary">,</Span>
+                </PageHeading>
+                <PageDescription>{DESCRIPTION}</PageDescription>
+                <ButtonsContainer variants={staggerChildren}>
+                    <motion.div variants={slideFromBottom}>
+                        <ButtonLink icon={AboutIcon} priority="primary" href="/about" size="lg">
+                            About Me
+                        </ButtonLink>
+                    </motion.div>
+                    <motion.div variants={slideFromBottom}>
+                        <ButtonLink icon={ProjectsIcon} href="/projects" size="lg">
+                            View Projects
+                        </ButtonLink>
+                    </motion.div>
+                </ButtonsContainer>
+            </PageText>
+            <DiscordPresence />
         </Page>
     );
 }
-
-export const getStaticProps: GetStaticProps<HomeProps> = async () => ({
-    props: {
-        projects: await projects(),
-        projectsWithContribution: await contributions(),
-    },
-    revalidate: 3600,
-});

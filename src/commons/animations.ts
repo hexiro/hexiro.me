@@ -1,14 +1,109 @@
-export const pop = { translateY: -2 };
-export const lightPop = { translateY: -1 };
+import type { CSS } from "@/theme";
 
-// !important-s are needed as :hover takes precedence over :active in pure css
-export const tap = { scale: "0.92!important" };
-export const lightTap = { scale: "0.94!important" };
+import type { Variants, Transition } from "framer-motion";
 
-export const hover = { scale: 1.08 };
-
-export const spring = {
+// transitions
+export const smallBounce: Transition = {
     type: "spring",
-    stiffness: 500,
-    damping: 30,
+    duration: 0.4,
+    bounce: 0.15,
+};
+
+export const normalBounce: Transition = {
+    type: "spring",
+    duration: 0.4,
+    bounce: 0.25,
+};
+
+export const extraBounce: Transition = {
+    type: "spring",
+    damping: 15,
+    stiffness: 200,
+};
+
+// variants
+
+// parent variants
+
+export const staggerChildren: Variants = {
+    initial: {
+        opacity: 0,
+    },
+    animate: {
+        opacity: 1,
+        transition: {
+            delayChildren: 0.05,
+            staggerChildren: 0.07,
+        },
+    },
+};
+
+// child variants
+
+export const fadeInAndScale: Variants = {
+    initial: {
+        scale: 0.8,
+        opacity: 0,
+    },
+    animate: {
+        scale: 1,
+        opacity: 1,
+    },
+};
+
+export const fadeIn: Variants = {
+    initial: {
+        opacity: 0,
+    },
+    animate: {
+        opacity: 1,
+    },
+};
+
+export const slideFromLeft: Variants = {
+    initial: {
+        x: -32,
+        opacity: 0,
+    },
+    animate: {
+        x: 0,
+        opacity: 1,
+        transition: extraBounce,
+    },
+};
+
+export const slideFromBottom: Variants = {
+    initial: {
+        y: 20,
+        opacity: 0,
+    },
+    animate: {
+        y: 0,
+        opacity: 1,
+        transition: extraBounce,
+    },
+};
+
+export const animationStyles: CSS = {
+    willChange: "transform",
+    willTransition: "transform",
+    transitionDuration: "$fast",
+    transitionTimingFunction: "$ease-in-out",
+};
+
+export const animationStylesWithDisplay: CSS = {
+    display: "inline-block",
+    ...animationStyles,
+};
+
+export const pop: CSS = {
+    "&:hover": {
+        transform: "translateY(-2px)",
+    },
+};
+
+export const tap: CSS = {
+    "&:active": {
+        transform: "scale(0.96)!important",
+    },
 };

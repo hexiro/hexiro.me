@@ -8,7 +8,12 @@ module.exports = withBundleAnalyzer({
     reactStrictMode: true,
     poweredByHeader: false,
     images: {
-        domains: ["cdn.discordapp.com", "avatars.githubusercontent.com"],
+        domains: [
+            "cdn.discordapp.com",
+            "media.discordapp.net",
+            "avatars.githubusercontent.com",
+            "www.themoviedb.org",
+        ],
     },
     eslint: {
         ignoreDuringBuilds: true,
