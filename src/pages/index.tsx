@@ -1,10 +1,9 @@
-import { styled } from "@/theme";
-
 import { slideFromBottom, staggerChildren } from "@/commons/animations";
 import { AboutIcon, ProjectsIcon } from "@/commons/icons";
 
 import { ButtonLink, Span } from "@/components/ui";
 
+import ButtonsContainer from "@/components/home/ButtonsContainer";
 import DiscordPresence from "@/components/home/DiscordPresence";
 
 import Page, { PageDescription, PageHeading, PageSubheading, PageText } from "@/layout/Page";
@@ -42,23 +41,3 @@ export default function HomePage() {
         </Page>
     );
 }
-
-const ButtonsContainer = styled(motion.div, {
-    display: "flex",
-    alignItems: "center",
-    marginTop: "$5",
-    gap: "$3",
-
-    flexDirection: "column",
-
-    "> div, > div > a": {
-        width: "100%",
-    },
-
-    "@xs": {
-        flexDirection: "row",
-        "> div, > div > a": {
-            width: "auto",
-        },
-    },
-});
