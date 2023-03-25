@@ -30,7 +30,7 @@ export default function Button({ icon, children, ...props }: ButtonProps) {
     );
 }
 
-export const ButtonContainer = styled("button", {
+const ButtonContainer = styled("button", {
     fontWeight: 600,
     lineHeight: 1,
 

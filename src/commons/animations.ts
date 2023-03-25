@@ -1,10 +1,6 @@
 import type { CSS } from "@/theme";
 
-import type { Variants, Transition, useInView } from "framer-motion";
-
-export const useInViewOptions: NonNullable<Parameters<typeof useInView>[1]> = {
-    amount: 0.35,
-};
+import type { Variants, Transition } from "framer-motion";
 
 // transitions
 export const smallBounce: Transition = {
@@ -38,19 +34,6 @@ export const staggerChildren: Variants = {
         transition: {
             delayChildren: 0.05,
             staggerChildren: 0.07,
-        },
-    },
-};
-
-export const extendedStaggerChildren: Variants = {
-    initial: {
-        opacity: 0,
-    },
-    animate: {
-        opacity: 1,
-        transition: {
-            delayChildren: 0.05,
-            staggerChildren: 0.14,
         },
     },
 };

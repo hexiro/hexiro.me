@@ -14,7 +14,7 @@ import usePageRoute from "@/hooks/usePageRoute";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSetAtom } from "jotai";
 
-export type MenuItemProps = ComponentProps<typeof MenuItemWrapper> & {
+type MenuItemProps = ComponentProps<typeof MenuItemWrapper> & {
     name: PageRouteName | SocialRouteName;
     icon: IconType;
     href: string;
