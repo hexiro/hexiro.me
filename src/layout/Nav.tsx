@@ -1,5 +1,7 @@
 import { styled } from "@/theme";
 
+import { animationStyles, pop } from "@/commons/animations";
+
 import { Hide, Show } from "@/components/layout";
 import { Heading, Span } from "@/components/ui";
 
@@ -11,9 +13,20 @@ export default function Nav() {
     return (
         <NavContainer>
             <NavLeft>
-                <Heading as="h2">
-                    hexiro<Span color="brand-accent">.me</Span>
-                </Heading>
+                <button
+                    type="button"
+                    onClick={() =>
+                        window.scroll({
+                            top: 0,
+                            left: 0,
+                            behavior: "smooth",
+                        })
+                    }
+                >
+                    <Heading as="h2" css={{ ...animationStyles, ...pop }}>
+                        hexiro<Span color="brand-accent">.me</Span>
+                    </Heading>
+                </button>
                 <PageRoutes />
             </NavLeft>
             <NavRight>

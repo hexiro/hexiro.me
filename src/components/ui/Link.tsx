@@ -38,7 +38,12 @@ const WithSpan = ({ animation, color, lineHeight, children }: PropsWithChildren<
     // eslint-disable-next-line react/jsx-no-useless-fragment
     if (!animation && !color && !lineHeight) return <>{children}</>;
     return (
-        <Span animation={animation} color={color} lineHeight={lineHeight}>
+        <Span
+            animation={animation}
+            color={color}
+            lineHeight={lineHeight}
+            css={{ cursor: "pointer" }}
+        >
             {children}
         </Span>
     );

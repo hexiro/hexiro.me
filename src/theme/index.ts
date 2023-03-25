@@ -238,6 +238,9 @@ export const globalStyles = globalCss({
     "input, button, textarea, select, hr": {
         all: "unset",
     },
+    "button": {
+        cursor: "pointer",
+    },
     "li": {
         listStyle: "none",
     },
