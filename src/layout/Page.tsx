@@ -8,9 +8,10 @@ import { pageAnimationOverAtom } from "@/commons/atoms";
 
 import { Heading, Paragraph } from "@/components/ui";
 
+import { Seo } from "@/layout/Seo";
+
 import { motion } from "framer-motion";
 import { useSetAtom } from "jotai";
-import { SEO } from "layout/SEO";
 
 type PageProps = PropsWithChildren<ComponentProps<typeof PageContainer>> & {
     name: string;
@@ -33,7 +34,7 @@ export default function Page({ name, description, children, ...props }: PageProp
             >
                 {children}
             </PageContainer>
-            <SEO name={name} description={description} />
+            <Seo name={name} description={description} />
         </>
     );
 }

@@ -6,7 +6,7 @@ import NoScript from "@/components/NoScript";
 
 import Footer from "@/layout/Footer";
 import Nav from "@/layout/Nav";
-import { GlobalSEO } from "@/layout/SEO";
+import { GlobalSeo } from "@/layout/Seo";
 
 import { AnimatePresence } from "framer-motion";
 import { Provider as JotaiProvider } from "jotai";
@@ -14,7 +14,7 @@ import { Provider as JotaiProvider } from "jotai";
 export default function App({ Component, pageProps, router }: AppProps) {
     return (
         <JotaiProvider>
-            <GlobalSEO />
+            <GlobalSeo />
             <Body>
                 <Nav />
                 <AnimatePresence

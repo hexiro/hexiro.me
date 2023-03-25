@@ -4,16 +4,16 @@ import { TWITTER } from "@/commons/config";
 
 import { NextSeo, DefaultSeo } from "next-seo";
 
-interface SEOProps {
+interface SeoProps {
     name: string;
     description: string;
 }
 
-export function SEO({ name, description }: SEOProps) {
+export function Seo({ name, description }: SeoProps) {
     return <NextSeo title={name} titleTemplate="Hexiro | %s" description={description} />;
 }
 
-export function GlobalSEO() {
+export function GlobalSeo() {
     return (
         <DefaultSeo
             defaultTitle="Hexiro"
