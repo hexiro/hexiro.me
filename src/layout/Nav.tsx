@@ -15,6 +15,7 @@ export default function Nav() {
             <NavLeft>
                 <button
                     type="button"
+                    aria-label="Scroll to top"
                     onClick={() =>
                         window.scroll({
                             top: 0,

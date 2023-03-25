@@ -42,7 +42,12 @@ export default function Menu() {
 
     return (
         <>
-            <button ref={menuButtonRef} type="button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <button
+                ref={menuButtonRef}
+                type="button"
+                aria-label="Menu"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
                 {isMenuOpen ? <CloseIcon /> : <HamburgerMenuIcon />}
             </button>
             <AnimatePresence initial={false}>
