@@ -55,7 +55,7 @@ export default function AboutPage({ movieRatings }: AboutPageProps) {
 }
 
 const Movie = ({ movie }: { movie: MovieRating }) => (
-    <MovieContainer>
+    <MovieContainer hoverable>
         <LinkOverlay newTab href={`https://www.themoviedb.org/movie/${movie.id}`}>
             <MoviePosterContainer>
                 <MoviePoster

@@ -7,15 +7,17 @@ import { slideFromBottom } from "@/commons/framer";
 
 import { motion } from "framer-motion";
 
-type BrandedBoxProps = PropsWithChildren<ComponentProps<typeof BrandedBoxContainer>>;
+type BrandedBoxProps = PropsWithChildren<ComponentProps<typeof BrandedBoxContainer>> & {
+    hoverable?: boolean;
+};
 
-export default function BrandedBox({ children, ...props }: BrandedBoxProps) {
+export default function BrandedBox({ hoverable, children, ...props }: BrandedBoxProps) {
     const [animationComplete, setAnimationComplete] = useState(false);
 
     return (
         <BrandedBoxContainer
             variants={slideFromBottom}
-            enableHover={animationComplete}
+            enableHover={hoverable && animationComplete}
             onAnimationComplete={() => setAnimationComplete(true)}
             {...props}
         >

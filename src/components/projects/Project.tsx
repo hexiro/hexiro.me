@@ -21,7 +21,7 @@ export default function Project({ data }: ProjectProps) {
     const descriptionSections = extractLinks(description);
 
     return (
-        <ProjectContainer>
+        <ProjectContainer hoverable>
             <ProjectHeader>
                 <Heading ellipsis as="h3">
                     <LinkOverlay newTab href={url}>
