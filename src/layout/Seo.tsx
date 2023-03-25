@@ -45,7 +45,7 @@ export function GlobalSeo() {
                 },
                 {
                     name: "theme-color",
-                    content: config.theme.colors["brand-primary"],
+                    content: config.theme.colors["background-primary"],
                 },
                 {
                     name: "msapplication-TileColor",
