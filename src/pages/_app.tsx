@@ -8,32 +8,36 @@ import Footer from "@/layout/Footer";
 import Nav from "@/layout/Nav";
 import { GlobalSeo } from "@/layout/Seo";
 
+import { Analytics } from "@vercel/analytics/react";
 import { AnimatePresence } from "framer-motion";
 import { Provider as JotaiProvider } from "jotai";
 
 export default function App({ Component, pageProps, router }: AppProps) {
     return (
-        <JotaiProvider>
-            <GlobalSeo />
-            <Body>
-                <Nav />
-                <AnimatePresence
-                    mode="wait"
-                    onExitComplete={() =>
-                        window.scroll({
-                            top: 0,
-                            left: 0,
-                            // @ts-expect-error https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollTo behavior: instant defined on mozilla.org
-                            behavior: "instant",
-                        })
-                    }
-                >
-                    <Component key={router.pathname} {...pageProps} />
-                </AnimatePresence>
-                <Footer />
-            </Body>
-            <NoScript />
-        </JotaiProvider>
+        <>
+            <Analytics />
+            <JotaiProvider>
+                <GlobalSeo />
+                <Body>
+                    <Nav />
+                    <AnimatePresence
+                        mode="wait"
+                        onExitComplete={() =>
+                            window.scroll({
+                                top: 0,
+                                left: 0,
+                                // @ts-expect-error https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollTo behavior: instant defined on mozilla.org
+                                behavior: "instant",
+                            })
+                        }
+                    >
+                        <Component key={router.pathname} {...pageProps} />
+                    </AnimatePresence>
+                    <Footer />
+                </Body>
+                <NoScript />
+            </JotaiProvider>
+        </>
     );
 }
 
