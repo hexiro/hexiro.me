@@ -132,8 +132,12 @@ const Highlight = styled("span", {
 
 const Images = styled("div", {
     position: "relative",
+    minSize: 90,
+    maxSize: 100,
     height: "100%",
     aspectRatio: "1 / 1",
+    // padding-hack b/c aspect-ratio doesn't work in safari
+    paddingRight: "25.563%",
 });
 
 const LargeImage = styled(Image, {
