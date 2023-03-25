@@ -12,12 +12,13 @@ type BoxProps = PropsWithChildren<ComponentProps<typeof BoxContainer>> & {
 };
 
 export default function Box({ hoverable, children, ...props }: BoxProps) {
-    const [animationComplete, setAnimationComplete] = useState(false);
+    const [animationComplete, setAnimationComplete] = useState(true);
 
     return (
         <BoxContainer
             variants={slideFromBottom}
             enableHover={hoverable && animationComplete}
+            onAnimationStart={() => setAnimationComplete(false)}
             onAnimationComplete={() => setAnimationComplete(true)}
             {...props}
         >
