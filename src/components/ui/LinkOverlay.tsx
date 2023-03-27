@@ -2,7 +2,7 @@
 // https://chakra-ui.com/docs/components/link-overlay
 import { styled } from "@/theme";
 
-import Link from "components/ui/Link";
+import Link from "@/components/ui/Link";
 
 const LinkOverlay = styled(Link, {
     "&::before": {

@@ -1,7 +1,7 @@
 import type { PageRouteType } from "@/commons/routes";
 import { PAGE_ROUTES } from "@/commons/routes";
 
-import usePageRouteIndex from "hooks/usePageRouteIndex";
+import usePageRouteIndex from "@/hooks/usePageRouteIndex";
 
 export default function usePageRoute() {
     const pageRouteIndex = usePageRouteIndex();

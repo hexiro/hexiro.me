@@ -1,8 +1,8 @@
 import { SOCIAL_ROUTES } from "@/commons/routes";
 
-import SocialRoute from "@/components/nav/SocialRoute";
+import { AnchorList } from "@/components/ui";
 
-import { AnchorList } from "components/ui";
+import SocialRoute from "@/components/nav/SocialRoute";
 
 export default function SocialRoutes() {
     return (

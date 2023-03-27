@@ -3,7 +3,7 @@ import type { ComponentProps } from "@stitches/react";
 
 import type { IconType } from "@/commons/icons";
 
-import type { Link } from "components/ui";
+import type { Link } from "@/components/ui";
 
 type ButtonProps = Omit<ComponentProps<typeof ButtonContainer>, "hasIcon"> &
     ButtonLinkButtonProps & {
