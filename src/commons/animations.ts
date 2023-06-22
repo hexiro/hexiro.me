@@ -1,5 +1,3 @@
-import type { CSS } from "@/theme";
-
 import type { Variants, Transition } from "framer-motion";
 
 // transitions
@@ -84,26 +82,26 @@ export const slideFromBottom: Variants = {
     },
 };
 
-export const animationStyles: CSS = {
-    willChange: "transform",
-    willTransition: "transform",
-    transitionDuration: "$fast",
-    transitionTimingFunction: "$ease-in-out",
-};
+// export const animationStyles: CSS = {
+//     willChange: "transform",
+//     willTransition: "transform",
+//     transitionDuration: "$fast",
+//     transitionTimingFunction: "$ease-in-out",
+// };
 
-export const animationStylesWithDisplay: CSS = {
-    display: "inline-block",
-    ...animationStyles,
-};
+// export const animationStylesWithDisplay: CSS = {
+//     display: "inline-block",
+//     ...animationStyles,
+// };
 
-export const pop: CSS = {
-    "&:hover": {
-        transform: "translateY(-2px)",
-    },
-};
+// export const pop: CSS = {
+//     "&:hover": {
+//         transform: "translateY(-2px)",
+//     },
+// };
 
-export const tap: CSS = {
-    "&:active": {
-        transform: "scale(0.96)!important",
-    },
-};
+// export const tap: CSS = {
+//     "&:active": {
+//         transform: "scale(0.96)!important",
+//     },
+// };

@@ -1,7 +1,7 @@
 // public
 export const GITHUB = "hexiro";
 export const TWITTER = "hexiiro";
-export const DISCORD = "291632819006865408";
+export const DISCORD = "nathlod";
 export const LINKED_IN = "nathan-lodge";
 export const WAKATIME = "hexiro";
 

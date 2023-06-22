@@ -1,7 +1,6 @@
-import { config } from "@/theme";
-
 import { TWITTER } from "@/commons/config";
 
+import { theme } from "../../tailwind.config";
 import { NextSeo, DefaultSeo } from "next-seo";
 
 interface SeoProps {
@@ -12,6 +11,11 @@ interface SeoProps {
 export function Seo({ name, description }: SeoProps) {
     return <NextSeo title={name} titleTemplate="Hexiro | %s" description={description} />;
 }
+
+// @ts-expect-error works fine
+const themeColor = theme?.colors?.color;
+// @ts-expect-error works fine
+const themeBackground = theme?.colors?.color;
 
 export function GlobalSeo() {
     return (
@@ -29,7 +33,7 @@ export function GlobalSeo() {
                 site: `@${TWITTER}`,
                 cardType: "summary_large_image",
             }}
-            themeColor={config.theme.colors["brand-primary"]}
+            themeColor={themeColor}
             additionalMetaTags={[
                 {
                     name: "application-name",
@@ -45,11 +49,11 @@ export function GlobalSeo() {
                 },
                 {
                     name: "theme-color",
-                    content: config.theme.colors["background-primary"],
+                    content: themeBackground,
                 },
                 {
                     name: "msapplication-TileColor",
-                    content: config.theme.colors["background-primary"],
+                    content: themeBackground,
                 },
             ]}
             additionalLinkTags={[
@@ -73,7 +77,7 @@ export function GlobalSeo() {
                 {
                     rel: "mask-icon",
                     href: "/safari-pinned-tab.svg",
-                    color: config.theme.colors["brand-primary"],
+                    color: themeColor,
                 },
                 {
                     rel: "manifest",
