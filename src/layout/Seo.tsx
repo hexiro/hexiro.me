@@ -1,6 +1,5 @@
 import { TWITTER } from "@/commons/config";
 
-import { theme } from "../../tailwind.config";
 import { NextSeo, DefaultSeo } from "next-seo";
 
 interface SeoProps {
@@ -11,11 +10,6 @@ interface SeoProps {
 export function Seo({ name, description }: SeoProps) {
     return <NextSeo title={name} titleTemplate="Hexiro | %s" description={description} />;
 }
-
-// @ts-expect-error works fine
-const themeColor = theme?.colors?.color;
-// @ts-expect-error works fine
-const themeBackground = theme?.colors?.color;
 
 export function GlobalSeo() {
     return (
@@ -33,7 +27,7 @@ export function GlobalSeo() {
                 site: `@${TWITTER}`,
                 cardType: "summary_large_image",
             }}
-            themeColor={themeColor}
+            // themeColor={themeColor}
             additionalMetaTags={[
                 {
                     name: "application-name",
@@ -47,14 +41,14 @@ export function GlobalSeo() {
                     name: "keywords",
                     content: "Hexiro, Hexiiro, Hex, Hexiro.me",
                 },
-                {
-                    name: "theme-color",
-                    content: themeBackground,
-                },
-                {
-                    name: "msapplication-TileColor",
-                    content: themeBackground,
-                },
+                // {
+                //     name: "theme-color",
+                //     content: themeBackground,
+                // },
+                // {
+                //     name: "msapplication-TileColor",
+                //     content: themeBackground,
+                // },
             ]}
             additionalLinkTags={[
                 {
@@ -74,11 +68,11 @@ export function GlobalSeo() {
                     href: "/apple-touch-icon.png",
                     sizes: "180x180",
                 },
-                {
-                    rel: "mask-icon",
-                    href: "/safari-pinned-tab.svg",
-                    color: themeColor,
-                },
+                // {
+                //     rel: "mask-icon",
+                //     href: "/safari-pinned-tab.svg",
+                //     color: themeColor,
+                // },
                 {
                     rel: "manifest",
                     href: "/manifest.json",

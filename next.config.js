@@ -17,5 +17,6 @@ module.exports = withBundleAnalyzer({
     },
     eslint: {
         ignoreDuringBuilds: true,
+        dirs: ["src"],
     },
 });
