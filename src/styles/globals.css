@@ -13,4 +13,36 @@
     ::-webkit-scrollbar-thumb {
         background-color: "rgba(0, 0, 0, 0.35)";
     }
+
+    * {
+        @apply uppercase;
+    }
+
+    body {
+        @apply font-sans;
+    }
+
+    li, a, p {
+        @apply font-extrabold;
+        @apply font-mono;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-black;
+        @apply font-sans;
+        @apply text-green;
+    }
+    
+
+    h1 {
+        @apply text-4xl;
+    }
+    h2 {
+        @apply text-7xl;
+    }
 }

@@ -1,54 +1,11 @@
-// import { styled } from "@/theme";
+import clsx from "clsx";
 
-// const Divider = styled("hr", {
-//     display: "block",
-//     borderRadius: "$max",
+const commonStyles = "border-background-accent border-2 border-solid";
 
-//     defaultVariants: {
-//         orientation: "horizontal",
-//         size: 1,
-//         margin: 10,
-//     },
+export function HorizontalDivider({ className }: { className?: string }) {
+    return <hr className={clsx(commonStyles, "divide-y h-0", className)} />;
+}
 
-//     variants: {
-//         orientation: {
-//             horizontal: {
-//                 width: "100%",
-//                 borderBottom: "$$size solid $lighten-10",
-//                 marginY: "$$margin",
-//             },
-//             vertical: {
-//                 height: "100%",
-//                 borderRight: "$$size solid $lighten-10",
-//                 marginX: "$$margin",
-//             },
-//         },
-//         size: {
-//             1: {
-//                 $$size: "1px",
-//             },
-//             2: {
-//                 $$size: "2px",
-//             },
-//         },
-//         margin: {
-//             4: {
-//                 $$margin: "4px",
-//             },
-//             8: {
-//                 $$margin: "8px",
-//             },
-//             10: {
-//                 $$margin: "10px",
-//             },
-//             12: {
-//                 $$margin: "12px",
-//             },
-//             16: {
-//                 $$margin: "16px",
-//             },
-//         },
-//     },
-// });
-
-export {};
+export function VerticalDivider({ className }: { className?: string }) {
+    return <hr className={clsx(commonStyles, "divide-x w-0", className)} />;
+}
