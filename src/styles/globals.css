@@ -22,7 +22,9 @@
         @apply font-sans;
     }
 
-    li, a, p {
+    li,
+    a,
+    p {
         @apply font-extrabold;
         @apply font-mono;
     }
@@ -37,12 +39,16 @@
         @apply font-sans;
         @apply text-green;
     }
-    
 
     h1 {
         @apply text-4xl;
     }
     h2 {
         @apply text-7xl;
+    }
+
+    svg {
+        stroke-linecap: round;
+        stroke-linejoin: round;
     }
 }

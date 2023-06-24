@@ -45,3 +45,4 @@ export const NAV_ROUTES = [
         path: "/contact",
     },
 ] as const satisfies readonly INavRoute[];
+export const NAV_PATHS = NAV_ROUTES.map((route) => route.path);
