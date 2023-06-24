@@ -14,7 +14,7 @@ import { ArrowDownIcon, ArrowUpIcon } from "@/components/ui/Icons";
 import "@/styles/globals.css";
 
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const sansSerifFont = GolosText({
     weight: "variable",
@@ -41,8 +41,11 @@ export default function App({ Component, pageProps, router }: AppProps) {
     );
 
     const [selectedRoute, setSelectedRoute] = useState<number>(findSelectedRoute());
+    const [hoveredRoute, setHoveredRoute] = useState<number | null>(null);
 
     const isSelected = (name: INavRouteName) => name === NAV_ROUTES[selectedRoute]?.name;
+    const isHovered = (name: INavRouteName) =>
+        hoveredRoute === null ? false : name === NAV_ROUTES[hoveredRoute]?.name;
 
     useEffect(() => {
         setSelectedRoute(findSelectedRoute());
@@ -64,24 +67,42 @@ export default function App({ Component, pageProps, router }: AppProps) {
                     <h2>NL</h2>
                 </div>
                 <HorizontalDivider className="w-[80%] mx-auto" />
-                <div className="w-full p-6 pr-0 flex flex-col">
+                <motion.div
+                    className="w-full p-6 pr-0 flex flex-col"
+                    onHoverEnd={() => setHoveredRoute(null)}
+                >
                     <ul className="my-5">
-                        {NAV_ROUTES.map(({ name, path }) => (
-                            <li key={name} className="my-5 text-2xl relative">
+                        {NAV_ROUTES.map(({ name, path }, index) => (
+                            <motion.li
+                                key={name}
+                                className="my-5 text-2xl relative "
+                                onHoverStart={() => setHoveredRoute(index)}
+                            >
                                 <Link href={path} className="text-off-white">
                                     <span className="text-green mr-1">/</span>
                                     {name}
                                 </Link>
-                                {isSelected(name) && (
+                                {isSelected(name) ? (
                                     <motion.div
                                         layoutId="selected-route-indicator"
-                                        className="absolute right-0 top-[-10%] w-2 h-[120%] bg-green rounded-l-[4px]"
+                                        className="absolute right-0 top-[-10%] w-2 h-[120%] bg-green rounded-l-[4px] z-20"
                                     />
-                                )}
-                            </li>
+                                ) : null}
+                                <AnimatePresence>
+                                    {isHovered(name) ? (
+                                        <motion.div
+                                            layoutId="hovered-route-indicator"
+                                            className="absolute right-0 top-[-10%] w-2 h-[120%] bg-green/25 rounded-l-[4px] z-20"
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                        />
+                                    ) : null}
+                                </AnimatePresence>
+                            </motion.li>
                         ))}
                     </ul>
-                </div>
+                </motion.div>
                 <VerticalDivider className="ml-[25%] h-72" />
             </nav>
             <main className="bg-background py-28 px-36 flex flex-col flex-grow rounded-l-md md:rounded-t-md min-h-screen">
