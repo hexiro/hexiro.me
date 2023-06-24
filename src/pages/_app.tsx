@@ -65,7 +65,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
         >
             <nav className="flex items-center flex-shrink-0 h-36 w-screen md:items-start md:flex-col md:w-52 md:h-screen">
                 <div className="px-8 py-6 md:px-6 flex justify-center items-center md:w-full md:h-52 ">
-                    <h2>NL</h2>
+                    <h2 className="font-black text-6xl md:text-7xl">NL</h2>
                 </div>
                 <HorizontalDivider className="divide-x w-0 h-[80%] md:h-0 md:w-[80%] md:mx-auto" />
                 <motion.ul
@@ -75,7 +75,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                     {NAV_ROUTES.map(({ name, path }, index) => (
                         <motion.li
                             key={name}
-                            className="flex items-center text-2xl relative h-full w-full"
+                            className="flex items-center text-lg relative h-full w-full"
                             onHoverStart={() => setHoveredRoute(index)}
                         >
                             <Link href={path} className="text-off-white">
@@ -138,7 +138,7 @@ const PageEndNavigation = ({ href, icon: Icon, className, children }: IPageEndNa
             // @ts-expect-error ts doesn't recognize that href can't be undefined when using Link
             href={href}
             className={clsx(
-                "flex justify-left items-center text-text text-xl aria-disabled:opacity-50 aria-disabled:cursor-not-allowed",
+                "flex justify-left items-center text-text text-base aria-disabled:opacity-50 aria-disabled:cursor-not-allowed",
                 className
             )}
             aria-disabled={disabled}

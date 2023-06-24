@@ -35,17 +35,24 @@
     h4,
     h5,
     h6 {
-        @apply font-black;
         @apply font-sans;
         @apply text-green;
     }
 
+    h2,
+    h3 {
+        @apply font-extrabold;
+    }
+
     h1 {
-        @apply text-4xl;
+        @apply text-7xl;
+        @apply font-black;
     }
     h2 {
-        @apply text-6xl;
-        @apply md:text-7xl;
+        @apply text-3xl;
+    }
+    h3 {
+        @apply text-xl;
     }
 
     svg {
