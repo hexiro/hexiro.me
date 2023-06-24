@@ -15,6 +15,7 @@ import "@/styles/globals.css";
 
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
+import { twMerge } from "tailwind-merge";
 
 const sansSerifFont = GolosText({
     weight: "variable",
@@ -59,53 +60,54 @@ export default function App({ Component, pageProps, router }: AppProps) {
             className={clsx(
                 sansSerifFont.variable,
                 monospaceFont.variable,
-                "bg-background-secondary relative flex flex-col md:flex-row min-h-screen min-w-screen h-full w-full"
+                "bg-background-secondary relative flex flex-col md:flex-row min-h-screen min-w-screen h-full w-full overflow-x-hidden overflow-y-auto"
             )}
         >
-            <nav className="w-52 h-screen">
-                <div className="w-full h-52 p-6 flex justify-center items-center">
+            <nav className="flex items-center flex-shrink-0 h-36 w-screen md:items-start md:flex-col md:w-52 md:h-screen">
+                <div className="px-8 py-6 md:px-6 flex justify-center items-center md:w-full md:h-52 ">
                     <h2>NL</h2>
                 </div>
-                <HorizontalDivider className="w-[80%] mx-auto" />
-                <motion.div
-                    className="w-full p-6 pr-0 flex flex-col"
+                <HorizontalDivider className="divide-x w-0 h-[80%] md:h-0 md:w-[80%] md:mx-auto" />
+                <motion.ul
+                    className="flex items-center w-fit h-full gap-8 px-12 overflow-x-auto md:gap-4 md:my-8 md:items-start md:flex-col md:w-full md:h-[unset] md:p-6 md:pr-0"
                     onHoverEnd={() => setHoveredRoute(null)}
                 >
-                    <ul className="my-5">
-                        {NAV_ROUTES.map(({ name, path }, index) => (
-                            <motion.li
-                                key={name}
-                                className="my-5 text-2xl relative "
-                                onHoverStart={() => setHoveredRoute(index)}
-                            >
-                                <Link href={path} className="text-off-white">
-                                    <span className="text-green mr-1">/</span>
-                                    {name}
-                                </Link>
-                                {isSelected(name) ? (
+                    {NAV_ROUTES.map(({ name, path }, index) => (
+                        <motion.li
+                            key={name}
+                            className="flex items-center text-2xl relative h-full w-full"
+                            onHoverStart={() => setHoveredRoute(index)}
+                        >
+                            <Link href={path} className="text-off-white">
+                                <span className="text-green mr-1">/</span>
+                                {name}
+                            </Link>
+                            {isSelected(name) ? (
+                                <motion.div
+                                    layoutId="selected-route-indicator"
+                                    className="absolute bg-green z-20 h-2 top-0 w-full rounded-b-[4px] md:right-0 md:top-[-10%] md:w-2 md:h-[120%] md:rounded-l-[4px]"
+                                />
+                            ) : null}
+                            <AnimatePresence>
+                                {isHovered(name) ? (
                                     <motion.div
-                                        layoutId="selected-route-indicator"
-                                        className="absolute right-0 top-[-10%] w-2 h-[120%] bg-green rounded-l-[4px] z-20"
+                                        layoutId="hovered-route-indicator"
+                                        className={twMerge(
+                                            "absolute bg-green z-20 h-2 top-0 w-full rounded-b-[4px] md:right-0 md:top-[-10%] md:w-2 md:h-[120%] md:rounded-l-[4px]",
+                                            "bg-green/25 z-10"
+                                        )}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
                                     />
                                 ) : null}
-                                <AnimatePresence>
-                                    {isHovered(name) ? (
-                                        <motion.div
-                                            layoutId="hovered-route-indicator"
-                                            className="absolute right-0 top-[-10%] w-2 h-[120%] bg-green/25 rounded-l-[4px] z-20"
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                        />
-                                    ) : null}
-                                </AnimatePresence>
-                            </motion.li>
-                        ))}
-                    </ul>
-                </motion.div>
-                <VerticalDivider className="ml-[25%] h-72" />
+                            </AnimatePresence>
+                        </motion.li>
+                    ))}
+                </motion.ul>
+                <VerticalDivider className="ml-[25%] h-72 hidden md:block" />
             </nav>
-            <main className="bg-background py-28 px-36 flex flex-col flex-grow rounded-l-md md:rounded-t-md min-h-screen">
+            <main className="bg-background py-28 px-[10%] flex flex-col flex-grow rounded-t-md md:rounded-l-md min-h-screen">
                 <PageEndNavigation href={prevRoute} icon={ArrowUpIcon} className="mt-2 mb-8">
                     Prev
                 </PageEndNavigation>
