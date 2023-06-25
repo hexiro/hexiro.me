@@ -2,6 +2,7 @@
 export const GITHUB = "hexiro";
 export const TWITTER = "hexiiro";
 export const DISCORD = "nathlod";
+export const DISCORD_SNOWFLAKE = "291632819006865408";
 export const LINKED_IN = "nathan-lodge";
 export const WAKATIME = "hexiro";
 

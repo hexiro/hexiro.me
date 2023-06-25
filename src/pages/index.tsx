@@ -1,3 +1,5 @@
+import DiscordCard from "@/components/home/DiscordCard";
+
 export default function HomePage() {
     return (
         <>
@@ -6,6 +8,8 @@ export default function HomePage() {
                 NATHAN <span className="text-off-white">LODGE</span>
             </h1>
             <h3 className="text-subtitle">A self-taught Software Engineer.</h3>
+
+            <DiscordCard className="mt-8" />
         </>
     );
 }

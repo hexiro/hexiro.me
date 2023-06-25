@@ -11,6 +11,7 @@
         "capitalized-comments": "off",
         "new-cap": "off",
         "no-await-in-loop": "off",
+        "default-case": "off",
         "unused-imports/no-unused-imports": "error",
         "no-relative-import-paths/no-relative-import-paths": [
             "error",

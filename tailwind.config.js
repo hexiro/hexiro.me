@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    mode: "jit",
     content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
     theme: {
         extend: {
@@ -41,7 +42,10 @@ module.exports = {
                 normal: "300ms",
                 slow: "450ms",
             },
+            lineHeight: {
+                "extra-tight": "1.1",
+            },
         },
     },
-    plugins: [],
+    plugins: [require("@kamona/tailwindcss-perspective")],
 };
