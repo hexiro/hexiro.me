@@ -63,7 +63,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                 "bg-background-secondary relative flex flex-col md:flex-row min-h-screen min-w-screen h-full w-full overflow-x-hidden overflow-y-auto"
             )}
         >
-            <nav className="flex items-center flex-shrink-0 h-36 w-screen md:items-start md:flex-col md:w-52 md:h-screen">
+            <nav className=" flex items-center flex-shrink-0 h-36 w-screen md:items-start md:fixed md:flex-col md:w-52 md:h-screen">
                 <div className="px-8 py-6 md:px-6 flex justify-center items-center md:w-full md:h-52 ">
                     <h2 className="font-black text-6xl md:text-7xl">NL</h2>
                 </div>
@@ -107,16 +107,18 @@ export default function App({ Component, pageProps, router }: AppProps) {
                 </motion.ul>
                 <VerticalDivider className="ml-[25%] h-72 hidden md:block" />
             </nav>
-            <main className="bg-background py-28 px-[10%] flex flex-col flex-grow rounded-t-md md:rounded-l-md min-h-screen">
-                <PageEndNavigation href={prevRoute} icon={ArrowUpIcon} className="mt-2 mb-8">
-                    Prev
-                </PageEndNavigation>
-                <div className="flex-grow">
-                    <Component key={router.pathname} {...pageProps} />
+            <main className="bg-background  py-28 px-[10%] flex flex-col w-full rounded-t-md md:ml-52 md:rounded-l-md min-h-screen">
+                <div>
+                    <PageEndNavigation href={prevRoute} icon={ArrowUpIcon} className="mt-2 mb-8">
+                        Prev
+                    </PageEndNavigation>
+                    <div className="flex-grow">
+                        <Component key={router.pathname} {...pageProps} />
+                    </div>
+                    <PageEndNavigation href={nextRoute} icon={ArrowDownIcon} className="mb-2 mt-8">
+                        Next
+                    </PageEndNavigation>
                 </div>
-                <PageEndNavigation href={nextRoute} icon={ArrowDownIcon} className="mb-2 mt-8">
-                    Next
-                </PageEndNavigation>
             </main>
         </div>
     );

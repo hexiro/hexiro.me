@@ -1,12 +1,15 @@
 import Image from "next/image";
+import type { PropsWithChildren } from "react";
 
 import { DISCORD_SNOWFLAKE } from "@/commons/config";
 
-import Card from "@/components/ui/Card";
+import { Card, SecondaryCard } from "@/components/ui/Cards";
 
 import { twMerge } from "tailwind-merge";
 import { useLanyardWS } from "use-lanyard";
 import type { Activity as LanyardActivity, Data as LanyardData, DiscordUser } from "use-lanyard";
+
+const SPECIAL_CHARS = "!@#$%^&?";
 
 export default function DiscordCard({ className }: { className?: string }) {
     const initialData = {
@@ -40,12 +43,11 @@ export default function DiscordCard({ className }: { className?: string }) {
     return (
         <Card
             className={twMerge(
-                "transition-transform duration-slow ease-in-out hover:perspective-800px hover:rotate-[-1deg] hover:scale-105",
-                "max-w-md, w-1/2",
+                "py-6  transition-transform duration-slow ease-in-out hover:perspective-800px hover:rotate-[-1deg] hover:scale-105",
                 className
             )}
         >
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-8">
                 <div className="flex flex-row">
                     <div className="relative mr-4">
                         <Image
@@ -64,8 +66,64 @@ export default function DiscordCard({ className }: { className?: string }) {
                         </h5>
                     </div>
                 </div>
+                <SecondaryCard className="w-[500px]">
+                    <div className="flex flex-row">
+                        <div className="relative mr-6">
+                            {state.ide ? (
+                                <Image
+                                    priority
+                                    className="rounded-md"
+                                    width={100}
+                                    height={100}
+                                    src={state.ide.images.large.src}
+                                    alt={state.ide.images.large.alt}
+                                />
+                            ) : (
+                                <div className="flex items-center justify-center w-[100px] h-[100px] bg-background-accent rounded-md">
+                                    <h3 className="text-off-white">!#?</h3>
+                                </div>
+                            )}
+                            {}
+                        </div>
+                        <div className="my-1">
+                            <h4 className="text-off-white font-sans font-extrabold text-[24px] mb-2">
+                                {state.ide ? state.ide.name : "No IDE active"}
+                            </h4>
+                            {state.ide ? (
+                                state.ide.lines.map((line) => (
+                                    <PresenceLine key={line[0].text}>
+                                        {line.map((chunk) => (
+                                            <span
+                                                key={chunk.text}
+                                                className={
+                                                    chunk.highlighted
+                                                        ? "text-green font-bold"
+                                                        : "text-[#9E9E9E] font-semibold"
+                                                }
+                                            >
+                                                {chunk.text}
+                                            </span>
+                                        ))}
+                                    </PresenceLine>
+                                ))
+                            ) : (
+                                <PresenceLine>
+                                    {[SPECIAL_CHARS, SPECIAL_CHARS, SPECIAL_CHARS].join("-")}
+                                </PresenceLine>
+                            )}
+                        </div>
+                    </div>
+                </SecondaryCard>
             </div>
         </Card>
+    );
+}
+
+function PresenceLine({ className, children }: PropsWithChildren<{ className?: string }>) {
+    return (
+        <p className={twMerge("text-subtitle font-mono text-[16px] leading-tight", className)}>
+            {children}
+        </p>
     );
 }
 
@@ -86,7 +144,7 @@ interface DiscordUserState {
 
 interface DiscordPresenceIDEState {
     name: string;
-    lines: DiscordPresenceLine[];
+    lines: [DiscordPresenceLine] | [DiscordPresenceLine, DiscordPresenceLine];
     images: {
         large: DiscordPresenceImage;
         small: DiscordPresenceImage;
@@ -165,7 +223,7 @@ function parseActivity(activity: LanyardActivity): DiscordPresenceIDEState | nul
     const large = parseImage(application_id, assets.large_image, assets.large_text, "large");
     const small = parseImage(application_id, assets.small_image, assets.small_text, "small");
 
-    const lines: DiscordPresenceLine[] = [parseLine(activity.details)];
+    const lines = [parseLine(activity.details)] as [DiscordPresenceLine];
     if (activity.state) lines.push(parseLine(activity.state));
 
     return {
