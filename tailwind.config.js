@@ -13,7 +13,7 @@ module.exports = {
                 current: "currentColor",
                 green: "hsla(148, 100%, 65%, 1)",
                 "off-white": "hsla(0, 0%, 91%, 1)",
-                text: "hsla(119, 5%, 80%, 1)",
+                text: "hsla(119, 5%, 70%, 1)",
                 subtitle: "hsla(100, 10%, 80%, 1)",
                 background: {
                     DEFAULT: "hsla(37, 18%, 10%, 1)",

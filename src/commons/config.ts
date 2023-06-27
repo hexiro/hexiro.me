@@ -1,3 +1,11 @@
+import {
+    AboutIcon,
+    ProjectsIcon,
+    type IconType,
+    SkillsIcon,
+    ContactIcon,
+} from "@/components/ui/Icons";
+
 // public
 export const GITHUB = "hexiro";
 export const TWITTER = "hexiiro";
@@ -17,14 +25,14 @@ export const TMDB_V3_TOKEN = process.env.TMDB_V3_TOKEN ?? "";
 export const TMDB_V4_TOKEN = process.env.TMDB_V4_TOKEN ?? "";
 export const TMDB_ACCOUNT_ID = process.env.TMDB_ACCOUNT_ID ?? "";
 
-export interface INavRoute {
+export interface IRoute {
     name: string;
     path: string;
 }
 
-export type INavRouteName = (typeof NAV_ROUTES)[number]["name"];
+export type INavRouteName = (typeof ROUTES)[number]["name"];
 
-export const NAV_ROUTES = [
+export const ROUTES = [
     {
         name: "Home",
         path: "/",
@@ -45,5 +53,39 @@ export const NAV_ROUTES = [
         name: "Contact",
         path: "/contact",
     },
-] as const satisfies readonly INavRoute[];
-export const NAV_PATHS = NAV_ROUTES.map((route) => route.path);
+] as const satisfies readonly IRoute[];
+export const NAV_PATHS = ROUTES.map((route) => route.path);
+
+export interface IRouteMeta {
+    name: string;
+    path: string;
+    description: string;
+    icon: IconType;
+}
+
+export const ROUTES_META = [
+    {
+        name: "About",
+        path: "/about",
+        description: "Take a look into a bit of my personal life.",
+        icon: AboutIcon,
+    },
+    {
+        name: "Projects",
+        path: "/projects",
+        description: "Take a look at some of my open-source projects.",
+        icon: ProjectsIcon,
+    },
+    {
+        name: "Skills",
+        path: "/skills",
+        description: "Take a look at my technical skills.",
+        icon: SkillsIcon,
+    },
+    {
+        name: "Contact",
+        path: "/contact",
+        description: "Connect with me through my other socials.",
+        icon: ContactIcon,
+    },
+] as const satisfies readonly IRouteMeta[];

@@ -8,7 +8,7 @@ export function Card({ className, children }: CardProps) {
     return (
         <div
             className={twMerge(
-                "bg-background-secondary inline-block rounded-md border-2 border-white/10 shadow-md p-8",
+                "bg-background-secondary inline-block rounded-md border-2 border-white/10 shadow-md px-8 py-6",
                 className
             )}
         >

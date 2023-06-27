@@ -5,7 +5,7 @@ import type { PropsWithChildren } from "react";
 import { useCallback, useEffect, useState } from "react";
 
 import type { INavRouteName } from "@/commons/config";
-import { NAV_PATHS, NAV_ROUTES } from "@/commons/config";
+import { NAV_PATHS, ROUTES } from "@/commons/config";
 
 import { HorizontalDivider, VerticalDivider } from "@/components/layout/Divider";
 import type { IconType } from "@/components/ui/Icons";
@@ -44,9 +44,9 @@ export default function App({ Component, pageProps, router }: AppProps) {
     const [selectedRoute, setSelectedRoute] = useState<number>(findSelectedRoute());
     const [hoveredRoute, setHoveredRoute] = useState<number | null>(null);
 
-    const isSelected = (name: INavRouteName) => name === NAV_ROUTES[selectedRoute]?.name;
+    const isSelected = (name: INavRouteName) => name === ROUTES[selectedRoute]?.name;
     const isHovered = (name: INavRouteName) =>
-        hoveredRoute === null ? false : name === NAV_ROUTES[hoveredRoute]?.name;
+        hoveredRoute === null ? false : name === ROUTES[hoveredRoute]?.name;
 
     useEffect(() => {
         setSelectedRoute(findSelectedRoute());
@@ -72,7 +72,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                     className="flex items-center w-fit h-full gap-8 px-12 overflow-x-auto md:gap-4 md:my-8 md:items-start md:flex-col md:w-full md:h-[unset] md:p-6 md:pr-0"
                     onHoverEnd={() => setHoveredRoute(null)}
                 >
-                    {NAV_ROUTES.map(({ name, path }, index) => (
+                    {ROUTES.map(({ name, path }, index) => (
                         <motion.li
                             key={name}
                             className="flex items-center text-lg relative h-full w-full"

@@ -39,8 +39,6 @@ export default function DiscordCard({ className }: { className?: string }) {
 
     const state = parsePresence(presence);
 
-    console.log(state.user);
-
     return (
         <Card
             className={twMerge(
