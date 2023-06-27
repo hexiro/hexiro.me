@@ -38,7 +38,8 @@ export default function DiscordCard({ className }: { className?: string }) {
     if (!presence) presence = initialData;
 
     const state = parsePresence(presence);
-    const isOnline = presence.discord_status !== "offline";
+
+    console.log(state.user);
 
     return (
         <Card
@@ -57,7 +58,15 @@ export default function DiscordCard({ className }: { className?: string }) {
                             src={state.user.avatar}
                             alt={state.user.alt}
                         />
-                        <span className="absolute bottom-[-3px] right-[-6px] w-7 h-7 rounded-full bg-[#B6B6B6] border-[5px] border-background-secondary" />
+                        {state.user.status === "online" ? (
+                            <StatusIndicator className="bg-green" />
+                        ) : (
+                            <StatusIndicator className="bg-subtitle">
+                                <div className="relative w-full h-full flex items-center justify-center">
+                                    <span className="w-1/2 h-1/2 rounded-full bg-black/25" />
+                                </div>
+                            </StatusIndicator>
+                        )}
                     </div>
                     <div className="flex flex-col mt-1 leading-extra-tight">
                         <h4 className="text-green text-[28px]">{state.user.displayName}</h4>
@@ -119,6 +128,19 @@ export default function DiscordCard({ className }: { className?: string }) {
     );
 }
 
+function StatusIndicator({ className, children }: PropsWithChildren<{ className?: string }>) {
+    return (
+        <div
+            className={twMerge(
+                "absolute bottom-[-1px] right-[-3px] w-6 h-6 rounded-full bg-[#B6B6B6] border-[5px] border-background-secondary",
+                className
+            )}
+        >
+            {children}
+        </div>
+    );
+}
+
 function PresenceLine({ className, children }: PropsWithChildren<{ className?: string }>) {
     return (
         <p className={twMerge("text-subtitle font-mono text-[16px] leading-tight", className)}>
@@ -132,7 +154,7 @@ interface DiscordPresenceState {
     ide: DiscordPresenceIDEState | null;
 }
 
-type DiscordUserStatus = LanyardData["discord_status"];
+type DiscordUserStatus = "online" | "offline";
 
 interface DiscordUserState {
     displayName: string;
@@ -178,8 +200,15 @@ const parsePresence = (data: LanyardData): DiscordPresenceState => {
     };
 };
 
-function parseDiscordUser(user: DiscordUser, status: DiscordUserStatus): DiscordUserState {
+function parseDiscordUser(
+    user: DiscordUser,
+    status: LanyardData["discord_status"]
+): DiscordUserState {
     const avatar = parseAvatar(user, 80);
+
+    if (status === "dnd") status = "online";
+    if (status === "idle") status = "offline";
+
     return {
         displayName: user.global_name ?? user.username,
         username: user.username,
