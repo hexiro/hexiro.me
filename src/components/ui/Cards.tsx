@@ -2,13 +2,18 @@ import type { PropsWithChildren } from "react";
 
 import { twMerge } from "tailwind-merge";
 
-type CardProps = PropsWithChildren<{ className?: string }>;
+interface CardProps extends PropsWithChildren {
+    isHoverable?: boolean;
+    className?: string;
+}
 
-export function Card({ className, children }: CardProps) {
+export function Card({ isHoverable, className, children }: CardProps) {
     return (
         <div
             className={twMerge(
-                "bg-background-secondary inline-block rounded-md border-2 border-white/10 shadow-md px-8 py-6",
+                "relative bg-background-secondary inline-block rounded-md border-2 border-white/10 shadow-md px-8 py-6",
+                isHoverable &&
+                    "transition-transform duration-[375ms] ease-in-out hover:perspective-800px hover:rotate-[-1deg] hover:scale-105 active:scale-[.97]",
                 className
             )}
         >
@@ -21,7 +26,7 @@ export function SecondaryCard({ className, children }: CardProps) {
     return (
         <div
             className={twMerge(
-                "bg-white/5 inline-block rounded-[4px] border-2 border-white/10 shadow-sm p-5",
+                "relative bg-white/5 inline-block rounded-[4px] border-2 border-white/10 shadow-sm p-5",
                 className
             )}
         >

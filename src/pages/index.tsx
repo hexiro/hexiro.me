@@ -7,7 +7,7 @@ import RouteCard from "@/components/home/RouteCard";
 
 export default function HomePage() {
     return (
-        <>
+        <div className="pr-[10%]">
             <h2 className="font-mono text-off-white">Hi... I&apos;m,</h2>
             <h1>
                 NATHAN <span className="text-off-white">LODGE</span>
@@ -22,6 +22,6 @@ export default function HomePage() {
                     ))}
                 </div>
             </div>
-        </>
+        </div>
     );
 }

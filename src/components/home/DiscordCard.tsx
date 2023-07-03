@@ -40,12 +40,7 @@ export default function DiscordCard({ className }: { className?: string }) {
     const state = parsePresence(presence);
 
     return (
-        <Card
-            className={twMerge(
-                "py-6  transition-transform duration-slow ease-in-out hover:perspective-800px hover:rotate-[-1deg] hover:scale-105",
-                className
-            )}
-        >
+        <Card isHoverable className={className}>
             <div className="flex flex-col gap-8">
                 <div className="flex flex-row">
                     <div className="relative mr-4">
