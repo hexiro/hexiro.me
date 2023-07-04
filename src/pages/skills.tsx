@@ -1,3 +1,10 @@
+import { H1, H3 } from "@/components/ui/Headings";
+
 export default function SkillsPage() {
-    return <h1 className="text-3xl font-black font-mono text-green">Hello, Skills!</h1>;
+    return (
+        <>
+            <H1>Skills</H1>
+            <H3 className="text-subtitle">My skills with various technology.</H3>
+        </>
+    );
 }
