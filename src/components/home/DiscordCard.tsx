@@ -4,6 +4,7 @@ import type { PropsWithChildren } from "react";
 import { DISCORD_SNOWFLAKE } from "@/commons/config";
 
 import { Card, SecondaryCard } from "@/components/ui/Cards";
+import { H3, H4, H5 } from "@/components/ui/Headings";
 
 import { twMerge } from "tailwind-merge";
 import { useLanyardWS } from "use-lanyard";
@@ -62,10 +63,10 @@ export default function DiscordCard({ className }: { className?: string }) {
                         )}
                     </div>
                     <div className="flex flex-col mt-1 leading-extra-tight">
-                        <h4 className="text-green text-[28px]">{state.user.displayName}</h4>
-                        <h5 className="text-subtitle font-sans font-bold text-[16px]">
+                        <H4 className="text-green text-[28px]">{state.user.displayName}</H4>
+                        <H5 className="text-subtitle font-sans font-bold text-[16px]">
                             @{state.user.username}
-                        </h5>
+                        </H5>
                     </div>
                 </div>
                 <SecondaryCard className="w-[500px]">
@@ -82,15 +83,15 @@ export default function DiscordCard({ className }: { className?: string }) {
                                 />
                             ) : (
                                 <div className="flex items-center justify-center w-[100px] h-[100px] bg-background-accent rounded-md">
-                                    <h3 className="text-off-white">!#?</h3>
+                                    <H3 className="text-off-white">!#?</H3>
                                 </div>
                             )}
                             {}
                         </div>
                         <div className="my-1">
-                            <h4 className="text-off-white font-sans font-extrabold text-[24px] mb-2">
+                            <H4 className="text-off-white font-sans font-extrabold text-[24px] mb-2">
                                 {state.ide ? state.ide.name : "No IDE active"}
-                            </h4>
+                            </H4>
                             {state.ide ? (
                                 state.ide.lines.map((line) => (
                                     <PresenceLine key={line[0].text}>

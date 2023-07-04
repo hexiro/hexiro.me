@@ -22,6 +22,11 @@
         @apply font-sans;
     }
 
+    svg {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
     li,
     a,
     p {
@@ -29,53 +34,7 @@
         @apply font-mono;
     }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        @apply font-sans;
-    }
-
-    h1,
-    h2,
-    h3 {
-        @apply text-green;
-    }
-
-    h4,
-    h5,
-    h6 {
-        @apply text-off-white;
-    }
-
-    h2,
-    h3,
-    h4 {
-        @apply font-extrabold;
-    }
-
-    h1 {
-        @apply text-7xl;
-        @apply font-black;
-    }
-    h2 {
-        @apply text-3xl;
-    }
-    h3 {
-        @apply text-xl;
-    }
-    h4 {
-        @apply text-[28px];
-    }
-
-    svg {
-        stroke-linecap: round;
-        stroke-linejoin: round;
-    }
-
     p {
-        @apply text-text
+        @apply text-text;
     }
 }

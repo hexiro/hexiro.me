@@ -1,10 +1,14 @@
 // import { styled } from "@/theme";
 import Link from "next/link";
 
+import { VerticalDivider } from "@/components/layout/Divider";
+import { LinkOverlay } from "@/components/layout/LinkOverlay";
+import { Card } from "@/components/ui/Cards";
+import { H4 } from "@/components/ui/Headings";
+import { ExternalLinkIcon, PackageIcon, StarsIcon } from "@/components/ui/Icons";
+
 import type { IProject } from "@/data/projects";
 
-import { LinkOverlay } from "../layout/LinkOverlay";
-import { Card } from "../ui/Cards";
 import { twMerge } from "tailwind-merge";
 
 // import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
@@ -188,26 +192,59 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ className, project }: ProjectCardProps) {
-    const { name, url, description } = project;
+    const { name, url, description, stars, packageUrl } = project;
+
+    // const IconListItem = styled("li", {
+    //     display: "flex",
+    //     alignItems: "center",
+    // });
+
     return (
-        <Card isHoverable className={twMerge("w-[calc(50%-1rem)]", className)}>
-            <div className="flex flex-row align-center h-10 pb-1">
-                <h4 className="truncate basis-2/3">
+        <Card isHoverable className={twMerge("w-[calc(50%-1rem)] pr-4", className)}>
+            <div className="flex flex-row align-center h-10 pb-1 gap-x-2">
+                <H4 green className="truncate basis-2/3">
                     <LinkOverlay href={url}>{name}</LinkOverlay>
-                </h4>
+                </H4>
+                <span className="basis-1/3 flex flex-row items-center justify-end h-full gap-x-3">
+                    {stars > 0 ? (
+                        <>
+                            <div className="flex flex-row items-center gap-x-[1px]">
+                                <StarsIcon />
+                                <p className="leading-none text-off-white">{stars}</p>
+                            </div>
+                            <VerticalDivider className="h-2/3" />
+                        </>
+                    ) : null}
+                    <ul className="flex gap-x-1 z-10">
+                        {packageUrl !== null ? (
+                            <li className="flex items-center transition-transform hover:translate-y-[-2px]">
+                                <Link href={packageUrl}>
+                                    <PackageIcon />
+                                </Link>
+                            </li>
+                        ) : null}
+                        <li className="flex items-center transition-transform hover:translate-y-[-2px]">
+                            <Link href={url}>
+                                <ExternalLinkIcon />
+                            </Link>
+                        </li>
+                    </ul>
+                </span>
             </div>
-            <p className="line-clamp-3">
-                {description.map(({ value, type }) =>
-                    type === "link" ? (
-                        <Link key={value} className="z-10" href={value}>
-                            {value}
-                        </Link>
-                    ) : (
-                        <span key={value}>{value}</span>
-                    )
-                )}
-            </p>
-            <div className="flex flex-row flex-wrap gap-2 leading-none line-clamp-1 overflow-hidden"></div>
+            <div className="pr-4">
+                <p className="line-clamp-3">
+                    {description.map(({ value, type }) =>
+                        type === "link" ? (
+                            <Link key={value} className="z-10" href={value}>
+                                {value}
+                            </Link>
+                        ) : (
+                            <span key={value}>{value}</span>
+                        )
+                    )}
+                </p>
+                <div className="flex flex-row flex-wrap gap-2 leading-none line-clamp-1 overflow-hidden" />
+            </div>
         </Card>
     );
 }

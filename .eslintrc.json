@@ -4,7 +4,7 @@
         "node": true
     },
     "extends": ["xo", "xo-react", "xo-typescript", "prettier", "next/core-web-vitals"],
-    "plugins": ["react", "react-hooks", "unused-imports", "no-relative-import-paths"],
+    "plugins": ["react", "react-hooks", "unused-imports", "no-relative-import-paths", "regex"],
     "parser": "@typescript-eslint/parser",
     "rules": {
         "no-negated-condition": "off",
@@ -47,6 +47,18 @@
             {
                 "prefer": "type-imports"
             }
+        ],
+        "regex/invalid": [
+            "error",
+            [
+                {
+                    "regex": "\\w?<h[1-6]",
+                    "message": "Please use custom heading components instead of h1-h6 tags",
+                    "replacement": {
+                        "function": "return text.toUpperCase()"
+                    }
+                }
+            ]
         ]
     },
     "parserOptions": {

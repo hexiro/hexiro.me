@@ -8,6 +8,7 @@ import type { INavRouteName } from "@/commons/config";
 import { NAV_PATHS, ROUTES } from "@/commons/config";
 
 import { HorizontalDivider, VerticalDivider } from "@/components/layout/Divider";
+import { H2 } from "@/components/ui/Headings";
 import type { IconType } from "@/components/ui/Icons";
 import { ArrowDownIcon, ArrowUpIcon } from "@/components/ui/Icons";
 
@@ -65,7 +66,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
         >
             <nav className=" flex items-center flex-shrink-0 h-36 w-screen md:items-start md:fixed md:flex-col md:w-52 md:h-screen">
                 <div className="px-8 py-6 md:px-6 flex justify-center items-center md:w-full md:h-52 ">
-                    <h2 className="font-black text-6xl md:text-7xl">NL</h2>
+                    <H2 className="text-6xl md:text-7xl">NL</H2>
                 </div>
                 <HorizontalDivider className="divide-x w-0 h-[80%] md:h-0 md:w-[80%] md:mx-auto" />
                 <motion.ul
@@ -107,7 +108,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                 </motion.ul>
                 <VerticalDivider className="ml-[25%] h-72 hidden md:block" />
             </nav>
-            <main className="bg-background  py-28 px-[10%] flex flex-col w-full rounded-t-md md:ml-52 md:rounded-l-md min-h-screen">
+            <main className="bg-background py-28 px-[10%] flex flex-col w-full rounded-t-md md:ml-52 md:rounded-l-md min-h-screen">
                 <div>
                     <PageEndNavigation href={prevRoute} icon={ArrowUpIcon} className="mt-2 mb-8">
                         Prev

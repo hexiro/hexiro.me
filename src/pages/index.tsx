@@ -1,6 +1,7 @@
 import { ROUTES_META } from "@/commons/config";
 
 import { HorizontalDividerWithText } from "@/components/layout/Divider";
+import { H1, H2, H3 } from "@/components/ui/Headings";
 
 import DiscordCard from "@/components/home/DiscordCard";
 import RouteCard from "@/components/home/RouteCard";
@@ -8,11 +9,11 @@ import RouteCard from "@/components/home/RouteCard";
 export default function HomePage() {
     return (
         <div className="pr-[10%]">
-            <h2 className="font-mono text-off-white">Hi... I&apos;m,</h2>
-            <h1>
+            <H2 className="font-mono text-off-white">Hi... I&apos;m,</H2>
+            <H1>
                 Nathan <span className="text-off-white">Lodge</span>
-            </h1>
-            <h3 className="text-subtitle">A self-taught Software Engineer.</h3>
+            </H1>
+            <H3 className="text-subtitle">A self-taught Software Engineer.</H3>
             <DiscordCard className="mt-8" />
             <div>
                 <HorizontalDividerWithText text="View More" className="mt-20 mb-16" />
