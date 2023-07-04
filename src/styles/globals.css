@@ -4,14 +4,19 @@
 
 @layer base {
     ::-webkit-scrollbar {
-        width: "0.35em";
-        height: "0.35em";
+        @apply w-[6px];
+        @apply h-[6px]
     }
+
     ::-webkit-scrollbar-track {
-        box-shadow: "inset 0 0 6px rgba(0, 0, 0, 0.3)";
+        @apply bg-background;
     }
+
     ::-webkit-scrollbar-thumb {
-        background-color: "rgba(0, 0, 0, 0.35)";
+        @apply bg-white/50;
+        @apply rounded-sm;
+        @apply transition-colors;
+        @apply hover:bg-white/25;
     }
 
     * {

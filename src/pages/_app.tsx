@@ -3,6 +3,7 @@ import { Golos_Text as GolosText, Noto_Sans_Mono as NotoSansMono } from "next/fo
 import Link from "next/link";
 import type { PropsWithChildren } from "react";
 import { useCallback, useEffect, useState } from "react";
+import React from "react";
 
 import type { INavRouteName } from "@/commons/config";
 import { NAV_PATHS, ROUTES } from "@/commons/config";
@@ -10,11 +11,11 @@ import { NAV_PATHS, ROUTES } from "@/commons/config";
 import { HorizontalDivider, VerticalDivider } from "@/components/layout/Divider";
 import { H2 } from "@/components/ui/Headings";
 import type { IconType } from "@/components/ui/Icons";
-import { ArrowDownIcon, ArrowUpIcon } from "@/components/ui/Icons";
+import { ArrowDownIcon, ArrowRightIcon, ArrowUpIcon } from "@/components/ui/Icons";
 
 import "@/styles/globals.css";
 
-import { Lenis as ReactLenis, useLenis } from "@studio-freight/react-lenis";
+import { Lenis as ReactLenis } from "@studio-freight/react-lenis";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
@@ -76,51 +77,56 @@ export default function App({ Component, pageProps, router }: AppProps) {
                         "bg-background-secondary relative flex flex-col md:flex-row min-h-screen min-w-screen h-full w-full overflow-x-hidden overflow-y-auto"
                     )}
                 >
-                    <nav className=" flex items-center flex-shrink-0 h-36 w-screen md:items-start md:fixed md:flex-col md:w-52 md:h-screen">
-                        <div className="px-8 py-6 md:px-6 flex justify-center items-center md:w-full md:h-52 ">
-                            <H2 className="text-6xl md:text-7xl">NL</H2>
-                        </div>
-                        <HorizontalDivider className="divide-x w-0 h-[80%] md:h-0 md:w-[80%] md:mx-auto" />
-                        <motion.ul
-                            className="flex items-center w-fit h-full gap-8 px-12 overflow-x-auto md:gap-4 md:my-8 md:items-start md:flex-col md:w-full md:h-[unset] md:p-6 md:pr-0"
-                            onHoverEnd={() => setHoveredRoute(null)}
-                        >
-                            {ROUTES.map(({ name, path }, index) => (
-                                <motion.li
-                                    key={name}
-                                    className="flex items-center text-lg relative h-full w-full"
-                                    onHoverStart={() => setHoveredRoute(index)}
-                                >
-                                    <Link href={path} className="text-off-white">
-                                        <span className="text-green mr-1">/</span>
-                                        {name}
-                                    </Link>
-                                    {isSelected(name) ? (
-                                        <motion.div
-                                            layoutId="selected-route-indicator"
-                                            className="absolute bg-green z-20 h-2 top-0 w-full rounded-b-[4px] md:right-0 md:top-[-10%] md:w-2 md:h-[120%] md:rounded-l-[4px]"
-                                        />
-                                    ) : null}
-                                    <AnimatePresence>
-                                        {isHovered(name) ? (
+                    <nav className="fixed z-40 w-screen bg-background-secondary h-32 md:items-start md:flex-col md:w-52 md:h-screen">
+                        <div className="flex items-center flex-shrink-0 flex-row overflow-x-auto overflow-y-hidden h-full">
+                            <div className="flex items-center justify-center px-8 py-6 md:px-6 md:w-full md:h-52 ">
+                                <H2 className="text-6xl md:text-7xl">NL</H2>
+                            </div>
+                            <HorizontalDivider className="divide-x w-0 h-[80%] md:h-0 md:w-[80%] md:mx-auto" />
+                            <motion.ul
+                                className="flex items-center w-fit h-full gap-8 px-12  md:gap-4 md:my-8 md:items-start md:flex-col md:w-full md:h-[unset] md:p-6 md:pr-0"
+                                onHoverEnd={() => setHoveredRoute(null)}
+                            >
+                                {ROUTES.map(({ name, path }, index) => (
+                                    <motion.li
+                                        key={name}
+                                        className="relative flex items-center w-full h-full text-lg"
+                                        onHoverStart={() => setHoveredRoute(index)}
+                                    >
+                                        <Link href={path} className="text-off-white">
+                                            <span className="mr-1 text-green">/</span>
+                                            {name}
+                                        </Link>
+                                        {isSelected(name) ? (
                                             <motion.div
-                                                layoutId="hovered-route-indicator"
-                                                className={twMerge(
-                                                    "absolute bg-green z-20 h-2 top-0 w-full rounded-b-[4px] md:right-0 md:top-[-10%] md:w-2 md:h-[120%] md:rounded-l-[4px]",
-                                                    "bg-green/25 z-10"
-                                                )}
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                exit={{ opacity: 0 }}
+                                                layoutId="selected-route-indicator"
+                                                className="absolute bg-green z-20 h-2 top-0 w-full rounded-b-[4px] md:right-0 md:top-[-10%] md:w-2 md:h-[120%] md:rounded-l-[4px]"
                                             />
                                         ) : null}
-                                    </AnimatePresence>
-                                </motion.li>
-                            ))}
-                        </motion.ul>
+                                        <AnimatePresence>
+                                            {isHovered(name) ? (
+                                                <motion.div
+                                                    layoutId="hovered-route-indicator"
+                                                    className={twMerge(
+                                                        "absolute bg-green z-20 h-2 top-0 w-full rounded-b-[4px] md:right-0 md:top-[-10%] md:w-2 md:h-[120%] md:rounded-l-[4px]",
+                                                        "bg-green/25 z-10"
+                                                    )}
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    exit={{ opacity: 0 }}
+                                                />
+                                            ) : null}
+                                        </AnimatePresence>
+                                    </motion.li>
+                                ))}
+                            </motion.ul>
+                        </div>
+                        <div className="z-50 absolute flex items-center justify-end bg-gradient-to-l top-0 right-[6px] h-[calc(100%-6px)] w-24 from-background-secondary select-none pointer-events-none">
+                            <ArrowRightIcon className="opacity-50"/>
+                        </div>
                         <VerticalDivider className="ml-[25%] h-72 hidden md:block" />
                     </nav>
-                    <main className="bg-background py-28 px-[10%] flex flex-col w-full rounded-t-md md:ml-52 md:rounded-l-md min-h-screen">
+                    <main className="bg-background py-28 px-[10%] flex flex-col w-full rounded-t-md mt-32 md:mt-0 md:ml-52 md:rounded-l-md min-h-screen">
                         <div>
                             <PageEndNavigation
                                 href={prevRoute}
@@ -135,7 +141,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                             <PageEndNavigation
                                 href={nextRoute}
                                 icon={ArrowDownIcon}
-                                className="mb-2 mt-8"
+                                className="mt-8 mb-2"
                             >
                                 Next
                             </PageEndNavigation>

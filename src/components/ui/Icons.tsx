@@ -49,6 +49,15 @@ export const ArrowDownIcon: IconType = (props) => (
     </Icon>
 );
 
+export const ArrowRightIcon: IconType = (props) => (
+    // 'arrow-narrow-right' from tabler
+    <Icon {...props}>
+        <path d="M5 12l14 0" />
+        <path d="M15 16l4 -4" />
+        <path d="M15 8l4 4" />
+    </Icon>
+);
+
 export const StarsIcon: IconType = (props) => (
     // 'sparkles-2' from iconic
     <Icon {...props}>
