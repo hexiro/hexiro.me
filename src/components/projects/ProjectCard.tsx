@@ -1,4 +1,11 @@
 // import { styled } from "@/theme";
+import Link from "next/link";
+
+import type { IProject } from "@/data/projects";
+
+import { LinkOverlay } from "../layout/LinkOverlay";
+import { Card } from "../ui/Cards";
+import { twMerge } from "tailwind-merge";
 
 // import { StarIcon, ExternalLinkIcon, PackageIcon } from "@/commons/icons";
 
@@ -175,59 +182,32 @@
 //     },
 // });
 
-// const URL_REGEX =
-//     /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)/gm;
+interface ProjectCardProps {
+    className?: string;
+    project: IProject;
+}
 
-// interface ExtractedSection {
-//     type: "text" | "link";
-//     value: string;
-// }
-
-// function extractLinks(description: string): ExtractedSection[] {
-//     const isPublicUrl = (match: RegExpMatchArray): boolean => {
-//         let url: URL;
-//         try {
-//             url = new URL(match[0]);
-//         } catch (e: unknown) {
-//             // not valid url -- bad
-//             return false;
-//         }
-
-//         let ip: ReturnType<typeof ipaddr.process>;
-//         try {
-//             ip = ipaddr.process(url.hostname);
-//         } catch (e: unknown) {
-//             // not ip -- good
-//             return true;
-//         }
-
-//         if (ip.kind() === "ipv6") return false;
-//         if (ip.range() === "private") return false;
-
-//         return true;
-//     };
-
-//     let linkMatches: RegExpMatchArray[];
-//     linkMatches = Array.from(description.matchAll(URL_REGEX));
-//     linkMatches = linkMatches.filter(isPublicUrl);
-
-//     if (linkMatches.length === 0) return [{ type: "text", value: description }];
-
-//     const sections: ExtractedSection[] = [];
-//     let start = 0;
-
-//     for (const linkMatch of linkMatches) {
-//         const link = linkMatch[0];
-//         const { index } = linkMatch;
-
-//         if (index === undefined) continue;
-
-//         sections.push({ value: description.slice(start, index), type: "text" });
-//         sections.push({ value: link, type: "link" });
-
-//         start = index + link.length;
-//     }
-
-//     return sections;
-// }
-export {}
+export function ProjectCard({ className, project }: ProjectCardProps) {
+    const { name, url, description } = project;
+    return (
+        <Card isHoverable className={twMerge("w-[calc(50%-1rem)]", className)}>
+            <div className="flex flex-row align-center h-10 pb-1">
+                <h4 className="truncate basis-2/3">
+                    <LinkOverlay href={url}>{name}</LinkOverlay>
+                </h4>
+            </div>
+            <p className="line-clamp-3">
+                {description.map(({ value, type }) =>
+                    type === "link" ? (
+                        <Link key={value} className="z-10" href={value}>
+                            {value}
+                        </Link>
+                    ) : (
+                        <span key={value}>{value}</span>
+                    )
+                )}
+            </p>
+            <div className="flex flex-row flex-wrap gap-2 leading-none line-clamp-1 overflow-hidden"></div>
+        </Card>
+    );
+}
