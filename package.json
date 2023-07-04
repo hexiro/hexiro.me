@@ -18,6 +18,7 @@
         "@studio-freight/react-lenis": "^0.0.21",
         "@vercel/analytics": "^0.1.11",
         "clsx": "^1.2.1",
+        "copy-to-clipboard": "^3.3.3",
         "framer-motion": "^10.12.16",
         "ipaddr.js": "^2.1.0",
         "jotai": "^2.2.1",

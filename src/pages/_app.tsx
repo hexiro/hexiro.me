@@ -14,7 +14,7 @@ import { ArrowDownIcon, ArrowUpIcon } from "@/components/ui/Icons";
 
 import "@/styles/globals.css";
 
-import { Lenis as ReactLenis } from "@studio-freight/react-lenis";
+import { Lenis as ReactLenis, useLenis } from "@studio-freight/react-lenis";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
@@ -56,6 +56,10 @@ export default function App({ Component, pageProps, router }: AppProps) {
 
     const prevRoute = NAV_PATHS[selectedRoute - 1];
     const nextRoute = NAV_PATHS[selectedRoute + 1];
+
+    // useLenis((callback?: any, deps?: any[], priority?: number) => {
+    //     console.log(callback, deps, priority);
+    // });
 
     return (
         <>

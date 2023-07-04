@@ -8,16 +8,18 @@ import { ExternalLink } from "@/components/ui/ExternalLink";
 import { H5 } from "@/components/ui/Headings";
 import { CheckIcon, CopyIcon, ExternalLinkIcon, XIcon } from "@/components/ui/Icons";
 
+import copy from "copy-to-clipboard";
+
 export function SocialCard({ social }: { social: ISocial }) {
     const { name, value, link, icon: Icon } = social;
     const [copiedSuccess, setCopiedSuccess] = useState<boolean | null>(null);
     const [copiedTimeout, setCopiedTimeout] = useState<NodeJS.Timeout | null>(null);
 
-    const copyToClipboard = async () => {
+    const copyToClipboard = () => {
         if (copiedTimeout) clearTimeout(copiedTimeout);
 
         try {
-            await navigator.clipboard.writeText(value);
+            copy(value);
             setCopiedSuccess(true);
         } catch (err) {
             setCopiedSuccess(false);

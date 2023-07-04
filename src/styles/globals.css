@@ -18,6 +18,10 @@
         @apply uppercase;
     }
 
+    html {
+        overscroll-behavior: none;
+    }
+
     body {
         @apply font-sans;
     }
