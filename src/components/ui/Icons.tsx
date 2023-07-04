@@ -6,7 +6,7 @@
  */
 import type { PropsWithChildren } from "react";
 
-import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export type IconType = (props?: IconProps) => JSX.Element;
 export type IconProps = PropsWithChildren<{
@@ -16,7 +16,7 @@ export type IconProps = PropsWithChildren<{
 const Icon = ({ children, className }: IconProps) => (
     <svg
         viewBox="0 0 24 24"
-        className={clsx("text-green stroke-2 stroke-current fill-none w-6 h-6", className)}
+        className={twMerge("text-green stroke-2 stroke-current fill-none w-6 h-6", className)}
     >
         {children}
     </svg>
@@ -25,11 +25,13 @@ const Icon = ({ children, className }: IconProps) => (
 const SimpleIcon = ({ children, className }: IconProps) => (
     <svg
         viewBox="0 0 24 24"
-        className={clsx("text-green stroke-none fill-green w-6 h-6", className)}
+        className={twMerge("text-green stroke-none fill-green w-6 h-6", className)}
     >
         {children}
     </svg>
 );
+
+// UI Icons
 
 export const ArrowUpIcon: IconType = (props) => (
     <Icon {...props}>
@@ -46,6 +48,59 @@ export const ArrowDownIcon: IconType = (props) => (
         <path d="M8 15l4 4" />
     </Icon>
 );
+
+export const StarsIcon: IconType = (props) => (
+    // 'sparkles-2' from iconic
+    <Icon {...props}>
+        <path d="M17 4.75C17 5.89705 15.8971 7 14.75 7C15.8971 7 17 8.10295 17 9.25C17 8.10295 18.1029 7 19.25 7C18.1029 7 17 5.89705 17 4.75Z" />
+        <path d="M17 14.75C17 15.8971 15.8971 17 14.75 17C15.8971 17 17 18.1029 17 19.25C17 18.1029 18.1029 17 19.25 17C18.1029 17 17 15.8971 17 14.75Z" />
+        <path d="M9 7.75C9 9.91666 6.91666 12 4.75 12C6.91666 12 9 14.0833 9 16.25C9 14.0833 11.0833 12 13.25 12C11.0833 12 9 9.91666 9 7.75Z" />
+    </Icon>
+);
+
+export const ExternalLinkIcon: IconType = (props) => (
+    // 'share' from iconic
+    <Icon {...props}>
+        <path d="M9.25 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V17.25C4.75 18.3546 5.64543 19.25 6.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25V14.75" />
+        <path d="M19.25 9.25V4.75H14.75" />
+        <path d="M19 5L11.75 12.25" />
+    </Icon>
+);
+
+export const PackageIcon: IconType = (props) => (
+    // 'package' from tabler (flipped horizontally)
+    <Icon {...props}>
+        <path d="M0 0h24v24H0z" fill="none" stroke="none" />
+        <path d="M4 7.5L12 3L20 7.5M4 7.5V16.5L12 21M4 7.5L12 12M12 21L20 16.5V7.5M12 21V12M20 7.5L12 12M8 5.25L16 9.75" />
+    </Icon>
+);
+
+export const CopyIcon: IconType = (props) => (
+    // 'clipboard' from iconic
+    <Icon {...props}>
+        <path d="M9 6.75H7.75C6.64543 6.75 5.75 7.64543 5.75 8.75V17.25C5.75 18.3546 6.64543 19.25 7.75 19.25H16.25C17.3546 19.25 18.25 18.3546 18.25 17.25V8.75C18.25 7.64543 17.3546 6.75 16.25 6.75H15" />
+        <path d="M14 8.25H10C9.44772 8.25 9 7.80228 9 7.25V5.75C9 5.19772 9.44772 4.75 10 4.75H14C14.5523 4.75 15 5.19772 15 5.75V7.25C15 7.80228 14.5523 8.25 14 8.25Z" />
+        <path d="M9.75 12.25H14.25" />
+        <path d="M9.75 15.25H14.25" />
+    </Icon>
+);
+
+export const CheckIcon: IconType = (props) => (
+    // 'check' from iconic
+    <Icon {...props}>
+        <path d="M5.75 12.8665L8.33995 16.4138C9.15171 17.5256 10.8179 17.504 11.6006 16.3715L18.25 6.75" />
+    </Icon>
+);
+
+export const XIcon: IconType = (props) => (
+    // 'x' from tabler
+    <Icon {...props}>
+        <path d="M18 6l-12 12" />
+        <path d="M6 6l12 12" />
+    </Icon>
+);
+
+// sections icons
 
 export const AboutIcon: IconType = (props) => (
     // 'user' from iconic
@@ -83,31 +138,7 @@ export const ContactIcon: IconType = (props) => (
     </Icon>
 );
 
-export const StarsIcon: IconType = (props) => (
-    // 'sparkles-2' from iconic
-    <Icon {...props}>
-        <path d="M17 4.75C17 5.89705 15.8971 7 14.75 7C15.8971 7 17 8.10295 17 9.25C17 8.10295 18.1029 7 19.25 7C18.1029 7 17 5.89705 17 4.75Z" />
-        <path d="M17 14.75C17 15.8971 15.8971 17 14.75 17C15.8971 17 17 18.1029 17 19.25C17 18.1029 18.1029 17 19.25 17C18.1029 17 17 15.8971 17 14.75Z" />
-        <path d="M9 7.75C9 9.91666 6.91666 12 4.75 12C6.91666 12 9 14.0833 9 16.25C9 14.0833 11.0833 12 13.25 12C11.0833 12 9 9.91666 9 7.75Z" />
-    </Icon>
-);
-
-export const ExternalLinkIcon: IconType = (props) => (
-    // 'share' from iconic
-    <Icon {...props}>
-        <path d="M9.25 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V17.25C4.75 18.3546 5.64543 19.25 6.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25V14.75" />
-        <path d="M19.25 9.25V4.75H14.75" />
-        <path d="M19 5L11.75 12.25" />
-    </Icon>
-);
-
-export const PackageIcon: IconType = (props) => (
-    // 'package' from tabler (flipped horizontally)
-    <Icon {...props}>
-        <path d="M0 0h24v24H0z" fill="none" stroke="none" />
-        <path d="M4 7.5L12 3L20 7.5M4 7.5V16.5L12 21M4 7.5L12 12M12 21L20 16.5V7.5M12 21V12M20 7.5L12 12M8 5.25L16 9.75" />
-    </Icon>
-);
+// languages icons
 
 export const PythonIcon: IconType = (props) => (
     // 'brand-python' from tabler
@@ -183,5 +214,50 @@ export const ReactIcon: IconType = (props) => (
         <path d="M12 5.424c-1.925 -1.892 -3.82 -2.766 -5 -2.084c-1.913 1.104 -1.226 5.877 1.536 10.66c.386 .67 .793 1.304 1.212 1.896" />
         <path d="M12 18.574c1.926 1.893 3.821 2.768 5 2.086c1.913 -1.104 1.226 -5.877 -1.536 -10.66c-.375 -.65 -.78 -1.283 -1.212 -1.897" />
         <path d="M11.5 12.866a1 1 0 1 0 1 -1.732a1 1 0 0 0 -1 1.732z" />
+    </Icon>
+);
+
+// socials icons
+
+export const EmailIcon: IconType = (props) => (
+    // 'mail' icon from tabler
+    <Icon {...props}>
+        <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+        <path d="M3 7l9 6l9 -6" />
+    </Icon>
+);
+
+export const GitHubIcon: IconType = (props) => (
+    // 'brand-github' icon from tabler
+    <Icon {...props}>
+        <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+    </Icon>
+);
+
+export const LinkedInIcon: IconType = (props) => (
+    // 'brand-linkedin' icon from tabler
+    <Icon {...props}>
+        <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+        <path d="M8 11l0 5" />
+        <path d="M8 8l0 .01" />
+        <path d="M12 16l0 -5" />
+        <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+    </Icon>
+);
+
+export const DiscordIcon: IconType = (props) => (
+    // 'discord' icon from tabler
+    <Icon {...props}>
+        <path d="M8 12a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
+        <path d="M14 12a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
+        <path d="M15.5 17c0 1 1.5 3 2 3c1.5 0 2.833 -1.667 3.5 -3c.667 -1.667 .5 -5.833 -1.5 -11.5c-1.457 -1.015 -3 -1.34 -4.5 -1.5l-.972 1.923a11.913 11.913 0 0 0 -4.053 0l-.975 -1.923c-1.5 .16 -3.043 .485 -4.5 1.5c-2 5.667 -2.167 9.833 -1.5 11.5c.667 1.333 2 3 3.5 3c.5 0 2 -2 2 -3" />
+        <path d="M7 16.5c3.5 1 6.5 1 10 0" />
+    </Icon>
+);
+
+export const TwitterIcon: IconType = (props) => (
+    // 'twitter' icon from iconic
+    <Icon {...props}>
+        <path d="M9.31 18.25C14.7819 18.25 17.7744 13.4403 17.7744 9.26994C17.7744 9.03682 17.9396 8.83015 18.152 8.73398C18.8803 8.40413 19.8249 7.49943 18.8494 5.97828C18.2031 6.32576 17.6719 6.51562 16.9603 6.74448C15.834 5.47393 13.9495 5.41269 12.7514 6.60761C11.9785 7.37819 11.651 8.52686 11.8907 9.62304C9.49851 9.49618 6.69788 7.73566 5.1875 5.76391C4.39814 7.20632 4.80107 9.05121 6.10822 9.97802C5.63461 9.96302 5.1716 9.82741 4.75807 9.58305V9.62304C4.75807 11.1255 5.75654 12.4191 7.1444 12.7166C6.70672 12.8435 6.24724 12.8622 5.80131 12.771C6.19128 14.0565 7.87974 15.4989 9.15272 15.5245C8.09887 16.4026 6.79761 16.8795 5.45806 16.8782C5.22126 16.8776 4.98504 16.8626 4.75 16.8326C6.11076 17.7588 7.69359 18.25 9.31 18.2475V18.25Z" />
     </Icon>
 );
