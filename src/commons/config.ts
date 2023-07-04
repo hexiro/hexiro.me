@@ -4,6 +4,11 @@ import {
     type IconType,
     SkillsIcon,
     ContactIcon,
+    PythonIcon,
+    TypeScriptIcon,
+    HTMLIcon,
+    CSSIcon,
+    ReactIcon,
 } from "@/components/ui/Icons";
 
 // public
@@ -89,3 +94,38 @@ export const ROUTES_META = [
         icon: ContactIcon,
     },
 ] as const satisfies readonly IRouteMeta[];
+
+export interface ISkill {
+    name: string;
+    icon: IconType;
+}
+
+export type ISkillGroups = Record<string, ISkill[]>;
+
+export const SKILLS = {
+    "Languages": [
+        {
+            name: "Python",
+            icon: PythonIcon,
+        },
+        {
+            name: "TypeScript",
+            icon: TypeScriptIcon,
+        },
+        {
+            name: "HTML",
+            icon: HTMLIcon,
+        },
+        {
+            name: "CSS",
+            icon: CSSIcon,
+        },
+    ],
+
+    "Frameworks / Libraries": [
+        {
+            name: "React",
+            icon: ReactIcon,
+        },
+    ],
+} satisfies ISkillGroups;
