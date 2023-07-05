@@ -2,7 +2,7 @@ import { SOCIALS } from "@/commons/config";
 
 import { H1, H3 } from "@/components/ui/Headings";
 
-import { SocialCard } from "@/components/contact/SocialCard";
+import { SocialCard } from "@/components/cards/SocialCard";
 
 export default function ContactPage() {
     return (

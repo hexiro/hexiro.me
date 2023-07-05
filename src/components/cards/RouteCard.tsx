@@ -9,7 +9,7 @@ interface IRouteCardProps extends IRouteMeta {
     className?: string;
 }
 
-export default function RouteCard({
+export function RouteCard({
     name,
     path,
     description,

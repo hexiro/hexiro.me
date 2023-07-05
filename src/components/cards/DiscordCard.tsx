@@ -12,7 +12,7 @@ import type { Activity as LanyardActivity, Data as LanyardData, DiscordUser } fr
 
 const SPECIAL_CHARS = "!@#$%^&?";
 
-export default function DiscordCard({ className }: { className?: string }) {
+export function DiscordCard({ className }: { className?: string }) {
     const initialData = {
         "spotify": null,
         "listening_to_spotify": false,

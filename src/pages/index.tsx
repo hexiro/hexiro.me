@@ -3,8 +3,8 @@ import { ROUTES_META } from "@/commons/config";
 import { HorizontalDividerWithText } from "@/components/layout/Divider";
 import { H1, H2, H3 } from "@/components/ui/Headings";
 
-import DiscordCard from "@/components/home/DiscordCard";
-import RouteCard from "@/components/home/RouteCard";
+import { DiscordCard } from "@/components/cards/DiscordCard";
+import { RouteCard } from "@/components/cards/RouteCard";
 
 export default function HomePage() {
     return (

@@ -2,7 +2,7 @@ import type { GetStaticProps } from "next";
 
 import { H1, H3 } from "@/components/ui/Headings";
 
-import { ProjectCard } from "@/components/projects/ProjectCard";
+import { ProjectCard } from "@/components/cards/ProjectCard";
 
 import type { IProject } from "@/data/projects";
 import { fetchProjects } from "@/data/projects";
