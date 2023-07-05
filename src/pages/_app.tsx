@@ -18,6 +18,7 @@ import "@/styles/globals.css";
 import { Lenis } from "@studio-freight/react-lenis";
 import clsx from "clsx";
 import { motion } from "framer-motion";
+import debounce from "lodash.debounce";
 import { useDraggable } from "react-use-draggable-scroll";
 import { twMerge } from "tailwind-merge";
 
@@ -59,6 +60,26 @@ export default function App({ Component, pageProps, router }: AppProps) {
     const ref = useRef<HTMLElement>() as MutableRefObject<HTMLElement>;
     const { events } = useDraggable(ref);
 
+    const [isNavVertical, setIsNavVertical] = useState<boolean>(false);
+
+    const resizeHandler = () => {
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+        if (!ref.current) return;
+        const { width, height } = ref.current.getBoundingClientRect();
+
+        console.log({ width, height });
+
+        setIsNavVertical(height > width);
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const debouncedResizeHandler = useCallback(debounce(resizeHandler, 100), []);
+
+    useEffect(() => {
+        window.addEventListener("resize", debouncedResizeHandler);
+        return () => window.removeEventListener("resize", debouncedResizeHandler);
+    }, [debouncedResizeHandler]);
+
     return (
         <>
             <style jsx global>{`
@@ -97,7 +118,10 @@ export default function App({ Component, pageProps, router }: AppProps) {
                                         <motion.div
                                             layoutId="selected-route-indicator"
                                             className="absolute bg-green z-20 h-2 top-0 w-full rounded-b-[4px] md:right-0 md:top-[-10%] md:w-2 md:h-[120%] md:rounded-l-[4px]"
-                                            style={{ originY: "0px" }}
+                                            style={{
+                                                originY: isNavVertical ? undefined : "0px",
+                                                originX: isNavVertical ? "0px" : undefined,
+                                            }}
                                         />
                                     ) : null}
                                 </motion.li>
