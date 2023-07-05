@@ -38,7 +38,9 @@ export default function App({ Component, pageProps, router }: AppProps) {
                 root
                 options={{
                     smoothWheel: true,
-                    // smoothTouch: true,
+                    smoothTouch: true,
+                    lerp: 0.07,
+                    touchMultiplier: 1.5,
                 }}
             >
                 <div

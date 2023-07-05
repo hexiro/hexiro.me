@@ -36,6 +36,7 @@ export default function Nav({ selectedRoute }: INavProps) {
     return (
         <nav
             ref={navRef}
+            data-lenis-prevent=""
             className="fixed flex overflow-y-hidden flex-row z-40 w-screen bg-background-secondary h-32 lg:items-start lg:flex-col lg:w-52 lg:h-screen"
             {...(isNavOverflown ? events : {})}
         >
