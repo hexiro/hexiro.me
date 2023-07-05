@@ -17,5 +17,9 @@
     ],
     "importOrderSeparation": true,
     "quoteProps": "preserve",
-    "arrowParens": "always"
+    "arrowParens": "always",
+    "plugins": [
+        "@trivago/prettier-plugin-sort-imports",
+        "prettier-plugin-tailwindcss"
+    ]
 }

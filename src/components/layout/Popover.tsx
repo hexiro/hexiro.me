@@ -156,7 +156,7 @@ export function Popover({
                         })}
                         ref={floating}
                         className={twMerge(
-                            "absolute overflow-hidden rounded-md bg-black/40 border border-solid border-white/10 shadow-md backdrop-blur-md",
+                            "absolute overflow-hidden rounded-md border border-solid border-white/10 bg-black/40 shadow-md backdrop-blur-md",
                             className
                         )}
                         transition={WRAPPER_ANIMATION.transition}

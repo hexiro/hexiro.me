@@ -16,8 +16,8 @@ export default function HomePage() {
             <H3 className="text-subtitle">A self-taught Software Engineer.</H3>
             <DiscordCard className="mt-8" />
             <div className="w-full md:w-3/4 lg:w-full">
-                <HorizontalDividerWithText text="View More" className="mt-20 mb-16" />
-                <div className="flex gap-8 flex-col lg:flex-row lg:flex-wrap">
+                <HorizontalDividerWithText text="View More" className="mb-16 mt-20" />
+                <div className="flex flex-col gap-8 lg:flex-row lg:flex-wrap">
                     {ROUTES_META.map((route) => (
                         <RouteCard key={route.name} {...route} />
                     ))}

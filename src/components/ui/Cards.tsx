@@ -12,9 +12,9 @@ export function Card({ isHoverable, className, children, as: As = "div" }: CardP
     return (
         <As
             className={twMerge(
-                "relative bg-background-secondary inline-block rounded-md border-2 border-white/10 shadow-md px-8 py-6",
+                "relative inline-block rounded-md border-2 border-white/10 bg-background-secondary px-8 py-6 shadow-md",
                 isHoverable &&
-                    "transition-transform duration-[375ms] ease-in-out hover:perspective-800px hover:rotate-[-1deg] hover:scale-105 active:scale-[.97]",
+                    "hover:perspective-800px transition-transform duration-[375ms] ease-in-out hover:rotate-[-1deg] hover:scale-105 active:scale-[.97]",
                 className
             )}
         >
@@ -27,7 +27,7 @@ export function SecondaryCard({ className, children, as: As = "div" }: CardProps
     return (
         <As
             className={twMerge(
-                "relative bg-white/5 inline-block rounded-[4px] border-2 border-white/10 shadow-sm p-5",
+                "relative inline-block rounded-[4px] border-2 border-white/10 bg-white/5 p-5 shadow-sm",
                 className
             )}
         >

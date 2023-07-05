@@ -35,7 +35,7 @@ export function Tooltip({
             render={() => (
                 <div
                     className={twMerge(
-                        "max-w-xs py-1 px-2 select-none text-sm font-bold font-sans text-text border border-solid border-white/10",
+                        "max-w-xs select-none border border-solid border-white/10 px-2 py-1 font-sans text-sm font-bold text-text",
                         alignText === "center" && "text-center",
                         alignText === "end" && "text-end",
                         alignText === "start" && "text-start",

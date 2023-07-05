@@ -47,7 +47,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                     className={twMerge(
                         sansSerifFont.variable,
                         monospaceFont.variable,
-                        "bg-background-secondary relative flex flex-col-reverse md:flex-row min-h-screen min-w-screen h-full w-full overflow-x-hidden overflow-y-auto"
+                        "min-w-screen relative flex h-full min-h-screen w-full flex-col-reverse overflow-y-auto overflow-x-hidden bg-background-secondary md:flex-row"
                     )}
                 >
                     <Content router={router}>

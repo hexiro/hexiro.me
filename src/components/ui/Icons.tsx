@@ -16,7 +16,7 @@ export type IconProps = PropsWithChildren<{
 const Icon = ({ children, className }: IconProps) => (
     <svg
         viewBox="0 0 24 24"
-        className={twMerge("text-green stroke-2 stroke-current fill-none w-6 h-6", className)}
+        className={twMerge("h-6 w-6 fill-none stroke-current stroke-2 text-green", className)}
     >
         {children}
     </svg>
@@ -25,7 +25,7 @@ const Icon = ({ children, className }: IconProps) => (
 const SimpleIcon = ({ children, className }: IconProps) => (
     <svg
         viewBox="0 0 24 24"
-        className={twMerge("text-green stroke-none fill-green w-6 h-6", className)}
+        className={twMerge("h-6 w-6 fill-green stroke-none text-green", className)}
     >
         {children}
     </svg>

@@ -21,10 +21,10 @@ export default function SkillsPage() {
                                 <Card
                                     key={name}
                                     as="li"
-                                    className="flex flex-row items-center gap-x-2 min-w-[375px]"
+                                    className="flex min-w-[375px] flex-row items-center gap-x-2"
                                 >
-                                    <Icon className="w-8 h-8" />
-                                    <span className="text-text text-[20px]">{name}</span>
+                                    <Icon className="h-8 w-8" />
+                                    <span className="text-[20px] text-text">{name}</span>
                                 </Card>
                             ))}
                         </ul>

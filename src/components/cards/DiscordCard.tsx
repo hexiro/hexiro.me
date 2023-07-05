@@ -57,15 +57,15 @@ export function DiscordCard({ className }: { className?: string }) {
                             <StatusIndicator className="bg-green" />
                         ) : (
                             <StatusIndicator className="bg-subtitle">
-                                <div className="relative w-full h-full flex items-center justify-center">
-                                    <span className="w-1/2 h-1/2 rounded-full bg-black/25" />
+                                <div className="relative flex h-full w-full items-center justify-center">
+                                    <span className="h-1/2 w-1/2 rounded-full bg-black/25" />
                                 </div>
                             </StatusIndicator>
                         )}
                     </div>
-                    <div className="flex flex-col mt-1 leading-extra-tight">
-                        <H4 className="text-green text-[28px]">{state.user.displayName}</H4>
-                        <H5 className="text-subtitle font-sans font-bold text-[16px]">
+                    <div className="mt-1 flex flex-col leading-extra-tight">
+                        <H4 className="text-[28px] text-green">{state.user.displayName}</H4>
+                        <H5 className="font-sans text-[16px] font-bold text-subtitle">
                             @{state.user.username}
                         </H5>
                     </div>
@@ -84,14 +84,14 @@ export function DiscordCard({ className }: { className?: string }) {
                                     draggable={false}
                                 />
                             ) : (
-                                <div className="flex items-center justify-center w-[100px] h-[100px] bg-background-accent rounded-md">
+                                <div className="flex h-[100px] w-[100px] items-center justify-center rounded-md bg-background-accent">
                                     <H3 className="text-off-white">!#?</H3>
                                 </div>
                             )}
                             {}
                         </div>
                         <div className="my-1">
-                            <H4 className="text-off-white font-sans font-extrabold text-[24px] mb-2">
+                            <H4 className="mb-2 font-sans text-[24px] font-extrabold text-off-white">
                                 {state.ide ? state.ide.name : "No IDE active"}
                             </H4>
                             {state.ide ? (
@@ -102,8 +102,8 @@ export function DiscordCard({ className }: { className?: string }) {
                                                 key={chunk.text}
                                                 className={
                                                     chunk.highlighted
-                                                        ? "text-green font-bold"
-                                                        : "text-[#9E9E9E] font-semibold"
+                                                        ? "font-bold text-green"
+                                                        : "font-semibold text-[#9E9E9E]"
                                                 }
                                             >
                                                 {chunk.text}
@@ -128,7 +128,7 @@ function StatusIndicator({ className, children }: PropsWithChildren<{ className?
     return (
         <div
             className={twMerge(
-                "absolute bottom-[-1px] right-[-3px] w-6 h-6 rounded-full bg-[#B6B6B6] border-[5px] border-background-secondary",
+                "absolute bottom-[-1px] right-[-3px] h-6 w-6 rounded-full border-[5px] border-background-secondary bg-[#B6B6B6]",
                 className
             )}
         >
@@ -139,7 +139,7 @@ function StatusIndicator({ className, children }: PropsWithChildren<{ className?
 
 function PresenceLine({ className, children }: PropsWithChildren<{ className?: string }>) {
     return (
-        <p className={twMerge("text-subtitle font-mono text-[16px] leading-tight", className)}>
+        <p className={twMerge("font-mono text-[16px] leading-tight text-subtitle", className)}>
             {children}
         </p>
     );

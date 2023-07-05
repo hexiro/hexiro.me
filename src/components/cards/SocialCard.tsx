@@ -35,18 +35,21 @@ export function SocialCard({ social }: { social: ISocial }) {
     };
 
     return (
-        <Card as="li" className="flex flex-row items-center gap-x-6 min-w-[375px]">
-            <Icon className="w-10 h-10" />
+        <Card as="li" className="flex min-w-[375px] flex-row items-center gap-x-6">
+            <Icon className="h-10 w-10" />
             <div className="flex flex-col">
-                <H5 className="text-off-white font-bold text-[20px]">{name}</H5>
-                <ExternalLinkOverlay href={link} className="font-mono font-bold text-text normal-case">
+                <H5 className="text-[20px] font-bold text-off-white">{name}</H5>
+                <ExternalLinkOverlay
+                    href={link}
+                    className="font-mono font-bold normal-case text-text"
+                >
                     {value}
                 </ExternalLinkOverlay>
             </div>
-            <div className="absolute top-6 right-8 flex flex-row gap-x-2">
+            <div className="absolute right-8 top-6 flex flex-row gap-x-2">
                 <button
                     type="button"
-                    className="text-text font-bold font-mono"
+                    className="font-mono font-bold text-text"
                     onClick={copyToClipboard}
                 >
                     {copiedSuccess === null ? (

@@ -34,13 +34,13 @@ export default function Content({ router, children }: IContentProps) {
     return (
         <>
             <Nav selectedRoute={selectedRoute} />
-            <main className="bg-background py-28 px-[5%] lg:px-[10%] flex flex-col w-full rounded-t-md mb-32 lg:mb-0 lg:mt-0 lg:ml-52 lg:rounded-l-md min-h-screen">
+            <main className="mb-32 flex min-h-screen w-full flex-col rounded-t-md bg-background px-[5%] py-28 lg:mb-0 lg:ml-52 lg:mt-0 lg:rounded-l-md lg:px-[10%]">
                 <div>
-                    <PageEndNavigation href={prevRoute} icon={ArrowUpIcon} className="mt-2 mb-8">
+                    <PageEndNavigation href={prevRoute} icon={ArrowUpIcon} className="mb-8 mt-2">
                         Prev
                     </PageEndNavigation>
                     <div className="flex-grow">{children}</div>
-                    <PageEndNavigation href={nextRoute} icon={ArrowDownIcon} className="mt-8 mb-2">
+                    <PageEndNavigation href={nextRoute} icon={ArrowDownIcon} className="mb-2 mt-8">
                         Next
                     </PageEndNavigation>
                 </div>
@@ -64,7 +64,7 @@ const PageEndNavigation = ({ href, icon: Icon, className, children }: IPageEndNa
             // @ts-expect-error ts doesn't recognize that href can't be undefined when using Link
             href={href}
             className={twMerge(
-                "flex justify-left items-center text-text text-base aria-disabled:opacity-50 aria-disabled:cursor-not-allowed aria-disabled:line-through",
+                "justify-left flex items-center text-base text-text aria-disabled:cursor-not-allowed aria-disabled:line-through aria-disabled:opacity-50",
                 className
             )}
             aria-disabled={disabled}

@@ -67,7 +67,7 @@ export function H4({ className, ...rest }: GeneralHeadingProps) {
 }
 
 export function H5({ className, ...rest }: GeneralHeadingProps) {
-    return <Heading as="h5" className={twMerge("text-base md:text-md", className)} {...rest} />;
+    return <Heading as="h5" className={twMerge("md:text-md text-base", className)} {...rest} />;
 }
 
 export function H6({ className, ...rest }: GeneralHeadingProps) {

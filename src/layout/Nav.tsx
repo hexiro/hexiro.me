@@ -37,15 +37,15 @@ export default function Nav({ selectedRoute }: INavProps) {
         <nav
             ref={navRef}
             data-lenis-prevent=""
-            className="fixed flex overflow-y-hidden flex-row bottom-0 z-40 w-screen border-t-2 border-solid border-white/10 bg-background-secondary h-32 lg:border-0 lg:items-start lg:flex-col lg:w-52 lg:h-screen"
+            className="fixed bottom-0 z-40 flex h-32 w-screen flex-row overflow-y-hidden border-t-2 border-solid border-white/10 bg-background-secondary lg:h-screen lg:w-52 lg:flex-col lg:items-start lg:border-0"
             {...(isNavOverflown ? events : {})}
         >
-            <div className="flex items-center justify-center px-8 lg:px-6 lg:w-full lg:h-52">
+            <div className="flex items-center justify-center px-8 lg:h-52 lg:w-full lg:px-6">
                 <H2 className="text-3xl sm:text-4xl lg:text-5xl">NL</H2>
             </div>
-            <HorizontalDivider className="divide-x w-0 h-[80%] my-auto lg:my-0 lg:h-0 lg:w-[80%] lg:mx-auto" />
+            <HorizontalDivider className="my-auto h-[80%] w-0 divide-x lg:mx-auto lg:my-0 lg:h-0 lg:w-[80%]" />
             <NavRouteList navRef={navRef} selectedRoute={selectedRoute} />
-            <VerticalDivider className="ml-[25%] h-72 hidden lg:block" />
+            <VerticalDivider className="ml-[25%] hidden h-72 lg:block" />
         </nav>
     );
 }
@@ -76,7 +76,7 @@ const NavRouteList = ({ navRef, selectedRoute }: INavRouteListProps) => {
     const isSelected = (name: INavRouteName) => name === ROUTES[selectedRoute]?.name;
 
     return (
-        <motion.ul className="flex items-center w-fit h-full gap-8 px-12  lg:gap-4 lg:my-8 lg:items-start lg:flex-col lg:w-full lg:h-[unset] lg:p-6 lg:pr-0">
+        <motion.ul className="flex h-full w-fit items-center gap-8 px-12  lg:my-8 lg:h-[unset] lg:w-full lg:flex-col lg:items-start lg:gap-4 lg:p-6 lg:pr-0">
             {ROUTES.map(({ name, path }) => (
                 <NavRoute
                     key={name}
@@ -91,7 +91,7 @@ const NavRouteList = ({ navRef, selectedRoute }: INavRouteListProps) => {
 };
 
 const NavRoute = ({ name, path, isSelected, isNavVertical }: INavRouteProps) => (
-    <motion.li key={name} className="relative flex items-center w-full h-full text-lg">
+    <motion.li key={name} className="relative flex h-full w-full items-center text-lg">
         <Link href={path} className="text-off-white">
             <span className="mr-1 text-green">/</span>
             {name}
@@ -99,7 +99,7 @@ const NavRoute = ({ name, path, isSelected, isNavVertical }: INavRouteProps) => 
         {isSelected ? (
             <motion.div
                 layoutId="selected-route-indicator"
-                className="absolute bg-green z-20 h-2 bottom-0 w-full rounded-t-[4px] lg:right-0 lg:top-[-10%] lg:w-2 lg:h-[120%] lg:rounded-tr-none lg:rounded-l-[4px]"
+                className="absolute bottom-0 z-20 h-2 w-full rounded-t-[4px] bg-green lg:right-0 lg:top-[-10%] lg:h-[120%] lg:w-2 lg:rounded-l-[4px] lg:rounded-tr-none"
                 style={{
                     originY: isNavVertical ? undefined : "0px",
                     originX: isNavVertical ? "0px" : undefined,
