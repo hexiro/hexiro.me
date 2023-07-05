@@ -39,7 +39,7 @@ export function SocialCard({ social }: { social: ISocial }) {
             <Icon className="w-10 h-10" />
             <div className="flex flex-col">
                 <H5 className="text-off-white font-bold text-[20px]">{name}</H5>
-                <ExternalLinkOverlay href={link} className="font-mono font-bold text-text">
+                <ExternalLinkOverlay href={link} className="font-mono font-bold text-text normal-case">
                     {value}
                 </ExternalLinkOverlay>
             </div>

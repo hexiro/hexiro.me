@@ -51,6 +51,7 @@ export default function DiscordCard({ className }: { className?: string }) {
                             height={64}
                             src={state.user.avatar}
                             alt={state.user.alt}
+                            draggable={false}
                         />
                         {state.user.status === "online" ? (
                             <StatusIndicator className="bg-green" />
@@ -80,6 +81,7 @@ export default function DiscordCard({ className }: { className?: string }) {
                                     height={100}
                                     src={state.ide.images.large.src}
                                     alt={state.ide.images.large.alt}
+                                    draggable={false}
                                 />
                             ) : (
                                 <div className="flex items-center justify-center w-[100px] h-[100px] bg-background-accent rounded-md">

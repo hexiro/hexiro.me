@@ -23,15 +23,15 @@ export default function Nav({ selectedRoute }: INavProps) {
     return (
         <nav
             ref={navRef}
-            className="fixed flex overflow-y-hidden flex-row z-40 w-screen bg-background-secondary h-32 md:items-start md:flex-col md:w-52 md:h-screen"
+            className="fixed flex overflow-y-hidden flex-row z-40 w-screen bg-background-secondary h-32 lg:items-start lg:flex-col lg:w-52 lg:h-screen"
             {...events}
         >
-            <div className="flex items-center justify-center px-8  md:px-6 md:w-full md:h-52 ">
-                <H2 className="text-6xl md:text-7xl">NL</H2>
+            <div className="flex items-center justify-center px-8 lg:px-6 lg:w-full lg:h-52">
+                <H2 className="text-3xl sm:text-4xl lg:text-5xl">NL</H2>
             </div>
-            <HorizontalDivider className="divide-x w-0 h-[80%] md:h-0 md:w-[80%] md:mx-auto" />
+            <HorizontalDivider className="divide-x w-0 h-[80%] my-auto lg:h-0 lg:w-[80%] lg:mx-auto" />
             <NavRouteList navRef={navRef} selectedRoute={selectedRoute} />
-            <VerticalDivider className="ml-[25%] h-72 hidden md:block" />
+            <VerticalDivider className="ml-[25%] h-72 hidden lg:block" />
         </nav>
     );
 }
@@ -68,7 +68,7 @@ const NavRouteList = ({ navRef, selectedRoute }: INavRouteListProps) => {
     const isSelected = (name: INavRouteName) => name === ROUTES[selectedRoute]?.name;
 
     return (
-        <motion.ul className="flex items-center w-fit h-full gap-8 px-12  md:gap-4 md:my-8 md:items-start md:flex-col md:w-full md:h-[unset] md:p-6 md:pr-0">
+        <motion.ul className="flex items-center w-fit h-full gap-8 px-12  lg:gap-4 lg:my-8 lg:items-start lg:flex-col lg:w-full lg:h-[unset] lg:p-6 lg:pr-0">
             {ROUTES.map(({ name, path }) => (
                 <NavRoute
                     key={name}
@@ -91,7 +91,7 @@ const NavRoute = ({ name, path, isSelected, isNavVertical }: INavRouteProps) => 
         {isSelected ? (
             <motion.div
                 layoutId="selected-route-indicator"
-                className="absolute bg-green z-20 h-2 bottom-0 w-full rounded-t-[4px] md:right-0 md:top-[-10%] md:w-2 md:h-[120%] md:rounded-tr-none md:rounded-l-[4px]"
+                className="absolute bg-green z-20 h-2 bottom-0 w-full rounded-t-[4px] lg:right-0 lg:top-[-10%] lg:w-2 lg:h-[120%] lg:rounded-tr-none lg:rounded-l-[4px]"
                 style={{
                     originY: isNavVertical ? undefined : "0px",
                     originX: isNavVertical ? "0px" : undefined,

@@ -34,7 +34,7 @@ export default function Content({ router, children }: IContentProps) {
     return (
         <>
             <Nav selectedRoute={selectedRoute} />
-            <main className="bg-background py-28 px-[5%] lg:px-[10%] flex flex-col w-full rounded-t-md mt-32 md:mt-0 md:ml-52 md:rounded-l-md min-h-screen">
+            <main className="bg-background py-28 px-[5%] lg:px-[10%] flex flex-col w-full rounded-t-md mt-32 lg:mt-0 lg:ml-52 lg:rounded-l-md min-h-screen">
                 <div>
                     <PageEndNavigation href={prevRoute} icon={ArrowUpIcon} className="mt-2 mb-8">
                         Prev
