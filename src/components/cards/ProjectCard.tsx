@@ -21,7 +21,7 @@ export function ProjectCard({ className, project }: ProjectCardProps) {
     const { name, url, description, stars, packageUrl, topics } = project;
 
     return (
-        <Card isHoverable className={twMerge("w-[calc(50%-1rem)] pr-4", className)}>
+        <Card isHoverable className={twMerge("w-full md:w-[calc(50%-1rem)] pr-4", className)}>
             <div className="flex flex-row align-center h-10 pb-1 gap-x-2">
                 <H4 green className="truncate basis-2/3">
                     <LinkOverlay href={url}>{name}</LinkOverlay>
