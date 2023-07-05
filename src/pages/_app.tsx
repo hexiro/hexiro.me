@@ -6,7 +6,7 @@ import Content from "@/layout/Content";
 import "@/styles/globals.css";
 
 import { Lenis } from "@studio-freight/react-lenis";
-import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
 
 const sansSerifFont = GolosText({
     weight: "variable",
@@ -44,7 +44,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                 }}
             >
                 <div
-                    className={clsx(
+                    className={twMerge(
                         sansSerifFont.variable,
                         monospaceFont.variable,
                         "bg-background-secondary relative flex flex-col-reverse md:flex-row min-h-screen min-w-screen h-full w-full overflow-x-hidden overflow-y-auto"
