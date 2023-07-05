@@ -45,6 +45,16 @@ module.exports = {
             lineHeight: {
                 "extra-tight": "1.1",
             },
+            keyframes: {
+                "ellipsis": {
+                    "0%": { content: "''" },
+                    "50%": { content: "'.'" },
+                    "100%": { content: "'..'" },
+                },
+            },
+            animation: {
+                ellipsis: "ellipsis 2s linear infinite",
+            },
         },
     },
     plugins: [require("@kamona/tailwindcss-perspective")],

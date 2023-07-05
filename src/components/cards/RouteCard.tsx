@@ -11,7 +11,7 @@ interface IRouteCardProps extends IRouteMeta {
 
 export function RouteCard({ name, path, description, icon: Icon, className }: IRouteCardProps) {
     return (
-        <Card isHoverable className={twMerge("w-full lg:w-[calc(50%-1rem)]", className)}>
+        <Card isHoverable className={twMerge("group w-full lg:w-[calc(50%-1rem)]", className)}>
             <div className="flex flex-col gap-y-1 mb-3">
                 <Icon className="w-7 h-7" />
                 <LinkOverlay
@@ -21,7 +21,7 @@ export function RouteCard({ name, path, description, icon: Icon, className }: IR
                     {name}
                 </LinkOverlay>
             </div>
-            <p className="min-h-[48px]">{description}</p>
+            <p className="min-h-[48px] after:inline-block group-hover:after:animate-ellipsis">{description}</p>
         </Card>
     );
 }
