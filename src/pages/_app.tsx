@@ -47,7 +47,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                     className={clsx(
                         sansSerifFont.variable,
                         monospaceFont.variable,
-                        "bg-background-secondary relative flex flex-col md:flex-row min-h-screen min-w-screen h-full w-full overflow-x-hidden overflow-y-auto"
+                        "bg-background-secondary relative flex flex-col-reverse md:flex-row min-h-screen min-w-screen h-full w-full overflow-x-hidden overflow-y-auto"
                     )}
                 >
                     <Content router={router}>
