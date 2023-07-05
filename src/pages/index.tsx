@@ -8,7 +8,7 @@ import RouteCard from "@/components/home/RouteCard";
 
 export default function HomePage() {
     return (
-        <div className="pr-[10%]">
+        <div className="xl:pr-[10%]">
             <H2 className="font-mono text-off-white">Hi... I&apos;m,</H2>
             <H1>
                 Nathan <span className="text-off-white">Lodge</span>
