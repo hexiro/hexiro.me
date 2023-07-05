@@ -15,7 +15,7 @@ export default function HomePage() {
             </H1>
             <H3 className="text-subtitle">A self-taught Software Engineer.</H3>
             <DiscordCard className="mt-8" />
-            <div>
+            <div className="w-full md:w-3/4 lg:w-full">
                 <HorizontalDividerWithText text="View More" className="mt-20 mb-16" />
                 <div className="flex gap-8 flex-col lg:flex-row lg:flex-wrap">
                     {ROUTES_META.map((route) => (

@@ -21,7 +21,7 @@ export function RouteCard({ name, path, description, icon: Icon, className }: IR
                     {name}
                 </LinkOverlay>
             </div>
-            <p className="min-h-[48px] after:inline-block group-hover:after:animate-ellipsis">{description}</p>
+            <p className="lg:min-h-[48px] after:inline-block group-hover:after:animate-ellipsis">{description}</p>
         </Card>
     );
 }

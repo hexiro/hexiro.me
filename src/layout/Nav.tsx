@@ -43,7 +43,7 @@ export default function Nav({ selectedRoute }: INavProps) {
             <div className="flex items-center justify-center px-8 lg:px-6 lg:w-full lg:h-52">
                 <H2 className="text-3xl sm:text-4xl lg:text-5xl">NL</H2>
             </div>
-            <HorizontalDivider className="divide-x w-0 h-[80%] my-auto lg:h-0 lg:w-[80%] lg:mx-auto" />
+            <HorizontalDivider className="divide-x w-0 h-[80%] my-auto lg:my-0 lg:h-0 lg:w-[80%] lg:mx-auto" />
             <NavRouteList navRef={navRef} selectedRoute={selectedRoute} />
             <VerticalDivider className="ml-[25%] h-72 hidden lg:block" />
         </nav>
