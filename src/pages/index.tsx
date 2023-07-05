@@ -17,7 +17,7 @@ export default function HomePage() {
             <DiscordCard className="mt-8" />
             <div>
                 <HorizontalDividerWithText text="View More" className="mt-20 mb-16" />
-                <div className="flex flex-row flex-wrap gap-8">
+                <div className="flex gap-8 flex-col lg:flex-row lg:flex-wrap">
                     {ROUTES_META.map((route) => (
                         <RouteCard key={route.name} {...route} />
                     ))}

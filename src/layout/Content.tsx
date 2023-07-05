@@ -64,7 +64,7 @@ const PageEndNavigation = ({ href, icon: Icon, className, children }: IPageEndNa
             // @ts-expect-error ts doesn't recognize that href can't be undefined when using Link
             href={href}
             className={twMerge(
-                "flex justify-left items-center text-text text-base aria-disabled:opacity-50 aria-disabled:cursor-not-allowed",
+                "flex justify-left items-center text-text text-base aria-disabled:opacity-50 aria-disabled:cursor-not-allowed aria-disabled:line-through",
                 className
             )}
             aria-disabled={disabled}
