@@ -1,8 +1,8 @@
 import type { AppProps } from "next/app";
 import { Golos_Text as GolosText, Noto_Sans_Mono as NotoSansMono } from "next/font/google";
 import Link from "next/link";
-import type { PropsWithChildren } from "react";
-import { useCallback, useEffect, useState } from "react";
+import type { MutableRefObject, PropsWithChildren } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import React from "react";
 
 import type { INavRouteName } from "@/commons/config";
@@ -11,13 +11,14 @@ import { NAV_PATHS, ROUTES } from "@/commons/config";
 import { HorizontalDivider, VerticalDivider } from "@/components/layout/Divider";
 import { H2 } from "@/components/ui/Headings";
 import type { IconType } from "@/components/ui/Icons";
-import { ArrowDownIcon, ArrowRightIcon, ArrowUpIcon } from "@/components/ui/Icons";
+import { ArrowDownIcon, ArrowUpIcon } from "@/components/ui/Icons";
 
 import "@/styles/globals.css";
 
-import { Lenis as ReactLenis } from "@studio-freight/react-lenis";
+import { Lenis } from "@studio-freight/react-lenis";
 import clsx from "clsx";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useDraggable } from "react-use-draggable-scroll";
 import { twMerge } from "tailwind-merge";
 
 const sansSerifFont = GolosText({
@@ -45,11 +46,8 @@ export default function App({ Component, pageProps, router }: AppProps) {
     );
 
     const [selectedRoute, setSelectedRoute] = useState<number>(findSelectedRoute());
-    const [hoveredRoute, setHoveredRoute] = useState<number | null>(null);
 
     const isSelected = (name: INavRouteName) => name === ROUTES[selectedRoute]?.name;
-    const isHovered = (name: INavRouteName) =>
-        hoveredRoute === null ? false : name === ROUTES[hoveredRoute]?.name;
 
     useEffect(() => {
         setSelectedRoute(findSelectedRoute());
@@ -58,9 +56,8 @@ export default function App({ Component, pageProps, router }: AppProps) {
     const prevRoute = NAV_PATHS[selectedRoute - 1];
     const nextRoute = NAV_PATHS[selectedRoute + 1];
 
-    // useLenis((callback?: any, deps?: any[], priority?: number) => {
-    //     console.log(callback, deps, priority);
-    // });
+    const ref = useRef<HTMLElement>() as MutableRefObject<HTMLElement>;
+    const { events } = useDraggable(ref);
 
     return (
         <>
@@ -69,7 +66,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                     font-family: ${sansSerifFont.style.fontFamily};
                 }
             `}</style>
-            <ReactLenis root>
+            <Lenis root>
                 <div
                     className={clsx(
                         sansSerifFont.variable,
@@ -77,53 +74,35 @@ export default function App({ Component, pageProps, router }: AppProps) {
                         "bg-background-secondary relative flex flex-col md:flex-row min-h-screen min-w-screen h-full w-full overflow-x-hidden overflow-y-auto"
                     )}
                 >
-                    <nav className="fixed z-40 w-screen bg-background-secondary h-32 md:items-start md:flex-col md:w-52 md:h-screen">
-                        <div className="flex items-center flex-shrink-0 flex-row overflow-x-auto overflow-y-hidden h-full">
-                            <div className="flex items-center justify-center px-8 py-6 md:px-6 md:w-full md:h-52 ">
-                                <H2 className="text-6xl md:text-7xl">NL</H2>
-                            </div>
-                            <HorizontalDivider className="divide-x w-0 h-[80%] md:h-0 md:w-[80%] md:mx-auto" />
-                            <motion.ul
-                                className="flex items-center w-fit h-full gap-8 px-12  md:gap-4 md:my-8 md:items-start md:flex-col md:w-full md:h-[unset] md:p-6 md:pr-0"
-                                onHoverEnd={() => setHoveredRoute(null)}
-                            >
-                                {ROUTES.map(({ name, path }, index) => (
-                                    <motion.li
-                                        key={name}
-                                        className="relative flex items-center w-full h-full text-lg"
-                                        onHoverStart={() => setHoveredRoute(index)}
-                                    >
-                                        <Link href={path} className="text-off-white">
-                                            <span className="mr-1 text-green">/</span>
-                                            {name}
-                                        </Link>
-                                        {isSelected(name) ? (
-                                            <motion.div
-                                                layoutId="selected-route-indicator"
-                                                className="absolute bg-green z-20 h-2 top-0 w-full rounded-b-[4px] md:right-0 md:top-[-10%] md:w-2 md:h-[120%] md:rounded-l-[4px]"
-                                            />
-                                        ) : null}
-                                        <AnimatePresence>
-                                            {isHovered(name) ? (
-                                                <motion.div
-                                                    layoutId="hovered-route-indicator"
-                                                    className={twMerge(
-                                                        "absolute bg-green z-20 h-2 top-0 w-full rounded-b-[4px] md:right-0 md:top-[-10%] md:w-2 md:h-[120%] md:rounded-l-[4px]",
-                                                        "bg-green/25 z-10"
-                                                    )}
-                                                    initial={{ opacity: 0 }}
-                                                    animate={{ opacity: 1 }}
-                                                    exit={{ opacity: 0 }}
-                                                />
-                                            ) : null}
-                                        </AnimatePresence>
-                                    </motion.li>
-                                ))}
-                            </motion.ul>
+                    <nav
+                        ref={ref}
+                        className="fixed flex overflow-y-hidden flex-row z-40 w-screen bg-background-secondary h-32 md:items-start md:flex-col md:w-52 md:h-screen"
+                        {...events}
+                    >
+                        <div className="flex items-center justify-center px-8  md:px-6 md:w-full md:h-52 ">
+                            <H2 className="text-6xl md:text-7xl">NL</H2>
                         </div>
-                        <div className="z-50 absolute flex items-center justify-end bg-gradient-to-l top-0 right-[6px] h-[calc(100%-6px)] w-24 from-background-secondary select-none pointer-events-none">
-                            <ArrowRightIcon className="opacity-50"/>
-                        </div>
+                        <HorizontalDivider className="divide-x w-0 h-[80%] md:h-0 md:w-[80%] md:mx-auto" />
+                        <motion.ul className="flex items-center w-fit h-full gap-8 px-12  md:gap-4 md:my-8 md:items-start md:flex-col md:w-full md:h-[unset] md:p-6 md:pr-0">
+                            {ROUTES.map(({ name, path }, index) => (
+                                <motion.li
+                                    key={name}
+                                    className="relative flex items-center w-full h-full text-lg"
+                                >
+                                    <Link href={path} className="text-off-white">
+                                        <span className="mr-1 text-green">/</span>
+                                        {name}
+                                    </Link>
+                                    {isSelected(name) ? (
+                                        <motion.div
+                                            layoutId="selected-route-indicator"
+                                            className="absolute bg-green z-20 h-2 top-0 w-full rounded-b-[4px] md:right-0 md:top-[-10%] md:w-2 md:h-[120%] md:rounded-l-[4px]"
+                                            style={{ originY: "0px" }}
+                                        />
+                                    ) : null}
+                                </motion.li>
+                            ))}
+                        </motion.ul>
                         <VerticalDivider className="ml-[25%] h-72 hidden md:block" />
                     </nav>
                     <main className="bg-background py-28 px-[10%] flex flex-col w-full rounded-t-md mt-32 md:mt-0 md:ml-52 md:rounded-l-md min-h-screen">
@@ -148,7 +127,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                         </div>
                     </main>
                 </div>
-            </ReactLenis>
+            </Lenis>
         </>
     );
 }
