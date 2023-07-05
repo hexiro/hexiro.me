@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { MutableRefObject } from "react";
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 
 import type { INavRouteName, IRoute } from "@/commons/config";
 import { ROUTES } from "@/commons/config";
@@ -8,8 +8,9 @@ import { ROUTES } from "@/commons/config";
 import { HorizontalDivider, VerticalDivider } from "@/components/layout/Divider";
 import { H2 } from "@/components/ui/Headings";
 
+import useDebouncedResizeEffect from "@/hooks/useDebouncedResizeEffect";
+
 import { motion } from "framer-motion";
-import debounce from "lodash.debounce";
 import { useDraggable } from "react-use-draggable-scroll";
 
 interface INavProps {
@@ -20,11 +21,23 @@ export default function Nav({ selectedRoute }: INavProps) {
     const navRef = useRef<HTMLElement>() as MutableRefObject<HTMLElement>;
     const { events } = useDraggable(navRef);
 
+    const [isNavOverflown, setIsNavOverflown] = useState<boolean>(false);
+
+    const handler = () => {
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+        if (!navRef.current) return;
+        const { clientWidth, scrollWidth } = navRef.current;
+
+        setIsNavOverflown(scrollWidth > clientWidth);
+    };
+
+    useDebouncedResizeEffect(handler, 100, [navRef.current]);
+
     return (
         <nav
             ref={navRef}
             className="fixed flex overflow-y-hidden flex-row z-40 w-screen bg-background-secondary h-32 lg:items-start lg:flex-col lg:w-52 lg:h-screen"
-            {...events}
+            {...(isNavOverflown ? events : {})}
         >
             <div className="flex items-center justify-center px-8 lg:px-6 lg:w-full lg:h-52">
                 <H2 className="text-3xl sm:text-4xl lg:text-5xl">NL</H2>
@@ -57,13 +70,7 @@ const NavRouteList = ({ navRef, selectedRoute }: INavRouteListProps) => {
         setIsNavVertical(height > width);
     };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const debouncedResizeHandler = useCallback(debounce(resizeHandler, 100), []);
-
-    useEffect(() => {
-        window.addEventListener("resize", debouncedResizeHandler);
-        return () => window.removeEventListener("resize", debouncedResizeHandler);
-    }, [debouncedResizeHandler]);
+    useDebouncedResizeEffect(resizeHandler, 100, [navRef.current]);
 
     const isSelected = (name: INavRouteName) => name === ROUTES[selectedRoute]?.name;
 

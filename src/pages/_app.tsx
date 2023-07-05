@@ -2,11 +2,11 @@ import type { AppProps } from "next/app";
 import { Golos_Text as GolosText, Noto_Sans_Mono as NotoSansMono } from "next/font/google";
 import React from "react";
 
+import Content from "@/layout/Content";
 import "@/styles/globals.css";
 
 import { Lenis } from "@studio-freight/react-lenis";
 import clsx from "clsx";
-import Content from "@/layout/Content";
 
 const sansSerifFont = GolosText({
     weight: "variable",
@@ -34,7 +34,13 @@ export default function App({ Component, pageProps, router }: AppProps) {
                     font-family: ${sansSerifFont.style.fontFamily};
                 }
             `}</style>
-            <Lenis root>
+            <Lenis
+                root
+                options={{
+                    smoothWheel: true,
+                    // smoothTouch: true,
+                }}
+            >
                 <div
                     className={clsx(
                         sansSerifFont.variable,
