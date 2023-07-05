@@ -91,7 +91,7 @@ const NavRoute = ({ name, path, isSelected, isNavVertical }: INavRouteProps) => 
         {isSelected ? (
             <motion.div
                 layoutId="selected-route-indicator"
-                className="absolute bg-green z-20 h-2 top-0 w-full rounded-b-[4px] md:right-0 md:top-[-10%] md:w-2 md:h-[120%] md:rounded-l-[4px]"
+                className="absolute bg-green z-20 h-2 bottom-0 w-full rounded-t-[4px] md:right-0 md:top-[-10%] md:w-2 md:h-[120%] md:rounded-tr-none md:rounded-l-[4px]"
                 style={{
                     originY: isNavVertical ? undefined : "0px",
                     originX: isNavVertical ? "0px" : undefined,
