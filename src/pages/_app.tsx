@@ -47,11 +47,11 @@ export default function App({ Component, pageProps, router }: AppProps) {
                     className={twMerge(
                         sansSerifFont.variable,
                         monospaceFont.variable,
-                        "min-w-screen relative flex h-full min-h-screen w-full flex-col-reverse overflow-y-auto overflow-x-hidden bg-background-secondary md:flex-row"
+                        "min-w-screen relative flex h-full min-h-screen w-full flex-col-reverse overflow-y-auto overflow-x-hidden bg-background md:flex-row"
                     )}
                 >
                     <Content router={router}>
-                        <Component key={router.route} {...pageProps} />
+                        <Component {...pageProps} />
                     </Content>
                 </div>
             </Lenis>

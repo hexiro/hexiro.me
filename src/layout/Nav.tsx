@@ -92,10 +92,7 @@ const NavRouteList = ({ navRef, selectedRoute }: INavRouteListProps) => {
 
 const NavRoute = ({ name, path, isSelected, isNavVertical }: INavRouteProps) => (
     <motion.li key={name} className="relative flex h-full w-full items-center text-lg">
-        <Link href={path} className="text-off-white">
-            <span className="mr-1 text-green">/</span>
-            {name}
-        </Link>
+        <WithNavLink name={name} path={path} isSelected={isSelected} />
         {isSelected ? (
             <motion.div
                 layoutId="selected-route-indicator"
@@ -108,3 +105,24 @@ const NavRoute = ({ name, path, isSelected, isNavVertical }: INavRouteProps) => 
         ) : null}
     </motion.li>
 );
+
+const WithNavLink = ({ name, path, isSelected }: Omit<INavRouteProps, "isNavVertical">) => {
+    const inner = (
+        <>
+            <span className="mr-1 text-green">/</span>
+            {name}
+        </>
+    );
+
+    const className = "text-off-white uppercase";
+
+    if (isSelected) {
+        return <span className={className}>{inner}</span>;
+    }
+
+    return (
+        <Link href={path} className={className}>
+            {inner}
+        </Link>
+    );
+};
