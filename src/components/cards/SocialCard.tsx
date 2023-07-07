@@ -35,7 +35,7 @@ export function SocialCard({ social }: { social: ISocial }) {
     };
 
     return (
-        <Card as="li" className="flex min-w-[375px] flex-row items-center gap-x-6">
+        <Card as="li" className="flex min-w-[375px] flex-row items-center gap-x-6 w-full sm:w-auto">
             <Icon className="h-10 w-10" />
             <div className="flex flex-col">
                 <H5 className="text-[20px] font-bold text-off-white">{name}</H5>
@@ -49,7 +49,7 @@ export function SocialCard({ social }: { social: ISocial }) {
             <div className="absolute right-8 top-6 flex flex-row gap-x-2">
                 <button
                     type="button"
-                    className="font-mono font-bold text-text"
+                    className="font-mono font-bold text-text transition-transform hover:translate-y-[-2px]"
                     onClick={copyToClipboard}
                 >
                     {copiedSuccess === null ? (
@@ -60,7 +60,7 @@ export function SocialCard({ social }: { social: ISocial }) {
                         <XIcon className="text-red-400" />
                     )}
                 </button>
-                <ExternalLink href={link}>
+                <ExternalLink href={link} className="transition-transform hover:translate-y-[-2px]">
                     <ExternalLinkIcon />
                 </ExternalLink>
             </div>
