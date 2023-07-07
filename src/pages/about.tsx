@@ -1,5 +1,10 @@
-import { H1 } from "@/components/ui/Headings";
+import { H1, H3 } from "@/components/ui/Headings";
 
 export default function AboutPage() {
-    return <H1 className="font-mono text-3xl font-black text-green">Hello, About!</H1>;
+    return (
+        <>
+            <H1>About</H1>
+            <H3 className="text-subtitle">My life beyond the keyboard.</H3>
+        </>
+    );
 }
