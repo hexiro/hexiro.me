@@ -72,6 +72,7 @@ export default function Content({ router, children }: IContentProps) {
             <AnimatePresence
                 mode="wait"
                 custom={isNavigatingDown}
+                initial={false}
                 onExitComplete={() =>
                     window.scroll({
                         top: 0,

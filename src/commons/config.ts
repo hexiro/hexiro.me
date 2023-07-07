@@ -14,6 +14,10 @@ import {
     LinkedInIcon,
     DiscordIcon,
     TwitterIcon,
+    IMDbIcon,
+    SpotifyIcon,
+    SteamIcon,
+    EpicGamesIcon,
 } from "@/components/ui/Icons";
 
 // public
@@ -137,8 +141,10 @@ export const SKILLS = {
 export interface ISocial {
     name: string;
     value: string;
-    link: string;
+    link?: string;
     icon: IconType;
+    // name isn't a part of the url or url can't be found with just name
+    canCopy: boolean;
 }
 
 export const SOCIALS = [
@@ -147,29 +153,70 @@ export const SOCIALS = [
         value: EMAIL,
         link: EMAIL_LINK,
         icon: EmailIcon,
+        canCopy: true,
     },
     {
         name: "GitHub",
         value: GITHUB,
         link: GITHUB_LINK,
         icon: GitHubIcon,
+        canCopy: true,
     },
     {
         name: "LinkedIn",
         value: LINKED_IN,
         link: LINKED_IN_LINK,
         icon: LinkedInIcon,
+        canCopy: true,
     },
     {
         name: "Discord",
         value: DISCORD,
         link: DISCORD_LINK,
         icon: DiscordIcon,
+        canCopy: true,
     },
     {
         name: "Twitter",
         value: TWITTER,
         link: TWITTER_LINK,
         icon: TwitterIcon,
+        canCopy: true,
+    },
+    {
+        name: "IMDb",
+        value: "nathlod",
+        link: "https://www.imdb.com/user/ur154442245/",
+        icon: IMDbIcon,
+        canCopy: false,
+    },
+    {
+        name: "Spotify",
+        value: "nathlod",
+        link: "https://open.spotify.com/user/egmkzyon22fnuy7vfgalpxi4p",
+        icon: SpotifyIcon,
+        canCopy: false,
+    },
+    {
+        name: "Steam",
+        value: "hexiro",
+        link: "https://steamcommunity.com/id/hexiro",
+        icon: SteamIcon,
+        canCopy: true,
+    },
+    {
+        name: "Epic Games",
+        value: "hexiro",
+        icon: EpicGamesIcon,
+        canCopy: true,
     },
 ] as const satisfies readonly ISocial[];
+
+type ISocialName = (typeof SOCIALS)[number]["name"];
+
+export const SOCIALS_MAP = SOCIALS.reduce<Record<ISocialName, ISocial>>((acc, social) => {
+    acc[social.name] = social;
+    return acc;
+}, {} as Record<ISocialName, ISocial>);
+
+console.log(SOCIALS_MAP);
