@@ -226,5 +226,3 @@ export const SOCIALS_MAP = SOCIALS.reduce<Record<ISocialName, ISocial>>((acc, so
     acc[social.name] = social;
     return acc;
 }, {} as Record<ISocialName, ISocial>);
-
-console.log(SOCIALS_MAP);
