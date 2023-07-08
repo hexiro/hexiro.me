@@ -13,13 +13,13 @@ import introSrc from "@/images/intro.png";
 import { twMerge } from "tailwind-merge";
 
 const INTRO =
-    "Hey, I'm Nathan Lodge :p. I'm an 18-year-old software engineer based in the United States. Thank you for checking out my website :), I've been a passionate programmer since I was in middle school (age 13, for those unfamiliar). Instead of repeating myself, I'll tell you about my life away from the IDE since the rest of the website can demonstrate my programming skills.";
+    "Hey, I'm Nathan Lodge :p. I'm an 18-year-old software engineer based in the United States. Thank you for checking out my website :), I've been a passionate programmer since being 13 years old in middle school, and since then I've developed my skills and created a catalog of projects. Instead of repeating myself, I'm here to tell you about my life outside of software development.";
 
 const MAIN_HOBBIES =
-    "While programming is my primary hobby, of course, I do other human things like hanging out with my friends, watching movies, and listening to music. I prefer watching movies over watching TV shows and my favorite genres are psychological thrillers, drama, and crime. I also, naturally, love listening to music. My favorite genres are rap and r&b, and if you're aware of the subgenres, I like plugg, pluggnb, cloud rap, and trap.";
+    "While programming is my primary hobby, I of course do other human things like hanging out with my friends, watching movies, and listening to music. My favorite genres of movies are psychological thrillers, drama, and crime. I also, naturally, love listening to music. My favorite genres are rap and r&b, and to be a little more specific, I like plugg, pluggnb, cloud rap, and trap.";
 
 const VIDEO_GAMES =
-    "My last primary hobby is playing video games :o (original I know). The only real video games I play are Counter-Strike: Global Offensive (soon to be CS2), Minecraft, and occasionally Fortnite. CS:GO is the game I reach for when I’m feeling competitive. I’m Master Guardian 2 as of writing this, so I’m pretty solid, I’d say. Minecraft is the game I play when I’m just trying to chill alone, and Fortnite is always a fun game to play with a group of friends. I’m also a fan of single-player story-style games, although I haven't explored the genre too much. I did enjoy playing through the few COD campaigns I have along with GTA 5, GTA 4, GTA San Andreas, and Saints Row 2.";
+    "My last primary hobby is playing video games :o. My main game for the past 5 or so years has been Counter-Strike: Global Offensive, which I play when I'm feeling competitive. I'm Master Guaridan 2 as of writing this, which is a little above average so I'm pretty solid. Minecraft is another game that I play, usually just single-player when I'm just trying to chill. When trying to play with friends Fortnite is a game that we usually lean towards. I'm also a fan of story-style games, but I haven't explored the genre too much (open to recommendations). The main ones I've enjoyed are GTA 5, GTA 4, GTA San Andreas, Saints Row 2, and a few Call of Duty campaigns.";
 
 export default function AboutPage() {
     return (
