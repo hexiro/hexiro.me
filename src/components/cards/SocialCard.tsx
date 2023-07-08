@@ -1,4 +1,4 @@
-import type { PropsWithChildren} from "react";
+import type { PropsWithChildren } from "react";
 import { useState } from "react";
 
 import type { ISocial } from "@/commons/config";
@@ -36,7 +36,10 @@ export function SocialCard({ social }: { social: ISocial }) {
     };
 
     return (
-        <Card as="li" className="flex w-full min-w-[375px] flex-row items-center gap-x-6 sm:w-auto">
+        <Card
+            as="li"
+            className="flex w-full  flex-row items-center gap-x-6 sm:w-auto sm:min-w-[375px]"
+        >
             <Icon className="h-10 w-10" />
             <div className="flex flex-col">
                 <H5 className="text-[20px] font-bold text-off-white">{name}</H5>

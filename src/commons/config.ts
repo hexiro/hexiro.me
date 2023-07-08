@@ -18,6 +18,7 @@ import {
     SpotifyIcon,
     SteamIcon,
     EpicGamesIcon,
+    LastFmIcon,
 } from "@/components/ui/Icons";
 
 // public
@@ -208,6 +209,13 @@ export const SOCIALS = [
         name: "Epic Games",
         value: "hexiro",
         icon: EpicGamesIcon,
+        canCopy: true,
+    },
+    {
+        name: "Last.fm",
+        value: "nathlodge",
+        link: "https://www.last.fm/user/nathlodge",
+        icon: LastFmIcon,
         canCopy: true,
     },
 ] as const satisfies readonly ISocial[];

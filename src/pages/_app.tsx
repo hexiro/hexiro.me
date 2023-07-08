@@ -34,15 +34,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                     font-family: ${sansSerifFont.style.fontFamily};
                 }
             `}</style>
-            <Lenis
-                root
-                options={{
-                    smoothWheel: true,
-                    smoothTouch: true,
-                    lerp: 0.07,
-                    touchMultiplier: 1.5,
-                }}
-            >
+            <Lenis root>
                 <div
                     className={twMerge(
                         sansSerifFont.variable,

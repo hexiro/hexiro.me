@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { ComponentProps, PropsWithChildren } from "react";
 
-import { SOCIALS, SOCIALS_MAP } from "@/commons/config";
+import { SOCIALS_MAP } from "@/commons/config";
 
 import { Card } from "@/components/ui/Cards";
 import { H1, H3, H4 } from "@/components/ui/Headings";
@@ -39,6 +39,7 @@ export default function AboutPage() {
                 <AboutSection text={MAIN_HOBBIES} childrenClassName="flex flex-col gap-y-4">
                     <SocialCard social={SOCIALS_MAP.IMDb} />
                     <SocialCard social={SOCIALS_MAP.Spotify} />
+                    <SocialCard social={SOCIALS_MAP["Last.fm"]} />
                 </AboutSection>
                 <AboutSection text={VIDEO_GAMES} childrenClassName="flex flex-col gap-y-4">
                     <SocialCard social={SOCIALS_MAP.Steam} />
@@ -57,10 +58,13 @@ interface IAboutSectionProps extends PropsWithChildren {
 
 const AboutSection = ({ text, className, children, childrenClassName }: IAboutSectionProps) => (
     <div
-        className={twMerge("flex flex-row items-center gap-x-20 even:flex-row-reverse", className)}
+        className={twMerge(
+            "flex flex-col items-center gap-x-[5%] gap-y-6 xl:flex-row xl:even:flex-row-reverse",
+            className
+        )}
     >
-        <p className="text-[18px]">{text}</p>
-        <div className={twMerge( childrenClassName)}>{children}</div>
+        <p className="text-[18px] font-bold leading-relaxed">{text}</p>
+        <div className={twMerge("w-full", childrenClassName)}>{children}</div>
     </div>
 );
 
@@ -72,15 +76,15 @@ interface IImageCardProps extends ComponentProps<typeof Image> {
 const ImageCard = ({ className, caption, alt, ...props }: IImageCardProps) => (
     <Card
         className={twMerge(
-            "grow-1 ml-auto flex flex-row items-center justify-center self-start px-6 py-5",
+            "grow-1 ml-auto flex flex-col items-center justify-center gap-4 self-start px-6 py-5 sm:flex-row sm:py-6 xl:flex-col xl:py-5",
             className
         )}
     >
-        <div className="mr-4 self-start">
+        <div className="max-w-xs self-start  xl:mt-0">
             <H4 green className="text-base md:text-[28px]">
                 {caption}
             </H4>
-            <p>{alt}</p>
+            <p className="sm:text-base">{alt}</p>
         </div>
         <Image
             alt={`${caption}, ${alt}`}
