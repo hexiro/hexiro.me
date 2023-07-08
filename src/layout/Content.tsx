@@ -93,7 +93,7 @@ export default function Content({ router, children }: IContentProps) {
                         duration: 0.6,
                         bounce: 0.15,
                     }}
-                    className="mb-32 flex min-h-screen w-full flex-col rounded-t-md bg-background px-[5%] py-28 lg:mb-0 lg:ml-52 lg:mt-0 lg:rounded-l-md lg:px-[10%]"
+                    className="mt-32 flex min-h-screen w-full flex-col rounded-t-md bg-background px-[5%] py-28 lg:ml-52 lg:mt-0 lg:rounded-l-md lg:px-[10%]"
                 >
                     <div>
                         <PageEndNavigation
