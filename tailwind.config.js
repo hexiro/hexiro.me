@@ -56,7 +56,8 @@ module.exports = {
                 ellipsis: "ellipsis 2s linear infinite",
             },
             screens: {
-                xs: "320px",
+                xs:"480px",
+                xxs: "320px",
             }
         },
     },

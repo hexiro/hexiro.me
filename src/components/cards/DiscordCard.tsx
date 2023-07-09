@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { PropsWithChildren } from "react";
 
+import { HorizontalDivider } from "@/components/layout/Divider";
 import { Card, SecondaryCard } from "@/components/ui/Cards";
 import { H3, H4, H5 } from "@/components/ui/Headings";
 
@@ -16,10 +17,10 @@ export function DiscordCard({ className }: { className?: string }) {
     console.log({ state });
 
     return (
-        <Card isHoverable className={className}>
-            <div className="flex flex-col gap-8">
-                <div className="flex flex-row">
-                    <div className="relative mr-4">
+        <Card isHoverable className={twMerge("w-full sm:w-auto", className)}>
+            <div className="flex flex-col gap-6 sm:gap-8">
+                <div className="flex flex-row gap-x-4">
+                    <div className="relative h-14 w-14 shrink-0 md:h-16 md:w-16">
                         <Image
                             className="rounded-full"
                             width={64}
@@ -39,18 +40,19 @@ export function DiscordCard({ className }: { className?: string }) {
                         )}
                     </div>
                     <div className="mt-1 flex flex-col leading-extra-tight">
-                        <H4 className="text-[28px] text-green">{state.user.displayName}</H4>
-                        <H5 className="font-sans text-[16px] font-bold text-subtitle">
+                        <H4 className="text-green">{state.user.displayName}</H4>
+                        <H5 className="font-bold text-subtitle">
                             @{state.user.username}
                         </H5>
                     </div>
                 </div>
-                <SecondaryCard className="flex w-[500px] flex-row">
-                    <div className="relative mr-6 shrink-0">
+                <HorizontalDivider className="block border-[1px] sm:hidden" />
+                <SecondaryCard className="flex flex-row gap-x-4 border-transparent bg-transparent p-0 shadow-none sm:w-[500px] sm:gap-x-6 sm:border-solid sm:border-white/10 sm:bg-white/5 sm:p-5 sm:shadow-sm">
+                    <div className="relative hidden h-16 w-16 shrink-0 self-center xs:block sm:h-[100px] sm:w-[100px]">
                         {state.ide ? (
                             <Image
                                 priority
-                                className="rounded-md "
+                                className="rounded-md"
                                 width={100}
                                 height={100}
                                 src={state.ide.images.large.src}
@@ -58,13 +60,13 @@ export function DiscordCard({ className }: { className?: string }) {
                                 draggable={false}
                             />
                         ) : (
-                            <div className="flex h-[100px] w-[100px] items-center justify-center rounded-md bg-background-accent">
+                            <div className="flex h-full w-full items-center justify-center rounded-md bg-background-accent">
                                 <H3 className="text-off-white">!#?</H3>
                             </div>
                         )}
                     </div>
                     <div className="my-1 w-full overflow-hidden">
-                        <H5 className="mb-2 truncate font-sans text-[24px] font-extrabold text-off-white">
+                        <H5 className="mb-2 truncate font-sans font-extrabold leading-none text-off-white sm:leading-normal">
                             {state.ide ? state.ide.name : "No IDE active"}
                         </H5>
                         {state.ide ? (
@@ -100,7 +102,7 @@ function StatusIndicator({ className, children }: PropsWithChildren<{ className?
     return (
         <div
             className={twMerge(
-                "absolute bottom-[-1px] right-[-3px] h-6 w-6 rounded-full border-[5px] border-background-secondary bg-[#B6B6B6]",
+                "absolute bottom-[-1px] right-[-3px] h-[22px] w-[22px] rounded-full border-[5px] border-background-secondary bg-[#B6B6B6] md:h-6 md:w-6",
                 className
             )}
         >
@@ -111,7 +113,12 @@ function StatusIndicator({ className, children }: PropsWithChildren<{ className?
 
 function PresenceLine({ className, children }: PropsWithChildren<{ className?: string }>) {
     return (
-        <p className={twMerge("font-mono text-[16px] leading-tight text-subtitle truncate", className)}>
+        <p
+            className={twMerge(
+                "truncate font-mono text-[16px] leading-tight text-subtitle",
+                className
+            )}
+        >
             {children}
         </p>
     );

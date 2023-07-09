@@ -63,7 +63,7 @@ export function SocialCard({ social, className, isSingle }: ISocialCardProps) {
                     {value}
                 </WithExternalLinkOverlay>
             </div>
-            <div className="absolute right-8 top-6 hidden flex-row gap-x-2 xs:flex">
+            <div className="absolute right-8 top-6 hidden flex-row gap-x-2 xxs:flex">
                 {canCopy ? (
                     <button
                         type="button"
