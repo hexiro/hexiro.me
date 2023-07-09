@@ -70,53 +70,50 @@ export function DiscordCard({ className }: { className?: string }) {
                         </H5>
                     </div>
                 </div>
-                <SecondaryCard className="w-[500px]">
-                    <div className="flex flex-row">
-                        <div className="relative mr-6">
-                            {state.ide ? (
-                                <Image
-                                    priority
-                                    className="rounded-md"
-                                    width={100}
-                                    height={100}
-                                    src={state.ide.images.large.src}
-                                    alt={state.ide.images.large.alt}
-                                    draggable={false}
-                                />
-                            ) : (
-                                <div className="flex h-[100px] w-[100px] items-center justify-center rounded-md bg-background-accent">
-                                    <H3 className="text-off-white">!#?</H3>
-                                </div>
-                            )}
-                            {}
-                        </div>
-                        <div className="my-1">
-                            <H4 className="mb-2 font-sans text-[24px] font-extrabold text-off-white">
-                                {state.ide ? state.ide.name : "No IDE active"}
-                            </H4>
-                            {state.ide ? (
-                                state.ide.lines.map((line) => (
-                                    <PresenceLine key={line[0].text}>
-                                        {line.map((chunk) => (
-                                            <span
-                                                key={chunk.text}
-                                                className={
-                                                    chunk.highlighted
-                                                        ? "font-bold text-green"
-                                                        : "font-semibold text-[#9E9E9E]"
-                                                }
-                                            >
-                                                {chunk.text}
-                                            </span>
-                                        ))}
-                                    </PresenceLine>
-                                ))
-                            ) : (
-                                <PresenceLine>
-                                    {[SPECIAL_CHARS, SPECIAL_CHARS, SPECIAL_CHARS].join("-")}
+                <SecondaryCard className="flex w-[500px] flex-row">
+                    <div className="relative mr-6 shrink-0">
+                        {state.ide ? (
+                            <Image
+                                priority
+                                className="rounded-md "
+                                width={100}
+                                height={100}
+                                src={state.ide.images.large.src}
+                                alt={state.ide.images.large.alt}
+                                draggable={false}
+                            />
+                        ) : (
+                            <div className="flex h-[100px] w-[100px] items-center justify-center rounded-md bg-background-accent">
+                                <H3 className="text-off-white">!#?</H3>
+                            </div>
+                        )}
+                    </div>
+                    <div className="my-1 w-full overflow-hidden">
+                        <H5 className="mb-2 truncate font-sans text-[24px] font-extrabold text-off-white">
+                            {state.ide ? state.ide.name : "No IDE active"}
+                        </H5>
+                        {state.ide ? (
+                            state.ide.lines.map((line) => (
+                                <PresenceLine key={line[0].text}>
+                                    {line.map((chunk) => (
+                                        <span
+                                            key={chunk.text}
+                                            className={
+                                                chunk.highlighted
+                                                    ? "font-bold text-green"
+                                                    : "font-semibold text-[#9E9E9E]"
+                                            }
+                                        >
+                                            {chunk.text}
+                                        </span>
+                                    ))}
                                 </PresenceLine>
-                            )}
-                        </div>
+                            ))
+                        ) : (
+                            <PresenceLine>
+                                {[SPECIAL_CHARS, SPECIAL_CHARS, SPECIAL_CHARS].join("-")}
+                            </PresenceLine>
+                        )}
                     </div>
                 </SecondaryCard>
             </div>

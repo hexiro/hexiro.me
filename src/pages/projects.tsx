@@ -14,8 +14,10 @@ interface ProjectsPageProps {
 export default function ProjectsPage({ projects }: ProjectsPageProps) {
     return (
         <>
-            <H1>Projects</H1>
-            <H3 className="text-subtitle">My open-source projects.</H3>
+            <div className="mb-12">
+                <H1>Projects</H1>
+                <H3 className="text-subtitle">My open-source projects.</H3>
+            </div>
             <div className="mt-8 flex flex-col gap-6 md:flex-row md:flex-wrap ">
                 {projects.map((project) => (
                     <ProjectCard key={project.name} project={project} />

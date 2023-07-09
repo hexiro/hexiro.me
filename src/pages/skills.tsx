@@ -1,7 +1,8 @@
 import { SKILLS } from "@/commons/config";
 
+import { HorizontalDivider } from "@/components/layout/Divider";
 import { Card } from "@/components/ui/Cards";
-import { H1, H3, H4 } from "@/components/ui/Headings";
+import { H1, H2, H3, H4 } from "@/components/ui/Headings";
 
 export default function SkillsPage() {
     return (
@@ -13,9 +14,11 @@ export default function SkillsPage() {
             <ul className="flex flex-col gap-y-12">
                 {Object.entries(SKILLS).map(([name, values]) => (
                     <li key={name}>
-                        <H4 mono className="text-text">
-                            {name}
-                        </H4>
+                        <div className="mb-2">
+                            <H4 mono className="text-text ">
+                                {name}
+                            </H4>
+                        </div>
                         <ul className="flex flex-row flex-wrap gap-x-6 gap-y-4">
                             {values.map(({ name, icon: Icon }) => (
                                 <Card
