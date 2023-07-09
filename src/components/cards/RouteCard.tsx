@@ -11,7 +11,7 @@ interface IRouteCardProps extends IRouteMeta {
 
 export function RouteCard({ name, path, description, icon: Icon, className }: IRouteCardProps) {
     return (
-        <Card isHoverable className={twMerge("group w-full lg:w-[calc(50%-1rem)]", className)}>
+        <Card isHoverable className={twMerge("group w-full", className)}>
             <div className="mb-3 flex flex-col gap-y-1">
                 <Icon className="h-7 w-7" />
                 <LinkOverlay
