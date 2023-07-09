@@ -5,14 +5,18 @@ import ipaddr from "ipaddr.js";
 export interface IProject {
     name: string;
     description: IExtractedSection[];
+    topics: IProjectTopic[];
     stars: number;
-    languages: string[];
-    topics: string[];
     url: string;
     packageUrl: string | null;
 }
 
-interface IExtractedSection {
+export interface IProjectTopic {
+    name: string;
+    isLanguage: boolean;
+}
+
+export interface IExtractedSection {
     type: "text" | "link";
     value: string;
 }
@@ -29,8 +33,8 @@ export async function fetchProjects(): Promise<IProject[]> {
 }
 
 // topics that indicate a project is a package
-const packageTopics = ["npm", "pypi"] as const;
-type PackageTopic = (typeof packageTopics)[number];
+const PACKAGE_TOPICS = ["npm", "pypi"] as const;
+type PackageTopic = (typeof PACKAGE_TOPICS)[number];
 
 function parsePackageUrl(repository: RepositoryData, packageTopic: PackageTopic): string | null {
     switch (packageTopic) {
@@ -98,38 +102,40 @@ function parseProject(repository: RepositoryData): IProject {
     const { totalSize } = repository.languages;
 
     // each language has to be at least 10% of the total size of the repository
-    const languages = repository.languages.edges
+    const languagesNames = repository.languages.edges
         .sort((a, b) => b.size - a.size)
         .filter(({ size }) => size / totalSize >= 0.1)
         .map(({ node }) => node.name.toLowerCase())
         .slice(0, 3);
 
-    const topics = repository.repositoryTopics.nodes
+    const topicNames = repository.repositoryTopics.nodes
         .map(({ topic }) => topic.name.toLowerCase())
-        .filter((topic) => !languages.includes(topic));
+        .filter((topic) => !languagesNames.includes(topic));
+
+    const languageTopics = languagesNames.map((name) => ({ name, isLanguage: true }));
+    const otherTopics = topicNames.map((name) => ({ name, isLanguage: false }));
 
     let packageUrl: string | null = null;
 
-    const packageTopicIndex = topics.findIndex((topic) =>
-        packageTopics.includes(topic as PackageTopic)
+    const packageTopicIndex = topicNames.findIndex((topic) =>
+        PACKAGE_TOPICS.includes(topic as PackageTopic)
     );
 
     if (packageTopicIndex !== -1) {
-        const packageTopic = topics[packageTopicIndex] as PackageTopic;
+        const packageTopic = topicNames[packageTopicIndex] as PackageTopic;
         packageUrl = parsePackageUrl(repository, packageTopic);
 
-        topics.splice(packageTopicIndex, 1);
+        otherTopics.splice(packageTopicIndex, 1);
     }
 
+    const topics: IProjectTopic[] = [...languageTopics, ...otherTopics];
     const description = parseDescription(repository.description);
-
     const { name, url, stargazerCount: stars } = repository;
 
     const project: IProject = {
         name,
         description,
         stars,
-        languages,
         topics,
         url,
         packageUrl,
