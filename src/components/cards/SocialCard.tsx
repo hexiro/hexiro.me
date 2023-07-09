@@ -5,9 +5,9 @@ import type { ISocial } from "@/commons/config";
 
 import { ExternalLinkOverlay } from "@/components/layout/LinkOverlay";
 import { Card } from "@/components/ui/Cards";
-import { ExternalLink } from "@/components/ui/ExternalLink";
 import { H5 } from "@/components/ui/Headings";
 import { CheckIcon, CopyIcon, ExternalLinkIcon, XIcon } from "@/components/ui/Icons";
+import { ExternalLink } from "@/components/ui/Links";
 
 import copy from "copy-to-clipboard";
 

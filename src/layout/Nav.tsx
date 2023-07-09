@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { MutableRefObject } from "react";
 import { useState, useRef } from "react";
 
@@ -12,6 +11,7 @@ import useDebouncedResizeEffect from "@/hooks/useDebouncedResizeEffect";
 
 import { motion } from "framer-motion";
 import { useDraggable } from "react-use-draggable-scroll";
+import { Link } from "@/components/ui/Links";
 
 interface INavProps {
     selectedRoute: number;

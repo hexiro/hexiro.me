@@ -1,12 +1,10 @@
 // import { styled } from "@/theme";
-import Link from "next/link";
-
 import { VerticalDivider } from "@/components/layout/Divider";
-import { LinkOverlay } from "@/components/layout/LinkOverlay";
+import { ExternalLinkOverlay } from "@/components/layout/LinkOverlay";
 import { Card } from "@/components/ui/Cards";
-import { ExternalLink } from "@/components/ui/ExternalLink";
 import { H4 } from "@/components/ui/Headings";
 import { ExternalLinkIcon, PackageIcon, StarsIcon } from "@/components/ui/Icons";
+import { ExternalLink } from "@/components/ui/Links";
 
 import type { IProject } from "@/data/projects";
 
@@ -24,7 +22,7 @@ export function ProjectCard({ className, project }: ProjectCardProps) {
         <Card isHoverable className={twMerge("w-full pr-4 md:w-[calc(50%-1rem)]", className)}>
             <div className="align-center flex h-10 flex-row gap-x-2 pb-1">
                 <H4 green className="basis-2/3 truncate">
-                    <LinkOverlay href={url}>{name}</LinkOverlay>
+                    <ExternalLinkOverlay href={url}>{name}</ExternalLinkOverlay>
                 </H4>
                 <span className="flex h-full basis-1/3 flex-row items-center justify-end gap-x-3">
                     {stars > 0 ? (
@@ -39,15 +37,15 @@ export function ProjectCard({ className, project }: ProjectCardProps) {
                     <ul className="z-10 flex gap-x-1">
                         {packageUrl !== null ? (
                             <li className="flex items-center transition-transform hover:translate-y-[-2px]">
-                                <Link href={packageUrl}>
+                                <ExternalLink href={packageUrl}>
                                     <PackageIcon />
-                                </Link>
+                                </ExternalLink>
                             </li>
                         ) : null}
                         <li className="flex items-center transition-transform hover:translate-y-[-2px]">
-                            <Link href={url}>
+                            <ExternalLink href={url}>
                                 <ExternalLinkIcon />
-                            </Link>
+                            </ExternalLink>
                         </li>
                     </ul>
                 </span>

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { Router } from "next/router";
 import type { PropsWithChildren } from "react";
 import { useCallback, useState, useEffect } from "react";
@@ -13,6 +12,7 @@ import Nav from "@/layout/Nav";
 import type { Variants } from "framer-motion";
 import { AnimatePresence, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
+import { Link } from "@/components/ui/Links";
 
 interface IContentProps extends PropsWithChildren {
     router: Router;
