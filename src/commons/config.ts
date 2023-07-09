@@ -1,7 +1,7 @@
+import type { IconType } from "@/components/ui/Icons";
 import {
     AboutIcon,
     ProjectsIcon,
-    type IconType,
     SkillsIcon,
     ContactIcon,
     PythonIcon,
@@ -21,6 +21,8 @@ import {
     LastFmIcon,
 } from "@/components/ui/Icons";
 
+import type { Data as LanyardData } from "use-lanyard";
+
 // public
 export const GITHUB = "hexiro";
 export const TWITTER = "hexiiro";
@@ -35,6 +37,28 @@ export const GITHUB_LINK = `https://github.com/${GITHUB}` as const;
 export const TWITTER_LINK = `https://twitter.com/${TWITTER}` as const;
 export const DISCORD_LINK = `https://discord.com/users/${DISCORD}` as const;
 export const LINKED_IN_LINK = `https://www.linkedin.com/in/${LINKED_IN}` as const;
+
+export const INITIAL_DISCORD_STATE = {
+    discord_user: {
+        username: "nathlod",
+        public_flags: 4194432,
+        id: DISCORD_SNOWFLAKE,
+        global_name: "nathan",
+        display_name: "nathan",
+        discriminator: "0",
+        bot: false,
+        avatar_decoration: null,
+        avatar: "30a5d8423b9471d72a374883a80089b9",
+    },
+    spotify: null,
+    listening_to_spotify: false,
+    kv: {},
+    discord_status: "offline",
+    activities: [],
+    active_on_discord_web: false,
+    active_on_discord_mobile: false,
+    active_on_discord_desktop: true,
+} satisfies LanyardData;
 
 // private
 export const GITHUB_TOKEN = process.env.GITHUB_TOKEN ?? "";
