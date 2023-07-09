@@ -1,4 +1,4 @@
-import { ROUTES_META } from "@/commons/config";
+import { AGE, ROUTES_META } from "@/commons/config";
 
 import { HorizontalDividerWithText } from "@/components/layout/Divider";
 import { H1, H2, H3 } from "@/components/ui/Headings";
@@ -13,7 +13,7 @@ export default function HomePage() {
             <H1>
                 Nathan <span className="text-off-white">Lodge</span>
             </H1>
-            <H3 className="text-subtitle">A self-taught Software Engineer.</H3>
+            <H3 className="text-subtitle">An {AGE} year old Software Engineer.</H3>
             <DiscordCard className="mt-8" />
             <HorizontalDividerWithText text="View More" className="mb-16 mt-20" />
             <div className="grid grid-flow-row gap-6 lg:grid-cols-2">

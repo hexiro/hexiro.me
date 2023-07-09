@@ -38,6 +38,10 @@ export const TWITTER_LINK = `https://twitter.com/${TWITTER}` as const;
 export const DISCORD_LINK = `https://discord.com/users/${DISCORD}` as const;
 export const LINKED_IN_LINK = `https://www.linkedin.com/in/${LINKED_IN}` as const;
 
+const BIRTHDAY = Date.parse("2005-07-02T00:00:00-0500");
+const ONE_YEAR_IN_MILLISECONDS = 31556952000;
+export const AGE = Math.floor((Date.now() - BIRTHDAY) / ONE_YEAR_IN_MILLISECONDS);
+
 export const INITIAL_DISCORD_STATE = {
     discord_user: {
         username: "nathlod",
