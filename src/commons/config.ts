@@ -112,7 +112,7 @@ export interface ISkill {
 export type ISkillGroups = Record<string, ISkill[]>;
 
 export const SKILLS = {
-    "Languages": [
+    Languages: [
         {
             name: "Python",
             icon: PythonIcon,

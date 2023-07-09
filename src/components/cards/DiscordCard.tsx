@@ -14,25 +14,25 @@ const SPECIAL_CHARS = "!@#$%^&?";
 
 export function DiscordCard({ className }: { className?: string }) {
     const initialData = {
-        "spotify": null,
-        "listening_to_spotify": false,
-        "kv": {},
-        "discord_user": {
-            "username": "nathlod",
-            "public_flags": 4194432,
-            "id": DISCORD_SNOWFLAKE,
-            "global_name": "nathan",
-            "display_name": "nathan",
-            "discriminator": "0",
-            "bot": false,
-            "avatar_decoration": null,
-            "avatar": "30a5d8423b9471d72a374883a80089b9",
+        spotify: null,
+        listening_to_spotify: false,
+        kv: {},
+        discord_user: {
+            username: "nathlod",
+            public_flags: 4194432,
+            id: DISCORD_SNOWFLAKE,
+            global_name: "nathan",
+            display_name: "nathan",
+            discriminator: "0",
+            bot: false,
+            avatar_decoration: null,
+            avatar: "30a5d8423b9471d72a374883a80089b9",
         },
-        "discord_status": "offline",
-        "activities": [],
-        "active_on_discord_web": false,
-        "active_on_discord_mobile": false,
-        "active_on_discord_desktop": true,
+        discord_status: "offline",
+        activities: [],
+        active_on_discord_web: false,
+        active_on_discord_mobile: false,
+        active_on_discord_desktop: true,
     } satisfies LanyardData;
 
     let presence = useLanyardWS(DISCORD_SNOWFLAKE, { initialData });

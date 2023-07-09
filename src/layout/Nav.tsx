@@ -6,12 +6,12 @@ import { ROUTES } from "@/commons/config";
 
 import { HorizontalDivider, VerticalDivider } from "@/components/layout/Divider";
 import { H2 } from "@/components/ui/Headings";
+import { Link } from "@/components/ui/Links";
 
 import useDebouncedResizeEffect from "@/hooks/useDebouncedResizeEffect";
 
 import { motion } from "framer-motion";
 import { useDraggable } from "react-use-draggable-scroll";
-import { Link } from "@/components/ui/Links";
 
 interface INavProps {
     selectedRoute: number;
