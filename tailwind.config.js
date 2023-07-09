@@ -55,6 +55,9 @@ module.exports = {
             animation: {
                 ellipsis: "ellipsis 2s linear infinite",
             },
+            screens: {
+                xs: "320px",
+            }
         },
     },
     plugins: [require("@kamona/tailwindcss-perspective")],

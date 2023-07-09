@@ -20,7 +20,7 @@ export function ProjectCard({ className, project }: ProjectCardProps) {
 
     return (
         <Card isHoverable className={twMerge("w-full pr-4", className)}>
-            <div className="align-center flex h-10 flex-row gap-x-2 pb-1">
+            <div className="mb-1 flex h-10 flex-row items-center gap-x-2 leading-none">
                 <H4 green className="basis-2/3 truncate">
                     <ExternalLinkOverlay href={url}>{name}</ExternalLinkOverlay>
                 </H4>

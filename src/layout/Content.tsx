@@ -6,13 +6,13 @@ import { NAV_PATHS } from "@/commons/config";
 
 import type { IconType } from "@/components/ui/Icons";
 import { ArrowUpIcon, ArrowDownIcon } from "@/components/ui/Icons";
+import { Link } from "@/components/ui/Links";
 
 import Nav from "@/layout/Nav";
 
 import type { Variants } from "framer-motion";
 import { AnimatePresence, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
-import { Link } from "@/components/ui/Links";
 
 interface IContentProps extends PropsWithChildren {
     router: Router;
@@ -103,7 +103,7 @@ export default function Content({ router, children }: IContentProps) {
                         >
                             Prev
                         </PageEndNavigation>
-                        <div className="flex-grow">{children}</div>
+                        {children}
                         <PageEndNavigation
                             href={nextRoute}
                             icon={ArrowDownIcon}

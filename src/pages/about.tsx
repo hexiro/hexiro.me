@@ -37,13 +37,13 @@ export default function AboutPage() {
                     />
                 </AboutSection>
                 <AboutSection text={MAIN_HOBBIES} childrenClassName="flex flex-col gap-y-4">
-                    <SocialCard social={SOCIALS_MAP.IMDb} />
-                    <SocialCard social={SOCIALS_MAP.Spotify} />
-                    <SocialCard social={SOCIALS_MAP["Last.fm"]} />
+                    <SocialCard isSingle social={SOCIALS_MAP.IMDb} />
+                    <SocialCard isSingle social={SOCIALS_MAP.Spotify} />
+                    <SocialCard isSingle social={SOCIALS_MAP["Last.fm"]} />
                 </AboutSection>
                 <AboutSection text={VIDEO_GAMES} childrenClassName="flex flex-col gap-y-4">
-                    <SocialCard social={SOCIALS_MAP.Steam} />
-                    <SocialCard social={SOCIALS_MAP["Epic Games"]} />
+                    <SocialCard isSingle social={SOCIALS_MAP.Steam} />
+                    <SocialCard isSingle social={SOCIALS_MAP["Epic Games"]} />
                 </AboutSection>
             </div>
         </>
@@ -70,16 +70,10 @@ const AboutSection = ({ text, className, children, childrenClassName }: IAboutSe
 
 interface IImageCardProps extends ComponentProps<typeof Image> {
     caption: string;
-    className?: string;
 }
 
-const ImageCard = ({ className, caption, alt, ...props }: IImageCardProps) => (
-    <Card
-        className={twMerge(
-            "grow-1 ml-auto flex flex-col items-center justify-center gap-4 self-start px-6 py-5 sm:flex-row sm:py-6 xl:flex-col xl:py-5",
-            className
-        )}
-    >
+const ImageCard = ({ caption, alt, ...props }: IImageCardProps) => (
+    <Card className="grow-1 ml-auto flex flex-col items-center justify-center gap-4 self-start px-6 py-5 sm:flex-row sm:py-6 xl:flex-col xl:py-5">
         <div className="max-w-xs self-start  xl:mt-0">
             <H4 green className="text-base md:text-[28px]">
                 {caption}
@@ -88,7 +82,7 @@ const ImageCard = ({ className, caption, alt, ...props }: IImageCardProps) => (
         </div>
         <Image
             alt={`${caption}, ${alt}`}
-            className="max-h-xs max-w-xs rounded-md border-2 border-solid border-white/10 drop-shadow-md"
+            className="max-h-xs h-full w-full max-w-xs rounded-md border-2 border-solid border-white/10 drop-shadow-md md:h-auto md:w-auto"
             {...props}
         />
     </Card>

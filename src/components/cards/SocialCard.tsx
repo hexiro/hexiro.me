@@ -10,8 +10,15 @@ import { CheckIcon, CopyIcon, ExternalLinkIcon, XIcon } from "@/components/ui/Ic
 import { ExternalLink } from "@/components/ui/Links";
 
 import copy from "copy-to-clipboard";
+import { twMerge } from "tailwind-merge";
 
-export function SocialCard({ social }: { social: ISocial }) {
+interface ISocialCardProps {
+    social: ISocial;
+    className?: string;
+    isSingle?: boolean;
+}
+
+export function SocialCard({ social, className, isSingle }: ISocialCardProps) {
     const { name, value, link, icon: Icon, canCopy } = social;
     const [copiedSuccess, setCopiedSuccess] = useState<boolean | null>(null);
     const [copiedTimeout, setCopiedTimeout] = useState<NodeJS.Timeout | null>(null);
@@ -38,19 +45,25 @@ export function SocialCard({ social }: { social: ISocial }) {
     return (
         <Card
             as="li"
-            className="flex w-full  flex-row items-center gap-x-6 sm:w-auto sm:min-w-[375px]"
+            className={twMerge(
+                "flex w-full flex-row items-center gap-x-6 px-6 md:px-8",
+                isSingle && "min-w-[375px]",
+                className
+            )}
+            isHoverable={Boolean(link ?? canCopy)}
+            onClick={link ? undefined : copyToClipboard}
         >
-            <Icon className="h-10 w-10" />
-            <div className="flex flex-col">
+            <Icon className="h-10 w-10 shrink-0" />
+            <div className="flex flex-col overflow-hidden">
                 <H5 className="text-[20px] font-bold text-off-white">{name}</H5>
                 <WithExternalLinkOverlay
                     href={link}
-                    className="font-mono font-bold normal-case text-text"
+                    className="truncate font-mono font-bold normal-case text-text"
                 >
                     {value}
                 </WithExternalLinkOverlay>
             </div>
-            <div className="absolute right-8 top-6 flex flex-row gap-x-2">
+            <div className="absolute right-8 top-6 hidden flex-row gap-x-2 xs:flex">
                 {canCopy ? (
                     <button
                         type="button"

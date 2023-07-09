@@ -1,8 +1,7 @@
 import { SKILLS } from "@/commons/config";
 
-import { HorizontalDivider } from "@/components/layout/Divider";
 import { Card } from "@/components/ui/Cards";
-import { H1, H2, H3, H4 } from "@/components/ui/Headings";
+import { H1, H3, H4 } from "@/components/ui/Headings";
 
 export default function SkillsPage() {
     return (

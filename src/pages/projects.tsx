@@ -18,7 +18,7 @@ export default function ProjectsPage({ projects }: ProjectsPageProps) {
                 <H1>Projects</H1>
                 <H3 className="text-subtitle">My open-source projects.</H3>
             </div>
-            <div className="mt-8 grid grid-flow-row gap-6 md:grid-cols-2">
+            <div className="grid auto-cols-fr gap-6 md:grid-cols-2">
                 {projects.map((project) => (
                     <ProjectCard key={project.name} project={project} />
                 ))}
