@@ -34,8 +34,10 @@ export default function Nav({ selectedRoute }: INavProps) {
     useDebouncedResizeEffect(handler, 100, [navRef.current]);
 
     return (
-        <nav
+        <motion.nav
             ref={navRef}
+            layout
+            layoutRoot
             data-lenis-prevent=""
             className="fixed top-0 z-40 flex h-32 w-screen flex-row overflow-y-hidden border-b-2 border-solid border-white/10 bg-background-secondary lg:h-screen lg:w-52 lg:flex-col lg:items-start lg:border-0"
             {...(isNavOverflown ? events : {})}
@@ -46,7 +48,7 @@ export default function Nav({ selectedRoute }: INavProps) {
             <HorizontalDivider className="my-auto h-[80%] w-0 divide-x lg:mx-auto lg:my-0 lg:h-0 lg:w-[80%]" />
             <NavRouteList navRef={navRef} selectedRoute={selectedRoute} />
             <VerticalDivider className="ml-[25%] hidden h-72 lg:block" />
-        </nav>
+        </motion.nav>
     );
 }
 
