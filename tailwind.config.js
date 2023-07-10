@@ -46,7 +46,7 @@ module.exports = {
                 "extra-tight": "1.1",
             },
             keyframes: {
-                "ellipsis": {
+                ellipsis: {
                     "0%": { content: "''" },
                     "50%": { content: "'.'" },
                     "100%": { content: "'..'" },
@@ -56,9 +56,10 @@ module.exports = {
                 ellipsis: "ellipsis 2s linear infinite",
             },
             screens: {
-                xs:"480px",
+                xs: "480px",
                 xxs: "320px",
-            }
+                tall: { raw: "(min-height: 768px)" },
+            },
         },
     },
     plugins: [require("@kamona/tailwindcss-perspective")],

@@ -39,18 +39,16 @@ const Nav = () => {
 
     useDebouncedResizeEffect(resizeHandler, 100, [ref.current]);
 
-    console.log("Nav rerender");
-
     return (
         <motion.nav
             ref={ref}
             layout
             layoutRoot
             data-lenis-prevent=""
-            className="fixed top-0 z-40 flex h-32 w-screen flex-row overflow-x-auto border-b-2 border-solid border-white/10 bg-background-secondary lg:h-screen lg:w-52 lg:flex-col lg:items-start lg:overflow-hidden lg:border-0"
+            className="fixed top-0 z-40 flex h-32  w-screen flex-row overflow-x-auto border-b-2 border-solid border-white/10 bg-background-secondary lg:h-screen lg:w-52 lg:flex-col lg:items-start lg:overflow-hidden lg:overflow-y-auto lg:border-0"
             {...(isScrollable ? events : {})}
         >
-            <div className="flex items-center justify-center px-8 lg:h-52 lg:w-full lg:px-6">
+            <div className="flex items-center justify-center px-8 lg:h-52 lg:min-h-[10em] lg:w-full lg:px-6">
                 <H2 className="text-3xl sm:text-4xl lg:text-5xl">NL</H2>
             </div>
             <HorizontalDivider className="my-auto h-[80%] w-0 divide-x lg:mx-auto lg:my-0 lg:h-0 lg:w-[80%]" />
@@ -59,7 +57,9 @@ const Nav = () => {
                     <NavRoute key={route.name} route={route} />
                 ))}
             </ul>
-            <VerticalDivider className="ml-[25%] hidden h-72 lg:block" />
+            <div className="mb-8 hidden w-full flex-grow items-center tall:flex">
+                <VerticalDivider className="ml-[25%] h-3/4 hidden lg:block" />
+            </div>
         </motion.nav>
     );
 };
@@ -80,11 +80,11 @@ function NavRoute({ route }: INavRouteProps) {
         <li key={name} className="group relative flex h-full w-full items-center text-lg">
             <WithNavLink
                 href={path}
-                className="inline-flex gap-x-1 uppercase text-off-white"
+                className="inline-flex w-full gap-x-1 uppercase text-off-white"
                 isSelected={isSelected}
             >
                 <span className="text-green">/</span>
-                <motion.span className="inline-block transition-transform duration-fast ease-in-out group-hover:translate-x-2 group-active:scale-95">
+                <motion.span className="block transition-transform duration-fast ease-in-out group-hover:translate-x-2 group-active:scale-95">
                     {name}
                 </motion.span>
             </WithNavLink>

@@ -15,7 +15,7 @@ export function DiscordCard({ className }: { className?: string }) {
     const state = useDiscordState();
 
     return (
-        <Card isHoverable className={twMerge("w-full sm:w-auto", className)}>
+        <Card className={twMerge("w-full sm:w-auto", className)}>
             <div className="flex flex-col gap-6 sm:gap-8">
                 <div className="flex flex-row gap-x-4">
                     <div className="relative h-14 w-14 shrink-0 md:h-16 md:w-16">
