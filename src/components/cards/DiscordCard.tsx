@@ -14,8 +14,6 @@ const SPECIAL_CHARS = "!@#$%^&?";
 export function DiscordCard({ className }: { className?: string }) {
     const state = useDiscordState();
 
-    console.log({ state });
-
     return (
         <Card isHoverable className={twMerge("w-full sm:w-auto", className)}>
             <div className="flex flex-col gap-6 sm:gap-8">
@@ -41,9 +39,7 @@ export function DiscordCard({ className }: { className?: string }) {
                     </div>
                     <div className="mt-1 flex flex-col leading-extra-tight">
                         <H4 className="text-green">{state.user.displayName}</H4>
-                        <H5 className="font-bold text-subtitle">
-                            @{state.user.username}
-                        </H5>
+                        <H5 className="font-bold text-subtitle">@{state.user.username}</H5>
                     </div>
                 </div>
                 <HorizontalDivider className="block border-[1px] sm:hidden" />

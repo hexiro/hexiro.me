@@ -14,8 +14,7 @@
     },
     "dependencies": {
         "@floating-ui/react-dom-interactions": "^0.13.3",
-        "@studio-freight/react-lenis": "^0.0.21",
-        "@vercel/analytics": "^0.1.11",
+        "@studio-freight/react-lenis": "^0.0.22",
         "copy-to-clipboard": "^3.3.3",
         "framer-motion": "^10.12.16",
         "ipaddr.js": "^2.1.0",
@@ -35,7 +34,7 @@
         "@next/bundle-analyzer": "^13.4.7",
         "@trivago/prettier-plugin-sort-imports": "^4.1.1",
         "@types/lodash.debounce": "^4.0.7",
-        "@types/node": "^20.3.1",
+        "@types/node": "^20.4.1",
         "@types/react": "^18.2.13",
         "@types/react-dom": "^18.2.6",
         "@typescript-eslint/eslint-plugin": "^5.56.0",

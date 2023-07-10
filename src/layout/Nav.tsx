@@ -39,7 +39,7 @@ export default function Nav({ selectedRoute }: INavProps) {
             layout
             layoutRoot
             data-lenis-prevent=""
-            className="fixed top-0 z-40 flex h-32 w-screen flex-row overflow-y-hidden border-b-2 border-solid border-white/10 bg-background-secondary lg:h-screen lg:w-52 lg:flex-col lg:items-start lg:border-0"
+            className="fixed top-0 z-40 flex h-32 w-screen flex-row overflow-x-auto border-b-2 border-solid border-white/10 bg-background-secondary lg:h-screen lg:w-52 lg:flex-col lg:items-start lg:overflow-hidden lg:border-0"
             {...(isNavOverflown ? events : {})}
         >
             <div className="flex items-center justify-center px-8 lg:h-52 lg:w-full lg:px-6">
