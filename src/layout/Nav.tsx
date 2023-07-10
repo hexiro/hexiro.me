@@ -15,6 +15,7 @@ import useDebouncedResizeEffect from "@/hooks/useDebouncedResizeEffect";
 
 import { motion } from "framer-motion";
 import { useDraggable } from "react-use-draggable-scroll";
+import { twMerge } from "tailwind-merge";
 
 const Nav = () => {
     const ref = useRef<HTMLElement>() as MutableRefObject<HTMLElement>;
@@ -76,10 +77,12 @@ function NavRoute({ route }: INavRouteProps) {
     const isSelected = selectedRoutePath === path;
 
     return (
-        <li key={name} className="relative flex h-full w-full items-center text-lg">
+        <li key={name} className="group relative flex h-full w-full items-center text-lg">
             <WithNavLink href={path} className="uppercase text-off-white" isSelected={isSelected}>
                 <span className="mr-1 text-green">/</span>
-                {name}
+                <motion.span className="inline-block transition-transform duration-fast ease-in-out group-hover:translate-x-2 group-active:scale-95">
+                    {name}
+                </motion.span>
             </WithNavLink>
             <NavRouteSelectedIndicator isSelected={isSelected} />
         </li>
@@ -115,7 +118,8 @@ interface INavLinkProps extends PropsWithChildren {
 }
 function WithNavLink({ href, isSelected, className, children }: INavLinkProps) {
     if (isSelected) {
-        return <span className={className}>{children}</span>;
+        // a little bit of a fib with the cursor-pointer, may revisit in future
+        return <span className={twMerge(className, "cursor-pointer")}>{children}</span>;
     }
 
     return (

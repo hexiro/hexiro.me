@@ -81,27 +81,3 @@ export const slideFromBottom: Variants = {
         transition: extraBounce,
     },
 };
-
-// export const animationStyles: CSS = {
-//     willChange: "transform",
-//     willTransition: "transform",
-//     transitionDuration: "$fast",
-//     transitionTimingFunction: "$ease-in-out",
-// };
-
-// export const animationStylesWithDisplay: CSS = {
-//     display: "inline-block",
-//     ...animationStyles,
-// };
-
-// export const pop: CSS = {
-//     "&:hover": {
-//         transform: "translateY(-2px)",
-//     },
-// };
-
-// export const tap: CSS = {
-//     "&:active": {
-//         transform: "scale(0.96)!important",
-//     },
-// };
