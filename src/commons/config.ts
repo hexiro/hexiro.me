@@ -96,6 +96,7 @@ export interface IRoute {
 }
 
 export type INavRouteName = (typeof ROUTES)[number]["name"];
+export type INavRoutePath = (typeof ROUTES)[number]["path"];
 
 export const ROUTES = [
     {

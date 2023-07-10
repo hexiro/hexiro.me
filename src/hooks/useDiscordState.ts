@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
-import { discordStateAtom } from "@/commons/atoms";
 import { DISCORD_SNOWFLAKE, INITIAL_DISCORD_STATE } from "@/commons/config";
+import { discordStateAtom } from "@/commons/state";
 
 import type { DiscordPresenceState } from "@/data/discord";
 import { parsePresence } from "@/data/discord";
