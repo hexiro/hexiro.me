@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 import { Golos_Text as GolosText, Noto_Sans_Mono as NotoSansMono } from "next/font/google";
+import Script from "next/script";
 import React from "react";
 
 import Content from "@/layout/Content";
@@ -29,6 +30,11 @@ const monospaceFont = NotoSansMono({
 export default function App({ Component, pageProps, router }: AppProps) {
     return (
         <>
+            <Script
+                async
+                src="https://umami.hexiro.me/script.js"
+                data-website-id="79c5f103-7ed6-4bc8-9d6a-626e5f1e2ac2"
+            />
             <style jsx global>{`
                 html {
                     font-family: ${sansSerifFont.style.fontFamily};
