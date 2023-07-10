@@ -1,6 +1,7 @@
 import { styled } from "@/theme";
 
 import type { AppProps } from "next/app";
+import Script from "next/script";
 
 import NoScript from "@/components/NoScript";
 
@@ -8,14 +9,17 @@ import Footer from "@/layout/Footer";
 import Nav from "@/layout/Nav";
 import { GlobalSeo } from "@/layout/Seo";
 
-import { Analytics } from "@vercel/analytics/react";
 import { AnimatePresence } from "framer-motion";
 import { Provider as JotaiProvider } from "jotai";
 
 export default function App({ Component, pageProps, router }: AppProps) {
     return (
         <>
-            <Analytics />
+            <Script
+                async
+                src="https://umami.hexiro.me/script.js"
+                data-website-id="79c5f103-7ed6-4bc8-9d6a-626e5f1e2ac2"
+            />
             <JotaiProvider>
                 <GlobalSeo />
                 <Body>

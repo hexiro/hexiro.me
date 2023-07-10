@@ -14,7 +14,6 @@
     },
     "dependencies": {
         "@stitches/react": "^1.2.8",
-        "@vercel/analytics": "^0.1.11",
         "framer-motion": "^10.9.1",
         "ipaddr.js": "^2.0.1",
         "jotai": "^2.0.3",
