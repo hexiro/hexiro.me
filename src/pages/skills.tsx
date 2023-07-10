@@ -1,7 +1,8 @@
 import { SKILLS } from "@/commons/config";
 
-import { Card } from "@/components/ui/Cards";
 import { H1, H3, H4 } from "@/components/ui/Headings";
+
+import SkillCard from "@/components/cards/SkillCard";
 
 export default function SkillsPage() {
     return (
@@ -14,20 +15,13 @@ export default function SkillsPage() {
                 {Object.entries(SKILLS).map(([name, values]) => (
                     <li key={name}>
                         <div className="mb-2">
-                            <H4 mono className="text-text ">
+                            <H4 mono className="text-text">
                                 {name}
                             </H4>
                         </div>
-                        <ul className="flex flex-row flex-wrap gap-x-6 gap-y-4">
-                            {values.map(({ name, icon: Icon }) => (
-                                <Card
-                                    key={name}
-                                    as="li"
-                                    className="flex min-w-[375px] flex-row items-center gap-x-2"
-                                >
-                                    <Icon className="h-8 w-8" />
-                                    <span className="text-[20px] text-text">{name}</span>
-                                </Card>
+                        <ul className="grid auto-cols-fr gap-x-6 gap-y-4 sm:grid-cols-2 xl:grid-cols-3">
+                            {values.map((skill) => (
+                                <SkillCard key={skill.name} skill={skill} />
                             ))}
                         </ul>
                     </li>
