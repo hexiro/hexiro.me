@@ -19,6 +19,29 @@ import {
     SteamIcon,
     EpicGamesIcon,
     LastFmIcon,
+    NextIcon,
+    TailwindCSSIcon,
+    SocketIOIcon,
+    FastAPIIcon,
+    ExpressIcon,
+    FastifyIcon,
+    CodeIcon,
+    RedisIcon,
+    MongoDBIcon,
+    PostgreSQLIcon,
+    DockerIcon,
+    GitIcon,
+    FigmaIcon,
+    PostmanIcon,
+    SentryIcon,
+    PytestIcon,
+    ESLintIcon,
+    RuffIcon,
+    PoetryIcon,
+    YarnIcon,
+    VercelIcon,
+    CloudflareIcon,
+    HerokuIcon,
 } from "@/components/ui/Icons";
 
 import type { Data as LanyardData } from "use-lanyard";
@@ -161,8 +184,118 @@ export const SKILLS = {
 
     "Frameworks / Libraries": [
         {
+            name: "Next.js",
+            icon: NextIcon,
+        },
+        {
             name: "React",
             icon: ReactIcon,
+        },
+        {
+            name: "Tailwind CSS",
+            icon: TailwindCSSIcon,
+        },
+        {
+            name: "Socket.IO",
+            icon: SocketIOIcon,
+        },
+        {
+            name: "FastAPI",
+            icon: FastAPIIcon,
+        },
+        {
+            name: "Express",
+            icon: ExpressIcon,
+        },
+        {
+            name: "Fastify",
+            icon: FastifyIcon,
+        },
+        {
+            name: "Click",
+            icon: CodeIcon,
+        },
+    ],
+    "Databases / Datastores": [
+        {
+            name: "Redis",
+            icon: RedisIcon,
+        },
+        {
+            name: "MongoDB",
+            icon: MongoDBIcon,
+        },
+        {
+            name: "PostgreSQL",
+            icon: PostgreSQLIcon,
+        },
+    ],
+    "Tooling / Software": [
+        {
+            name: "Docker",
+            icon: DockerIcon,
+        },
+        {
+            name: "Git",
+            icon: GitIcon,
+        },
+        {
+            name: "Figma",
+            icon: FigmaIcon,
+        },
+        {
+            name: "Postman",
+            icon: PostmanIcon,
+        },
+        {
+            name: "Sentry",
+            icon: SentryIcon,
+        },
+        {
+            name: "Pytest",
+            icon: PytestIcon,
+        },
+        {
+            name: "ESLint",
+            icon: ESLintIcon,
+        },
+        {
+            name: "Mypy",
+            icon: CodeIcon,
+        },
+        {
+            name: "Ruff",
+            icon: RuffIcon,
+        },
+        {
+            name: "Rich",
+            icon: CodeIcon,
+        },
+        {
+            name: "Poetry",
+            icon: PoetryIcon,
+        },
+        {
+            name: "Yarn",
+            icon: YarnIcon,
+        },
+    ],
+    Services: [
+        {
+            name: "Vercel",
+            icon: VercelIcon,
+        },
+        {
+            name: "GitHub",
+            icon: GitHubIcon,
+        },
+        {
+            name: "Cloudflare",
+            icon: CloudflareIcon,
+        },
+        {
+            name: "Heroku",
+            icon: HerokuIcon,
         },
     ],
 } satisfies ISkillGroups;
