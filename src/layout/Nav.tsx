@@ -78,8 +78,12 @@ function NavRoute({ route }: INavRouteProps) {
 
     return (
         <li key={name} className="group relative flex h-full w-full items-center text-lg">
-            <WithNavLink href={path} className="uppercase text-off-white" isSelected={isSelected}>
-                <span className="mr-1 text-green">/</span>
+            <WithNavLink
+                href={path}
+                className="inline-flex gap-x-1 uppercase text-off-white"
+                isSelected={isSelected}
+            >
+                <span className="text-green">/</span>
                 <motion.span className="inline-block transition-transform duration-fast ease-in-out group-hover:translate-x-2 group-active:scale-95">
                     {name}
                 </motion.span>
