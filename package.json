@@ -14,7 +14,6 @@
     },
     "dependencies": {
         "@floating-ui/react-dom-interactions": "^0.13.3",
-        "@studio-freight/react-lenis": "^0.0.22",
         "copy-to-clipboard": "^3.3.3",
         "framer-motion": "^10.12.16",
         "ipaddr.js": "^2.1.0",
