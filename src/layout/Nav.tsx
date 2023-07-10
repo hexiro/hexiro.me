@@ -49,7 +49,19 @@ const Nav = () => {
             {...(isScrollable ? events : {})}
         >
             <div className="flex items-center justify-center px-8 lg:h-52 lg:min-h-[10em] lg:w-full lg:px-6">
-                <H2 className="text-3xl sm:text-4xl lg:text-5xl">NL</H2>
+                <button
+                    type="button"
+                    aria-label="Scroll to top"
+                    onClick={() =>
+                        window.scroll({
+                            top: 0,
+                            left: 0,
+                            behavior: "smooth",
+                        })
+                    }
+                >
+                    <H2 className="text-3xl transition-transform ease-in-out duration-fast drop-shadow-md hover:scale-110 active:scale-95 sm:text-4xl lg:text-5xl">NL</H2>
+                </button>
             </div>
             <HorizontalDivider className="my-auto h-[80%] w-0 divide-x lg:mx-auto lg:my-0 lg:h-0 lg:w-[80%]" />
             <ul className="flex h-full w-fit items-center gap-8 px-12  lg:my-8 lg:h-[unset] lg:w-full lg:flex-col lg:items-start lg:gap-4 lg:p-6 lg:pr-0">
@@ -58,7 +70,7 @@ const Nav = () => {
                 ))}
             </ul>
             <div className="mb-8 hidden w-full flex-grow items-center tall:flex">
-                <VerticalDivider className="ml-[25%] h-3/4 hidden lg:block" />
+                <VerticalDivider className="ml-[25%] hidden h-3/4 lg:block" />
             </div>
         </motion.nav>
     );
@@ -77,7 +89,7 @@ function NavRoute({ route }: INavRouteProps) {
     const isSelected = selectedRoutePath === path;
 
     return (
-        <li key={name} className="group relative flex h-full w-full items-center text-lg">
+        <li key={name} className="group relative flex h-full w-full items-center text-lg drop-shadow-md">
             <WithNavLink
                 href={path}
                 className="inline-flex w-full gap-x-1 uppercase text-off-white"
