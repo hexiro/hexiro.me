@@ -87,7 +87,7 @@ function NavRoute({ route }: INavRouteProps) {
                     isSelected={isSelected}
                 >
                     <span className="text-green">/</span>
-                    <motion.span className="transition-transform duration-fast ease-in-out group-hover:translate-x-2 group-active:scale-95">
+                    <motion.span className="transition-transform duration-fast ease-in-out group-hover:translate-x-1 group-active:scale-95 lg:group-hover:translate-x-2">
                         {name}
                     </motion.span>
                 </WithNavLink>

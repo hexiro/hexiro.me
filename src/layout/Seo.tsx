@@ -8,19 +8,19 @@ interface SeoProps {
 }
 
 export function Seo({ name, description }: SeoProps) {
-    return <NextSeo title={name} titleTemplate="Hexiro | %s" description={description} />;
+    return <NextSeo title={name} titleTemplate="NL // %s" description={description} />;
 }
 
 export function GlobalSeo() {
     return (
         <DefaultSeo
-            defaultTitle="Hexiro"
+            defaultTitle="NL"
             canonical="https://hexiro.me/"
             openGraph={{
                 type: "website",
                 locale: "en_US",
                 url: "https://hexiro.me/",
-                site_name: "hexiro.me",
+                siteName: "hexiro.me",
             }}
             twitter={{
                 handle: `@${TWITTER}`,
@@ -31,15 +31,15 @@ export function GlobalSeo() {
             additionalMetaTags={[
                 {
                     name: "application-name",
-                    content: "Hexiro",
+                    content: "NL",
                 },
                 {
                     name: "apple-mobile-web-app-title",
-                    content: "Hexiro",
+                    content: "NL",
                 },
                 {
                     name: "keywords",
-                    content: "Hexiro, Hexiiro, Hex, Hexiro.me",
+                    content: "Nathan Lodge, Hexiro, Hexiiro, Hex, Hexiro.me",
                 },
                 // {
                 //     name: "theme-color",

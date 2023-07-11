@@ -7,16 +7,22 @@ import { ProjectCard } from "@/components/cards/ProjectCard";
 import type { IProject } from "@/data/projects";
 import { fetchProjects } from "@/data/projects";
 
+import { Seo } from "@/layout/Seo";
+
 interface ProjectsPageProps {
     projects: IProject[];
 }
 
+const NAME = "Projects";
+const DESCRIPTION = "My open-source projects.";
+
 export default function ProjectsPage({ projects }: ProjectsPageProps) {
     return (
         <>
+            <Seo name={NAME} description={DESCRIPTION} />
             <div className="mb-12">
-                <H1>Projects</H1>
-                <H3 className="text-subtitle">My open-source projects.</H3>
+                <H1>{NAME}</H1>
+                <H3 className="text-subtitle">{DESCRIPTION}</H3>
             </div>
             <div className="grid auto-cols-fr gap-6 md:grid-cols-2">
                 {projects.map((project) => (

@@ -11,6 +11,7 @@ import Page from "@/layout/Page";
 import { PageNextNavigation, PagePrevNavigation } from "@/layout/PageEndNavigation";
 import PageTransition from "@/layout/PageTransition";
 import "@/styles/globals.css";
+import { GlobalSeo } from "@/layout/Seo";
 
 const sansSerifFont = GolosText({
     weight: "variable",
@@ -85,6 +86,7 @@ function Meta() {
                     font-family: ${sansSerifFont.style.fontFamily};
                 }
             `}</style>
+            <GlobalSeo />  
         </>
     );
 }

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { ComponentProps, PropsWithChildren } from "react";
 
-import { SOCIALS_MAP } from "@/commons/config";
+import { AGE, SOCIALS_MAP } from "@/commons/config";
 
 import { Card } from "@/components/ui/Cards";
 import { H1, H3, H4 } from "@/components/ui/Headings";
@@ -9,11 +9,14 @@ import { H1, H3, H4 } from "@/components/ui/Headings";
 import { SocialCard } from "@/components/cards/SocialCard";
 
 import introSrc from "@/images/intro.png";
+import { Seo } from "@/layout/Seo";
 
 import { twMerge } from "tailwind-merge";
 
-const INTRO =
-    "Hey, I'm Nathan Lodge :p. I'm an 18-year-old software engineer based in the United States. Thank you for checking out my website :), I've been a passionate programmer since being 13 years old in middle school, and since then I've developed my skills and created a catalog of projects. Instead of repeating myself, I'm here to tell you about my life outside of software development.";
+const NAME = "About";
+const DESCRIPTION = "My life beyond the IDE.";
+
+const INTRO = `Hey, I'm Nathan Lodge :p. I'm an ${AGE}-year-old software engineer based in the United States. Thank you for checking out my website :), I've been a passionate programmer since being 13 years old in middle school, and since then I've developed my skills and created a catalog of projects. Instead of repeating myself, I'm here to tell you about my life outside of software development.`;
 
 const MAIN_HOBBIES =
     "While programming is my primary hobby, I of course do other human things like hanging out with my friends, watching movies, and listening to music. My favorite genres of movies are psychological thrillers, drama, and crime. I also, naturally, love listening to music. My favorite genres are rap and r&b, and to be a little more specific, I like plugg, pluggnb, cloud rap, and trap.";
@@ -24,9 +27,10 @@ const VIDEO_GAMES =
 export default function AboutPage() {
     return (
         <>
+            <Seo name={NAME} description={DESCRIPTION} />
             <div className="mb-12">
-                <H1>About</H1>
-                <H3 className="text-subtitle">My life beyond the IDE.</H3>
+                <H1>{NAME}</H1>
+                <H3 className="text-subtitle">{DESCRIPTION}</H3>
             </div>
             <div className="flex max-w-6xl flex-col gap-y-24">
                 <AboutSection text={INTRO}>

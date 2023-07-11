@@ -4,12 +4,18 @@ import { H1, H3, H4 } from "@/components/ui/Headings";
 
 import SkillCard from "@/components/cards/SkillCard";
 
+import { Seo } from "@/layout/Seo";
+
+const NAME = "Skills";
+const DESCRIPTION = "My skills with modern technology.";
+
 export default function SkillsPage() {
     return (
         <>
+            <Seo name={NAME} description={DESCRIPTION} />
             <div className="mb-12">
-                <H1>Skills</H1>
-                <H3 className="text-subtitle">My skills with various technology.</H3>
+                <H1>{NAME}</H1>
+                <H3 className="text-subtitle">{DESCRIPTION}</H3>
             </div>
             <ul className="flex flex-col gap-y-12">
                 {Object.entries(SKILLS).map(([name, values]) => (

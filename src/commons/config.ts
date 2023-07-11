@@ -380,13 +380,7 @@ export const SOCIALS = [
         icon: TwitterIcon,
         canCopy: true,
     },
-    {
-        name: "Polywork",
-        value: "nathlod",
-        link: "https://www.polywork.com/nathlod",
-        icon: PolyworkIcon,
-        canCopy: true,
-    },
+
     {
         name: "Spotify",
         value: "nathlod",
@@ -406,6 +400,13 @@ export const SOCIALS = [
         value: "nlodge0702",
         link: "https://www.instagram.com/nlodge0702/",
         icon: InstagramIcon,
+        canCopy: true,
+    },
+    {
+        name: "Polywork",
+        value: "nathlod",
+        link: "https://www.polywork.com/nathlod",
+        icon: PolyworkIcon,
         canCopy: true,
     },
     {
