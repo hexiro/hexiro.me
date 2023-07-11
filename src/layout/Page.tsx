@@ -1,8 +1,12 @@
-import { memo } from "react";
-
 import { twMerge } from "tailwind-merge";
 
-function Page({ cssVariables, children }: { cssVariables: string[]; children: React.ReactNode }) {
+export default function Page({
+    cssVariables,
+    children,
+}: {
+    cssVariables: string[];
+    children: React.ReactNode;
+}) {
     return (
         <div
             className={twMerge(
@@ -14,5 +18,3 @@ function Page({ cssVariables, children }: { cssVariables: string[]; children: Re
         </div>
     );
 }
-
-export default memo(Page);

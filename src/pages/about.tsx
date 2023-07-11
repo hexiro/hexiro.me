@@ -77,17 +77,19 @@ interface IImageCardProps extends ComponentProps<typeof Image> {
 }
 
 const ImageCard = ({ caption, alt, ...props }: IImageCardProps) => (
-    <Card className="grow-1 ml-auto flex flex-col items-center justify-center gap-4 self-start px-6 py-5 sm:flex-row sm:py-6 xl:flex-col xl:py-5">
-        <div className="max-w-xs self-start  xl:mt-0">
-            <H4 green className="text-base md:text-[28px]">
-                {caption}
-            </H4>
-            <p className="sm:text-base">{alt}</p>
+    <Card className="w-full px-8 py-6 sm:px-10 sm:py-6 xl:px-6 xl:py-5">
+        <div className="flex flex-col items-start mx-auto sm:items-center justify-between gap-y-8 w-fit sm:w-auto sm:flex-row sm:gap-x-6 xl:flex-col">
+            <div className="sm:self-start xl:mt-0 xl:max-w-xs">
+                <H4 green className="text-base md:text-[28px]">
+                    {caption}
+                </H4>
+                <p className="sm:text-base">{alt}</p>
+            </div>
+            <Image
+                alt={`${caption}, ${alt}`}
+                className="max-h-xs h-full w-full max-w-xs rounded-md border-2 border-solid border-white/10 drop-shadow-md sm:max-h-[16rem] sm:max-w-[16rem] md:h-auto md:w-auto"
+                {...props}
+            />
         </div>
-        <Image
-            alt={`${caption}, ${alt}`}
-            className="max-h-xs h-full w-full max-w-xs rounded-md border-2 border-solid border-white/10 drop-shadow-md md:h-auto md:w-auto"
-            {...props}
-        />
     </Card>
 );
