@@ -26,7 +26,7 @@ const Nav = () => {
             ref={ref}
             layout
             layoutRoot
-            className="fixed top-0 z-40 flex h-32 w-screen flex-row overflow-x-auto border-b-2 border-solid border-white/10 lg:border-white/5 bg-background-secondary lg:h-screen lg:w-52 lg:flex-col lg:items-start lg:overflow-hidden lg:overflow-y-auto lg:border-0 lg:border-b-0 lg:border-r-2"
+            className="fixed top-0 z-40 flex h-32 w-screen flex-row overflow-x-auto border-b-2 border-solid border-white/10 bg-background-secondary lg:h-screen lg:w-52 lg:flex-col lg:items-start lg:overflow-hidden lg:overflow-y-auto lg:border-0 lg:border-b-0 lg:border-r-2 lg:border-white/5"
             onMouseDown={(e) => {
                 // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
                 if (!ref.current) return;
@@ -79,20 +79,19 @@ function NavRoute({ route }: INavRouteProps) {
     const isSelected = selectedRoutePath === path;
 
     return (
-        <li
-            key={name}
-            className="group relative flex h-full w-full items-center text-lg drop-shadow-md"
-        >
-            <WithNavLink
-                href={path}
-                className="inline-flex w-full gap-x-1 uppercase text-off-white"
-                isSelected={isSelected}
-            >
-                <span className="text-green">/</span>
-                <motion.span className="block transition-transform duration-fast ease-in-out group-hover:translate-x-2 group-active:scale-95">
-                    {name}
-                </motion.span>
-            </WithNavLink>
+        <li key={name} className="relative flex h-full w-full items-center text-lg drop-shadow-md">
+            <div className="group lg:w-full">
+                <WithNavLink
+                    href={path}
+                    className="inline-flex w-full gap-x-1 uppercase text-off-white"
+                    isSelected={isSelected}
+                >
+                    <span className="text-green">/</span>
+                    <motion.span className="transition-transform duration-fast ease-in-out group-hover:translate-x-2 group-active:scale-95">
+                        {name}
+                    </motion.span>
+                </WithNavLink>
+            </div>
             <NavRouteSelectedIndicator isSelected={isSelected} />
         </li>
     );

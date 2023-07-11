@@ -23,7 +23,7 @@ export function Card({ isHoverable, className, children, as = "div", ...props }:
     className = twMerge(
         "relative inline-block rounded-md border-2 border-white/10 bg-background-secondary px-8 py-6 shadow-lg",
         isHoverable &&
-            "hover:perspective-800px transition-transform duration-[375ms] ease-in-out hover:rotate-[-1deg] hover:scale-105 active:scale-[.97]",
+            "transition-transform duration-[375ms] ease-in-out hover:rotate-[-1deg] hover:scale-[1.03] active:scale-[.97]",
         className
     );
 
