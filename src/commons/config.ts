@@ -161,6 +161,7 @@ export const ROUTES_META = [
 export interface ISkill {
     name: string;
     icon: IconType;
+    link: string;
 }
 
 export type ISkillGroups = Record<string, ISkill[]>;
@@ -170,18 +171,22 @@ export const SKILLS = {
         {
             name: "Python",
             icon: PythonIcon,
+            link: "https://www.python.org",
         },
         {
             name: "TypeScript",
             icon: TypeScriptIcon,
+            link: "https://www.typescriptlang.org",
         },
         {
             name: "HTML",
             icon: HTMLIcon,
+            link: "https://developer.mozilla.org/en-US/docs/Web/HTML",
         },
         {
             name: "CSS",
             icon: CSSIcon,
+            link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
         },
     ],
 
@@ -189,116 +194,143 @@ export const SKILLS = {
         {
             name: "Next.js",
             icon: NextIcon,
+            link: "https://nextjs.org",
         },
         {
             name: "React",
             icon: ReactIcon,
+            link: "https://react.dev",
         },
         {
             name: "Tailwind CSS",
             icon: TailwindCSSIcon,
+            link: "https://tailwindcss.com",
         },
         {
             name: "Socket.IO",
             icon: SocketIOIcon,
+            link: "https://socket.io",
         },
         {
             name: "FastAPI",
             icon: FastAPIIcon,
+            link: "https://fastapi.tiangolo.com",
         },
         {
             name: "Express",
             icon: ExpressIcon,
+            link: "https://expressjs.com",
         },
         {
             name: "Fastify",
             icon: FastifyIcon,
+            link: "https://www.fastify.io",
         },
         {
             name: "Click",
             icon: CodeIcon,
+            link: "https://click.palletsprojects.com",
         },
     ],
     "Databases / Datastores": [
         {
             name: "Redis",
             icon: RedisIcon,
+            link: "https://redis.io",
         },
         {
             name: "MongoDB",
             icon: MongoDBIcon,
+            link: "https://www.mongodb.com",
         },
         {
             name: "PostgreSQL",
             icon: PostgreSQLIcon,
+            link: "https://www.postgresql.org",
         },
     ],
     "Tooling / Software": [
         {
             name: "Docker",
             icon: DockerIcon,
+            link: "https://www.docker.com",
         },
         {
             name: "Git",
             icon: GitIcon,
+            link: "https://git-scm.com",
         },
         {
             name: "Figma",
             icon: FigmaIcon,
+            link: "https://www.figma.com",
         },
         {
             name: "Postman",
             icon: PostmanIcon,
+            link: "https://www.postman.com",
         },
         {
             name: "Sentry",
             icon: SentryIcon,
+            link: "https://sentry.io",
         },
         {
             name: "Pytest",
             icon: PytestIcon,
+            link: "https://pytest.org",
         },
         {
             name: "ESLint",
             icon: ESLintIcon,
+            link: "https://eslint.org",
         },
         {
             name: "Mypy",
             icon: CodeIcon,
+            link: "https://mypy-lang.org",
         },
         {
             name: "Ruff",
             icon: RuffIcon,
+            link: "https://beta.ruff.rs/docs/",
         },
         {
             name: "Rich",
             icon: CodeIcon,
+            link: "https://rich.readthedocs.io",
         },
         {
             name: "Poetry",
             icon: PoetryIcon,
+            link: "https://python-poetry.org",
         },
         {
             name: "Yarn",
             icon: YarnIcon,
+            link: "https://yarnpkg.com",
         },
     ],
     Services: [
         {
             name: "Vercel",
             icon: VercelIcon,
+            link: "https://vercel.com",
         },
         {
             name: "GitHub",
             icon: GitHubIcon,
+            link: "https://github.com",
         },
         {
             name: "Cloudflare",
             icon: CloudflareIcon,
+            link: "https://www.cloudflare.com",
         },
         {
             name: "Heroku",
             icon: HerokuIcon,
+            link: "https://www.heroku.com",
         },
     ],
 } satisfies ISkillGroups;

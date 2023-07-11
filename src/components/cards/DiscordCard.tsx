@@ -44,7 +44,7 @@ export function DiscordCard({ className }: { className?: string }) {
                 </div>
                 <HorizontalDivider className="block border-[1px] sm:hidden" />
                 <SecondaryCard className="flex flex-row gap-x-4 border-transparent bg-transparent p-0 shadow-none sm:w-[500px] sm:gap-x-6 sm:border-solid sm:border-white/10 sm:bg-white/5 sm:p-5 sm:shadow-sm">
-                    <div className="relative hidden h-16 w-16 shrink-0 self-center xs:block sm:h-[100px] sm:w-[100px]">
+                    <div className="relative hidden h-16 w-16 shrink-0 self-center sm:h-[100px] sm:w-[100px] xs:block">
                         {state.ide ? (
                             <Image
                                 priority
