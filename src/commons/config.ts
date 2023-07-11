@@ -42,6 +42,8 @@ import {
     VercelIcon,
     CloudflareIcon,
     HerokuIcon,
+    PolyworkIcon,
+    InstagramIcon,
 } from "@/components/ui/Icons";
 
 import type { Data as LanyardData } from "use-lanyard";
@@ -347,11 +349,11 @@ export const SOCIALS = [
         canCopy: true,
     },
     {
-        name: "IMDb",
+        name: "Polywork",
         value: "nathlod",
-        link: "https://www.imdb.com/user/ur154442245/",
-        icon: IMDbIcon,
-        canCopy: false,
+        link: "https://www.polywork.com/nathlod",
+        icon: PolyworkIcon,
+        canCopy: true,
     },
     {
         name: "Spotify",
@@ -368,9 +370,10 @@ export const SOCIALS = [
         canCopy: true,
     },
     {
-        name: "Epic Games",
-        value: "hexiro",
-        icon: EpicGamesIcon,
+        name: "Instagram",
+        value: "nlodge0702",
+        link: "https://www.instagram.com/nlodge0702/",
+        icon: InstagramIcon,
         canCopy: true,
     },
     {
@@ -379,6 +382,19 @@ export const SOCIALS = [
         link: "https://www.last.fm/user/nathlodge",
         icon: LastFmIcon,
         canCopy: true,
+    },
+    {
+        name: "Epic Games",
+        value: "hexiro",
+        icon: EpicGamesIcon,
+        canCopy: true,
+    },
+    {
+        name: "IMDb",
+        value: "nathlod",
+        link: "https://www.imdb.com/user/ur154442245/",
+        icon: IMDbIcon,
+        canCopy: false,
     },
 ] as const satisfies readonly ISocial[];
 
