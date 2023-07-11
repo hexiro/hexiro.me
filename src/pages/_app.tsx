@@ -4,8 +4,8 @@ import Script from "next/script";
 import React, { useEffect } from "react";
 
 import { NAV_PATHS } from "@/commons/config";
-import { useSelectedRouteStore, useRouteAnimationStore } from "@/commons/state";
 
+import { useSelectedRouteStore, useRouteAnimationStore } from "@/hooks/stores";
 import Nav from "@/layout/Nav";
 import Page from "@/layout/Page";
 import { PageNextNavigation, PagePrevNavigation } from "@/layout/PageEndNavigation";

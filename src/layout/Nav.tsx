@@ -1,17 +1,15 @@
 import type { MutableRefObject, PropsWithChildren } from "react";
 import { memo } from "react";
-import { useRef, useCallback } from "react";
+import { useRef } from "react";
 
 import type { IRoute } from "@/commons/config";
 import { ROUTES } from "@/commons/config";
-import type { NavDirection } from "@/commons/state";
-import { useNavStateStore, useSelectedRouteStore } from "@/commons/state";
 
 import { HorizontalDivider, VerticalDivider } from "@/components/layout/Divider";
 import { H2 } from "@/components/ui/Headings";
 import { Link } from "@/components/ui/Links";
 
-import useDebouncedResizeEffect from "@/hooks/useDebouncedResizeEffect";
+import { useSelectedRouteStore } from "@/hooks/stores";
 
 import { motion } from "framer-motion";
 import { useDraggable } from "react-use-draggable-scroll";
@@ -19,34 +17,24 @@ import { twMerge } from "tailwind-merge";
 
 const Nav = () => {
     const ref = useRef<HTMLElement>() as MutableRefObject<HTMLElement>;
-    const { events } = useDraggable(ref);
-
-    const setNavState = useNavStateStore((state) => state.set);
-    const isScrollable = useNavStateStore((state) => state.scrollable);
-
-    const resizeHandler = useCallback(() => {
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        if (!ref.current) return;
-
-        const { clientWidth, scrollWidth } = ref.current;
-        const { width, height } = ref.current.getBoundingClientRect();
-
-        const isScrollable = scrollWidth > clientWidth;
-        const direction: NavDirection = height > width ? "vertical" : "horizontal";
-
-        setNavState(direction, isScrollable);
-    }, [setNavState]);
-
-    useDebouncedResizeEffect(resizeHandler, 100, [ref.current]);
+    const {
+        events: { onMouseDown },
+    } = useDraggable(ref);
 
     return (
         <motion.nav
             ref={ref}
             layout
             layoutRoot
-            data-lenis-prevent=""
-            className="fixed top-0 z-40 flex h-32  w-screen flex-row overflow-x-auto border-b-2 border-solid border-white/10 bg-background-secondary lg:h-screen lg:w-52 lg:flex-col lg:items-start lg:overflow-hidden lg:overflow-y-auto lg:border-0"
-            {...(isScrollable ? events : {})}
+            className="fixed top-0 z-40 flex h-32 w-screen flex-row overflow-x-auto border-b-2 border-solid border-white/10 lg:border-white/5 bg-background-secondary lg:h-screen lg:w-52 lg:flex-col lg:items-start lg:overflow-hidden lg:overflow-y-auto lg:border-0 lg:border-b-0 lg:border-r-2"
+            onMouseDown={(e) => {
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                if (!ref.current) return;
+                const { clientWidth, scrollWidth } = ref.current;
+                const isScrollable = scrollWidth > clientWidth;
+                if (!isScrollable) return;
+                onMouseDown(e);
+            }}
         >
             <div className="flex items-center justify-center px-8 lg:h-52 lg:min-h-[10em] lg:w-full lg:px-6">
                 <button
@@ -60,7 +48,9 @@ const Nav = () => {
                         })
                     }
                 >
-                    <H2 className="text-3xl transition-transform ease-in-out duration-fast drop-shadow-md hover:scale-110 active:scale-95 sm:text-4xl lg:text-5xl">NL</H2>
+                    <H2 className="text-3xl drop-shadow-md transition-transform duration-fast ease-in-out hover:scale-110 active:scale-95 sm:text-4xl lg:text-5xl">
+                        NL
+                    </H2>
                 </button>
             </div>
             <HorizontalDivider className="my-auto h-[80%] w-0 divide-x lg:mx-auto lg:my-0 lg:h-0 lg:w-[80%]" />
@@ -89,7 +79,10 @@ function NavRoute({ route }: INavRouteProps) {
     const isSelected = selectedRoutePath === path;
 
     return (
-        <li key={name} className="group relative flex h-full w-full items-center text-lg drop-shadow-md">
+        <li
+            key={name}
+            className="group relative flex h-full w-full items-center text-lg drop-shadow-md"
+        >
             <WithNavLink
                 href={path}
                 className="inline-flex w-full gap-x-1 uppercase text-off-white"
@@ -110,19 +103,12 @@ interface INavRouteSelectedIndicatorProps {
 }
 
 function NavRouteSelectedIndicator({ isSelected }: INavRouteSelectedIndicatorProps) {
-    const navDirection = useNavStateStore((state) => state.direction);
     if (!isSelected) return null;
-
-    const style = {
-        originY: navDirection === "vertical" ? undefined : "0px",
-        originX: navDirection === "vertical" ? "0px" : undefined,
-    };
 
     return (
         <motion.div
+            className="absolute bottom-0 z-20 h-2 w-full rounded-t-[3px] bg-green lg:right-0 lg:top-[-10%] lg:h-[120%] lg:w-2 lg:rounded-l-[3px] lg:rounded-tr-none"
             layoutId="selected-route-indicator"
-            className="absolute bottom-0 z-20 h-2 w-full rounded-t-[4px] bg-green lg:right-0 lg:top-[-10%] lg:h-[120%] lg:w-2 lg:rounded-l-[4px] lg:rounded-tr-none"
-            style={style}
         />
     );
 }

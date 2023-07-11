@@ -1,4 +1,4 @@
-import { useRouteAnimationStore } from "@/commons/state";
+import { useRouteAnimationStore } from "@/hooks/stores";
 
 import type { Variants } from "framer-motion";
 import { AnimatePresence, motion } from "framer-motion";
