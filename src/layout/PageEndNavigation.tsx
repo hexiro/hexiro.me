@@ -15,7 +15,12 @@ export function PagePrevNavigation() {
     const prevRoute = NAV_PATHS[selectedIndex - 1];
 
     return (
-        <PageEndNavigation href={prevRoute} icon={ArrowUpIcon} className="mb-8 mt-2">
+        <PageEndNavigation
+            href={prevRoute}
+            icon={ArrowUpIcon}
+            className="mb-8 mt-2"
+            iconClassName="group-hover:-translate-y-[5px]"
+        >
             Prev
         </PageEndNavigation>
     );
@@ -26,7 +31,12 @@ export function PageNextNavigation() {
     const nextRoute = NAV_PATHS[selectedIndex + 1];
 
     return (
-        <PageEndNavigation href={nextRoute} icon={ArrowDownIcon} className="mb-2 mt-8">
+        <PageEndNavigation
+            href={nextRoute}
+            icon={ArrowDownIcon}
+            className="mb-2 mt-8"
+            iconClassName="group-hover:translate-y-[5px]"
+        >
             Next
         </PageEndNavigation>
     );
@@ -36,9 +46,16 @@ interface IPageEndNavigationProps extends PropsWithChildren {
     href: string | undefined;
     icon: IconType;
     className?: string;
+    iconClassName?: string;
 }
 
-function PageEndNavigation({ href, icon: Icon, className, children }: IPageEndNavigationProps) {
+function PageEndNavigation({
+    href,
+    icon: Icon,
+    className,
+    iconClassName,
+    children,
+}: IPageEndNavigationProps) {
     const AnchorElement = href ? Link : "a";
     const disabled = !href;
 
@@ -47,12 +64,17 @@ function PageEndNavigation({ href, icon: Icon, className, children }: IPageEndNa
             // @ts-expect-error ts doesn't recognize that href can't be undefined when using Link
             href={href}
             className={twMerge(
-                "justify-left flex items-center text-base text-text aria-disabled:cursor-not-allowed aria-disabled:line-through aria-disabled:opacity-50",
+                "justify-left group flex items-center text-base text-text aria-disabled:cursor-not-allowed aria-disabled:line-through aria-disabled:opacity-50",
                 className
             )}
             aria-disabled={disabled}
         >
-            <Icon className="text-text" />
+            <Icon
+                className={twMerge(
+                    "text-text transition-transform duration-[225ms] group-aria-disabled:translate-y-0",
+                    iconClassName
+                )}
+            />
             <span className="ml-1">{children}</span>
         </AnchorElement>
     );
