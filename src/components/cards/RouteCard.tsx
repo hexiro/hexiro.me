@@ -13,7 +13,7 @@ export function RouteCard({ name, path, description, icon: Icon, className }: IR
     return (
         <Card isHoverable className={twMerge("group w-full", className)}>
             <div className="mb-3 flex flex-col gap-y-1">
-                <Icon className="h-7 w-7" />
+                <Icon className="h-8 w-8 transition-transform group-hover:rotate-6" />
                 <LinkOverlay
                     className="font-sans text-[28px] font-extrabold leading-none text-off-white"
                     href={path}

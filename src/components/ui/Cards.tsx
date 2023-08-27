@@ -21,16 +21,16 @@ type CardIsomorphicProps =
 
 export function Card({ isHoverable, className, children, as = "div", ...props }: CardProps) {
     className = twMerge(
-        "relative inline-block rounded-md border-2 border-white/10 bg-background-secondary px-8 py-6 shadow-lg",
+        "relative group inline-block rounded-md border-2 border-white/10 bg-background-secondary px-8 py-6 shadow-lg",
         isHoverable &&
-            "transition-transform duration-[375ms] ease-in-out hover:rotate-[-1deg] hover:scale-[1.03] active:scale-[.97]",
+            "transition-transform duration-[225ms] ease-in-out hover:-translate-y-[5px] hover:scale-[1.02] active:scale-[.98]",
         className
     );
 
     if (as === "li") {
         props = props as React.HTMLProps<HTMLLIElement>;
         return (
-            <li {...props} className={className}>
+            <li role="group" {...props} className={className}>
                 {children}
             </li>
         );
@@ -38,7 +38,7 @@ export function Card({ isHoverable, className, children, as = "div", ...props }:
 
     props = props as React.HTMLProps<HTMLDivElement>;
     return (
-        <div {...props} className={className}>
+        <div role="group" {...props} className={className}>
             {children}
         </div>
     );
