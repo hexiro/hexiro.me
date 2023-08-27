@@ -1,15 +1,18 @@
 import type { PropsWithChildren } from "react";
 
+import { NAV_PATHS } from "@/commons/config";
+
 import type { IconType } from "@/components/ui/Icons";
 import { ArrowUpIcon, ArrowDownIcon } from "@/components/ui/Icons";
 import { Link } from "@/components/ui/Links";
 
-import { useSelectedRouteStore } from "@/hooks/stores";
+import useSelectedRouteIndex from "@/hooks/useSelectedRouteIndex";
 
 import { twMerge } from "tailwind-merge";
 
 export function PagePrevNavigation() {
-    const prevRoute = useSelectedRouteStore((state) => state.prevRoute);
+    const selectedIndex = useSelectedRouteIndex();
+    const prevRoute = NAV_PATHS[selectedIndex - 1];
 
     return (
         <PageEndNavigation href={prevRoute} icon={ArrowUpIcon} className="mb-8 mt-2">
@@ -19,7 +22,8 @@ export function PagePrevNavigation() {
 }
 
 export function PageNextNavigation() {
-    const nextRoute = useSelectedRouteStore((state) => state.nextRoute);
+    const selectedIndex = useSelectedRouteIndex();
+    const nextRoute = NAV_PATHS[selectedIndex + 1];
 
     return (
         <PageEndNavigation href={nextRoute} icon={ArrowDownIcon} className="mb-2 mt-8">

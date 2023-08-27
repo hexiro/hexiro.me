@@ -1,11 +1,7 @@
 import type { AppProps } from "next/app";
 import { Golos_Text as GolosText, Noto_Sans_Mono as NotoSansMono } from "next/font/google";
 import Script from "next/script";
-import React, { useEffect } from "react";
 
-import { NAV_PATHS } from "@/commons/config";
-
-import { useSelectedRouteStore, useRouteAnimationStore } from "@/hooks/stores";
 import Nav from "@/layout/Nav";
 import Page from "@/layout/Page";
 import { PageNextNavigation, PagePrevNavigation } from "@/layout/PageEndNavigation";
@@ -31,38 +27,14 @@ const monospaceFont = NotoSansMono({
     variable: "--font-mono",
 });
 
-export default function App({ Component, pageProps, router }: AppProps) {
-    const setSelectedRoute = useSelectedRouteStore((state) => state.setSelectedRoute);
-    const setAnimationRoutes = useRouteAnimationStore((state) => state.set);
-
-    useEffect(() => {
-        function handler() {
-            const index = NAV_PATHS.findIndex((path) => path === router.pathname);
-            setSelectedRoute(index);
-        }
-
-        handler();
-        router.events.on("routeChangeComplete", handler);
-        return () => router.events.off("routeChangeComplete", handler);
-    }, [router, setSelectedRoute]);
-
-    useEffect(() => {
-        function handler(newRoute: string) {
-            const oldRoute = router.asPath;
-            setAnimationRoutes(newRoute, oldRoute);
-        }
-
-        router.events.on("routeChangeStart", handler);
-        return () => router.events.off("routeChangeStart", handler);
-    }, [router, setAnimationRoutes]);
-
+export default function App({ Component, pageProps }: AppProps) {
     return (
         <>
             <Meta />
             <Page cssVariables={[sansSerifFont.variable, monospaceFont.variable]}>
                 <Nav />
                 <Content>
-                    <PageTransition pathname={router.pathname}>
+                    <PageTransition>
                         <PagePrevNavigation />
                         <Component {...pageProps} />
                         <PageNextNavigation />

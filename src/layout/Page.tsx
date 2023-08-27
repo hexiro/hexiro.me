@@ -1,12 +1,13 @@
+import type { ReactNode } from "react";
+
 import { twMerge } from "tailwind-merge";
 
-export default function Page({
-    cssVariables,
-    children,
-}: {
+interface IPageProps {
     cssVariables: string[];
-    children: React.ReactNode;
-}) {
+    children: ReactNode;
+}
+
+export default function Page({ cssVariables, children }: IPageProps) {
     return (
         <div
             className={twMerge(

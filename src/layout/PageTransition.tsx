@@ -1,4 +1,7 @@
-import { useRouteAnimationStore } from "@/hooks/stores";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+
+import { NAV_PATHS } from "@/commons/config";
 
 import type { Variants } from "framer-motion";
 import { AnimatePresence, motion } from "framer-motion";
@@ -13,14 +16,26 @@ const variants: Variants = {
         direction === "up" ? { opacity: 0, x: 0, y: 100 } : { opacity: 0, x: 0, y: -100 },
 };
 
-export default function PageTransition({
-    pathname,
-    children,
-}: {
-    pathname: string;
-    children: React.ReactNode;
-}) {
-    const navigationDirection = useRouteAnimationStore((state) => state.navigationDirection);
+export default function PageTransition({ children }: { children: React.ReactNode }) {
+    const router = useRouter();
+    const [navigationDirection, setNavigationDirection] = useState<NavigationDirection>(null);
+
+    useEffect(() => {
+        function handler(newRoute: string) {
+            const oldRoute = router.asPath;
+
+            console.log("newRoute", newRoute, "oldRoute", oldRoute);
+
+            const newRouteIndex = newRoute ? NAV_PATHS.findIndex((path) => path === newRoute) : -1;
+            const oldRouteIndex = oldRoute ? NAV_PATHS.findIndex((path) => path === oldRoute) : -1;
+            const navigationDirection = newRouteIndex >= oldRouteIndex ? "down" : "up";
+
+            setNavigationDirection(navigationDirection);
+        }
+
+        router.events.on("routeChangeStart", handler);
+        return () => router.events.off("routeChangeStart", handler);
+    }, [router.asPath, router.events]);
 
     return (
         <AnimatePresence
@@ -36,7 +51,7 @@ export default function PageTransition({
             }
         >
             <motion.div
-                key={pathname}
+                key={router.pathname}
                 initial="hidden"
                 animate="enter"
                 exit="exit"

@@ -9,9 +9,9 @@ import { RouteCard } from "@/components/cards/RouteCard";
 import { Seo } from "@/layout/Seo";
 
 const NAME = "Home";
-const DESCRIPTION = `An ${AGE} year old Software Engineer.`;
+const DESCRIPTION = `an ${AGE} year old Software Engineer.`;
 // prettier-ignore
-const FULL_DESCRIPTION = `Hi, I'm Nathan Lodge, ${DESCRIPTION[0].toUpperCase()}${DESCRIPTION.slice(1)}`;
+const FULL_DESCRIPTION = `Hi, I'm Nathan Lodge, ${DESCRIPTION}`;
 
 export default function HomePage() {
     return (

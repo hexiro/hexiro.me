@@ -66,22 +66,24 @@ export function DiscordCard({ className }: { className?: string }) {
                             {state.ide ? state.ide.name : "No IDE active"}
                         </H5>
                         {state.ide ? (
-                            state.ide.lines.map((line) => (
-                                <PresenceLine key={line[0].text}>
-                                    {line.map((chunk) => (
-                                        <span
-                                            key={chunk.text}
-                                            className={
-                                                chunk.highlighted
-                                                    ? "font-bold text-green"
-                                                    : "font-semibold text-[#9E9E9E]"
-                                            }
-                                        >
-                                            {chunk.text}
-                                        </span>
-                                    ))}
-                                </PresenceLine>
-                            ))
+                            state.ide.lines.map((line) =>
+                                line[0] ? (
+                                    <PresenceLine key={line[0].text}>
+                                        {line.map((chunk) => (
+                                            <span
+                                                key={chunk.text}
+                                                className={
+                                                    chunk.highlighted
+                                                        ? "font-bold text-green"
+                                                        : "font-semibold text-[#9E9E9E]"
+                                                }
+                                            >
+                                                {chunk.text}
+                                            </span>
+                                        ))}
+                                    </PresenceLine>
+                                ) : null
+                            )
                         ) : (
                             <PresenceLine>
                                 {[SPECIAL_CHARS, SPECIAL_CHARS, SPECIAL_CHARS].join("-")}

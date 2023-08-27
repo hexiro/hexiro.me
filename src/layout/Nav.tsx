@@ -1,14 +1,15 @@
-import { useRouter } from "next/router";
 import type { MutableRefObject, PropsWithChildren } from "react";
-import { memo, useMemo } from "react";
+import { memo } from "react";
 import { useRef } from "react";
 
 import type { IRoute } from "@/commons/config";
-import { NAV_PATHS, ROUTES } from "@/commons/config";
+import { ROUTES } from "@/commons/config";
 
 import { HorizontalDivider, VerticalDivider } from "@/components/layout/Divider";
 import { H2 } from "@/components/ui/Headings";
 import { Link } from "@/components/ui/Links";
+
+import useSelectedRouteIndex from "@/hooks/useSelectedRouteIndex";
 
 import { motion } from "framer-motion";
 import { useDraggable } from "react-use-draggable-scroll";
@@ -64,11 +65,7 @@ const Nav = () => {
 export default memo(Nav);
 
 function NavRoutes() {
-    const router = useRouter();
-    const selectedIndex = useMemo(
-        () => NAV_PATHS.findIndex((path) => path === router.pathname),
-        [router.pathname]
-    );
+    const selectedIndex = useSelectedRouteIndex();
 
     return (
         <ul className="flex h-full w-fit items-center gap-8 px-12  lg:my-8 lg:h-[unset] lg:w-full lg:flex-col lg:items-start lg:gap-4 lg:p-6 lg:pr-0">
