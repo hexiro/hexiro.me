@@ -26,7 +26,7 @@ export default function SkillCard({ skill, className }: ISocialCardProps) {
             )}
         >
             <span className="flex h-full grow flex-row items-center gap-x-[8%]">
-                <Icon className="h-8 w-8 shrink-0 xs:h-10 xs:w-10" />
+                <Icon className="h-8 w-8 shrink-0 transition-transform group-hover:rotate-6 xs:h-10 xs:w-10" />
                 <H5 className="truncate text-[20px] font-bold text-off-white">
                     <ExternalLinkOverlay href={link}>{name}</ExternalLinkOverlay>
                 </H5>

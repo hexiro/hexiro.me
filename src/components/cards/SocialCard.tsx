@@ -53,7 +53,7 @@ export function SocialCard({ social, className, isSingle }: ISocialCardProps) {
             isHoverable={Boolean(link ?? canCopy)}
             onClick={link ? undefined : copyToClipboard}
         >
-            <Icon className="h-10 w-10 shrink-0" />
+            <Icon className="h-10 w-10 shrink-0 transition-transform group-hover:rotate-6" />
             <div className="flex flex-col overflow-hidden">
                 <H5 className="text-[20px] font-bold text-off-white">{name}</H5>
                 <WithExternalLinkOverlay
