@@ -40,6 +40,7 @@ const Nav = () => {
                 <button
                     type="button"
                     aria-label="Scroll to top"
+                    className="group focus-visible:outline-none"
                     onClick={() =>
                         window.scroll({
                             top: 0,
@@ -48,7 +49,7 @@ const Nav = () => {
                         })
                     }
                 >
-                    <H2 className="text-3xl drop-shadow-md transition-transform duration-fast ease-in-out hover:scale-110 active:scale-95 sm:text-4xl lg:text-5xl">
+                    <H2 className="text-3xl underline-offset-8 drop-shadow-md transition-transform duration-fast ease-in-out group-hover:scale-110 group-focus-visible:scale-110 group-focus-visible:underline group-active:scale-95 sm:text-4xl lg:text-5xl">
                         NL
                     </H2>
                 </button>
@@ -86,17 +87,16 @@ function NavRoute({ route, isSelected }: INavRouteProps) {
 
     return (
         <li key={name} className="relative flex h-full w-full items-center text-lg drop-shadow-md">
-            <div className="group lg:w-full">
-                <WithNavLink
+            <div className="group/container lg:w-full">
+                <Link
                     href={path}
-                    className="inline-flex w-full gap-x-1 uppercase text-off-white"
-                    isSelected={isSelected}
+                    className="group/link inline-flex w-full gap-x-1 uppercase text-off-white focus-visible:outline-none"
                 >
                     <span className="text-green">/</span>
-                    <motion.span className="transition-transform duration-fast ease-in-out group-hover:translate-x-1 group-active:scale-95 lg:group-hover:translate-x-2">
+                    <motion.span className="underline-offset-8 transition-transform duration-fast ease-in-out group-hover/container:translate-x-1 group-focus-visible/link:translate-x-2 group-focus-visible/link:underline group-active/container:scale-95 lg:group-hover/container:translate-x-2">
                         {name}
                     </motion.span>
-                </WithNavLink>
+                </Link>
             </div>
             <NavRouteSelectedIndicator isSelected={isSelected} />
         </li>
