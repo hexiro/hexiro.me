@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from "react";
 import { useState } from "react";
 
+import { iconSwitch } from "@/commons/animations";
 import type { ISocial } from "@/commons/config";
 
 import { ExternalLinkOverlay } from "@/components/layout/LinkOverlay";
@@ -10,6 +11,7 @@ import { CheckIcon, CopyIcon, ExternalLinkIcon, XIcon } from "@/components/ui/Ic
 import { ExternalLink } from "@/components/ui/Links";
 
 import copy from "copy-to-clipboard";
+import { AnimatePresence, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 
 interface ISocialCardProps {
@@ -70,13 +72,30 @@ export function SocialCard({ social, className, isSingle }: ISocialCardProps) {
                         className="font-mono font-bold text-text transition-transform hover:translate-y-[-2px]"
                         onClick={copyToClipboard}
                     >
-                        {copiedSuccess === null ? (
-                            <CopyIcon />
-                        ) : copiedSuccess ? (
-                            <CheckIcon />
-                        ) : (
-                            <XIcon className="text-red-400" />
-                        )}
+                        <AnimatePresence initial={false} mode="wait">
+                            <motion.span
+                                key={
+                                    copiedSuccess === null
+                                        ? "copy"
+                                        : copiedSuccess
+                                        ? "success"
+                                        : "fail"
+                                }
+                                initial="hidden"
+                                animate="enter"
+                                exit="exit"
+                                variants={iconSwitch}
+                                transition={{ duration: 0.15 }}
+                            >
+                                {copiedSuccess === null ? (
+                                    <CopyIcon />
+                                ) : copiedSuccess ? (
+                                    <CheckIcon />
+                                ) : (
+                                    <XIcon className="text-red-400" />
+                                )}
+                            </motion.span>
+                        </AnimatePresence>
                     </button>
                 ) : null}
                 {link ? (

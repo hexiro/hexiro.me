@@ -81,3 +81,9 @@ export const slideFromBottom: Variants = {
         transition: extraBounce,
     },
 };
+
+export const iconSwitch: Variants = {
+    hidden: { opacity: 0 },
+    enter: { opacity: 1 },
+    exit: { opacity: 0 },
+};
