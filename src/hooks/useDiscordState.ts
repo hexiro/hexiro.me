@@ -1,30 +1,41 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { DISCORD_SNOWFLAKE, INITIAL_DISCORD_STATE } from "@/commons/config";
 
 import type { DiscordPresenceState } from "@/data/discord";
 import { parsePresence } from "@/data/discord";
 
-import { useDiscordStateStore } from "@/hooks/stores";
+import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 
 import type { Data as LanyardData } from "use-lanyard";
 import { useLanyardWS } from "use-lanyard";
-import { shallow } from "zustand/shallow";
 
 export default function useDiscordState(): DiscordPresenceState {
-    const { state, setState } = useDiscordStateStore(
-        ({ state, setState }) => ({
-            state,
-            setState,
-        }),
-        shallow
-    );
+    const [discordState, setDiscordState] = useState(parsePresence(INITIAL_DISCORD_STATE));
 
     // @ts-expect-error override initialData type
     const presence = useLanyardWS(DISCORD_SNOWFLAKE, { initialData: null }) as
         | LanyardData
         | undefined
         | null;
+
+    useIsomorphicLayoutEffect(() => {
+        if (typeof window === "undefined") return;
+
+        const stateJson = window.sessionStorage.getItem("discord-state");
+        if (stateJson === null) return;
+
+        let parsedPresence: DiscordPresenceState;
+
+        try {
+            const state = JSON.parse(stateJson) as LanyardData;
+            parsedPresence = parsePresence(state);
+        } catch {
+            return;
+        }
+
+        setDiscordState(parsedPresence);
+    }, []);
 
     useEffect(() => {
         let parsedPresence: DiscordPresenceState;
@@ -33,8 +44,9 @@ export default function useDiscordState(): DiscordPresenceState {
         if (presence === undefined) parsedPresence = parsePresence(INITIAL_DISCORD_STATE);
         else parsedPresence = parsePresence(presence);
 
-        setState(parsedPresence);
-    }, [presence, setState]);
+        setDiscordState(parsedPresence);
+        window.sessionStorage.setItem("discord-state", JSON.stringify(presence));
+    }, [presence]);
 
-    return state;
+    return discordState;
 }
