@@ -10,8 +10,8 @@ import Nav from "@/layout/Nav";
 import Page from "@/layout/Page";
 import { PageNextNavigation, PagePrevNavigation } from "@/layout/PageEndNavigation";
 import PageTransition from "@/layout/PageTransition";
-import "@/styles/globals.css";
 import { GlobalSeo } from "@/layout/Seo";
+import "@/styles/globals.css";
 
 const sansSerifFont = GolosText({
     weight: "variable",
@@ -32,19 +32,19 @@ const monospaceFont = NotoSansMono({
 });
 
 export default function App({ Component, pageProps, router }: AppProps) {
-    const setSelectedRouteIndex = useSelectedRouteStore((state) => state.setIndex);
+    const setSelectedRoute = useSelectedRouteStore((state) => state.setSelectedRoute);
     const setAnimationRoutes = useRouteAnimationStore((state) => state.set);
 
     useEffect(() => {
         function handler() {
-            const newIndex = NAV_PATHS.findIndex((path) => path === router.pathname);
-            setSelectedRouteIndex(newIndex);
+            const index = NAV_PATHS.findIndex((path) => path === router.pathname);
+            setSelectedRoute(index);
         }
 
         handler();
         router.events.on("routeChangeComplete", handler);
         return () => router.events.off("routeChangeComplete", handler);
-    }, [router, setSelectedRouteIndex]);
+    }, [router, setSelectedRoute]);
 
     useEffect(() => {
         function handler(newRoute: string) {
@@ -86,7 +86,7 @@ function Meta() {
                     font-family: ${sansSerifFont.style.fontFamily};
                 }
             `}</style>
-            <GlobalSeo />  
+            <GlobalSeo />
         </>
     );
 }

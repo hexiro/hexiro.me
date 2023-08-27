@@ -271,11 +271,6 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@kamona/tailwindcss-perspective@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@kamona/tailwindcss-perspective/-/tailwindcss-perspective-0.1.1.tgz#60f823a914439c7dcf46484119e803bcd62f2bb4"
-  integrity sha512-ayC/wnfR1EYBIc3ShDKp8oYfZTPPo1aRcEuMVI+BcoUz28bsxtEpiakS0Gc6vvXi9LjKuJillJYShMl+qGldEw==
-
 "@next/bundle-analyzer@^13.4.9":
   version "13.4.9"
   resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-13.4.9.tgz#06b8faf0a72f2f3b35815e644a8c9a560f90266a"
@@ -2276,11 +2271,6 @@ jiti@^1.18.2:
   version "1.18.2"
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.18.2.tgz#80c3ef3d486ebf2450d9335122b32d121f2a83cd"
   integrity sha512-QAdOptna2NYiSSpv0O/BwoHBSmz4YhpzJHyi+fnMRTXFjp7B8i/YG5Z8IfusxB1ufjcD2Sre1F3R+nX3fvy7gg==
-
-jotai@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/jotai/-/jotai-2.2.2.tgz#1e181789dcc01ced8240b18b95d9fa10169f9366"
-  integrity sha512-Cn8hnBg1sc5ppFwEgVGTfMR5WSM0hbAasd/bdAwIwTaum0j3OUPqBSC4tyk3jtB95vicML+RRWgKFOn6gtfN0A==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"

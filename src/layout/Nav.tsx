@@ -1,15 +1,14 @@
+import { useRouter } from "next/router";
 import type { MutableRefObject, PropsWithChildren } from "react";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { useRef } from "react";
 
 import type { IRoute } from "@/commons/config";
-import { ROUTES } from "@/commons/config";
+import { NAV_PATHS, ROUTES } from "@/commons/config";
 
 import { HorizontalDivider, VerticalDivider } from "@/components/layout/Divider";
 import { H2 } from "@/components/ui/Headings";
 import { Link } from "@/components/ui/Links";
-
-import { useSelectedRouteStore } from "@/hooks/stores";
 
 import { motion } from "framer-motion";
 import { useDraggable } from "react-use-draggable-scroll";
@@ -54,11 +53,7 @@ const Nav = () => {
                 </button>
             </div>
             <HorizontalDivider className="my-auto h-[80%] w-0 divide-x lg:mx-auto lg:my-0 lg:h-0 lg:w-[80%]" />
-            <ul className="flex h-full w-fit items-center gap-8 px-12  lg:my-8 lg:h-[unset] lg:w-full lg:flex-col lg:items-start lg:gap-4 lg:p-6 lg:pr-0">
-                {ROUTES.map((route) => (
-                    <NavRoute key={route.name} route={route} />
-                ))}
-            </ul>
+            <NavRoutes />
             <div className="mb-8 hidden w-full flex-grow items-center tall:flex">
                 <VerticalDivider className="ml-[25%] hidden h-3/4 lg:block" />
             </div>
@@ -68,15 +63,29 @@ const Nav = () => {
 
 export default memo(Nav);
 
-interface INavRouteProps {
-    route: IRoute;
+function NavRoutes() {
+    const router = useRouter();
+    const selectedIndex = useMemo(
+        () => NAV_PATHS.findIndex((path) => path === router.pathname),
+        [router.pathname]
+    );
+
+    return (
+        <ul className="flex h-full w-fit items-center gap-8 px-12  lg:my-8 lg:h-[unset] lg:w-full lg:flex-col lg:items-start lg:gap-4 lg:p-6 lg:pr-0">
+            {ROUTES.map((route, index) => (
+                <NavRoute key={route.name} route={route} isSelected={index === selectedIndex} />
+            ))}
+        </ul>
+    );
 }
 
-function NavRoute({ route }: INavRouteProps) {
-    const { name, path } = route;
+interface INavRouteProps {
+    route: IRoute;
+    isSelected: boolean;
+}
 
-    const selectedRoutePath = useSelectedRouteStore((state) => state.path);
-    const isSelected = selectedRoutePath === path;
+function NavRoute({ route, isSelected }: INavRouteProps) {
+    const { name, path } = route;
 
     return (
         <li key={name} className="relative flex h-full w-full items-center text-lg drop-shadow-md">

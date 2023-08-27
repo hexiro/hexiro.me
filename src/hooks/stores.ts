@@ -6,23 +6,21 @@ import { parsePresence, type DiscordPresenceState } from "@/data/discord";
 import { create } from "zustand";
 
 interface SelectedRouteStore {
-    index: number | null;
     path: INavRoutePath | null;
     prevRoute: INavRoutePath | undefined;
     nextRoute: INavRoutePath | undefined;
-    setIndex: (index: number) => void;
+    setSelectedRoute: (index: number) => void;
 }
 
 export const useSelectedRouteStore = create<SelectedRouteStore>((set, get) => ({
-    index: null,
     path: null,
     prevRoute: undefined,
     nextRoute: NAV_PATHS[1],
-    setIndex(index: number) {
+    setSelectedRoute(index: number) {
         const path = NAV_PATHS[index];
         const prevRoute = NAV_PATHS[index - 1];
         const nextRoute = NAV_PATHS[index + 1];
-        set({ index, path, prevRoute, nextRoute });
+        set({ path, prevRoute, nextRoute });
     },
 }));
 
