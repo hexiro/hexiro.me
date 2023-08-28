@@ -14,16 +14,18 @@ import copy from "copy-to-clipboard";
 import { AnimatePresence, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 
-interface ISocialCardProps {
+interface IContactCardProps {
     social: ISocial;
     className?: string;
     isSingle?: boolean;
 }
 
-export function SocialCard({ social, className, isSingle }: ISocialCardProps) {
+export function ContactCard({ social, className, isSingle }: IContactCardProps) {
     const { name, value, link, icon: Icon, canCopy } = social;
     const [copiedSuccess, setCopiedSuccess] = useState<boolean | null>(null);
     const [copiedTimeout, setCopiedTimeout] = useState<NodeJS.Timeout | null>(null);
+
+    const isInteractive = Boolean(link ?? canCopy);
 
     const copyToClipboard = () => {
         if (copiedTimeout) clearTimeout(copiedTimeout);
@@ -47,12 +49,13 @@ export function SocialCard({ social, className, isSingle }: ISocialCardProps) {
     return (
         <Card
             as="li"
+            isHoverable={isInteractive}
+            isFocusable={isInteractive}
             className={twMerge(
                 "flex w-full flex-row items-center gap-x-6 px-6 md:px-8",
                 isSingle && "min-w-[375px]",
                 className
             )}
-            isHoverable={Boolean(link ?? canCopy)}
             onClick={link ? undefined : copyToClipboard}
         >
             <Icon className="h-10 w-10 shrink-0 transition-transform group-hover:rotate-6" />

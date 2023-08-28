@@ -26,7 +26,7 @@ export function LinkOverlay({ className, children, ...props }: ILinkOverlayProps
 
 export function ExternalLinkOverlay({ className, href, children }: IExternalLinkProps) {
     return (
-        <ExternalLink href={href} className={twMerge(commonClassName, className)}>
+        <ExternalLink tabIndex={-1} href={href} className={twMerge(commonClassName, className)}>
             {children}
         </ExternalLink>
     );

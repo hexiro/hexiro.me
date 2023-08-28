@@ -19,7 +19,7 @@ export function PagePrevNavigation() {
             href={prevRoute}
             icon={ArrowUpIcon}
             className="mb-8 mt-2"
-            iconClassName="group-hover:-translate-y-[5px]"
+            iconClassName="group-hover:-translate-y-[5px] group-focus-visible:-translate-y-[5px]"
         >
             Prev
         </PageEndNavigation>
@@ -35,7 +35,7 @@ export function PageNextNavigation() {
             href={nextRoute}
             icon={ArrowDownIcon}
             className="mb-2 mt-8"
-            iconClassName="group-hover:translate-y-[5px]"
+            iconClassName="group-hover:translate-y-[5px] group-focus-visible:translate-y-[5px]"
         >
             Next
         </PageEndNavigation>
@@ -64,7 +64,7 @@ function PageEndNavigation({
             // @ts-expect-error ts doesn't recognize that href can't be undefined when using Link
             href={href}
             className={twMerge(
-                "justify-left group flex items-center text-base text-text aria-disabled:cursor-not-allowed aria-disabled:line-through aria-disabled:opacity-50",
+                "justify-left group flex items-center text-base text-text focus-visible:outline-none aria-disabled:cursor-not-allowed aria-disabled:line-through aria-disabled:opacity-50",
                 className
             )}
             aria-disabled={disabled}
@@ -75,7 +75,9 @@ function PageEndNavigation({
                     iconClassName
                 )}
             />
-            <span className="ml-1">{children}</span>
+            <span className="ml-1 underline-offset-8 group-focus-visible:underline">
+                {children}
+            </span>
         </AnchorElement>
     );
 }

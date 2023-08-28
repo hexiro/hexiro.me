@@ -6,7 +6,7 @@ import { AGE, SOCIALS_MAP } from "@/commons/config";
 import { Card } from "@/components/ui/Cards";
 import { H1, H3, H4 } from "@/components/ui/Headings";
 
-import { SocialCard } from "@/components/cards/SocialCard";
+import { ContactCard } from "@/components/cards/ContactCard";
 
 import introSrc from "@/images/intro.png";
 import { Seo } from "@/layout/Seo";
@@ -41,13 +41,13 @@ export default function AboutPage() {
                     />
                 </AboutSection>
                 <AboutSection text={MAIN_HOBBIES} childrenClassName="flex flex-col gap-y-4">
-                    <SocialCard isSingle social={SOCIALS_MAP.IMDb} />
-                    <SocialCard isSingle social={SOCIALS_MAP.Spotify} />
-                    <SocialCard isSingle social={SOCIALS_MAP["Last.fm"]} />
+                    <ContactCard isSingle social={SOCIALS_MAP.IMDb} />
+                    <ContactCard isSingle social={SOCIALS_MAP.Spotify} />
+                    <ContactCard isSingle social={SOCIALS_MAP["Last.fm"]} />
                 </AboutSection>
                 <AboutSection text={VIDEO_GAMES} childrenClassName="flex flex-col gap-y-4">
-                    <SocialCard isSingle social={SOCIALS_MAP.Steam} />
-                    <SocialCard isSingle social={SOCIALS_MAP["Epic Games"]} />
+                    <ContactCard isSingle social={SOCIALS_MAP.Steam} />
+                    <ContactCard isSingle social={SOCIALS_MAP["Epic Games"]} />
                 </AboutSection>
             </div>
         </>
