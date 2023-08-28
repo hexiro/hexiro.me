@@ -29,7 +29,7 @@ export function Card<T extends React.ElementType = "div">({
                 isHoverable &&
                     "transition-all duration-[225ms] ease-in-out hover:-translate-y-[5px] hover:scale-102 active:scale-98",
                 isFocusable &&
-                    "ring-text/25 transition-all duration-fast focus-visible:outline-none active:scale-98 [&:has(:focus-visible)]:-translate-y-[5px] [&:has(:focus-visible)]:scale-102 [&:has(:focus-visible)]:ring-4",
+                    "ring-text/25 transition-all duration-fast focus-visible:outline-none active:scale-98 [&:has(:focus-visible)]:-translate-y-[5px] [&:has(:focus-visible)]:scale-102 [&:has(:focus-visible)]:ring-[3px]",
                 extraClassName
             )}
         >

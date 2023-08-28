@@ -1,6 +1,13 @@
 import NextLink from "next/link";
-import type { AnchorHTMLAttributes, ComponentProps, ForwardRefExoticComponent, ReactNode } from "react";
+import type {
+    AnchorHTMLAttributes,
+    ComponentProps,
+    ForwardRefExoticComponent,
+    ReactNode,
+} from "react";
 import { forwardRef } from "react";
+
+import { twMerge } from "tailwind-merge";
 
 export const Link: ForwardRefExoticComponent<ComponentProps<typeof NextLink>> = forwardRef(
     (props, ref) => <NextLink ref={ref} scroll={false} {...props} />
@@ -8,13 +15,31 @@ export const Link: ForwardRefExoticComponent<ComponentProps<typeof NextLink>> = 
 
 interface IExternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
     href: string;
+    isFocusable?: boolean;
     className?: string;
     children?: ReactNode;
 }
 
-export function ExternalLink({ className, href, children, ...props }: IExternalLinkProps) {
+export function ExternalLink({
+    href,
+    isFocusable,
+    className,
+    children,
+    ...props
+}: IExternalLinkProps) {
     return (
-        <a className={className} href={href} target="_blank" rel="noopener noreferrer" {...props}>
+        <a
+            className={twMerge(
+                "outline-none",
+                isFocusable &&
+                    "rounded-sm ring-text/50 transition-all hover:-translate-y-[2px] focus-visible:ring-2",
+                className
+            )}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            {...props}
+        >
             {children}
         </a>
     );

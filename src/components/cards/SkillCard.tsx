@@ -19,6 +19,7 @@ export default function SkillCard({ skill, className }: ISocialCardProps) {
     return (
         <Card
             isHoverable
+            isFocusable
             as="li"
             className={twMerge(
                 "flex w-full flex-row justify-between gap-x-1 px-[8%] md:px-8",
@@ -32,7 +33,7 @@ export default function SkillCard({ skill, className }: ISocialCardProps) {
                 </H5>
             </span>
             <span className="hidden h-full flex-row items-start gap-x-2 xxs:flex">
-                <ExternalLink href={link} className="transition-transform hover:translate-y-[-2px]">
+                <ExternalLink href={link}>
                     <ExternalLinkIcon className="h-5 w-5 shrink-0 md:h-6 md:w-6" />
                 </ExternalLink>
             </span>

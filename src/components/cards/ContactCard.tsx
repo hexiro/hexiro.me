@@ -26,6 +26,7 @@ export function ContactCard({ social, className, isSingle }: IContactCardProps) 
     const [copiedTimeout, setCopiedTimeout] = useState<NodeJS.Timeout | null>(null);
 
     const isInteractive = Boolean(link ?? canCopy);
+    const isBoth = Boolean(link && canCopy);
 
     const copyToClipboard = () => {
         if (copiedTimeout) clearTimeout(copiedTimeout);
@@ -72,7 +73,10 @@ export function ContactCard({ social, className, isSingle }: IContactCardProps) 
                 {canCopy ? (
                     <button
                         type="button"
-                        className="font-mono font-bold text-text transition-transform hover:translate-y-[-2px]"
+                        className={twMerge(
+                            "font-mono font-bold text-text outline-none transition-transform hover:-translate-y-[2px] ",
+                            isBoth && "rounded-sm ring-text/50 transition-all focus-visible:ring-2"
+                        )}
                         onClick={copyToClipboard}
                     >
                         <AnimatePresence initial={false} mode="wait">
@@ -102,10 +106,7 @@ export function ContactCard({ social, className, isSingle }: IContactCardProps) 
                     </button>
                 ) : null}
                 {link ? (
-                    <ExternalLink
-                        href={link}
-                        className="transition-transform hover:translate-y-[-2px]"
-                    >
+                    <ExternalLink isFocusable={isBoth} href={link}>
                         <ExternalLinkIcon />
                     </ExternalLink>
                 ) : null}

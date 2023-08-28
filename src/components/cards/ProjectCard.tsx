@@ -19,7 +19,7 @@ export function ProjectCard({ className, project }: ProjectCardProps) {
     const { name, url, description, stars, packageUrl, topics } = project;
 
     return (
-        <Card isHoverable className={twMerge("w-full pr-4", className)}>
+        <Card isHoverable isFocusable className={twMerge("w-full pr-4", className)}>
             <div className="mb-1 flex h-10 flex-row items-center gap-x-2 leading-none">
                 <H4 green className="basis-2/3 truncate">
                     <ExternalLinkOverlay href={url}>{name}</ExternalLinkOverlay>
@@ -36,14 +36,14 @@ export function ProjectCard({ className, project }: ProjectCardProps) {
                     ) : null}
                     <ul className="z-10 flex gap-x-1">
                         {packageUrl !== null ? (
-                            <li className="flex items-center transition-transform hover:translate-y-[-2px]">
-                                <ExternalLink href={packageUrl}>
+                            <li className="contents">
+                                <ExternalLink isFocusable href={packageUrl}>
                                     <PackageIcon />
                                 </ExternalLink>
                             </li>
                         ) : null}
-                        <li className="flex items-center transition-transform hover:translate-y-[-2px]">
-                            <ExternalLink href={url}>
+                        <li className="contents">
+                            <ExternalLink isFocusable={packageUrl !== null} href={url}>
                                 <ExternalLinkIcon />
                             </ExternalLink>
                         </li>
@@ -54,7 +54,7 @@ export function ProjectCard({ className, project }: ProjectCardProps) {
                 <p className="line-clamp-3 min-h-[70px]">
                     {description.map(({ value, type }) =>
                         type === "link" ? (
-                            <ExternalLink key={value} className="z-10" href={value}>
+                            <ExternalLink key={value} isFocusable className="z-10" href={value}>
                                 {value}
                             </ExternalLink>
                         ) : (
