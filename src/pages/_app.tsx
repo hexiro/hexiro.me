@@ -51,7 +51,7 @@ function Meta() {
             <Script
                 async
                 src="https://umami.hexiro.me/script.js"
-                data-website-id="79c5f103-7ed6-4bc8-9d6a-626e5f1e2ac2"
+                data-website-id="2c859610-01b6-4c75-b106-0422d8beb6b5"
             />
             <style jsx global>{`
                 html {
