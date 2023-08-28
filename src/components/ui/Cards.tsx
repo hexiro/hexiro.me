@@ -1,58 +1,58 @@
-import type { PropsWithChildren } from "react";
+import type { ReactNode } from "react";
 
 import { twMerge } from "tailwind-merge";
 
-type CardProps = PropsWithChildren<{
+interface CardProps<T extends React.ElementType> {
+    as?: T;
     isHoverable?: boolean;
+    isFocusable?: boolean;
     className?: string;
-}> &
-    CardIsomorphicProps;
+    children?: ReactNode;
+}
 
-type CardIsomorphicProps =
-    | {
-          as?: never;
-      }
-    | ({
-          as: "li";
-      } & React.HTMLProps<HTMLLIElement>)
-    | ({
-          as: "div";
-      } & React.HTMLProps<HTMLDivElement>);
+export function Card<T extends React.ElementType = "div">({
+    as,
+    isHoverable,
+    isFocusable,
+    className: extraClassName,
+    children,
+    ...props
+}: CardProps<T> & Omit<React.ComponentPropsWithoutRef<T>, keyof CardProps<T>>) {
+    const Component = as ?? "div";
 
-export function Card({ isHoverable, className, children, as = "div", ...props }: CardProps) {
-    className = twMerge(
-        "relative group inline-block rounded-md border-2 border-white/10 bg-background-secondary px-8 py-6 shadow-lg",
-        isHoverable &&
-            "transition-transform duration-[225ms] ease-in-out hover:-translate-y-[5px] hover:scale-[1.02] active:scale-[.98]",
-        className
-    );
-
-    if (as === "li") {
-        props = props as React.HTMLProps<HTMLLIElement>;
-        return (
-            <li role="group" {...props} className={className}>
-                {children}
-            </li>
-        );
-    }
-
-    props = props as React.HTMLProps<HTMLDivElement>;
     return (
-        <div role="group" {...props} className={className}>
+        <Component
+            role="group"
+            {...props}
+            className={twMerge(
+                "group relative inline-block rounded-md border-2 border-white/10 bg-background-secondary px-8 py-6 shadow-lg",
+                isHoverable &&
+                    "transition-all duration-[225ms] ease-in-out hover:-translate-y-[5px] hover:scale-102 active:scale-98",
+                isFocusable &&
+                    "ring-text/25 transition-all duration-fast focus-visible:outline-none active:scale-98 [&:has(:focus-visible)]:-translate-y-[5px] [&:has(:focus-visible)]:scale-102 [&:has(:focus-visible)]:ring-4",
+                extraClassName
+            )}
+        >
             {children}
-        </div>
+        </Component>
     );
 }
 
-export function SecondaryCard({ className, children, as: As = "div" }: CardProps) {
+export function SecondaryCard<T extends React.ElementType = "div">({
+    as,
+    className,
+    children,
+}: CardProps<T> & Omit<React.ComponentPropsWithoutRef<T>, keyof CardProps<T>>) {
+    const Component = as ?? "div";
+
     return (
-        <As
+        <Component
             className={twMerge(
                 "relative inline-block rounded-[4px] border-2 border-white/10 bg-white/5 p-5 shadow-sm",
                 className
             )}
         >
             {children}
-        </As>
+        </Component>
     );
 }

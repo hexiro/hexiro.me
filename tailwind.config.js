@@ -43,6 +43,10 @@ module.exports = {
                 normal: "300ms",
                 slow: "450ms",
             },
+            scale: {
+                98: "0.98",
+                102: "1.02",
+            },
             lineHeight: {
                 "extra-tight": "1.1",
             },

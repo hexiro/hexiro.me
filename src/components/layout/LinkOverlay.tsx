@@ -13,12 +13,12 @@ interface IExternalLinkProps extends PropsWithChildren {
     className?: string;
 }
 
-const commonStyles =
-    "static before:cursor-inherit before:block before:absolute before:top-0 before:left-0 before:z-0 before:w-full before:h-full";
+const commonClassName =
+    "static before:cursor-inherit before:block before:absolute before:top-0 before:left-0 before:z-0 before:w-full before:h-full focus-visible:outline-none";
 
 export function LinkOverlay({ className, children, ...props }: ILinkOverlayProps) {
     return (
-        <Link {...props} className={twMerge(commonStyles, className)}>
+        <Link {...props} className={twMerge(commonClassName, className)}>
             {children}
         </Link>
     );
@@ -26,7 +26,7 @@ export function LinkOverlay({ className, children, ...props }: ILinkOverlayProps
 
 export function ExternalLinkOverlay({ className, href, children }: IExternalLinkProps) {
     return (
-        <ExternalLink href={href} className={twMerge(commonStyles, className)}>
+        <ExternalLink href={href} className={twMerge(commonClassName, className)}>
             {children}
         </ExternalLink>
     );
