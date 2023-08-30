@@ -93,7 +93,7 @@ function NavRoute({ route, isSelected }: INavRouteProps) {
                     className="group/link relative flex w-full gap-x-1 py-[0.2em] uppercase text-off-white focus-visible:outline-none"
                 >
                     <span className="text-green">/</span>
-                    <span className="relative overflow-hidden font-sans font-bold  transition-transform duration-fast ease-in-out after:absolute after:bottom-0 after:left-0 after:h-[0.1em] after:w-full after:translate-x-[calc(-100%-1px)] after:bg-off-white after:transition-all after:duration-300 after:will-change-transform group-hover/container:translate-x-1 group-focus-visible/link:translate-x-2 group-focus-visible/link:after:translate-x-0 group-active/container:scale-95 lg:group-hover/container:translate-x-2">
+                    <span className="relative overflow-hidden font-sans font-bold transition-transform duration-fast ease-in-out after:absolute after:bottom-0 after:left-0 after:h-[0.1em] after:w-full after:translate-x-[calc(-100%-1px)] after:bg-off-white after:transition-all after:duration-300 after:will-change-transform group-hover/container:translate-x-1 group-focus-visible/link:translate-x-2 group-focus-visible/link:after:translate-x-0 group-active/container:scale-95 lg:group-hover/container:translate-x-2">
                         {name}
                     </span>
                 </Link>

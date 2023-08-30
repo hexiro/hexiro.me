@@ -39,7 +39,9 @@ export function DiscordCard({ className }: { className?: string }) {
                     </div>
                     <div className="mt-1 flex flex-col leading-extra-tight">
                         <H4 className="text-green">{state.user.displayName}</H4>
-                        <H5 className="font-bold text-subtitle">@{state.user.username}</H5>
+                        <span className="font-bold uppercase text-subtitle">
+                            @{state.user.username}
+                        </span>
                     </div>
                 </div>
                 <HorizontalDivider className="block border-[1px] sm:hidden" />
