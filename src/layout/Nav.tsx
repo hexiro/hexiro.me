@@ -69,7 +69,7 @@ function NavRoutes() {
     const selectedIndex = useSelectedRouteIndex();
 
     return (
-        <ul className="flex h-full w-fit items-center gap-8 px-12  lg:my-8 lg:h-[unset] lg:w-full lg:flex-col lg:items-start lg:gap-4 lg:p-6 lg:pr-0">
+        <ul className="flex h-full w-fit items-center gap-8 px-12 lg:my-6 lg:h-[unset] lg:w-full lg:flex-col lg:items-start lg:gap-[0.6em] lg:p-6 lg:pr-0">
             {ROUTES.map((route, index) => (
                 <NavRoute key={route.name} route={route} isSelected={index === selectedIndex} />
             ))}
@@ -90,12 +90,12 @@ function NavRoute({ route, isSelected }: INavRouteProps) {
             <div className="group/container lg:w-full">
                 <Link
                     href={path}
-                    className="group/link inline-flex w-full gap-x-1 uppercase text-off-white focus-visible:outline-none"
+                    className="group/link relative flex w-full gap-x-1 py-[0.2em] uppercase text-off-white focus-visible:outline-none"
                 >
                     <span className="text-green">/</span>
-                    <motion.span className="font-sans font-bold underline-offset-8 transition-transform duration-fast ease-in-out group-hover/container:translate-x-1 group-focus-visible/link:translate-x-2 group-focus-visible/link:underline group-active/container:scale-95 lg:group-hover/container:translate-x-2">
+                    <span className="relative overflow-hidden font-sans font-bold underline-offset-8 transition-transform duration-fast ease-in-out after:absolute after:bottom-0 after:left-0 after:h-[0.1em] after:w-full after:-translate-x-full after:bg-off-white after:transition-all after:duration-300 group-hover/container:translate-x-1 group-focus-visible/link:after:translate-x-0 group-focus-visible/link:translate-x-2 group-focus-visible/link:underline group-active/container:scale-95 lg:group-hover/container:translate-x-2">
                         {name}
-                    </motion.span>
+                    </span>
                 </Link>
             </div>
             <NavRouteSelectedIndicator isSelected={isSelected} />
