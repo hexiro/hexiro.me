@@ -93,7 +93,7 @@ function NavRoute({ route, isSelected }: INavRouteProps) {
                     className="group/link inline-flex w-full gap-x-1 uppercase text-off-white focus-visible:outline-none"
                 >
                     <span className="text-green">/</span>
-                    <motion.span className="underline-offset-8 transition-transform duration-fast ease-in-out group-hover/container:translate-x-1 group-focus-visible/link:translate-x-2 group-focus-visible/link:underline group-active/container:scale-95 lg:group-hover/container:translate-x-2">
+                    <motion.span className="font-sans font-bold underline-offset-8 transition-transform duration-fast ease-in-out group-hover/container:translate-x-1 group-focus-visible/link:translate-x-2 group-focus-visible/link:underline group-active/container:scale-95 lg:group-hover/container:translate-x-2">
                         {name}
                     </motion.span>
                 </Link>
