@@ -18,8 +18,13 @@ export default function HomePage() {
         <>
             <Seo name={NAME} description={FULL_DESCRIPTION} />
             <div className="xl:pr-[10%]">
-                <H2 className="font-mono text-off-white">Hi... I&apos;m,</H2>
-                <H1>
+                <H2 className="font-mono text-off-white">
+                    <span className="after:w-[3ch] after:inline-block after:animate-full-ellipsis after:ease-linear after:content-['...'] after:animation-delay-[2s]">
+                        Hi
+                    </span>{" "}
+                    I&apos;m,
+                </H2>
+                <H1 className="tracking-wide">
                     Nathan <span className="text-off-white">Lodge</span>
                 </H1>
                 <H3 className="text-subtitle">{DESCRIPTION}</H3>

@@ -1,4 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
+const plugin = require("tailwindcss/plugin");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -56,9 +57,15 @@ module.exports = {
                     "50%": { content: "'.'" },
                     "100%": { content: "'..'" },
                 },
+                "full-ellipsis": {
+                    "25%": { content: "'.'" },
+                    "50%": { content: "'..'" },
+                    "75%": { content: "'...'" },
+                },
             },
             animation: {
                 ellipsis: "ellipsis 2s linear infinite",
+                "full-ellipsis": "full-ellipsis 3s linear infinite",
             },
             screens: {
                 xs: "480px",
@@ -67,4 +74,20 @@ module.exports = {
             },
         },
     },
+    plugins: [
+        plugin(({ matchUtilities, theme }) => {
+            matchUtilities(
+                {
+                    "animation-delay": (value) => {
+                        return {
+                            "animation-delay": value,
+                        };
+                    },
+                },
+                {
+                    values: theme("transitionDelay"),
+                }
+            );
+        }),
+    ],
 };
