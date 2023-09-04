@@ -1,15 +1,15 @@
 import type { AppProps } from "next/app";
 import { Golos_Text as GolosText, Noto_Sans_Mono as NotoSansMono } from "next/font/google";
-import Script from "next/script";
 
+import Content from "@/layout/Content";
+import Meta from "@/layout/Meta";
 import Nav from "@/layout/Nav";
 import Page from "@/layout/Page";
 import { PageNextNavigation, PagePrevNavigation } from "@/layout/PageEndNavigation";
 import PageTransition from "@/layout/PageTransition";
-import { GlobalSeo } from "@/layout/Seo";
 import "@/styles/globals.css";
 
-const sansSerifFont = GolosText({
+const sansFont = GolosText({
     weight: "variable",
     style: "normal",
     display: "swap",
@@ -30,8 +30,8 @@ const monospaceFont = NotoSansMono({
 export default function App({ Component, pageProps }: AppProps) {
     return (
         <>
-            <Meta />
-            <Page cssVariables={[sansSerifFont.variable, monospaceFont.variable]}>
+            <Meta sansFont={sansFont} />
+            <Page fonts={[sansFont, monospaceFont]}>
                 <Nav />
                 <Content>
                     <PageTransition>
@@ -42,31 +42,5 @@ export default function App({ Component, pageProps }: AppProps) {
                 </Content>
             </Page>
         </>
-    );
-}
-
-function Meta() {
-    return (
-        <>
-            <Script
-                async
-                src="https://umami.hexiro.me/script.js"
-                data-website-id="2c859610-01b6-4c75-b106-0422d8beb6b5"
-            />
-            <style jsx global>{`
-                html {
-                    font-family: ${sansSerifFont.style.fontFamily};
-                }
-            `}</style>
-            <GlobalSeo />
-        </>
-    );
-}
-
-function Content({ children }: { children: React.ReactNode }) {
-    return (
-        <main className="mt-32 flex min-h-screen w-full flex-col rounded-t-md bg-background px-[5%] py-28 lg:ml-52 lg:mt-0 lg:rounded-l-md lg:px-[10%]">
-            {children}
-        </main>
     );
 }

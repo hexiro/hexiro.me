@@ -1,18 +1,19 @@
+import type { NextFontWithVariable } from "next/dist/compiled/@next/font";
 import type { ReactNode } from "react";
 
 import { twMerge } from "tailwind-merge";
 
 interface IPageProps {
-    cssVariables: string[];
+    fonts: NextFontWithVariable[];
     children: ReactNode;
 }
 
-export default function Page({ cssVariables, children }: IPageProps) {
+export default function Page({ fonts, children }: IPageProps) {
     return (
         <div
             className={twMerge(
                 "min-w-screen relative flex h-full min-h-screen w-full flex-col overflow-y-auto overflow-x-hidden bg-background md:flex-row",
-                ...cssVariables
+                ...fonts.map((font) => font.variable)
             )}
         >
             {children}

@@ -1,10 +1,8 @@
-import Image from "next/image";
-import type { ComponentProps, PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 import { currentAge, SOCIALS_MAP } from "@/commons/config";
 
-import { Card } from "@/components/ui/Cards";
-import { H1, H3, H4 } from "@/components/ui/Headings";
+import { H1, H3 } from "@/components/ui/Headings";
 
 import { ContactCard } from "@/components/cards/ContactCard";
 
@@ -12,6 +10,7 @@ import introSrc from "@/images/intro.png";
 import { Seo } from "@/layout/Seo";
 
 import { twMerge } from "tailwind-merge";
+import { ImageCard } from "@/components/cards/ImageCard";
 
 const NAME = "About";
 const DESCRIPTION = "My life beyond the IDE.";
@@ -60,37 +59,16 @@ interface IAboutSectionProps {
     className?: string;
 }
 
-const AboutSection = ({ text, className, children }: PropsWithChildren<IAboutSectionProps>) => (
-    <div
-        className={twMerge(
-            "flex flex-col items-center gap-x-[5%] gap-y-6 xl:flex-row xl:even:flex-row-reverse",
-            className
-        )}
-    >
-        <p className="text-[18px] font-bold leading-relaxed">{text}</p>
-        <div className="flex w-full flex-col gap-y-4">{children}</div>
-    </div>
-);
-
-interface IImageCardProps extends ComponentProps<typeof Image> {
-    caption: string;
-}
-
-const ImageCard = ({ caption, alt, ...props }: IImageCardProps) => (
-    <Card className="w-full px-8 py-6 sm:px-10 sm:py-6 xl:px-6 xl:py-5">
-        <div className="mx-auto flex w-fit flex-col items-start justify-between gap-y-8 sm:w-auto sm:flex-row sm:items-center sm:gap-x-6 xl:flex-col">
-            <div className="sm:self-start xl:mt-0 xl:max-w-xs">
-                <H4 green className="text-base md:text-[28px]">
-                    {caption}
-                </H4>
-                <p className="sm:text-base">{alt}</p>
-            </div>
-            <Image
-                priority
-                alt={`${caption}, ${alt}`}
-                className="max-h-xs h-full w-full max-w-xs rounded-md border-2 border-solid border-white/10 drop-shadow-md sm:max-h-[16rem] sm:max-w-[16rem] md:h-auto md:w-auto"
-                {...props}
-            />
+function AboutSection({ text, className, children }: PropsWithChildren<IAboutSectionProps>) {
+    return (
+        <div
+            className={twMerge(
+                "flex flex-col items-center gap-x-[5%] gap-y-6 xl:flex-row xl:even:flex-row-reverse",
+                className
+            )}
+        >
+            <p className="text-[18px] font-bold leading-relaxed">{text}</p>
+            <div className="flex w-full flex-col gap-y-4">{children}</div>
         </div>
-    </Card>
-);
+    );
+}
