@@ -1,4 +1,4 @@
-import { AGE, ROUTES_META } from "@/commons/config";
+import { currentAge, ROUTES_META } from "@/commons/config";
 
 import { HorizontalDividerWithText } from "@/components/layout/Divider";
 import { H1, H2, H3 } from "@/components/ui/Headings";
@@ -9,8 +9,7 @@ import { RouteCard } from "@/components/cards/RouteCard";
 import { Seo } from "@/layout/Seo";
 
 const NAME = "Home";
-const DESCRIPTION = `an ${AGE} year old Software Engineer.`;
-// prettier-ignore
+const DESCRIPTION = `an ${currentAge()} year old Software Engineer.`;
 const FULL_DESCRIPTION = `Hi, I'm Nathan Lodge, ${DESCRIPTION}`;
 
 export default function HomePage() {
@@ -19,7 +18,7 @@ export default function HomePage() {
             <Seo name={NAME} description={FULL_DESCRIPTION} />
             <div className="xl:pr-[10%]">
                 <H2 className="font-mono text-off-white">
-                    <span className="after:w-[3ch] after:inline-block after:animate-full-ellipsis after:ease-linear after:content-['...'] after:animation-delay-[2s]">
+                    <span className="after:inline-block after:w-[3ch] after:animate-full-ellipsis after:ease-linear after:content-['...'] after:animation-delay-[2s]">
                         Hi
                     </span>{" "}
                     I&apos;m,

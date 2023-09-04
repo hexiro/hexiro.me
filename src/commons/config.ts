@@ -42,7 +42,7 @@ import {
     VercelIcon,
     CloudflareIcon,
     HerokuIcon,
-    PolyworkIcon,
+    YouTubeIcon,
     InstagramIcon,
 } from "@/components/ui/Icons";
 
@@ -65,7 +65,7 @@ export const LINKED_IN_LINK = `https://www.linkedin.com/in/${LINKED_IN}` as cons
 
 const BIRTHDAY = Date.parse("2005-07-02T00:00:00-0500");
 const ONE_YEAR_IN_MILLISECONDS = 31556952000;
-export const AGE = Math.floor((Date.now() - BIRTHDAY) / ONE_YEAR_IN_MILLISECONDS);
+export const currentAge = () => Math.floor((Date.now() - BIRTHDAY) / ONE_YEAR_IN_MILLISECONDS);
 
 export const INITIAL_DISCORD_STATE = {
     discord_user: {
@@ -382,13 +382,6 @@ export const SOCIALS = [
     },
 
     {
-        name: "Spotify",
-        value: "nathlod",
-        link: "https://open.spotify.com/user/egmkzyon22fnuy7vfgalpxi4p",
-        icon: SpotifyIcon,
-        canCopy: false,
-    },
-    {
         name: "Steam",
         value: "hexiro",
         link: "https://steamcommunity.com/id/hexiro",
@@ -402,18 +395,26 @@ export const SOCIALS = [
         icon: InstagramIcon,
         canCopy: true,
     },
+
     {
-        name: "Polywork",
+        name: "Spotify",
         value: "nathlod",
-        link: "https://www.polywork.com/nathlod",
-        icon: PolyworkIcon,
-        canCopy: true,
+        link: "https://open.spotify.com/user/egmkzyon22fnuy7vfgalpxi4p",
+        icon: SpotifyIcon,
+        canCopy: false,
     },
     {
         name: "Last.fm",
         value: "nathlodge",
         link: "https://www.last.fm/user/nathlodge",
         icon: LastFmIcon,
+        canCopy: true,
+    },
+    {
+        name: "YouTube",
+        value: "nathlod",
+        link: "https://www.youtube.com/@nathlod/videos",
+        icon: YouTubeIcon,
         canCopy: true,
     },
     {

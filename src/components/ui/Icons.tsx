@@ -516,17 +516,11 @@ export const LastFmIcon: IconType = (props) => (
     </Icon>
 );
 
-export const PolyworkIcon: IconType = (props) => (
-    // 'polywork' icon from iconic
+export const YouTubeIcon: IconType = (props) => (
+    // 'brand-youtube' icon from tabler-icons
     <Icon {...props}>
-        <path d="M5 7.33333C5 6.04467 6.04467 5 7.33333 5H9.66667V9.66667H5V7.33333Z" />
-        <path d="M18.9999 7.33333C18.9999 6.04467 17.9552 5 16.6666 5H14.3333V9.66667H18.9999V7.33333Z" />
-        <path d="M18.9999 12C18.9999 13.2887 17.9552 14.3334 16.6666 14.3334H14.3333V9.66669H18.9999V12Z" />
-        <path d="M5 16.6666C5 17.9553 6.04467 19 7.33333 19H9.66667V14.3333H5V16.6666Z" />
-        <path d="M14.3334 16.6666C14.3334 17.9553 13.2887 19 12.0001 19H9.66675V14.3333H14.3334V16.6666Z" />
-        <path d="M5 9.66669H9.66667V14.3334H5V9.66669Z" />
-        <path d="M9.66675 5H14.3334V9.66667H9.66675V5Z" />
-        <path d="M9.66675 9.66669H14.3334V14.3334H9.66675V9.66669Z" />
+        <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
+        <path d="M10 9l5 3l-5 3z" />
     </Icon>
 );
 
