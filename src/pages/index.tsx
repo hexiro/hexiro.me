@@ -29,11 +29,11 @@ export default function HomePage() {
                 <H3 className="text-subtitle">{DESCRIPTION}</H3>
                 <DiscordCard className="mt-8" />
                 <HorizontalDividerWithText text="View More" className="mb-16 mt-20" />
-                <div className="grid grid-flow-row gap-6 lg:grid-cols-2">
+                <ul className="grid grid-flow-row gap-6 lg:grid-cols-2">
                     {ROUTES_META.map((route) => (
                         <RouteCard key={route.name} {...route} />
                     ))}
-                </div>
+                </ul>
             </div>
         </>
     );

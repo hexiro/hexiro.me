@@ -68,7 +68,7 @@ function AboutSection({ text, className, children }: PropsWithChildren<AboutSect
             )}
         >
             <p className="text-[18px] font-bold leading-relaxed">{text}</p>
-            <div className="flex w-full flex-col gap-y-4">{children}</div>
+            <ul className="flex w-full flex-col gap-y-4">{children}</ul>
         </div>
     );
 }

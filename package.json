@@ -13,11 +13,9 @@
         "analyze": "cross-env ANALYZE=true next build"
     },
     "dependencies": {
-        "@floating-ui/react-dom-interactions": "^0.13.3",
         "copy-to-clipboard": "^3.3.3",
         "framer-motion": "10.12.16",
         "ipaddr.js": "^2.1.0",
-        "lodash.debounce": "^4.0.8",
         "next": "^13.4.19",
         "next-seo": "^6.1.0",
         "react": "^18.2.0",
@@ -30,7 +28,6 @@
     "devDependencies": {
         "@next/bundle-analyzer": "^13.4.19",
         "@trivago/prettier-plugin-sort-imports": "^4.2.0",
-        "@types/lodash.debounce": "^4.0.7",
         "@types/node": "^20.5.9",
         "@types/react": "^18.2.21",
         "@types/react-dom": "^18.2.7",
@@ -48,7 +45,6 @@
         "eslint-plugin-react": "^7.33.2",
         "eslint-plugin-regex": "^1.10.0",
         "eslint-plugin-unused-imports": "^3.0.0",
-        "mini-css-extract-plugin": "^2.7.6",
         "postcss": "^8.4.29",
         "prettier": "^3.0.3",
         "prettier-plugin-tailwindcss": "^0.5.4",

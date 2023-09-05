@@ -10,7 +10,7 @@ interface ImageCardProps extends ComponentProps<typeof Image> {
 
 export function ImageCard({ caption, alt, ...props }: ImageCardProps) {
     return (
-        <Card className="w-full px-8 py-6 sm:px-10 sm:py-6 xl:px-6 xl:py-5">
+        <Card as="li" className="w-full px-8 py-6 sm:px-10 sm:py-6 xl:px-6 xl:py-5">
             <div className="mx-auto flex w-fit flex-col items-start justify-between gap-y-8 sm:w-auto sm:flex-row sm:items-center sm:gap-x-6 xl:flex-col">
                 <div className="sm:self-start xl:mt-0 xl:max-w-xs">
                     <H4 green className="text-base md:text-[28px]">

@@ -54,7 +54,7 @@ export function ContactCard({ social, className, isSingle }: ContactCardProps) {
             isFocusable={isInteractive}
             className={twMerge(
                 "flex w-full flex-row items-center gap-x-6 px-6 md:px-8",
-                isSingle && "min-w-[375px]",
+                isSingle && "w-full xs:min-w-[375px]",
                 className
             )}
             onClick={link ? undefined : copyToClipboard}
