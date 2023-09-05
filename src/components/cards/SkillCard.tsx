@@ -8,12 +8,12 @@ import { ExternalLink } from "@/components/ui/Links";
 
 import { twMerge } from "tailwind-merge";
 
-interface ISocialCardProps {
+interface SocialCardProps {
     readonly skill: ISkill;
     readonly className?: string;
 }
 
-export default function SkillCard({ skill, className }: ISocialCardProps) {
+export default function SkillCard({ skill, className }: SocialCardProps) {
     const { icon: Icon, name, link } = skill;
 
     return (

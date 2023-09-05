@@ -5,11 +5,11 @@ import { Card } from "@/components/ui/Cards";
 
 import { twMerge } from "tailwind-merge";
 
-interface IRouteCardProps extends IRouteMeta {
+interface RouteCardProps extends IRouteMeta {
     readonly className?: string;
 }
 
-export function RouteCard({ name, path, description, icon: Icon, className }: IRouteCardProps) {
+export function RouteCard({ name, path, description, icon: Icon, className }: RouteCardProps) {
     return (
         <Card isHoverable isFocusable className={twMerge("group w-full", className)}>
             <div className="mb-3 flex flex-col gap-y-1">

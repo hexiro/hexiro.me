@@ -1,4 +1,4 @@
-import type { MutableRefObject, PropsWithChildren } from "react";
+import type { MutableRefObject } from "react";
 import { memo } from "react";
 import { useRef } from "react";
 
@@ -13,7 +13,6 @@ import useSelectedRouteIndex from "@/hooks/useSelectedRouteIndex";
 
 import { motion } from "framer-motion";
 import { useDraggable } from "react-use-draggable-scroll";
-import { twMerge } from "tailwind-merge";
 
 const Nav = () => {
     const ref = useRef<HTMLElement>() as MutableRefObject<HTMLElement>;
@@ -77,12 +76,12 @@ function NavRoutes() {
     );
 }
 
-interface INavRouteProps {
+interface NavRouteProps {
     readonly route: IRoute;
     readonly isSelected: boolean;
 }
 
-function NavRoute({ route, isSelected }: INavRouteProps) {
+function NavRoute({ route, isSelected }: NavRouteProps) {
     const { name, path } = route;
 
     return (
@@ -103,11 +102,11 @@ function NavRoute({ route, isSelected }: INavRouteProps) {
     );
 }
 
-interface INavRouteSelectedIndicatorProps {
+interface NavRouteSelectedIndicatorProps {
     readonly isSelected: boolean;
 }
 
-function NavRouteSelectedIndicator({ isSelected }: INavRouteSelectedIndicatorProps) {
+function NavRouteSelectedIndicator({ isSelected }: NavRouteSelectedIndicatorProps) {
     if (!isSelected) return null;
 
     return (
@@ -115,23 +114,5 @@ function NavRouteSelectedIndicator({ isSelected }: INavRouteSelectedIndicatorPro
             className="absolute bottom-0 z-20 h-2 w-full rounded-t-[3px] bg-green lg:right-0 lg:top-[-10%] lg:h-[120%] lg:w-2 lg:rounded-l-[3px] lg:rounded-tr-none"
             layoutId="selected-route-indicator"
         />
-    );
-}
-
-interface INavLinkProps extends PropsWithChildren {
-    readonly href: string;
-    readonly className?: string;
-    readonly isSelected: boolean;
-}
-function WithNavLink({ href, isSelected, className, children }: INavLinkProps) {
-    if (isSelected) {
-        // a little bit of a fib with the cursor-pointer, may revisit in future
-        return <span className={twMerge(className, "cursor-pointer")}>{children}</span>;
-    }
-
-    return (
-        <Link href={href} className={className}>
-            {children}
-        </Link>
     );
 }

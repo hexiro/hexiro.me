@@ -42,7 +42,7 @@ export function PageNextNavigation() {
     );
 }
 
-interface IPageEndNavigationProps extends PropsWithChildren {
+interface PageEndNavigationProps {
     readonly href: string | undefined;
     readonly icon: IconType;
     readonly className?: string;
@@ -55,7 +55,7 @@ function PageEndNavigation({
     className,
     iconClassName,
     children,
-}: IPageEndNavigationProps) {
+}: PropsWithChildren<PageEndNavigationProps>) {
     const AnchorElement = href ? Link : "a";
     const disabled = !href;
 
@@ -63,11 +63,11 @@ function PageEndNavigation({
         <AnchorElement
             // @ts-expect-error ts doesn't recognize that href can't be undefined when using Link
             href={href}
+            aria-disabled={disabled}
             className={twMerge(
                 "justify-left group flex items-center text-base text-text focus-visible:outline-none aria-disabled:cursor-not-allowed aria-disabled:line-through aria-disabled:opacity-50",
                 className
             )}
-            aria-disabled={disabled}
         >
             <Icon
                 className={twMerge(

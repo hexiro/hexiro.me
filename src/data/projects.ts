@@ -24,8 +24,7 @@ export async function fetchProjects(): Promise<IProject[]> {
     const json = (await resp.json()) as JsonType;
     const pinnedItemsData = json.data.viewer.pinnedItems.nodes;
 
-    const projects = pinnedItemsData.map((repository) => parseProject(repository));
-    return projects;
+    return pinnedItemsData.map((repository) => parseProject(repository));
 }
 
 // topics that indicate a project is a package

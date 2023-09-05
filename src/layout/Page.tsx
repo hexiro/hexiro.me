@@ -3,12 +3,12 @@ import type { ReactNode } from "react";
 
 import { twMerge } from "tailwind-merge";
 
-interface IPageProps {
+interface PageProps {
     readonly fonts: NextFontWithVariable[];
     readonly children: ReactNode;
 }
 
-export default function Page({ fonts, children }: IPageProps) {
+export default function Page({ fonts, children }: PageProps) {
     return (
         <div
             className={twMerge(

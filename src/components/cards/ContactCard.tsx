@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from "react";
 import { useState } from "react";
 
-import { iconSwitch } from "@/commons/animations";
+import { ICON_SWITCH } from "@/commons/animations";
 import type { ISocial } from "@/commons/config";
 
 import { ExternalLinkOverlay } from "@/components/layout/LinkOverlay";
@@ -14,13 +14,13 @@ import copy from "copy-to-clipboard";
 import { AnimatePresence, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 
-interface IContactCardProps {
+interface ContactCardProps {
     readonly social: ISocial;
     readonly className?: string;
     readonly isSingle?: boolean;
 }
 
-export function ContactCard({ social, className, isSingle }: IContactCardProps) {
+export function ContactCard({ social, className, isSingle }: ContactCardProps) {
     const { name, value, link, icon: Icon, canCopy } = social;
     const [copiedSuccess, setCopiedSuccess] = useState<boolean | null>(null);
     const [copiedTimeout, setCopiedTimeout] = useState<NodeJS.Timeout | null>(null);
@@ -91,7 +91,7 @@ export function ContactCard({ social, className, isSingle }: IContactCardProps) 
                                 initial="hidden"
                                 animate="enter"
                                 exit="exit"
-                                variants={iconSwitch}
+                                variants={ICON_SWITCH}
                                 transition={{ duration: 0.15 }}
                             >
                                 {copiedSuccess === null ? (
@@ -115,12 +115,16 @@ export function ContactCard({ social, className, isSingle }: IContactCardProps) 
     );
 }
 
-interface IWithExternalLinkOverlay extends PropsWithChildren {
+interface WithExternalLinkOverlayProps {
     readonly href: string | undefined;
     readonly className?: string;
 }
 
-const WithExternalLinkOverlay = ({ href, children, className }: IWithExternalLinkOverlay) => {
+const WithExternalLinkOverlay = ({
+    href,
+    children,
+    className,
+}: PropsWithChildren<WithExternalLinkOverlayProps>) => {
     if (!href) return <span className={className}>{children}</span>;
 
     return (

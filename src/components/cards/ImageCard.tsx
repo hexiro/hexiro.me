@@ -4,11 +4,11 @@ import type { ComponentProps } from "react";
 import { Card } from "@/components/ui/Cards";
 import { H4 } from "@/components/ui/Headings";
 
-interface IImageCardProps extends ComponentProps<typeof Image> {
+interface ImageCardProps extends ComponentProps<typeof Image> {
     readonly caption: string;
 }
 
-export function ImageCard({ caption, alt, ...props }: IImageCardProps) {
+export function ImageCard({ caption, alt, ...props }: ImageCardProps) {
     return (
         <Card className="w-full px-8 py-6 sm:px-10 sm:py-6 xl:px-6 xl:py-5">
             <div className="mx-auto flex w-fit flex-col items-start justify-between gap-y-8 sm:w-auto sm:flex-row sm:items-center sm:gap-x-6 xl:flex-col">

@@ -3,11 +3,11 @@ import Script from "next/script";
 
 import { GlobalSeo } from "@/layout/Seo";
 
-interface IMetaProps {
+interface MetaProps {
     readonly sansFont: NextFont;
 }
 
-export default function Meta({ sansFont }: IMetaProps) {
+export default function Meta({ sansFont }: MetaProps) {
     return (
         <>
             <Script

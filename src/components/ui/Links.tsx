@@ -13,7 +13,7 @@ export const Link: ForwardRefExoticComponent<ComponentProps<typeof NextLink>> = 
     (props, ref) => <NextLink ref={ref} scroll={false} {...props} />
 );
 
-interface IExternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+interface ExternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
     readonly href: string;
     readonly isFocusable?: boolean;
     readonly className?: string;
@@ -26,7 +26,7 @@ export function ExternalLink({
     className,
     children,
     ...props
-}: IExternalLinkProps) {
+}: ExternalLinkProps) {
     return (
         <a
             className={twMerge(

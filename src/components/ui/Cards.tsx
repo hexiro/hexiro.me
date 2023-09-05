@@ -1,8 +1,8 @@
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 
 import { twMerge } from "tailwind-merge";
 
-interface CardProps<T extends React.ElementType> {
+interface CardProps<T extends ElementType> {
     readonly as?: T;
     readonly isHoverable?: boolean;
     readonly isFocusable?: boolean;
@@ -10,14 +10,14 @@ interface CardProps<T extends React.ElementType> {
     readonly children?: ReactNode;
 }
 
-export function Card<T extends React.ElementType = "div">({
+export function Card<T extends ElementType = "div">({
     as,
     isHoverable,
     isFocusable,
     className: extraClassName,
     children,
     ...props
-}: CardProps<T> & Omit<React.ComponentPropsWithoutRef<T>, keyof CardProps<T>>) {
+}: CardProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof CardProps<T>>) {
     const Component = as ?? "div";
 
     return (
@@ -38,11 +38,11 @@ export function Card<T extends React.ElementType = "div">({
     );
 }
 
-export function SecondaryCard<T extends React.ElementType = "div">({
+export function SecondaryCard<T extends ElementType = "div">({
     as,
     className,
     children,
-}: CardProps<T> & Omit<React.ComponentPropsWithoutRef<T>, keyof CardProps<T>>) {
+}: CardProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof CardProps<T>>) {
     const Component = as ?? "div";
 
     return (

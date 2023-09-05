@@ -5,12 +5,12 @@ import { currentAge, SOCIALS_MAP } from "@/commons/config";
 import { H1, H3 } from "@/components/ui/Headings";
 
 import { ContactCard } from "@/components/cards/ContactCard";
+import { ImageCard } from "@/components/cards/ImageCard";
 
 import introSrc from "@/images/intro.png";
 import { Seo } from "@/layout/Seo";
 
 import { twMerge } from "tailwind-merge";
-import { ImageCard } from "@/components/cards/ImageCard";
 
 const NAME = "About";
 const DESCRIPTION = "My life beyond the IDE.";
@@ -54,12 +54,12 @@ export default function AboutPage() {
     );
 }
 
-interface IAboutSectionProps {
+interface AboutSectionProps {
     readonly text: string;
     readonly className?: string;
 }
 
-function AboutSection({ text, className, children }: PropsWithChildren<IAboutSectionProps>) {
+function AboutSection({ text, className, children }: PropsWithChildren<AboutSectionProps>) {
     return (
         <div
             className={twMerge(

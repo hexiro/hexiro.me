@@ -1,20 +1,20 @@
-import type { PropsWithChildren } from "react";
-
+import type { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
 type HeadingTypes = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
-interface IHeadingProps extends PropsWithChildren {
+interface HeadingProps {
     readonly as: HeadingTypes;
     readonly green?: boolean;
     readonly mono?: boolean;
     readonly black?: boolean;
     readonly className?: string;
+    readonly children?: ReactNode;
 }
 
-type GeneralHeadingProps = Omit<IHeadingProps, "as">;
+type GeneralHeadingProps = Omit<HeadingProps, "as">;
 
-function Heading({ as: Heading, green, mono, black, className, children }: IHeadingProps) {
+function Heading({ as: Heading, green, mono, black, className, children }: HeadingProps) {
     return (
         <Heading
             className={twMerge(

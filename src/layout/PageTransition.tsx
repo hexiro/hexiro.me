@@ -1,37 +1,30 @@
 import { useRouter } from "next/router";
+import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 
+import type { NavigationDirection } from "@/commons/animations";
+import { PAGE_TRANSITION, PAGE_TRANSITION_VARIANTS } from "@/commons/animations";
 import { NAV_PATHS } from "@/commons/config";
 
-import type { Variants } from "framer-motion";
 import { AnimatePresence, motion } from "framer-motion";
 
-type NavigationDirection = "up" | "down" | null;
+interface PageTransitionProps {
+    readonly children: ReactNode;
+}
 
-const variants: Variants = {
-    hidden: (direction: NavigationDirection) =>
-        direction === "up" ? { opacity: 0, x: 0, y: -100 } : { opacity: 0, x: 0, y: 100 },
-    enter: { opacity: 1, x: 0, y: 0 },
-    exit: (direction: NavigationDirection) =>
-        direction === "up" ? { opacity: 0, x: 0, y: 100 } : { opacity: 0, x: 0, y: -100 },
-};
-
-export default function PageTransition({ children }: { readonly children: React.ReactNode }) {
+export default function PageTransition({ children }: PageTransitionProps) {
     const router = useRouter();
     const [navigationDirection, setNavigationDirection] = useState<NavigationDirection>(null);
 
     useEffect(() => {
-        function handler(newRoute: string) {
+        const handler = (newRoute: string) => {
             const oldRoute = router.asPath;
-
-            console.log("newRoute", newRoute, "oldRoute", oldRoute);
-
             const newRouteIndex = newRoute ? NAV_PATHS.findIndex((path) => path === newRoute) : -1;
             const oldRouteIndex = oldRoute ? NAV_PATHS.findIndex((path) => path === oldRoute) : -1;
             const navigationDirection = newRouteIndex >= oldRouteIndex ? "down" : "up";
 
             setNavigationDirection(navigationDirection);
-        }
+        };
 
         router.events.on("routeChangeStart", handler);
         return () => router.events.off("routeChangeStart", handler);
@@ -56,12 +49,8 @@ export default function PageTransition({ children }: { readonly children: React.
                 animate="enter"
                 exit="exit"
                 custom={navigationDirection}
-                variants={variants}
-                transition={{
-                    type: "spring",
-                    duration: 0.6,
-                    bounce: 0.15,
-                }}
+                variants={PAGE_TRANSITION_VARIANTS}
+                transition={PAGE_TRANSITION}
             >
                 {children}
             </motion.div>

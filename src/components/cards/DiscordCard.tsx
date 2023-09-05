@@ -98,7 +98,10 @@ export function DiscordCard({ className }: { readonly className?: string }) {
     );
 }
 
-function StatusIndicator({ className, children }: PropsWithChildren<{ readonly className?: string }>) {
+function StatusIndicator({
+    className,
+    children,
+}: PropsWithChildren<{ readonly className?: string }>) {
     return (
         <div
             className={twMerge(

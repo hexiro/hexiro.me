@@ -98,7 +98,6 @@ export interface IRoute {
 }
 
 export type INavRouteName = (typeof ROUTES)[number]["name"];
-export type INavRoutePath = (typeof ROUTES)[number]["path"];
 
 export const ROUTES = [
     {
@@ -164,7 +163,7 @@ export interface ISkill {
     link: string;
 }
 
-export type ISkillGroups = Record<string, ISkill[]>;
+type ISkillGroups = Record<string, ISkill[]>;
 
 export const SKILLS = {
     Languages: [
@@ -340,7 +339,7 @@ export interface ISocial {
     value: string;
     link?: string;
     icon: IconType;
-    // name isn't a part of the url or url can't be found with just name
+    // social's name isn't a part of the url or url can't be found with just name
     canCopy: boolean;
 }
 
@@ -434,7 +433,10 @@ export const SOCIALS = [
 
 type ISocialName = (typeof SOCIALS)[number]["name"];
 
-export const SOCIALS_MAP = SOCIALS.reduce<Record<ISocialName, ISocial>>((acc, social) => {
-    acc[social.name] = social;
-    return acc;
-}, {} as Record<ISocialName, ISocial>);
+export const SOCIALS_MAP = SOCIALS.reduce<Record<ISocialName, ISocial>>(
+    (acc, social) => {
+        acc[social.name] = social;
+        return acc;
+    },
+    {} as Record<ISocialName, ISocial>
+);
