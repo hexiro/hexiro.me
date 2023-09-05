@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from "react";
 import { useState } from "react";
 
-import { ICON_SWITCH } from "@/commons/animations";
+import { ICON_SWITCH, ICON_SWITCH_TRANSITION } from "@/commons/animations";
 import type { ISocial } from "@/commons/config";
 
 import { ExternalLinkOverlay } from "@/components/layout/LinkOverlay";
@@ -92,7 +92,7 @@ export function ContactCard({ social, className, isSingle }: ContactCardProps) {
                                 animate="enter"
                                 exit="exit"
                                 variants={ICON_SWITCH}
-                                transition={{ duration: 0.15 }}
+                                transition={ICON_SWITCH_TRANSITION}
                             >
                                 {copiedSuccess === null ? (
                                     <CopyIcon />

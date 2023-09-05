@@ -8,8 +8,13 @@ export const PAGE_TRANSITION: Transition = {
     bounce: 0.15,
 };
 
-export type NavigationDirection = "up" | "down" | null;
+export const ICON_SWITCH_TRANSITION: Transition = {
+    duration: 0.15,
+};
 
+// variants
+
+export type NavigationDirection = "up" | "down" | null;
 export const PAGE_TRANSITION_VARIANTS: Variants = {
     hidden: (direction: NavigationDirection) =>
         direction === "up" ? { opacity: 0, x: 0, y: -100 } : { opacity: 0, x: 0, y: 100 },
@@ -17,8 +22,6 @@ export const PAGE_TRANSITION_VARIANTS: Variants = {
     exit: (direction: NavigationDirection) =>
         direction === "up" ? { opacity: 0, x: 0, y: 100 } : { opacity: 0, x: 0, y: -100 },
 };
-
-// child variants
 
 export const ICON_SWITCH: Variants = {
     hidden: { opacity: 0 },
