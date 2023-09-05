@@ -14,10 +14,10 @@ export const Link: ForwardRefExoticComponent<ComponentProps<typeof NextLink>> = 
 );
 
 interface IExternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
-    href: string;
-    isFocusable?: boolean;
-    className?: string;
-    children?: ReactNode;
+    readonly href: string;
+    readonly isFocusable?: boolean;
+    readonly className?: string;
+    readonly children?: ReactNode;
 }
 
 export function ExternalLink({

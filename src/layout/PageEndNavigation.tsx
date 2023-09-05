@@ -43,10 +43,10 @@ export function PageNextNavigation() {
 }
 
 interface IPageEndNavigationProps extends PropsWithChildren {
-    href: string | undefined;
-    icon: IconType;
-    className?: string;
-    iconClassName?: string;
+    readonly href: string | undefined;
+    readonly icon: IconType;
+    readonly className?: string;
+    readonly iconClassName?: string;
 }
 
 function PageEndNavigation({

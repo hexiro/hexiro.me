@@ -5,8 +5,8 @@ import { NextSeo, DefaultSeo } from "next-seo";
 import resolveConfig from "tailwindcss/resolveConfig";
 
 interface SeoProps {
-    name: string;
-    description: string;
+    readonly name: string;
+    readonly description: string;
 }
 
 export function Seo({ name, description }: SeoProps) {

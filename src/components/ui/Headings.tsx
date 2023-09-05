@@ -5,11 +5,11 @@ import { twMerge } from "tailwind-merge";
 type HeadingTypes = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 interface IHeadingProps extends PropsWithChildren {
-    as: HeadingTypes;
-    green?: boolean;
-    mono?: boolean;
-    black?: boolean;
-    className?: string;
+    readonly as: HeadingTypes;
+    readonly green?: boolean;
+    readonly mono?: boolean;
+    readonly black?: boolean;
+    readonly className?: string;
 }
 
 type GeneralHeadingProps = Omit<IHeadingProps, "as">;

@@ -5,12 +5,12 @@ import { ExternalLink, Link } from "@/components/ui/Links";
 import { twMerge } from "tailwind-merge";
 
 interface ILinkOverlayProps extends PropsWithChildren, ComponentProps<typeof Link> {
-    className?: string;
+    readonly className?: string;
 }
 
 interface IExternalLinkProps extends PropsWithChildren {
-    href: string;
-    className?: string;
+    readonly href: string;
+    readonly className?: string;
 }
 
 const commonClassName =

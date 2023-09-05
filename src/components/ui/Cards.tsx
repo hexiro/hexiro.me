@@ -3,11 +3,11 @@ import type { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface CardProps<T extends React.ElementType> {
-    as?: T;
-    isHoverable?: boolean;
-    isFocusable?: boolean;
-    className?: string;
-    children?: ReactNode;
+    readonly as?: T;
+    readonly isHoverable?: boolean;
+    readonly isFocusable?: boolean;
+    readonly className?: string;
+    readonly children?: ReactNode;
 }
 
 export function Card<T extends React.ElementType = "div">({

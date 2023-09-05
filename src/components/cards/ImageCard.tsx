@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/Cards";
 import { H4 } from "@/components/ui/Headings";
 
 interface IImageCardProps extends ComponentProps<typeof Image> {
-    caption: string;
+    readonly caption: string;
 }
 
 export function ImageCard({ caption, alt, ...props }: IImageCardProps) {

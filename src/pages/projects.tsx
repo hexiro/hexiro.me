@@ -10,7 +10,7 @@ import { fetchProjects } from "@/data/projects";
 import { Seo } from "@/layout/Seo";
 
 interface ProjectsPageProps {
-    projects: IProject[];
+    readonly projects: IProject[];
 }
 
 const NAME = "Projects";

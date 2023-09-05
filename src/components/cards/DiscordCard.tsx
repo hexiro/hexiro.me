@@ -11,7 +11,7 @@ import { twMerge } from "tailwind-merge";
 
 const SPECIAL_CHARS = "!@#$%^&?";
 
-export function DiscordCard({ className }: { className?: string }) {
+export function DiscordCard({ className }: { readonly className?: string }) {
     const state = useDiscordState();
 
     return (
@@ -98,7 +98,7 @@ export function DiscordCard({ className }: { className?: string }) {
     );
 }
 
-function StatusIndicator({ className, children }: PropsWithChildren<{ className?: string }>) {
+function StatusIndicator({ className, children }: PropsWithChildren<{ readonly className?: string }>) {
     return (
         <div
             className={twMerge(
@@ -111,7 +111,7 @@ function StatusIndicator({ className, children }: PropsWithChildren<{ className?
     );
 }
 
-function PresenceLine({ className, children }: PropsWithChildren<{ className?: string }>) {
+function PresenceLine({ className, children }: PropsWithChildren<{ readonly className?: string }>) {
     return (
         <p
             className={twMerge(

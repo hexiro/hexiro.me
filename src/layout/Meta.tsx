@@ -4,7 +4,7 @@ import Script from "next/script";
 import { GlobalSeo } from "@/layout/Seo";
 
 interface IMetaProps {
-    sansFont: NextFont;
+    readonly sansFont: NextFont;
 }
 
 export default function Meta({ sansFont }: IMetaProps) {

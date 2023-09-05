@@ -15,9 +15,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 
 interface IContactCardProps {
-    social: ISocial;
-    className?: string;
-    isSingle?: boolean;
+    readonly social: ISocial;
+    readonly className?: string;
+    readonly isSingle?: boolean;
 }
 
 export function ContactCard({ social, className, isSingle }: IContactCardProps) {
@@ -116,8 +116,8 @@ export function ContactCard({ social, className, isSingle }: IContactCardProps) 
 }
 
 interface IWithExternalLinkOverlay extends PropsWithChildren {
-    href: string | undefined;
-    className?: string;
+    readonly href: string | undefined;
+    readonly className?: string;
 }
 
 const WithExternalLinkOverlay = ({ href, children, className }: IWithExternalLinkOverlay) => {

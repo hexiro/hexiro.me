@@ -20,7 +20,7 @@ export function gql(query: TemplateStringsArray, ...variables: string[]): string
     return (
         query
             // convert tagged template literal to literal string
-            .map((value, index) => `${value}${variables[index] || ""}`)
+            .map((value, index) => `${value}${variables[index] ?? ""}`)
             .join("")
             // replace multiple whitespace with a single
             .replace(/(\b|\B)\s+(\b|\B)/gm, " ")

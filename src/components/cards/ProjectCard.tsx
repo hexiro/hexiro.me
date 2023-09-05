@@ -10,8 +10,8 @@ import type { IProject } from "@/data/projects";
 import { twMerge } from "tailwind-merge";
 
 interface ProjectCardProps {
-    className?: string;
-    project: IProject;
+    readonly className?: string;
+    readonly project: IProject;
 }
 
 export function ProjectCard({ className, project }: ProjectCardProps) {

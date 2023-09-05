@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/Cards";
 import { twMerge } from "tailwind-merge";
 
 interface IRouteCardProps extends IRouteMeta {
-    className?: string;
+    readonly className?: string;
 }
 
 export function RouteCard({ name, path, description, icon: Icon, className }: IRouteCardProps) {

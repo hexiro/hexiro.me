@@ -16,7 +16,7 @@ const variants: Variants = {
         direction === "up" ? { opacity: 0, x: 0, y: 100 } : { opacity: 0, x: 0, y: -100 },
 };
 
-export default function PageTransition({ children }: { children: React.ReactNode }) {
+export default function PageTransition({ children }: { readonly children: React.ReactNode }) {
     const router = useRouter();
     const [navigationDirection, setNavigationDirection] = useState<NavigationDirection>(null);
 

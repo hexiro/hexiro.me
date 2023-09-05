@@ -55,8 +55,8 @@ export default function AboutPage() {
 }
 
 interface IAboutSectionProps {
-    text: string;
-    className?: string;
+    readonly text: string;
+    readonly className?: string;
 }
 
 function AboutSection({ text, className, children }: PropsWithChildren<IAboutSectionProps>) {

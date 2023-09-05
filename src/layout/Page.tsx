@@ -4,8 +4,8 @@ import type { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface IPageProps {
-    fonts: NextFontWithVariable[];
-    children: ReactNode;
+    readonly fonts: NextFontWithVariable[];
+    readonly children: ReactNode;
 }
 
 export default function Page({ fonts, children }: IPageProps) {

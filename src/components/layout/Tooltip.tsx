@@ -9,12 +9,12 @@ import { twMerge } from "tailwind-merge";
 type AlignText = "center" | "end" | "start" | "left" | "right";
 
 interface ITooltipProps {
-    title: string | ReactElement;
-    children: JSX.Element;
-    className?: string;
-    placement?: Placement;
-    alignText?: AlignText;
-    enabled?: boolean;
+    readonly title: string | ReactElement;
+    readonly children: JSX.Element;
+    readonly className?: string;
+    readonly placement?: Placement;
+    readonly alignText?: AlignText;
+    readonly enabled?: boolean;
 }
 
 export function Tooltip({

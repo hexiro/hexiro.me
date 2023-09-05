@@ -9,7 +9,7 @@ import type { PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
 
 export type IconType = (props?: IconProps) => JSX.Element;
-type IconProps = { className?: string };
+type IconProps = { readonly className?: string };
 
 const Icon = ({ children, className }: PropsWithChildren<IconProps>) => (
     <svg

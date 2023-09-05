@@ -24,36 +24,36 @@ interface IPopoverBase {
 }
 
 interface IPopover {
-    active: boolean;
+    readonly active: boolean;
 
     /* Children is the element we're targeting */
-    children: JSX.Element;
-    className?: string;
+    readonly children: JSX.Element;
+    readonly className?: string;
 
     /* Render is the actual popover content */
-    render: (defaults: IPopoverBase) => React.ReactNode;
+    readonly render: (defaults: IPopoverBase) => React.ReactNode;
 
-    setPopover: (open: boolean) => void;
+    readonly setPopover: (open: boolean) => void;
 
-    placement?: Placement;
-    clickToClose?: boolean;
+    readonly placement?: Placement;
+    readonly clickToClose?: boolean;
 
     /* Optional parameter to automatically set width to targets width */
-    widthAtTarget?: boolean;
+    readonly widthAtTarget?: boolean;
 
     /* Enable popover on target click */
-    toggleOnTargetClick?: boolean;
+    readonly toggleOnTargetClick?: boolean;
 
     /* Enable popover on hover */
-    toggleOnHover?: boolean;
+    readonly toggleOnHover?: boolean;
 
     /* Allow focusing in popover */
-    toggleFocus?: boolean;
+    readonly toggleFocus?: boolean;
 
     /* Allows you to specify if you want absolute positioning or fixed positioning */
-    positionStrategy?: Strategy;
+    readonly positionStrategy?: Strategy;
 
-    extraOffset?: number;
+    readonly extraOffset?: number;
 }
 
 export function Popover({

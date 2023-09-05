@@ -2,11 +2,11 @@ import { twMerge } from "tailwind-merge";
 
 const commonStyles = "border-background-accent border-2 border-solid";
 
-export function HorizontalDivider({ className }: { className?: string }) {
+export function HorizontalDivider({ className }: { readonly className?: string }) {
     return <hr className={twMerge(commonStyles, "h-0 divide-y", className)} />;
 }
 
-export function VerticalDivider({ className }: { className?: string }) {
+export function VerticalDivider({ className }: { readonly className?: string }) {
     return <hr className={twMerge(commonStyles, "w-0 divide-x", className)} />;
 }
 
@@ -14,8 +14,8 @@ export function HorizontalDividerWithText({
     text,
     className,
 }: {
-    text: string;
-    className?: string;
+    readonly text: string;
+    readonly className?: string;
 }) {
     return (
         <div className={twMerge("flex items-center", className)}>

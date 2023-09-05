@@ -78,8 +78,8 @@ function NavRoutes() {
 }
 
 interface INavRouteProps {
-    route: IRoute;
-    isSelected: boolean;
+    readonly route: IRoute;
+    readonly isSelected: boolean;
 }
 
 function NavRoute({ route, isSelected }: INavRouteProps) {
@@ -104,7 +104,7 @@ function NavRoute({ route, isSelected }: INavRouteProps) {
 }
 
 interface INavRouteSelectedIndicatorProps {
-    isSelected: boolean;
+    readonly isSelected: boolean;
 }
 
 function NavRouteSelectedIndicator({ isSelected }: INavRouteSelectedIndicatorProps) {
@@ -119,9 +119,9 @@ function NavRouteSelectedIndicator({ isSelected }: INavRouteSelectedIndicatorPro
 }
 
 interface INavLinkProps extends PropsWithChildren {
-    href: string;
-    className?: string;
-    isSelected: boolean;
+    readonly href: string;
+    readonly className?: string;
+    readonly isSelected: boolean;
 }
 function WithNavLink({ href, isSelected, className, children }: INavLinkProps) {
     if (isSelected) {
