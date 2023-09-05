@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    ::-webkit-scrollbar {
+        @apply w-[6px];
+        @apply h-[6px];
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-black/20;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-background-accent;
+        @apply rounded-sm;
+        @apply transition-colors;
+        @apply hover:bg-text/50;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply font-sans;
+        @apply bg-background;
+    }
+
+    svg {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    a {
+        @apply uppercase;
+    }
+
+    li,
+    a,
+    p {
+        @apply font-extrabold;
+        @apply font-mono;
+    }
+
+    p {
+        @apply text-text;
+    }
+}

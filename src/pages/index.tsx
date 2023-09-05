@@ -1,43 +1,40 @@
-import { slideFromBottom, staggerChildren } from "@/commons/animations";
-import { AboutIcon, ProjectsIcon } from "@/commons/icons";
+import { currentAge, ROUTES_META } from "@/commons/config";
 
-import { ButtonLink, Span } from "@/components/ui";
+import { HorizontalDividerWithText } from "@/components/layout/Divider";
+import { H1, H2, H3 } from "@/components/ui/Headings";
 
-import ButtonsContainer from "@/components/home/ButtonsContainer";
-import DiscordPresence from "@/components/home/DiscordPresence";
+import { DiscordCard } from "@/components/cards/DiscordCard";
+import { RouteCard } from "@/components/cards/RouteCard";
 
-import Page, { PageDescription, PageHeading, PageSubheading, PageText } from "@/layout/Page";
-
-import { motion } from "framer-motion";
+import { Seo } from "@/layout/Seo";
 
 const NAME = "Home";
-const DESCRIPTION =
-    "A self-taught software engineer who enjoys problem solving, technology, building software, and contributing to open source projects.";
+const DESCRIPTION = `an ${currentAge()} year old Software Engineer.`;
+const FULL_DESCRIPTION = `Hi, I'm Nathan Lodge, ${DESCRIPTION}`;
 
 export default function HomePage() {
     return (
-        <Page name={NAME} description={`hi! i'm Nathan Lodge, ${DESCRIPTION}`}>
-            <PageText>
-                <PageSubheading>{"hi! i'm"}</PageSubheading>
-                <PageHeading>
-                    Nathan <Span color="brand-accent">Lodge</Span>
-                    <Span color="text-primary">,</Span>
-                </PageHeading>
-                <PageDescription>{DESCRIPTION}</PageDescription>
-                <ButtonsContainer variants={staggerChildren}>
-                    <motion.div variants={slideFromBottom}>
-                        <ButtonLink icon={AboutIcon} priority="primary" href="/about" size="lg">
-                            About Me
-                        </ButtonLink>
-                    </motion.div>
-                    <motion.div variants={slideFromBottom}>
-                        <ButtonLink icon={ProjectsIcon} href="/projects" size="lg">
-                            View Projects
-                        </ButtonLink>
-                    </motion.div>
-                </ButtonsContainer>
-            </PageText>
-            <DiscordPresence />
-        </Page>
+        <>
+            <Seo name={NAME} description={FULL_DESCRIPTION} />
+            <div className="xl:pr-[10%]">
+                <H2 className="font-mono text-off-white">
+                    <span className="after:inline-block after:w-[3ch] after:animate-full-ellipsis after:ease-linear after:content-['...'] after:animation-delay-[2s]">
+                        Hi
+                    </span>{" "}
+                    I&apos;m,
+                </H2>
+                <H1 className="tracking-wide">
+                    Nathan <span className="text-off-white">Lodge</span>
+                </H1>
+                <H3 className="text-subtitle">{DESCRIPTION}</H3>
+                <DiscordCard className="mt-8" />
+                <HorizontalDividerWithText text="View More" className="mb-16 mt-20" />
+                <ul className="grid grid-flow-row gap-6 lg:grid-cols-2">
+                    {ROUTES_META.map((route) => (
+                        <RouteCard key={route.name} {...route} />
+                    ))}
+                </ul>
+            </div>
+        </>
     );
 }

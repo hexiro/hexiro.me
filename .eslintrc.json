@@ -4,13 +4,14 @@
         "node": true
     },
     "extends": ["xo", "xo-react", "xo-typescript", "prettier", "next/core-web-vitals"],
-    "plugins": ["react", "react-hooks", "unused-imports", "no-relative-import-paths"],
+    "plugins": ["react", "react-hooks", "unused-imports", "no-relative-import-paths", "regex"],
     "parser": "@typescript-eslint/parser",
     "rules": {
         "no-negated-condition": "off",
         "capitalized-comments": "off",
         "new-cap": "off",
         "no-await-in-loop": "off",
+        "default-case": "off",
         "unused-imports/no-unused-imports": "error",
         "no-relative-import-paths/no-relative-import-paths": [
             "error",
@@ -23,6 +24,7 @@
         "react/no-danger": "off",
         "react/jsx-pascal-case": "off",
         "react/state-in-constructor": "off",
+        "react/no-unused-prop-types": "off",
         "react/jsx-curly-brace-presence": [
             "error",
             { "props": "never", "children": "ignore", "propElementValues": "always" }
@@ -45,6 +47,18 @@
             {
                 "prefer": "type-imports"
             }
+        ],
+        "regex/invalid": [
+            "error",
+            [
+                {
+                    "regex": "\\w?<h[1-6]",
+                    "message": "Please use custom heading components instead of h1-h6 tags",
+                    "replacement": {
+                        "function": "return text.toUpperCase()"
+                    }
+                }
+            ]
         ]
     },
     "parserOptions": {
@@ -53,5 +67,6 @@
         },
         "ecmaVersion": 12,
         "sourceType": "module"
-    }
+    },
+    "ignorePatterns": ["*.config.js"]
 }

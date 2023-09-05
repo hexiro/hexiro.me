@@ -1,34 +1,35 @@
 import type { GetStaticProps } from "next";
 
-import { Container } from "@/components/brand";
-import Project from "@/components/projects/Project";
+import { H1, H3 } from "@/components/ui/Headings";
 
-import type { ProjectData } from "@/data/projects";
-import fetchProjects from "@/data/projects";
+import { ProjectCard } from "@/components/cards/ProjectCard";
 
-import Page, { PageDescription, PageHeading, PageText } from "@/layout/Page";
+import type { IProject } from "@/data/projects";
+import { fetchProjects } from "@/data/projects";
+
+import { Seo } from "@/layout/Seo";
 
 interface ProjectsPageProps {
-    projects: ProjectData[];
+    readonly projects: IProject[];
 }
 
 const NAME = "Projects";
-const DESCRIPTION =
-    "I hand-picked these six projects to showcase my skill set and creativity. I host each project on GitHub.";
+const DESCRIPTION = "My open-source projects.";
 
 export default function ProjectsPage({ projects }: ProjectsPageProps) {
     return (
-        <Page name={NAME} description={DESCRIPTION}>
-            <PageText>
-                <PageHeading>{NAME}</PageHeading>
-                <PageDescription>{DESCRIPTION}</PageDescription>
-            </PageText>
-            <Container>
+        <>
+            <Seo name={NAME} description={DESCRIPTION} />
+            <div className="mb-12">
+                <H1>{NAME}</H1>
+                <H3 className="text-subtitle">{DESCRIPTION}</H3>
+            </div>
+            <div className="grid auto-cols-fr gap-6 md:grid-cols-2">
                 {projects.map((project) => (
-                    <Project key={project.name} data={project} />
+                    <ProjectCard key={project.name} project={project} />
                 ))}
-            </Container>
-        </Page>
+            </div>
+        </>
     );
 }
 
