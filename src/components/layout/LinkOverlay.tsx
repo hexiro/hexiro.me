@@ -14,7 +14,7 @@ interface ExternalLinkProps {
 }
 
 const commonClassName =
-    "static before:cursor-inherit before:block before:absolute before:top-0 before:left-0 before:z-0 before:w-full before:h-full focus-visible:outline-none";
+    "static before:cursor-inherit before:block before:absolute before:top-0 before:left-0 before:z-[5] before:w-full before:h-full focus-visible:outline-none";
 
 export function LinkOverlay({
     className,

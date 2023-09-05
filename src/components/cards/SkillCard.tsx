@@ -33,7 +33,7 @@ export default function SkillCard({ skill, className }: SocialCardProps) {
                 </H5>
             </span>
             <span className="hidden h-full flex-row items-start gap-x-2 xxs:flex">
-                <ExternalLink href={link}>
+                <ExternalLink isHoverable href={link}>
                     <ExternalLinkIcon className="h-5 w-5 shrink-0 md:h-6 md:w-6" />
                 </ExternalLink>
             </span>

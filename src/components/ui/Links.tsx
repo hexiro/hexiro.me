@@ -16,6 +16,7 @@ export const Link: ForwardRefExoticComponent<ComponentProps<typeof NextLink>> = 
 interface ExternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
     readonly href: string;
     readonly isFocusable?: boolean;
+    readonly isHoverable?: boolean;
     readonly className?: string;
     readonly children?: ReactNode;
 }
@@ -23,6 +24,7 @@ interface ExternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 export function ExternalLink({
     href,
     isFocusable,
+    isHoverable,
     className,
     children,
     ...props
@@ -30,9 +32,9 @@ export function ExternalLink({
     return (
         <a
             className={twMerge(
-                "outline-none",
-                isFocusable &&
-                    "rounded-sm ring-text/50 transition-all hover:-translate-y-[2px] focus-visible:ring-2",
+                "z-10 outline-none",
+                isFocusable && "rounded-sm ring-text/50 transition-all focus-visible:ring-2",
+                isHoverable && "transition-all hover:-translate-y-[2px]",
                 className
             )}
             href={href}

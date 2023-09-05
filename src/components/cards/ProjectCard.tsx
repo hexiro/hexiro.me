@@ -3,6 +3,7 @@ import { ExternalLinkOverlay } from "@/components/layout/LinkOverlay";
 import { Card } from "@/components/ui/Cards";
 import { H5 } from "@/components/ui/Headings";
 import { ExternalLinkIcon, PackageIcon, StarsIcon } from "@/components/ui/Icons";
+import LanguageIcon from "@/components/ui/LanguageIcon";
 import { ExternalLink } from "@/components/ui/Links";
 
 import type { IProject } from "@/data/projects";
@@ -15,7 +16,7 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ className, project }: ProjectCardProps) {
-    const { name, url, description, stars, packageUrl, topics } = project;
+    const { name, url, description, stars, packageUrl, languages, topics } = project;
 
     return (
         <Card isHoverable isFocusable className={twMerge("w-full pr-4", className)}>
@@ -36,13 +37,13 @@ export function ProjectCard({ className, project }: ProjectCardProps) {
                     <ul className="z-10 flex gap-x-1">
                         {packageUrl !== null ? (
                             <li className="contents">
-                                <ExternalLink isFocusable href={packageUrl}>
+                                <ExternalLink isHoverable isFocusable href={packageUrl}>
                                     <PackageIcon />
                                 </ExternalLink>
                             </li>
                         ) : null}
                         <li className="contents">
-                            <ExternalLink isFocusable={packageUrl !== null} href={url}>
+                            <ExternalLink isHoverable isFocusable={packageUrl !== null} href={url}>
                                 <ExternalLinkIcon />
                             </ExternalLink>
                         </li>
@@ -53,7 +54,7 @@ export function ProjectCard({ className, project }: ProjectCardProps) {
                 <p className="line-clamp-3 min-h-[70px]">
                     {description.map(({ value, type }) =>
                         type === "link" ? (
-                            <ExternalLink key={value} isFocusable className="z-10" href={value}>
+                            <ExternalLink key={value} isHoverable isFocusable href={value}>
                                 {value}
                             </ExternalLink>
                         ) : (
@@ -62,16 +63,33 @@ export function ProjectCard({ className, project }: ProjectCardProps) {
                     )}
                 </p>
                 <ul className="flex h-[26px] flex-row flex-wrap gap-x-2 overflow-hidden leading-none">
+                    {languages.map((name) => (
+                        <Topic key={name} isLanguage name={name} />
+                    ))}
                     {topics.map((name) => (
-                        <li
-                            key={name}
-                            className="relative flex flex-row items-center rounded-md border-2 border-solid border-white/10 bg-background-light-accent px-2 py-1 font-sans text-sm font-bold text-white/50"
-                        >
-                            {name}
-                        </li>
+                        <Topic key={name} name={name} />
                     ))}
                 </ul>
             </div>
         </Card>
+    );
+}
+
+interface TopicProps {
+    readonly name: string;
+    readonly isLanguage?: boolean;
+}
+
+function Topic({ name, isLanguage }: TopicProps) {
+    return (
+        <li
+            className={twMerge(
+                "relative flex flex-row items-center rounded-md border-2 border-solid border-white/10 bg-background-light-accent px-2 py-1 font-sans text-sm font-bold leading-none text-white/50",
+                isLanguage && "gap-x-1"
+            )}
+        >
+            {isLanguage ? <LanguageIcon name={name} className="h-3.5 w-3.5" /> : null}
+            {name}
+        </li>
     );
 }

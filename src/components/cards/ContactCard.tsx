@@ -74,7 +74,7 @@ export function ContactCard({ social, className, isSingle }: ContactCardProps) {
                     <button
                         type="button"
                         className={twMerge(
-                            "font-mono font-bold text-text outline-none transition-transform hover:-translate-y-[2px] ",
+                            "z-10 font-mono font-bold text-text outline-none transition-transform hover:-translate-y-[2px]",
                             isBoth && "rounded-sm ring-text/50 transition-all focus-visible:ring-2"
                         )}
                         onClick={copyToClipboard}
@@ -106,7 +106,7 @@ export function ContactCard({ social, className, isSingle }: ContactCardProps) {
                     </button>
                 ) : null}
                 {link ? (
-                    <ExternalLink isFocusable={isBoth} href={link}>
+                    <ExternalLink isHoverable isFocusable={isBoth} href={link}>
                         <ExternalLinkIcon />
                     </ExternalLink>
                 ) : null}
