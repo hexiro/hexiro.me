@@ -9,14 +9,14 @@
     }
 
     ::-webkit-scrollbar-track {
-        @apply bg-background;
+        @apply bg-black/20;
     }
 
     ::-webkit-scrollbar-thumb {
-        @apply bg-white/50;
+        @apply bg-background-accent;
         @apply rounded-sm;
         @apply transition-colors;
-        @apply hover:bg-white/25;
+        @apply hover:bg-text/50;
     }
 
     html {
