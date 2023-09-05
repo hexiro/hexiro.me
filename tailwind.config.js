@@ -19,7 +19,7 @@ module.exports = {
                 subtitle: "hsla(100, 10%, 80%, 1)",
                 background: {
                     DEFAULT: "hsla(37, 18%, 10%, 1)",
-                    secondary: "hsla(37, 13%, 16%, 1)",
+                    secondary: "#2e2a23",
                     accent: "hsla(54, 7%, 29%, 1)",
                     "light-accent": "hsla(40, 17%, 20%, 1)",
                 },
