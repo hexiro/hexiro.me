@@ -16,7 +16,7 @@
         "@stitches/react": "^1.2.8",
         "framer-motion": "^10.9.1",
         "ipaddr.js": "^2.0.1",
-        "jotai": "^2.0.3",
+        "jotai": "^2.3.1",
         "next": "13.2.3",
         "next-seo": "^5.15.0",
         "react": "^18.2.0",
