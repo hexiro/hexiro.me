@@ -38,8 +38,8 @@ export function TopicButton({
                 type="button"
                 className={twMerge(
                     COMMON_CLASS_NAMES,
-                    "uppercase transition-colors duration-100 ease-in-out",
-                    isSelected && "border-black/40 bg-green text-black/75",
+                    "uppercase outline-none ring-white/20 transition-all duration-100 ease-in-out will-change-transform focus-visible:ring-2 active:scale-95",
+                    isSelected && "border-black/40 bg-green text-black/75 ring-green/40",
                     className
                 )}
                 {...props}

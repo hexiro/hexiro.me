@@ -15,9 +15,11 @@ export default function ButtonCard({
 }: ContactCardProps & ComponentProps<typeof Card<"button">>) {
     return (
         <Card
+            isFocusable
+            isHoverable="translate-y"
             as="button"
             className={twMerge(
-                "bg-background-gray-accent font-mono text-sm font-bold uppercase text-text py-1",
+                "bg-background-gray-accent py-2 font-mono text-sm font-bold uppercase text-text",
                 className
             )}
             {...props}

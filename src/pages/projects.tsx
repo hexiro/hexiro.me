@@ -114,7 +114,7 @@ function ProjectsSection({ projects: initialProjects }: ProjectsSectionProps) {
             </div>
             <ul
                 className={twMerge(
-                    "mb-6 grid auto-cols-fr gap-6 md:grid-cols-2",
+                    "mb-7 grid auto-cols-fr gap-6 md:grid-cols-2",
                     showAll && "xl:grid-cols-3"
                 )}
             >
