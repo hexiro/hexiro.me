@@ -6,10 +6,13 @@ export interface IProject {
     name: string;
     description: IExtractedSection[];
     stars: number;
+    url: string;
+    // 'Date' isn't serializable
+    updatedAt: string;
     languages: string[];
     topics: string[];
-    url: string;
     packageUrl: string | null;
+    pinnedIndex: number | null;
 }
 
 interface IExtractedSection {
@@ -17,14 +20,26 @@ interface IExtractedSection {
     value: string;
 }
 
-type JsonType = { data: { viewer: { pinnedItems: { nodes: RepositoryData[] } } } };
+type JsonType = {
+    data: {
+        viewer: {
+            pinnedItems: { nodes: PinnedItemData[] };
+            repositories: { nodes: RepositoryData[] };
+        };
+    };
+};
 
 export async function fetchProjects(): Promise<IProject[]> {
     const resp = await fetchGithubGraphQL(PROJECTS_QUERY);
     const json = (await resp.json()) as JsonType;
-    const pinnedItemsData = json.data.viewer.pinnedItems.nodes;
 
-    return pinnedItemsData.map((repository) => parseProject(repository));
+    const {
+        pinnedItems: { nodes: pinnedItems },
+        repositories: { nodes: repositories },
+    } = json.data.viewer;
+
+    const projects = parseProjects(repositories, pinnedItems);
+    return projects;
 }
 
 // topics that indicate a project is a package
@@ -93,7 +108,26 @@ function parseDescription(description: string): IExtractedSection[] {
     return sections;
 }
 
-function parseProject(repository: RepositoryData): IProject {
+function parsePinnedIndex(
+    repository: RepositoryData,
+    pinnedItems: PinnedItemData[]
+): number | null {
+    const { id } = repository;
+
+    const pinnedIndex = pinnedItems.findIndex((item) => item.id === id);
+    if (pinnedIndex === -1) return null;
+
+    return pinnedIndex;
+}
+
+function parseProjects(repositories: RepositoryData[], pinnedItems: PinnedItemData[]): IProject[] {
+    const projects = repositories
+        .map((repository) => parseProject(repository, pinnedItems))
+        .filter((project): project is IProject => project !== null);
+    return projects;
+}
+
+function parseProject(repository: RepositoryData, pinnedItems: PinnedItemData[]): IProject | null {
     const { totalSize } = repository.languages;
 
     // each language has to be at least 10% of the total size of the repository
@@ -120,27 +154,38 @@ function parseProject(repository: RepositoryData): IProject {
         topics.splice(packageTopicIndex, 1);
     }
 
-    const description = parseDescription(repository.description);
+    if (repository.description === null) return null;
 
-    const { name, url, stargazerCount: stars } = repository;
+    const description = parseDescription(repository.description);
+    const pinnedIndex = parsePinnedIndex(repository, pinnedItems);
+
+    const { name, url, pushedAt: updatedAt, stargazerCount: stars } = repository;
 
     const project: IProject = {
         name,
         description,
         stars,
+        url,
+        updatedAt,
         languages,
         topics,
-        url,
         packageUrl,
+        pinnedIndex,
     };
     return project;
 }
 
+interface PinnedItemData {
+    id: string;
+}
+
 interface RepositoryData {
+    id: string;
     name: string;
-    description: string;
+    description: string | null;
     url: string;
     stargazerCount: number;
+    pushedAt: string;
     languages: {
         edges: Array<{
             size: number;
@@ -159,33 +204,48 @@ interface RepositoryData {
     };
 }
 
+// only shows first 100 public non-fork repos,
+// if i have more than 100 public repos, i have bigger problems
 const PROJECTS_QUERY = gql`
     {
         viewer {
             pinnedItems(first: 6, types: REPOSITORY) {
                 nodes {
                     ... on Repository {
-                        name
-                        description
-                        url
-                        stargazerCount
-                        languages(first: 3, orderBy: { field: SIZE, direction: DESC }) {
-                            edges {
-                                ... on LanguageEdge {
-                                    size
-                                    node {
-                                        name
-                                    }
+                        id
+                    }
+                }
+            }
+            repositories(
+                first: 100
+                affiliations: [OWNER]
+                ownerAffiliations: [OWNER]
+                privacy: PUBLIC
+                isFork: false
+            ) {
+                nodes {
+                    id
+                    name
+                    description
+                    url
+                    stargazerCount
+                    pushedAt
+                    languages(first: 3, orderBy: { field: SIZE, direction: DESC }) {
+                        edges {
+                            ... on LanguageEdge {
+                                size
+                                node {
+                                    name
                                 }
                             }
-                            totalSize
                         }
-                        repositoryTopics(first: 10) {
-                            nodes {
-                                ... on RepositoryTopic {
-                                    topic {
-                                        name
-                                    }
+                        totalSize
+                    }
+                    repositoryTopics(first: 10) {
+                        nodes {
+                            ... on RepositoryTopic {
+                                topic {
+                                    name
                                 }
                             }
                         }

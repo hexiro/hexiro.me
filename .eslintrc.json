@@ -15,7 +15,7 @@
         "unused-imports/no-unused-imports": "error",
         "no-relative-import-paths/no-relative-import-paths": [
             "error",
-            { "allowSameFolder": false, "rootDir": "src" }
+            { "allowSameFolder": false, "rootDir": "src", "prefix": "@" }
         ],
         "import/no-anonymous-default-export": "off",
         "react/display-name": "off",
