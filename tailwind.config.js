@@ -22,6 +22,7 @@ module.exports = {
                     secondary: "#2e2a23",
                     accent: "hsla(54, 7%, 29%, 1)",
                     "light-accent": "hsla(40, 17%, 20%, 1)",
+                    "gray-accent": "hsla(35, 4%, 15%, 1)",
                 },
             },
             fontSize: {

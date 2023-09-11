@@ -11,12 +11,13 @@ import type { IProject } from "@/data/projects";
 import { twMerge } from "tailwind-merge";
 
 interface ProjectCardProps {
-    readonly className?: string;
     readonly project: IProject;
+    readonly className?: string;
+    readonly showLastUpdated?: boolean;
 }
 
-export function ProjectCard({ className, project }: ProjectCardProps) {
-    const { name, url, description, stars, packageUrl, languages, topics } = project;
+export function ProjectCard({ project, className, showLastUpdated }: ProjectCardProps) {
+    const { name, url, description, stars, packageUrl, languages, topics, updatedAt } = project;
 
     return (
         <Card isHoverable isFocusable as="li" className={twMerge("w-full pr-4", className)}>
@@ -62,14 +63,24 @@ export function ProjectCard({ className, project }: ProjectCardProps) {
                         )
                     )}
                 </p>
-                <ul className="flex h-[26px] flex-row flex-wrap gap-x-2 overflow-hidden leading-none">
-                    {languages.map((name) => (
-                        <Topic key={name} isLanguage name={name} />
-                    ))}
-                    {topics.map((name) => (
-                        <Topic key={name} name={name} />
-                    ))}
-                </ul>
+                <div className="flex flex-col gap-y-2">
+                    <ul className="flex h-[26px] flex-row flex-wrap gap-x-2 overflow-hidden leading-none">
+                        {languages.map((name) => (
+                            <Topic key={name} isLanguage name={name} />
+                        ))}
+                        {topics.map((name) => (
+                            <Topic key={name} name={name} />
+                        ))}
+                    </ul>
+                    {showLastUpdated ? (
+                        <span className="font-mono text-xs font-semibold leading-none">
+                            <span className="text-text">Last Updated:</span>{" "}
+                            <span className="text-text/75">
+                                {new Date(updatedAt).toLocaleDateString()}
+                            </span>
+                        </span>
+                    ) : null}
+                </div>
             </div>
         </Card>
     );

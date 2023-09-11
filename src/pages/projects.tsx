@@ -4,12 +4,15 @@ import { useState } from "react";
 import { H1, H3 } from "@/components/ui/Headings";
 import { TopicButton } from "@/components/ui/Topics";
 
+import ButtonCard from "@/components/cards/ButtonCard";
 import { ProjectCard } from "@/components/cards/ProjectCard";
 
 import type { IProject } from "@/data/projects";
 import { fetchProjects } from "@/data/projects";
 
 import { Seo } from "@/layout/Seo";
+
+import { twMerge } from "tailwind-merge";
 
 interface ProjectsPageProps {
     readonly projects: IProject[];
@@ -109,11 +112,23 @@ function ProjectsSection({ projects: initialProjects }: ProjectsSectionProps) {
                         ))}
                 </ul>
             </div>
-            <ul className="grid auto-cols-fr gap-6 md:grid-cols-2">
+            <ul
+                className={twMerge(
+                    "mb-6 grid auto-cols-fr gap-6 md:grid-cols-2",
+                    showAll && "xl:grid-cols-3"
+                )}
+            >
                 {projects.map((project) => (
-                    <ProjectCard key={project.name} project={project} />
+                    <ProjectCard
+                        key={project.name}
+                        project={project}
+                        showLastUpdated={sortMethod === ProjectSortMethod.Date}
+                    />
                 ))}
             </ul>
+            <ButtonCard className="w-full" onClick={() => setShowAll(!showAll)}>
+                {showAll ? "Only show pinned projects" : "View all projects"}
+            </ButtonCard>
         </>
     );
 }
