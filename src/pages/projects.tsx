@@ -1,6 +1,8 @@
 import type { GetStaticProps } from "next";
+import { useState } from "react";
 
 import { H1, H3 } from "@/components/ui/Headings";
+import { TopicButton } from "@/components/ui/Topics";
 
 import { ProjectCard } from "@/components/cards/ProjectCard";
 
@@ -24,11 +26,7 @@ export default function ProjectsPage({ projects }: ProjectsPageProps) {
                 <H1>{NAME}</H1>
                 <H3 className="text-subtitle">{DESCRIPTION}</H3>
             </div>
-            <div className="grid auto-cols-fr gap-6 md:grid-cols-2">
-                {projects.map((project) => (
-                    <ProjectCard key={project.name} project={project} />
-                ))}
-            </div>
+            <ProjectsSection projects={projects} />
         </>
     );
 }
@@ -39,3 +37,83 @@ export const getStaticProps: GetStaticProps<ProjectsPageProps> = async () => ({
     },
     revalidate: 60 * 60,
 });
+
+interface ProjectsSectionProps {
+    readonly projects: IProject[];
+}
+
+enum ProjectSortMethod {
+    Pinned,
+    Date,
+    Popularity,
+}
+
+function ProjectsSection({ projects: initialProjects }: ProjectsSectionProps) {
+    const [sortMethod, setSortMethod] = useState<ProjectSortMethod>(ProjectSortMethod.Pinned);
+    const [showAll, setShowAll] = useState<boolean>(false);
+
+    const filter = (projects: IProject[]) => {
+        if (showAll) return projects;
+        return projects.filter((project) => project.pinnedIndex !== null);
+    };
+
+    const sort = (projects: IProject[]) => {
+        let sortFunction: (a: IProject, b: IProject) => number;
+
+        switch (sortMethod) {
+            case ProjectSortMethod.Pinned:
+                sortFunction = (a, b) => {
+                    if (a.pinnedIndex !== null && b.pinnedIndex !== null)
+                        return a.pinnedIndex - b.pinnedIndex;
+                    if (a.pinnedIndex !== null) return -1;
+                    if (b.pinnedIndex !== null) return 1;
+                    return b.stars - a.stars;
+                };
+
+                break;
+            case ProjectSortMethod.Date:
+                sortFunction = (a, b) =>
+                    new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+                break;
+            case ProjectSortMethod.Popularity:
+                sortFunction = (a, b) => b.stars - a.stars;
+                break;
+        }
+
+        return projects.sort(sortFunction);
+    };
+
+    let projects = [...initialProjects];
+    projects = filter(projects);
+    projects = sort(projects);
+
+    return (
+        <>
+            <div className="mb-6 flex flex-col items-end justify-center gap-3 sm:flex-row sm:items-center sm:justify-end">
+                <span className="font-mono font-extrabold uppercase leading-none text-text">
+                    Sort:{" "}
+                </span>
+                <ul className="flex flex-row gap-x-2">
+                    {Object.entries(ProjectSortMethod)
+                        .filter(
+                            (entry): entry is [string, ProjectSortMethod] =>
+                                typeof entry[1] === "number" && !isNaN(entry[1])
+                        )
+                        .map(([key, value]) => (
+                            <TopicButton
+                                key={key}
+                                name={key}
+                                isSelected={sortMethod === value}
+                                onClick={() => setSortMethod(value)}
+                            />
+                        ))}
+                </ul>
+            </div>
+            <ul className="grid auto-cols-fr gap-6 md:grid-cols-2">
+                {projects.map((project) => (
+                    <ProjectCard key={project.name} project={project} />
+                ))}
+            </ul>
+        </>
+    );
+}

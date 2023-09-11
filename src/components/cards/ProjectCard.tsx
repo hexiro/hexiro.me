@@ -3,8 +3,8 @@ import { ExternalLinkOverlay } from "@/components/layout/LinkOverlay";
 import { Card } from "@/components/ui/Cards";
 import { H5 } from "@/components/ui/Headings";
 import { ExternalLinkIcon, PackageIcon, StarsIcon } from "@/components/ui/Icons";
-import LanguageIcon from "@/components/ui/LanguageIcon";
 import { ExternalLink } from "@/components/ui/Links";
+import { Topic } from "@/components/ui/Topics";
 
 import type { IProject } from "@/data/projects";
 
@@ -19,7 +19,7 @@ export function ProjectCard({ className, project }: ProjectCardProps) {
     const { name, url, description, stars, packageUrl, languages, topics } = project;
 
     return (
-        <Card isHoverable isFocusable className={twMerge("w-full pr-4", className)}>
+        <Card isHoverable isFocusable as="li" className={twMerge("w-full pr-4", className)}>
             <div className="mb-1 flex h-10 flex-row items-center gap-x-2 leading-none">
                 <H5 green className="basis-2/3 truncate text-[18px] lg:text-[20px]">
                     <ExternalLinkOverlay href={url}>{name}</ExternalLinkOverlay>
@@ -72,24 +72,5 @@ export function ProjectCard({ className, project }: ProjectCardProps) {
                 </ul>
             </div>
         </Card>
-    );
-}
-
-interface TopicProps {
-    readonly name: string;
-    readonly isLanguage?: boolean;
-}
-
-function Topic({ name, isLanguage }: TopicProps) {
-    return (
-        <li
-            className={twMerge(
-                "relative flex flex-row items-center rounded-md border-2 border-solid border-white/10 bg-background-light-accent px-2 py-1 font-sans text-sm font-bold leading-none text-white/50",
-                isLanguage && "gap-x-1"
-            )}
-        >
-            {isLanguage ? <LanguageIcon name={name} className="h-3.5 w-3.5" /> : null}
-            {name}
-        </li>
     );
 }
