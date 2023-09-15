@@ -4,7 +4,7 @@
 [![forthebadge](https://forthebadge.com/images/badges/makes-people-smile.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/compatibility-club-penguin.svg)](https://forthebadge.com)
 
-My personal website, built with Next.js and Stitches.
+My personal website, built with Next.js and TailwindCSS.
 
 <br/>
 
