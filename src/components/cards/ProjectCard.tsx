@@ -3,23 +3,24 @@ import { ExternalLinkOverlay } from "@/components/layout/LinkOverlay";
 import { Card } from "@/components/ui/Cards";
 import { H5 } from "@/components/ui/Headings";
 import { ExternalLinkIcon, PackageIcon, StarsIcon } from "@/components/ui/Icons";
-import LanguageIcon from "@/components/ui/LanguageIcon";
 import { ExternalLink } from "@/components/ui/Links";
+import { Topic } from "@/components/ui/Topics";
 
 import type { IProject } from "@/data/projects";
 
 import { twMerge } from "tailwind-merge";
 
 interface ProjectCardProps {
-    readonly className?: string;
     readonly project: IProject;
+    readonly className?: string;
+    readonly showLastUpdated?: boolean;
 }
 
-export function ProjectCard({ className, project }: ProjectCardProps) {
-    const { name, url, description, stars, packageUrl, languages, topics } = project;
+export function ProjectCard({ project, className, showLastUpdated }: ProjectCardProps) {
+    const { name, url, description, stars, packageUrl, languages, topics, updatedAt } = project;
 
     return (
-        <Card isHoverable isFocusable className={twMerge("w-full pr-4", className)}>
+        <Card isHoverable isFocusable as="li" className={twMerge("w-full pr-4", className)}>
             <div className="mb-1 flex h-10 flex-row items-center gap-x-2 leading-none">
                 <H5 green className="basis-2/3 truncate text-[18px] lg:text-[20px]">
                     <ExternalLinkOverlay href={url}>{name}</ExternalLinkOverlay>
@@ -62,34 +63,25 @@ export function ProjectCard({ className, project }: ProjectCardProps) {
                         )
                     )}
                 </p>
-                <ul className="flex h-[26px] flex-row flex-wrap gap-x-2 overflow-hidden leading-none">
-                    {languages.map((name) => (
-                        <Topic key={name} isLanguage name={name} />
-                    ))}
-                    {topics.map((name) => (
-                        <Topic key={name} name={name} />
-                    ))}
-                </ul>
+                <div className="flex flex-col gap-y-2">
+                    <ul className="flex h-[26px] flex-row flex-wrap gap-x-2 overflow-hidden leading-none">
+                        {languages.map((name) => (
+                            <Topic key={name} isLanguage name={name} />
+                        ))}
+                        {topics.map((name) => (
+                            <Topic key={name} name={name} />
+                        ))}
+                    </ul>
+                    {showLastUpdated ? (
+                        <span className="font-mono text-xs font-semibold leading-none">
+                            <span className="text-text">Last Updated:</span>{" "}
+                            <span className="text-text/75">
+                                {new Date(updatedAt).toLocaleDateString()}
+                            </span>
+                        </span>
+                    ) : null}
+                </div>
             </div>
         </Card>
-    );
-}
-
-interface TopicProps {
-    readonly name: string;
-    readonly isLanguage?: boolean;
-}
-
-function Topic({ name, isLanguage }: TopicProps) {
-    return (
-        <li
-            className={twMerge(
-                "relative flex flex-row items-center rounded-md border-2 border-solid border-white/10 bg-background-light-accent px-2 py-1 font-sans text-sm font-bold leading-none text-white/50",
-                isLanguage && "gap-x-1"
-            )}
-        >
-            {isLanguage ? <LanguageIcon name={name} className="h-3.5 w-3.5" /> : null}
-            {name}
-        </li>
     );
 }
