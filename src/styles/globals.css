@@ -20,7 +20,8 @@
     }
 
     html {
-        scroll-behavior: smooth;
+        @apply scroll-smooth;
+        @apply overscroll-none;
     }
 
     body {
