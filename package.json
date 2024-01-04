@@ -16,7 +16,7 @@
         "copy-to-clipboard": "^3.3.3",
         "framer-motion": "10.12.16",
         "ipaddr.js": "^2.1.0",
-        "next": "^13.5.0",
+        "next": "^13",
         "next-seo": "^6.1.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
