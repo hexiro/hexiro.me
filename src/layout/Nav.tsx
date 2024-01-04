@@ -25,7 +25,7 @@ const Nav = () => {
             ref={ref}
             layout
             layoutRoot
-            className="fixed top-0 z-40 flex h-32 w-screen flex-row overflow-x-auto border-b-2 border-solid border-white/10 bg-background-secondary lg:h-screen lg:w-52 lg:flex-col lg:items-start lg:overflow-hidden lg:overflow-y-auto lg:border-0 lg:border-b-0 lg:border-r-2 lg:border-white/5"
+            className="fixed top-0 z-40 flex h-28 w-screen flex-row overflow-x-auto border-b-2 border-solid border-white/10 bg-background-secondary lg:h-screen lg:w-52 lg:flex-col lg:items-start lg:overflow-hidden lg:overflow-y-auto lg:border-0 lg:border-b-0 lg:border-r-2 lg:border-white/5"
             onMouseDown={(e) => {
                 // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
                 if (!ref.current) return;
@@ -85,10 +85,10 @@ function NavRoute({ route, isSelected }: NavRouteProps) {
     const { name, path } = route;
 
     return (
-        <li key={name} className="relative flex h-full w-full items-center text-lg drop-shadow-md">
+        <li key={name} className="relative flex h-full w-full items-center text-[1.35rem] drop-shadow-md">
             <Link
                 href={path}
-                className="group relative flex gap-x-1 py-[0.2em] uppercase text-off-white focus-visible:outline-none lg:w-full"
+                className="group relative flex gap-x-1 py-1 uppercase text-off-white focus-visible:outline-none lg:w-full"
             >
                 <span className="text-green">/</span>
                 <span className="relative overflow-hidden font-sans font-bold transition-transform duration-fast ease-in-out after:absolute after:bottom-0 after:left-0 after:h-[0.1em] after:w-full after:translate-x-[calc(-100%-1px)] after:bg-off-white after:transition-all after:duration-300 after:will-change-transform group-hover:translate-x-1 group-focus-visible:translate-x-2 group-focus-visible:after:translate-x-0 group-active:scale-95 lg:group-hover:translate-x-2">
