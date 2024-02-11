@@ -1,7 +1,13 @@
 import type { IconProps } from "@/components/ui/Icons";
-import { PythonIcon, TypeScriptIcon, GoIcon, RustIcon, JavaScriptIcon } from "@/components/ui/Icons";
+import {
+    PythonIcon,
+    TypeScriptIcon,
+    GoIcon,
+    RustIcon,
+    JavaScriptIcon,
+} from "@/components/ui/Icons";
 
-interface LanguageProps extends IconProps{
+interface LanguageProps extends IconProps {
     readonly name: string | null;
 }
 

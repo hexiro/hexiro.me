@@ -9,7 +9,7 @@
         "lint:fix": "next lint --fix",
         "test": "next build && next start",
         "typecheck": "yarn tsc",
-        "style": "prettier -w \"src/**/*.*\"",
+        "style": "prettier -w \"src/**/*.{ts,tsx}\"",
         "analyze": "cross-env ANALYZE=true next build"
     },
     "dependencies": {

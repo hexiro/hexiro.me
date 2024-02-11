@@ -85,7 +85,10 @@ function NavRoute({ route, isSelected }: NavRouteProps) {
     const { name, path } = route;
 
     return (
-        <li key={name} className="relative flex h-full w-full items-center text-[1.35rem] drop-shadow-md">
+        <li
+            key={name}
+            className="relative flex h-full w-full items-center text-[1.35rem] drop-shadow-md"
+        >
             <Link
                 href={path}
                 className="group relative flex gap-x-1 py-1 uppercase text-off-white focus-visible:outline-none lg:w-full"
