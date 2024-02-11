@@ -76,7 +76,7 @@ export const INITIAL_DISCORD_STATE = {
         display_name: "nathan",
         discriminator: "0",
         bot: false,
-        avatar_decoration: null,
+        avatar_decoration_data: null,
         avatar: "30a5d8423b9471d72a374883a80089b9",
     },
     spotify: null,

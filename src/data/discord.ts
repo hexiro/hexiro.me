@@ -135,9 +135,7 @@ function parseImage(
 ): DiscordPresenceImage {
     let alt = text;
 
-    if (!alt) {
-        alt = `${type.charAt(0).toUpperCase()}${type.substring(1)} Rich Presence image`;
-    }
+    alt ||= `${type.charAt(0).toUpperCase()}${type.substring(1)} Rich Presence image`;
 
     return {
         src: buildAsset(applicationId, assetId),

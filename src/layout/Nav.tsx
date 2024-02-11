@@ -38,7 +38,7 @@ const Nav = () => {
             <div className="flex items-center justify-center px-8 lg:h-52 lg:min-h-[10em] lg:w-full lg:px-6">
                 <button
                     type="button"
-                    aria-label="Scroll to top"
+                    aria-label="NL: Scroll to Top"
                     className="group focus-visible:outline-none"
                     onClick={() =>
                         window.scroll({
@@ -85,7 +85,10 @@ function NavRoute({ route, isSelected }: NavRouteProps) {
     const { name, path } = route;
 
     return (
-        <li key={name} className="relative flex h-full w-full items-center text-[1.35rem] drop-shadow-md">
+        <li
+            key={name}
+            className="relative flex h-full w-full items-center text-[1.35rem] drop-shadow-md"
+        >
             <Link
                 href={path}
                 className="group relative flex gap-x-1 py-1 uppercase text-off-white focus-visible:outline-none lg:w-full"

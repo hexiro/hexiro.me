@@ -85,8 +85,8 @@ export function ContactCard({ social, className, isSingle }: ContactCardProps) {
                                     copiedSuccess === null
                                         ? "copy"
                                         : copiedSuccess
-                                        ? "success"
-                                        : "fail"
+                                          ? "success"
+                                          : "fail"
                                 }
                                 initial="hidden"
                                 animate="enter"
