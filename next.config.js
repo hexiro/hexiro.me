@@ -7,6 +7,10 @@ module.exports = withBundleAnalyzer({
     swcMinify: true,
     reactStrictMode: true,
     poweredByHeader: false,
+    i18n: {
+        locales: ["en"],
+        defaultLocale: "en",
+    },
     images: {
         remotePatterns: [
             // https://cdn.discordapp.com/avatars/...

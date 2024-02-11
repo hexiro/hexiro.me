@@ -38,7 +38,7 @@ const Nav = () => {
             <div className="flex items-center justify-center px-8 lg:h-52 lg:min-h-[10em] lg:w-full lg:px-6">
                 <button
                     type="button"
-                    aria-label="Scroll to top"
+                    aria-label="NL: Scroll to Top"
                     className="group focus-visible:outline-none"
                     onClick={() =>
                         window.scroll({
