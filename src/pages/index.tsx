@@ -9,7 +9,7 @@ import { RouteCard } from "@/components/cards/RouteCard";
 import { Seo } from "@/layout/Seo";
 
 const NAME = "Home";
-const DESCRIPTION = `an ${currentAge()} year old Software Engineer.`;
+const DESCRIPTION = `a ${currentAge()} year old Software Engineer.`;
 const FULL_DESCRIPTION = `Hi, I'm Nathan Lodge, ${DESCRIPTION}`;
 
 export default function HomePage() {
