@@ -15,7 +15,7 @@ import { twMerge } from "tailwind-merge";
 const NAME = "About";
 const DESCRIPTION = "My life beyond the IDE.";
 
-const INTRO = `Hey, I'm Nathan Lodge! An ${currentAge()}-year-old software engineer based in the United States. Thanks for checking out my website :), I've been a passionate programmer for over 5 years now, primarily specializing in Python and TypeScript. If you'd like to learn more about my technical skills, please feel free to check out the rest of my website and connect with me! With that being said, I'm here to tell you a little more about my life beyond the code editor.`;
+const INTRO = `Hey, I'm Nathan Lodge! A ${currentAge()}-year-old software engineer based in the United States. Thanks for checking out my website :), I've been a passionate programmer for over 5 years now, primarily specializing in Python and TypeScript. If you'd like to learn more about my technical skills, please feel free to check out the rest of my website and connect with me! With that being said, I'm here to tell you a little more about my life beyond the code editor.`;
 
 const MAIN_HOBBIES =
     "For fun, I like to hang out with my friends, watch movies and TV shows, listen to music, and play video games. My favorite movie genres are psychological thrillers, drama, and crime, but I'm a big fan of all kinds of films, new and old. I also like listening to music, primarily chill modern rap and r&b.";
