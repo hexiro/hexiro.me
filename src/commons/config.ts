@@ -44,6 +44,9 @@ import {
     HerokuIcon,
     YouTubeIcon,
     InstagramIcon,
+    GoIcon,
+    CSharpIcon,
+    JavaIcon,
 } from "@/components/ui/Icons";
 
 import type { Data as LanyardData } from "use-lanyard";
@@ -178,6 +181,21 @@ export const SKILLS = {
             link: "https://www.typescriptlang.org",
         },
         {
+            name: "Go",
+            icon: GoIcon,
+            link: "https://go.dev",
+        },
+        {
+            name: "C#",
+            icon: CSharpIcon,
+            link: "https://learn.microsoft.com/en-us/dotnet/csharp",
+        },
+        {
+            name: "Java",
+            icon: JavaIcon,
+            link: "https://www.java.com",
+        },
+        {
             name: "HTML",
             icon: HTMLIcon,
             link: "https://developer.mozilla.org/en-US/docs/Web/HTML",
@@ -188,7 +206,6 @@ export const SKILLS = {
             link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
         },
     ],
-
     "Frameworks / Libraries": [
         {
             name: "Next.js",
