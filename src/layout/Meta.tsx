@@ -11,9 +11,9 @@ export default function Meta({ sansFont }: MetaProps) {
     return (
         <>
             <Script
-                async
+                defer
                 src="https://umami.hexiro.me/script.js"
-                data-website-id="2c859610-01b6-4c75-b106-0422d8beb6b5"
+                data-website-id="8c4a0553-cf04-49a9-bef9-812f32fd65f3"
             />
             <style jsx global>{`
                 html {
