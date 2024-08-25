@@ -15,13 +15,13 @@ import { twMerge } from "tailwind-merge";
 const NAME = "About";
 const DESCRIPTION = "My life beyond the IDE.";
 
-const INTRO = `Hey, I'm Nathan Lodge! A ${currentAge()}-year-old software engineer based in the United States. Thanks for checking out my website :), I've been a passionate programmer for over 5 years now, primarily specializing in Python and TypeScript. If you'd like to learn more about my technical skills, please feel free to check out the rest of my website and connect with me! With that being said, I'm here to tell you a little more about my life beyond the code editor.`;
+const INTRO = `Hey, I'm Nathan Lodge! I'm a ${currentAge()}-year-old software engineer based in the United States. Thanks for checking out my website. I've been a passionate programmer for over 5 years now, primarily specializing in Python and TypeScript. If you'd like to learn more about my technical skills, please feel free to check out the rest of my website and connect with me! With that being said, I'm here to tell you a little more about my life beyond the code editor.`;
 
 const MAIN_HOBBIES =
-    "For fun, I like to hang out with my friends, watch movies and TV shows, listen to music, and play video games. My favorite movie genres are psychological thrillers, drama, and crime, but I'm a big fan of all kinds of films, new and old. I also like listening to music, primarily chill modern rap and r&b.";
+    "For fun, I like to hang out with my friends, watch movies and TV shows, listen to music, and play video games. My favorite movie genres are psychological thrillers, drama, and crime, but I'm a big fan of all kinds of films, new and old. I also like listening to music, primarily trap and cloud rap.";
 
 const VIDEO_GAMES =
-    "As for the video games I play, I enjoy the first-person shooter genre. My favorite is Counter-Strike 2 (formerly CS:GO), which I play when I'm feeling competitive. My premier rank is ~13,000 as of writing this, and I was DMG in CS:GO, which is pretty solid in my opinion. When I'm not feeling competitive, you can find me playing Minecraft, Satisfactory, Bloons TD6, Stardew Valley, and other single-player games. I've been exploring some story-style games as of late and have enjoyed playing GTA 5, GTA 4, GTA San Andreas, Saints Row 2, Portal, and Portal 2.";
+    "My favorite video game genres are first-person shooters, and single-player games. My favorite first-person shooter is Counter-Strike 2, which I play when I'm feeling competitive. My premier rank is ~13,000 as of writing this, and I'm FACEIT level 6. When I'm relaxing or on the go, I like to play Minecraft, Satisfactory, Bloons TD6, Stardew Valley, and other single-player games. I've been also playing some story-style games recently and I've enjoyed playing GTA 5, GTA 4, GTA San Andreas, Saints Row 2, Portal, and Portal 2.";
 
 export default function AboutPage() {
     return (
