@@ -91,6 +91,7 @@ function NavRoute({ route, isSelected }: NavRouteProps) {
         >
             <Link
                 href={path}
+                aria-label={`open ${name} page`}
                 className="group relative flex gap-x-1 py-1 uppercase text-off-white focus-visible:outline-none lg:w-full"
             >
                 <span className="text-green">/</span>

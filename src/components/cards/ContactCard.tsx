@@ -64,6 +64,7 @@ export function ContactCard({ social, className, isSingle }: ContactCardProps) {
                 <H5 className="text-[20px] font-bold text-off-white">{name}</H5>
                 <WithExternalLinkOverlay
                     href={link}
+                    aria-label={`open ${social.name}'s website`}
                     className="truncate font-mono font-bold normal-case text-text"
                 >
                     {value}
@@ -73,6 +74,7 @@ export function ContactCard({ social, className, isSingle }: ContactCardProps) {
                 {canCopy ? (
                     <button
                         type="button"
+                        aria-label="Copy to clipboard"
                         className={twMerge(
                             "z-10 font-mono font-bold text-text outline-none transition-transform hover:-translate-y-[2px]",
                             isBoth && "rounded-sm ring-text/50 transition-all focus-visible:ring-2"
@@ -106,7 +108,12 @@ export function ContactCard({ social, className, isSingle }: ContactCardProps) {
                     </button>
                 ) : null}
                 {link ? (
-                    <ExternalLink isHoverable isFocusable={isBoth} href={link}>
+                    <ExternalLink
+                        isHoverable
+                        isFocusable={isBoth}
+                        href={link}
+                        aria-label={`open ${social} link`}
+                    >
                         <ExternalLinkIcon />
                     </ExternalLink>
                 ) : null}
@@ -117,6 +124,7 @@ export function ContactCard({ social, className, isSingle }: ContactCardProps) {
 
 interface WithExternalLinkOverlayProps {
     readonly href: string | undefined;
+    readonly "aria-label": string;
     readonly className?: string;
 }
 
@@ -124,11 +132,12 @@ const WithExternalLinkOverlay = ({
     href,
     children,
     className,
+    ...props
 }: PropsWithChildren<WithExternalLinkOverlayProps>) => {
     if (!href) return <span className={className}>{children}</span>;
 
     return (
-        <ExternalLinkOverlay href={href} className={className}>
+        <ExternalLinkOverlay href={href} className={className} {...props}>
             {children}
         </ExternalLinkOverlay>
     );

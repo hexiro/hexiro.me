@@ -9,12 +9,17 @@ import { forwardRef } from "react";
 
 import { twMerge } from "tailwind-merge";
 
-export const Link: ForwardRefExoticComponent<ComponentProps<typeof NextLink>> = forwardRef(
-    (props, ref) => <NextLink ref={ref} scroll={false} {...props} />
-);
+interface LinksProps extends ComponentProps<typeof NextLink> {
+    readonly "aria-label": string;
+}
+
+export const Link: ForwardRefExoticComponent<LinksProps> = forwardRef((props, ref) => (
+    <NextLink ref={ref} scroll={false} {...props} />
+));
 
 interface ExternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
     readonly href: string;
+    readonly "aria-label": string;
     readonly isFocusable?: boolean;
     readonly isHoverable?: boolean;
     readonly className?: string;

@@ -10,7 +10,7 @@ interface TopicProps {
 }
 
 const COMMON_CLASS_NAMES =
-    "relative flex flex-row items-center rounded-[0.25rem] border-2 border-solid border-white/10 bg-background-light-accent px-2 py-1 font-sans text-sm font-bold leading-none text-white/50";
+    "relative flex flex-row items-center rounded-[0.25rem] border-2 border-solid border-white/10 bg-background-light-accent px-2 py-1 font-sans text-sm font-bold leading-none text-text";
 
 export function Topic({ name, isLanguage }: TopicProps) {
     return (

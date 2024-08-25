@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from "react";
+import type { MouseEventHandler, PropsWithChildren } from "react";
 
 import { NAV_PATHS } from "@/commons/config";
 
@@ -59,6 +59,13 @@ function PageEndNavigation({
     const AnchorElement = href ? Link : "a";
     const disabled = !href;
 
+    let onClick: MouseEventHandler<HTMLAnchorElement> | undefined;
+
+    if (disabled) {
+        href = "/";
+        onClick = (e) => e.preventDefault();
+    }
+
     return (
         <AnchorElement
             // @ts-expect-error ts doesn't recognize that href can't be undefined when using Link
@@ -68,6 +75,7 @@ function PageEndNavigation({
                 "justify-left group flex items-center text-base text-text focus-visible:outline-none aria-disabled:cursor-not-allowed aria-disabled:line-through aria-disabled:opacity-50",
                 className
             )}
+            onClick={onClick}
         >
             <Icon
                 className={twMerge(

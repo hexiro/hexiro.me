@@ -5,11 +5,13 @@ import { ExternalLink, Link } from "@/components/ui/Links";
 import { twMerge } from "tailwind-merge";
 
 interface LinkOverlayProps extends ComponentProps<typeof Link> {
+    readonly "aria-label": string;
     readonly className?: string;
 }
 
-interface ExternalLinkProps {
+interface ExternalLinkProps extends ComponentProps<typeof Link> {
     readonly href: string;
+    readonly "aria-label": string;
     readonly className?: string;
 }
 
@@ -22,7 +24,7 @@ export function LinkOverlay({
     ...props
 }: PropsWithChildren<LinkOverlayProps>) {
     return (
-        <Link {...props} className={twMerge(COMMON_CLASS_NAMES, className)}>
+        <Link className={twMerge(COMMON_CLASS_NAMES, className)} {...props}>
             {children}
         </Link>
     );
@@ -32,9 +34,15 @@ export function ExternalLinkOverlay({
     className,
     href,
     children,
+    ...props
 }: PropsWithChildren<ExternalLinkProps>) {
     return (
-        <ExternalLink tabIndex={-1} href={href} className={twMerge(COMMON_CLASS_NAMES, className)}>
+        <ExternalLink
+            tabIndex={-1}
+            href={href}
+            className={twMerge(COMMON_CLASS_NAMES, className)}
+            {...props}
+        >
             {children}
         </ExternalLink>
     );

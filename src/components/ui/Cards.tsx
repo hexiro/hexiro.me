@@ -22,7 +22,6 @@ export function Card<T extends ElementType = "div">({
 
     return (
         <Component
-            role="group"
             {...props}
             className={twMerge(
                 "group relative inline-block rounded-md border-2 border-white/10 bg-background-secondary px-8 py-6 shadow-lg outline-none",
