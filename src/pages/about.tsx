@@ -3,7 +3,7 @@ import type { ComponentProps, PropsWithChildren } from "react";
 
 import { currentAge, SOCIALS_MAP } from "@/commons/config";
 
-import { H1, H3 } from "@/components/ui/Headings";
+import { H1, H3, H4 } from "@/components/ui/Headings";
 
 import { ContactCard } from "@/components/cards/ContactCard";
 import { ImageCard } from "@/components/cards/ImageCard";
@@ -34,7 +34,7 @@ export default function AboutPage() {
                 <H3 className="text-subtitle">{DESCRIPTION}</H3>
             </div>
             <div className="flex w-full flex-col gap-24">
-                <AboutSection isSingle text={INTRO}>
+                <AboutSection isSingle heading="whoami" text={INTRO}>
                     <ImageCard className="relative justify-around gap-6 xl:w-full xl:flex-col-reverse">
                         <AboutImage
                             src={bedSelfieSrc}
@@ -49,12 +49,12 @@ export default function AboutPage() {
                         />
                     </ImageCard>
                 </AboutSection>
-                <AboutSection text={MAIN_HOBBIES}>
+                <AboutSection heading="My Hobbies" text={MAIN_HOBBIES}>
                     <ContactCard isSingle social={SOCIALS_MAP.IMDb} />
                     <ContactCard isSingle social={SOCIALS_MAP.Spotify} />
                     <ContactCard isSingle social={SOCIALS_MAP["Last.fm"]} />
                 </AboutSection>
-                <AboutSection text={VIDEO_GAMES}>
+                <AboutSection heading="Video Games" text={VIDEO_GAMES}>
                     <ContactCard isSingle social={SOCIALS_MAP.Steam} />
                     <ContactCard isSingle social={SOCIALS_MAP["Epic Games"]} />
                 </AboutSection>
@@ -64,16 +64,18 @@ export default function AboutPage() {
 }
 
 interface AboutSectionProps {
+    readonly heading: string;
     readonly text: string;
-    readonly className?: string;
     readonly isSingle?: boolean;
+    readonly className?: string;
 }
 
 function AboutSection({
+    heading,
     text,
-    className,
     isSingle,
     children,
+    className,
 }: PropsWithChildren<AboutSectionProps>) {
     const Component = isSingle ? "div" : "ul";
     return (
@@ -83,9 +85,12 @@ function AboutSection({
                 className
             )}
         >
-            <p className="w-full text-pretty break-normal text-[18px] font-bold leading-relaxed xl:basis-2/3 2xl:text-base">
-                {text}
-            </p>
+            <div className="space-y-2 xl:basis-2/3">
+                <H4 className="text-subtitle">{heading}</H4>
+                <p className="w-full text-pretty break-normal text-[18px] font-bold leading-relaxed 2xl:text-base">
+                    {text}
+                </p>
+            </div>
             <Component className="flex w-full flex-col gap-y-4 xl:basis-1/3">{children}</Component>
         </div>
     );
@@ -98,7 +103,7 @@ function AboutImage({ src, alt, className, ...props }: ComponentProps<typeof Ima
             src={src}
             alt={alt}
             className={twMerge(
-                "shrink-1 grow basis-0 w-full rounded-md border-2 border-solid border-white/10 drop-shadow-md",
+                "shrink-1 w-full grow basis-0 rounded-md border-2 border-solid border-white/10 drop-shadow-md",
                 className
             )}
             {...props}
