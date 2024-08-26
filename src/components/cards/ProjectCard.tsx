@@ -64,7 +64,7 @@ export function ProjectCard({ project, className, showLastUpdated }: ProjectCard
                 </span>
             </div>
             <div className="flex flex-col gap-y-4 pr-4">
-                <p className="line-clamp-3 min-h-[70px]">
+                <p className="line-clamp-3 min-h-[70px] text-pretty">
                     {description.map(({ value, type }) =>
                         type === "link" ? (
                             <ExternalLink

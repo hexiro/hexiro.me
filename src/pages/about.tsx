@@ -1,4 +1,5 @@
-import type { PropsWithChildren } from "react";
+import Image from "next/image";
+import type { ComponentProps, PropsWithChildren } from "react";
 
 import { currentAge, SOCIALS_MAP } from "@/commons/config";
 
@@ -7,7 +8,8 @@ import { H1, H3 } from "@/components/ui/Headings";
 import { ContactCard } from "@/components/cards/ContactCard";
 import { ImageCard } from "@/components/cards/ImageCard";
 
-import introSrc from "@/images/intro.png";
+import bedSelfieSrc from "@/images/bed_selfie.jpg";
+import codeSelfieSrc from "@/images/code_selfie.jpg";
 import { Seo } from "@/layout/Seo";
 
 import { twMerge } from "tailwind-merge";
@@ -31,13 +33,21 @@ export default function AboutPage() {
                 <H1>{NAME}</H1>
                 <H3 className="text-subtitle">{DESCRIPTION}</H3>
             </div>
-            <div className="flex max-w-6xl flex-col gap-y-24">
-                <AboutSection text={INTRO}>
-                    <ImageCard
-                        caption="Me"
-                        alt="repping my 2023 hacktoberfest shirt."
-                        src={introSrc}
-                    />
+            <div className="flex w-full flex-col gap-24">
+                <AboutSection isSingle text={INTRO}>
+                    <ImageCard className="relative justify-around gap-6 xl:w-full xl:flex-col-reverse">
+                        <AboutImage
+                            src={bedSelfieSrc}
+                            alt="me (Nathan Lodge) laying in bed smirking"
+                            className="hidden w-1/2 shrink-0 sm:block xl:w-full"
+                        />
+                        <AboutImage
+                            priority
+                            src={codeSelfieSrc}
+                            alt="a reflection of me (Nathan Lodge) holding up a peace sign in front of a laptop with Visual Studio Code open"
+                            className="w-full sm:w-1/2 xl:w-full"
+                        />
+                    </ImageCard>
                 </AboutSection>
                 <AboutSection text={MAIN_HOBBIES}>
                     <ContactCard isSingle social={SOCIALS_MAP.IMDb} />
@@ -56,18 +66,42 @@ export default function AboutPage() {
 interface AboutSectionProps {
     readonly text: string;
     readonly className?: string;
+    readonly isSingle?: boolean;
 }
 
-function AboutSection({ text, className, children }: PropsWithChildren<AboutSectionProps>) {
+function AboutSection({
+    text,
+    className,
+    isSingle,
+    children,
+}: PropsWithChildren<AboutSectionProps>) {
+    const Component = isSingle ? "div" : "ul";
     return (
         <div
             className={twMerge(
-                "flex flex-col items-center gap-x-[5%] gap-y-6 xl:flex-row xl:even:flex-row-reverse",
+                "flex flex-col items-center gap-x-[min(5%,96px)] gap-y-6 xl:flex-row xl:gap-x-[min(10%,192px)] xl:even:flex-row-reverse",
                 className
             )}
         >
-            <p className="text-[18px] font-bold leading-relaxed">{text}</p>
-            <ul className="flex w-full flex-col gap-y-4">{children}</ul>
+            <p className="w-full text-pretty break-normal text-[18px] font-bold leading-relaxed xl:basis-2/3 2xl:text-base">
+                {text}
+            </p>
+            <Component className="flex w-full flex-col gap-y-4 xl:basis-1/3">{children}</Component>
         </div>
+    );
+}
+
+function AboutImage({ src, alt, className, ...props }: ComponentProps<typeof Image>) {
+    return (
+        <Image
+            priority
+            src={src}
+            alt={alt}
+            className={twMerge(
+                "shrink-1 grow basis-0 w-full rounded-md border-2 border-solid border-white/10 drop-shadow-md",
+                className
+            )}
+            {...props}
+        />
     );
 }
