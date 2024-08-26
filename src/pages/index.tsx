@@ -16,7 +16,7 @@ export default function HomePage() {
     return (
         <>
             <Seo name={NAME} description={FULL_DESCRIPTION} />
-            <div className="xl:pr-[10%]">
+            <div>
                 <H2 className="font-mono text-off-white">
                     <span className="after:inline-block after:w-[3ch] after:animate-full-ellipsis after:ease-linear after:content-['...'] after:animation-delay-[2s]">
                         Hi

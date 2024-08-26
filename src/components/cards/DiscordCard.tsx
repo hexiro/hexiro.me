@@ -20,12 +20,12 @@ export function DiscordCard({ className }: { readonly className?: string }) {
                 <div className="flex flex-row gap-x-4">
                     <div className="relative h-14 w-14 shrink-0 md:h-16 md:w-16">
                         <Image
-                            className="rounded-full"
                             width={64}
                             height={64}
                             src={state.user.avatar}
                             alt={state.user.alt}
                             draggable={false}
+                            className="rounded-full"
                         />
                         {state.user.status === "online" ? (
                             <StatusIndicator className="bg-green" />
@@ -50,12 +50,12 @@ export function DiscordCard({ className }: { readonly className?: string }) {
                         {state.ide ? (
                             <Image
                                 priority
-                                className="rounded-md"
                                 width={100}
                                 height={100}
                                 src={state.ide.images.large.src}
                                 alt={state.ide.images.large.alt}
                                 draggable={false}
+                                className="border border-white/5 rounded-md brightness-[99%] contrast-[200%] invert-[15%] saturate-[289%] sepia-[24%] filter"
                             />
                         ) : (
                             <div className="flex h-full w-full items-center justify-center rounded-md bg-background-accent">
