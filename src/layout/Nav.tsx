@@ -133,12 +133,12 @@ function NavRightFog({ navRef }: NavRightFogProps) {
         const nav = navRef.current;
         const el = ref.current;
 
-        const onScroll = () => {
+        const computeOpacity = () => {
             // compute opacity based on pixels left to scroll
             const scrollPixels = nav.scrollWidth - nav.clientWidth - nav.scrollLeft;
             // divide by 2 bcuz approx. half is transparent.
             const width = Math.floor(el.clientWidth / 2);
-            const scrollPercentage = scrollPixels / width;
+            const scrollPercentage = Math.min(1, scrollPixels / width);
 
             el.style.opacity = String(scrollPercentage);
         };
@@ -152,17 +152,17 @@ function NavRightFog({ navRef }: NavRightFogProps) {
             const isScrollable = scrollWidth > clientWidth;
             el.dataset.isScrollable = String(isScrollable);
 
-            onScroll();
+            if (isScrollable) computeOpacity();
         };
 
         onResize();
 
         window.addEventListener("resize", onResize);
-        nav.addEventListener("scroll", onScroll);
+        nav.addEventListener("scroll", computeOpacity);
 
         return () => {
             window.removeEventListener("resize", onResize);
-            nav.removeEventListener("scroll", onScroll);
+            nav.removeEventListener("scroll", computeOpacity);
         };
     }, [navRef]);
 
