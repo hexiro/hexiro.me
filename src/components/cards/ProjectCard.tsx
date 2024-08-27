@@ -73,6 +73,7 @@ export function ProjectCard({ project, className, showLastUpdated }: ProjectCard
                                 isFocusable
                                 href={value}
                                 aria-label="open external source"
+                                className="relative z-10 px-0.5 normal-case text-green"
                             >
                                 {value}
                             </ExternalLink>

@@ -138,7 +138,6 @@ function NavRightFog({ navRef }: NavRightFogProps) {
             const scrollPixels = nav.scrollWidth - nav.clientWidth - nav.scrollLeft;
             // divide by 2 bcuz approx. half is transparent.
             const width = Math.floor(el.clientWidth / 2);
-
             const scrollPercentage = scrollPixels / width;
 
             el.style.opacity = String(scrollPercentage);
