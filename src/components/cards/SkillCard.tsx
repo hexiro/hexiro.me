@@ -1,6 +1,6 @@
 import type { ISkill } from "@/commons/config";
 
-import { ExternalLinkOverlay } from "@/components/layout/LinkOverlay";
+import { ExternalLinkOverlay } from "@/components/layout/Overlay";
 import { Card } from "@/components/ui/Cards";
 import { H5 } from "@/components/ui/Headings";
 import { ExternalLinkIcon } from "@/components/ui/Icons";

@@ -1,6 +1,6 @@
 import type { IRouteMeta } from "@/commons/config";
 
-import { LinkOverlay } from "@/components/layout/LinkOverlay";
+import { LinkOverlay } from "@/components/layout/Overlay";
 import { Card } from "@/components/ui/Cards";
 
 import { twMerge } from "tailwind-merge";

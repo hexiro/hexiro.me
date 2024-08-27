@@ -1,5 +1,5 @@
 import { VerticalDivider } from "@/components/layout/Divider";
-import { ExternalLinkOverlay } from "@/components/layout/LinkOverlay";
+import { ExternalLinkOverlay } from "@/components/layout/Overlay";
 import { Card } from "@/components/ui/Cards";
 import { H5 } from "@/components/ui/Headings";
 import { ExternalLinkIcon, PackageIcon, StarsIcon } from "@/components/ui/Icons";
