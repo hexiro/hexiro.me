@@ -133,6 +133,17 @@ function NavRightFog({ navRef }: NavRightFogProps) {
         const nav = navRef.current;
         const el = ref.current;
 
+        const onScroll = () => {
+            // compute opacity based on pixels left to scroll
+            const scrollPixels = nav.scrollWidth - nav.clientWidth - nav.scrollLeft;
+            // divide by 2 bcuz approx. half is transparent.
+            const width = Math.floor(el.clientWidth / 2);
+
+            const scrollPercentage = scrollPixels / width;
+
+            el.style.opacity = String(scrollPercentage);
+        };
+
         const onResize = () => {
             // >1024 is desktop
             // this may saves resources on a slow device but idrk :shrug:
@@ -141,12 +152,8 @@ function NavRightFog({ navRef }: NavRightFogProps) {
             const { clientWidth, scrollWidth } = nav;
             const isScrollable = scrollWidth > clientWidth;
             el.dataset.isScrollable = String(isScrollable);
-        };
 
-        const onScroll = () => {
-            const { scrollLeft, scrollWidth, clientWidth } = nav;
-            const scrollPercentage = (scrollLeft / (scrollWidth - clientWidth)) * 100;
-            el.style.opacity = String(1 - scrollPercentage / 100);
+            onScroll();
         };
 
         onResize();
