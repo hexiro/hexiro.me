@@ -15,14 +15,14 @@ import useSelectedRouteIndex from "@/hooks/useSelectedRouteIndex";
 import { motion } from "framer-motion";
 import { useDraggable } from "react-use-draggable-scroll";
 
-const Nav = () => {
+const Header = () => {
     const ref = useRef<HTMLElement>() as MutableRefObject<HTMLElement>;
     const {
         events: { onMouseDown },
     } = useDraggable(ref);
 
     return (
-        <motion.nav
+        <motion.header
             ref={ref}
             layout
             layoutRoot
@@ -56,25 +56,25 @@ const Nav = () => {
             </div>
             <HorizontalDivider className="my-auto h-[80%] w-0 divide-x lg:mx-auto lg:my-0 lg:h-0 lg:w-[80%]" />
             <NavRoutes />
-            <NavRightFog navRef={ref} />
+            <HeaderFog headerRef={ref} />
             <div className="mb-8 hidden w-full flex-grow items-center tall:flex">
                 <VerticalDivider className="ml-[25%] hidden h-3/4 lg:block" />
             </div>
-        </motion.nav>
+        </motion.header>
     );
 };
 
-export default memo(Nav);
+export default memo(Header);
 
 function NavRoutes() {
     const selectedIndex = useSelectedRouteIndex();
 
     return (
-        <ul className="flex h-full w-fit items-center gap-8 px-12 lg:my-6 lg:h-[unset] lg:w-full lg:flex-col lg:items-start lg:gap-[0.6em] lg:p-6 lg:pr-0">
+        <nav className="flex h-full w-fit items-center gap-8 px-12 lg:my-6 lg:h-[unset] lg:w-full lg:flex-col lg:items-start lg:gap-[0.6em] lg:p-6 lg:pr-0">
             {ROUTES.map((route, index) => (
                 <NavRoute key={route.name} route={route} isSelected={index === selectedIndex} />
             ))}
-        </ul>
+        </nav>
     );
 }
 
@@ -87,7 +87,7 @@ function NavRoute({ route, isSelected }: NavRouteProps) {
     const { name, path } = route;
 
     return (
-        <li
+        <div
             key={name}
             className="relative flex h-full w-full items-center text-[1.35rem] drop-shadow-md"
         >
@@ -102,7 +102,7 @@ function NavRoute({ route, isSelected }: NavRouteProps) {
                 </span>
             </Link>
             <NavRouteSelectedIndicator isSelected={isSelected} />
-        </li>
+        </div>
     );
 }
 interface NavRouteSelectedIndicatorProps {
@@ -120,22 +120,22 @@ function NavRouteSelectedIndicator({ isSelected }: NavRouteSelectedIndicatorProp
     );
 }
 
-interface NavRightFogProps {
-    readonly navRef: MutableRefObject<HTMLElement>;
+interface HeaderFogProps {
+    readonly headerRef: MutableRefObject<HTMLElement>;
 }
 
-function NavRightFog({ navRef }: NavRightFogProps) {
+function HeaderFog({ headerRef }: HeaderFogProps) {
     const ref = useRef<HTMLDivElement>(null);
 
     useIsomorphicLayoutEffect(() => {
-        if (!navRef.current || !ref.current) return;
+        if (!headerRef.current || !ref.current) return;
 
-        const nav = navRef.current;
+        const header = headerRef.current;
         const el = ref.current;
 
         const computeOpacity = () => {
             // compute opacity based on pixels left to scroll
-            const scrollPixels = nav.scrollWidth - nav.clientWidth - nav.scrollLeft;
+            const scrollPixels = header.scrollWidth - header.clientWidth - header.scrollLeft;
             // divide by 2 bcuz approx. half is transparent.
             const width = Math.floor(el.clientWidth / 2);
             const scrollPercentage = Math.min(1, scrollPixels / width);
@@ -144,11 +144,12 @@ function NavRightFog({ navRef }: NavRightFogProps) {
         };
 
         const onResize = () => {
+            console.log("resize!");
             // >1024 is desktop
             // this may saves resources on a slow device but idrk :shrug:
             if (window.innerWidth > 1024) return;
 
-            const { clientWidth, scrollWidth } = nav;
+            const { clientWidth, scrollWidth } = header;
             const isScrollable = scrollWidth > clientWidth;
             el.dataset.isScrollable = String(isScrollable);
 
@@ -158,13 +159,13 @@ function NavRightFog({ navRef }: NavRightFogProps) {
         onResize();
 
         window.addEventListener("resize", onResize);
-        nav.addEventListener("scroll", computeOpacity);
+        header.addEventListener("scroll", computeOpacity);
 
         return () => {
             window.removeEventListener("resize", onResize);
-            nav.removeEventListener("scroll", computeOpacity);
+            header.removeEventListener("scroll", computeOpacity);
         };
-    }, [navRef]);
+    }, [headerRef]);
 
     return (
         <div
