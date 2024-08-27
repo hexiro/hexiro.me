@@ -49,7 +49,7 @@ const Nav = () => {
                         })
                     }
                 >
-                    <H2 className="text-3xl drop-shadow-md transition-transform duration-fast ease-in-out group-hover:scale-110 group-focus-visible:scale-110 group-active:scale-95 sm:text-4xl lg:text-5xl">
+                    <H2 className="drop-shadow-md transition-transform duration-fast ease-in-out group-hover:scale-110 group-focus-visible:scale-110 group-active:scale-95">
                         NL
                     </H2>
                 </button>

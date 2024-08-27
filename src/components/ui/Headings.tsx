@@ -52,7 +52,7 @@ export function H2({ className, ...rest }: GeneralHeadingProps) {
     return (
         <Heading
             as="h2"
-            className={twMerge("text-xl sm:text-2xl lg:text-3xl", className)}
+            className={twMerge("text-3xl sm:text-4xl lg:text-5xl", className)}
             {...rest}
         />
     );
