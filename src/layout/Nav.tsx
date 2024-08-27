@@ -9,6 +9,7 @@ import { HorizontalDivider, VerticalDivider } from "@/components/layout/Divider"
 import { H2 } from "@/components/ui/Headings";
 import { Link } from "@/components/ui/Links";
 
+import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 import useSelectedRouteIndex from "@/hooks/useSelectedRouteIndex";
 
 import { motion } from "framer-motion";
@@ -38,7 +39,7 @@ const Nav = () => {
             <div className="flex items-center justify-center px-8 lg:h-52 lg:min-h-[10em] lg:w-full lg:px-6">
                 <button
                     type="button"
-                    aria-label="NL: Scroll to Top"
+                    aria-label="NL: scroll to top"
                     className="group focus-visible:outline-none"
                     onClick={() =>
                         window.scroll({
@@ -55,6 +56,7 @@ const Nav = () => {
             </div>
             <HorizontalDivider className="my-auto h-[80%] w-0 divide-x lg:mx-auto lg:my-0 lg:h-0 lg:w-[80%]" />
             <NavRoutes />
+            <NavRightFog navRef={ref} />
             <div className="mb-8 hidden w-full flex-grow items-center tall:flex">
                 <VerticalDivider className="ml-[25%] hidden h-3/4 lg:block" />
             </div>
@@ -103,7 +105,6 @@ function NavRoute({ route, isSelected }: NavRouteProps) {
         </li>
     );
 }
-
 interface NavRouteSelectedIndicatorProps {
     readonly isSelected: boolean;
 }
@@ -115,6 +116,54 @@ function NavRouteSelectedIndicator({ isSelected }: NavRouteSelectedIndicatorProp
         <motion.div
             className="absolute bottom-0 z-20 h-2 w-full rounded-t-[3px] bg-green lg:right-0 lg:top-[-10%] lg:h-[120%] lg:w-2 lg:rounded-l-[3px] lg:rounded-tr-none"
             layoutId="selected-route-indicator"
+        />
+    );
+}
+
+interface NavRightFogProps {
+    readonly navRef: MutableRefObject<HTMLElement>;
+}
+
+function NavRightFog({ navRef }: NavRightFogProps) {
+    const ref = useRef<HTMLDivElement>(null);
+
+    useIsomorphicLayoutEffect(() => {
+        if (!navRef.current || !ref.current) return;
+
+        const nav = navRef.current;
+        const el = ref.current;
+
+        const onResize = () => {
+            // >1024 is desktop
+            // this may saves resources on a slow device but idrk :shrug:
+            if (window.innerWidth > 1024) return;
+
+            const { clientWidth, scrollWidth } = nav;
+            const isScrollable = scrollWidth > clientWidth;
+            el.dataset.isScrollable = String(isScrollable);
+        };
+
+        const onScroll = () => {
+            const { scrollLeft, scrollWidth, clientWidth } = nav;
+            const scrollPercentage = (scrollLeft / (scrollWidth - clientWidth)) * 100;
+            el.style.opacity = String(1 - scrollPercentage / 100);
+        };
+
+        onResize();
+
+        window.addEventListener("resize", onResize);
+        nav.addEventListener("scroll", onScroll);
+
+        return () => {
+            window.removeEventListener("resize", onResize);
+            nav.removeEventListener("scroll", onScroll);
+        };
+    }, [navRef]);
+
+    return (
+        <div
+            ref={ref}
+            className="pointer-events-none fixed right-0 top-0 h-28 w-1/3 bg-gradient-to-r from-transparent to-background-secondary data-[is-scrollable=false]:hidden lg:hidden"
         />
     );
 }
