@@ -1,7 +1,7 @@
 import { VerticalDivider } from "@/components/layout/Divider";
 import { ExternalLinkOverlay } from "@/components/layout/Overlay";
 import { Card } from "@/components/ui/Cards";
-import { H5 } from "@/components/ui/Headings";
+import { H4 } from "@/components/ui/Headings";
 import { ExternalLinkIcon, PackageIcon, StarsIcon } from "@/components/ui/Icons";
 import { ExternalLink } from "@/components/ui/Links";
 import { Topic } from "@/components/ui/Topics";
@@ -22,11 +22,13 @@ export function ProjectCard({ project, className, showLastUpdated }: ProjectCard
     return (
         <Card isHoverable isFocusable as="li" className={twMerge("w-full pr-4", className)}>
             <div className="mb-1 flex h-10 flex-row items-center gap-x-2 leading-none">
-                <H5 green className="basis-2/3 truncate text-[18px] lg:text-[20px]">
-                    <ExternalLinkOverlay href={url} aria-label={`open project, ${name}, on GitHub`}>
-                        {name}
-                    </ExternalLinkOverlay>
-                </H5>
+                <ExternalLinkOverlay
+                    href={url}
+                    aria-label={`open project, ${name}, on GitHub`}
+                    className="basis-2/3 truncate text-[18px] text-green lg:text-[20px]"
+                >
+                    {name}
+                </ExternalLinkOverlay>
                 <span className="flex h-full basis-1/3 flex-row items-center justify-end gap-x-3">
                     {stars > 0 ? (
                         <>

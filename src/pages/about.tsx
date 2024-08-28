@@ -3,7 +3,7 @@ import type { ComponentProps, PropsWithChildren } from "react";
 
 import { currentAge, SOCIALS_MAP } from "@/commons/config";
 
-import { H1, H3, H4 } from "@/components/ui/Headings";
+import { H1, H2, H3 } from "@/components/ui/Headings";
 
 import { ContactCard } from "@/components/cards/ContactCard";
 import { ImageCard } from "@/components/cards/ImageCard";
@@ -31,7 +31,7 @@ export default function AboutPage() {
             <Seo name={NAME} description={DESCRIPTION} />
             <div className="mb-12">
                 <H1>{NAME}</H1>
-                <H3 className="text-subtitle">{DESCRIPTION}</H3>
+                <H2 className="text-subtitle">{DESCRIPTION}</H2>
             </div>
             <div className="flex w-full flex-col gap-24">
                 <AboutSection isSingle heading="whoami" text={INTRO}>
@@ -86,7 +86,7 @@ function AboutSection({
             )}
         >
             <div className="space-y-2 xl:basis-2/3">
-                <H4 className="text-subtitle">{heading}</H4>
+                <H3 className="text-subtitle">{heading}</H3>
                 <p className="w-full text-pretty break-normal text-[18px] font-bold leading-relaxed 2xl:text-base">
                     {text}
                 </p>

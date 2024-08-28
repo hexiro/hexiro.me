@@ -2,7 +2,7 @@ import type { ISkill } from "@/commons/config";
 
 import { ExternalLinkOverlay } from "@/components/layout/Overlay";
 import { Card } from "@/components/ui/Cards";
-import { H5 } from "@/components/ui/Headings";
+import { H4 } from "@/components/ui/Headings";
 import { ExternalLinkIcon } from "@/components/ui/Icons";
 import { ExternalLink } from "@/components/ui/Links";
 
@@ -28,11 +28,11 @@ export default function SkillCard({ skill, className }: SocialCardProps) {
         >
             <span className="flex h-full grow flex-row items-center gap-x-[8%]">
                 <Icon className="h-8 w-8 shrink-0 transition-transform group-hover:rotate-6 xs:h-10 xs:w-10" />
-                <H5 className="truncate text-[20px] font-bold text-off-white">
+                <H4 className="truncate text-[20px] font-bold text-off-white">
                     <ExternalLinkOverlay href={link} aria-label={`open ${name}'s website`}>
                         {name}
                     </ExternalLinkOverlay>
-                </H5>
+                </H4>
             </span>
             <span className="hidden h-full flex-row items-start gap-x-2 xxs:flex">
                 <ExternalLink isHoverable href={link} aria-label={`open ${name}'s website`}>

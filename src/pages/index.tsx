@@ -1,7 +1,7 @@
 import { currentAge, ROUTES_META } from "@/commons/config";
 
 import { HorizontalDividerWithText } from "@/components/layout/Divider";
-import { H1, H2, H3 } from "@/components/ui/Headings";
+import { H1, H2 } from "@/components/ui/Headings";
 
 import { DiscordCard } from "@/components/cards/DiscordCard";
 import { RouteCard } from "@/components/cards/RouteCard";
@@ -26,7 +26,7 @@ export default function HomePage() {
                 <H1 className="tracking-wide">
                     Nathan <span className="text-off-white">Lodge</span>
                 </H1>
-                <H3 className="text-subtitle">{DESCRIPTION}</H3>
+                <H2 className="text-subtitle">{DESCRIPTION}</H2>
                 <DiscordCard className="mt-8" />
                 <HorizontalDividerWithText text="View More" className="mb-16 mt-20" />
                 <ul className="grid grid-flow-row gap-6 lg:grid-cols-2">

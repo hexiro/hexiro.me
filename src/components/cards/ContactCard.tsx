@@ -6,7 +6,7 @@ import type { ISocial } from "@/commons/config";
 
 import { ButtonOverlay, ExternalLinkOverlay } from "@/components/layout/Overlay";
 import { Card } from "@/components/ui/Cards";
-import { H5 } from "@/components/ui/Headings";
+import { H3, H4 } from "@/components/ui/Headings";
 import { CheckIcon, CopyIcon, ExternalLinkIcon, XIcon } from "@/components/ui/Icons";
 import { ExternalLink } from "@/components/ui/Links";
 
@@ -61,7 +61,7 @@ export function ContactCard({ social, className, isSingle }: ContactCardProps) {
             <div className="flex min-w-0 items-center gap-6">
                 <Icon className="h-10 w-10 shrink-0 transition-transform group-hover:rotate-6" />
                 <div className="flex flex-col overflow-hidden">
-                    <H5 className="text-[20px] font-bold text-off-white">{name}</H5>
+                    <H3 className="text-[20px] font-bold text-off-white lg:text-[22px]">{name}</H3>
                     <WithExternalLinkOrButtonOverlay
                         href={link}
                         canCopy={canCopy}

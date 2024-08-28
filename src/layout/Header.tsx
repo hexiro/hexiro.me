@@ -6,7 +6,7 @@ import type { IRoute } from "@/commons/config";
 import { ROUTES } from "@/commons/config";
 
 import { HorizontalDivider, VerticalDivider } from "@/components/layout/Divider";
-import { H2 } from "@/components/ui/Headings";
+import { H1 } from "@/components/ui/Headings";
 import { Link } from "@/components/ui/Links";
 
 import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
@@ -49,9 +49,9 @@ const Header = () => {
                         })
                     }
                 >
-                    <H2 className="drop-shadow-md transition-transform duration-fast ease-in-out group-hover:scale-110 group-focus-visible:scale-110 group-active:scale-95">
+                    <H1 className="text-3xl drop-shadow-md transition-transform duration-fast ease-in-out group-hover:scale-110 group-focus-visible:scale-110 group-active:scale-95 sm:text-4xl lg:text-5xl">
                         NL
-                    </H2>
+                    </H1>
                 </button>
             </div>
             <HorizontalDivider className="my-auto h-[80%] w-0 divide-x lg:mx-auto lg:my-0 lg:h-0 lg:w-[80%]" />

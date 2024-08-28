@@ -1,6 +1,6 @@
 import { SOCIALS } from "@/commons/config";
 
-import { H1, H3 } from "@/components/ui/Headings";
+import { H1, H2 } from "@/components/ui/Headings";
 
 import { ContactCard } from "@/components/cards/ContactCard";
 
@@ -15,7 +15,7 @@ export default function ContactPage() {
             <Seo name={NAME} description={DESCRIPTION} />
             <div className="mb-12">
                 <H1>{NAME}</H1>
-                <H3 className="text-subtitle">{DESCRIPTION}</H3>
+                <H2 className="text-subtitle">{DESCRIPTION}</H2>
             </div>
             <ul className="grid auto-cols-fr gap-6 sm:grid-cols-2 2xl:grid-cols-3">
                 {SOCIALS.map((social) => (
