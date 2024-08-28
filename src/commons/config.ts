@@ -80,7 +80,7 @@ export const INITIAL_DISCORD_STATE = {
         discriminator: "0",
         bot: false,
         avatar_decoration_data: null,
-        avatar: "30a5d8423b9471d72a374883a80089b9",
+        avatar: "913109c934f25b926c9942521bc4442a",
     },
     spotify: null,
     listening_to_spotify: false,
