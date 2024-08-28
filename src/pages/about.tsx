@@ -35,17 +35,16 @@ export default function AboutPage() {
             </div>
             <div className="flex w-full flex-col gap-24">
                 <AboutSection isSingle heading="whoami" text={INTRO}>
-                    <ImageCard className="relative justify-around gap-6 xl:w-full xl:flex-col-reverse">
+                    <ImageCard className="relative gap-6 xl:grid-flow-row">
                         <AboutImage
                             src={bedSelfieSrc}
                             alt="me (Nathan Lodge) laying in bed smirking"
-                            className="hidden w-1/2 shrink-0 sm:block xl:w-full"
+                            className="hidden sm:block xl:order-1"
                         />
                         <AboutImage
                             priority
                             src={codeSelfieSrc}
                             alt="a reflection of me (Nathan Lodge) holding up a peace sign in front of a laptop with Visual Studio Code open"
-                            className="w-full sm:w-1/2 xl:w-full"
                         />
                     </ImageCard>
                 </AboutSection>
