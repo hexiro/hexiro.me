@@ -141,7 +141,6 @@ function HeaderFog() {
         };
 
         const onResize = () => {
-            console.log("resize!");
             // >1024 is desktop
             // this may save resources on a slow device but idrk :shrug:
             if (window.innerWidth > 1024) return;
