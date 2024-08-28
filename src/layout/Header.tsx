@@ -56,7 +56,7 @@ const Header = () => {
             </div>
             <HorizontalDivider className="my-auto h-[80%] w-0 divide-x lg:mx-auto lg:my-0 lg:h-0 lg:w-[80%]" />
             <NavRoutes />
-            <HeaderFog headerRef={ref} />
+            <HeaderFog />
             <div className="mb-8 hidden w-full flex-grow items-center tall:flex">
                 <VerticalDivider className="ml-[25%] hidden h-3/4 lg:block" />
             </div>
@@ -120,20 +120,17 @@ function NavRouteSelectedIndicator({ isSelected }: NavRouteSelectedIndicatorProp
     );
 }
 
-interface HeaderFogProps {
-    readonly headerRef: MutableRefObject<HTMLElement>;
-}
-
-function HeaderFog({ headerRef }: HeaderFogProps) {
+function HeaderFog() {
     const ref = useRef<HTMLDivElement>(null);
 
     useIsomorphicLayoutEffect(() => {
-        if (!headerRef.current || !ref.current) return;
+        if (!ref.current) return;
 
-        const header = headerRef.current;
         const el = ref.current;
+        // parent is the header :)
+        const header = el.parentElement as HTMLElement;
 
-        const computeOpacity = () => {
+        const onScroll = () => {
             // compute opacity based on pixels left to scroll
             const scrollPixels = header.scrollWidth - header.clientWidth - header.scrollLeft;
             // divide by 2 bcuz approx. half is transparent.
@@ -146,26 +143,26 @@ function HeaderFog({ headerRef }: HeaderFogProps) {
         const onResize = () => {
             console.log("resize!");
             // >1024 is desktop
-            // this may saves resources on a slow device but idrk :shrug:
+            // this may save resources on a slow device but idrk :shrug:
             if (window.innerWidth > 1024) return;
 
             const { clientWidth, scrollWidth } = header;
             const isScrollable = scrollWidth > clientWidth;
             el.dataset.isScrollable = String(isScrollable);
 
-            if (isScrollable) computeOpacity();
+            if (isScrollable) onScroll();
         };
 
         onResize();
 
         window.addEventListener("resize", onResize);
-        header.addEventListener("scroll", computeOpacity);
+        header.addEventListener("scroll", onScroll);
 
         return () => {
             window.removeEventListener("resize", onResize);
-            header.removeEventListener("scroll", computeOpacity);
+            header.removeEventListener("scroll", onScroll);
         };
-    }, [headerRef, ref]);
+    }, []);
 
     return (
         <div
