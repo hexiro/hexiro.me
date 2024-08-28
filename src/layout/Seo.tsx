@@ -1,4 +1,4 @@
-import { TWITTER } from "@/commons/config";
+import { ROUTES, TWITTER } from "@/commons/config";
 
 import tailwindConfig from "../../tailwind.config";
 import { NextSeo, DefaultSeo } from "next-seo";
@@ -10,7 +10,16 @@ interface SeoProps {
 }
 
 export function Seo({ name, description }: SeoProps) {
-    return <NextSeo title={name} titleTemplate="NL // %s" description={description} />;
+    const route = ROUTES.find((route) => route.name === name);
+    if (!route) throw new Error(`Route not found for ${name}`);
+    return (
+        <NextSeo
+            title={name}
+            titleTemplate="NL // %s"
+            description={description}
+            canonical={`https://hexiro.me${route.path}`}
+        />
+    );
 }
 
 const fullConfig = resolveConfig(tailwindConfig);
@@ -21,7 +30,6 @@ export function GlobalSeo() {
     return (
         <DefaultSeo
             defaultTitle="NL"
-            canonical="https://hexiro.me/"
             openGraph={{
                 type: "website",
                 locale: "en_US",

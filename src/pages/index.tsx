@@ -17,10 +17,7 @@ export default function HomePage() {
         <>
             <Seo name={NAME} description={FULL_DESCRIPTION} />
             <div>
-                <span
-                    role="heading"
-                    className="font-mono text-xl font-black uppercase text-off-white sm:text-2xl lg:text-3xl"
-                >
+                <span className="font-mono text-xl font-black uppercase text-off-white sm:text-2xl lg:text-3xl">
                     <span className="after:inline-block after:w-[3ch] after:animate-full-ellipsis after:ease-linear after:content-['...'] after:animation-delay-[2s]">
                         Hi
                     </span>{" "}

@@ -23,7 +23,6 @@ export function HorizontalDividerWithText({ text, className }: HorizontalDivider
         <div className={twMerge("flex items-center", className)}>
             <HorizontalDivider className="flex-grow" />
             <span
-                role="heading"
                 className="px-4 font-mono text-lg font-extrabold uppercase text-[#A9A898]"
             >
                 {text}
