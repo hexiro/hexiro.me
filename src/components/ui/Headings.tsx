@@ -48,35 +48,19 @@ export function H1({ className, ...rest }: GeneralHeadingProps) {
 
 export function H2({ className, ...rest }: GeneralHeadingProps) {
     rest.green ??= true;
-    rest.black ??= true;
     return (
         <Heading
             as="h2"
-            className={twMerge("text-xl sm:text-2xl lg:text-3xl", className)}
-            {...rest}
-        />
-    );
-}
-
-export function H3({ className, ...rest }: GeneralHeadingProps) {
-    rest.green ??= true;
-    return (
-        <Heading
-            as="h3"
             className={twMerge("text-lg sm:text-xl lg:text-2xl", className)}
             {...rest}
         />
     );
 }
 
+export function H3({ className, ...rest }: GeneralHeadingProps) {
+    return <Heading as="h3" className={twMerge("text-lg lg:text-xl", className)} {...rest} />;
+}
+
 export function H4({ className, ...rest }: GeneralHeadingProps) {
-    return <Heading as="h4" className={twMerge("text-lg lg:text-xl", className)} {...rest} />;
-}
-
-export function H5({ className, ...rest }: GeneralHeadingProps) {
-    return <Heading as="h5" className={twMerge("text-[18px] lg:text-base", className)} {...rest} />;
-}
-
-export function H6({ className, ...rest }: GeneralHeadingProps) {
-    return <Heading as="h6" className={twMerge("text-base", className)} {...rest} />;
+    return <Heading as="h4" className={twMerge("text-[18px] lg:text-base", className)} {...rest} />;
 }

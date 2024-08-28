@@ -1,7 +1,7 @@
 import type { GetStaticProps } from "next";
 import { useState } from "react";
 
-import { H1, H3 } from "@/components/ui/Headings";
+import { H1, H2 } from "@/components/ui/Headings";
 import { TopicButton } from "@/components/ui/Topics";
 
 import ButtonCard from "@/components/cards/ButtonCard";
@@ -27,7 +27,7 @@ export default function ProjectsPage({ projects }: ProjectsPageProps) {
             <Seo name={NAME} description={DESCRIPTION} />
             <div className="mb-12">
                 <H1>{NAME}</H1>
-                <H3 className="text-subtitle">{DESCRIPTION}</H3>
+                <H2 className="text-subtitle">{DESCRIPTION}</H2>
             </div>
             <ProjectsSection projects={projects} />
         </>

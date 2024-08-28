@@ -3,7 +3,7 @@ import type { PropsWithChildren } from "react";
 
 import { HorizontalDivider } from "@/components/layout/Divider";
 import { Card, SecondaryCard } from "@/components/ui/Cards";
-import { H3, H4, H5 } from "@/components/ui/Headings";
+import { H2, H3, H4 } from "@/components/ui/Headings";
 
 import useDiscordState from "@/hooks/useDiscordState";
 
@@ -20,12 +20,12 @@ export function DiscordCard({ className }: { readonly className?: string }) {
                 <div className="flex flex-row gap-x-4">
                     <div className="relative h-14 w-14 shrink-0 md:h-16 md:w-16">
                         <Image
-                            className="rounded-full"
                             width={64}
                             height={64}
                             src={state.user.avatar}
                             alt={state.user.alt}
                             draggable={false}
+                            className="rounded-full"
                         />
                         {state.user.status === "online" ? (
                             <StatusIndicator className="bg-green" />
@@ -37,8 +37,8 @@ export function DiscordCard({ className }: { readonly className?: string }) {
                             </StatusIndicator>
                         )}
                     </div>
-                    <div className="mt-1 flex flex-col leading-extra-tight">
-                        <H4 className="text-green">{state.user.displayName}</H4>
+                    <div className="mt-1 flex flex-col leading-extra-tight overflow-hidden">
+                        <H3 className="text-green">{state.user.displayName}</H3>
                         <span className="font-bold uppercase text-subtitle">
                             @{state.user.username}
                         </span>
@@ -50,23 +50,26 @@ export function DiscordCard({ className }: { readonly className?: string }) {
                         {state.ide ? (
                             <Image
                                 priority
-                                className="rounded-md"
                                 width={100}
                                 height={100}
                                 src={state.ide.images.large.src}
                                 alt={state.ide.images.large.alt}
                                 draggable={false}
+                                className="rounded-md border border-white/5 brightness-[99%] contrast-[200%] invert-[15%] saturate-[289%] sepia-[24%] filter"
                             />
                         ) : (
                             <div className="flex h-full w-full items-center justify-center rounded-md bg-background-accent">
-                                <H3 className="text-off-white">!#?</H3>
+                                <H2 className="text-off-white">!#?</H2>
                             </div>
                         )}
                     </div>
                     <div className="my-1 w-full overflow-hidden">
-                        <H5 className="mb-2 truncate font-sans font-extrabold leading-none text-off-white sm:leading-normal">
+                        <span
+                            role="heading"
+                            className="mb-2 truncate font-sans text-[18px] font-extrabold uppercase leading-none text-off-white sm:leading-normal lg:text-base"
+                        >
                             {state.ide ? state.ide.name : "No IDE active"}
-                        </H5>
+                        </span>
                         {state.ide ? (
                             state.ide.lines.map((line) =>
                                 line[0] ? (

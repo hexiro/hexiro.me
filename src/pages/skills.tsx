@@ -1,6 +1,6 @@
 import { SKILLS } from "@/commons/config";
 
-import { H1, H3, H4 } from "@/components/ui/Headings";
+import { H1, H2, H3 } from "@/components/ui/Headings";
 
 import SkillCard from "@/components/cards/SkillCard";
 
@@ -15,15 +15,15 @@ export default function SkillsPage() {
             <Seo name={NAME} description={DESCRIPTION} />
             <div className="mb-12">
                 <H1>{NAME}</H1>
-                <H3 className="text-subtitle">{DESCRIPTION}</H3>
+                <H2 className="text-subtitle">{DESCRIPTION}</H2>
             </div>
             <ul className="flex flex-col gap-y-12">
                 {Object.entries(SKILLS).map(([name, values]) => (
                     <li key={name}>
                         <div className="mb-2">
-                            <H4 mono className="text-text">
+                            <H3 mono className="text-text">
                                 {name}
-                            </H4>
+                            </H3>
                         </div>
                         <ul className="grid auto-cols-fr gap-x-6 gap-y-4 sm:grid-cols-2 xl:grid-cols-3">
                             {values.map((skill) => (

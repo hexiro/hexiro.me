@@ -1,12 +1,12 @@
-import type { PropsWithChildren } from "react";
+import type { MouseEventHandler, PropsWithChildren, ReactNode } from "react";
 import { useState } from "react";
 
 import { ICON_SWITCH, ICON_SWITCH_TRANSITION } from "@/commons/animations";
 import type { ISocial } from "@/commons/config";
 
-import { ExternalLinkOverlay } from "@/components/layout/LinkOverlay";
+import { ButtonOverlay, ExternalLinkOverlay } from "@/components/layout/Overlay";
 import { Card } from "@/components/ui/Cards";
-import { H5 } from "@/components/ui/Headings";
+import { H3, H4 } from "@/components/ui/Headings";
 import { CheckIcon, CopyIcon, ExternalLinkIcon, XIcon } from "@/components/ui/Icons";
 import { ExternalLink } from "@/components/ui/Links";
 
@@ -53,26 +53,31 @@ export function ContactCard({ social, className, isSingle }: ContactCardProps) {
             isHoverable={isInteractive}
             isFocusable={isInteractive}
             className={twMerge(
-                "flex w-full flex-row items-center gap-x-6 px-6 md:px-8",
+                "flex w-full items-center justify-between gap-2 px-6 md:px-8",
                 isSingle && "w-full xs:min-w-[375px]",
                 className
             )}
-            onClick={link ? undefined : copyToClipboard}
         >
-            <Icon className="h-10 w-10 shrink-0 transition-transform group-hover:rotate-6" />
-            <div className="flex flex-col overflow-hidden">
-                <H5 className="text-[20px] font-bold text-off-white">{name}</H5>
-                <WithExternalLinkOverlay
-                    href={link}
-                    className="truncate font-mono font-bold normal-case text-text"
-                >
-                    {value}
-                </WithExternalLinkOverlay>
+            <div className="flex min-w-0 items-center gap-6">
+                <Icon className="h-10 w-10 shrink-0 transition-transform group-hover:rotate-6" />
+                <div className="flex flex-col overflow-hidden">
+                    <H3 className="text-[20px] font-bold text-off-white lg:text-[22px]">{name}</H3>
+                    <WithExternalLinkOrButtonOverlay
+                        href={link}
+                        canCopy={canCopy}
+                        aria-label={link ? `open ${name}'s website` : `copy ${name} to clipboard`}
+                        className="truncate text-left font-mono font-bold normal-case text-text"
+                        onClick={copyToClipboard}
+                    >
+                        {value}
+                    </WithExternalLinkOrButtonOverlay>
+                </div>
             </div>
-            <div className="absolute right-8 top-6 hidden flex-row gap-x-2 xxs:flex">
+            <div className="flex gap-2 self-start">
                 {canCopy ? (
                     <button
                         type="button"
+                        aria-label="Copy to clipboard"
                         className={twMerge(
                             "z-10 font-mono font-bold text-text outline-none transition-transform hover:-translate-y-[2px]",
                             isBoth && "rounded-sm ring-text/50 transition-all focus-visible:ring-2"
@@ -93,6 +98,10 @@ export function ContactCard({ social, className, isSingle }: ContactCardProps) {
                                 exit="exit"
                                 variants={ICON_SWITCH}
                                 transition={ICON_SWITCH_TRANSITION}
+                                className={twMerge(
+                                    "transition-transform group-hover:-translate-y-[2px]"
+                                    // isBoth && "rounded-sm ring-text/50 transition-all focus-visible:ring-2"
+                                )}
                             >
                                 {copiedSuccess === null ? (
                                     <CopyIcon />
@@ -106,7 +115,12 @@ export function ContactCard({ social, className, isSingle }: ContactCardProps) {
                     </button>
                 ) : null}
                 {link ? (
-                    <ExternalLink isHoverable isFocusable={isBoth} href={link}>
+                    <ExternalLink
+                        isHoverable
+                        isFocusable={isBoth}
+                        href={link}
+                        aria-label={`open ${name} link`}
+                    >
                         <ExternalLinkIcon />
                     </ExternalLink>
                 ) : null}
@@ -117,19 +131,35 @@ export function ContactCard({ social, className, isSingle }: ContactCardProps) {
 
 interface WithExternalLinkOverlayProps {
     readonly href: string | undefined;
+    readonly canCopy?: boolean;
+    readonly onClick?: MouseEventHandler<HTMLButtonElement>;
+    readonly "aria-label": string;
+    readonly children: ReactNode;
     readonly className?: string;
 }
 
-const WithExternalLinkOverlay = ({
+const WithExternalLinkOrButtonOverlay = ({
     href,
+    canCopy,
     children,
     className,
-}: PropsWithChildren<WithExternalLinkOverlayProps>) => {
-    if (!href) return <span className={className}>{children}</span>;
+    onClick,
+    ...props
+}: WithExternalLinkOverlayProps) => {
+    if (href) {
+        return (
+            <ExternalLinkOverlay href={href} className={className} {...props}>
+                {children}
+            </ExternalLinkOverlay>
+        );
+    }
+    if (canCopy && onClick) {
+        return (
+            <ButtonOverlay className={className} onClick={onClick} {...props}>
+                {children}
+            </ButtonOverlay>
+        );
+    }
 
-    return (
-        <ExternalLinkOverlay href={href} className={className}>
-            {children}
-        </ExternalLinkOverlay>
-    );
+    return <span className={className}>{children}</span>;
 };

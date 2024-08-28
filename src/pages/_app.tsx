@@ -2,8 +2,8 @@ import type { AppProps } from "next/app";
 import { Golos_Text as GolosText, Noto_Sans_Mono as NotoSansMono } from "next/font/google";
 
 import Content from "@/layout/Content";
+import Header from "@/layout/Header";
 import Meta from "@/layout/Meta";
-import Nav from "@/layout/Nav";
 import Page from "@/layout/Page";
 import { PageNextNavigation, PagePrevNavigation } from "@/layout/PageEndNavigation";
 import PageTransition from "@/layout/PageTransition";
@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <>
             <Meta sansFont={sansFont} />
             <Page fonts={[sansFont, monospaceFont]}>
-                <Nav />
+                <Header />
                 <Content>
                     <PageTransition>
                         <PagePrevNavigation />

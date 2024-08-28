@@ -44,6 +44,9 @@ import {
     HerokuIcon,
     YouTubeIcon,
     InstagramIcon,
+    GoIcon,
+    CSharpIcon,
+    JavaIcon,
 } from "@/components/ui/Icons";
 
 import type { Data as LanyardData } from "use-lanyard";
@@ -77,7 +80,7 @@ export const INITIAL_DISCORD_STATE = {
         discriminator: "0",
         bot: false,
         avatar_decoration_data: null,
-        avatar: "30a5d8423b9471d72a374883a80089b9",
+        avatar: "913109c934f25b926c9942521bc4442a",
     },
     spotify: null,
     listening_to_spotify: false,
@@ -178,6 +181,21 @@ export const SKILLS = {
             link: "https://www.typescriptlang.org",
         },
         {
+            name: "Go",
+            icon: GoIcon,
+            link: "https://go.dev",
+        },
+        {
+            name: "C#",
+            icon: CSharpIcon,
+            link: "https://learn.microsoft.com/en-us/dotnet/csharp",
+        },
+        {
+            name: "Java",
+            icon: JavaIcon,
+            link: "https://www.java.com",
+        },
+        {
             name: "HTML",
             icon: HTMLIcon,
             link: "https://developer.mozilla.org/en-US/docs/Web/HTML",
@@ -188,7 +206,6 @@ export const SKILLS = {
             link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
         },
     ],
-
     "Frameworks / Libraries": [
         {
             name: "Next.js",

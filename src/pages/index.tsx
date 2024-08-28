@@ -1,7 +1,7 @@
 import { currentAge, ROUTES_META } from "@/commons/config";
 
 import { HorizontalDividerWithText } from "@/components/layout/Divider";
-import { H1, H2, H3 } from "@/components/ui/Headings";
+import { H1, H2 } from "@/components/ui/Headings";
 
 import { DiscordCard } from "@/components/cards/DiscordCard";
 import { RouteCard } from "@/components/cards/RouteCard";
@@ -16,17 +16,20 @@ export default function HomePage() {
     return (
         <>
             <Seo name={NAME} description={FULL_DESCRIPTION} />
-            <div className="xl:pr-[10%]">
-                <H2 className="font-mono text-off-white">
+            <div>
+                <span
+                    role="heading"
+                    className="font-mono text-xl font-black uppercase text-off-white sm:text-2xl lg:text-3xl"
+                >
                     <span className="after:inline-block after:w-[3ch] after:animate-full-ellipsis after:ease-linear after:content-['...'] after:animation-delay-[2s]">
                         Hi
                     </span>{" "}
                     I&apos;m,
-                </H2>
+                </span>
                 <H1 className="tracking-wide">
                     Nathan <span className="text-off-white">Lodge</span>
                 </H1>
-                <H3 className="text-subtitle">{DESCRIPTION}</H3>
+                <H2 className="text-subtitle">{DESCRIPTION}</H2>
                 <DiscordCard className="mt-8" />
                 <HorizontalDividerWithText text="View More" className="mb-16 mt-20" />
                 <ul className="grid grid-flow-row gap-6 lg:grid-cols-2">

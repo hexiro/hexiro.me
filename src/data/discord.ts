@@ -19,7 +19,7 @@ interface DiscordUserState {
 
 interface DiscordPresenceIDEState {
     name: string;
-    lines: [DiscordPresenceLine] | [DiscordPresenceLine, DiscordPresenceLine];
+    lines: DiscordPresenceLine[];
     images: {
         large: DiscordPresenceImage;
         small: DiscordPresenceImage;
@@ -100,12 +100,13 @@ function parseActivity(activity: LanyardActivity): DiscordPresenceIDEState | nul
     const { assets, application_id } = activity;
     if (!assets || !application_id) return null;
     if (!assets.large_image || !assets.small_image) return null;
-    if (!activity.details) return null;
+    if (!activity.details && !activity.state) return null;
 
     const large = parseImage(application_id, assets.large_image, assets.large_text, "large");
     const small = parseImage(application_id, assets.small_image, assets.small_text, "small");
 
-    const lines = [parseLine(activity.details)] as [DiscordPresenceLine];
+    const lines: DiscordPresenceLine[] = [];
+    if (activity.details) lines.push(parseLine(activity.details));
     if (activity.state) lines.push(parseLine(activity.state));
 
     return {

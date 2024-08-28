@@ -1,7 +1,7 @@
 import { VerticalDivider } from "@/components/layout/Divider";
-import { ExternalLinkOverlay } from "@/components/layout/LinkOverlay";
+import { ExternalLinkOverlay } from "@/components/layout/Overlay";
 import { Card } from "@/components/ui/Cards";
-import { H5 } from "@/components/ui/Headings";
+import { H4 } from "@/components/ui/Headings";
 import { ExternalLinkIcon, PackageIcon, StarsIcon } from "@/components/ui/Icons";
 import { ExternalLink } from "@/components/ui/Links";
 import { Topic } from "@/components/ui/Topics";
@@ -22,9 +22,13 @@ export function ProjectCard({ project, className, showLastUpdated }: ProjectCard
     return (
         <Card isHoverable isFocusable as="li" className={twMerge("w-full pr-4", className)}>
             <div className="mb-1 flex h-10 flex-row items-center gap-x-2 leading-none">
-                <H5 green className="basis-2/3 truncate text-[18px] lg:text-[20px]">
-                    <ExternalLinkOverlay href={url}>{name}</ExternalLinkOverlay>
-                </H5>
+                <ExternalLinkOverlay
+                    href={url}
+                    aria-label={`open project, ${name}, on GitHub`}
+                    className="basis-2/3 truncate text-[18px] text-green lg:text-[20px]"
+                >
+                    {name}
+                </ExternalLinkOverlay>
                 <span className="flex h-full basis-1/3 flex-row items-center justify-end gap-x-3">
                     {stars > 0 ? (
                         <>
@@ -38,13 +42,23 @@ export function ProjectCard({ project, className, showLastUpdated }: ProjectCard
                     <ul className="z-10 flex gap-x-1">
                         {packageUrl !== null ? (
                             <li className="contents">
-                                <ExternalLink isHoverable isFocusable href={packageUrl}>
+                                <ExternalLink
+                                    isHoverable
+                                    isFocusable
+                                    href={packageUrl}
+                                    aria-label={`open ${project} package website`}
+                                >
                                     <PackageIcon />
                                 </ExternalLink>
                             </li>
                         ) : null}
                         <li className="contents">
-                            <ExternalLink isHoverable isFocusable={packageUrl !== null} href={url}>
+                            <ExternalLink
+                                isHoverable
+                                isFocusable={packageUrl !== null}
+                                href={url}
+                                aria-label={`open project, ${name}, on GitHub`}
+                            >
                                 <ExternalLinkIcon />
                             </ExternalLink>
                         </li>
@@ -52,10 +66,17 @@ export function ProjectCard({ project, className, showLastUpdated }: ProjectCard
                 </span>
             </div>
             <div className="flex flex-col gap-y-4 pr-4">
-                <p className="line-clamp-3 min-h-[70px]">
+                <p className="line-clamp-3 min-h-[70px] text-pretty">
                     {description.map(({ value, type }) =>
                         type === "link" ? (
-                            <ExternalLink key={value} isHoverable isFocusable href={value}>
+                            <ExternalLink
+                                key={value}
+                                isHoverable
+                                isFocusable
+                                href={value}
+                                aria-label="open external source"
+                                className="relative z-10 px-0.5 normal-case text-green"
+                            >
                                 {value}
                             </ExternalLink>
                         ) : (
