@@ -37,7 +37,7 @@ export function DiscordCard({ className }: { readonly className?: string }) {
                             </StatusIndicator>
                         )}
                     </div>
-                    <div className="mt-1 flex flex-col leading-extra-tight overflow-hidden">
+                    <div className="mt-1 flex flex-col overflow-hidden leading-extra-tight">
                         <H3 className="text-green">{state.user.displayName}</H3>
                         <span className="font-bold uppercase text-subtitle">
                             @{state.user.username}
@@ -80,7 +80,7 @@ export function DiscordCard({ className }: { readonly className?: string }) {
                                                 className={
                                                     chunk.highlighted
                                                         ? "font-bold text-green"
-                                                        : "font-semibold text-[#9E9E9E]"
+                                                        : "font-semibold"
                                                 }
                                             >
                                                 {chunk.text}
@@ -119,12 +119,7 @@ function StatusIndicator({
 
 function PresenceLine({ className, children }: PropsWithChildren<{ readonly className?: string }>) {
     return (
-        <p
-            className={twMerge(
-                "truncate font-mono text-[16px] leading-tight text-subtitle",
-                className
-            )}
-        >
+        <p className={twMerge("truncate font-mono text-[16px] leading-tight text-text", className)}>
             {children}
         </p>
     );
