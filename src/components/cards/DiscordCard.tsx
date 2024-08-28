@@ -37,7 +37,7 @@ export function DiscordCard({ className }: { readonly className?: string }) {
                             </StatusIndicator>
                         )}
                     </div>
-                    <div className="mt-1 flex flex-col leading-extra-tight">
+                    <div className="mt-1 flex flex-col leading-extra-tight overflow-hidden">
                         <H3 className="text-green">{state.user.displayName}</H3>
                         <span className="font-bold uppercase text-subtitle">
                             @{state.user.username}
