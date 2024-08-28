@@ -165,7 +165,7 @@ function HeaderFog({ headerRef }: HeaderFogProps) {
             window.removeEventListener("resize", onResize);
             header.removeEventListener("scroll", computeOpacity);
         };
-    }, [headerRef]);
+    }, [headerRef, ref]);
 
     return (
         <div
