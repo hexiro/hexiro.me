@@ -13,3 +13,5 @@ yarn-error.log*
 .env.local
 .graphqlrc.yaml
 tsconfig.tsbuildinfo
+public/robots.txt
+public/sitemap.xml

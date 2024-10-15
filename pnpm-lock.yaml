@@ -23,6 +23,9 @@ importers:
       next-seo:
         specifier: ^6.5.0
         version: 6.5.0(next@14.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next-sitemap:
+        specifier: ^4.2.3
+        version: 4.2.3(next@14.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -181,6 +184,9 @@ packages:
   '@babel/types@7.25.4':
     resolution: {integrity: sha512-zQ1ijeeCXVEh+aNL0RlmkPkG8HUiDcU2pzQQFjtbntgAczRASFzj4H+6+bV+dy1ntKR14I/DypeuRG1uma98iQ==}
     engines: {node: '>=6.9.0'}
+
+  '@corex/deepmerge@4.0.43':
+    resolution: {integrity: sha512-N8uEMrMPL0cu/bdboEWpQYb/0i2K5Qn8eCsxzOmxSggJbbQte7ljMRoXm917AbntqTGOzdTu+vP3KOOzoC70HQ==}
 
   '@discoveryjs/json-ext@0.5.7':
     resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
@@ -358,6 +364,9 @@ packages:
 
   '@next/bundle-analyzer@14.2.6':
     resolution: {integrity: sha512-6x5EdGfJu9Yl5ER6PYv1a3KXPBxU4OCu92oaqP9kxkhEyqHrJcSLYDax2xa7ehv92Ypw43zIHDvASX2F8qYNew==}
+
+  '@next/env@13.5.7':
+    resolution: {integrity: sha512-uVuRqoj28Ys/AI/5gVEgRAISd0KWI0HRjOO1CTpNgmX3ZsHb5mdn14Y59yk0IxizXdo7ZjsI2S7qbWnO+GNBcA==}
 
   '@next/env@14.2.6':
     resolution: {integrity: sha512-bs5DFKV+08EjWrl8EB+KKqev1ZTNONH1vFCaHh911aaB362NnP32UDTbE9VQhyiAgbFqJsfDkSxFERNDDb3j0g==}
@@ -1561,6 +1570,13 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
 
+  next-sitemap@4.2.3:
+    resolution: {integrity: sha512-vjdCxeDuWDzldhCnyFCQipw5bfpl4HmZA7uoo3GAaYGjGgfL4Cxb1CiztPuWGmS+auYs7/8OekRS8C2cjdAsjQ==}
+    engines: {node: '>=14.18'}
+    hasBin: true
+    peerDependencies:
+      next: '*'
+
   next@14.2.6:
     resolution: {integrity: sha512-57Su7RqXs5CBKKKOagt8gPhMM3CpjgbeQhrtei2KLAA1vTNm7jfKS+uDARkSW8ZETUflDCBIsUKGSyQdRs4U4g==}
     engines: {node: '>=18.17.0'}
@@ -2274,6 +2290,8 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
 
+  '@corex/deepmerge@4.0.43': {}
+
   '@discoveryjs/json-ext@0.5.7': {}
 
   '@emnapi/runtime@1.2.0':
@@ -2433,6 +2451,8 @@ snapshots:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
+
+  '@next/env@13.5.7': {}
 
   '@next/env@14.2.6': {}
 
@@ -3814,6 +3834,14 @@ snapshots:
       next: 14.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+
+  next-sitemap@4.2.3(next@14.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
+    dependencies:
+      '@corex/deepmerge': 4.0.43
+      '@next/env': 13.5.7
+      fast-glob: 3.3.2
+      minimist: 1.2.8
+      next: 14.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
   next@14.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
