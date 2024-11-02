@@ -5,7 +5,7 @@ import { useRef } from "react";
 import type { IRoute } from "@/commons/config";
 import { ROUTES } from "@/commons/config";
 
-import { HorizontalDivider, VerticalDivider } from "@/components/layout/Divider";
+import { VerticalDivider } from "@/components/layout/Divider";
 import { H1 } from "@/components/ui/Headings";
 import { Link } from "@/components/ui/Links";
 
@@ -26,7 +26,7 @@ const Header = () => {
             ref={ref}
             layout
             layoutRoot
-            className="fixed top-0 z-40 flex h-28 w-screen flex-row overflow-x-auto border-b-2 border-solid border-white/10 bg-background-secondary lg:h-screen lg:w-52 lg:flex-col lg:items-start lg:overflow-hidden lg:overflow-y-auto lg:border-0 lg:border-b-0 lg:border-r-2 lg:border-white/5"
+            className="fixed top-0 z-40 flex h-28 w-screen flex-row gap-y-[4.5rem] overflow-x-auto border-b-2 border-solid border-white/10 bg-background-secondary lg:h-screen lg:w-52 lg:flex-col lg:items-start lg:overflow-hidden lg:overflow-y-auto lg:border-0 lg:border-b-0 lg:border-r-2 lg:border-white/5"
             onMouseDown={(e) => {
                 // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
                 if (!ref.current) return;
@@ -36,30 +36,20 @@ const Header = () => {
                 onMouseDown(e);
             }}
         >
-            <div className="flex items-center justify-center px-8 lg:h-52 lg:min-h-[10em] lg:w-full lg:px-6">
-                <button
-                    type="button"
-                    aria-label="NL: scroll to top"
+            <div className="flex items-center justify-start px-8 py-6 lg:w-full lg:items-start lg:justify-start lg:px-6 lg:pb-0 lg:pt-6">
+                <Link
+                    href="/"
+                    aria-label="go to home page"
                     className="group focus-visible:outline-none"
-                    onClick={() =>
-                        window.scroll({
-                            top: 0,
-                            left: 0,
-                            behavior: "smooth",
-                        })
-                    }
                 >
-                    <H1 className="text-3xl drop-shadow-md transition-transform duration-fast ease-in-out group-hover:scale-110 group-focus-visible:scale-110 group-active:scale-95 sm:text-4xl lg:text-5xl">
+                    <H1 className="text-xl drop-shadow-md transition-transform duration-fast ease-in-out group-hover:scale-110 group-focus-visible:scale-110 group-active:scale-95 sm:text-2xl lg:text-2xl">
                         NL
                     </H1>
-                </button>
+                </Link>
             </div>
-            <HorizontalDivider className="my-auto h-[80%] w-0 divide-x lg:mx-auto lg:my-0 lg:h-0 lg:w-[80%]" />
+            <VerticalDivider className="my-auto h-[80%] lg:hidden" />
             <NavRoutes />
             <HeaderFog />
-            <div className="mb-8 hidden w-full flex-grow items-center tall:flex">
-                <VerticalDivider className="ml-[25%] hidden h-3/4 lg:block" />
-            </div>
         </motion.header>
     );
 };
@@ -70,7 +60,7 @@ function NavRoutes() {
     const selectedIndex = useSelectedRouteIndex();
 
     return (
-        <nav className="flex h-full w-fit items-center gap-8 px-12 lg:my-6 lg:h-[unset] lg:w-full lg:flex-col lg:items-start lg:gap-[0.6em] lg:p-6 lg:pr-0">
+        <nav className="flex h-full w-fit items-center gap-8 px-12 lg:h-auto lg:w-full lg:flex-col lg:items-start lg:gap-[0.6em] lg:p-6 lg:pr-0">
             {ROUTES.map((route, index) => (
                 <NavRoute key={route.name} route={route} isSelected={index === selectedIndex} />
             ))}
@@ -84,20 +74,17 @@ interface NavRouteProps {
 }
 
 function NavRoute({ route, isSelected }: NavRouteProps) {
-    const { name, path } = route;
+    const { name, path, icon: Icon } = route;
 
     return (
-        <div
-            key={name}
-            className="relative flex h-full w-full items-center text-[1.35rem] drop-shadow-md"
-        >
+        <div key={name} className="relative flex h-full w-full items-center drop-shadow-md">
             <Link
                 href={path}
                 aria-label={`open ${name} page`}
-                className="group relative flex gap-x-1 py-1 uppercase text-off-white focus-visible:outline-none lg:w-full"
+                className="group relative flex items-center gap-x-2 py-1 uppercase text-off-white focus-visible:outline-none lg:w-full"
             >
-                <span className="text-green">/</span>
-                <span className="relative overflow-hidden font-sans font-bold transition-transform duration-fast ease-in-out after:absolute after:bottom-0 after:left-0 after:h-[0.1em] after:w-full after:translate-x-[calc(-100%-1px)] after:bg-off-white after:transition-all after:duration-300 after:will-change-transform group-hover:translate-x-1 group-focus-visible:translate-x-2 group-focus-visible:after:translate-x-0 group-active:scale-95 lg:group-hover:translate-x-2">
+                <Icon className="size-[1.35rem] shrink-0 stroke-current" />
+                <span className="relative overflow-hidden font-sans text-[1.35rem] font-bold transition-transform duration-fast ease-in-out after:absolute after:bottom-0 after:left-0 after:h-[0.1em] after:w-full after:translate-x-[calc(-100%-1px)] after:bg-off-white after:transition-all after:duration-300 after:will-change-transform group-hover:translate-x-1 group-focus-visible:translate-x-1.5 group-focus-visible:after:translate-x-0 group-active:scale-95 lg:group-hover:translate-x-1.5">
                     {name}
                 </span>
             </Link>

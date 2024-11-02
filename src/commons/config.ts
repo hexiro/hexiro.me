@@ -1,5 +1,6 @@
 import type { IconType } from "@/components/ui/Icons";
 import {
+    HomeIcon,
     AboutIcon,
     ProjectsIcon,
     SkillsIcon,
@@ -98,6 +99,7 @@ export const GITHUB_TOKEN = process.env.GITHUB_TOKEN ?? "";
 export interface IRoute {
     name: string;
     path: string;
+    icon: IconType;
 }
 
 export type INavRouteName = (typeof ROUTES)[number]["name"];
@@ -106,22 +108,27 @@ export const ROUTES = [
     {
         name: "Home",
         path: "/",
+        icon: HomeIcon,
     },
     {
         name: "About",
         path: "/about",
+        icon: AboutIcon,
     },
     {
         name: "Projects",
         path: "/projects",
+        icon: ProjectsIcon,
     },
     {
         name: "Skills",
         path: "/skills",
+        icon: SkillsIcon,
     },
     {
         name: "Contact",
         path: "/contact",
+        icon: ContactIcon,
     },
 ] as const satisfies readonly IRoute[];
 export const NAV_PATHS = ROUTES.map((route) => route.path);

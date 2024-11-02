@@ -100,6 +100,7 @@ export const XIcon: IconType = (props) => (
 );
 
 export const CodeIcon: IconType = (props) => (
+    // 'code' from tabler-icons
     <Icon {...props}>
         <path d="M7 8l-4 4l4 4" />
         <path d="M17 8l4 4l-4 4" />
@@ -108,6 +109,14 @@ export const CodeIcon: IconType = (props) => (
 );
 
 // sections icons
+
+export const HomeIcon: IconType = (props) => (
+    // 'terminal' from tabler-icons
+    <Icon {...props}>
+        <path d="M5 7l5 5l-5 5" />
+        <path d="M12 19l7 0" />
+    </Icon>
+);
 
 export const AboutIcon: IconType = (props) => (
     // 'user' from iconic
