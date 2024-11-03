@@ -37,7 +37,7 @@ export function GlobalSeo() {
                 siteName: "Nathan Lodge",
                 images: [
                     {
-                        url: "/og_image.webp",
+                        url: "https://hexiro.me/og_image.webp",
                         width: 1200,
                         height: 630,
                         type: "image/webp",
