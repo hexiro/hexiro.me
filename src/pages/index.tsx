@@ -17,7 +17,7 @@ export default function HomePage() {
         <>
             <Seo name={NAME} description={FULL_DESCRIPTION} />
             <div>
-                <span className="font-mono text-xl font-black uppercase text-off-white sm:text-2xl lg:text-3xl">
+                <span className="font-mono text-xl font-black uppercase leading-none text-off-white sm:text-2xl lg:text-3xl">
                     <span className="after:inline-block after:w-[3ch] after:animate-full-ellipsis after:ease-linear after:content-['...'] after:animation-delay-[2s]">
                         Hi
                     </span>{" "}
@@ -26,7 +26,7 @@ export default function HomePage() {
                 <H1 className="tracking-wide">
                     Nathan <span className="text-off-white">Lodge</span>
                 </H1>
-                <H2 className="text-subtitle">{DESCRIPTION}</H2>
+                <H2 className="mt-2 text-subtitle">{DESCRIPTION}</H2>
                 <DiscordCard className="mt-8" />
                 <HorizontalDividerWithText text="View More" className="mb-16 mt-20" />
                 <ul className="grid grid-flow-row gap-6 lg:grid-cols-2">

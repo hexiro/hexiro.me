@@ -37,10 +37,7 @@ export function H1({ className, ...rest }: GeneralHeadingProps) {
     return (
         <Heading
             as="h1"
-            className={twMerge(
-                "text-5xl leading-extra-tight sm:text-6xl sm:leading-snug lg:text-7xl lg:leading-normal",
-                className
-            )}
+            className={twMerge("text-5xl leading-extra-tight sm:text-6xl lg:text-7xl", className)}
             {...rest}
         />
     );
@@ -51,7 +48,7 @@ export function H2({ className, ...rest }: GeneralHeadingProps) {
     return (
         <Heading
             as="h2"
-            className={twMerge("text-lg sm:text-xl lg:text-2xl", className)}
+            className={twMerge("text-lg leading-[1.75] sm:text-xl lg:text-2xl", className)}
             {...rest}
         />
     );

@@ -64,9 +64,7 @@ export function DiscordCard({ className }: { readonly className?: string }) {
                         )}
                     </div>
                     <div className="my-1 w-full overflow-hidden">
-                        <span
-                            className="mb-2 truncate font-sans text-[18px] font-extrabold uppercase leading-none text-off-white sm:leading-normal lg:text-base"
-                        >
+                        <span className="mb-2 truncate font-sans text-[18px] font-extrabold uppercase leading-none text-off-white sm:leading-normal lg:text-base">
                             {state.ide ? state.ide.name : "No IDE active"}
                         </span>
                         {state.ide ? (

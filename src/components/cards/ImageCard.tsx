@@ -13,7 +13,10 @@ export function ImageCard({ children, className }: ImageCardProps) {
     return (
         <Card
             as="div"
-            className={twMerge("grid w-full shrink-0 place-items-center p-6 grid-flow-col", className)}
+            className={twMerge(
+                "grid w-full shrink-0 grid-flow-col place-items-center p-6",
+                className
+            )}
         >
             {children}
         </Card>

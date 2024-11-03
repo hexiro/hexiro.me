@@ -34,7 +34,15 @@ export function GlobalSeo() {
                 type: "website",
                 locale: "en_US",
                 url: "https://hexiro.me/",
-                siteName: "hexiro.me",
+                siteName: "Nathan Lodge",
+                images: [
+                    {
+                        url: "/og_image.webp",
+                        width: 1200,
+                        height: 630,
+                        type: "image/webp",
+                    },
+                ],
             }}
             twitter={{
                 handle: `@${TWITTER}`,
@@ -78,10 +86,6 @@ export function GlobalSeo() {
                 {
                     name: "apple-mobile-web-app-title",
                     content: "NL",
-                },
-                {
-                    name: "keywords",
-                    content: "Nathan Lodge, Software Engineer, Hexiro, Hexiiro, Hex, Hexiro.me",
                 },
                 {
                     name: "msapplication-TileColor",
